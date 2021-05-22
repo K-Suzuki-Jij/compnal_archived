@@ -14,7 +14,7 @@
 #include <iomanip>
 #include <sstream>
 
-namespace cmpnal {
+namespace compnal {
 namespace sparse_matrix {
 
 template<typename RealType>
@@ -22,11 +22,23 @@ class CRS {
    
 public:
    CRS(): row_dim_(0), col_dim_(0), row_(1) {}
-   CRS(const int64_t row_dim, const int64_t col_dim, const int64_t num_elements): row_dim_(row_dim), col_dim_(col_dim) {
-      row_.resize(row_dim + 1);
-      col_.resize(num_elements);
-      val_.resize(num_elements);
+   CRS(const int64_t row_dim, const int64_t col_dim) { SetDim(row_dim, col_dim); }
+   CRS(const std::vector<std::vector<RealType>> &mat_vec): row_dim_(mat_vec.size()) {
+      col_dim_ = 0;
+      row_.resize(row_dim_ + 1);
       row_[0] = 0;
+      for (int64_t i = 0; i < row_dim_; ++i) {
+         for (int64_t j = 0; j < mat_vec[i].size();++j) {
+            if (mat_vec[i][j] != 0.0) {
+               col_.push_back(j);
+               val_.push_back(mat_vec[i][j]);
+               if (col_dim_ < j + 1) {
+                  col_dim_ = j + 1;
+               }
+            }
+         }
+         row_[i + 1] = col_.size();
+      }
    }
    
    inline int64_t GetRowDim() const { return row_dim_; }
@@ -47,6 +59,9 @@ public:
    inline int64_t GetSizeRow() const { return row_.size(); }
    
    void SetDim(const int64_t row_dim, const int64_t col_dim) {
+      if (row_dim < 0 || col_dim < 0) {
+         throw std::runtime_error("row_dim or col_dim of CRS must be larger than or equal to zero");
+      }
       row_dim_ = row_dim;
       col_dim_ = col_dim;
       col_.clear();
@@ -91,6 +106,7 @@ public:
          matrix_out.Val(i) = coeef*val_[i];
       }
       
+#pragma omp parallel for
       for (int64_t i = 0; i < row_dim_ + 1; ++i) {
          matrix_out.Row(i) = row_[i];
       }
@@ -126,7 +142,7 @@ public:
       }
    }
    
-   bool CheckSymmetric(RealType threshold = 0.000000000000001/*pow(10,-15)*/) const {
+   bool CheckSymmetric(const RealType threshold = 0.000000000000001/*pow(10,-15)*/) const {
       for (int64_t i = 0; i < row_dim_; ++i) {
          for (int64_t j = row_[i]; j < row_[i + 1]; ++j) {
             
@@ -390,7 +406,7 @@ CRS<RealType> CreateMatrixSum(const CRS<RealType> &matrix_1, const CRS<RealType>
                }
             }
             else if (matrix_1.Col(row_lower_1 + count_1) == matrix_2.Col(row_lower_2 + count_2)) {
-               RealType val = coeef_1*matrix_1.Val(row_lower_1 + count_1) + coeef_2*matrix_2.Val(row_lower_2 + count_2);
+               const RealType val = coeef_1*matrix_1.Val(row_lower_1 + count_1) + coeef_2*matrix_2.Val(row_lower_2 + count_2);
                if (std::abs(val) > 0.0) {
                   matrix_out.PushVal(val);
                   matrix_out.PushCol(matrix_1.Col(row_lower_1 + count_1));
@@ -460,7 +476,7 @@ CRS<RealType> CreateMatrixSum(const CRS<RealType> &matrix_1, const CRS<RealType>
 }
 
 } // namespace sparse_matrix
-} // namespace cmpnal
+} // namespace compnal
 
 
 #endif /* compressed_row_storage_hpp */

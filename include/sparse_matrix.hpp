@@ -9,6 +9,7 @@
 #define sparse_matrix_hpp
 
 #include "../src/sparse_matrix/compressed_row_storage.hpp"
-
+#include "../src/sparse_matrix/braket_vector.hpp"
+#include "../src/sparse_matrix/lapack.hpp"
 
 #endif /* sparse_matrix_hpp */
