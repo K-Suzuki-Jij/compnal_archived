@@ -66,6 +66,14 @@ public:
          val_[i] = fill_in;
       }
    }
+   
+   void Clear() {
+      val_.clear();
+   }
+   
+   void Free() {
+      std::vector<RealType>().swap(val_);
+   }
       
    RealType L2Norm() const {
       RealType inner_product = 0.0;
@@ -104,8 +112,40 @@ public:
    
    BraketVector operator+() const { return *this; }
    BraketVector operator-() const { return CreateCopy(-1.0); }
-   BraketVector& operator+=(const BraketVector &vector_rhs) { return *this = CreateVectorSum(*this, vector_rhs); }
-   BraketVector& operator-=(const BraketVector &vector_rhs) { return *this = CreateVectorSum(*this, vector_rhs, 1.0, -1.0); }
+   BraketVector& operator+=(const BraketVector &vector_rhs) {
+      if (val_.size() != vector_rhs.GetDim()) {
+         std::stringstream ss;
+         ss << "Error in " << __func__ << std::endl;
+         ss << "BraketVector types do not match each other" << std::endl;
+         ss << "dim_1 = " << val_.size() << ", dim_2 = " << vector_rhs.GetDim() << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      
+      const int64_t dim = val_.size();
+      
+#pragma omp parallel for
+      for (int64_t i = 0; i < dim; ++i) {
+         val_[i] += vector_rhs.Val(i);
+      }
+      return *this;
+   }
+   BraketVector& operator-=(const BraketVector &vector_rhs) {
+      if (val_.size() != vector_rhs.GetDim()) {
+         std::stringstream ss;
+         ss << "Error in " << __func__ << std::endl;
+         ss << "BraketVector types do not match each other" << std::endl;
+         ss << "dim_1 = " << val_.size() << ", dim_2 = " << vector_rhs.GetDim() << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      
+      const int64_t dim = val_.size();
+      
+#pragma omp parallel for
+      for (int64_t i = 0; i < dim; ++i) {
+         val_[i] -= vector_rhs.Val(i);
+      }
+      return *this;
+   }
    
    BraketVector& operator*=(const RealType coeef) {
       MultiplyVectorByScalar(this, coeef);
@@ -116,6 +156,16 @@ public:
    BraketVector& operator*=(const CRS<CrsRealType> &matrix_lhs) {
       const auto temp = CreateCopy();
       CreateMatrixVectorProduct(this, matrix_lhs, temp);
+      return *this;
+   }
+   
+   BraketVector& operator=(const BraketVector &vector) & {
+      const int64_t dim = vector.GetDim();
+      val_.resize(dim);
+#pragma omp parallel for
+      for (int64_t i = 0; i < dim; ++i) {
+         val_[i] = vector.Val(i);
+      }
       return *this;
    }
    

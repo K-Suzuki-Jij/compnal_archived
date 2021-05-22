@@ -10,7 +10,7 @@
 
 TEST(CRS, ConstructorNoArguments) {
    
-   cmpnal::sparse_matrix::CRS<double> matrix;
+   compnal::sparse_matrix::CRS<double> matrix;
    
    EXPECT_EQ(matrix.GetRowDim(), 0);
    EXPECT_EQ(matrix.GetColDim(), 0);
@@ -26,7 +26,7 @@ TEST(CRS, ConstructorNoArguments) {
 TEST(CRS, ConstructorArguments) {
    int row_dim = 3;
    int col_dim = 5;
-   cmpnal::sparse_matrix::CRS<double> matrix(row_dim, col_dim);
+   compnal::sparse_matrix::CRS<double> matrix(row_dim, col_dim);
    
    EXPECT_EQ(matrix.GetRowDim(), row_dim);
    EXPECT_EQ(matrix.GetColDim(), col_dim);
@@ -49,7 +49,7 @@ TEST(CRS, ConstructorVecVec) {
       {+0.0, -2.5, +0.0}
    };
    
-   cmpnal::sparse_matrix::CRS<double> matrix(vecvec);
+   compnal::sparse_matrix::CRS<double> matrix(vecvec);
    
    EXPECT_EQ(matrix.GetRowDim(), 3);
    EXPECT_EQ(matrix.GetColDim(), 3);
