@@ -22,7 +22,18 @@ class CRS {
    
 public:
    CRS(): row_dim_(0), col_dim_(0), row_(1) {}
-   CRS(const int64_t row_dim, const int64_t col_dim) { SetDim(row_dim, col_dim); }
+   CRS(const int64_t row_dim, const int64_t col_dim) {
+      if (row_dim < 0 || col_dim < 0) {
+         throw std::runtime_error("row_dim or col_dim of CRS must be larger than or equal to zero");
+      }
+      row_dim_ = row_dim;
+      col_dim_ = col_dim;
+      row_.resize(row_dim + 1);
+#pragma omp parallel for
+      for (int64_t i = 0; i < row_dim + 1; ++i) {
+         row_[i] = 0;
+      }
+   }
    CRS(const std::vector<std::vector<RealType>> &mat_vec): row_dim_(mat_vec.size()) {
       col_dim_ = 0;
       row_.resize(row_dim_ + 1);
@@ -57,25 +68,10 @@ public:
    inline int64_t GetSizeVal() const { return val_.size(); }
    inline int64_t GetSizeCol() const { return col_.size(); }
    inline int64_t GetSizeRow() const { return row_.size(); }
-   
-   void SetDim(const int64_t row_dim, const int64_t col_dim) {
-      if (row_dim < 0 || col_dim < 0) {
-         throw std::runtime_error("row_dim or col_dim of CRS must be larger than or equal to zero");
-      }
-      row_dim_ = row_dim;
-      col_dim_ = col_dim;
-      col_.clear();
-      val_.clear();
-      row_.resize(row_dim + 1);
-      for (int64_t i = 0; i < row_dim + 1; ++i) {
-         row_[i] = 0;
-      }
-   }
-   
-   void UpdateRow() { row_.push_back(col_.size()); }
-   
-   void PushCol(const int64_t  col) { col_.push_back(col); }
-   void PushVal(const RealType val) { val_.push_back(val); }
+         
+   inline void PushRow(const int64_t  size) { row_.push_back(size); }
+   inline void PushCol(const int64_t  col ) { col_.push_back(col) ; }
+   inline void PushVal(const RealType val ) { val_.push_back(val) ; }
       
    void Clear(const int64_t row_dim = 0, const int64_t col_dim = 0) {
       row_dim_ = row_dim;
@@ -149,7 +145,7 @@ public:
             auto iter_begin = col_.begin() + row_[col_[j]];
             auto iter_end   = col_.begin() + row_[col_[j] + 1];
             auto iter_find  = std::lower_bound(iter_begin, iter_end, i);
-            if (iter_find == iter_end && *iter_find != i) {
+            if (iter_find == iter_end || *iter_find != i) {
                std::cout << "The input matrix is not symmetric." << std::endl;
                std::cout << "Corresponding element does not exist." << std::endl;
                std::cout << "row=" << i << ", col=" << col_[j] << ", val=" << val_[j] << std::endl;
@@ -283,7 +279,7 @@ CRS<RealType> CreateMatrixProduct(const CRS<RealType> &matrix_lhs, const CRS<Rea
       throw std::runtime_error(ss.str());
    }
    
-   CRS<RealType> matrix_out;
+   CRS<RealType> matrix_out(row_dim_1, col_dim_2);
    
    std::vector<RealType> temp_v1(col_dim_1, 0.0);
    std::vector<RealType> temp_v2(col_dim_2, 0.0);
@@ -309,8 +305,9 @@ CRS<RealType> CreateMatrixProduct(const CRS<RealType> &matrix_lhs, const CRS<Rea
             matrix_out.PushCol(j);
          }
       }
-      matrix_out.UpdateRow();
-
+      
+      matrix_out.Row(i+1) = matrix_out.GetSizeCol();
+      
       for (int64_t j = begin_m1; j < end_m1; ++j) {
          temp_v1[matrix_lhs.Col(j)] = 0.0;
       }
@@ -322,8 +319,6 @@ CRS<RealType> CreateMatrixProduct(const CRS<RealType> &matrix_lhs, const CRS<Rea
       }
       
    }
-   matrix_out.SetRowDim(row_dim_1);
-   matrix_out.SetColDim(col_dim_2);
    
    return matrix_out;
 }
@@ -364,7 +359,7 @@ CRS<RealType> CreateMatrixSum(const CRS<RealType> &matrix_1, const CRS<RealType>
       throw std::runtime_error(ss.str());
    }
    
-   CRS<RealType> matrix_out;
+   CRS<RealType> matrix_out(row_dim_1, col_dim_1);
    int64_t total_count;
    
    total_count = 0;
@@ -469,10 +464,9 @@ CRS<RealType> CreateMatrixSum(const CRS<RealType> &matrix_1, const CRS<RealType>
             }
          }
       }
-      matrix_out.UpdateRow();
+      matrix_out.Row(i + 1) = matrix_out.GetSizeCol();
    }
-   matrix_out.SetRowDim(row_dim_1);
-   matrix_out.SetColDim(col_dim_1);
+   return matrix_out;
 }
 
 } // namespace sparse_matrix
