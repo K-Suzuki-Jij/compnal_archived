@@ -15,7 +15,7 @@
 namespace compnal {
 namespace solver {
 
-template<typename ModelClass1D>
+template<class ModelClass1D>
 class ExactDiag1D {
    
    using RealType = typename ModelClass1D::ValueType;

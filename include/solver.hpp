@@ -9,5 +9,6 @@
 #define solver_hpp
 
 #include "../src/solver/exact_diag_1d.hpp"
+#include "../src/solver/ed_heisengerg_1d.hpp"
 
 #endif /* solver_hpp */

@@ -51,10 +51,10 @@ public:
    }
       
    BoundaryCondition GetBoundaryCondition() const { return boundary_condition_; }
-   int GetSystemSize()     const { return system_size_;    }
-   int GetTotal2Sz()       const { return total_2sz_;      }
-   int GetDimOnsite()      const { return dim_onsite_;     }
-   int GetMagnitude2Spin() const { return magnitude_2spin_;}
+   inline int GetSystemSize()     const { return system_size_;    }
+   inline int GetTotal2Sz()       const { return total_2sz_;      }
+   inline int GetDimOnsite()      const { return dim_onsite_;     }
+   inline int GetMagnitude2Spin() const { return magnitude_2spin_;}
    
    void SetMagnitude2Spin(const int magnitude_2spin) {
       if (magnitude_2spin <= 0) {
@@ -177,6 +177,12 @@ public:
       RealType magnitude_spin = magnitude_2spin_*0.5;
       for (int64_t row = 0; row < sz_.GetRowDim(); ++row) {
          std::cout << "row " << row << ": |Sz=" << magnitude_spin - row << ">" << std::endl;
+      }
+   }
+   
+   void CheckInteger(double s) const {
+      if (std::floor(s) != s) {
+         throw std::runtime_error("Invalid value of magnitude_spin");
       }
    }
    
@@ -318,13 +324,7 @@ private:
       
       return matrix;
    }
-   
-   void CheckInteger(double s) const {
-      if (std::floor(s) != s) {
-         throw std::runtime_error("Invalid value of magnitude_spin");
-      }
-   }
-   
+      
 };
 
 
