@@ -43,9 +43,9 @@ public:
             if (mat_vec[i][j] != 0.0) {
                col_.push_back(j);
                val_.push_back(mat_vec[i][j]);
-               if (col_dim_ < j + 1) {
-                  col_dim_ = j + 1;
-               }
+            }
+            if (col_dim_ < j + 1) {
+               col_dim_ = j + 1;
             }
          }
          row_[i + 1] = col_.size();
@@ -72,6 +72,18 @@ public:
    inline void PushRow(const int64_t  size) { row_.push_back(size); }
    inline void PushCol(const int64_t  col ) { col_.push_back(col) ; }
    inline void PushVal(const RealType val ) { val_.push_back(val) ; }
+   
+   const std::vector<int64_t> &GetRow() const {
+      return row_;
+   }
+   
+   const std::vector<int64_t> &GetCol() const {
+      return col_;
+   }
+   
+   const std::vector<RealType> &GetVal() const {
+      return val_;
+   }
       
    void Clear(const int64_t row_dim = 0, const int64_t col_dim = 0) {
       row_dim_ = row_dim;

@@ -32,9 +32,10 @@ public:
    }
    
    Heisenberg1D(const int system_size, const double magnitude_spin) {
-      CheckInteger(2*magnitude_spin);
       SetSystemSize(system_size);
-      SetMagnitude2Spin(static_cast<int>(magnitude_spin*2));
+      magnitude_2spin_ = DoubleTheNumber(magnitude_spin);
+      dim_onsite_ = magnitude_2spin_ + 1;
+      SetOperator();
    }
    
    Heisenberg1D(const int system_size, const BoundaryCondition bc) {
@@ -44,19 +45,22 @@ public:
    }
    
    Heisenberg1D(const int system_size, const double magnitude_spin, const BoundaryCondition bc) {
-      CheckInteger(2*magnitude_spin);
       SetSystemSize(system_size);
-      SetMagnitude2Spin(static_cast<int>(magnitude_spin*2));
       SetBoundaryCondition(bc);
+      magnitude_2spin_ = DoubleTheNumber(magnitude_spin);
+      dim_onsite_      = magnitude_2spin_ + 1;
+      SetOperator();
    }
       
-   BoundaryCondition GetBoundaryCondition() const { return boundary_condition_; }
-   inline int GetSystemSize()     const { return system_size_;    }
-   inline int GetTotal2Sz()       const { return total_2sz_;      }
-   inline int GetDimOnsite()      const { return dim_onsite_;     }
-   inline int GetMagnitude2Spin() const { return magnitude_2spin_;}
+   inline BoundaryCondition GetBoundaryCondition()    const { return boundary_condition_;     }
+   inline int               GetSystemSize()           const { return system_size_;            }
+   inline int               GetDimOnsite()            const { return dim_onsite_;             }
+   inline double            GetMagnitudeSpin()        const { return magnitude_2spin_/2.0;    }
+   inline double            GetTotalSz()              const { return total_2sz_/2.0;          }
+   inline const int         GetNumConservedQuantity() const { return num_conserved_quantity_; }
    
-   void SetMagnitude2Spin(const int magnitude_2spin) {
+   void SetMagnitudeSpin(const double magnitude_spin) {
+      const int magnitude_2spin = DoubleTheNumber(magnitude_spin);
       if (magnitude_2spin <= 0) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__      << std::endl;
@@ -70,7 +74,8 @@ public:
       }
    }
    
-   void SetTotal2Sz(const int total_2sz) {
+   void SetTotal2Sz(const double total_sz) {
+      const int total_2sz = DoubleTheNumber(total_sz);
       if (system_size_ <= 0) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__  << std::endl;
@@ -156,7 +161,8 @@ public:
       std::cout << "Print Heisenberg Model Infomation:" << std::endl;
       std::cout << "boundary_condition     = " << bc                      << std::endl;
       std::cout << "system_size            = " << system_size_            << std::endl;
-      std::cout << "total_2sz              = " << total_2sz_              << std::endl;
+      std::cout << "magnitute_spin         = " << magnitude_2spin_/2.0    << std::endl;
+      std::cout << "total_ sz              = " << total_2sz_/2.0          << std::endl;
       std::cout << "num_conserved_quantity = " << num_conserved_quantity_ << std::endl;
       std::cout << "dim_onsite             = " << dim_onsite_             << std::endl;
       
@@ -174,25 +180,32 @@ public:
    }
    
    void PrintBasis() {
-      RealType magnitude_spin = magnitude_2spin_*0.5;
+      const double magnitude_spin = magnitude_2spin_/2.0;
       for (int64_t row = 0; row < sz_.GetRowDim(); ++row) {
          std::cout << "row " << row << ": |Sz=" << magnitude_spin - row << ">" << std::endl;
       }
    }
    
-   void CheckInteger(double s) const {
+   int DoubleTheNumber(double s) const {
+      s = 2*s;
       if (std::floor(s) != s) {
-         throw std::runtime_error("Invalid value of magnitude_spin");
+         throw std::runtime_error("Invalid value of magnitude_spin or total_sz");
       }
+      return static_cast<int>(s);
    }
    
-   const CRS &GetHam() const { return ham_; }
-   const CRS &GetSx () const { return sx_ ; }
-   const CRS &GetiSy() const { return isy_; }
-   const CRS &GetSz () const { return sz_ ; }
-   const CRS &GetSp () const { return sp_ ; }
-   const CRS &GetSm () const { return sm_ ; }
+   const CRS &GetOperatorHam() const { return ham_; }
+   const CRS &GetOperatorSx () const { return sx_ ; }
+   const CRS &GetOperatoriSy() const { return isy_; }
+   const CRS &GetOperatorSz () const { return sz_ ; }
+   const CRS &GetOperatorSp () const { return sp_ ; }
+   const CRS &GetOperatorSm () const { return sm_ ; }
    
+   const std::vector<RealType> &GetJz()  const { return J_z_ ; }
+   const std::vector<RealType> &GetJxy() const { return J_xy_; }
+   RealType GetHz() const { return h_z_; }
+   RealType GetDz() const { return D_z_; }
+
 private:
    CRS ham_, sx_, isy_, sz_, sp_, sm_;
    
@@ -236,26 +249,26 @@ private:
    }
    
    CRS CreateSx() const {
-      int dim_onsite          = GetDimOnsite();
-      RealType magnitude_spin = GetMagnitude2Spin()*0.5;
+      int    dim_onsite     = GetDimOnsite();
+      double magnitude_spin = GetMagnitudeSpin();
       RealType a = 0;
       RealType b = 1;
       
       CRS matrix(dim_onsite, dim_onsite);
 
-      matrix.PushVal(std::sqrt( (magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1) ) );
+      matrix.PushVal(0.5*std::sqrt((magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1)) );
       matrix.PushCol(b);
       matrix.Row(1) = matrix.GetSizeCol();
       
       for (int row = 1; row < dim_onsite - 1; ++row) {
          a = row;
          b = row - 1;
-         matrix.PushVal(std::sqrt( (magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1) ) );
+         matrix.PushVal(0.5*std::sqrt((magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1)) );
          matrix.PushCol(b);
          
          a = row;
          b = row + 1;
-         matrix.PushVal(std::sqrt( (magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1) ) );
+         matrix.PushVal(0.5*std::sqrt((magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1)) );
          matrix.PushCol(b);
          matrix.Row(row + 1) = matrix.GetSizeCol();
       }
@@ -263,7 +276,7 @@ private:
       a = dim_onsite - 1;
       b = dim_onsite - 2;
       
-      matrix.PushVal(std::sqrt( (magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1) ) );
+      matrix.PushVal(0.5*std::sqrt((magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1)) );
       matrix.PushCol(b);
       matrix.Row(dim_onsite) = matrix.GetSizeCol();
       
@@ -272,26 +285,26 @@ private:
    }
    
    CRS CreateiSy() const {
-      int dim_onsite          = GetDimOnsite();
-      RealType magnitude_spin = GetMagnitude2Spin()*0.5;
+      int   dim_onsite      = GetDimOnsite();
+      double magnitude_spin = GetMagnitudeSpin();
       RealType a = 0;
       RealType b = 1;
       
       CRS matrix(dim_onsite, dim_onsite);
       
-      matrix.PushVal(std::sqrt( (magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1) ) );
+      matrix.PushVal(0.5*std::sqrt( (magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1) ) );
       matrix.PushCol(b);
       matrix.Row(1) = matrix.GetSizeCol();
       
       for (int row = 1; row < dim_onsite - 1; ++row) {
          a = row;
          b = row - 1;
-         matrix.PushVal(-1.0*std::sqrt( (magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1) ) );
+         matrix.PushVal(-0.5*std::sqrt( (magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1) ) );
          matrix.PushCol(b);
          
          a = row;
          b = row + 1;
-         matrix.PushVal(std::sqrt( (magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1) ) );
+         matrix.PushVal(0.5*std::sqrt( (magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1) ) );
          matrix.PushCol(b);
          
          matrix.Row(row + 1) = matrix.GetSizeCol();
@@ -300,7 +313,7 @@ private:
       a = dim_onsite - 1;
       b = dim_onsite - 2;
       
-      matrix.PushVal(-1.0*std::sqrt( (magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1) ) );
+      matrix.PushVal(-0.5*std::sqrt( (magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1) ) );
       matrix.PushCol(b);
       matrix.Row(dim_onsite) = matrix.GetSizeCol();
       
@@ -308,8 +321,8 @@ private:
    }
 
    CRS CreateSz() const {
-      int dim_onsite          = GetDimOnsite();
-      RealType magnitude_spin = GetMagnitude2Spin()*0.5;
+      int   dim_onsite      = GetDimOnsite();
+      double magnitude_spin = GetMagnitudeSpin();
 
       CRS matrix(dim_onsite, dim_onsite);
       

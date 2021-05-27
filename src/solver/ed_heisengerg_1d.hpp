@@ -53,7 +53,7 @@ public:
       }
       return dim_[system_size - 1][(total_2sz + max_total_2sz)/2];
    }
-      
+   
    
 private:
    std::vector<int64_t> basis_;

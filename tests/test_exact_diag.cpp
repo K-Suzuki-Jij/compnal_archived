@@ -15,7 +15,7 @@ TEST(ExactDiag, Constructor) {
    
    compnal::solver::ExactDiag1D exact_diag(model);
    
-   exact_diag.model.GetSz().Print();
+   exact_diag.model.GetOperatorSz().Print();
    
-   exact_diag.CalculateExpectationValue(exact_diag.model.GetSz(), 0);
+   exact_diag.CalculateExpectationValue(exact_diag.model.GetOperatorSz(), 0);
 }
