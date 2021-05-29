@@ -29,6 +29,7 @@ public:
    explicit Heisenberg1D(const int system_size) {
       SetSystemSize(system_size);
       SetOperator();
+      SetDim();
    }
    
    Heisenberg1D(const int system_size, const double magnitude_spin) {
@@ -36,12 +37,14 @@ public:
       magnitude_2spin_ = DoubleTheNumber(magnitude_spin);
       dim_onsite_ = magnitude_2spin_ + 1;
       SetOperator();
+      SetDim();
    }
    
    Heisenberg1D(const int system_size, const BoundaryCondition bc) {
       SetSystemSize(system_size);
       SetBoundaryCondition(bc);
       SetOperator();
+      SetDim();
    }
    
    Heisenberg1D(const int system_size, const double magnitude_spin, const BoundaryCondition bc) {
@@ -50,6 +53,7 @@ public:
       magnitude_2spin_ = DoubleTheNumber(magnitude_spin);
       dim_onsite_      = magnitude_2spin_ + 1;
       SetOperator();
+      SetDim();
    }
       
    inline BoundaryCondition GetBoundaryCondition()    const { return boundary_condition_;     }
@@ -194,6 +198,29 @@ public:
       return static_cast<int>(s);
    }
    
+   int64_t GetDim() const {
+      int system_size   = GetSystemSize();
+      int total_2sz     = total_2sz_;
+      int max_total_2sz = system_size*magnitude_2spin_;
+      if (dim_[system_size - 1][(total_2sz + max_total_2sz)/2] < 0) {
+         throw std::runtime_error("Maybe too large Hilbert space. Overflow detected.");
+      }
+      return dim_[system_size - 1][(total_2sz + max_total_2sz)/2];
+   }
+   
+   int64_t GetDim(double target_sz) const {
+      int system_size   = GetSystemSize();
+      int total_2sz     = DoubleTheNumber(target_sz);
+      int max_total_2sz = system_size*magnitude_2spin_;
+      if (dim_[system_size - 1][(total_2sz + max_total_2sz)/2] < 0) {
+         throw std::runtime_error("Maybe too large Hilbert space. Overflow detected.");
+      }
+      if (std::abs(total_2sz) > max_total_2sz) {
+         return 0;
+      }
+      return dim_[system_size - 1][(total_2sz + max_total_2sz)/2];
+   }
+   
    const CRS &GetOperatorHam() const { return ham_; }
    const CRS &GetOperatorSx () const { return sx_ ; }
    const CRS &GetOperatoriSy() const { return isy_; }
@@ -222,6 +249,8 @@ private:
    std::vector<RealType> J_xy_ = {1.0};
    RealType h_z_ = 0.0;
    RealType D_z_ = 0.0;
+   
+   std::vector<std::vector<int64_t>> dim_;
    
    void SetOperator() {
       ham_ = CreateHam();
@@ -336,6 +365,25 @@ private:
       }
       
       return matrix;
+   }
+   
+   void SetDim() {
+      int system_size = GetSystemSize();
+      int magnitude_2spin = magnitude_2spin_;
+      int max_total_2sz = system_size*magnitude_2spin;
+      dim_.assign(system_size, std::vector<int64_t>(max_total_2sz + 1));
+      
+      for (int s = -magnitude_2spin; s <= magnitude_2spin; s += 2) {
+         dim_[0][(s + magnitude_2spin)/2] = 1;
+      }
+      
+      for (int site = 1; site < system_size; site++) {
+         for (int s = -magnitude_2spin; s <= magnitude_2spin; s += 2) {
+            for (int s_prev = -magnitude_2spin*site; s_prev <= magnitude_2spin*site; s_prev += 2) {
+               dim_[site][(s + s_prev + magnitude_2spin*(site + 1))/2] += dim_[site - 1][(s_prev + magnitude_2spin*site)/2];
+            }
+         }
+      }
    }
       
 };

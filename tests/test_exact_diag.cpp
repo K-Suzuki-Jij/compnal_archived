@@ -9,7 +9,7 @@
 #include "model.hpp"
 #include <gtest/gtest.h>
 
-TEST(ExactDiag, Constructor) {
+TEST(ExactDiag, Heisenberg1D) {
    
    compnal::model::Heisenberg1D<double> model(3, 0.5);
    
