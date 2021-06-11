@@ -141,9 +141,7 @@ TEST(ModelHeisenberg, Constructor3) {
 TEST(ModelHeisenberg, Constructor4) {
    Heisenberg1D<double> model(3, 0.5, BoundaryCondition::OBC);
    StateTestSpinOneHalf(model);
+   
+   Heisenberg1D<double>::CreateOperatorSz(0.5);
 }
 
-TEST(ModelHeisenberg, GetDim) {
-   Heisenberg1D<double> model(3, 0.5, BoundaryCondition::OBC);
-   printf("%lld\n",model.GetDim());
-}
