@@ -239,6 +239,7 @@ public:
          throw std::runtime_error(ss.str());
       }
       const int shifted_2sz = (system_size_*magnitude_2spin_ - total_2sz_)/2;
+      const int64_t dim_target = GetDim();
       std::vector<std::vector<int>> partition_integers;
       GenerateIntegerPartition(partition_integers, shifted_2sz, magnitude_2spin_);
       
@@ -250,10 +251,47 @@ public:
       std::vector<int64_t>().swap(*basis);
       
 #ifdef _OPENMP
+      const int num_threads = omp_get_num_threads();
+      std::vector<std::vector<int64_t>> bases(num_threads);
       
-
+      for (int64_t i = 0; i < partition_integers.size(); ++i) {
+         const bool condition1 = (0 < partition_integers[i].size()) && (partition_integers[i].size() <= system_size_);
+         const bool condition2 = (partition_integers[i].size() == 0) && (shifted_2sz  == 0);
+         if (condition1 || condition2) {
+            
+            for (int64_t j = partition_integers[i].size(); j < system_size_; ++j) {
+               partition_integers[i].push_back(0);
+            }
+            
+            const int64_t size = CalculateNumCombination(partition_integers[i]);
+            
+#pragma omp parallel num_threads (num_threads)
+            {
+               const int thread_num = omp_get_thread_num();
+               const int64_t loop_begin = thread_num*size/num_threads;
+               const int64_t loop_end   = (thread_num + 1)*size/num_threads;
+               
+               std::vector<int> temp_partition_integer = partition_integers[i];
+               NthPermutation(temp_partition_integer, loop_begin);
+               
+               for (int64_t j = loop_begin; j < loop_end; ++j) {
+                  int64_t basis_onsite = 0;
+                  for (int64_t k = 0; k < partition_integers[i].size(); ++k) {
+                     basis_onsite += temp_partition_integer[k]*site_constant[k];
+                  }
+                  bases[thread_num].push_back(basis_onsite);
+                  std::next_permutation(temp_partition_integer.begin(), temp_partition_integer.end());
+               }
+            }
+         }
+      }
+            
+      for (int64_t i = 0; i < bases.size(); ++i) {
+         basis->insert(basis->end(), bases[i].begin(), bases[i].end());
+         std::vector<int64_t>().swap(basis[i]);
+      }
+      
 #else
-      int64_t dim_target = GetDim();
       basis->reserve(dim_target);
          
       for (int64_t i = 0; i < partition_integers.size(); ++i) {
@@ -269,12 +307,11 @@ public:
             
             do {
                int64_t basis_onsite = 0;
-               for (int64_t k = 0; k < partition_integers[i].size(); ++k) {
-                  basis_onsite += partition_integers[i][k]*site_constant[k];
+               for (int64_t j = 0; j < partition_integers[i].size(); ++j) {
+                  basis_onsite += partition_integers[i][j]*site_constant[j];
                }
                basis->push_back(basis_onsite);
             } while (std::next_permutation(partition_integers[i].begin(), partition_integers[i].end()));
-                        
          }
       }
 #endif
@@ -286,6 +323,11 @@ public:
       }
       
       std::sort(basis->begin(), basis->end());
+      basis_inv->clear();
+      
+      for (int64_t i = 0; i < basis->size(); ++i) {
+         (*basis_inv)[(*basis)[i]] = i;
+      }
 
    }
    

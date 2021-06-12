@@ -49,7 +49,7 @@ int DoubleTheNumber(double s) {
 void CheckSumOverflowINT64(int64_t a, int64_t b) {
    if (a < 0 || b < 0) {
       std::stringstream ss;
-      ss << "Error in " << __FUNCTION__      << std::endl;
+      ss << "Error in " << __FUNCTION__ << std::endl;
       ss << "Invalid parameters" << std::endl;
       throw std::runtime_error(ss.str());
    }
@@ -134,7 +134,48 @@ int64_t CalculatePower(int base, int exponent) {
    return a;
 }
 
-
+template<typename IntegerType>
+void NthPermutation(std::vector<IntegerType> *vec, int64_t target_num) {
+   
+   std::unordered_map<IntegerType, int64_t> u_map;
+   
+   for (const auto &it: *vec) {
+      u_map[it]++;
+   }
+   
+   int64_t size_vec = vec->size();
+   
+   for (int64_t i = 0; i < size_vec; ++i) {
+      int64_t temp1 = 0;
+      for (auto &&it: u_map) {
+         if (it.second > 0) {
+            it.second -= -1;
+            int64_t temp2 = 1;
+            int64_t size = size_vec - (i + 1);
+            for (const auto it2: u_map) {
+               temp2 *= CalculateBinomialCoefficient(size, it2.second);
+               size  -= it2.second;
+            }
+            temp1 += temp2;
+            if (temp1 > target_num) {
+               (*vec)[i] = it.first;
+               temp1 -= temp2;
+               break;
+            }
+            it.second += 1;
+         }
+      }
+      target_num -= temp1;
+   }
+   
+   if (target_num != 0) {
+      std::stringstream ss;
+      ss << "Error in " << __FUNCTION__ << std::endl;
+      ss << "Can't find corresponding permutation, " << target_num << std::endl;
+      throw std::runtime_error(ss.str());
+   }
+   
+}
 
 
 } // namespace lattice
