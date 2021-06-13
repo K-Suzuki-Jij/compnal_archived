@@ -1,9 +1,12 @@
 //
-//  test_sparse_matrix.cpp
+//  test_sparse_matrix.hpp
 //  compnal
 //
-//  Created by Kohei Suzuki on 2021/05/22.
+//  Created by Kohei Suzuki on 2021/06/14.
 //
+
+#ifndef test_sparse_matrix_hpp
+#define test_sparse_matrix_hpp
 
 #include "sparse_matrix.hpp"
 #include <gtest/gtest.h>
@@ -77,3 +80,6 @@ TEST(CRS, ConstructorVecVec) {
 }
 
 
+
+
+#endif /* test_sparse_matrix_hpp */

@@ -26,7 +26,7 @@ class ExactDiag1D {
    
 public:
    
-   const ModelClass1D model;
+   ModelClass1D model;
    
    explicit ExactDiag1D(const ModelClass1D &model_input): model(model_input) {}
    
@@ -42,18 +42,13 @@ public:
       return gs_vector_*CalculateMatrixVectorProduct(M, site, gs_vector_, basis_, basis_);
    }
    
-   std::vector<RealType> CalculateAllExpectationValues(const CRS &M) {
-      int system_size = model.GetSystemSize();
-      std::vector<RealType> out(system_size);
-      for (int site = 0; site < system_size; ++site) {
-         out[site] = gs_vector_*CalculateMatrixVectorProduct(M, site, gs_vector_, basis_, basis_);
-      }
-      return out;
-   }
+   
+   
    
    
 private:
    std::vector<int64_t> basis_;
+   std::unordered_map<int64_t, int64_t> basis_inv;
    BraketVector gs_vector_;
    
    int64_t CalculateLocalBasis(int64_t global_basis, int64_t site, int64_t dim_onsite) {
@@ -62,7 +57,6 @@ private:
       }
       return global_basis%dim_onsite;
    }
-   
    
    BraketVector CalculateMatrixVectorProduct(const CRS &M, int site,
                                              const BraketVector &ket_in,

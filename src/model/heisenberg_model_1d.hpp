@@ -1,12 +1,12 @@
 //
-//  heisenberg_model.hpp
+//  heisenberg_model_1d.hpp
 //  compnal
 //
 //  Created by Kohei Suzuki on 2021/05/20.
 //
 
-#ifndef heisenberg_model_hpp
-#define heisenberg_model_hpp
+#ifndef heisenberg_model_1d_hpp
+#define heisenberg_model_1d_hpp
 
 #include "model_utility.hpp"
 #include "sparse_matrix.hpp"
@@ -474,4 +474,4 @@ private:
 } // namespace lattice
 } // namespace compnal
 
-#endif /* heisenberg_model_hpp */
+#endif /* heisenberg_model_1d_hpp */

@@ -1,18 +1,19 @@
 //
-//  test_model.cpp
+//  test_model.hpp
 //  compnal
 //
-//  Created by Kohei Suzuki on 2021/05/23.
+//  Created by Kohei Suzuki on 2021/06/14.
 //
+
+#ifndef test_model_hpp
+#define test_model_hpp
 
 #include "model.hpp"
 #include <gtest/gtest.h>
-
-using namespace compnal::model;
-using namespace compnal::sparse_matrix;
+#include <gmock/gmock.h>
 
 template<typename RealType>
-void CRSTest(const CRS<RealType> &m1, const CRS<RealType> &m2) {
+void CRSTest(const compnal::sparse_matrix::CRS<RealType> &m1, const compnal::sparse_matrix::CRS<RealType> &m2) {
    EXPECT_EQ(m1.GetRowDim(), m2.GetRowDim());
    EXPECT_EQ(m1.GetColDim(), m2.GetColDim());
    
@@ -33,9 +34,9 @@ void CRSTest(const CRS<RealType> &m1, const CRS<RealType> &m2) {
    }
 }
 
-void StateTestSpinOneHalf(const Heisenberg1D<double> &model) {
+void StateTestSpinOneHalf(const compnal::model::Heisenberg1D<double> &model) {
    
-   EXPECT_EQ(model.GetBoundaryCondition()   , BoundaryCondition::OBC);
+   EXPECT_EQ(model.GetBoundaryCondition()   , compnal::model::BoundaryCondition::OBC);
    EXPECT_EQ(model.GetSystemSize()          , 3                     );
    EXPECT_EQ(model.GetDimOnsite()           , 2                     );
    EXPECT_EQ(model.GetMagnitudeSpin()       , 0.5                   );
@@ -50,18 +51,18 @@ void StateTestSpinOneHalf(const Heisenberg1D<double> &model) {
    
    EXPECT_DOUBLE_EQ(model.GetHz(), 0.0);
    EXPECT_DOUBLE_EQ(model.GetDz(), 0.0);
-   EXPECT_EQ(model.GetOperatorSx() , CRS<double>(std::vector<std::vector<double>>{{+0.0, +0.5}, {+0.5, +0.0}}));
-   EXPECT_EQ(model.GetOperatoriSy(), CRS<double>(std::vector<std::vector<double>>{{+0.0, +0.5}, {-0.5, +0.0}}));
-   EXPECT_EQ(model.GetOperatorSz() , CRS<double>(std::vector<std::vector<double>>{{+0.5, +0.0}, {+0.0, -0.5}}));
-   EXPECT_EQ(model.GetOperatorSp() , CRS<double>(std::vector<std::vector<double>>{{+0.0, +1.0}, {+0.0, +0.0}}));
-   EXPECT_EQ(model.GetOperatorSm() , CRS<double>(std::vector<std::vector<double>>{{+0.0, +0.0}, {+1.0, +0.0}}));
-   EXPECT_EQ(model.GetOperatorHam(), CRS<double>(2,2));
+   EXPECT_EQ(model.GetOperatorSx() , compnal::sparse_matrix::CRS<double>(std::vector<std::vector<double>>{{+0.0, +0.5}, {+0.5, +0.0}}));
+   EXPECT_EQ(model.GetOperatoriSy(), compnal::sparse_matrix::CRS<double>(std::vector<std::vector<double>>{{+0.0, +0.5}, {-0.5, +0.0}}));
+   EXPECT_EQ(model.GetOperatorSz() , compnal::sparse_matrix::CRS<double>(std::vector<std::vector<double>>{{+0.5, +0.0}, {+0.0, -0.5}}));
+   EXPECT_EQ(model.GetOperatorSp() , compnal::sparse_matrix::CRS<double>(std::vector<std::vector<double>>{{+0.0, +1.0}, {+0.0, +0.0}}));
+   EXPECT_EQ(model.GetOperatorSm() , compnal::sparse_matrix::CRS<double>(std::vector<std::vector<double>>{{+0.0, +0.0}, {+1.0, +0.0}}));
+   EXPECT_EQ(model.GetOperatorHam(), compnal::sparse_matrix::CRS<double>(2,2));
    
 }
 
-void StateTestSpinOne(const Heisenberg1D<double> &model) {
+void StateTestSpinOne(const compnal::model::Heisenberg1D<double> &model) {
    
-   EXPECT_EQ(model.GetBoundaryCondition()   , BoundaryCondition::OBC);
+   EXPECT_EQ(model.GetBoundaryCondition()   , compnal::model::BoundaryCondition::OBC);
    EXPECT_EQ(model.GetSystemSize()          , 3                     );
    EXPECT_EQ(model.GetDimOnsite()           , 3                     );
    EXPECT_EQ(model.GetMagnitudeSpin()       , 1.0                   );
@@ -109,39 +110,41 @@ void StateTestSpinOne(const Heisenberg1D<double> &model) {
       {+0.0  , +root2, +0.0}
    };
    
-   CRSTest(model.GetOperatorSx() , CRS<double>(Sx));
-   CRSTest(model.GetOperatoriSy(), CRS<double>(iSy));
-   CRSTest(model.GetOperatorSz() , CRS<double>(Sz));
-   CRSTest(model.GetOperatorSp() , CRS<double>(Sp));
-   CRSTest(model.GetOperatorSm() , CRS<double>(Sm));
-   CRSTest(model.GetOperatorHam(), CRS<double>(3,3));
+   CRSTest(model.GetOperatorSx() , compnal::sparse_matrix::CRS<double>(Sx));
+   CRSTest(model.GetOperatoriSy(), compnal::sparse_matrix::CRS<double>(iSy));
+   CRSTest(model.GetOperatorSz() , compnal::sparse_matrix::CRS<double>(Sz));
+   CRSTest(model.GetOperatorSp() , compnal::sparse_matrix::CRS<double>(Sp));
+   CRSTest(model.GetOperatorSm() , compnal::sparse_matrix::CRS<double>(Sm));
+   CRSTest(model.GetOperatorHam(), compnal::sparse_matrix::CRS<double>(3,3));
       
 }
 
 TEST(ModelHeisenberg, Constructor1) {
-   Heisenberg1D<double> model(3);
+   compnal::model::Heisenberg1D<double> model(3);
    StateTestSpinOneHalf(model);
 }
 
 TEST(ModelHeisenberg, Constructor2_1) {
-   Heisenberg1D<double> model(3, 0.5);
+   compnal::model::Heisenberg1D<double> model(3, 0.5);
    StateTestSpinOneHalf(model);
 }
 
 TEST(ModelHeisenberg, Constructor2_2) {
-   Heisenberg1D<double> model(3, 1.0);
+   compnal::model::Heisenberg1D<double> model(3, 1.0);
    StateTestSpinOne(model);
 }
 
 TEST(ModelHeisenberg, Constructor3) {
-   Heisenberg1D<double> model(3, BoundaryCondition::OBC);
+   compnal::model::Heisenberg1D<double> model(3, compnal::model::BoundaryCondition::OBC);
    StateTestSpinOneHalf(model);
 }
 
 TEST(ModelHeisenberg, Constructor4) {
-   Heisenberg1D<double> model(3, 0.5, BoundaryCondition::OBC);
+   compnal::model::Heisenberg1D<double> model(3, 0.5, compnal::model::BoundaryCondition::OBC);
    StateTestSpinOneHalf(model);
    
-   Heisenberg1D<double>::CreateOperatorSz(0.5);
+   compnal::model::Heisenberg1D<double>::CreateOperatorSz(0.5);
 }
 
+
+#endif /* test_model_hpp */

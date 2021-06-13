@@ -1,9 +1,12 @@
 //
-//  test_exact_diag.cpp
+//  test_exact_diag.hpp
 //  compnal
 //
-//  Created by Kohei Suzuki on 2021/05/23.
+//  Created by Kohei Suzuki on 2021/06/14.
 //
+
+#ifndef test_exact_diag_hpp
+#define test_exact_diag_hpp
 
 #include "solver.hpp"
 #include "model.hpp"
@@ -19,3 +22,6 @@ TEST(ExactDiag, Heisenberg1D) {
    
    exact_diag.CalculateExpectationValue(exact_diag.model.GetOperatorSz(), 0);
 }
+
+
+#endif /* test_exact_diag_hpp */
