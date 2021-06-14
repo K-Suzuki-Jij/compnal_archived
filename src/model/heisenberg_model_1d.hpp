@@ -63,7 +63,8 @@ public:
    inline int               GetDimOnsite()            const { return dim_onsite_;             }
    inline double            GetMagnitudeSpin()        const { return magnitude_2spin_/2.0;    }
    inline double            GetTotalSz()              const { return total_2sz_/2.0;          }
-   inline const int         GetNumConservedQuantity() const { return num_conserved_quantity_; }
+   inline int               GetNumConservedQuantity() const { return num_conserved_quantity_; }
+   inline bool              GetFlagRecalcBasis()      const { return flag_recalc_basis;       }
    
    const CRS &GetOperatorHam() const { return ham_; }
    const CRS &GetOperatorSx () const { return sx_ ; }
@@ -89,6 +90,7 @@ public:
          magnitude_2spin_ = magnitude_2spin;
          dim_onsite_      = magnitude_2spin + 1;
          SetOperator();
+         flag_recalc_basis = true;
       }
    }
    
@@ -115,6 +117,7 @@ public:
          throw std::runtime_error(ss.str());
       }
       total_2sz_ = total_2sz;
+      flag_recalc_basis = true;
    }
    
    void SetSystemSize(const int system_size) {
@@ -125,6 +128,7 @@ public:
          throw std::runtime_error(ss.str());
       }
       system_size_ = system_size;
+      flag_recalc_basis = true;
    }
    
    void SetBoundaryCondition(const BoundaryCondition bc) {
@@ -329,6 +333,7 @@ public:
          (*basis_inv)[(*basis)[i]] = i;
       }
 
+      flag_recalc_basis = false;
    }
    
    static CRS CreateOperatorSx(double magnitude_spin) {
@@ -452,7 +457,9 @@ private:
    std::vector<RealType> J_xy_ = {1.0};
    RealType h_z_ = 0.0;
    RealType D_z_ = 0.0;
-         
+   
+   bool flag_recalc_basis = true;
+   
    void SetOperator() {
       double magnitude_spin = static_cast<double>(magnitude_2spin_/2.0);
       ham_ = CreateOperatorHam(magnitude_spin);

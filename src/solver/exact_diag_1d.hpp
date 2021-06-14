@@ -10,6 +10,7 @@
 
 #include "sparse_matrix.hpp"
 #include "model.hpp"
+#include "exact_diag_utility.hpp"
 #include <unordered_map>
 
 namespace compnal {
@@ -29,6 +30,19 @@ public:
    ModelClass1D model;
    
    explicit ExactDiag1D(const ModelClass1D &model_input): model(model_input) {}
+   
+   void SetBasis() {
+      if (model.GetFlagRecalcBasis()) {
+         model.GenerateBasis(&basis_, &basis_inv);
+      }
+   }
+   
+   
+   
+   void Diagonalize() {
+      SetBasis();
+      
+   }
    
    const BraketVector &GetGSVector() const {
       return gs_vector_;
@@ -50,8 +64,76 @@ private:
    std::vector<int64_t> basis_;
    std::unordered_map<int64_t, int64_t> basis_inv;
    BraketVector gs_vector_;
+   bool flag_recalc_gs = true;
    
-   int64_t CalculateLocalBasis(int64_t global_basis, int64_t site, int64_t dim_onsite) {
+   void GenerateMatrixElementsOnsite(ExactDiagMatrixElements<RealType> *edme,
+                                     const int64_t basis,
+                                     const int site,
+                                     const CRS &matrix_onsite,
+                                     const RealType coeef) const {
+      
+      if (std::abs(coeef) == 0.0) {
+         return;
+      }
+      
+      const int     basis_onsite  = edme->basis_onsite[site];
+      const int64_t site_constant = edme->site_constant[site];
+      
+      for (int64_t i = matrix_onsite.Row(basis_onsite); i < matrix_onsite.Row(basis_onsite + 1); ++i) {
+         const int64_t a_basis = basis + (matrix_onsite.Col(i) - basis_onsite)*site_constant;
+         if (edme->inv_basis_affected.count(a_basis) == 0) {
+            edme->inv_basis_affected[a_basis] = edme->basis_affected.size();
+            edme->val.push_back(coeef*matrix_onsite.Val(i));
+            edme->basis_affected.push_back(a_basis);
+         }
+         else {
+            const RealType val = edme->val[edme->inv_basis_affected.at(a_basis)] + coeef*matrix_onsite.Val(i);
+            if (std::abs(val) > edme->zero_precision) {
+               edme->val[edme->inv_basis_affected.at(a_basis)] = val;
+            }
+         }
+      }
+   }
+   
+   void GenerateMatrixElementsIntersite(ExactDiagMatrixElements<RealType> *edme,
+                                        const int64_t basis,
+                                        const int site_1,
+                                        const CRS &matrix_onsite_1,
+                                        const int site_2,
+                                        const CRS &matrix_onsite_2,
+                                        const RealType coeef,
+                                        const int fermion_sign) const {
+      
+      if (std::abs(coeef) == 0.0) {
+         return;
+      }
+      
+      const int     basis_onsite_1  = edme->basis_onsite[site_1];
+      const int     basis_onsite_2  = edme->basis_onsite[site_2];
+      const int64_t site_constant_1 = edme->site_constant[site_1];
+      const int64_t site_constant_2 = edme->site_constant[site_1];
+
+      for (int64_t i1 = matrix_onsite_1.Row(basis_onsite_1); i1 < matrix_onsite_1.Row(basis_onsite_1 + 1); ++i1) {
+         const RealType val_1 = matrix_onsite_1.Val(i1);
+         const int64_t  col_1 = matrix_onsite_1.Col(i1);
+         for (int64_t i2 = matrix_onsite_2.Row(basis_onsite_2); i2 < matrix_onsite_2.Row(basis_onsite_2 + 1); ++i2) {
+            const int64_t a_basis = (col_1 - basis_onsite_1)*site_constant_1 + (matrix_onsite_2.Col(i2) - basis_onsite_2)*site_constant_2;
+            if (edme->inv_basis_affected.count(a_basis) == 0) {
+               edme->inv_basis_affected[a_basis] = edme->basis_affected.size();
+               edme->val.push_back(fermion_sign*coeef*val_1*matrix_onsite_2.Val(i2));
+               edme->basis_affected.push_back(a_basis);
+            }
+            else {
+               const RealType val = edme->val[edme->inv_basis_affected.at(a_basis)] + fermion_sign*coeef*val_1*matrix_onsite_2.Val(i2);
+               if (std::abs(val) > edme->zero_precision) {
+                  edme->val[edme->inv_basis_affected.at(a_basis)] = val;
+               }
+            }
+         }
+      }
+   }
+   
+   int64_t CalculateLocalBasis(int64_t global_basis, int site, int dim_onsite) {
       for (int64_t i = 0; i < site; ++i) {
          global_basis = global_basis/dim_onsite;
       }
