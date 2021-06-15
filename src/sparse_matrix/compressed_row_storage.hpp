@@ -52,6 +52,18 @@ public:
       }
    }
    
+   void ResizeRow(const int64_t row_dim) {
+      row_.resize(row_dim + 1);
+      row_[0] = 0;
+   }
+   void ResizeColVal(const int64_t num_elements) {
+      col_.resize(num_elements);
+      val_.resize(num_elements);
+   }
+   
+   void SetRowDim(const int64_t dim) { row_dim_ = dim; }
+   void SetColDim(const int64_t dim) { col_dim_ = dim; }
+
    inline int64_t GetRowDim() const { return row_dim_; }
    inline int64_t GetColDim() const { return col_dim_; }
    

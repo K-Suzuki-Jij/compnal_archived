@@ -12,6 +12,10 @@
 #include "model.hpp"
 #include "exact_diag_utility.hpp"
 #include <unordered_map>
+#include <sstream>
+#ifdef _OPENMP
+#include <omp.h>
+#endif
 
 namespace compnal {
 namespace solver {
@@ -66,85 +70,102 @@ private:
    BraketVector gs_vector_;
    bool flag_recalc_gs = true;
    
-   void GenerateMatrixElementsOnsite(ExactDiagMatrixElements<RealType> *edme,
-                                     const int64_t basis,
-                                     const int site,
-                                     const CRS &matrix_onsite,
-                                     const RealType coeef) const {
+   void GenerateHamiltonian(CRS *ham) const {
       
-      if (std::abs(coeef) == 0.0) {
-         return;
-      }
+#ifdef _OPENMP
+      const int num_threads = omp_get_num_threads();
+      const int64_t dim_target = model.GetDim();
+      std::vector<ExactDiagMatrixElements<RealType>> components(num_threads);
       
-      const int     basis_onsite  = edme->basis_onsite[site];
-      const int64_t site_constant = edme->site_constant[site];
-      
-      for (int64_t i = matrix_onsite.Row(basis_onsite); i < matrix_onsite.Row(basis_onsite + 1); ++i) {
-         const int64_t a_basis = basis + (matrix_onsite.Col(i) - basis_onsite)*site_constant;
-         if (edme->inv_basis_affected.count(a_basis) == 0) {
-            edme->inv_basis_affected[a_basis] = edme->basis_affected.size();
-            edme->val.push_back(coeef*matrix_onsite.Val(i));
-            edme->basis_affected.push_back(a_basis);
+      for (int thread_num = 0; thread_num < num_threads; ++thread_num) {
+         for (int site = 0; site < model.GetSystemSize(); ++site) {
+            componets[thread_num].site_constant[site] = CalculatePower(model.GetDimOnsite(), site);
          }
-         else {
-            const RealType val = edme->val[edme->inv_basis_affected.at(a_basis)] + coeef*matrix_onsite.Val(i);
-            if (std::abs(val) > edme->zero_precision) {
-               edme->val[edme->inv_basis_affected.at(a_basis)] = val;
-            }
-         }
-      }
-   }
-   
-   void GenerateMatrixElementsIntersite(ExactDiagMatrixElements<RealType> *edme,
-                                        const int64_t basis,
-                                        const int site_1,
-                                        const CRS &matrix_onsite_1,
-                                        const int site_2,
-                                        const CRS &matrix_onsite_2,
-                                        const RealType coeef,
-                                        const int fermion_sign) const {
-      
-      if (std::abs(coeef) == 0.0) {
-         return;
+         componets[thread_num].basis_onsite.resize(model.GetSystemSize());
       }
       
-      const int     basis_onsite_1  = edme->basis_onsite[site_1];
-      const int     basis_onsite_2  = edme->basis_onsite[site_2];
-      const int64_t site_constant_1 = edme->site_constant[site_1];
-      const int64_t site_constant_2 = edme->site_constant[site_1];
-
-      for (int64_t i1 = matrix_onsite_1.Row(basis_onsite_1); i1 < matrix_onsite_1.Row(basis_onsite_1 + 1); ++i1) {
-         const RealType val_1 = matrix_onsite_1.Val(i1);
-         const int64_t  col_1 = matrix_onsite_1.Col(i1);
-         for (int64_t i2 = matrix_onsite_2.Row(basis_onsite_2); i2 < matrix_onsite_2.Row(basis_onsite_2 + 1); ++i2) {
-            const int64_t a_basis = (col_1 - basis_onsite_1)*site_constant_1 + (matrix_onsite_2.Col(i2) - basis_onsite_2)*site_constant_2;
-            if (edme->inv_basis_affected.count(a_basis) == 0) {
-               edme->inv_basis_affected[a_basis] = edme->basis_affected.size();
-               edme->val.push_back(fermion_sign*coeef*val_1*matrix_onsite_2.Val(i2));
-               edme->basis_affected.push_back(a_basis);
-            }
-            else {
-               const RealType val = edme->val[edme->inv_basis_affected.at(a_basis)] + fermion_sign*coeef*val_1*matrix_onsite_2.Val(i2);
-               if (std::abs(val) > edme->zero_precision) {
-                  edme->val[edme->inv_basis_affected.at(a_basis)] = val;
+      std::vector<int64_t> num_row_element(dim_target + 1);
+      
+#pragma omp parallel for num_threads (num_threads)
+      for (int row = 0; row < dim_target; ++row) {
+         const int thread_num = omp_get_thread_num();
+         GenerateMatrixElements(&components[thread_num], basis_[row], model);
+         for (const auto &a_basis: components[thread_num].basis_affected) {
+            if (basis_inv.count(a_basis) > 0) {
+               const int64_t inv = basis_inv.at(a_basis);
+               if (inv <= row) {
+                  num_row_element[row + 1]++;
                }
             }
          }
+         components[thread_num].val.clear();
+         components[thread_num].basis_affected.clear();
+         components[thread_num].inv_basis_affected.clear();
       }
-   }
-   
-   int64_t CalculateLocalBasis(int64_t global_basis, int site, int dim_onsite) {
-      for (int64_t i = 0; i < site; ++i) {
-         global_basis = global_basis/dim_onsite;
+      
+      int64_t num_total_elements = 0;
+
+#pragma omp parallel for reduction(+:num_total_elements) num_threads (num_threads)
+      for (int64_t row = 0; row < dim_target; ++row) {
+         num_total_elements += num_row_element[row];
       }
-      return global_basis%dim_onsite;
+      
+      //Do not use openmp here
+      for (int64_t row = 0; row < dim_target; ++row) {
+         num_row_element[row + 1] += num_row_element[row];
+      }
+      
+      ham->ResizeRow(dim_target);
+      ham->ResizeColVal(num_total_elements);
+      
+#pragma omp parallel for num_threads (num_threads)
+      for (int row = 0; row < dim_target; ++row) {
+         const int thread_num = omp_get_thread_num();
+         GenerateMatrixElements(&components[thread_num], basis_[row], model);
+         for (int64_t i = 0; i < components[thread_num].basis_affected.size(); ++i) {
+            const int64_t  a_basis = components[thread_num].basis_affected[i];
+            const RealType val     = components[thread_num].val[i];
+            if (basis_inv.count(a_basis) > 0) {
+               const int64_t inv = basis_inv.at(a_basis);
+               if (inv <= row) {
+                  ham->Col(num_row_element[row]) = inv;
+                  ham->Val(num_row_element[row]) = val;
+                  num_row_element[row]++;
+               }
+            }
+         }
+         ham->Row(row + 1) = num_row_element[row];
+         components[thread_num].val.clear();
+         components[thread_num].basis_affected.clear();
+         components[thread_num].inv_basis_affected.clear();
+      }
+      
+      ham->SetRowDim(dim_target);
+      ham->SetColDim(dim_target);
+      
+      const bool flag_check_1 = (ham->Row(dim_target) != num_total_elements);
+      const bool flag_check_2 = (ham->GetSizeCol() != num_total_elements);
+      const bool flag_check_3 = (ham->GetSizeVal() != num_total_elements);
+
+      if (flag_check_1 || flag_check_2 || flag_check_3) {
+         std::stringstream ss;
+         ss << "Unknown error detected in " << __FUNCTION__  << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      
+      ham->SortCol();
+      
+#else
+      
+#endif
+      
+      
    }
    
    BraketVector CalculateMatrixVectorProduct(const CRS &M, int site,
                                              const BraketVector &ket_in,
                                              const std::vector<int64_t> &bases_in,
-                                             const std::vector<int64_t> &bases_out
-                                             ) {
+                                             const std::vector<int64_t> &bases_out) const {
       
       if (bases_in.size() != ket_in.GetDim()) {
          std::stringstream ss;

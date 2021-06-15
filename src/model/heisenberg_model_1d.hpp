@@ -75,8 +75,10 @@ public:
    
    const std::vector<RealType> &GetJz()  const { return J_z_ ; }
    const std::vector<RealType> &GetJxy() const { return J_xy_; }
-   RealType GetHz() const { return h_z_; }
-   RealType GetDz() const { return D_z_; }
+   RealType GetJz (const std::size_t index) const { return J_z_[index];  }
+   RealType GetJxy(const std::size_t index) const { return J_xy_[index]; }
+   RealType GetHz () const { return h_z_; }
+   RealType GetDz () const { return D_z_; }
    
    void SetMagnitudeSpin(const double magnitude_spin) {
       const int magnitude_2spin = DoubleTheNumber(magnitude_spin);
