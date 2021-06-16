@@ -41,11 +41,17 @@ public:
       }
    }
    
-   
-   
    void Diagonalize() {
       SetBasis();
-      
+      CRS ham;
+      GenerateHamiltonian(&ham);
+   }
+   
+   CRS GenerateHamiltonian() {
+      SetBasis();
+      CRS ham;
+      GenerateHamiltonian(&ham);
+      return ham;
    }
    
    const BraketVector &GetGSVector() const {
@@ -71,17 +77,20 @@ private:
    bool flag_recalc_gs = true;
    
    void GenerateHamiltonian(CRS *ham) const {
+
+      const int64_t dim_target = model.GetDim();
+      int64_t num_total_elements = 0;
+      
       
 #ifdef _OPENMP
       const int num_threads = omp_get_num_threads();
-      const int64_t dim_target = model.GetDim();
       std::vector<ExactDiagMatrixElements<RealType>> components(num_threads);
       
       for (int thread_num = 0; thread_num < num_threads; ++thread_num) {
          for (int site = 0; site < model.GetSystemSize(); ++site) {
-            componets[thread_num].site_constant[site] = CalculatePower(model.GetDimOnsite(), site);
+            components[thread_num].site_constant[site] = CalculatePower(model.GetDimOnsite(), site);
          }
-         componets[thread_num].basis_onsite.resize(model.GetSystemSize());
+         components[thread_num].basis_onsite.resize(model.GetSystemSize());
       }
       
       std::vector<int64_t> num_row_element(dim_target + 1);
@@ -103,8 +112,6 @@ private:
          components[thread_num].inv_basis_affected.clear();
       }
       
-      int64_t num_total_elements = 0;
-
 #pragma omp parallel for reduction(+:num_total_elements) num_threads (num_threads)
       for (int64_t row = 0; row < dim_target; ++row) {
          num_total_elements += num_row_element[row];
@@ -139,6 +146,62 @@ private:
          components[thread_num].basis_affected.clear();
          components[thread_num].inv_basis_affected.clear();
       }
+#else
+      ExactDiagMatrixElements<RealType> components;
+      
+      for (int site = 0; site < model.GetSystemSize(); ++site) {
+         components.site_constant[site] = model::CalculatePower(model.GetDimOnsite(), site);
+      }
+      components.basis_onsite.resize(model.GetSystemSize());
+      
+      std::vector<int64_t> num_row_element(dim_target + 1);
+      
+      for (int row = 0; row < dim_target; ++row) {
+         GenerateMatrixElements(&components, basis_[row], model);
+         for (const auto &a_basis: components.basis_affected) {
+            if (basis_inv.count(a_basis) > 0) {
+               const int64_t inv = basis_inv.at(a_basis);
+               if (inv <= row) {
+                  num_row_element[row + 1]++;
+               }
+            }
+         }
+         components.val.clear();
+         components.basis_affected.clear();
+         components.inv_basis_affected.clear();
+      }
+      
+      for (int64_t row = 0; row < dim_target; ++row) {
+         num_total_elements += num_row_element[row];
+      }
+      
+      for (int64_t row = 0; row < dim_target; ++row) {
+         num_row_element[row + 1] += num_row_element[row];
+      }
+      
+      ham->ResizeRow(dim_target);
+      ham->ResizeColVal(num_total_elements);
+      
+      for (int row = 0; row < dim_target; ++row) {
+         GenerateMatrixElements(&components, basis_[row], model);
+         for (int64_t i = 0; i < components.basis_affected.size(); ++i) {
+            const int64_t  a_basis = components.basis_affected[i];
+            const RealType val     = components.val[i];
+            if (basis_inv.count(a_basis) > 0) {
+               const int64_t inv = basis_inv.at(a_basis);
+               if (inv <= row) {
+                  ham->Col(num_row_element[row]) = inv;
+                  ham->Val(num_row_element[row]) = val;
+                  num_row_element[row]++;
+               }
+            }
+         }
+         ham->Row(row + 1) = num_row_element[row];
+         components.val.clear();
+         components.basis_affected.clear();
+         components.inv_basis_affected.clear();
+      }
+#endif
       
       ham->SetRowDim(dim_target);
       ham->SetColDim(dim_target);
@@ -152,14 +215,7 @@ private:
          ss << "Unknown error detected in " << __FUNCTION__  << std::endl;
          throw std::runtime_error(ss.str());
       }
-      
       ham->SortCol();
-      
-#else
-      
-#endif
-      
-      
    }
    
    BraketVector CalculateMatrixVectorProduct(const CRS &M, int site,

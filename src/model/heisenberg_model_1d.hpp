@@ -237,7 +237,7 @@ public:
       return dim[system_size - 1][(total_2sz + max_total_2sz)/2];
    }
    
-   void GenerateBasis(std::vector<int64_t> *basis, std::unordered_map<int64_t, int64_t> *basis_inv) const {
+   void GenerateBasis(std::vector<int64_t> *basis, std::unordered_map<int64_t, int64_t> *basis_inv) {
       if ((system_size_*magnitude_2spin_ - total_2sz_)%2 == 1) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__ << std::endl;
@@ -247,7 +247,7 @@ public:
       const int shifted_2sz = (system_size_*magnitude_2spin_ - total_2sz_)/2;
       const int64_t dim_target = GetDim();
       std::vector<std::vector<int>> partition_integers;
-      GenerateIntegerPartition(partition_integers, shifted_2sz, magnitude_2spin_);
+      model::GenerateIntegerPartition(&partition_integers, shifted_2sz, magnitude_2spin_);
       
       std::vector<int64_t> site_constant(system_size_);
       for (int site = 0; site < system_size_; ++site) {

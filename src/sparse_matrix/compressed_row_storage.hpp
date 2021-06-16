@@ -8,6 +8,7 @@
 #ifndef compressed_row_storage_hpp
 #define compressed_row_storage_hpp
 
+#include "../utility/utility.hpp"
 #include <iostream>
 #include <cstdint>
 #include <vector>
@@ -135,6 +136,13 @@ public:
       return matrix_out;
    }
    
+   void SortCol() {
+#pragma omp parallel for schedule(guided)
+      for (int64_t i = 0; i < row_dim_; ++i) {
+         utility::QuickSort<int64_t, RealType>(&col_, &val_, row_[i], row_[i + 1]);
+      }
+   }
+   
    void Print(const std::string display_name = "Matrix") const {
       for (int64_t i = 0; i < row_dim_; ++i) {
          for (int64_t j = row_.at(i); j < row_.at(i+1); ++j) {
@@ -185,6 +193,8 @@ public:
       }
       return true;
    }
+   
+   
    
    CRS operator+() const { return *this; }
    CRS operator-() const { return CreateCopy(-1.0); }

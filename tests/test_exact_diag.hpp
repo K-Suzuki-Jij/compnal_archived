@@ -14,13 +14,13 @@
 
 TEST(ExactDiag, Heisenberg1D) {
    
-   compnal::model::Heisenberg1D<double> model(3, 0.5);
+   compnal::model::Heisenberg1D<double> model(4, 0.5);
    
    compnal::solver::ExactDiag1D exact_diag(model);
    
    exact_diag.model.GetOperatorSz().Print();
    
-   exact_diag.CalculateExpectationValue(exact_diag.model.GetOperatorSz(), 0);
+   exact_diag.GenerateHamiltonian().Print();
 }
 
 
