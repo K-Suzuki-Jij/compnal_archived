@@ -75,6 +75,14 @@ void GenerateIntegerPartition(std::vector<std::vector<int>> *results, int n, int
       }
       results->back().push_back(1);
    }
+   else if (max_partition_num == 1) {
+      if (results->size() == 0) {
+         results->push_back(std::vector<int>());
+      }
+      for (int i = 0; i < n; ++i) {
+         results->back().push_back(1);
+      }
+   }
    else {
       if (n >= max_partition_num) {
          if (results->size() == 0) {

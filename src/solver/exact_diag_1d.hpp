@@ -66,6 +66,22 @@ public:
       return gs_vector_*CalculateMatrixVectorProduct(M, site, gs_vector_, basis_, basis_);
    }
    
+   void PrintBasis() const {
+      if (model.GetFlagRecalcBasis()) {
+         throw std::runtime_error("basis has not been calculated.");
+      }
+      int dim_onsite = model.GetDimOnsite();
+      for (std::size_t i = 0; i < basis_.size(); ++i) {
+         const int64_t basis = basis_[i];
+         std::cout << "basis[" << i << "]=" << basis << ": ";
+         for (int site = 0; site < model.GetSystemSize(); ++site) {
+            int basis_onsite = CalculateLocalBasis(basis, site, dim_onsite);
+            model.PrintBasisOnsite(basis_onsite, false);
+         }
+         std::cout << std::endl;
+      }
+   }
+   
    
    
    
@@ -87,6 +103,7 @@ private:
       std::vector<ExactDiagMatrixElements<RealType>> components(num_threads);
       
       for (int thread_num = 0; thread_num < num_threads; ++thread_num) {
+         components[thread_num].site_constant.resize(model.GetSystemSize());
          for (int site = 0; site < model.GetSystemSize(); ++site) {
             components[thread_num].site_constant[site] = CalculatePower(model.GetDimOnsite(), site);
          }
@@ -113,7 +130,7 @@ private:
       }
       
 #pragma omp parallel for reduction(+:num_total_elements) num_threads (num_threads)
-      for (int64_t row = 0; row < dim_target; ++row) {
+      for (int64_t row = 0; row <= dim_target; ++row) {
          num_total_elements += num_row_element[row];
       }
       
@@ -148,7 +165,7 @@ private:
       }
 #else
       ExactDiagMatrixElements<RealType> components;
-      
+      components.site_constant.resize(model.GetSystemSize());
       for (int site = 0; site < model.GetSystemSize(); ++site) {
          components.site_constant[site] = model::CalculatePower(model.GetDimOnsite(), site);
       }
@@ -156,7 +173,7 @@ private:
       
       std::vector<int64_t> num_row_element(dim_target + 1);
       
-      for (int row = 0; row < dim_target; ++row) {
+      for (int64_t row = 0; row < dim_target; ++row) {
          GenerateMatrixElements(&components, basis_[row], model);
          for (const auto &a_basis: components.basis_affected) {
             if (basis_inv.count(a_basis) > 0) {
@@ -171,7 +188,7 @@ private:
          components.inv_basis_affected.clear();
       }
       
-      for (int64_t row = 0; row < dim_target; ++row) {
+      for (int64_t row = 0; row <= dim_target; ++row) {
          num_total_elements += num_row_element[row];
       }
       

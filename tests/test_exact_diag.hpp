@@ -20,7 +20,12 @@ TEST(ExactDiag, Heisenberg1D) {
    
    exact_diag.model.GetOperatorSz().Print();
    
+   exact_diag.SetBasis();
+   
+   exact_diag.PrintBasis();
+   
    exact_diag.GenerateHamiltonian().Print();
+   
 }
 
 

@@ -27,11 +27,11 @@ struct ExactDiagMatrixElements {
    RealType zero_precision = 0.0;
 };
 
-int64_t CalculateLocalBasis(int64_t global_basis, const int site, const int dim_onsite) {
+int CalculateLocalBasis(int64_t global_basis, const int site, const int dim_onsite) {
    for (int64_t i = 0; i < site; ++i) {
       global_basis = global_basis/dim_onsite;
    }
-   return global_basis%dim_onsite;
+   return static_cast<int>(global_basis%dim_onsite);
 }
 
 template<typename RealType>
@@ -81,13 +81,13 @@ void GenerateMatrixElementsIntersite(ExactDiagMatrixElements<RealType> *edme,
    const int     basis_onsite_1  = edme->basis_onsite[site_1];
    const int     basis_onsite_2  = edme->basis_onsite[site_2];
    const int64_t site_constant_1 = edme->site_constant[site_1];
-   const int64_t site_constant_2 = edme->site_constant[site_1];
+   const int64_t site_constant_2 = edme->site_constant[site_2];
 
    for (int64_t i1 = matrix_onsite_1.Row(basis_onsite_1); i1 < matrix_onsite_1.Row(basis_onsite_1 + 1); ++i1) {
       const RealType val_1 = matrix_onsite_1.Val(i1);
       const int64_t  col_1 = matrix_onsite_1.Col(i1);
       for (int64_t i2 = matrix_onsite_2.Row(basis_onsite_2); i2 < matrix_onsite_2.Row(basis_onsite_2 + 1); ++i2) {
-         const int64_t a_basis = (col_1 - basis_onsite_1)*site_constant_1 + (matrix_onsite_2.Col(i2) - basis_onsite_2)*site_constant_2;
+         const int64_t a_basis = basis + (col_1 - basis_onsite_1)*site_constant_1 + (matrix_onsite_2.Col(i2) - basis_onsite_2)*site_constant_2;
          if (edme->inv_basis_affected.count(a_basis) == 0) {
             edme->inv_basis_affected[a_basis] = edme->basis_affected.size();
             edme->val.push_back(fermion_sign*coeef*val_1*matrix_onsite_2.Val(i2));
@@ -116,14 +116,14 @@ void GenerateMatrixElements(ExactDiagMatrixElements<RealType> *edme, const int64
    }
    
    //Intersite elements SzSz
-   for (std::size_t distance = 1; distance <= model.GetJz().size(); ++distance) {
+   for (int distance = 1; distance <= model.GetJz().size(); ++distance) {
       for (int site = 0; site < model.GetSystemSize() - distance; ++site) {
          GenerateMatrixElementsIntersite(edme, basis, site, model.GetOperatorSz(), site + distance, model.GetOperatorSz(), model.GetJz(distance - 1), 1.0);
       }
    }
    
    //Intersite elements 0.5*(SpSm + SmSp) = SxSx + SySy
-   for (std::size_t distance = 1; distance <= model.GetJxy().size(); ++distance) {
+   for (int distance = 1; distance <= model.GetJxy().size(); ++distance) {
       for (int site = 0; site < model.GetSystemSize() - distance; ++site) {
          GenerateMatrixElementsIntersite(edme, basis, site, model.GetOperatorSp(), site + distance, model.GetOperatorSm(), 0.5*model.GetJxy(distance - 1), 1.0);
          GenerateMatrixElementsIntersite(edme, basis, site, model.GetOperatorSm(), site + distance, model.GetOperatorSp(), 0.5*model.GetJxy(distance - 1), 1.0);
@@ -132,7 +132,7 @@ void GenerateMatrixElements(ExactDiagMatrixElements<RealType> *edme, const int64
    
    if (model.GetBoundaryCondition() == model::BoundaryCondition::PBC) {
       //Intersite elements SzSz
-      for (std::size_t distance = 1; distance <= model.GetJz().size(); ++distance) {
+      for (int distance = 1; distance <= model.GetJz().size(); ++distance) {
          for (int i = 0; i < distance; ++i) {
             const auto d1 = model.GetSystemSize() - distance + i;
             const auto d2 = i;
@@ -141,7 +141,7 @@ void GenerateMatrixElements(ExactDiagMatrixElements<RealType> *edme, const int64
       }
       
       //Intersite elements 0.5*(SpSm + SmSp) = SxSx + SySy
-      for (std::size_t distance = 1; distance <= model.GetJxy().size(); ++distance) {
+      for (int distance = 1; distance <= model.GetJxy().size(); ++distance) {
          for (int i = 0; i < distance; ++i) {
             const auto d1 = model.GetSystemSize() - distance + i;
             const auto d2 = i;

@@ -204,10 +204,21 @@ public:
       std::cout << "Uniaxial Anisotropy for the z-direction: D_z =" << D_z_ << std::endl;
    }
    
-   void PrintBasis() const {
+   void PrintBasisOnsite() const {
       const double magnitude_spin = magnitude_2spin_/2.0;
       for (int64_t row = 0; row < sz_.GetRowDim(); ++row) {
          std::cout << "row " << row << ": |Sz=" << magnitude_spin - row << ">" << std::endl;
+      }
+   }
+   
+   void PrintBasisOnsite(int basis, const bool flag_new_line = true) const {
+      if (basis < 0 || dim_onsite_ < basis) {
+         return;
+      }
+      const double magnitude_spin = magnitude_2spin_/2.0;
+      std::cout << "|Sz=" << magnitude_spin - basis << ">";
+      if (flag_new_line) {
+         std::cout << std::endl;
       }
    }
       
