@@ -293,7 +293,7 @@ void CreateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
                                         const RealType coeef = 1.0
                                         ) {
    
-   if (matrix_in.GetRow() != matrix_in.GetColDim()) {
+   if (matrix_in.GetRowDim() != matrix_in.GetColDim()) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "The matrix must be symmetric";
@@ -355,10 +355,10 @@ void CreateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
    
 #else
    
-   vector_out->resize(row_dim);
+   vector_out->Resize(row_dim);
    
    for (int64_t i = 0; i < row_dim; ++i) {
-      (*vector_out)[i] = 0.0;
+      vector_out->Val(i) = 0.0;
    }
    
    for (int64_t i = 0; i < row_dim; ++i) {
@@ -366,9 +366,9 @@ void CreateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
       RealType       temp_val = matrix_in.Val(matrix_in.Row(i + 1) - 1)*temp_vec;
       for (int64_t j = matrix_in.Row(i); j < matrix_in.Row(i + 1) - 1; ++j) {
          temp_val += matrix_in.Val(j)*vector_in.Val(matrix_in.Col(j));
-         (*vector_out)[matrix_in.Col(j)] += matrix_in.Val(j)*temp_vec;
+         vector_out->Val(matrix_in.Col(j)) += matrix_in.Val(j)*temp_vec;
       }
-      (*vector_out)[i] += temp_val*coeef;
+      vector_out->Val(i) += temp_val*coeef;
    }
    
 #endif

@@ -103,6 +103,7 @@ void GenerateMatrixElementsIntersite(ExactDiagMatrixElements<RealType> *edme,
    }
 }
 
+//Heisenberg model
 template<typename RealType>
 void GenerateMatrixElements(ExactDiagMatrixElements<RealType> *edme, const int64_t basis, const model::Heisenberg1D<RealType> &model) {
    
@@ -150,6 +151,14 @@ void GenerateMatrixElements(ExactDiagMatrixElements<RealType> *edme, const int64
          }
       }
    }
+   
+   //Fill zero in the diagonal elements for symmetric matrix vector product calculation.
+   if (edme->inv_basis_affected.count(basis) == 0) {
+      edme->inv_basis_affected[basis] = edme->basis_affected.size();
+      edme->val.push_back(0.0);
+      edme->basis_affected.push_back(basis);
+   }
+   
 }
 
 

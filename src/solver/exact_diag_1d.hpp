@@ -37,7 +37,13 @@ public:
    
    sparse_matrix::DiagonalizationParameters diag_params;
    
-   explicit ExactDiag1D(const ModelClass1D &model_input): model(model_input) {}
+   sparse_matrix::DiagonalizationInfomation diag_info;
+   
+   explicit ExactDiag1D(const ModelClass1D &model_input): model(model_input) {
+      diag_params.flag_symmetric_matrix = true;
+      diag_params.flag_output_converge_step = true;
+      dim_ = model.GetDim();
+   }
    
    void SetBasis() {
       if (model.GetFlagRecalcBasis()) {
@@ -49,6 +55,7 @@ public:
       SetBasis();
       CRS ham;
       GenerateHamiltonian(&ham);
+      sparse_matrix::EigenvalueDecompositionLanczos(&gs_value_, &gs_vector_, ham, diag_params, &diag_info);
    }
    
    CRS GenerateHamiltonian() {
@@ -62,8 +69,16 @@ public:
       return gs_vector_;
    }
    
+   RealType GetGSValue() const {
+      return gs_value_;
+   }
+   
    const BraketVector &GetBasis() const {
       return basis_;
+   }
+   
+   int64_t GetDim() const {
+      return dim_;
    }
    
    RealType CalculateExpectationValue(const CRS &M, int site) {
@@ -85,22 +100,20 @@ public:
          std::cout << std::endl;
       }
    }
-   
-   
-   
-   
+
    
 private:
+   int64_t dim_;
    std::vector<int64_t> basis_;
    std::unordered_map<int64_t, int64_t> basis_inv;
    BraketVector gs_vector_;
+   RealType gs_value_;
    bool flag_recalc_gs = true;
    
    void GenerateHamiltonian(CRS *ham) const {
 
       const int64_t dim_target = model.GetDim();
       int64_t num_total_elements = 0;
-      
       
 #ifdef _OPENMP
       const int num_threads = omp_get_num_threads();

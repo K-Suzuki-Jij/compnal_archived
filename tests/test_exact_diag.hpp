@@ -14,19 +14,16 @@
 
 TEST(ExactDiag, Heisenberg1D) {
    
-   compnal::model::Heisenberg1D<double> model(4);
+   compnal::model::Heisenberg1D<double> model(16);
    
    model.SetMagnitudeSpin(0.5);
    
    compnal::solver::ExactDiag1D exact_diag(model);
    
-   exact_diag.model.GetOperatorSz().Print();
+   exact_diag.Diagonalize();
    
-   exact_diag.SetBasis();
+   printf("Dim=%lld, e=%.15lf(%.15lf)\n", exact_diag.GetDim(), exact_diag.GetGSValue(), exact_diag.GetGSValue()/exact_diag.model.GetSystemSize());
    
-   exact_diag.PrintBasis();
-   
-   exact_diag.GenerateHamiltonian().Print();
    
 }
 

@@ -93,7 +93,7 @@ void EigenvalueDecompositionLanczos(RealType               *gs_value_out,
                                     const DiagonalizationParameters &param,
                                     DiagonalizationInfomation *info
                                     ) {
-
+   
    if (matrix_in.GetRowDim() != matrix_in.GetColDim() || matrix_in.GetRowDim() < 1 || matrix_in.GetColDim() < 1) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
@@ -101,7 +101,7 @@ void EigenvalueDecompositionLanczos(RealType               *gs_value_out,
       ss << "row=" << matrix_in.GetRowDim() << ", col=" << matrix_in.GetColDim() << std::endl;
       throw std::runtime_error(ss.str());
    }
-
+   
    const auto start = std::chrono::system_clock::now();
    
    if (matrix_in.GetRowDim() == 0) {
@@ -114,7 +114,7 @@ void EigenvalueDecompositionLanczos(RealType               *gs_value_out,
    }
    
    if (matrix_in.GetRowDim() == 1) {
-      gs_value_out = matrix_in.Val(0);
+      *gs_value_out = matrix_in.Val(0);
       gs_vector_out->Resize(1);
       gs_vector_out->Val(0) = 1;
       info->lanczos_actual_steps.push_back(0);
@@ -137,7 +137,7 @@ void EigenvalueDecompositionLanczos(RealType               *gs_value_out,
    BraketVector<RealType> vector_1(dim);
    BraketVector<RealType> vector_2(dim);
    BraketVector<RealType> krylov_eigen_vector;
-
+   
    std::vector<RealType> krylov_eigen_value(param.lanczos_max_step + 1);
    std::vector<RealType> diagonal_value    (param.lanczos_max_step + 1);
    std::vector<RealType> off_diagonal_value(param.lanczos_max_step + 1);
@@ -151,7 +151,7 @@ void EigenvalueDecompositionLanczos(RealType               *gs_value_out,
    std::mt19937 random_number_engine;
    
    if (param.lanczos_flag_initial_vec) {
-      vector_0 = gs_vector_out;
+      vector_0 = *gs_vector_out;
    }
    else {
       random_number_engine.seed(seed);
@@ -163,21 +163,20 @@ void EigenvalueDecompositionLanczos(RealType               *gs_value_out,
    vector_0.Normalize();
    
    if (param.flag_symmetric_matrix) {
-      vector_1 = matrix_in*vector_0;
-   }
-   else {
 #ifdef _OPENMP
-      CreateSymmetricMatrixVectorProduct(vector_1, matrix_in, vector_0, vector_work);
+      CreateSymmetricMatrixVectorProduct(&vector_1, matrix_in, vector_0, &vector_work);
 #else
-      CreateSymmetricMatrixVectorProduct(vector_1, matrix_in, vector_0);
+      CreateSymmetricMatrixVectorProduct(&vector_1, matrix_in, vector_0);
 #endif
    }
-   
+   else {
+      vector_1 = matrix_in*vector_0;
+   }
    
    diagonal_value[0] = vector_0*vector_1;
-
+   
    krylov_eigen_value[0] = diagonal_value[0];
-      
+   
    vector_1 -= krylov_eigen_value[0]*vector_0;
    
    for (int step = 0; step < param.lanczos_max_step; ++step) {
@@ -185,35 +184,35 @@ void EigenvalueDecompositionLanczos(RealType               *gs_value_out,
       off_diagonal_value[step] = vector_2.L2Norm();
       vector_2.Normalize();
       if (param.flag_symmetric_matrix) {
-         vector_1 = matrix_in*vector_2;
+#ifdef _OPENMP
+         CreateSymmetricMatrixVectorProduct(&vector_1, matrix_in, vector_2, &vector_work);
+#else
+         CreateSymmetricMatrixVectorProduct(&vector_1, matrix_in, vector_2);
+#endif
       }
       else {
-#ifdef _OPENMP
-      CreateSymmetricMatrixVectorProduct(vector_1, matrix_in, vector_2, vector_work);
-#else
-      CreateSymmetricMatrixVectorProduct(vector_1, matrix_in, vector_2);
-#endif
+         vector_1 = matrix_in*vector_2;
       }
       
       diagonal_value[step + 1] = vector_1*vector_2;
       if (step >= param.lanczos_min_step) {
          LapackDstev(&krylov_eigen_value[step + 1], &krylov_eigen_vector, diagonal_value, off_diagonal_value);
-         RealType residual_error = std::abs(krylov_eigen_value[step + 1] - krylov_eigen_value[step]);
+         const RealType residual_error = std::abs(krylov_eigen_value[step + 1] - krylov_eigen_value[step]);
          
          if (param.flag_output_converge_step) {
             std::cout << "\rLanczos_Step[" << step + 1 << "]=" << std::scientific << std::setprecision(1);
             std::cout << residual_error << std::flush;
          }
-      
+         
          if (residual_error < param.lanczos_acc) {
-            gs_value_out = krylov_eigen_value[step + 1];
+            *gs_value_out = krylov_eigen_value[step + 1];
             converged_step_number = step + 1;
             break;
          }
       }
 #pragma omp parallel for
       for (int64_t i = 0; i < dim; ++i) {
-         vector_1.Val(i) -= diagonal_value[step]*vector_2.Val(i) + off_diagonal_value[step - 1]*vector_0.Val(i);
+         vector_1.Val(i) -= diagonal_value[step + 1]*vector_2.Val(i) + off_diagonal_value[step]*vector_0.Val(i);
          vector_0.Val(i)  = vector_2.Val(i);
       }
    }
@@ -225,7 +224,6 @@ void EigenvalueDecompositionLanczos(RealType               *gs_value_out,
    }
    
    gs_vector_out->Resize(dim);
-   gs_vector_out->Reset();
    
    if (param.lanczos_flag_store_vec) {
       //TO DO
@@ -233,7 +231,11 @@ void EigenvalueDecompositionLanczos(RealType               *gs_value_out,
    }
    else {
       if (param.lanczos_flag_initial_vec) {
-         vector_0 = gs_vector_out;
+#pragma omp parallel for
+         for (int64_t i = 0; i < dim; ++i) {
+            vector_0.Val(i) = gs_vector_out->Val(i);
+            gs_vector_out->Val(i) = 0.0;
+         }
       }
       else {
          random_number_engine.seed(seed);
@@ -243,34 +245,34 @@ void EigenvalueDecompositionLanczos(RealType               *gs_value_out,
       }
       vector_0.Normalize();
       
-      gs_vector_out += krylov_eigen_vector.Val(0)*vector_0;
+      *gs_vector_out += krylov_eigen_vector.Val(0)*vector_0;
       
       if (param.flag_symmetric_matrix) {
-         vector_1 = matrix_in*vector_0;
+#ifdef _OPENMP
+         CreateSymmetricMatrixVectorProduct(&vector_1, matrix_in, vector_0, &vector_work);
+#else
+         CreateSymmetricMatrixVectorProduct(&vector_1, matrix_in, vector_0);
+#endif
       }
       else {
-#ifdef _OPENMP
-      CreateSymmetricMatrixVectorProduct(vector_1, matrix_in, vector_0, vector_work);
-#else
-      CreateSymmetricMatrixVectorProduct(vector_1, matrix_in, vector_0);
-#endif
+         vector_1 = matrix_in*vector_0;
       }
       
       vector_1 -= krylov_eigen_value[0]*vector_0;
-
+      
       for (int step = 1; step <= converged_step_number; ++step) {
          vector_2 = vector_1;
          vector_2.Normalize();
-         gs_vector_out += krylov_eigen_vector.Val(step)*vector_2;
+         *gs_vector_out += krylov_eigen_vector.Val(step)*vector_2;
          if (param.flag_symmetric_matrix) {
-            vector_1 = matrix_in*vector_2;
+#ifdef _OPENMP
+            CreateSymmetricMatrixVectorProduct(&vector_1, matrix_in, vector_2, &vector_work);
+#else
+            CreateSymmetricMatrixVectorProduct(&vector_1, matrix_in, vector_2);
+#endif
          }
          else {
-#ifdef _OPENMP
-      CreateSymmetricMatrixVectorProduct(vector_1, matrix_in, vector_2, vector_work);
-#else
-      CreateSymmetricMatrixVectorProduct(vector_1, matrix_in, vector_2);
-#endif
+            vector_1 = matrix_in*vector_2;
          }
 #pragma omp parallel for
          for (int64_t i = 0; i < dim; ++i) {
@@ -287,11 +289,11 @@ void EigenvalueDecompositionLanczos(RealType               *gs_value_out,
    info->lanczos_actual_steps.push_back(converged_step_number);
    const auto time = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
    info->lanczos_actual_time.push_back(static_cast<double>(time)/info->time_unit_const);
-
+   std::cout << std::endl;
 }
 
 
- 
+
 } // namespace sparse_matrix
 } // namespace compnal
 
