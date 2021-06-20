@@ -15,6 +15,7 @@
 #include <sstream>
 #include <unordered_map>
 #include <algorithm>
+#include <iomanip>
 
 #ifdef _OPENMP
 #include <omp.h>
@@ -216,7 +217,7 @@ public:
          return;
       }
       const double magnitude_spin = magnitude_2spin_/2.0;
-      std::cout << "|Sz=" << magnitude_spin - basis << ">";
+      std::cout << "|Sz=" << std::showpos << magnitude_spin - basis << std::noshowpos << ">";
       if (flag_new_line) {
          std::cout << std::endl;
       }

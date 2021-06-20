@@ -286,6 +286,98 @@ void CreateMatrixVectorProduct(BraketVector<RealType> *vector_out,
 }
 
 template<typename RealType>
+void CreateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
+                                        const CRS<RealType> &matrix_in,
+                                        const BraketVector<RealType> &vector_in,
+                                        std::vector<std::vector<RealType>> *vector_work = nullptr,
+                                        const RealType coeef = 1.0
+                                        ) {
+   
+   if (matrix_in.GetRow() != matrix_in.GetColDim()) {
+      std::stringstream ss;
+      ss << "Error in " << __func__ << std::endl;
+      ss << "The matrix must be symmetric";
+      throw std::runtime_error(ss.str());
+   }
+   
+   if (matrix_in.GetColDim() != vector_in.GetDim()) {
+      std::stringstream ss;
+      ss << "Error in " << __func__ << std::endl;
+      ss << "The column of the input matrix is "    << matrix_in.GetColDim() << std::endl;
+      ss << "The dimension of the input vector is " << vector_in.GetDim()    << std::endl;
+      ss << "Both must be equal" << std::endl;
+      throw std::runtime_error(ss.str());
+   }
+   
+   const int64_t row_dim = matrix_in.GetRowDim();
+   
+#ifdef _OPENMP
+   const int num_threads = omp_get_num_threads();
+   if (vector_work->size() != num_threads) {
+      ss << "Error in " << __func__ << std::endl;
+      ss << "Working vector (vector_work) must be arrays of the number of parallel threads";
+      throw std::runtime_error(ss.str());
+   }
+   
+   for (const auto &vec: (*vector_work)) {
+      if (vec.size() != row_dim) {
+         ss << "Error in " << __func__ << std::endl;
+         ss << "The column size of working vector (vector_work[*],size()) dose not much the dimension of matrix_in";
+         throw std::runtime_error(ss.str());
+      }
+   }
+   
+#pragma omp parallel for schedule (guided) num_threads (num_threads)
+   for (int64_t i = 0; i < row_dim; ++i) {
+      const int      thread_num = omp_get_thread_num();
+      const RealType temp_vec   = vector_in.Val(i);
+      RealType       temp_val   = matrix_in.Val(matrix_in.Row(i + 1) - 1)*temp_vec;
+      for (int64_t j = matrix_in.Row(i); j < matrix_in.Row(i + 1) - 1; ++j) {
+         const int64_t  col = matrix_in.Col(j);
+         const RealType val = matrix_in.Val(j);
+         temp_val += val*vector_in.Val(col);
+         (*vector_work)[thread_num][col] += val*temp_vec;
+      }
+      (*vector_work)[thread_num][i] += temp_val;
+   }
+   
+   vector_out->resize(row_dim);
+   
+#pragma omp parallel for num_threads (num_threads)
+   for (int64_t i = 0; i < row_dim; ++i) {
+      RealType val = 0.0;
+      for (int thread_num = 0; thread_num < num_threads; ++thread_num) {
+         val += (*vector_work)[thread_num][i];
+         (*vector_work)[thread_num][i] = 0.0;
+      }
+      (*vector_out)[i] = val*coeef;
+   }
+   
+#else
+   
+   vector_out->resize(row_dim);
+   
+   for (int64_t i = 0; i < row_dim; ++i) {
+      (*vector_out)[i] = 0.0;
+   }
+   
+   for (int64_t i = 0; i < row_dim; ++i) {
+      const RealType temp_vec = vector_in.Val(i);
+      RealType       temp_val = matrix_in.Val(matrix_in.Row(i + 1) - 1)*temp_vec;
+      for (int64_t j = matrix_in.Row(i); j < matrix_in.Row(i + 1) - 1; ++j) {
+         temp_val += matrix_in.Val(j)*vector_in.Val(matrix_in.Col(j));
+         (*vector_out)[matrix_in.Col(j)] += matrix_in.Val(j)*temp_vec;
+      }
+      (*vector_out)[i] += temp_val*coeef;
+   }
+   
+#endif
+   
+   
+}
+
+
+template<typename RealType>
 BraketVector<RealType> CreateMatrixVectorProduct(const CRS<RealType> &matrix_in,
                                                  const BraketVector<RealType> &vector_in,
                                                  const RealType coeef = 1.0

@@ -13,6 +13,8 @@
 #include "exact_diag_utility.hpp"
 #include <unordered_map>
 #include <sstream>
+#include <ios>
+
 #ifdef _OPENMP
 #include <omp.h>
 #endif
@@ -32,6 +34,8 @@ class ExactDiag1D {
 public:
    
    ModelClass1D model;
+   
+   sparse_matrix::DiagonalizationParameters diag_params;
    
    explicit ExactDiag1D(const ModelClass1D &model_input): model(model_input) {}
    
@@ -70,10 +74,10 @@ public:
       if (model.GetFlagRecalcBasis()) {
          throw std::runtime_error("basis has not been calculated.");
       }
-      int dim_onsite = model.GetDimOnsite();
+      const int dim_onsite = model.GetDimOnsite();
       for (std::size_t i = 0; i < basis_.size(); ++i) {
          const int64_t basis = basis_[i];
-         std::cout << "basis[" << i << "]=" << basis << ": ";
+         std::cout << "basis[" << std::setw(3) << i << "]=" << std::setw(3) << basis << ":";
          for (int site = 0; site < model.GetSystemSize(); ++site) {
             int basis_onsite = CalculateLocalBasis(basis, site, dim_onsite);
             model.PrintBasisOnsite(basis_onsite, false);
