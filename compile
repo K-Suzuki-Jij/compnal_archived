@@ -1,0 +1,1 @@
+clang++ -I ./include -I /usr/local/Frameworks/Python.framework/Headers -O3 -Wall -shared -std=c++11 -llapack -fPIC `python -m pybind11 --includes` -undefined dynamic_lookup ./wrapper/pybind11_main.cpp -o compnal`python3-config --extension-suffix`

@@ -73,7 +73,7 @@ public:
       return gs_value_;
    }
    
-   const BraketVector &GetBasis() const {
+   const std::vector<int64_t> &GetBasis() const {
       return basis_;
    }
    
@@ -265,7 +265,7 @@ private:
       }
       
       int64_t dim_onsite    = M.GetRowDim();
-      int64_t dim_in        = bases_in.size();
+      //int64_t dim_in        = bases_in.size();
       int64_t dim_out       = bases_out.size();
       int64_t site_constant = std::pow(dim_onsite, site);
       BraketVector ket_out(dim_out);

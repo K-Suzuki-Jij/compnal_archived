@@ -18,7 +18,7 @@ TEST(ExactDiag, Heisenberg1D) {
    
    model.SetMagnitudeSpin(0.5);
    
-   compnal::solver::ExactDiag1D exact_diag(model);
+   compnal::solver::ExactDiag1D<compnal::model::Heisenberg1D<double>> exact_diag(model);
    
    exact_diag.Diagonalize();
    
