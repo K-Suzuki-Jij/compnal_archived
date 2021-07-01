@@ -120,7 +120,8 @@ public:
    
    CRS CreateCopy(const RealType coeef = 1.0) const {
       const int64_t num_elements = GetNumElements();
-      CRS matrix_out(row_dim_, col_dim_, num_elements);
+      CRS matrix_out(row_dim_, col_dim_);
+      matrix_out.ResizeColVal(num_elements);
 #pragma omp parallel for
       for (int64_t i = 0; i < num_elements; ++i) {
          matrix_out.Col(i) = col_[i];
