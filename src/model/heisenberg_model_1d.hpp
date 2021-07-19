@@ -97,7 +97,7 @@ public:
       }
    }
    
-   void SetTotal2Sz(const double total_sz) {
+   void SetTotalSz(const double total_sz) {
       const int total_2sz = DoubleTheNumber(total_sz);
       if (system_size_ <= 0) {
          std::stringstream ss;
@@ -138,27 +138,27 @@ public:
       boundary_condition_ = bc;
    }
    
-   void SetJz (const std::vector<RealType> &J_z) {
+   void SetJz(const std::vector<RealType> &J_z) {
       J_z_  = J_z;
    }
-   void SetJz (const RealType J_z) {
+   void SetJz(const RealType J_z) {
       J_z_  = std::vector<RealType>{J_z};
    }
    
    template<typename... Args>
-   void SetJz (Args... args) {
+   void SetJz(Args... args) {
       J_z_ = std::vector<RealType>{args...};
    }
    
-   void SetJxy (const std::vector<RealType> &J_xy) {
+   void SetJxy(const std::vector<RealType> &J_xy) {
       J_xy_  = J_xy;
    }
-   void SetJxy (const RealType J_xy) {
+   void SetJxy(const RealType J_xy) {
       J_xy_  = std::vector<RealType>{J_xy};
    }
    
    template<typename... Args>
-   void SetJxy (Args... args) {
+   void SetJxy(Args... args) {
       J_xy_ = std::vector<RealType>{args...};
    }
    
