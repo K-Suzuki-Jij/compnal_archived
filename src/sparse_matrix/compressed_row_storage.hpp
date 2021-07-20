@@ -197,6 +197,36 @@ CRS<RealType> operator*(const CRS<RealType> &matrix, const RealType coeef) {
 template<typename RealType>
 CRS<RealType> operator*(const RealType coeef, const CRS<RealType> &matrix) { return matrix*coeef; }
 
+template<typename RealType>
+bool operator==(const CRS<RealType> &matrix_1, const CRS<RealType> &matrix_2) {
+   if(matrix_1.row_dim != matrix_2.row_dim) {
+      return false;
+   }
+   if (matrix_1.col_dim != matrix_2.col_dim) {
+      return false;
+   }
+   if (matrix_1.col.size() != matrix_2.col.size()) {
+      return false;
+   }
+   const int64_t row_dim = matrix_1.row_dim;
+   for (int64_t i = 0; i < row_dim + 1; ++i) {
+      if (matrix_1.row[i] != matrix_2.row[i]) {
+         return false;
+      }
+   }
+   const int64_t num_elements = matrix_1.col.size();
+   for (int64_t i = 0; i < num_elements; ++i) {
+      if (matrix_1.col[i] != matrix_2.col[i]) {
+         return false;
+      }
+      if (matrix_1.val[i] != matrix_2.val[i]) {
+         return false;
+      }
+   }
+   return true;
+}
+
+
 template <typename RealType>
 void MultiplyMatrixByScalar(CRS<RealType> *matrix, const RealType coeef) {
    if (coeef == 0.0) {
@@ -241,36 +271,36 @@ CRS<RealType> CreateTransposedMatrix(const CRS<RealType> &matrix_in) {
 }
 
 template<typename RealType>
-CRS<RealType> CreateMatrixProduct(const CRS<RealType> &matrix_lhs,
-                                  const CRS<RealType> &matrix_rhs,
-                                  const RealType coeef_lhs = 1.0,
-                                  const RealType coeef_rhs = 1.0) {
+CRS<RealType> CreateMatrixProduct(const CRS<RealType> &matrix_1,
+                                  const CRS<RealType> &matrix_2,
+                                  const RealType coeef_1 = 1.0,
+                                  const RealType coeef_2 = 1.0) {
       
-   if (matrix_lhs.col_dim != matrix_rhs.row_dim) {
+   if (matrix_1.col_dim != matrix_2.row_dim) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "Matrix product cannot be defined" << std::endl;
-      ss << "matrix_lhs.col_dim = " << matrix_lhs.col_dim << ", matrix_rhs.row_dim = " << matrix_rhs.row_dim << std::endl;
+      ss << "matrix_1.col_dim = " << matrix_1.col_dim << ", matrix_2.row_dim = " << matrix_2.row_dim << std::endl;
       throw std::runtime_error(ss.str());
    }
    
    CRS<RealType> matrix_out;
-   matrix_out.row.resize(matrix_lhs.row_dim + 1);
+   matrix_out.row.resize(matrix_1.row_dim + 1);
    
-   std::vector<RealType> temp_v1(matrix_lhs.col_dim, 0.0);
-   std::vector<RealType> temp_v2(matrix_rhs.col_dim, 0.0);
+   std::vector<RealType> temp_v1(matrix_1.col_dim, 0.0);
+   std::vector<RealType> temp_v2(matrix_2.col_dim, 0.0);
    
    matrix_out.row[0] = 0;
-   for (int64_t i = 0; i < matrix_lhs.row_dim; ++i) {
-      for (int64_t j = matrix_lhs.row[i]; j < matrix_lhs.row[i + 1]; ++j) {
-         temp_v1[matrix_lhs.Col(j)] = coeef_lhs*matrix_lhs.Val(j);
+   for (int64_t i = 0; i < matrix_1.row_dim; ++i) {
+      for (int64_t j = matrix_1.row[i]; j < matrix_1.row[i + 1]; ++j) {
+         temp_v1[matrix_1.Col(j)] = coeef_1*matrix_1.Val(j);
       }
-      for (int64_t j = 0; j < matrix_lhs.col_dim; ++j) {
-         for (int64_t k = matrix_rhs.row[j]; k < matrix_rhs.row[j + 1]; ++k) {
-            temp_v2[matrix_rhs.col[k]] += temp_v1[j]*coeef_rhs*matrix_rhs.val[k];
+      for (int64_t j = 0; j < matrix_1.col_dim; ++j) {
+         for (int64_t k = matrix_2.row[j]; k < matrix_2.row[j + 1]; ++k) {
+            temp_v2[matrix_2.col[k]] += temp_v1[j]*coeef_2*matrix_2.val[k];
          }
       }
-      for (int64_t j = 0; j < matrix_rhs.col_dim; ++j) {
+      for (int64_t j = 0; j < matrix_2.col_dim; ++j) {
          if (std::abs(temp_v2[j]) > 0.0) {
             matrix_out.val.push_back(temp_v2[j]);
             matrix_out.col.push_back(j);
@@ -279,8 +309,8 @@ CRS<RealType> CreateMatrixProduct(const CRS<RealType> &matrix_lhs,
       
       matrix_out.row[i + 1] = matrix_out.col.size();
       
-      for (int64_t j = matrix_lhs.row[i]; j < matrix_lhs.row[i + 1]; ++j) {
-         temp_v1[matrix_lhs.col[j]] = 0.0;
+      for (int64_t j = matrix_1.row[i]; j < matrix_1.row[i + 1]; ++j) {
+         temp_v1[matrix_1.col[j]] = 0.0;
       }
       for (int64_t j = matrix_out.row[i]; j < matrix_out.row[i + 1]; ++j) {
          temp_v2[matrix_out.col[j]] = 0.0;
@@ -349,8 +379,8 @@ CRS<RealType> CreateMatrixSum(const CRS<RealType> &matrix_1,
             else if (matrix_1.col[row_lower_1 + count_1] == matrix_2.col[row_lower_2 + count_2]) {
                const RealType val = coeef_1*matrix_1.val[row_lower_1 + count_1] + coeef_2*matrix_2.val[row_lower_2 + count_2];
                if (std::abs(val) > 0.0) {
-                  matrix_out.val.push_back[val];
-                  matrix_out.col.push_back[matrix_1.col[row_lower_1 + count_1]];
+                  matrix_out.val.push_back(val);
+                  matrix_out.col.push_back(matrix_1.col[row_lower_1 + count_1]);
                   count_1++;
                   count_2++;
                   const int64_t temp_count_1 = row_lower_1 + count_1;
@@ -388,8 +418,8 @@ CRS<RealType> CreateMatrixSum(const CRS<RealType> &matrix_1,
                }
             }
             else {
-               matrix_out.val.push_back[coeef_2*matrix_2.val[row_lower_2 + count_2]];
-               matrix_out.col.push_back[matrix_2.col[row_lower_2 + count_2]];
+               matrix_out.val.push_back(coeef_2*matrix_2.val[row_lower_2 + count_2]);
+               matrix_out.col.push_back(matrix_2.col[row_lower_2 + count_2]);
                count_2++;
                if (row_lower_2 + count_2 == row_upper_2) {
                   check = 2;
@@ -399,14 +429,14 @@ CRS<RealType> CreateMatrixSum(const CRS<RealType> &matrix_1,
          }
          if (check == 1) {
             for (int64_t j = row_lower_2 + count_2; j < row_upper_2; ++j) {
-               matrix_out.val.push_back[coeef_2*matrix_2.val[j]];
-               matrix_out.col.push_back[matrix_2.col[j]];
+               matrix_out.val.push_back(coeef_2*matrix_2.val[j]);
+               matrix_out.col.push_back(matrix_2.col[j]);
             }
          }
          else if (check == 2) {
             for (int64_t j = row_lower_1 + count_1; j < row_upper_1; ++j) {
-               matrix_out.val.push_back[coeef_1*matrix_1.val[j]];
-               matrix_out.col.push_back[matrix_1.col[j]];
+               matrix_out.val.push_back(coeef_1*matrix_1.val[j]);
+               matrix_out.col.push_back(matrix_1.col[j]);
             }
          }
       }

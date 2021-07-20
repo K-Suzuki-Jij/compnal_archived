@@ -94,17 +94,17 @@ void EigenvalueDecompositionLanczos(RealType               *gs_value_out,
                                     DiagonalizationInfomation *info
                                     ) {
    
-   if (matrix_in.GetRowDim() != matrix_in.GetColDim() || matrix_in.GetRowDim() < 1 || matrix_in.GetColDim() < 1) {
+   if (matrix_in.row_dim != matrix_in.col_dim || matrix_in.row_dim < 1 || matrix_in.col_dim < 1) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "The input matrix is not a square one" << std::endl;
-      ss << "row=" << matrix_in.GetRowDim() << ", col=" << matrix_in.GetColDim() << std::endl;
+      ss << "row=" << matrix_in.row_dim << ", col=" << matrix_in.col_dim << std::endl;
       throw std::runtime_error(ss.str());
    }
    
    const auto start = std::chrono::system_clock::now();
    
-   if (matrix_in.GetRowDim() == 0) {
+   if (matrix_in.row_dim == 0) {
       *gs_value_out = 0.0;
       gs_vector_out->Clear();
       info->lanczos_actual_steps.push_back(0);
@@ -113,8 +113,8 @@ void EigenvalueDecompositionLanczos(RealType               *gs_value_out,
       return;
    }
    
-   if (matrix_in.GetRowDim() == 1) {
-      *gs_value_out = matrix_in.Val(0);
+   if (matrix_in.row_dim == 1) {
+      *gs_value_out = matrix_in.val[0];
       gs_vector_out->Resize(1);
       gs_vector_out->Val(0) = 1;
       info->lanczos_actual_steps.push_back(0);
@@ -123,7 +123,7 @@ void EigenvalueDecompositionLanczos(RealType               *gs_value_out,
       return;
    }
    
-   if (matrix_in.GetRowDim() <= 1000) {
+   if (matrix_in.row_dim <= 1000) {
       info->lanczos_actual_steps.push_back(0);
       LapackDsyev(gs_value_out, gs_vector_out, matrix_in);
       const auto time = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
@@ -132,7 +132,7 @@ void EigenvalueDecompositionLanczos(RealType               *gs_value_out,
    }
    
    int converged_step_number = 0;
-   const int64_t dim = matrix_in.GetRowDim();
+   const int64_t dim = matrix_in.row_dim;
    BraketVector<RealType> vector_0(dim);
    BraketVector<RealType> vector_1(dim);
    BraketVector<RealType> vector_2(dim);

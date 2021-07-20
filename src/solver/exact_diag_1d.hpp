@@ -213,9 +213,10 @@ private:
          num_row_element[row + 1] += num_row_element[row];
       }
       
-      ham->ResizeRow(dim_target);
-      ham->ResizeColVal(num_total_elements);
-      
+      ham->row.resize(dim_target + 1);
+      ham->col.resize(num_total_elements);
+      ham->val.resize(num_total_elements);
+
       for (int row = 0; row < dim_target; ++row) {
          GenerateMatrixElements(&components, basis_[row], model);
          for (int64_t i = 0; i < components.basis_affected.size(); ++i) {
@@ -224,25 +225,25 @@ private:
             if (basis_inv.count(a_basis) > 0) {
                const int64_t inv = basis_inv.at(a_basis);
                if (inv <= row) {
-                  ham->Col(num_row_element[row]) = inv;
-                  ham->Val(num_row_element[row]) = val;
+                  ham->col[num_row_element[row]] = inv;
+                  ham->val[num_row_element[row]] = val;
                   num_row_element[row]++;
                }
             }
          }
-         ham->Row(row + 1) = num_row_element[row];
+         ham->row[row + 1] = num_row_element[row];
          components.val.clear();
          components.basis_affected.clear();
          components.inv_basis_affected.clear();
       }
 #endif
       
-      ham->SetRowDim(dim_target);
-      ham->SetColDim(dim_target);
+      ham->row_dim = dim_target;
+      ham->col_dim = dim_target;
       
-      const bool flag_check_1 = (ham->Row(dim_target) != num_total_elements);
-      const bool flag_check_2 = (ham->GetSizeCol() != num_total_elements);
-      const bool flag_check_3 = (ham->GetSizeVal() != num_total_elements);
+      const bool flag_check_1 = (ham->row[dim_target] != num_total_elements);
+      const bool flag_check_2 = (ham->col.size() != num_total_elements);
+      const bool flag_check_3 = (ham->val.size() != num_total_elements);
 
       if (flag_check_1 || flag_check_2 || flag_check_3) {
          std::stringstream ss;

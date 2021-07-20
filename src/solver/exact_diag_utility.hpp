@@ -48,15 +48,15 @@ void GenerateMatrixElementsOnsite(ExactDiagMatrixElements<RealType> *edme,
    const int     basis_onsite  = edme->basis_onsite[site];
    const int64_t site_constant = edme->site_constant[site];
    
-   for (int64_t i = matrix_onsite.Row(basis_onsite); i < matrix_onsite.Row(basis_onsite + 1); ++i) {
-      const int64_t a_basis = basis + (matrix_onsite.Col(i) - basis_onsite)*site_constant;
+   for (int64_t i = matrix_onsite.row[basis_onsite]; i < matrix_onsite.row[basis_onsite + 1]; ++i) {
+      const int64_t a_basis = basis + (matrix_onsite.col[i] - basis_onsite)*site_constant;
       if (edme->inv_basis_affected.count(a_basis) == 0) {
          edme->inv_basis_affected[a_basis] = edme->basis_affected.size();
-         edme->val.push_back(coeef*matrix_onsite.Val(i));
+         edme->val.push_back(coeef*matrix_onsite.val[i]);
          edme->basis_affected.push_back(a_basis);
       }
       else {
-         const RealType val = edme->val[edme->inv_basis_affected.at(a_basis)] + coeef*matrix_onsite.Val(i);
+         const RealType val = edme->val[edme->inv_basis_affected.at(a_basis)] + coeef*matrix_onsite.val[i];
          if (std::abs(val) > edme->zero_precision) {
             edme->val[edme->inv_basis_affected.at(a_basis)] = val;
          }
@@ -83,18 +83,18 @@ void GenerateMatrixElementsIntersite(ExactDiagMatrixElements<RealType> *edme,
    const int64_t site_constant_1 = edme->site_constant[site_1];
    const int64_t site_constant_2 = edme->site_constant[site_2];
 
-   for (int64_t i1 = matrix_onsite_1.Row(basis_onsite_1); i1 < matrix_onsite_1.Row(basis_onsite_1 + 1); ++i1) {
-      const RealType val_1 = matrix_onsite_1.Val(i1);
-      const int64_t  col_1 = matrix_onsite_1.Col(i1);
-      for (int64_t i2 = matrix_onsite_2.Row(basis_onsite_2); i2 < matrix_onsite_2.Row(basis_onsite_2 + 1); ++i2) {
-         const int64_t a_basis = basis + (col_1 - basis_onsite_1)*site_constant_1 + (matrix_onsite_2.Col(i2) - basis_onsite_2)*site_constant_2;
+   for (int64_t i1 = matrix_onsite_1.row[basis_onsite_1]; i1 < matrix_onsite_1.row[basis_onsite_1 + 1]; ++i1) {
+      const RealType val_1 = matrix_onsite_1.val[i1];
+      const int64_t  col_1 = matrix_onsite_1.col[i1];
+      for (int64_t i2 = matrix_onsite_2.row[basis_onsite_2]; i2 < matrix_onsite_2.row[basis_onsite_2 + 1]; ++i2) {
+         const int64_t a_basis = basis + (col_1 - basis_onsite_1)*site_constant_1 + (matrix_onsite_2.col[i2] - basis_onsite_2)*site_constant_2;
          if (edme->inv_basis_affected.count(a_basis) == 0) {
             edme->inv_basis_affected[a_basis] = edme->basis_affected.size();
-            edme->val.push_back(fermion_sign*coeef*val_1*matrix_onsite_2.Val(i2));
+            edme->val.push_back(fermion_sign*coeef*val_1*matrix_onsite_2.val[i2]);
             edme->basis_affected.push_back(a_basis);
          }
          else {
-            const RealType val = edme->val[edme->inv_basis_affected.at(a_basis)] + fermion_sign*coeef*val_1*matrix_onsite_2.Val(i2);
+            const RealType val = edme->val[edme->inv_basis_affected.at(a_basis)] + fermion_sign*coeef*val_1*matrix_onsite_2.val[i2];
             if (std::abs(val) > edme->zero_precision) {
                edme->val[edme->inv_basis_affected.at(a_basis)] = val;
             }

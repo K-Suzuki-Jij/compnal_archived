@@ -14,23 +14,23 @@
 
 template<typename RealType>
 void CRSTest(const compnal::sparse_matrix::CRS<RealType> &m1, const compnal::sparse_matrix::CRS<RealType> &m2) {
-   EXPECT_EQ(m1.GetRowDim(), m2.GetRowDim());
-   EXPECT_EQ(m1.GetColDim(), m2.GetColDim());
+   EXPECT_EQ(m1.row_dim, m2.row_dim);
+   EXPECT_EQ(m1.col_dim, m2.col_dim);
    
-   EXPECT_EQ(m1.GetRow().size(), m2.GetRow().size());
-   EXPECT_EQ(m1.GetCol().size(), m2.GetCol().size());
-   EXPECT_EQ(m1.GetVal().size(), m2.GetVal().size());
+   EXPECT_EQ(m1.row.size(), m2.row.size());
+   EXPECT_EQ(m1.col.size(), m2.col.size());
+   EXPECT_EQ(m1.val.size(), m2.val.size());
    
-   for (std::size_t i = 0; i < m1.GetRow().size(); ++i) {
-      EXPECT_EQ(m1.GetRow().at(i), m2.GetRow().at(i));
+   for (std::size_t i = 0; i < m1.row.size(); ++i) {
+      EXPECT_EQ(m1.row.at(i), m2.row.at(i));
    }
    
-   for (std::size_t i = 0; i < m1.GetCol().size(); ++i) {
-      EXPECT_EQ(m1.GetCol().at(i), m2.GetCol().at(i));
+   for (std::size_t i = 0; i < m1.col.size(); ++i) {
+      EXPECT_EQ(m1.col.at(i), m2.col.at(i));
    }
    
-   for (std::size_t i = 0; i < m1.GetVal().size(); ++i) {
-      EXPECT_DOUBLE_EQ(m1.GetVal().at(i), m2.GetVal().at(i));
+   for (std::size_t i = 0; i < m1.val.size(); ++i) {
+      EXPECT_DOUBLE_EQ(m1.val.at(i), m2.val.at(i));
    }
 }
 

@@ -261,25 +261,25 @@ void CreateMatrixVectorProduct(BraketVector<RealType> *vector_out,
                                const RealType coeef = 1.0
                                ) {
    
-   if (matrix_in.GetColDim() != vector_in.GetDim()) {
+   if (matrix_in.col_dim != vector_in.GetDim()) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
-      ss << "The column of the input matrix is "    << matrix_in.GetColDim() << std::endl;
-      ss << "The dimension of the input vector is " << vector_in.GetDim()    << std::endl;
+      ss << "The column of the input matrix is "    << matrix_in.col_dim  << std::endl;
+      ss << "The dimension of the input vector is " << vector_in.GetDim() << std::endl;
       ss << "Both must be equal" << std::endl;
       throw std::runtime_error(ss.str());
    }
    
-   const int64_t row_dim = matrix_in.GetRowDim();
+   const int64_t row_dim = matrix_in.row_dim;
    vector_out->Resize(row_dim);
    
 #pragma omp parallel for
    for (int64_t i = 0; i < row_dim; ++i) {
       RealType temp = 0.0;
-      const int64_t begin = matrix_in.Row(i);
-      const int64_t end   = matrix_in.Row(i+1);
+      const int64_t begin = matrix_in.row[i];
+      const int64_t end   = matrix_in.row[i+1];
       for (int64_t j = begin; j < end; ++j) {
-         temp += matrix_in.Val(j)*vector_in.Val(matrix_in.Col(j));
+         temp += matrix_in.val[j]*vector_in.Val(matrix_in.col[j]);
       }
       vector_out->Val(i) = temp*coeef;
    }
@@ -293,23 +293,23 @@ void CreateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
                                         const RealType coeef = 1.0
                                         ) {
    
-   if (matrix_in.GetRowDim() != matrix_in.GetColDim()) {
+   if (matrix_in.row_dim != matrix_in.col_dim) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "The matrix must be symmetric";
       throw std::runtime_error(ss.str());
    }
    
-   if (matrix_in.GetColDim() != vector_in.GetDim()) {
+   if (matrix_in.col_dim != vector_in.GetDim()) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
-      ss << "The column of the input matrix is "    << matrix_in.GetColDim() << std::endl;
-      ss << "The dimension of the input vector is " << vector_in.GetDim()    << std::endl;
+      ss << "The column of the input matrix is "    << matrix_in.col_dim  << std::endl;
+      ss << "The dimension of the input vector is " << vector_in.GetDim() << std::endl;
       ss << "Both must be equal" << std::endl;
       throw std::runtime_error(ss.str());
    }
    
-   const int64_t row_dim = matrix_in.GetRowDim();
+   const int64_t row_dim = matrix_in.row_dim;
    
 #ifdef _OPENMP
    const int num_threads = omp_get_num_threads();
@@ -363,10 +363,10 @@ void CreateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
    
    for (int64_t i = 0; i < row_dim; ++i) {
       const RealType temp_vec = vector_in.Val(i);
-      RealType       temp_val = matrix_in.Val(matrix_in.Row(i + 1) - 1)*temp_vec;
-      for (int64_t j = matrix_in.Row(i); j < matrix_in.Row(i + 1) - 1; ++j) {
-         temp_val += matrix_in.Val(j)*vector_in.Val(matrix_in.Col(j));
-         vector_out->Val(matrix_in.Col(j)) += matrix_in.Val(j)*temp_vec;
+      RealType       temp_val = matrix_in.val[matrix_in.row[i + 1] - 1]*temp_vec;
+      for (int64_t j = matrix_in.row[i]; j < matrix_in.row[i + 1] - 1; ++j) {
+         temp_val += matrix_in.val[j]*vector_in.Val(matrix_in.col[j]);
+         vector_out->Val(matrix_in.col[j]) += matrix_in.val[j]*temp_vec;
       }
       vector_out->Val(i) += temp_val*coeef;
    }

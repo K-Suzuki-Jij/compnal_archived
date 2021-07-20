@@ -356,29 +356,29 @@ public:
       RealType a = 0;
       RealType b = 1;
       
-      matrix.PushVal(0.5*std::sqrt((magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1)) );
-      matrix.PushCol(b);
-      matrix.Row(1) = matrix.GetSizeCol();
+      matrix.val.push_back(0.5*std::sqrt((magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1)) );
+      matrix.col.push_back(b);
+      matrix.row[1] = matrix.col.size();
       
       for (int row = 1; row < dim_onsite - 1; ++row) {
          a = row;
          b = row - 1;
-         matrix.PushVal(0.5*std::sqrt((magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1)) );
-         matrix.PushCol(b);
+         matrix.val.push_back(0.5*std::sqrt((magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1)) );
+         matrix.col.push_back(b);
          
          a = row;
          b = row + 1;
-         matrix.PushVal(0.5*std::sqrt((magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1)) );
-         matrix.PushCol(b);
-         matrix.Row(row + 1) = matrix.GetSizeCol();
+         matrix.val.push_back(0.5*std::sqrt((magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1)) );
+         matrix.col.push_back(b);
+         matrix.row[row + 1] = matrix.col.size();
       }
       
       a = dim_onsite - 1;
       b = dim_onsite - 2;
       
-      matrix.PushVal(0.5*std::sqrt((magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1)) );
-      matrix.PushCol(b);
-      matrix.Row(dim_onsite) = matrix.GetSizeCol();
+      matrix.val.push_back(0.5*std::sqrt((magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1)) );
+      matrix.col.push_back(b);
+      matrix.row[dim_onsite] = matrix.col.size();
       
       return matrix;
    }
@@ -389,30 +389,30 @@ public:
       RealType a = 0;
       RealType b = 1;
       
-      matrix.PushVal(0.5*std::sqrt( (magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1) ) );
-      matrix.PushCol(b);
-      matrix.Row(1) = matrix.GetSizeCol();
+      matrix.val.push_back(0.5*std::sqrt( (magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1) ) );
+      matrix.col.push_back(b);
+      matrix.row[1] = matrix.col.size();
       
       for (int row = 1; row < dim_onsite - 1; ++row) {
          a = row;
          b = row - 1;
-         matrix.PushVal(-0.5*std::sqrt( (magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1) ) );
-         matrix.PushCol(b);
+         matrix.val.push_back(-0.5*std::sqrt( (magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1) ) );
+         matrix.col.push_back(b);
          
          a = row;
          b = row + 1;
-         matrix.PushVal(0.5*std::sqrt( (magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1) ) );
-         matrix.PushCol(b);
+         matrix.val.push_back(0.5*std::sqrt( (magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1) ) );
+         matrix.col.push_back(b);
          
-         matrix.Row(row + 1) = matrix.GetSizeCol();
+         matrix.row[row + 1] = matrix.col.size();
       }
       
       a = dim_onsite - 1;
       b = dim_onsite - 2;
       
-      matrix.PushVal(-0.5*std::sqrt( (magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1) ) );
-      matrix.PushCol(b);
-      matrix.Row(dim_onsite) = matrix.GetSizeCol();
+      matrix.val.push_back(-0.5*std::sqrt( (magnitude_spin + 1)*(a + b + 1) - (a + 1)*(b + 1) ) );
+      matrix.col.push_back(b);
+      matrix.row[dim_onsite] = matrix.col.size();
       
       return matrix;
    }
@@ -424,10 +424,10 @@ public:
       for (int row = 0; row < dim_onsite; ++row) {
          RealType val = magnitude_spin - row;
          if (val != 0.0) {
-            matrix.PushVal(val);
-            matrix.PushCol(row);
+            matrix.val.push_back(val);
+            matrix.col.push_back(row);
          }
-         matrix.Row(row + 1) = matrix.GetSizeCol();
+         matrix.row[row + 1] = matrix.col.size();
       }
       return matrix;
    }
@@ -439,10 +439,10 @@ public:
       for (int row = 0; row < dim_onsite; ++row) {
          RealType val = magnitude_spin - row;
          if (val != 0.0) {
-            matrix.PushVal(val*val);
-            matrix.PushCol(row);
+            matrix.val.push_back(val*val);
+            matrix.col.push_back(row);
          }
-         matrix.Row(row + 1) = matrix.GetSizeCol();
+         matrix.row[row + 1] = matrix.col.size();
       }
       return matrix;
    }

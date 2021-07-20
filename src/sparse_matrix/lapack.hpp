@@ -30,41 +30,41 @@ template <typename RealType>
 void LapackDsyev(RealType *gs_value, BraketVector<RealType> *gs_vector,
                  const CRS<RealType> &matrix_in) {
    
-   if (matrix_in.GetRowDim() != matrix_in.GetColDim() || matrix_in.GetRowDim() < 1 || matrix_in.GetColDim() < 1) {
+   if (matrix_in.row_dim != matrix_in.col_dim || matrix_in.row_dim < 1 || matrix_in.col_dim < 1) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "The input matrix is not a square one" << std::endl;
-      ss << "row=" << matrix_in.GetRowDim() << ", col=" << matrix_in.GetColDim() << std::endl;
+      ss << "row=" << matrix_in.row_dim << ", col=" << matrix_in.col_dim << std::endl;
       throw std::runtime_error(ss.str());
    }
    
-   double matrix_array[matrix_in.GetRowDim()][matrix_in.GetColDim()];
+   double matrix_array[matrix_in.row_dim][matrix_in.col_dim];
    
-   for (int64_t i = 0; i < matrix_in.GetRowDim(); ++i) {
-      for (int64_t j = 0; j < matrix_in.GetColDim(); ++j) {
+   for (int64_t i = 0; i < matrix_in.row_dim; ++i) {
+      for (int64_t j = 0; j < matrix_in.col_dim; ++j) {
          matrix_array[i][j] = 0.0;
       }
    }
    
-   for (int64_t i = 0; i < matrix_in.GetRowDim(); ++i) {
-      for (std::size_t j = matrix_in.Row(i); j < matrix_in.Row(i + 1); ++j) {
-         matrix_array[i][matrix_in.Col(j)] = static_cast<double>(matrix_in.Val(j));
-         matrix_array[matrix_in.Col(j)][i] = static_cast<double>(matrix_in.Val(j));
+   for (int64_t i = 0; i < matrix_in.row_dim; ++i) {
+      for (std::size_t j = matrix_in.row[i]; j < matrix_in.row[i + 1]; ++j) {
+         matrix_array[i][matrix_in.col[j]] = static_cast<double>(matrix_in.val[j]);
+         matrix_array[matrix_in.col[j]][i] = static_cast<double>(matrix_in.val[j]);
       }
    }
    
    int info;
-   double val_array[matrix_in.GetRowDim()];
-   double work[3 * matrix_in.GetRowDim()];
+   double val_array[matrix_in.row_dim];
+   double work[3 * matrix_in.row_dim];
    
-   dsyev_('V', 'L', static_cast<int>(matrix_in.GetRowDim()),
+   dsyev_('V', 'L', static_cast<int>(matrix_in.row_dim),
           (double**)matrix_array,
-          static_cast<int>(matrix_in.GetRowDim()), val_array, work,
-          static_cast<int>(3 * matrix_in.GetRowDim()), info);
+          static_cast<int>(matrix_in.row_dim), val_array, work,
+          static_cast<int>(3 * matrix_in.row_dim), info);
    
-   gs_vector->Resize(matrix_in.GetRowDim());
+   gs_vector->Resize(matrix_in.row_dim);
    
-   for (int64_t i = 0; i < matrix_in.GetRowDim(); ++i) {
+   for (int64_t i = 0; i < matrix_in.row_dim; ++i) {
       gs_vector->Val(i) = static_cast<RealType>(matrix_array[0][i]);
    }
    
