@@ -26,24 +26,28 @@ struct BraketVector {
    }
    
    BraketVector(const BraketVector &vector) {
-      this->val.resize(vector.val.size());
-#pragma omp parallel for
-      for (std::size_t i = 0; i < vector.val.size(); ++i) {
-         this->val[i] = vector.val[i];
-      }
+      Assign(vector);
    }
    
    BraketVector &operator=(const BraketVector &vector) & {
-      this->val.resize(vector.val.size());
-#pragma omp parallel for
-      for (std::size_t i = 0; i < vector.val.size(); ++i) {
-         this->val[i] = vector.val[i];
-      }
+      Assign(vector);
       return *this;
    }
    
    void Free() {
       std::vector<RealType>().swap(val);
+   }
+   
+   void Clear() {
+      val.clear();
+   }
+   
+   void Assign(const BraketVector &vector) {
+      this->val.resize(vector.val.size());
+#pragma omp parallel for
+      for (std::size_t i = 0; i < vector.val.size(); ++i) {
+         this->val[i] = vector.val[i];
+      }
    }
    
    void Normalize(const RealType normalization_factor = 1.0) {
@@ -114,10 +118,9 @@ RealType CalculateInnerProduct(const BraketVector<RealType> &braket_vector_1,
 
 template<typename RealType>
 void CreateMatrixVectorProduct(BraketVector<RealType> *vector_out,
+                               const RealType coeef,
                                const CRS<RealType> &matrix_in,
-                               const BraketVector<RealType> &vector_in,
-                               const RealType coeef = 1.0
-                               ) {
+                               const BraketVector<RealType> &vector_in) {
    
    if (matrix_in.col_dim != vector_in.val.size()) {
       std::stringstream ss;
