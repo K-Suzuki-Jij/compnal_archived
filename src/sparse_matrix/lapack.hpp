@@ -27,7 +27,8 @@ void dstev_(const char &JOBZ, const int &N, double *D, double *E, double **Z,  c
 
 
 template <typename RealType>
-void LapackDsyev(RealType *gs_value, BraketVector<RealType> *gs_vector,
+void LapackDsyev(RealType *gs_value,
+                 std::vector<RealType> *gs_vector,
                  const CRS<RealType> &matrix_in) {
    
    if (matrix_in.row_dim != matrix_in.col_dim || matrix_in.row_dim < 1 || matrix_in.col_dim < 1) {
@@ -40,13 +41,13 @@ void LapackDsyev(RealType *gs_value, BraketVector<RealType> *gs_vector,
    
    double matrix_array[matrix_in.row_dim][matrix_in.col_dim];
    
-   for (int64_t i = 0; i < matrix_in.row_dim; ++i) {
-      for (int64_t j = 0; j < matrix_in.col_dim; ++j) {
+   for (std::size_t i = 0; i < matrix_in.row_dim; ++i) {
+      for (std::size_t j = 0; j < matrix_in.col_dim; ++j) {
          matrix_array[i][j] = 0.0;
       }
    }
    
-   for (int64_t i = 0; i < matrix_in.row_dim; ++i) {
+   for (std::size_t i = 0; i < matrix_in.row_dim; ++i) {
       for (std::size_t j = matrix_in.row[i]; j < matrix_in.row[i + 1]; ++j) {
          matrix_array[i][matrix_in.col[j]] = static_cast<double>(matrix_in.val[j]);
          matrix_array[matrix_in.col[j]][i] = static_cast<double>(matrix_in.val[j]);
@@ -62,17 +63,20 @@ void LapackDsyev(RealType *gs_value, BraketVector<RealType> *gs_vector,
           static_cast<int>(matrix_in.row_dim), val_array, work,
           static_cast<int>(3 * matrix_in.row_dim), info);
    
-   gs_vector->Resize(matrix_in.row_dim);
+   gs_vector->resize(matrix_in.row_dim);
    
-   for (int64_t i = 0; i < matrix_in.row_dim; ++i) {
-      gs_vector->Val(i) = static_cast<RealType>(matrix_array[0][i]);
+   for (std::size_t i = 0; i < matrix_in.row_dim; ++i) {
+       (*gs_vector)[i] = static_cast<RealType>(matrix_array[0][i]);
    }
    
    *gs_value = static_cast<RealType>(val_array[0]);
 }
 
 template <typename RealType>
-void LapackDstev(RealType *gs_value, BraketVector<RealType> *gs_vector, const std::vector<RealType> &diag, const std::vector<RealType> &off_diag) {
+void LapackDstev(RealType *gs_value,
+                 std::vector<RealType> *gs_vector,
+                 const std::vector<RealType> &diag,
+                 const std::vector<RealType> &off_diag) {
    
    if (off_diag.size() != diag.size()) {
       std::stringstream ss;
@@ -99,14 +103,13 @@ void LapackDstev(RealType *gs_value, BraketVector<RealType> *gs_vector, const st
    
    dstev_('V', dim, Lap_D, Lap_E, (double**)Lap_Vec, dim, Lap_Work, info);
    
-   gs_vector->Resize(dim);
+   gs_vector->resize(dim);
    
-   for (int64_t i = 0; i < dim; ++i) {
-      gs_vector->Val(i) = static_cast<RealType>(Lap_Vec[0][i]);
+   for (std::size_t i = 0; i < dim; ++i) {
+      (*gs_vector)[i] = static_cast<RealType>(Lap_Vec[0][i]);
    }
    
    *gs_value = static_cast<RealType>(Lap_D[0]);
-   
 }
 
 }  // namespace sparse_matrix

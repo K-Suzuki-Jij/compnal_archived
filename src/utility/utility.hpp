@@ -13,6 +13,8 @@
 namespace compnal {
 namespace utility {
 
+const std::size_t TIME_UNIT_CONSTANT = 1000*1000;
+
 template<typename T1, typename T2>
 void QuickSort(std::vector<T1> *array_comp, std::vector<T2> *array2, const int64_t left, const int64_t right) {
    
@@ -42,6 +44,8 @@ void QuickSort(std::vector<T1> *array_comp, std::vector<T2> *array2, const int64
    QuickSort(array_comp, array2, index + 1, right);
    
 }
+
+
 
 
 

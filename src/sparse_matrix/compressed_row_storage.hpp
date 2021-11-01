@@ -5,8 +5,8 @@
 //  Created by Kohei Suzuki on 2021/05/20.
 //
 
-#ifndef compressed_row_storage_hpp
-#define compressed_row_storage_hpp
+#ifndef COMPNAL_SPARSE_MATRIX_COMPRESSED_ROW_STORAGE_HPP_
+#define COMPNAL_SPARSE_MATRIX_COMPRESSED_ROW_STORAGE_HPP_
 
 #include "../utility/utility.hpp"
 #include <iostream>
@@ -378,4 +378,4 @@ CRS<RealType> CreateMatrixSum(CRS<RealType> *matrix_out,
 } // namespace compnal
 
 
-#endif /* compressed_row_storage_hpp */
+#endif /* COMPNAL_SPARSE_MATRIX_COMPRESSED_ROW_STORAGE_HPP_ */
