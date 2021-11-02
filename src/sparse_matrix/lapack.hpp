@@ -78,7 +78,7 @@ void LapackDstev(RealType *gs_value,
                  const std::vector<RealType> &diag,
                  const std::vector<RealType> &off_diag) {
    
-   if (off_diag.size() != diag.size()) {
+   if (off_diag.size() + 1 != diag.size()) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "diag size=" << diag.size() << ", off_diag size=" << off_diag.size() << std::endl;

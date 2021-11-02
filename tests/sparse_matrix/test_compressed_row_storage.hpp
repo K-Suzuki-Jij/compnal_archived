@@ -5,8 +5,8 @@
 //  Created by Kohei Suzuki on 2021/06/14.
 //
 
-#ifndef test_sparse_matrix_hpp
-#define test_sparse_matrix_hpp
+#ifndef TEST_SPARSE_MATRIX_COMPRESSED_ROW_STORAGE_HPP_
+#define TEST_SPARSE_MATRIX_COMPRESSED_ROW_STORAGE_HPP_
 
 #include "sparse_matrix.hpp"
 #include <gtest/gtest.h>
@@ -78,7 +78,4 @@ TEST(CRS, ConstructorVecVec) {
 
 }
 
-
-
-
-#endif /* test_sparse_matrix_hpp */
+#endif /* TEST_SPARSE_MATRIX_COMPRESSED_ROW_STORAGE_HPP_ */

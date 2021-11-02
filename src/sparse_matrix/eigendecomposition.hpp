@@ -66,7 +66,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
                                                       const ParametersLanczos &param
                                                       ) {
    
-   if (matrix_in.row_dim != matrix_in.col_dim || matrix_in.row_dim < 1 || matrix_in.col_dim < 1) {
+   if (matrix_in.row_dim != matrix_in.col_dim) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "The input matrix is not a square one" << std::endl;
@@ -95,7 +95,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
    
    if (matrix_in.row_dim <= 1000) {
       std::vector<RealType> temp_gs_vector_out;
-      LapackDsyev(gs_value_out, temp_gs_vector_out, matrix_in);
+      LapackDsyev(gs_value_out, &temp_gs_vector_out, matrix_in);
       gs_vector_out->Assign(temp_gs_vector_out);
       const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
       const double time_sec   = static_cast<double>(time_count)/utility::TIME_UNIT_CONSTANT;
@@ -108,10 +108,11 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
    BraketVector<RealType> vector_1(dim);
    BraketVector<RealType> vector_2(dim);
 
+   std::vector<std::vector<RealType>> rits_vector;
    std::vector<RealType> krylov_eigen_vector;
    std::vector<RealType> krylov_eigen_value(param.max_step + 1);
-   std::vector<RealType> diagonal_value    (param.max_step + 1);
-   std::vector<RealType> off_diagonal_value(param.max_step + 1);
+   std::vector<RealType> diagonal_value;
+   std::vector<RealType> off_diagonal_value;
       
    std::uniform_real_distribution<RealType> uniform_rand(-1, 1);
    const unsigned int seed = std::random_device()();
@@ -128,17 +129,27 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
    }
    
    vector_0.Normalize();
+   
+   if (param.flag_store_vec) {
+      rits_vector.push_back(vector_0.val);
+   }
+   
    CalculateMatrixVectorProduct(&vector_1, 1.0, matrix_in, vector_0);
-   diagonal_value[0] = CalculateInnerProduct(vector_0, vector_1);
+   diagonal_value.push_back(CalculateInnerProduct(vector_0, vector_1));
    krylov_eigen_value[0] = diagonal_value[0];
    CalculateVectorSum(&vector_1, 1.0, vector_1, -krylov_eigen_value[0], vector_0);
       
    for (int step = 0; step < param.max_step; ++step) {
       vector_2.Assign(vector_1);
-      off_diagonal_value[step] = vector_2.L2Norm();
+      off_diagonal_value.push_back(vector_2.L2Norm());
       vector_2.Normalize();
+      
+      if (param.flag_store_vec) {
+         rits_vector.push_back(vector_2.val);
+      }
+      
       CalculateMatrixVectorProduct(&vector_1, 1.0, matrix_in, vector_2);
-      diagonal_value[step + 1] = CalculateInnerProduct(vector_1, vector_2);
+      diagonal_value.push_back(CalculateInnerProduct(vector_1, vector_2));
       
       if (step >= param.min_step) {
          LapackDstev(&krylov_eigen_value[step + 1], &krylov_eigen_vector, diagonal_value, off_diagonal_value);
@@ -171,26 +182,33 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
    gs_vector_out->val.resize(dim);
    
    if (param.flag_store_vec) {
-      //TO DO
-      
+#pragma omp parallel for
+      for (std::size_t i = 0; i < dim; ++i) {
+         RealType temp_val = 0.0;
+         for (std::size_t j = 0; j <= converge_step_number; ++j) {
+            temp_val += krylov_eigen_vector[j]*rits_vector[j][i];
+         }
+         gs_vector_out->val[i] = temp_val;
+      }
+      gs_vector_out->Normalize();
    }
    else {
       if (param.flag_use_initial_vec) {
 #pragma omp parallel for
          for (std::size_t i = 0; i < dim; ++i) {
-            vector_0.val(i) = gs_vector_out->val(i);
-            gs_vector_out->val(i) = 0.0;
+            vector_0.val[i] = gs_vector_out->val[i];
+            gs_vector_out->val[i] = 0.0;
          }
       }
       else {
          random_number_engine.seed(seed);
          for (std::size_t i = 0; i < dim; ++i) {
-            vector_0.val(i) = uniform_rand(random_number_engine);
+            vector_0.val[i] = uniform_rand(random_number_engine);
          }
       }
       
       vector_0.Normalize();
-      CalculateVectorSum(gs_vector_out, 1.0, *gs_vector_out, krylov_eigen_vector.val[0], vector_0);
+      CalculateVectorSum(gs_vector_out, 1.0, *gs_vector_out, krylov_eigen_vector[0], vector_0);
       CalculateMatrixVectorProduct(&vector_1, 1.0, matrix_in, vector_0);
       CalculateVectorSum(&vector_1, 1.0, vector_1, -krylov_eigen_value[0], vector_0);
       

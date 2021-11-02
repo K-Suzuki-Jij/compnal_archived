@@ -23,6 +23,10 @@ struct BraketVector {
    
    explicit BraketVector(const std::size_t dim = 0) {
       this->val.resize(dim);
+#pragma omp parallel for
+      for (std::size_t i = 0; i < dim; ++i) {
+         this->val[i] = 0.0;
+      }
    }
    
    explicit BraketVector(const std::vector<RealType> &vector) {
@@ -58,7 +62,7 @@ struct BraketVector {
       this->val.resize(vector.size());
 #pragma omp parallel for
       for (std::size_t i = 0; i < vector.size(); ++i) {
-         this->val[i] = vector.val[i];
+         this->val[i] = vector[i];
       }
    }
    
@@ -100,7 +104,7 @@ void CalculateVectorSum(BraketVector<RealType> *vector_out,
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "BraketVector types do not match each other" << std::endl;
-      ss << "dim_1 = " << braket_vector_1.val.size() << ", dim_2 = " << braket_vector_2.size() << std::endl;
+      ss << "dim_1 = " << braket_vector_1.val.size() << ", dim_2 = " << braket_vector_2.val.size() << std::endl;
       throw std::runtime_error(ss.str());
    }
    vector_out->val.resize(braket_vector_1.val.size());
@@ -117,7 +121,7 @@ RealType CalculateInnerProduct(const BraketVector<RealType> &braket_vector_1,
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "BraketVector types do not match each other" << std::endl;
-      ss << "dim_1 = " << braket_vector_1.val.size() << ", dim_2 = " << braket_vector_2.size() << std::endl;
+      ss << "dim_1 = " << braket_vector_1.val.size() << ", dim_2 = " << braket_vector_2.val.size() << std::endl;
       throw std::runtime_error(ss.str());
    }
    RealType val_out = 0.0;
@@ -147,7 +151,7 @@ void CalculateMatrixVectorProduct(BraketVector<RealType> *vector_out,
    for (std::size_t i = 0; i < matrix_in.row_dim; ++i) {
       RealType temp = 0.0;
       for (std::size_t j = matrix_in.row[i]; j < matrix_in.row[i+1]; ++j) {
-         temp += matrix_in.val[j]*vector_in.val(matrix_in.col[j]);
+         temp += matrix_in.val[j]*vector_in.val[matrix_in.col[j]];
       }
       vector_out->val[i] = temp*coeef;
    }
