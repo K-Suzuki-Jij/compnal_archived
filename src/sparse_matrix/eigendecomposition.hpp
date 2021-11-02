@@ -28,19 +28,14 @@ struct ParametersLanczos {
    double acc      = std::pow(10, -14);
    bool   flag_use_initial_vec = false;
    bool   flag_store_vec   = false;
-   bool   flag_output_info = false;
-   
-   std::vector<int>    actual_steps;
-   std::vector<double> actual_time;
+   bool   flag_output_info = true;
+   bool   flag_symmetric_crs = false;
 };
 
 struct ParametersCG {
    int    max_step = 1000;
    double acc      = std::pow(10, -6);
    bool   flag_output_info = false;
-   
-   std::vector<int>    actual_steps;
-   std::vector<double> actual_time;
 };
 
 struct ParametersII {
@@ -48,9 +43,6 @@ struct ParametersII {
    double acc      = std::pow(10, -9);
    double diag_add = std::pow(10, -11);
    bool   flag_output_info = false;
-   
-   std::vector<int>    actual_steps;
-   std::vector<double> actual_time;
 };
 
 struct ParametersAll {
@@ -63,7 +55,7 @@ template <typename RealType>
 std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *gs_value_out,
                                                       BraketVector<RealType>  *gs_vector_out,
                                                       const CRS<RealType>     &matrix_in,
-                                                      const ParametersLanczos &param
+                                                      const ParametersLanczos &param = ParametersLanczos()
                                                       ) {
    
    if (matrix_in.row_dim != matrix_in.col_dim) {

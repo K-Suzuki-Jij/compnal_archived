@@ -11,6 +11,44 @@
 #include "sparse_matrix.hpp"
 #include <gtest/gtest.h>
 
+template<typename RealType>
+compnal::sparse_matrix::CRS<RealType> GenerateTightBindingHamiltonian(const int dim, const RealType t = -1.0, const bool flag_symmetric = false) {
+   if (dim <= 2) {
+      throw std::runtime_error("Too small system size");
+   }
+   compnal::sparse_matrix::CRS<double> matrix;
+   if (flag_symmetric) {
+      for (int i = 1; i < dim; ++i) {
+         matrix.val.push_back(t);
+         matrix.col.push_back(i);
+         matrix.UpdateRow();
+      }
+   }
+   else {
+      matrix.val.push_back(t);
+      matrix.col.push_back(1);
+      matrix.val.push_back(t);
+      matrix.col.push_back(dim - 1);
+      matrix.UpdateRow();
+      for (int i = 0; i < dim - 1; ++i) {
+         if (i == dim - 2) {
+            matrix.val.push_back(t);
+            matrix.col.push_back(0);
+         }
+         matrix.val.push_back(t);
+         matrix.col.push_back(i);
+         if (i + 2 < dim) {
+            matrix.val.push_back(t);
+            matrix.col.push_back(i + 2);
+         }
+         matrix.UpdateRow();
+      }
+   }
+   matrix.row_dim = dim;
+   matrix.col_dim = dim;
+   return matrix;
+}
+
 TEST(Lanczos, matrix1) {
    
    compnal::sparse_matrix::CRS<double> matrix;
@@ -19,6 +57,15 @@ TEST(Lanczos, matrix1) {
    compnal::sparse_matrix::ParametersLanczos params;
    compnal::sparse_matrix::EigenvalueDecompositionLanczos(&gs_value, &gs_vector, matrix, params);
    
+}
+
+TEST(Lanczos, TB1) {
+   const auto matrix = GenerateTightBindingHamiltonian<double>(1001);
+   double gs_value = 0.0;
+   compnal::sparse_matrix::BraketVector<double> gs_vector;
+   compnal::sparse_matrix::ParametersLanczos params;
+   compnal::sparse_matrix::EigenvalueDecompositionLanczos(&gs_value, &gs_vector, matrix, params);
+   std::cout << gs_value << std::endl;
 }
 
 

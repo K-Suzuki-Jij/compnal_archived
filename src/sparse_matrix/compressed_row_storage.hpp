@@ -64,6 +64,10 @@ struct CRS {
       return *this;
    }
    
+   void UpdateRow() {
+      this->row.push_back(this->col.size());
+   }
+   
    void Assign(const CRS &matrix) {
       this->row_dim = matrix.row_dim;
       this->col_dim = matrix.col_dim;
