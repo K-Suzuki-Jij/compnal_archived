@@ -105,6 +105,18 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
    std::vector<RealType> krylov_eigen_value(param.max_step + 1);
    std::vector<RealType> diagonal_value;
    std::vector<RealType> off_diagonal_value;
+   std::vector<std::vector<RealType>> vectors_work;
+   
+   if (param.flag_symmetric_crs) {
+#ifdef _OPENMP
+      vectors_work.resize(omp_get_max_threads());
+#pragma omp parallel for
+      for (std::size_t i = 0; i < vectors_work.size(); ++i) {
+         vectors_work[i].resize(dim, 0.0);
+      }
+#endif
+   }
+
       
    std::uniform_real_distribution<RealType> uniform_rand(-1, 1);
    const unsigned int seed = std::random_device()();
@@ -126,7 +138,13 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
       rits_vector.push_back(vector_0.val);
    }
    
-   CalculateMatrixVectorProduct(&vector_1, 1.0, matrix_in, vector_0);
+   if (param.flag_symmetric_crs) {
+      CalculateSymmetricMatrixVectorProduct(&vector_1, 1.0, matrix_in, vector_0, &vectors_work);
+   }
+   else {
+      CalculateMatrixVectorProduct(&vector_1, 1.0, matrix_in, vector_0);
+   }
+   
    diagonal_value.push_back(CalculateInnerProduct(vector_0, vector_1));
    krylov_eigen_value[0] = diagonal_value[0];
    CalculateVectorSum(&vector_1, 1.0, vector_1, -krylov_eigen_value[0], vector_0);
@@ -140,7 +158,13 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
          rits_vector.push_back(vector_2.val);
       }
       
-      CalculateMatrixVectorProduct(&vector_1, 1.0, matrix_in, vector_2);
+      if (param.flag_symmetric_crs) {
+         CalculateSymmetricMatrixVectorProduct(&vector_1, 1.0, matrix_in, vector_2, &vectors_work);
+      }
+      else {
+         CalculateMatrixVectorProduct(&vector_1, 1.0, matrix_in, vector_2);
+      }
+      
       diagonal_value.push_back(CalculateInnerProduct(vector_1, vector_2));
       
       if (step >= param.min_step) {
@@ -201,14 +225,26 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
       
       vector_0.Normalize();
       CalculateVectorSum(gs_vector_out, 1.0, *gs_vector_out, krylov_eigen_vector[0], vector_0);
-      CalculateMatrixVectorProduct(&vector_1, 1.0, matrix_in, vector_0);
+      if (param.flag_symmetric_crs) {
+         CalculateSymmetricMatrixVectorProduct(&vector_1, 1.0, matrix_in, vector_0, &vectors_work);
+      }
+      else {
+         CalculateMatrixVectorProduct(&vector_1, 1.0, matrix_in, vector_0);
+      }
+      
       CalculateVectorSum(&vector_1, 1.0, vector_1, -krylov_eigen_value[0], vector_0);
       
       for (int step = 1; step <= converge_step_number; ++step) {
          vector_2.Assign(vector_1);
          vector_2.Normalize();
          CalculateVectorSum(gs_vector_out, 1.0, *gs_vector_out, krylov_eigen_vector[step], vector_2);
-         CalculateMatrixVectorProduct(&vector_1, 1.0, matrix_in, vector_2);
+         
+         if (param.flag_symmetric_crs) {
+            CalculateSymmetricMatrixVectorProduct(&vector_1, 1.0, matrix_in, vector_2, &vectors_work);
+         }
+         else {
+            CalculateMatrixVectorProduct(&vector_1, 1.0, matrix_in, vector_2);
+         }
          
 #pragma omp parallel for
          for (std::size_t i = 0; i < dim; ++i) {
