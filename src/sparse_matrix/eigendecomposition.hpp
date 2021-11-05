@@ -5,14 +5,15 @@
 //  Created by Kohei Suzuki on 2021/05/23.
 //
 
-#ifndef eigendecomposition_hpp
-#define eigendecomposition_hpp
+#ifndef COMPNAL_SPARSE_MATRIX_EIGENDECOMPOSITION_HPP_
+#define COMPNAL_SPARSE_MATRIX_EIGENDECOMPOSITION_HPP_
+
+#include <vector>
+#include <random>
 
 #include "lapack.hpp"
 #include "compressed_row_storage.hpp"
 #include "braket_vector.hpp"
-#include <vector>
-#include <random>
 
 #ifdef _OPENMP
 #include <omp.h>
@@ -21,6 +22,8 @@
 
 namespace compnal {
 namespace sparse_matrix {
+
+const int TIME_UNIT_CONSTANT = 1000*1000;
 
 struct ParametersLanczos {
    int    min_step = 0;
@@ -72,7 +75,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
       *gs_value_out = 0.0;
       gs_vector_out->Clear();
       const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
-      const double time_sec   = static_cast<double>(time_count)/utility::TIME_UNIT_CONSTANT;
+      const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
       return {0, time_sec};
    }
    
@@ -81,7 +84,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
       gs_vector_out->val.resize(1);
       gs_vector_out->val[0] = 1.0;
       const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
-      const double time_sec   = static_cast<double>(time_count)/utility::TIME_UNIT_CONSTANT;
+      const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
       return {0, time_sec};
    }
    
@@ -90,7 +93,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
       LapackDsyev(gs_value_out, &temp_gs_vector_out, matrix_in);
       gs_vector_out->Assign(temp_gs_vector_out);
       const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
-      const double time_sec   = static_cast<double>(time_count)/utility::TIME_UNIT_CONSTANT;
+      const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
       return {0, time_sec};
    }
    
@@ -260,7 +263,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
    
    std::cout << std::endl;
    const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
-   const double time_sec   = static_cast<double>(time_count)/utility::TIME_UNIT_CONSTANT;
+   const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
    return {converge_step_number, time_sec};
 }
 
