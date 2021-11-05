@@ -19,7 +19,7 @@ compnal::sparse_matrix::CRS<RealType> GenerateTightBindingHamiltonian(const int 
    compnal::sparse_matrix::CRS<double> matrix;
    if (flag_symmetric) {
       matrix.val.push_back(0.0);
-      matrix.col.push_back(1);
+      matrix.col.push_back(0);
       matrix.val.push_back(-1.0);
       matrix.col.push_back(1);
       matrix.val.push_back(-1.0);
@@ -71,17 +71,18 @@ TEST(Lanczos, matrix1) {
 }
 
 TEST(Lanczos, TB1) {
-   const auto matrix = GenerateTightBindingHamiltonian<double>(2001);
+   const auto matrix = GenerateTightBindingHamiltonian<double>(4);
+   matrix.PrintMatrix();
    double gs_value = 0.0;
    compnal::sparse_matrix::BraketVector<double> gs_vector;
    compnal::sparse_matrix::ParametersLanczos params;
-   params.flag_store_vec = true;
    compnal::sparse_matrix::EigenvalueDecompositionLanczos(&gs_value, &gs_vector, matrix, params);
    printf("%.15lf\n", gs_value);
 }
 
 TEST(Lanczos, TB2) {
-   const auto matrix = GenerateTightBindingHamiltonian<double>(2001, true);
+   const auto matrix = GenerateTightBindingHamiltonian<double>(4, true);
+   matrix.PrintMatrix();
    double gs_value = 0.0;
    compnal::sparse_matrix::BraketVector<double> gs_vector;
    compnal::sparse_matrix::ParametersLanczos params;

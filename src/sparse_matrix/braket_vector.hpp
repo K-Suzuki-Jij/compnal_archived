@@ -37,7 +37,7 @@ struct BraketVector {
       Assign(vector);
    }
    
-   explicit BraketVector(const BraketVector &vector) {
+   BraketVector(const BraketVector &vector) {
       Assign(vector);
    }
    
@@ -173,7 +173,14 @@ void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
                                            const RealType coeef,
                                            const CRS<RealType> &matrix_in,
                                            const BraketVector<RealType> &vector_in,
-                                           std::vector<std::vector<RealType>> *vectors_work = nullptr) {
+                                           std::vector<std::vector<RealType>> *vectors_work) {
+   
+   if (matrix_in.row_dim != matrix_in.col_dim) {
+      std::stringstream ss;
+      ss << "Error in " << __func__ << std::endl;
+      ss << "The input matrix is not symmetric" << std::endl;
+      throw std::runtime_error(ss.str());
+   }
    
    if (matrix_in.col_dim != vector_in.val.size()) {
       std::stringstream ss;
@@ -230,11 +237,58 @@ void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
    }
    
 #endif
-   
-   
 }
 
+template<typename RealType>
+void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
+                                           const RealType coeef,
+                                           const CRS<RealType> &matrix_in,
+                                           const BraketVector<RealType> &vector_in) {
+#ifdef _OPENMP
+   std::vector<std::vector<RealType>> vector_work(omp_get_max_threads(), std::vector<RealType>(matrix_in.row_dim, 0.0));
+   CalculateSymmetricMatrixVectorProduct(vector_out, coeef, matrix_in, vector_in, &vector_work);
+#else
+   CalculateSymmetricMatrixVectorProduct(vector_out, coeef, matrix_in, vector_in, nullptr);
+#endif
+}
 
+template<typename RealType>
+BraketVector<RealType> CalculateVectorSum(const RealType coeef_1,
+                                          const BraketVector<RealType> &braket_vector_1,
+                                          const RealType coeef_2,
+                                          const BraketVector<RealType> &braket_vector_2) {
+   BraketVector<RealType> vector_out;
+   CalculateVectorSum(&vector_out, coeef_1, braket_vector_1, coeef_2, braket_vector_2);
+   return vector_out;
+}
+
+template<typename RealType>
+BraketVector<RealType> CalculateMatrixVectorProduct(const RealType coeef,
+                                                    const CRS<RealType> &matrix_in,
+                                                    const BraketVector<RealType> &vector_in) {
+   BraketVector<RealType> vector_out;
+   CalculateMatrixVectorProduct(&vector_out, coeef, matrix_in, vector_in);
+   return vector_out;
+}
+
+template<typename RealType>
+BraketVector<RealType> CalculateSymmetricMatrixVectorProduct(const RealType coeef,
+                                                             const CRS<RealType> &matrix_in,
+                                                             const BraketVector<RealType> &vector_in,
+                                                             std::vector<std::vector<RealType>> *vectors_work) {
+   BraketVector<RealType> vector_out;
+   CalculateSymmetricMatrixVectorProduct(&vector_out, coeef, matrix_in, vector_in, vectors_work);
+   return vector_out;
+}
+
+template<typename RealType>
+BraketVector<RealType> CalculateSymmetricMatrixVectorProduct(const RealType coeef,
+                                                             const CRS<RealType> &matrix_in,
+                                                             const BraketVector<RealType> &vector_in) {
+   BraketVector<RealType> vector_out;
+   CalculateSymmetricMatrixVectorProduct(&vector_out, coeef, matrix_in, vector_in);
+   return vector_out;
+}
 
 } // namespace sparse_matrix
 } // namespace compnal

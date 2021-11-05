@@ -36,7 +36,8 @@ struct CRS {
          this->row[i] = 0;
       }
    }
-   CRS(const std::vector<std::vector<RealType>> &mat_vec) {
+   
+   explicit CRS(const std::vector<std::vector<RealType>> &mat_vec) {
       this->row_dim = mat_vec.size();
       this->col_dim = 0;
       this->row.resize(this->row_dim + 1);
