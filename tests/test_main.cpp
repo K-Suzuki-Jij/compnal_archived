@@ -8,6 +8,9 @@
 #include "sparse_matrix/test_compressed_row_storage.hpp"
 #include "sparse_matrix/test_eigendecomposition.hpp"
 #include "sparse_matrix/test_braket_vector.hpp"
+
+#include "model/test_model_xxz_1d.hpp"
+
 #include "gtest/gtest.h"
 
 int main(int argc, char **argv) {
