@@ -11,6 +11,8 @@
 
 #include "model/test_model_xxz_1d.hpp"
 
+#include "solver/test_exact_diag.hpp"
+
 #include "gtest/gtest.h"
 
 int main(int argc, char **argv) {

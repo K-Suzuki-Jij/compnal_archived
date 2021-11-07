@@ -27,6 +27,8 @@ class XXZ_1D {
    
 public:
    
+   using ValueType = RealType;
+   
    XXZ_1D() {
       SetOnsiteOperator();
    };
@@ -55,7 +57,11 @@ public:
          ss << "system_size=" << system_size << "is not allowed" << std::endl;
          throw std::runtime_error(ss.str());
       }
-      system_size_ = system_size;
+      if (system_size_ != system_size) {
+         system_size_ = system_size;
+         flag_recalc_basis_ = true;
+         flag_recalc_ham_   = true;
+      }
    }
    
    void SetMagnitude2Spin(const int magnitude_2spin) {
@@ -69,6 +75,8 @@ public:
          magnitude_2spin_ = magnitude_2spin;
          dim_onsite_      = magnitude_2spin + 1;
          SetOnsiteOperator();
+         flag_recalc_basis_ = true;
+         flag_recalc_ham_   = true;
       }
    }
    
@@ -81,47 +89,76 @@ public:
          ss << -system_size_*magnitude_2spin_ << " <= total_2sz <= " << system_size_*magnitude_2spin_;
          throw std::runtime_error(ss.str());
       }
-      total_2sz_ = total_2sz;
+      if (total_2sz_ != total_2sz) {
+         total_2sz_ = total_2sz;
+         flag_recalc_basis_ = true;
+         flag_recalc_ham_   = true;
+      }
    }
    
    void SetBoundaryCondition(const utility::BoundaryCondition bc) {
       boundary_condition_ = bc;
+      flag_recalc_ham_ = true;
    }
    
    void SetJz(const std::vector<RealType> &J_z) {
-      J_z_ = J_z;
+      if (J_z_ != J_z) {
+         J_z_ = J_z;
+         flag_recalc_ham_ = true;
+      }
    }
    
    void SetJz(const RealType J_z) {
       if (J_z_.size() == 0) {
          J_z_.push_back(J_z);
+         flag_recalc_ham_ = true;
       }
-      else {
+      else if (J_z_[0] != J_z) {
          J_z_[0] = J_z;
+         flag_recalc_ham_ = true;
       }
    }
    
    void SetJxy(const std::vector<RealType> &J_xy) {
-      J_xy_ = J_xy;
+      if (J_xy_ != J_xy) {
+         J_xy_ = J_xy;
+         flag_recalc_ham_ = true;
+      }
    }
    
    void SetJxy(const RealType J_xy) {
       if (J_xy_.size() == 0) {
          J_xy_.push_back(J_xy);
+         flag_recalc_ham_ = true;
       }
-      else {
+      else if (J_xy_[0] != J_xy) {
          J_xy_[0] = J_xy;
+         flag_recalc_ham_ = true;
       }
    }
    
    void SetHz(const RealType h_z) {
-      h_z_ = h_z;
-      onsite_operator_ham_ = CreateOnsiteOperatorHam(magnitude_2spin_, h_z_, D_z_);
+      if (h_z_ != h_z) {
+         h_z_ = h_z;
+         onsite_operator_ham_ = CreateOnsiteOperatorHam(magnitude_2spin_, h_z_, D_z_);
+         flag_recalc_ham_ = true;
+      }
    }
    
    void SetDz(const RealType D_z) {
-      D_z_ = D_z;
-      onsite_operator_ham_ = CreateOnsiteOperatorHam(magnitude_2spin_, h_z_, D_z_);
+      if (D_z_ != D_z) {
+         D_z_ = D_z;
+         onsite_operator_ham_ = CreateOnsiteOperatorHam(magnitude_2spin_, h_z_, D_z_);
+         flag_recalc_ham_ = true;
+      }
+   }
+   
+   void SetFlagRecalcBasis(const bool flag) {
+      flag_recalc_basis_ = flag;
+   }
+   
+   void SetFlagRecalcHam(const bool flag) {
+      flag_recalc_ham_ = flag;
    }
    
    void PrintInfo() const {
@@ -283,7 +320,7 @@ public:
       for (std::size_t i = 0; i < basis->size(); ++i) {
          (*basis_inv)[(*basis)[i]] = i;
       }
-      
+      flag_recalc_basis_ = false;
    }
    
    inline utility::BoundaryCondition GetBoundaryCondition()    const { return boundary_condition_;     }
@@ -300,12 +337,15 @@ public:
    inline const CRS &GetOnsiteOperatorSp () const { return onsite_operator_sp_ ; }
    inline const CRS &GetOnsiteOperatorSm () const { return onsite_operator_sm_ ; }
    
-   inline const std::vector<RealType> &GetJz()  const { return J_z_ ; }
+   inline const std::vector<RealType> &GetJz () const { return J_z_ ; }
    inline const std::vector<RealType> &GetJxy() const { return J_xy_; }
    
-   inline RealType GetHz () const { return h_z_; }
-   inline RealType GetDz () const { return D_z_; }
+   inline RealType GetHz() const { return h_z_; }
+   inline RealType GetDz() const { return D_z_; }
    
+   inline bool GetFlagRecalcBasis() const { return flag_recalc_basis_; }
+   inline bool GetFlagRecalcHam  () const { return flag_recalc_ham_; }
+
    static CRS CreateOnsiteOperatorSx(const int magnitude_2spin) {
       const double magnitude_spin = 0.5*magnitude_2spin;
       const int    dim_onsite     = magnitude_2spin + 1;
@@ -469,6 +509,9 @@ private:
    RealType D_z_ = 0.0;
    
    const int num_conserved_quantity_ = 1;
+   
+   bool flag_recalc_basis_ = true;
+   bool flag_recalc_ham_   = true;
    
    void SetOnsiteOperator() {
       onsite_operator_ham_ = CreateOnsiteOperatorHam(magnitude_2spin_);
