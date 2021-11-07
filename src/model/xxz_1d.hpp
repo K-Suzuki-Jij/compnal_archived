@@ -340,6 +340,9 @@ public:
    inline const std::vector<RealType> &GetJz () const { return J_z_ ; }
    inline const std::vector<RealType> &GetJxy() const { return J_xy_; }
    
+   inline RealType GetJz (const int index) const { return J_z_ [index]; }
+   inline RealType GetJxy(const int index) const { return J_xy_[index]; }
+   
    inline RealType GetHz() const { return h_z_; }
    inline RealType GetDz() const { return D_z_; }
    
