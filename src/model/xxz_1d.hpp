@@ -286,6 +286,26 @@ public:
       
    }
    
+   inline utility::BoundaryCondition GetBoundaryCondition()    const { return boundary_condition_;     }
+   inline int                        GetSystemSize()           const { return system_size_;            }
+   inline int                        GetDimOnsite()            const { return dim_onsite_;             }
+   inline double                     GetMagnitude2Spin()       const { return magnitude_2spin_;        }
+   inline double                     GetTotal2Sz()             const { return total_2sz_;              }
+   inline int                        GetNumConservedQuantity() const { return num_conserved_quantity_; }
+   
+   inline const CRS &GetOnsiteOperatorHam() const { return onsite_operator_ham_; }
+   inline const CRS &GetOnsiteOperatorSx () const { return onsite_operator_sx_ ; }
+   inline const CRS &GetOnsiteOperatoriSy() const { return onsite_operator_isy_; }
+   inline const CRS &GetOnsiteOperatorSz () const { return onsite_operator_sz_ ; }
+   inline const CRS &GetOnsiteOperatorSp () const { return onsite_operator_sp_ ; }
+   inline const CRS &GetOnsiteOperatorSm () const { return onsite_operator_sm_ ; }
+   
+   inline const std::vector<RealType> &GetJz()  const { return J_z_ ; }
+   inline const std::vector<RealType> &GetJxy() const { return J_xy_; }
+   
+   inline RealType GetHz () const { return h_z_; }
+   inline RealType GetDz () const { return D_z_; }
+   
    static CRS CreateOnsiteOperatorSx(const int magnitude_2spin) {
       const double magnitude_spin = 0.5*magnitude_2spin;
       const int    dim_onsite     = magnitude_2spin + 1;
