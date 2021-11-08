@@ -143,8 +143,8 @@ struct CRS {
       std::cout << std::noshowpos;
    }
    
-   void PrintInfo() const {
-      std::cout << "Print information about CRS" << std::endl;
+   void PrintInfo(const std::string display_name = "Matrix") const {
+      std::cout << "Print information about CRS: " << display_name << std::endl;
       std::cout << "row_dim = " << this->row_dim << std::endl;
       std::cout << "col_dim = " << this->col_dim << std::endl;
       for (std::size_t i = 0; i < this->row.size(); ++i) {

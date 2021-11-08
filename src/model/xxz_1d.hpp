@@ -256,23 +256,23 @@ public:
             }
             
             const std::size_t size = utility::CalculateNumCombination(partition_integers[i]);
+            std::vector<std::vector<int>> temp_partition_integer(num_threads);
             
-#pragma omp parallel
+#pragma omp parallel num_threads (num_threads)
             {
                const int thread_num = omp_get_thread_num();
                const std::size_t loop_begin = thread_num*size/num_threads;
                const std::size_t loop_end   = (thread_num + 1)*size/num_threads;
-               
-               std::vector<int> temp_partition_integer = partition_integers[i];
-               utility::CalculateNthPermutation(&temp_partition_integer, loop_begin);
+               temp_partition_integer[thread_num] = partition_integers[i];
+               utility::CalculateNthPermutation(&temp_partition_integer[thread_num], loop_begin);
                
                for (std::size_t j = loop_begin; j < loop_end; ++j) {
-                  std::size_t basis_onsite = 0;
-                  for (std::size_t k = 0; k < partition_integers[i].size(); ++k) {
-                     basis_onsite += temp_partition_integer[k]*site_constant[k];
+                  std::size_t basis_global = 0;
+                  for (std::size_t k = 0; k < temp_partition_integer[thread_num].size(); ++k) {
+                     basis_global += temp_partition_integer[thread_num][k]*site_constant[k];
                   }
-                  temp_basis[thread_num].push_back(basis_onsite);
-                  std::next_permutation(temp_partition_integer.begin(), temp_partition_integer.end());
+                  temp_basis[thread_num].push_back(basis_global);
+                  std::next_permutation(temp_partition_integer[thread_num].begin(), temp_partition_integer[thread_num].end());
                }
             }
          }
@@ -298,11 +298,11 @@ public:
             std::sort(partition_integers[i].begin(), partition_integers[i].end());
             
             do {
-               std::size_t basis_onsite = 0;
+               std::size_t basis_global = 0;
                for (std::size_t j = 0; j < partition_integers[i].size(); ++j) {
-                  basis_onsite += partition_integers[i][j]*site_constant[j];
+                  basis_global += partition_integers[i][j]*site_constant[j];
                }
-               basis->push_back(basis_onsite);
+               basis->push_back(basis_global);
             } while (std::next_permutation(partition_integers[i].begin(), partition_integers[i].end()));
          }
       }
@@ -320,7 +320,6 @@ public:
       for (std::size_t i = 0; i < basis->size(); ++i) {
          (*basis_inv)[(*basis)[i]] = i;
       }
-      flag_recalc_basis_ = false;
    }
    
    inline utility::BoundaryCondition GetBoundaryCondition()    const { return boundary_condition_;     }
@@ -459,6 +458,7 @@ public:
          matrix.col.push_back(row);
          matrix.row[row] = matrix.col.size();
       }
+      matrix.row[dim_onsite] = matrix.col.size();
       return matrix;
    }
    
@@ -469,7 +469,7 @@ public:
       for (int row = 1; row < dim_onsite; ++row) {
          matrix.val.push_back(std::sqrt((magnitude_spin + 1)*2*row - row*(row + 1)));
          matrix.col.push_back(row - 1);
-         matrix.row[row] = matrix.col.size();
+         matrix.row[row + 1] = matrix.col.size();
       }
       return matrix;
    }

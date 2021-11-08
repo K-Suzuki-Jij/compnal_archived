@@ -58,6 +58,11 @@ void GenerateIntegerPartition(std::vector<std::vector<int>> *results, int n, int
 
 
 std::size_t CalculateBinomialCoefficient(int n, const int k) {
+   if (n < 0 || k < 0) {
+      std::stringstream ss;
+      ss << "Error in " << __func__ << std::endl;
+      throw std::runtime_error(ss.str());
+   }
    
    std::size_t r = 1;
    
@@ -104,7 +109,7 @@ void CalculateNthPermutation(std::vector<int> *vec, std::size_t target_num) {
       std::size_t temp1 = 0;
       for (auto &&it: u_map) {
          if (it.second > 0) {
-            it.second -= -1;
+            it.second -= 1;
             std::size_t temp2 = 1;
             int size = size_vec - (i + 1);
             for (const auto it2: u_map) {

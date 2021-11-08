@@ -14,7 +14,12 @@
 TEST(XXZ_1D, Basic) {
    
    compnal::model::XXZ_1D<double> model;
-   
+   model.GetOnsiteOperatorSz().PrintMatrix("Sz");
+   model.GetOnsiteOperatorSz().PrintInfo("Sz");
+   model.GetOnsiteOperatorSp().PrintMatrix("Sp");
+   model.GetOnsiteOperatorSp().PrintInfo("Sp");
+   model.GetOnsiteOperatorSm().PrintMatrix("Sm");
+   model.GetOnsiteOperatorSm().PrintInfo("Sm");
    
 }
 
