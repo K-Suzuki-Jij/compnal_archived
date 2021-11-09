@@ -66,7 +66,7 @@ void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
 #ifdef _OPENMP
    
    const int num_threads = omp_get_max_threads();
-   if (vectors_work->size() != num_threads) {
+   if (static_cast<int>(vectors_work->size()) != num_threads) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "Working vector (vectors_work) must be arrays of the number of parallel threads";

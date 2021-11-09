@@ -204,7 +204,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
 #pragma omp parallel for
       for (std::size_t i = 0; i < dim; ++i) {
          RealType temp_val = 0.0;
-         for (std::size_t j = 0; j <= converge_step_number; ++j) {
+         for (int j = 0; j <= converge_step_number; ++j) {
             temp_val += krylov_eigen_vector[j]*rits_vector[j][i];
          }
          gs_vector_out->val[i] = temp_val;

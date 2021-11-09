@@ -22,8 +22,7 @@ void pybindModelXXZ1D(py::module &m) {
    
    using XXZ1D = compnal::model::XXZ_1D<RealType>;
       
-   py::class_<XXZ1D>(m, "XXZ_1D")
-      .def(py::init<>())
+   py::class_<XXZ1D>(m, "XXZ_1D", py::module_local())
       .def(py::init<const int>(), "system_size"_a)
       .def(py::init<const int, const double>(), "system_size"_a, "spin"_a)
       .def(py::init<const int, const compnal::utility::BoundaryCondition>(), "system_size"_a, "boundary_condition"_a)
@@ -64,7 +63,42 @@ void pybindModelXXZ1D(py::module &m) {
       .def_static("create_onsite_operator_Sp"  , &XXZ1D::CreateOnsiteOperatorSp  , "spin"_a)
       .def_static("create_onsite_operator_Sm"  , &XXZ1D::CreateOnsiteOperatorSm  , "spin"_a)
       .def_static("create_onsite_operator_Ham" , &XXZ1D::CreateOnsiteOperatorHam , "spin"_a, "h_z"_a = 0.0, "D_z"_a = 0.0)
-   
+      .def("__repr__", [](const XXZ1D& self) {
+         std::string bc = "None";
+         if (self.GetBoundaryCondition() == compnal::utility::BoundaryCondition::OBC) {
+            bc = "OBC";
+         }
+         else if (self.GetBoundaryCondition() == compnal::utility::BoundaryCondition::PBC) {
+            bc = "PBC";
+         }
+         else if (self.GetBoundaryCondition() == compnal::utility::BoundaryCondition::SSD) {
+            bc = "SSD";
+         }
+         
+         std::ostringstream out;
+         out << "////////////////////////" << std::endl;
+         out << "Heisenberg Model Infomation:" << std::endl;
+         out << "boundary_condition     = " << bc                             << std::endl;
+         out << "system_size            = " << self.GetSystemSize()           << std::endl;
+         out << "spin                   = " << self.GetMagnitudeSpin()        << std::endl;
+         out << "total_2sz              = " << self.GetTotalSz()              << std::endl;
+         out << "dim_target             = " << self.CalculateTargetDim()      << std::endl;
+         out << "dim_onsite             = " << self.GetDimOnsite()            << std::endl;
+         out << "num_conserved_quantity = " << self.GetNumConservedQuantity() << std::endl;
+         out << "////////////////////////" << std::endl;
+         out << "Heisenberg Model Interaction" << std::endl;
+         out << "Sz-Sz Interaction: J_z ="     << std::endl;
+         for (std::size_t i = 0; i < self.GetJz().size(); ++i) {
+            out << i + 1 << "-th neighber: " << self.GetJz().at(i) << std::endl;
+         }
+         out << "Sx-Sx, Sy-Sy Interactions: J_xy =" << std::endl;
+         for (std::size_t i = 0; i < self.GetJxy().size(); ++i) {
+            out << i + 1 << "-th neighber: " << self.GetJxy().at(i) << std::endl;
+         }
+         out << "External Magnetic Fields for the z-direction: h_z = " << self.GetHz() << std::endl;
+         out << "Uniaxial Anisotropy for the z-direction: D_z = "      << self.GetDz();
+         return out.str();
+      })
    
    ;
    

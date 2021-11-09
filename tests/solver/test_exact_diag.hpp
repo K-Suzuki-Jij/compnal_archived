@@ -14,7 +14,7 @@
 TEST(XXZ, Basic) {
    compnal::model::XXZ_1D<double> model;
    model.SetSystemSize(18);
-   model.SetMagnitude2Spin(1);
+   model.SetMagnitudeSpin(0.5);
    compnal::solver::ExactDiag ed(model);
    ed.CalculateGroundState();
    printf("%.30lf\n", ed.GetEigenvalues()[0]);

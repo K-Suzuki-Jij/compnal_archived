@@ -46,10 +46,10 @@ struct BraketVector {
       return *this;
    }
    
-   void Fill(const RealType val) {
+   void Fill(const RealType val_in) {
 #pragma omp parallel for
       for (std::size_t i = 0; i < this->val.size(); ++i) {
-         this->val[i] = val;
+         this->val[i] = val_in;
       }
    }
    

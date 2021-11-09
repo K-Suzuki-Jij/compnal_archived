@@ -289,49 +289,49 @@ private:
       ham->SortCol();
    }
    
-   void GenerateMatrixComponents(ExactDiagMatrixComponents<RealType> *edmc, const std::size_t basis, const model::XXZ_1D<RealType> &model) const {
+   void GenerateMatrixComponents(ExactDiagMatrixComponents<RealType> *edmc, const std::size_t basis, const model::XXZ_1D<RealType> &model_input) const {
       
-      for (int site = 0; site < model.GetSystemSize(); ++site) {
-         edmc->basis_onsite[site] = CalculateLocalBasis(basis, site, model.GetDimOnsite());
+      for (int site = 0; site < model_input.GetSystemSize(); ++site) {
+         edmc->basis_onsite[site] = CalculateLocalBasis(basis, site, model_input.GetDimOnsite());
       }
       
       //Onsite elements
-      for (int site = 0; site < model.GetSystemSize(); ++site) {
-         GenerateMatrixComponentsOnsite(edmc, basis, site, model.GetOnsiteOperatorHam(), 1.0);
+      for (int site = 0; site < model_input.GetSystemSize(); ++site) {
+         GenerateMatrixComponentsOnsite(edmc, basis, site, model_input.GetOnsiteOperatorHam(), 1.0);
       }
       
       //Intersite elements SzSz
-      for (int distance = 1; distance <= model.GetJz().size(); ++distance) {
-         for (int site = 0; site < model.GetSystemSize() - distance; ++site) {
-            GenerateMatrixComponentsIntersite(edmc, basis, site, model.GetOnsiteOperatorSz(), site + distance, model.GetOnsiteOperatorSz(), model.GetJz(distance - 1));
+      for (int distance = 1; distance <= static_cast<int>(model_input.GetJz().size()); ++distance) {
+         for (int site = 0; site < model_input.GetSystemSize() - distance; ++site) {
+            GenerateMatrixComponentsIntersite(edmc, basis, site, model_input.GetOnsiteOperatorSz(), site + distance, model_input.GetOnsiteOperatorSz(), model_input.GetJz(distance - 1));
          }
       }
       
       //Intersite elements 0.5*(SpSm + SmSp) = SxSx + SySy
-      for (int distance = 1; distance <= model.GetJxy().size(); ++distance) {
-         for (int site = 0; site < model.GetSystemSize() - distance; ++site) {
-            GenerateMatrixComponentsIntersite(edmc, basis, site, model.GetOnsiteOperatorSp(), site + distance, model.GetOnsiteOperatorSm(), 0.5*model.GetJxy(distance - 1));
-            GenerateMatrixComponentsIntersite(edmc, basis, site, model.GetOnsiteOperatorSm(), site + distance, model.GetOnsiteOperatorSp(), 0.5*model.GetJxy(distance - 1));
+      for (int distance = 1; distance <= static_cast<int>(model_input.GetJxy().size()); ++distance) {
+         for (int site = 0; site < model_input.GetSystemSize() - distance; ++site) {
+            GenerateMatrixComponentsIntersite(edmc, basis, site, model_input.GetOnsiteOperatorSp(), site + distance, model_input.GetOnsiteOperatorSm(), 0.5*model_input.GetJxy(distance - 1));
+            GenerateMatrixComponentsIntersite(edmc, basis, site, model_input.GetOnsiteOperatorSm(), site + distance, model_input.GetOnsiteOperatorSp(), 0.5*model_input.GetJxy(distance - 1));
          }
       }
       
-      if (model.GetBoundaryCondition() == utility::BoundaryCondition::PBC) {
+      if (model_input.GetBoundaryCondition() == utility::BoundaryCondition::PBC) {
          //Intersite elements SzSz
-         for (int distance = 1; distance <= model.GetJz().size(); ++distance) {
+         for (int distance = 1; distance <= static_cast<int>(model_input.GetJz().size()); ++distance) {
             for (int i = 0; i < distance; ++i) {
-               const auto d1 = model.GetSystemSize() - distance + i;
+               const auto d1 = model_input.GetSystemSize() - distance + i;
                const auto d2 = i;
-               GenerateMatrixComponentsIntersite(edmc, basis, d1, model.GetOnsiteOperatorSz(), d2, model.GetOnsiteOperatorSz(), model.GetJz(distance - 1));
+               GenerateMatrixComponentsIntersite(edmc, basis, d1, model_input.GetOnsiteOperatorSz(), d2, model_input.GetOnsiteOperatorSz(), model_input.GetJz(distance - 1));
             }
          }
          
          //Intersite elements 0.5*(SpSm + SmSp) = SxSx + SySy
-         for (int distance = 1; distance <= model.GetJxy().size(); ++distance) {
+         for (int distance = 1; distance <= static_cast<int>(model_input.GetJxy().size()); ++distance) {
             for (int i = 0; i < distance; ++i) {
-               const auto d1 = model.GetSystemSize() - distance + i;
+               const auto d1 = model_input.GetSystemSize() - distance + i;
                const auto d2 = i;
-               GenerateMatrixComponentsIntersite(edmc, basis, d1, model.GetOnsiteOperatorSp(), d2, model.GetOnsiteOperatorSm(), 0.5*model.GetJxy(distance - 1));
-               GenerateMatrixComponentsIntersite(edmc, basis, d1, model.GetOnsiteOperatorSm(), d2, model.GetOnsiteOperatorSp(), 0.5*model.GetJxy(distance - 1));
+               GenerateMatrixComponentsIntersite(edmc, basis, d1, model_input.GetOnsiteOperatorSp(), d2, model_input.GetOnsiteOperatorSm(), 0.5*model_input.GetJxy(distance - 1));
+               GenerateMatrixComponentsIntersite(edmc, basis, d1, model_input.GetOnsiteOperatorSm(), d2, model_input.GetOnsiteOperatorSp(), 0.5*model.GetJxy(distance - 1));
             }
          }
       }

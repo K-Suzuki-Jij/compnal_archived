@@ -249,11 +249,11 @@ public:
       std::vector<std::vector<std::size_t>> temp_basis(num_threads);
       
       for (std::size_t i = 0; i < partition_integers.size(); ++i) {
-         const bool condition1 = (0 < partition_integers[i].size()) && (partition_integers[i].size() <= system_size_);
+         const bool condition1 = (0 < partition_integers[i].size()) && (static_cast<int>(partition_integers[i].size()) <= system_size_);
          const bool condition2 = (partition_integers[i].size() == 0) && (shifted_2sz  == 0);
          if (condition1 || condition2) {
             
-            for (std::size_t j = partition_integers[i].size(); j < system_size_; ++j) {
+            for (int j = static_cast<int>(partition_integers[i].size()); j < system_size_; ++j) {
                partition_integers[i].push_back(0);
             }
             

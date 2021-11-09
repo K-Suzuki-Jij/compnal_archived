@@ -104,7 +104,7 @@ void LapackDstev(RealType *gs_value,
    
    gs_vector->resize(dim);
    
-   for (std::size_t i = 0; i < dim; ++i) {
+   for (int i = 0; i < dim; ++i) {
       (*gs_vector)[i] = static_cast<RealType>(Lap_Vec[0][i]);
    }
    
