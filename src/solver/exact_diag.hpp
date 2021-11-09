@@ -49,12 +49,12 @@ public:
    void GenerateBasis() {
       if (model.GetFlagRecalcBasis()) {
          model.GenerateBasis(&basis_, &basis_inv_);
+         model.SetFlagRecalcBasis(false);
       }
    }
    
    void CalculateGroundState() {
       GenerateBasis();
-      model.SetFlagRecalcBasis(false);
       CRS ham;
       GenerateHamiltonian(&ham);
       if (eigenvalues_.size() == 0) {
@@ -217,17 +217,17 @@ private:
          components[thread_num].inv_basis_affected.clear();
       }
 #else
-      ExactDiagMatrixElements<RealType> components;
+      ExactDiagMatrixComponents<RealType> components;
       components.site_constant.resize(model.GetSystemSize());
       for (int site = 0; site < model.GetSystemSize(); ++site) {
-         components.site_constant[site] = model::CalculatePower(model.GetDimOnsite(), site);
+         components.site_constant[site] = static_cast<std::size_t>(std::pow(model.GetDimOnsite(), site));
       }
       components.basis_onsite.resize(model.GetSystemSize());
       
       std::vector<std::size_t> num_row_element(dim_target + 1);
       
       for (std::size_t row = 0; row < dim_target; ++row) {
-         GenerateMatrixElements(&components, basis_[row], model);
+         GenerateMatrixComponents(&components, basis_[row], model);
          for (const auto &a_basis: components.basis_affected) {
             if (basis_inv_.count(a_basis) > 0) {
                const std::size_t inv = basis_inv_.at(a_basis);
@@ -254,7 +254,7 @@ private:
       ham->val.resize(num_total_elements);
       
       for (int row = 0; row < dim_target; ++row) {
-         GenerateMatrixElements(&components, basis_[row], model);
+         GenerateMatrixComponents(&components, basis_[row], model);
          for (std::size_t i = 0; i < components.basis_affected.size(); ++i) {
             const std::size_t  a_basis = components.basis_affected[i];
             const RealType val     = components.val[i];

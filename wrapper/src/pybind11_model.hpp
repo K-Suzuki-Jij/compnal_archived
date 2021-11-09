@@ -17,8 +17,16 @@ namespace py = pybind11;
 //The following does not bring in anything else from the pybind11 namespace except for literals.
 using namespace pybind11::literals;
 
+void pybind11ModelBoundaryCondition(py::module &m) {
+   py::enum_<compnal::utility::BoundaryCondition>(m, "bc")
+           .value("OBC", compnal::utility::BoundaryCondition::OBC)
+           .value("PBC", compnal::utility::BoundaryCondition::PBC)
+           .value("SSD", compnal::utility::BoundaryCondition::SSD)
+   ;
+}
+
 template<typename RealType>
-void pybindModelXXZ1D(py::module &m) {
+void pybind11ModelXXZ1D(py::module &m) {
    
    using XXZ1D = compnal::model::XXZ_1D<RealType>;
       

@@ -18,7 +18,7 @@ namespace py = pybind11;
 using namespace pybind11::literals;
 
 template<typename RealType>
-void pybindSparseMatrixCRS(py::module &m) {
+void pybind11SparseMatrixCRS(py::module &m) {
    
    using CRS = compnal::sparse_matrix::CRS<RealType>;
    
@@ -47,9 +47,43 @@ void pybindSparseMatrixCRS(py::module &m) {
       }
       out << std::noshowpos;
       return out.str();
-   })
-   ;
+   });
    
 }
+
+template<typename RealType>
+void pybind11SparseMatrixBraketVector(py::module &m) {
+   
+   using BKV = compnal::sparse_matrix::BraketVector<RealType>;
+   py::class_<BKV>(m, "BraketVector", py::module_local())
+   .def(py::init<const std::size_t>(), "dim"_a = 0)
+   .def(py::init<const std::vector<RealType>&>(), "vector"_a)
+   .def_readonly("val", &BKV::val)
+   .def("fill", &BKV::Fill, "val"_a)
+   .def("free", &BKV::Fill)
+   .def("clear", &BKV::Clear)
+   .def("assign", py::overload_cast<const BKV&>(&BKV::Assign), "vector"_a)
+   .def("assign", py::overload_cast<const std::vector<RealType>&>(&BKV::Assign), "vector"_a)
+   .def("normalize", &BKV::Normalize, "scalar"_a = 1.0)
+   .def("multiply_by_scalar", &BKV::MultiplyByScalar, "scalar"_a)
+   .def("L2_norm", &BKV::L2Norm)
+   .def("__repr__", [](const BKV& self) {
+      std::ostringstream out;
+      out << "[";
+      for (std::size_t i = 0; i < self.val.size(); ++i) {
+         if (i +1 == self.val.size()) {
+            out << self.val.at(i);
+         }
+         else {
+            out << self.val.at(i) << ", ";
+         }
+      }
+      out << "]";
+      return out.str();
+   });
+
+}
+
+
 
 #endif /* COMPNAL_PYBIND11_SPARSE_MATRIX_HPP_ */
