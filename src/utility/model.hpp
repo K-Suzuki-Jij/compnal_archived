@@ -8,6 +8,8 @@
 #ifndef COMPNAL_UTILITY_MODEL_HPP_
 #define COMPNAL_UTILITY_MODEL_HPP_
 
+#include <cmath>
+
 namespace compnal {
 namespace utility {
 
@@ -30,6 +32,19 @@ enum BoundaryCondition {
    PBC = 1,
    SSD = 2
    
+};
+
+
+void CheckHalfInteger(double s) {
+   s = 2*s;
+   if (std::floor(s) != s) {
+      throw std::runtime_error("The input number is not half-integer");
+   }
+}
+
+int DoubleTheNumber(double s) {
+   CheckHalfInteger(s);
+   return static_cast<int>(2*s);
 };
 
 }

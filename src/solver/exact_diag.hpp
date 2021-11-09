@@ -38,8 +38,13 @@ public:
    ModelClass model;
    sparse_matrix::ParametersAll params;
    
-   explicit ExactDiag(const ModelClass &model_input): model(model_input) {}
-   ExactDiag(const ModelClass &model_input, const sparse_matrix::ParametersAll &params_input): model(model_input), params(params_input) {}
+   explicit ExactDiag(const ModelClass &model_input): model(model_input) {
+      params.lanczos.flag_symmetric_crs = true;
+   }
+   
+   ExactDiag(const ModelClass &model_input, const sparse_matrix::ParametersAll &params_input): model(model_input), params(params_input) {
+      params.lanczos.flag_symmetric_crs = true;
+   }
    
    void GenerateBasis() {
       if (model.GetFlagRecalcBasis()) {

@@ -5,17 +5,12 @@
 //  Created by Kohei Suzuki on 2021/06/29.
 //
 
-#include "pybind11_declare.hpp"
+#include "./src/pybind11_model.hpp"
 
 
 PYBIND11_MODULE(compnal, m) {
    
-   py::module_ m_solver      = m.def_submodule("solver");
-   py::module_ m_solver_ed1d = m_solver.def_submodule("exact_diag_1d");
-   pybindSolverExactDiag1D<compnal::model::Heisenberg1D<double>>(m_solver_ed1d);
-   
-   py::module_ m_sparse_matrix = m.def_submodule("sparse_matrix");
-   pybindCRS<double>(m_sparse_matrix);
-   
+   py::module_ m_model = m.def_submodule("model");
+   pybindModelXXZ1D<double>(m_model);
    
 };

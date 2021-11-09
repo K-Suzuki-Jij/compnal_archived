@@ -37,15 +37,15 @@ public:
       SetSystemSize(system_size);
    }
    
-   XXZ_1D(const int system_size, const int magnitude_2spin): XXZ_1D(system_size) {
-      SetMagnitude2Spin(magnitude_2spin);
+   XXZ_1D(const int system_size, const double magnitude_spin): XXZ_1D(system_size) {
+      SetMagnitudeSpin(magnitude_spin);
    }
    
    XXZ_1D(const int system_size, const utility::BoundaryCondition bc): XXZ_1D(system_size) {
       SetBoundaryCondition(bc);
    }
    
-   XXZ_1D(const int system_size, const int magnitude_2spin, const utility::BoundaryCondition bc): XXZ_1D(system_size, magnitude_2spin) {
+   XXZ_1D(const int system_size, const double magnitude_spin, const utility::BoundaryCondition bc): XXZ_1D(system_size, magnitude_spin) {
       SetBoundaryCondition(bc);
    }
    
@@ -64,7 +64,8 @@ public:
       }
    }
    
-   void SetMagnitude2Spin(const int magnitude_2spin) {
+   void SetMagnitudeSpin(const double magnitude_spin) {
+      const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       if (magnitude_2spin <= 0) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__ << std::endl;
@@ -80,7 +81,8 @@ public:
       }
    }
    
-   void SetTotalSz(const int total_2sz) {
+   void SetTotalSz(const double total_sz) {
+      const int total_2sz = utility::DoubleTheNumber(total_sz);
       if (total_2sz < -system_size_*magnitude_2spin_ || system_size_*magnitude_2spin_ < total_2sz) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__  << std::endl;
@@ -323,11 +325,13 @@ public:
    }
    
    inline utility::BoundaryCondition GetBoundaryCondition()    const { return boundary_condition_;     }
-   inline int                        GetSystemSize()           const { return system_size_;            }
-   inline int                        GetDimOnsite()            const { return dim_onsite_;             }
-   inline double                     GetMagnitude2Spin()       const { return magnitude_2spin_;        }
-   inline double                     GetTotal2Sz()             const { return total_2sz_;              }
-   inline int                        GetNumConservedQuantity() const { return num_conserved_quantity_; }
+   inline int GetSystemSize()           const { return system_size_;            }
+   inline int GetDimOnsite()            const { return dim_onsite_;             }
+   inline int GetMagnitude2Spin()       const { return magnitude_2spin_;        }
+   inline int GetTotal2Sz()             const { return total_2sz_;              }
+   inline int GetNumConservedQuantity() const { return num_conserved_quantity_; }
+   inline double GetMagnitudeSpin()     const { return 0.5*magnitude_2spin_;    }
+   inline double GetTotalSz()           const { return 0.5*total_2sz_;          }
    
    inline const CRS &GetOnsiteOperatorHam() const { return onsite_operator_ham_; }
    inline const CRS &GetOnsiteOperatorSx () const { return onsite_operator_sx_ ; }
@@ -339,8 +343,8 @@ public:
    inline const std::vector<RealType> &GetJz () const { return J_z_ ; }
    inline const std::vector<RealType> &GetJxy() const { return J_xy_; }
    
-   inline RealType GetJz (const int index) const { return J_z_ [index]; }
-   inline RealType GetJxy(const int index) const { return J_xy_[index]; }
+   inline RealType GetJz (const std::size_t index) const { return J_z_ .at(index); }
+   inline RealType GetJxy(const std::size_t index) const { return J_xy_.at(index); }
    
    inline RealType GetHz() const { return h_z_; }
    inline RealType GetDz() const { return D_z_; }
@@ -348,9 +352,9 @@ public:
    inline bool GetFlagRecalcBasis() const { return flag_recalc_basis_; }
    inline bool GetFlagRecalcHam  () const { return flag_recalc_ham_; }
 
-   static CRS CreateOnsiteOperatorSx(const int magnitude_2spin) {
-      const double magnitude_spin = 0.5*magnitude_2spin;
-      const int    dim_onsite     = magnitude_2spin + 1;
+   static CRS CreateOnsiteOperatorSx(const double magnitude_spin) {
+      const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
+      const int dim_onsite      = magnitude_2spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
       int a = 0;
       int b = 1;
@@ -382,9 +386,9 @@ public:
       return matrix;
    }
    
-   static CRS CreateOnsiteOperatoriSy(const int magnitude_2spin) {
-      const double magnitude_spin = 0.5*magnitude_2spin;
-      const int    dim_onsite     = magnitude_2spin + 1;
+   static CRS CreateOnsiteOperatoriSy(const double magnitude_spin) {
+      const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
+      const int dim_onsite      = magnitude_2spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
       int a = 0;
       int b = 1;
@@ -417,9 +421,9 @@ public:
       return matrix;
    }
    
-   static CRS CreateOnsiteOperatorSz(const int magnitude_2spin) {
-      const double magnitude_spin = 0.5*magnitude_2spin;
-      const int    dim_onsite     = magnitude_2spin + 1;
+   static CRS CreateOnsiteOperatorSz(const double magnitude_spin) {
+      const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
+      const int dim_onsite      = magnitude_2spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
       
       for (int row = 0; row < dim_onsite; ++row) {
@@ -433,9 +437,9 @@ public:
       return matrix;
    }
    
-   static CRS CreateOnsiteOperatorSzSz(const int magnitude_2spin) {
-      const double magnitude_spin = 0.5*magnitude_2spin;
-      const int    dim_onsite     = magnitude_2spin + 1;
+   static CRS CreateOnsiteOperatorSzSz(const double magnitude_spin) {
+      const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
+      const int dim_onsite      = magnitude_2spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
       
       for (int row = 0; row < dim_onsite; ++row) {
@@ -449,9 +453,9 @@ public:
       return matrix;
    }
    
-   static CRS CreateOnsiteOperatorSp(const int magnitude_2spin) {
-      const double magnitude_spin = 0.5*magnitude_2spin;
-      const int    dim_onsite     = magnitude_2spin + 1;
+   static CRS CreateOnsiteOperatorSp(const double magnitude_spin) {
+      const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
+      const int dim_onsite      = magnitude_2spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
       for (int row = 1; row < dim_onsite; ++row) {
          matrix.val.push_back(std::sqrt((magnitude_spin + 1)*2*row - row*(row + 1)));
@@ -462,9 +466,9 @@ public:
       return matrix;
    }
    
-   static CRS CreateOnsiteOperatorSm(const int magnitude_2spin) {
-      const double magnitude_spin = 0.5*magnitude_2spin;
-      const int    dim_onsite     = magnitude_2spin + 1;
+   static CRS CreateOnsiteOperatorSm(const double magnitude_spin) {
+      const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
+      const int dim_onsite      = magnitude_2spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
       for (int row = 1; row < dim_onsite; ++row) {
          matrix.val.push_back(std::sqrt((magnitude_spin + 1)*2*row - row*(row + 1)));
@@ -474,9 +478,9 @@ public:
       return matrix;
    }
    
-   static CRS CreateOnsiteOperatorHam(const int magnitude_2spin, const RealType h_z = 0.0, const RealType D_z = 0.0) {
-      const double magnitude_spin = 0.5*magnitude_2spin;
-      const int    dim_onsite     = magnitude_2spin + 1;
+   static CRS CreateOnsiteOperatorHam(const double magnitude_spin, const RealType h_z = 0.0, const RealType D_z = 0.0) {
+      const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
+      const int dim_onsite      = magnitude_2spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
       
       for (int row = 0; row < dim_onsite; ++row) {
@@ -517,12 +521,12 @@ private:
    bool flag_recalc_ham_   = true;
    
    void SetOnsiteOperator() {
-      onsite_operator_ham_ = CreateOnsiteOperatorHam(magnitude_2spin_);
-      onsite_operator_sx_  = CreateOnsiteOperatorSx (magnitude_2spin_);
-      onsite_operator_isy_ = CreateOnsiteOperatoriSy(magnitude_2spin_);
-      onsite_operator_sz_  = CreateOnsiteOperatorSz (magnitude_2spin_);
-      onsite_operator_sp_  = CreateOnsiteOperatorSp (magnitude_2spin_);
-      onsite_operator_sm_  = CreateOnsiteOperatorSm (magnitude_2spin_);
+      onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*magnitude_2spin_);
+      onsite_operator_sx_  = CreateOnsiteOperatorSx (0.5*magnitude_2spin_);
+      onsite_operator_isy_ = CreateOnsiteOperatoriSy(0.5*magnitude_2spin_);
+      onsite_operator_sz_  = CreateOnsiteOperatorSz (0.5*magnitude_2spin_);
+      onsite_operator_sp_  = CreateOnsiteOperatorSp (0.5*magnitude_2spin_);
+      onsite_operator_sm_  = CreateOnsiteOperatorSm (0.5*magnitude_2spin_);
    }
    
 };
