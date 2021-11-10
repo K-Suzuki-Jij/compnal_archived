@@ -8,7 +8,7 @@
 #ifndef TEST_SPARSE_MATRIX_COMPRESSED_ROW_STORAGE_HPP_
 #define TEST_SPARSE_MATRIX_COMPRESSED_ROW_STORAGE_HPP_
 
-#include "sparse_matrix.hpp"
+#include "../../src/sparse_matrix/all.hpp"
 #include <gtest/gtest.h>
 
 TEST(CRS, ConstructorNoArguments) {

@@ -8,9 +8,8 @@
 #ifndef TEST_SPARSE_MATRIX_BRAKET_VECTOR_HPP_
 #define TEST_SPARSE_MATRIX_BRAKET_VECTOR_HPP_
 
-#include "sparse_matrix.hpp"
+#include "../../src/sparse_matrix/all.hpp"
 #include <gtest/gtest.h>
-#include <vector>
 
 TEST(MatrixVectorOperatopn, MatrixVectorProduct) {
    compnal::sparse_matrix::CRS<double> matrix(std::vector<std::vector<double>>{

@@ -8,7 +8,7 @@
 #ifndef TEST_SPARSE_MATRIX_EIGENDECOMPOSITION_HPP_
 #define TEST_SPARSE_MATRIX_EIGENDECOMPOSITION_HPP_
 
-#include "sparse_matrix.hpp"
+#include "../../src/sparse_matrix/all.hpp"
 #include <gtest/gtest.h>
 
 template<typename RealType>

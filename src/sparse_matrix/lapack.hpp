@@ -5,11 +5,10 @@
 //  Created by Kohei Suzuki on 2021/05/22.
 //
 
-#ifndef lapack_hpp
-#define lapack_hpp
+#ifndef COMPNAL_SPARSE_MATRIX_LAPACK_HPP_
+#define COMPNAL_SPARSE_MATRIX_LAPACK_HPP_
 
 #include "compressed_row_storage.hpp"
-#include "braket_vector.hpp"
 #include <sstream>
 
 namespace compnal {
@@ -105,7 +104,7 @@ void LapackDstev(RealType *gs_value,
    
    gs_vector->resize(dim);
    
-   for (std::size_t i = 0; i < dim; ++i) {
+   for (int i = 0; i < dim; ++i) {
       (*gs_vector)[i] = static_cast<RealType>(Lap_Vec[0][i]);
    }
    
@@ -116,4 +115,4 @@ void LapackDstev(RealType *gs_value,
 }  // namespace compnal
 
 
-#endif /* lapack_hpp */
+#endif /* COMPNAL_SPARSE_MATRIX_LAPACK_HPP_ */
