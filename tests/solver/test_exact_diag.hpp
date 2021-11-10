@@ -13,10 +13,10 @@
 
 TEST(XXZ, Basic) {
    compnal::model::XXZ_1D<double> model;
-   model.SetSystemSize(18);
+   model.SetSystemSize(14);
    model.SetMagnitudeSpin(0.5);
    compnal::solver::ExactDiag ed(model);
-   ed.CalculateGroundState();
+   ed.CalculateGroundState("LOBPCG");
    printf("%.30lf\n", ed.GetEigenvalues()[0]);
 }
 

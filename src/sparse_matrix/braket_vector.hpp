@@ -78,7 +78,14 @@ struct BraketVector {
    }
    
    void Normalize(const RealType normalization_factor = 1.0) {
-      MultiplyByScalar(normalization_factor/L2Norm());
+      const RealType norm = L2Norm();
+      if (norm == 0.0) {
+         std::stringstream ss;
+         ss << "Error in " << __func__ << std::endl;
+         ss << "All the elements are zero" << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      MultiplyByScalar(normalization_factor/norm);
    }
    
    void MultiplyByScalar(const RealType coeef) {

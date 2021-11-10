@@ -45,6 +45,39 @@ public:
    ExactDiag(const ModelClass &model_input, const sparse_matrix::ParametersAll &params_input): model(model_input), params(params_input) {
       params.lanczos.flag_symmetric_crs = true;
    }
+      
+   void CalculateGroundState(const std::string &diag_method = "Lanczos") {
+      GenerateBasis();
+      CRS ham;
+      GenerateHamiltonian(&ham);
+      if (eigenvalues_.size() == 0) {
+         eigenvalues_.emplace_back();
+      }
+      if (eigenvectors_.size() == 0) {
+         eigenvectors_.emplace_back();
+      }
+      if (diag_method == "Lanczos") {
+         sparse_matrix::EigenvalueDecompositionLanczos(&eigenvalues_[0], &eigenvectors_[0], ham, params.lanczos);
+      }
+      else if (diag_method == "LOBPCG") {
+         sparse_matrix::EigenvalueDecompositionLOBPCG(&eigenvalues_[0], &eigenvectors_[0], ham, params.lanczos);
+      }
+      else {
+         std::stringstream ss;
+         ss << "Error in " << __func__ << std::endl;
+         ss << "Invalid diag_method: " << diag_method << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+   }
+   
+   inline const std::vector<BraketVector> &GetEigenvectors() const { return eigenvectors_; }
+   inline const std::vector<RealType>     &GetEigenvalues()  const { return eigenvalues_; }
+   
+private:
+   std::vector<std::size_t> basis_;
+   std::unordered_map<std::size_t, std::size_t> basis_inv_;
+   std::vector<BraketVector> eigenvectors_;
+   std::vector<RealType> eigenvalues_;
    
    void GenerateBasis() {
       if (model.GetFlagRecalcBasis()) {
@@ -57,28 +90,6 @@ public:
          std::cout << "\rElapsed time of generating basis:" << time_sec << "[sec]" << std::endl;
       }
    }
-   
-   void CalculateGroundState() {
-      GenerateBasis();
-      CRS ham;
-      GenerateHamiltonian(&ham);
-      if (eigenvalues_.size() == 0) {
-         eigenvalues_.emplace_back();
-      }
-      if (eigenvectors_.size() == 0) {
-         eigenvectors_.emplace_back();
-      }
-      sparse_matrix::EigenvalueDecompositionLanczos(&eigenvalues_[0], &eigenvectors_[0], ham, params.lanczos);
-   }
-   
-   inline const std::vector<BraketVector> &GetEigenvectors() const { return eigenvectors_; }
-   inline const std::vector<RealType>     &GetEigenvalues()  const { return eigenvalues_; }
-   
-private:
-   std::vector<std::size_t> basis_;
-   std::unordered_map<std::size_t, std::size_t> basis_inv_;
-   std::vector<BraketVector> eigenvectors_;
-   std::vector<RealType> eigenvalues_;
    
    int CalculateLocalBasis(std::size_t global_basis, const int site, const int dim_onsite) const {
       for (int i = 0; i < site; ++i) {
@@ -152,6 +163,9 @@ private:
    }
    
    void GenerateHamiltonian(CRS *ham) const {
+      const auto start = std::chrono::system_clock::now();
+      std::cout << "Generating Hamiltonian..." << std::flush;
+      
       const std::size_t dim_target = basis_.size();
       std::size_t num_total_elements = 0;
       
@@ -292,6 +306,11 @@ private:
          throw std::runtime_error(ss.str());
       }
       ham->SortCol();
+      
+      const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
+      const double time_sec   = static_cast<double>(time_count)/sparse_matrix::TIME_UNIT_CONSTANT;
+      std::cout << "\rElapsed time of generating Hamiltonian:" << time_sec << "[sec]" << std::endl;
+      
    }
    
    void GenerateMatrixComponents(ExactDiagMatrixComponents<RealType> *edmc, const std::size_t basis, const model::XXZ_1D<RealType> &model_input) const {

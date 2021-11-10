@@ -95,7 +95,7 @@ void pybind11SparseMatrixParameters(py::module &m) {
    .def_readwrite("flag_use_initial_vec", &PML::flag_use_initial_vec)
    .def_readwrite("flag_store_vec", &PML::flag_store_vec)
    .def_readwrite("flag_output_info", &PML::flag_output_info)
-   .def_readwrite("flag_symmetric_crs", &PML::flag_symmetric_crs);
+   .def_readonly("flag_symmetric_crs", &PML::flag_symmetric_crs);
    
    using PMCG = compnal::sparse_matrix::ParametersCG;
    py::class_<PMCG>(m, "ParamsCG", py::module_local())

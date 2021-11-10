@@ -15,15 +15,16 @@ namespace compnal {
 namespace sparse_matrix {
 
 extern "C" {
-void dsyev_(const char &JOBZ, const char &UPLO, const int &N, double **A,
-            const int &LDA, double *W, double *work, const int &Lwork,
-            int &INFO);
+void dsyev_(const char &JOBZ, const char &UPLO, const int &N, double **A, const int &LDA, double *W, double *work, const int &Lwork, int &INFO);
 };
 
 extern "C" {
-void dstev_(const char &JOBZ, const int &N, double *D, double *E, double **Z,  const int &LDZ, double* WORK, int& INFO);
+void dstev_(const char &JOBZ, const int &N, double *D, double *E, double **Z,  const int &LDZ, double *WORK, int &INFO);
 };
 
+extern "C" {
+void dspgv_(const int &ITYPE,const char &JOBZ, const char &UPLO, const int &N, double *AP, double *BP, double *W, double **Z, const int &LDZ, double *WORK, int &INFO);
+};
 
 template <typename RealType>
 void LapackDsyev(RealType *gs_value,
@@ -109,6 +110,49 @@ void LapackDstev(RealType *gs_value,
    }
    
    *gs_value = static_cast<RealType>(Lap_D[0]);
+}
+
+template <typename RealType>
+void LapackDspgv(std::vector<RealType> *eigenvalues,
+                 std::vector<RealType> *eigenvectors,
+                 const int i_type,
+                 const int dim,
+                 const std::vector<RealType> &mat_a,
+                 const std::vector<RealType> &mat_b) {
+   
+   const int size = dim*(dim + 1)/2;
+   
+   if (static_cast<int>(mat_a.size()) < size || static_cast<int>(mat_b.size()) < size) {
+      std::stringstream ss;
+      ss << "Error in " << __func__ << std::endl;
+      throw std::runtime_error(ss.str());
+   }
+   
+   double lap_ap[size];
+   double lap_bp[size];
+   double lap_w[dim];
+   double lap_z[dim][dim];
+   double lap_work[3*dim];
+   int lap_ldz = dim;
+   int lap_info;
+   
+   for (int i = 0; i < size; ++i) {
+      lap_ap[i] = mat_a[i];
+      lap_bp[i] = mat_b[i];
+   }
+   
+   dspgv_(i_type, 'V', 'U', dim, lap_ap, lap_bp, lap_w, (double**)lap_z, lap_ldz, lap_work, lap_info);
+   
+   eigenvalues->resize(dim);
+   eigenvectors->resize(dim*dim);
+   
+   for (int i = 0; i < dim; ++i) {
+      (*eigenvalues)[i] = static_cast<RealType>(lap_w[i]);
+      for (int j = 0; j < dim; ++j) {
+         (*eigenvectors)[i*dim + j] = static_cast<RealType>(lap_z[i][j]);
+      }
+   }
+   
 }
 
 }  // namespace sparse_matrix

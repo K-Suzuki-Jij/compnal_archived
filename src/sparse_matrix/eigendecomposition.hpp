@@ -268,6 +268,209 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
    return {converge_step_number, time_sec};
 }
 
+template <typename RealType>
+std::pair<int, double> EigenvalueDecompositionLOBPCG(RealType                *gs_value_out,
+                                                     BraketVector<RealType>  *gs_vector_out,
+                                                     const CRS<RealType>     &matrix_in,
+                                                     const ParametersLanczos &param = ParametersLanczos()) {
+   
+   if (matrix_in.row_dim != matrix_in.col_dim) {
+      std::stringstream ss;
+      ss << "Error in " << __func__ << std::endl;
+      ss << "The input matrix is not a square one" << std::endl;
+      ss << "row=" << matrix_in.row_dim << ", col=" << matrix_in.col_dim << std::endl;
+      throw std::runtime_error(ss.str());
+   }
+   
+   const auto start = std::chrono::system_clock::now();
+   
+   if (matrix_in.row_dim == 0) {
+      *gs_value_out = 0.0;
+      gs_vector_out->Clear();
+      const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
+      const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
+      return {0, time_sec};
+   }
+   
+   if (matrix_in.row_dim == 1) {
+      *gs_value_out = matrix_in.val[0];
+      gs_vector_out->val.resize(1);
+      gs_vector_out->val[0] = 1.0;
+      const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
+      const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
+      return {0, time_sec};
+   }
+   
+   if (matrix_in.row_dim <= 1000) {
+      std::vector<RealType> temp_gs_vector_out;
+      LapackDsyev(gs_value_out, &temp_gs_vector_out, matrix_in);
+      gs_vector_out->Assign(temp_gs_vector_out);
+      const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
+      const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
+      return {0, time_sec};
+   }
+   
+   const std::size_t dim = matrix_in.row_dim;
+   BraketVector<RealType> v0(dim);
+   BraketVector<RealType> v1(dim);
+   BraketVector<RealType> v2(dim);
+   BraketVector<RealType> w0(dim);
+   BraketVector<RealType> w1(dim);
+   BraketVector<RealType> w2(dim);
+   BraketVector<RealType> r (dim);
+   
+   std::vector<std::vector<RealType>> vectors_work;
+
+   if (param.flag_symmetric_crs) {
+#ifdef _OPENMP
+      vectors_work.resize(omp_get_max_threads());
+#pragma omp parallel for
+      for (std::size_t i = 0; i < vectors_work.size(); ++i) {
+         vectors_work[i].resize(dim, 0.0);
+      }
+#endif
+   }
+   
+   if (param.flag_use_initial_vec) {
+      v0.Assign(*gs_vector_out);
+   }
+   else {
+      std::uniform_real_distribution<RealType> uniform_rand(-1, 1);
+      std::mt19937 random_number_engine;
+      random_number_engine.seed(std::random_device()());
+#pragma omp parallel for
+      for (std::size_t i = 0; i < dim; ++i) {
+         v0.val[i] = uniform_rand(random_number_engine);
+      }
+   }
+   
+   v0.Normalize();
+   
+   if (param.flag_symmetric_crs) {
+      CalculateSymmetricMatrixVectorProduct(&w0, 1.0, matrix_in, v0, &vectors_work);
+   }
+   else {
+      CalculateMatrixVectorProduct(&w0, 1.0, matrix_in, v0);
+   }
+   
+   for (int step = 0; step < param.max_step; ++step) {
+      RealType a0 = 0.0;
+      RealType a1 = 0.0;
+      RealType a2 = 0.0;
+      RealType a3 = 0.0;
+      RealType a4 = 0.0;
+      RealType a5 = 0.0;
+      
+      RealType b0 = 1.0;
+      RealType b1 = 0.0;
+      RealType b2 = 1.0;
+      RealType b3 = 0.0;
+      RealType b4 = 0.0;
+      RealType b5 = 1.0;
+
+#pragma omp parallel for reduction (+: a0, a1, a2, a3, a4, a5, b1, b3, b4)
+      for (std::size_t i = 0; i < dim; ++i) {
+         a0 += v0.val[i]*w0.val[i];
+         a1 += v0.val[i]*w1.val[i];
+         a2 += v1.val[i]*w1.val[i];
+         a3 += v0.val[i]*w2.val[i];
+         a4 += v1.val[i]*w2.val[i];
+         a5 += v2.val[i]*w2.val[i];
+         
+         b1 += v0.val[i]*v1.val[i];
+         b3 += v0.val[i]*v2.val[i];
+         b4 += v1.val[i]*v2.val[i];
+      }
+            
+      std::vector<RealType> k_e_val(3);
+      std::vector<RealType> k_e_vec(9);
+      
+      int krylov_dim = 3;
+      std::vector<RealType> mat_a = {a0, a1, a2, a3, a4, a5};
+      std::vector<RealType> mat_b = {b0, b1, b2, b3, b4, b5};
+
+      if (step == 1) {
+         krylov_dim = 2;
+      }
+      else if (step == 0) {
+         krylov_dim = 1;
+      }
+
+      LapackDspgv(&k_e_val, &k_e_vec, 1, krylov_dim, mat_a, mat_b);
+         
+      RealType residual_error = 0.0;
+      
+      
+#pragma omp parallel for reduction (+: residual_error)
+      for (std::size_t i = 0; i < dim; ++i) {
+         r.val[i] = k_e_vec[0]*w0.val[i] + k_e_vec[1]*w1.val[i] + k_e_vec[2]*w2.val[i]
+                  - k_e_val[0]*(k_e_vec[0]*v0.val[i] + k_e_vec[1]*v1.val[i] + k_e_vec[2]*v2.val[i]);
+         residual_error += r.val[i]*r.val[i];
+      }
+      
+      if (param.flag_output_info) {
+         std::cout << "\rLOBPCG_Step[" << step + 1 << "]=" << std::scientific << std::setprecision(1);
+         std::cout << residual_error << std::flush;
+      }
+      
+      if (residual_error < param.acc) {
+         *gs_value_out = k_e_val[0];
+         gs_vector_out->val.resize(dim);
+         
+#pragma omp parallel for
+         for (std::size_t i = 0; i < dim; ++i) {
+            gs_vector_out->val[i] = k_e_vec[0]*w0.val[i] + k_e_vec[1]*w1.val[i] + k_e_vec[2]*w2.val[i];
+         }
+         gs_vector_out->Normalize();
+         const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
+         const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
+         std::cout << std::defaultfloat << std::setprecision(8) << "\rElapsed time of diagonalization:" << time_sec << "[sec]" << std::flush;
+         std::cout << std::endl;
+         return {0, time_sec};
+      }
+
+#pragma omp parallel for
+      for (std::size_t i = 0; i < dim; ++i) {
+         v0.val[i] = k_e_vec[0]*v0.val[i] + k_e_vec[1]*v1.val[i] + k_e_vec[2]*v2.val[i];
+         v2.val[i] = k_e_vec[1]*v1.val[i] + k_e_vec[2]*v2.val[i];
+         v1.val[i] = r.val[i];
+      }
+      
+      RealType alpha = 1.0/CalculateInnerProduct(v0, v0);
+      RealType beta  = CalculateInnerProduct(v2, v2);
+            
+      v0.Normalize();
+      v1.Normalize();
+      
+      if (beta > 0) {
+         beta = 1.0/std::sqrt(beta);
+         v2.Normalize();
+      }
+      else {
+         beta = 0.0;
+      }
+      
+#pragma omp parallel for
+      for (std::size_t i = 0; i < dim; ++i) {
+         w0.val[i] = alpha*(k_e_vec[0]*w0.val[i] + k_e_vec[1]*w1.val[i] + k_e_vec[2]*w2.val[i]);
+         w2.val[i] = beta*(k_e_vec[1]*w1.val[i] + k_e_vec[2]*w2.val[i]);
+      }
+      
+      if (param.flag_symmetric_crs) {
+         CalculateSymmetricMatrixVectorProduct(&w1, 1.0, matrix_in, v1, &vectors_work);
+      }
+      else {
+         CalculateMatrixVectorProduct(&w1, 1.0, matrix_in, v1);
+      }
+   }
+   
+   std::stringstream ss;
+   ss << "Error in " << __func__ << std::endl;
+   ss << "Does not converge" << std::endl;
+   throw std::runtime_error(ss.str());
+   
+}
+
 } // namespace sparse_matrix
 } // namespace compnal
 

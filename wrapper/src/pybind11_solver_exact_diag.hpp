@@ -28,16 +28,15 @@ void pybind11SolverExactDiag(py::module &m) {
    .def(py::init<const ModelClass&, compnal::sparse_matrix::ParametersAll&>(), "model"_a, "params"_a)
    .def_readonly("model", &ED::model)
    .def_readonly("params", &ED::params)
-   .def("generate_basis", &ED::GenerateBasis)
    .def("get_eigenvectors", &ED::GetEigenvectors)
    .def("get_eigenvalues", &ED::GetEigenvalues)
-   .def("calculate_ground_state", [](ED &self) {
+   .def("calculate_ground_state", [](ED &self, const std::string &diag_method) {
       py::scoped_ostream_redirect stream(
           std::cout,                                // std::ostream&
           py::module_::import("sys").attr("stdout") // Python output
       );
-      self.CalculateGroundState();
-   });
+      self.CalculateGroundState(diag_method);
+   }, "diag_method"_a = "Lanczos");
 
 }
 
