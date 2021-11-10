@@ -18,6 +18,7 @@ PYBIND11_MODULE(compnal, m) {
    py::module_ m_sp_mat = m.def_submodule("sparse_matrix");
    pybind11SparseMatrixCRS<double>(m_sp_mat);
    pybind11SparseMatrixBraketVector<double>(m_sp_mat);
+   pybind11SparseMatrixParameters(m_sp_mat);
    
    py::module_ m_solver = m.def_submodule("solver");
    pybind11SolverExactDiag<compnal::model::XXZ_1D<double>>(m_solver);

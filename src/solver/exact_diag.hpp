@@ -48,8 +48,13 @@ public:
    
    void GenerateBasis() {
       if (model.GetFlagRecalcBasis()) {
+         const auto start = std::chrono::system_clock::now();
+         std::cout << "Generating Basis..." << std::flush;
          model.GenerateBasis(&basis_, &basis_inv_);
          model.SetFlagRecalcBasis(false);
+         const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
+         const double time_sec   = static_cast<double>(time_count)/sparse_matrix::TIME_UNIT_CONSTANT;
+         std::cout << "\rElapsed time of generating basis:" << time_sec << "[sec]" << std::endl;
       }
    }
    

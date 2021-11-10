@@ -84,6 +84,44 @@ void pybind11SparseMatrixBraketVector(py::module &m) {
 
 }
 
+void pybind11SparseMatrixParameters(py::module &m) {
+   
+   using PML = compnal::sparse_matrix::ParametersLanczos;
+   py::class_<PML>(m, "ParamsDiag", py::module_local())
+   .def(py::init<>())
+   .def_readwrite("min_step", &PML::min_step)
+   .def_readwrite("max_step", &PML::max_step)
+   .def_readwrite("threshold", &PML::acc)
+   .def_readwrite("flag_use_initial_vec", &PML::flag_use_initial_vec)
+   .def_readwrite("flag_store_vec", &PML::flag_store_vec)
+   .def_readwrite("flag_output_info", &PML::flag_output_info)
+   .def_readwrite("flag_symmetric_crs", &PML::flag_symmetric_crs);
+   
+   using PMCG = compnal::sparse_matrix::ParametersCG;
+   py::class_<PMCG>(m, "ParamsCG", py::module_local())
+      .def(py::init<>())
+      .def_readwrite("max_step", &PMCG::max_step)
+      .def_readwrite("threshold", &PMCG::acc)
+      .def_readwrite("flag_output_info", &PMCG::flag_output_info);
+   
+   using PMII = compnal::sparse_matrix::ParametersII;
+   py::class_<PMII>(m, "ParamsII", py::module_local())
+      .def(py::init<>())
+      .def_readwrite("max_step", &PMII::max_step)
+      .def_readwrite("threshold", &PMII::acc)
+      .def_readwrite("diag_add", &PMII::diag_add)
+      .def_readwrite("flag_output_info", &PMII::flag_output_info);
+   
+   
+   using PMA = compnal::sparse_matrix::ParametersAll;
+   py::class_<PMA>(m, "ParamsAll", py::module_local())
+      .def(py::init<>())
+      .def_readwrite("lanczos", &PMA::lanczos)
+      .def_readwrite("cg", &PMA::cg)
+      .def_readwrite("ii", &PMA::ii);
+   
+}
+
 
 
 #endif /* COMPNAL_PYBIND11_SPARSE_MATRIX_HPP_ */

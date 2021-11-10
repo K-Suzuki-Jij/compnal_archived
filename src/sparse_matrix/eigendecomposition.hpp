@@ -261,13 +261,12 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
       gs_vector_out->Normalize();
    }
    
-   std::cout << std::endl;
    const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
    const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
+   std::cout << std::defaultfloat << std::setprecision(8) << "\rElapsed time of diagonalization:" << time_sec << "[sec]" << std::flush;
+   std::cout << std::endl;
    return {converge_step_number, time_sec};
 }
-
-
 
 } // namespace sparse_matrix
 } // namespace compnal
