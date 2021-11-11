@@ -11,6 +11,7 @@
 #include "../../src/sparse_matrix/all.hpp"
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include <pybind11/operators.h>
 
 namespace py = pybind11;
 
@@ -35,7 +36,12 @@ void pybind11SparseMatrixCRS(py::module &m) {
    .def("free", &CRS::Free)
    .def("Clear", &CRS::Clear)
    .def("is_symmetric", &CRS::isSymmetric, "threshold"_a = 0.000000000000001/*pow(10,-15)*/)
-   .def("__repr__", [](const CRS& self) {
+   .def("__mul__", [](const CRS &lhs, const CRS &rhs) {
+      CRS mat;
+      compnal::sparse_matrix::CreateMatrixProduct(&mat, 1.0, lhs, 1.0, rhs);
+      return mat;
+   }, py::is_operator())
+   .def("__repr__", [](const CRS &self) {
       std::ostringstream out;
       for (std::size_t i = 0; i < self.row_dim; ++i) {
          for (std::size_t j = self.row.at(i); j < self.row.at(i+1); ++j) {

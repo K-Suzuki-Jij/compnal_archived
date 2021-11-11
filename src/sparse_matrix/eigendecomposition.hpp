@@ -389,11 +389,8 @@ std::pair<int, double> EigenvalueDecompositionLOBPCG(RealType                *gs
       std::vector<RealType> mat_a = {a0, a1, a2, a3, a4, a5};
       std::vector<RealType> mat_b = {b0, b1, b2, b3, b4, b5};
 
-      if (step == 1) {
-         krylov_dim = 2;
-      }
-      else if (step == 0) {
-         krylov_dim = 1;
+      if (step <= 1) {
+         krylov_dim = step + 1;
       }
 
       LapackDspgv(&k_e_val, &k_e_vec, 1, krylov_dim, mat_a, mat_b);

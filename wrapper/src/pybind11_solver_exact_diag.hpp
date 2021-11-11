@@ -30,6 +30,7 @@ void pybind11SolverExactDiag(py::module &m) {
    .def_readonly("params", &ED::params)
    .def("get_eigenvectors", &ED::GetEigenvectors)
    .def("get_eigenvalues", &ED::GetEigenvalues)
+   .def("calculate_expectation_value", &ED::CalculateExpectationValue, "operator"_a, "site"_a, "level"_a = 0)
    .def("calculate_ground_state", [](ED &self, const std::string &diag_method) {
       py::scoped_ostream_redirect stream(
           std::cout,                                // std::ostream&

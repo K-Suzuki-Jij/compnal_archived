@@ -68,6 +68,44 @@ public:
          ss << "Invalid diag_method: " << diag_method << std::endl;
          throw std::runtime_error(ss.str());
       }
+      model.SetCalculatedEigenvectorSet(0);
+   }
+   
+   RealType CalculateExpectationValue(const CRS &m, const std::size_t site, const std::size_t level = 0) const {
+      if (model.GetCalculatedEigenvectorSet().count(level) == 0) {
+         std::stringstream ss;
+         ss << "Error in " << __func__ << std::endl;
+         ss << "An eigenvector of the energy level: " << level << " has not been calculated" << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      
+      const std::size_t dim = eigenvectors_.at(level).val.size();
+      if (basis_.size() != dim || basis_inv_.size() != dim) {
+         std::stringstream ss;
+         ss << "Error in " << __func__ << std::endl;
+         ss << "Unknown error detected" << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      
+      const int dim_onsite = static_cast<int>(m.row_dim);
+      const std::size_t site_constant = static_cast<std::size_t>(std::pow(dim_onsite, site));
+      const BraketVector &eigenvector = eigenvectors_.at(level);
+      RealType val = 0.0;
+      
+#pragma omp parallel for reduction (+: val)
+      for (std::size_t i = 0; i < dim; ++i) {
+         const std::size_t global_basis = basis_[i];
+         const int         local_basis = CalculateLocalBasis(global_basis, site, dim_onsite);
+         RealType temp_val = 0.0;
+         for (std::size_t j = m.row[local_basis]; j < m.row[local_basis + 1]; ++j){
+            const std::size_t a_basis = global_basis - (local_basis - m.col[j])*site_constant;
+            if (basis_inv_.count(a_basis) != 0) {
+               temp_val += eigenvector.val[basis_inv_.at(a_basis)]*m.val[j];
+            }
+         }
+         val += eigenvector.val[i]*temp_val;
+      }
+      return val;
    }
    
    inline const std::vector<BraketVector> &GetEigenvectors() const { return eigenvectors_; }

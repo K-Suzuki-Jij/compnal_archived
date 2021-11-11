@@ -12,6 +12,7 @@
 #include "../utility/all.hpp"
 
 #include <unordered_map>
+#include <unordered_set>
 
 #ifdef _OPENMP
 #include <omp.h>
@@ -61,6 +62,7 @@ public:
          system_size_ = system_size;
          flag_recalc_basis_ = true;
          flag_recalc_ham_   = true;
+         calculated_eigenvector_set_.clear();
       }
    }
    
@@ -78,6 +80,7 @@ public:
          SetOnsiteOperator();
          flag_recalc_basis_ = true;
          flag_recalc_ham_   = true;
+         calculated_eigenvector_set_.clear();
       }
    }
    
@@ -95,6 +98,7 @@ public:
          total_2sz_ = total_2sz;
          flag_recalc_basis_ = true;
          flag_recalc_ham_   = true;
+         calculated_eigenvector_set_.clear();
       }
    }
    
@@ -161,6 +165,14 @@ public:
    
    void SetFlagRecalcHam(const bool flag) {
       flag_recalc_ham_ = flag;
+   }
+   
+   void SetCalculatedEigenvectorSet(const std::size_t level) {
+      calculated_eigenvector_set_.emplace(level);
+   }
+   
+   void RemoveCalculatedEigenvectorSet(const std::size_t level) {
+      calculated_eigenvector_set_.erase(level);
    }
    
    void PrintInfo() const {
@@ -324,7 +336,7 @@ public:
       }
    }
    
-   inline utility::BoundaryCondition GetBoundaryCondition()    const { return boundary_condition_;     }
+   inline utility::BoundaryCondition GetBoundaryCondition() const { return boundary_condition_;     }
    inline int GetSystemSize()           const { return system_size_;            }
    inline int GetDimOnsite()            const { return dim_onsite_;             }
    inline int GetMagnitude2Spin()       const { return magnitude_2spin_;        }
@@ -351,6 +363,7 @@ public:
    
    inline bool GetFlagRecalcBasis() const { return flag_recalc_basis_; }
    inline bool GetFlagRecalcHam  () const { return flag_recalc_ham_; }
+   inline const std::unordered_set<std::size_t> &GetCalculatedEigenvectorSet() const { return calculated_eigenvector_set_; }
 
    static CRS CreateOnsiteOperatorSx(const double magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
@@ -519,6 +532,7 @@ private:
    
    bool flag_recalc_basis_ = true;
    bool flag_recalc_ham_   = true;
+   std::unordered_set<std::size_t> calculated_eigenvector_set_;
    
    void SetOnsiteOperator() {
       onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*magnitude_2spin_);

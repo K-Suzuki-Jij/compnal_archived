@@ -20,7 +20,7 @@ namespace sparse_matrix {
 
 template<typename RealType>
 struct CRS {
-  
+   
    std::size_t row_dim = 0;
    std::size_t col_dim = 0;
    std::vector<std::size_t> row;
@@ -99,7 +99,7 @@ struct CRS {
          this->val.clear();
       }
       else {
-   #pragma omp parallel for
+#pragma omp parallel for
          for (std::size_t i = 0; i < this->col.size(); ++i) {
             this->val[i] *= coeef;
          }
@@ -206,10 +206,10 @@ void CalculateTransposedMatrix(CRS<RealType> *matrix_out,
 
 template<typename RealType>
 void CreateMatrixProduct(CRS<RealType> *matrix_out,
-                                  const RealType coeef_1,
-                                  const CRS<RealType> &matrix_1,
-                                  const RealType coeef_2,
-                                  const CRS<RealType> &matrix_2) {
+                         const RealType coeef_1,
+                         const CRS<RealType> &matrix_1,
+                         const RealType coeef_2,
+                         const CRS<RealType> &matrix_2) {
    
    if (matrix_1.col_dim != matrix_2.row_dim) {
       std::stringstream ss;
@@ -227,7 +227,7 @@ void CreateMatrixProduct(CRS<RealType> *matrix_out,
    
    for (std::size_t i = 0; i < matrix_1.row_dim; ++i) {
       for (std::size_t j = matrix_1.row[i]; j < matrix_1.row[i + 1]; ++j) {
-         temp_v1[matrix_1.Col(j)] = coeef_1*matrix_1.Val(j);
+         temp_v1[matrix_1.col[j]] = coeef_1*matrix_1.val[j];
       }
       for (std::size_t j = 0; j < matrix_1.col_dim; ++j) {
          for (std::size_t k = matrix_2.row[j]; k < matrix_2.row[j + 1]; ++k) {
@@ -243,18 +243,21 @@ void CreateMatrixProduct(CRS<RealType> *matrix_out,
       
       matrix_out->row[i + 1] = matrix_out->col.size();
       
-      for (std::size_t j = matrix_1->row[i]; j < matrix_1->row[i + 1]; ++j) {
-         temp_v1[matrix_1->col[j]] = 0.0;
+      for (std::size_t j = matrix_1.row[i]; j < matrix_1.row[i + 1]; ++j) {
+         temp_v1[matrix_1.col[j]] = 0.0;
       }
       for (std::size_t j = matrix_out->row[i]; j < matrix_out->row[i + 1]; ++j) {
          temp_v2[matrix_out->col[j]] = 0.0;
       }
    }
    
+   matrix_out->row_dim = matrix_1.row_dim;
+   matrix_out->col_dim = matrix_2.col_dim;
+   
 }
 
 template<typename RealType>
-CRS<RealType> CreateMatrixSum(CRS<RealType> *matrix_out,
+void CreateMatrixSum(CRS<RealType> *matrix_out,
                               const RealType coeef_1,
                               const CRS<RealType> &matrix_1,
                               const RealType coeef_2,
@@ -268,19 +271,19 @@ CRS<RealType> CreateMatrixSum(CRS<RealType> *matrix_out,
       ss << "matrix_2.row_dim = " << matrix_2.row_dim << ", matrix_2.col_dim = " << matrix_2.col_dim << std::endl;
       throw std::runtime_error(ss.str());
    }
-      
-   matrix_out = CRS(matrix_1.row_dim, matrix_1.col_dim);
+   
+   *matrix_out = CRS(matrix_1.row_dim, matrix_1.col_dim);
    for (std::size_t i = 0; i < matrix_1.row_dim; ++i) {
       
       int check = 0;
       std::size_t count_1 = 0;
       std::size_t count_2 = 0;
-
+      
       const std::size_t row_lower_1 = matrix_1.row[  i  ];
       const std::size_t row_upper_1 = matrix_1.row[i + 1];
       const std::size_t row_lower_2 = matrix_2.row[  i  ];
       const std::size_t row_upper_2 = matrix_2.row[i + 1];
-
+      
       const std::size_t m1_count = row_upper_1 - row_lower_1;
       const std::size_t m2_count = row_upper_2 - row_lower_2;
       
@@ -373,7 +376,7 @@ CRS<RealType> CreateMatrixSum(CRS<RealType> *matrix_out,
       }
       matrix_out->row[i + 1] = matrix_out->col.size();
    }
-   return matrix_out;
+
 }
 
 
