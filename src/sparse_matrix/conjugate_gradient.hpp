@@ -36,7 +36,7 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
       throw std::runtime_error(ss.str());
    }
    
-   if (vec_in.val.size() == matrix_in.row_dim) {
+   if (vec_in.val.size() != matrix_in.row_dim) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "Matrix vector product (Ax=b) cannot be defined." << std::endl;
@@ -120,7 +120,8 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
       if (residual_error < params.acc) {
          const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
          const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
-         std::cout << std::defaultfloat << std::setprecision(8) << "\rElapsed time of conjugate_gradient:" << time_sec << "[sec]" << std::flush;
+         std::cout << std::defaultfloat << std::setprecision(8) << "\rElapsed time of conjugate_gradient:" << time_sec << "[sec]";
+         std::cout << " (" << residual_error << ")" << std::flush;
          std::cout << std::endl;
          return {step, time_sec};
       }

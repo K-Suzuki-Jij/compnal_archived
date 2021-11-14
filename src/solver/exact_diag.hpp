@@ -40,10 +40,12 @@ public:
    
    explicit ExactDiag(const ModelClass &model_input): model(model_input) {
       params.lanczos.flag_symmetric_crs = true;
+      params.ii.cg.flag_symmetric_crs   = true;
    }
    
    ExactDiag(const ModelClass &model_input, const sparse_matrix::ParametersAll &params_input): model(model_input), params(params_input) {
       params.lanczos.flag_symmetric_crs = true;
+      params.ii.cg.flag_symmetric_crs   = true;
    }
       
    void CalculateGroundState(const std::string &diag_method = "Lanczos") {

@@ -37,7 +37,7 @@ struct ParametersLanczos {
 
 struct ParametersCG {
    int    max_step = 1000;
-   double acc      = std::pow(10, -6);
+   double acc      = std::pow(10, -7);
    bool   flag_use_initial_vec = false;
    bool   flag_output_info     = true;
    bool   flag_symmetric_crs   = false;
@@ -49,9 +49,9 @@ struct ParametersII {
    }
    
    int    max_step = 2;
-   double acc      = std::pow(10, -9);
+   double acc      = std::pow(10, -7);
    double diag_add = std::pow(10, -11);
-   bool   flag_output_info = false;
+   bool   flag_output_info = true;
    ParametersCG cg;
 };
 
@@ -105,6 +105,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
    
    int converge_step_number = 0;
    const std::size_t dim = matrix_in.row_dim;
+   RealType residual_error_final = 0.0;
    BraketVector<RealType> vector_0(dim);
    BraketVector<RealType> vector_1(dim);
    BraketVector<RealType> vector_2(dim);
@@ -187,6 +188,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
          if (residual_error < params.acc) {
             *gs_value_out = krylov_eigen_value[step + 1];
             converge_step_number = step + 1;
+            residual_error_final = residual_error;
             break;
          }
       }
@@ -270,6 +272,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
    const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
    const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
    std::cout << std::defaultfloat << std::setprecision(8) << "\rElapsed time of diagonalization:" << time_sec << "[sec]" << std::flush;
+   std::cout << " (" << residual_error_final << ")" << std::flush;
    std::cout << std::endl;
    return {converge_step_number, time_sec};
 }
@@ -427,6 +430,7 @@ std::pair<int, double> EigenvalueDecompositionLOBPCG(RealType                *gs
          const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
          const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
          std::cout << std::defaultfloat << std::setprecision(8) << "\rElapsed time of diagonalization:" << time_sec << "[sec]" << std::flush;
+         std::cout << " (" << residual_error << ")" << std::flush;
          std::cout << std::endl;
          return {0, time_sec};
       }

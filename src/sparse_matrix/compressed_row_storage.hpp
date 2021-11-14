@@ -118,7 +118,7 @@ struct CRS {
          bool flag = true;
          for (std::size_t j = this->row[i]; j < this->row[i + 1]; ++j) {
             if (i == this->col[j]) {
-               this->val[i] += diag_add;
+               this->val[j] += diag_add;
                flag = false;
                break;
             }

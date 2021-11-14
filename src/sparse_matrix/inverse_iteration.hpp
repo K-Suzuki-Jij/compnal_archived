@@ -39,6 +39,7 @@ std::pair<int, double> InverseIteration(CRS<RealType>          *matrix_in,
          std::stringstream ss;
          ss << "Error in " << __func__ << std::endl;
          ss << "The dimension of the initial vector is not equal to that of the input matrix." << std::endl;
+         throw std::runtime_error(ss.str());
       }
       improved_eigenvector = *eigenvector;
    }
@@ -55,7 +56,7 @@ std::pair<int, double> InverseIteration(CRS<RealType>          *matrix_in,
       const RealType residual_error = CalculateL1Norm(params.diag_add, *eigenvector, 1.0, vectors_work);
       
       if (params.flag_output_info) {
-         std::cout << "\rII_Step[" << step + 1 << "]=" << std::scientific << std::setprecision(1);
+         std::cout << "\rII_Step[" << step << "]=" << std::scientific << std::setprecision(1);
          std::cout << residual_error << std::flush;
       }
       
@@ -63,7 +64,8 @@ std::pair<int, double> InverseIteration(CRS<RealType>          *matrix_in,
          matrix_in->DiagonalScaling(-(params.diag_add - eigenvalue));
          const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
          const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
-         std::cout << std::defaultfloat << std::setprecision(8) << "\rElapsed time of inver iteration:" << time_sec << "[sec]" << std::flush;
+         std::cout << std::defaultfloat << std::setprecision(8) << "\rElapsed time of inver iteration:" << time_sec << "[sec]";
+         std::cout << " (" << residual_error << ")" << std::flush;
          std::cout << std::endl;
          return {step, time_sec};
       }
