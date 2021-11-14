@@ -41,6 +41,31 @@ void pybind11SparseMatrixCRS(py::module &m) {
       compnal::sparse_matrix::CreateMatrixProduct(&mat, 1.0, lhs, 1.0, rhs);
       return mat;
    }, py::is_operator())
+   .def("__add__", [](const CRS &lhs, const CRS &rhs) {
+      CRS mat;
+      compnal::sparse_matrix::CreateMatrixSum(&mat, 1.0, lhs, 1.0, rhs);
+      return mat;
+   }, py::is_operator())
+   .def("__sub__", [](const CRS &lhs, const CRS &rhs) {
+      CRS mat;
+      compnal::sparse_matrix::CreateMatrixSum(&mat, 1.0, lhs, -1.0, rhs);
+      return mat;
+   }, py::is_operator())
+   .def("__iadd__", [](CRS &self, const CRS &rhs) {
+      const CRS lhs = self;
+      compnal::sparse_matrix::CreateMatrixSum(&self, 1.0, lhs, 1.0, rhs);
+      return self;
+   }, py::is_operator())
+   .def("__isub__", [](CRS &self, const CRS &rhs) {
+      const CRS lhs = self;
+      compnal::sparse_matrix::CreateMatrixSum(&self, 1.0, lhs, -1.0, rhs);
+      return self;
+   }, py::is_operator())
+   .def("__imul__", [](CRS &self, const CRS &rhs) {
+      const CRS lhs = self;
+      compnal::sparse_matrix::CreateMatrixProduct(&self, 1.0, lhs, 1.0, rhs);
+      return self;
+   }, py::is_operator())
    .def("__repr__", [](const CRS &self) {
       std::ostringstream out;
       for (std::size_t i = 0; i < self.row_dim; ++i) {
@@ -108,22 +133,24 @@ void pybind11SparseMatrixParameters(py::module &m) {
       .def(py::init<>())
       .def_readwrite("max_step", &PMCG::max_step)
       .def_readwrite("threshold", &PMCG::acc)
-      .def_readwrite("flag_output_info", &PMCG::flag_output_info);
-   
+      .def_readwrite("flag_use_initial_vec", &PMCG::flag_use_initial_vec)
+      .def_readwrite("flag_output_info", &PMCG::flag_output_info)
+      .def_readwrite("flag_symmetric_crs", &PMCG::flag_symmetric_crs);
+
    using PMII = compnal::sparse_matrix::ParametersII;
    py::class_<PMII>(m, "ParamsII", py::module_local())
       .def(py::init<>())
       .def_readwrite("max_step", &PMII::max_step)
       .def_readwrite("threshold", &PMII::acc)
       .def_readwrite("diag_add", &PMII::diag_add)
-      .def_readwrite("flag_output_info", &PMII::flag_output_info);
+      .def_readwrite("flag_output_info", &PMII::flag_output_info)
+      .def_readwrite("cg", &PMII::cg);
    
    
    using PMA = compnal::sparse_matrix::ParametersAll;
    py::class_<PMA>(m, "ParamsAll", py::module_local())
       .def(py::init<>())
       .def_readwrite("lanczos", &PMA::lanczos)
-      .def_readwrite("cg", &PMA::cg)
       .def_readwrite("ii", &PMA::ii);
    
 }

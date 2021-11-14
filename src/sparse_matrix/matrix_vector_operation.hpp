@@ -64,7 +64,6 @@ void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
    vector_out->val.resize(matrix_in.row_dim);
    
 #ifdef _OPENMP
-   
    const int num_threads = omp_get_max_threads();
    if (static_cast<int>(vectors_work->size()) != num_threads) {
       std::stringstream ss;
@@ -115,12 +114,35 @@ void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
                                            const RealType coeef,
                                            const CRS<RealType> &matrix_in,
                                            const BraketVector<RealType> &vector_in) {
-#ifdef _OPENMP
-   std::vector<std::vector<RealType>> vector_work(omp_get_max_threads(), std::vector<RealType>(matrix_in.row_dim, 0.0));
-   CalculateSymmetricMatrixVectorProduct(vector_out, coeef, matrix_in, vector_in, &vector_work);
-#else
-   CalculateSymmetricMatrixVectorProduct(vector_out, coeef, matrix_in, vector_in, nullptr);
-#endif
+
+   if (matrix_in.row_dim != matrix_in.col_dim) {
+      std::stringstream ss;
+      ss << "Error in " << __func__ << std::endl;
+      ss << "The input matrix is not symmetric" << std::endl;
+      throw std::runtime_error(ss.str());
+   }
+   
+   if (matrix_in.col_dim != vector_in.val.size()) {
+      std::stringstream ss;
+      ss << "Error in " << __func__ << std::endl;
+      ss << "The column of the input matrix is " << matrix_in.col_dim  << std::endl;
+      ss << "The dimension of the input vector is " << vector_in.val.size() << std::endl;
+      ss << "Both must be equal" << std::endl;
+      throw std::runtime_error(ss.str());
+   }
+   vector_out->val.resize(matrix_in.row_dim);
+   
+   vector_out->Fill(0.0);
+   for (std::size_t i = 0; i < matrix_in.row_dim; ++i) {
+      const RealType temp_vec_in = vector_in.val[i];
+      RealType       temp_val    = matrix_in.val[matrix_in.row[i + 1] - 1]*temp_vec_in;
+      for (std::size_t j = matrix_in.row[i]; j < matrix_in.row[i + 1] - 1; ++j) {
+         temp_val += matrix_in.val[j]*vector_in.val[matrix_in.col[j]];
+         vector_out->val[matrix_in.col[j]] += matrix_in.val[j]*temp_vec_in;
+      }
+      vector_out->val[i] += temp_val*coeef;
+   }
+
 }
 
 

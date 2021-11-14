@@ -68,6 +68,9 @@ public:
          ss << "Invalid diag_method: " << diag_method << std::endl;
          throw std::runtime_error(ss.str());
       }
+      
+      sparse_matrix::InverseIteration(&ham, &eigenvectors_[0], eigenvalues_[0], params.ii);
+      
       model.SetCalculatedEigenvectorSet(0);
    }
    

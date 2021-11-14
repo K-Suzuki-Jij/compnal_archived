@@ -106,6 +106,35 @@ struct CRS {
       }
    }
    
+   void DiagonalScaling(const RealType diag_add) {
+      if (this->row_dim != this->col_dim) {
+         std::stringstream ss;
+         ss << "Error in " << __func__ << std::endl;
+         ss << "The matrix is not a square matrix." << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+#pragma omp parallel for
+      for (std::size_t i = 0; i < this->row_dim; ++i) {
+         bool flag = true;
+         for (std::size_t j = this->row[i]; j < this->row[i + 1]; ++j) {
+            if (i == this->col[j]) {
+               this->val[i] += diag_add;
+               flag = false;
+               break;
+            }
+         }
+         if (flag) {
+#pragma omp critical
+            {
+               std::stringstream ss;
+               ss << "Error in " << __func__ << std::endl;
+               ss << "Some of the diagonal components are not registered." << std::endl;
+               throw std::runtime_error(ss.str());
+            }
+         }
+      }
+   }
+   
    void Free() {
       this->row_dim = 0;
       this->col_dim = 0;
@@ -258,10 +287,10 @@ void CreateMatrixProduct(CRS<RealType> *matrix_out,
 
 template<typename RealType>
 void CreateMatrixSum(CRS<RealType> *matrix_out,
-                              const RealType coeef_1,
-                              const CRS<RealType> &matrix_1,
-                              const RealType coeef_2,
-                              const CRS<RealType> &matrix_2) {
+                     const RealType coeef_1,
+                     const CRS<RealType> &matrix_1,
+                     const RealType coeef_2,
+                     const CRS<RealType> &matrix_2) {
    
    if (matrix_1.row_dim != matrix_2.row_dim || matrix_1.col_dim != matrix_2.col_dim) {
       std::stringstream ss;
@@ -272,7 +301,7 @@ void CreateMatrixSum(CRS<RealType> *matrix_out,
       throw std::runtime_error(ss.str());
    }
    
-   *matrix_out = CRS(matrix_1.row_dim, matrix_1.col_dim);
+   *matrix_out = CRS<RealType>(matrix_1.row_dim, matrix_1.col_dim);
    for (std::size_t i = 0; i < matrix_1.row_dim; ++i) {
       
       int check = 0;
@@ -376,7 +405,7 @@ void CreateMatrixSum(CRS<RealType> *matrix_out,
       }
       matrix_out->row[i + 1] = matrix_out->col.size();
    }
-
+   
 }
 
 

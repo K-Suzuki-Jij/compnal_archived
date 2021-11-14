@@ -95,6 +95,16 @@ struct BraketVector {
       }
    }
    
+   RealType L1Norm() const {
+      RealType norm = 0.0;
+#pragma omp parallel for reduction (+:norm)
+      for (std::size_t i = 0; i < this->val.size(); ++i) {
+         norm += std::abs(val[i]);
+      }
+      return norm;
+   }
+   
+   
    RealType L2Norm() const {
       RealType inner_product = 0.0;
 #pragma omp parallel for reduction (+:inner_product)
@@ -130,6 +140,29 @@ void CalculateVectorSum(BraketVector<RealType> *vector_out,
    for (std::size_t i = 0; i < braket_vector_1.val.size(); ++i) {
       vector_out->val[i] = coeef_1*braket_vector_1.val[i] + coeef_2*braket_vector_2.val[i];
    }
+}
+
+template<typename RealType>
+RealType CalculateL1Norm(const RealType coeef_1,
+                         const BraketVector<RealType> &braket_vector_1,
+                         const RealType coeef_2,
+                         const BraketVector<RealType> &braket_vector_2
+                         ) {
+   
+   if (braket_vector_1.val.size() != braket_vector_2.val.size()) {
+      std::stringstream ss;
+      ss << "Error in " << __func__ << std::endl;
+      ss << "BraketVector types do not match each other" << std::endl;
+      ss << "dim_1 = " << braket_vector_1.val.size() << ", dim_2 = " << braket_vector_2.val.size() << std::endl;
+      throw std::runtime_error(ss.str());
+   }
+   
+   RealType val_out = 0.0;
+#pragma omp parallel for reduction (+: val_out)
+   for (std::size_t i = 0; i < braket_vector_1.val.size(); ++i) {
+      val_out += std::abs(coeef_1*braket_vector_1.val[i] - coeef_2*braket_vector_2.val[i]);
+   }
+   return val_out;
 }
 
 template<typename RealType>

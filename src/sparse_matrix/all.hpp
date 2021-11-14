@@ -13,5 +13,7 @@
 #include "eigendecomposition.hpp"
 #include "lapack.hpp"
 #include "matrix_vector_operation.hpp"
+#include "conjugate_gradient.hpp"
+#include "inverse_iteration.hpp"
 
 #endif /* COMPNAL_SPARSE_MATRIX_ALL_HPP_ */
