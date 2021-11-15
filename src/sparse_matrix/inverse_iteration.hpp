@@ -64,7 +64,7 @@ std::pair<int, double> InverseIteration(CRS<RealType>          *matrix_in,
          matrix_in->DiagonalScaling(-(params.diag_add - eigenvalue));
          const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
          const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
-         std::cout << std::defaultfloat << std::setprecision(8) << "\rElapsed time of inver iteration:" << time_sec << "[sec]";
+         std::cout << std::defaultfloat << std::setprecision(8) << "\rElapsed time of inverse iteration:" << time_sec << "[sec]";
          std::cout << " (" << residual_error << ")" << std::flush;
          std::cout << std::endl;
          return {step, time_sec};

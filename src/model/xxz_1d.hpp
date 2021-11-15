@@ -60,8 +60,8 @@ public:
       }
       if (system_size_ != system_size) {
          system_size_ = system_size;
-         flag_recalc_basis_ = true;
-         flag_recalc_ham_   = true;
+         bases_.clear();
+         bases_inv_.clear();
          calculated_eigenvector_set_.clear();
       }
    }
@@ -78,8 +78,8 @@ public:
          magnitude_2spin_ = magnitude_2spin;
          dim_onsite_      = magnitude_2spin + 1;
          SetOnsiteOperator();
-         flag_recalc_basis_ = true;
-         flag_recalc_ham_   = true;
+         bases_.clear();
+         bases_inv_.clear();
          calculated_eigenvector_set_.clear();
       }
    }
@@ -96,50 +96,41 @@ public:
       }
       if (total_2sz_ != total_2sz) {
          total_2sz_ = total_2sz;
-         flag_recalc_basis_ = true;
-         flag_recalc_ham_   = true;
          calculated_eigenvector_set_.clear();
       }
    }
    
    void SetBoundaryCondition(const utility::BoundaryCondition bc) {
       boundary_condition_ = bc;
-      flag_recalc_ham_ = true;
    }
    
    void SetJz(const std::vector<RealType> &J_z) {
       if (J_z_ != J_z) {
          J_z_ = J_z;
-         flag_recalc_ham_ = true;
       }
    }
    
    void SetJz(const RealType J_z) {
       if (J_z_.size() == 0) {
          J_z_.push_back(J_z);
-         flag_recalc_ham_ = true;
       }
       else if (J_z_[0] != J_z) {
          J_z_[0] = J_z;
-         flag_recalc_ham_ = true;
       }
    }
    
    void SetJxy(const std::vector<RealType> &J_xy) {
       if (J_xy_ != J_xy) {
          J_xy_ = J_xy;
-         flag_recalc_ham_ = true;
       }
    }
    
    void SetJxy(const RealType J_xy) {
       if (J_xy_.size() == 0) {
          J_xy_.push_back(J_xy);
-         flag_recalc_ham_ = true;
       }
       else if (J_xy_[0] != J_xy) {
          J_xy_[0] = J_xy;
-         flag_recalc_ham_ = true;
       }
    }
    
@@ -147,7 +138,6 @@ public:
       if (h_z_ != h_z) {
          h_z_ = h_z;
          onsite_operator_ham_ = CreateOnsiteOperatorHam(magnitude_2spin_, h_z_, D_z_);
-         flag_recalc_ham_ = true;
       }
    }
    
@@ -155,16 +145,7 @@ public:
       if (D_z_ != D_z) {
          D_z_ = D_z;
          onsite_operator_ham_ = CreateOnsiteOperatorHam(magnitude_2spin_, h_z_, D_z_);
-         flag_recalc_ham_ = true;
       }
-   }
-   
-   void SetFlagRecalcBasis(const bool flag) {
-      flag_recalc_basis_ = flag;
-   }
-   
-   void SetFlagRecalcHam(const bool flag) {
-      flag_recalc_ham_ = flag;
    }
    
    void SetCalculatedEigenvectorSet(const std::size_t level) {
@@ -174,7 +155,7 @@ public:
    void RemoveCalculatedEigenvectorSet(const std::size_t level) {
       calculated_eigenvector_set_.erase(level);
    }
-   
+      
    void PrintInfo() const {
       std::string bc = "None";
       if (boundary_condition_ == utility::BoundaryCondition::OBC) {
@@ -236,15 +217,28 @@ public:
       return dim[system_size_ - 1][(total_2sz_ + max_total_2sz)/2];
    }
    
-   void GenerateBasis(std::vector<std::size_t> *basis, std::unordered_map<std::size_t, std::size_t> *basis_inv) const {
-      if ((system_size_*magnitude_2spin_ - total_2sz_)%2 == 1) {
+   void GenerateBasis() {
+      GenerateBasis(0.5*total_2sz_);
+   }
+   
+   void GenerateBasis(const double total_sz) {
+      const auto start = std::chrono::system_clock::now();
+      const int total_2sz = utility::DoubleTheNumber(total_sz);
+            
+      if ((system_size_*magnitude_2spin_ - total_2sz)%2 == 1) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__ << std::endl;
          ss << "Invalid parameters (system_size or magnitude_spin or total_sz)" << std::endl;
          throw std::runtime_error(ss.str());
       }
       
-      const int shifted_2sz = (system_size_*magnitude_2spin_ - total_2sz_)/2;
+      if (bases_.count(total_2sz) != 0) {
+         return;
+      }
+      
+      std::cout << "Generating Basis..." << std::flush;
+      
+      const int shifted_2sz = (system_size_*magnitude_2spin_ - total_2sz)/2;
       const std::size_t dim_target = CalculateTargetDim();
       std::vector<std::vector<int>> partition_integers;
       utility::GenerateIntegerPartition(&partition_integers, shifted_2sz, magnitude_2spin_);
@@ -254,7 +248,11 @@ public:
          site_constant[site] = static_cast<std::size_t>(std::pow(dim_onsite_, site));
       }
       
-      std::vector<std::size_t>().swap(*basis);
+      if (bases_.count(total_2sz) == 0) {
+         bases_[total_2sz] = std::vector<std::size_t>();
+      }
+      
+      std::vector<std::size_t>().swap(bases_.at(total_2sz));
       
 #ifdef _OPENMP
       const int num_threads = omp_get_max_threads();
@@ -293,7 +291,7 @@ public:
       }
       
       for (std::size_t i = 0; i < temp_basis.size(); ++i) {
-         basis->insert(basis->end(), temp_basis[i].begin(), temp_basis[i].end());
+         bases_.at(total_2sz).insert(bases_.at(total_2sz).end(), temp_basis[i].begin(), temp_basis[i].end());
          std::vector<std::size_t>().swap(temp_basis[i]);
       }
       
@@ -322,18 +320,29 @@ public:
       }
 #endif
       
-      if (basis->size() != dim_target) {
+      if (bases_.at(total_2sz).size() != dim_target) {
          std::stringstream ss;
          ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
          throw std::runtime_error(ss.str());
       }
       
-      std::sort(basis->begin(), basis->end());
-      basis_inv->clear();
+      std::sort(bases_.at(total_2sz).begin(), bases_.at(total_2sz).end());
       
-      for (std::size_t i = 0; i < basis->size(); ++i) {
-         (*basis_inv)[(*basis)[i]] = i;
+      if (bases_inv_.count(total_2sz) == 0) {
+         bases_inv_[total_2sz] = std::unordered_map<std::size_t, std::size_t>();
       }
+      bases_inv_.at(total_2sz).clear();
+      
+      std::vector<std::size_t> &temp_basis_by_total_2sz = bases_.at(total_2sz);
+      std::unordered_map<std::size_t, std::size_t> &temp_inv_by_total_2sz = bases_inv_.at(total_2sz);
+      
+      for (std::size_t i = 0; i < temp_basis_by_total_2sz.size(); ++i) {
+         temp_inv_by_total_2sz[temp_basis_by_total_2sz[i]] = i;
+      }
+      
+      const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
+      const double time_sec   = static_cast<double>(time_count)/sparse_matrix::TIME_UNIT_CONSTANT;
+      std::cout << "\rElapsed time of generating basis:" << time_sec << "[sec]" << std::endl;
    }
    
    inline utility::BoundaryCondition GetBoundaryCondition() const { return boundary_condition_;     }
@@ -361,10 +370,13 @@ public:
    inline RealType GetHz() const { return h_z_; }
    inline RealType GetDz() const { return D_z_; }
    
-   inline bool GetFlagRecalcBasis() const { return flag_recalc_basis_; }
-   inline bool GetFlagRecalcHam  () const { return flag_recalc_ham_; }
-   inline const std::unordered_set<std::size_t> &GetCalculatedEigenvectorSet() const { return calculated_eigenvector_set_; }
-
+   inline const std::unordered_set<std::size_t> &GetCalculatedEigenvectorSet() const {return calculated_eigenvector_set_; }
+   inline const std::unordered_map<int, std::vector<std::size_t>> &GetBases() const { return bases_; }
+   inline const std::unordered_map<int, std::unordered_map<std::size_t, std::size_t>> &GetBasesInv() const { return bases_inv_; }
+   
+   inline const std::vector<std::size_t> &GetTargetBasis() const {return bases_.at(total_2sz_); }
+   inline const std::unordered_map<std::size_t, std::size_t> &GetTargetBasisInv() const {return bases_inv_.at(total_2sz_); }
+   
    static CRS CreateOnsiteOperatorSx(const double magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       const int dim_onsite      = magnitude_2spin + 1;
@@ -530,10 +542,11 @@ private:
    
    const int num_conserved_quantity_ = 1;
    
-   bool flag_recalc_basis_ = true;
-   bool flag_recalc_ham_   = true;
    std::unordered_set<std::size_t> calculated_eigenvector_set_;
    
+   std::unordered_map<int, std::vector<std::size_t>> bases_;
+   std::unordered_map<int, std::unordered_map<std::size_t, std::size_t>> bases_inv_;
+      
    void SetOnsiteOperator() {
       onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*magnitude_2spin_);
       onsite_operator_sx_  = CreateOnsiteOperatorSx (0.5*magnitude_2spin_);

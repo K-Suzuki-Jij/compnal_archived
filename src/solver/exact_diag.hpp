@@ -49,7 +49,7 @@ public:
    }
       
    void CalculateGroundState(const std::string &diag_method = "Lanczos") {
-      GenerateBasis();
+      model.GenerateBasis();
       CRS ham;
       GenerateHamiltonian(&ham);
       if (eigenvalues_.size() == 0) {
@@ -84,8 +84,11 @@ public:
          throw std::runtime_error(ss.str());
       }
       
+      const auto &basis     = model.GetTargetBasis();
+      const auto &basis_inv = model.GetTargetBasisInv();
+      
       const std::size_t dim = eigenvectors_.at(level).val.size();
-      if (basis_.size() != dim || basis_inv_.size() != dim) {
+      if (basis.size() != dim || basis_inv.size() != dim) {
          std::stringstream ss;
          ss << "Error in " << __func__ << std::endl;
          ss << "Unknown error detected" << std::endl;
@@ -99,13 +102,13 @@ public:
       
 #pragma omp parallel for reduction (+: val)
       for (std::size_t i = 0; i < dim; ++i) {
-         const std::size_t global_basis = basis_[i];
+         const std::size_t global_basis = basis[i];
          const int         local_basis = CalculateLocalBasis(global_basis, site, dim_onsite);
          RealType temp_val = 0.0;
          for (std::size_t j = m.row[local_basis]; j < m.row[local_basis + 1]; ++j){
             const std::size_t a_basis = global_basis - (local_basis - m.col[j])*site_constant;
-            if (basis_inv_.count(a_basis) != 0) {
-               temp_val += eigenvector.val[basis_inv_.at(a_basis)]*m.val[j];
+            if (basis_inv.count(a_basis) != 0) {
+               temp_val += eigenvector.val[basis_inv.at(a_basis)]*m.val[j];
             }
          }
          val += eigenvector.val[i]*temp_val;
@@ -113,27 +116,23 @@ public:
       return val;
    }
    
+   RealType CalculateCorrelationFunction(const CRS &m_1, const std::size_t site_1, const CRS &m_2, const std::size_t site_2, const std::size_t level = 0) {
+      if (model.GetCalculatedEigenvectorSet().count(level) == 0) {
+         std::stringstream ss;
+         ss << "Error in " << __func__ << std::endl;
+         ss << "An eigenvector of the energy level: " << level << " has not been calculated" << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      
+   }
+   
    inline const std::vector<BraketVector> &GetEigenvectors() const { return eigenvectors_; }
    inline const std::vector<RealType>     &GetEigenvalues()  const { return eigenvalues_; }
    
 private:
-   std::vector<std::size_t> basis_;
-   std::unordered_map<std::size_t, std::size_t> basis_inv_;
    std::vector<BraketVector> eigenvectors_;
-   std::vector<RealType> eigenvalues_;
-   
-   void GenerateBasis() {
-      if (model.GetFlagRecalcBasis()) {
-         const auto start = std::chrono::system_clock::now();
-         std::cout << "Generating Basis..." << std::flush;
-         model.GenerateBasis(&basis_, &basis_inv_);
-         model.SetFlagRecalcBasis(false);
-         const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
-         const double time_sec   = static_cast<double>(time_count)/sparse_matrix::TIME_UNIT_CONSTANT;
-         std::cout << "\rElapsed time of generating basis:" << time_sec << "[sec]" << std::endl;
-      }
-   }
-   
+   std::vector<RealType>     eigenvalues_;
+      
    int CalculateLocalBasis(std::size_t global_basis, const int site, const int dim_onsite) const {
       for (int i = 0; i < site; ++i) {
          global_basis = global_basis/dim_onsite;
@@ -209,7 +208,10 @@ private:
       const auto start = std::chrono::system_clock::now();
       std::cout << "Generating Hamiltonian..." << std::flush;
       
-      const std::size_t dim_target = basis_.size();
+      const auto &basis     = model.GetTargetBasis();
+      const auto &basis_inv = model.GetTargetBasisInv();
+      
+      const std::size_t dim_target = basis.size();
       std::size_t num_total_elements = 0;
       
 #ifdef _OPENMP
@@ -229,10 +231,10 @@ private:
 #pragma omp parallel for
       for (std::size_t row = 0; row < dim_target; ++row) {
          const int thread_num = omp_get_thread_num();
-         GenerateMatrixComponents(&components[thread_num], basis_[row], model);
+         GenerateMatrixComponents(&components[thread_num], basis[row], model);
          for (const auto &a_basis: components[thread_num].basis_affected) {
-            if (basis_inv_.count(a_basis) > 0) {
-               const std::size_t inv = basis_inv_.at(a_basis);
+            if (basis_inv.count(a_basis) > 0) {
+               const std::size_t inv = basis_inv.at(a_basis);
                if (inv <= row) {
                   num_row_element[row + 1]++;
                }
@@ -260,12 +262,12 @@ private:
 #pragma omp parallel for
       for (std::size_t row = 0; row < dim_target; ++row) {
          const int thread_num = omp_get_thread_num();
-         GenerateMatrixComponents(&components[thread_num], basis_[row], model);
+         GenerateMatrixComponents(&components[thread_num], basis[row], model);
          for (std::size_t i = 0; i < components[thread_num].basis_affected.size(); ++i) {
             const std::size_t  a_basis = components[thread_num].basis_affected[i];
             const RealType     val     = components[thread_num].val[i];
-            if (basis_inv_.count(a_basis) > 0) {
-               const std::size_t inv = basis_inv_.at(a_basis);
+            if (basis_inv.count(a_basis) > 0) {
+               const std::size_t inv = basis_inv.at(a_basis);
                if (inv <= row) {
                   ham->col[num_row_element[row]] = inv;
                   ham->val[num_row_element[row]] = val;
@@ -289,10 +291,10 @@ private:
       std::vector<std::size_t> num_row_element(dim_target + 1);
       
       for (std::size_t row = 0; row < dim_target; ++row) {
-         GenerateMatrixComponents(&components, basis_[row], model);
+         GenerateMatrixComponents(&components, basis[row], model);
          for (const auto &a_basis: components.basis_affected) {
-            if (basis_inv_.count(a_basis) > 0) {
-               const std::size_t inv = basis_inv_.at(a_basis);
+            if (basis_inv.count(a_basis) > 0) {
+               const std::size_t inv = basis_inv.at(a_basis);
                if (inv <= row) {
                   num_row_element[row + 1]++;
                }
@@ -316,12 +318,12 @@ private:
       ham->val.resize(num_total_elements);
       
       for (int row = 0; row < dim_target; ++row) {
-         GenerateMatrixComponents(&components, basis_[row], model);
+         GenerateMatrixComponents(&components, basis[row], model);
          for (std::size_t i = 0; i < components.basis_affected.size(); ++i) {
             const std::size_t  a_basis = components.basis_affected[i];
             const RealType val     = components.val[i];
-            if (basis_inv_.count(a_basis) > 0) {
-               const std::size_t inv = basis_inv_.at(a_basis);
+            if (basis_inv.count(a_basis) > 0) {
+               const std::size_t inv = basis_inv.at(a_basis);
                if (inv <= row) {
                   ham->col[num_row_element[row]] = inv;
                   ham->val[num_row_element[row]] = val;
