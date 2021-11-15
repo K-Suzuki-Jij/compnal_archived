@@ -222,7 +222,7 @@ void CalculateTransposedMatrix(CRS<RealType> *matrix_out,
       for (std::size_t j = 0; j < matrix_in.row_dim; ++j) {
          const std::size_t row = matrix_in.row[j] + row_count[j];
          if (row < matrix_in.row[j + 1] && matrix_in.col[row] == i) {
-            matrix_out->val.push_back(matrix_in.Val(row));
+            matrix_out->val.push_back(matrix_in.val[row]);
             matrix_out->col.push_back(j);
             row_count[j]++;
          }
@@ -231,6 +231,14 @@ void CalculateTransposedMatrix(CRS<RealType> *matrix_out,
    }
    matrix_out->row_dim = matrix_in.col_dim;
    matrix_out->col_dim = matrix_in.row_dim;
+}
+
+
+template<typename RealType>
+CRS<RealType> CalculateTransposedMatrix(const CRS<RealType> &matrix_in) {
+   CRS<RealType> matrix_out;
+   CalculateTransposedMatrix(&matrix_out, matrix_in);
+   return matrix_out;
 }
 
 template<typename RealType>

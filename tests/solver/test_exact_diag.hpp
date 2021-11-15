@@ -18,6 +18,15 @@ TEST(XXZ, Basic) {
    compnal::solver::ExactDiag ed(model);
    ed.CalculateGroundState("Lanczos");
    printf("%.30lf\n", ed.GetEigenvalues()[0]);
+   printf("%.15lf\n", ed.CalculateCorrelationFunction(model.GetOnsiteOperatorSz(),
+                                                      0,
+                                                      model.GetOnsiteOperatorSz(),
+                                                      1));
+   
+   printf("%.15lf\n", ed.CalculateCorrelationFunction(model.GetOnsiteOperatorSx(),
+                                                      0,
+                                                      model.GetOnsiteOperatorSx(),
+                                                      1));
 }
 
 

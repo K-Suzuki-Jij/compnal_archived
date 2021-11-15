@@ -197,6 +197,17 @@ public:
    }
    
    std::size_t CalculateTargetDim() const {
+      return CalculateTargetDim(total_2sz_);
+   }
+   
+   std::size_t CalculateTargetDim(const int total_2sz) const {
+      if (isValidQNumber(total_2sz) == false) {
+         std::stringstream ss;
+         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "Invalid parameters (system_size or magnitude_spin or total_sz)" << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      
       const int max_total_2sz = system_size_*magnitude_2spin_;
       std::vector<std::vector<std::size_t>> dim(system_size_, std::vector<std::size_t>(max_total_2sz + 1));
       for (int s = -magnitude_2spin_; s <= magnitude_2spin_; s += 2) {
@@ -214,18 +225,26 @@ public:
             }
          }
       }
-      return dim[system_size_ - 1][(total_2sz_ + max_total_2sz)/2];
+      return dim[system_size_ - 1][(total_2sz + max_total_2sz)/2];
+   }
+   
+   bool isValidQNumber(const int total_2sz) const {
+      if ((system_size_*magnitude_2spin_ - total_2sz)%2 == 1) {
+         return false;
+      }
+      else {
+         return true;
+      }
    }
    
    void GenerateBasis() {
-      GenerateBasis(0.5*total_2sz_);
+      GenerateBasis(total_2sz_);
    }
    
-   void GenerateBasis(const double total_sz) {
+   void GenerateBasis(const int total_2sz) {
       const auto start = std::chrono::system_clock::now();
-      const int total_2sz = utility::DoubleTheNumber(total_sz);
             
-      if ((system_size_*magnitude_2spin_ - total_2sz)%2 == 1) {
+      if (isValidQNumber(total_2sz) == false) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__ << std::endl;
          ss << "Invalid parameters (system_size or magnitude_spin or total_sz)" << std::endl;
@@ -239,7 +258,7 @@ public:
       std::cout << "Generating Basis..." << std::flush;
       
       const int shifted_2sz = (system_size_*magnitude_2spin_ - total_2sz)/2;
-      const std::size_t dim_target = CalculateTargetDim();
+      const std::size_t dim_target = CalculateTargetDim(total_2sz);
       std::vector<std::vector<int>> partition_integers;
       utility::GenerateIntegerPartition(&partition_integers, shifted_2sz, magnitude_2spin_);
       
@@ -345,6 +364,39 @@ public:
       std::cout << "\rElapsed time of generating basis:" << time_sec << "[sec]" << std::endl;
    }
    
+   std::unordered_set<int> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
+      std::unordered_set<int> level_set;
+      std::unordered_set<int> level_set_m1;
+      std::unordered_set<int> level_set_m2;
+      for (std::size_t i = 0; i < m_1.row_dim; ++i) {
+         for (std::size_t j = m_1.row[i]; j < m_1.row[i + 1]; ++j) {
+            if (m_1.val[j] != 0.0) {
+               level_set.emplace(static_cast<int>(2*(i - m_1.col[j]) + total_2sz_));
+               level_set_m1.emplace(static_cast<int>(2*(i - m_1.col[j]) + total_2sz_));
+            }
+         }
+      }
+      
+      for (std::size_t i = 0; i < m_2.row_dim; ++i) {
+         for (std::size_t j = m_2.row[i]; j < m_2.row[i + 1]; ++j) {
+            if (m_2.val[j] != 0.0) {
+               level_set.emplace(static_cast<int>(2*(i - m_2.col[j]) + total_2sz_));
+               level_set_m2.emplace(static_cast<int>(2*(i - m_1.col[j]) + total_2sz_));
+            }
+         }
+      }
+      
+      std::unordered_set<int> level_set_intersection;
+      
+      for (const auto &level: level_set) {
+         if (level_set_m1.count(level) != 0 && level_set_m2.count(level)) {
+            level_set_intersection.emplace(level);
+         }
+      }
+      
+      return level_set_intersection;
+   }
+   
    inline utility::BoundaryCondition GetBoundaryCondition() const { return boundary_condition_;     }
    inline int GetSystemSize()           const { return system_size_;            }
    inline int GetDimOnsite()            const { return dim_onsite_;             }
@@ -371,8 +423,8 @@ public:
    inline RealType GetDz() const { return D_z_; }
    
    inline const std::unordered_set<std::size_t> &GetCalculatedEigenvectorSet() const {return calculated_eigenvector_set_; }
-   inline const std::unordered_map<int, std::vector<std::size_t>> &GetBases() const { return bases_; }
-   inline const std::unordered_map<int, std::unordered_map<std::size_t, std::size_t>> &GetBasesInv() const { return bases_inv_; }
+   inline const std::vector<std::size_t> &GetBasis(const int total_2sz) const { return bases_.at(total_2sz); }
+   inline const std::unordered_map<std::size_t, std::size_t> &GetBasisInv(const int total_2sz) const { return bases_inv_.at(total_2sz); }
    
    inline const std::vector<std::size_t> &GetTargetBasis() const {return bases_.at(total_2sz_); }
    inline const std::unordered_map<std::size_t, std::size_t> &GetTargetBasisInv() const {return bases_inv_.at(total_2sz_); }
@@ -555,7 +607,7 @@ private:
       onsite_operator_sp_  = CreateOnsiteOperatorSp (0.5*magnitude_2spin_);
       onsite_operator_sm_  = CreateOnsiteOperatorSm (0.5*magnitude_2spin_);
    }
-   
+      
 };
 
 

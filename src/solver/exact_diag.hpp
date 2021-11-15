@@ -116,14 +116,67 @@ public:
       return val;
    }
    
-   RealType CalculateCorrelationFunction(const CRS &m_1, const std::size_t site_1, const CRS &m_2, const std::size_t site_2, const std::size_t level = 0) {
-      if (model.GetCalculatedEigenvectorSet().count(level) == 0) {
+   RealType CalculateCorrelationFunction(const CRS &m_1, const std::size_t site_1, const CRS &m_2, const std::size_t site_2, const std::size_t target_level = 0) {
+      if (model.GetCalculatedEigenvectorSet().count(target_level) == 0) {
          std::stringstream ss;
          ss << "Error in " << __func__ << std::endl;
-         ss << "An eigenvector of the energy level: " << level << " has not been calculated" << std::endl;
+         ss << "An eigenvector of the energy level: " << target_level << " has not been calculated" << std::endl;
          throw std::runtime_error(ss.str());
       }
       
+      if (m_1.row_dim != m_2.row_dim || m_1.row_dim != m_1.col_dim || m_2.row_dim != m_2.col_dim) {
+         std::stringstream ss;
+         ss << "Error in " << __func__ << std::endl;
+         ss << "Invalid input of the local operators" << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      
+      const CRS m1_dagger = sparse_matrix::CalculateTransposedMatrix(m_1);
+      
+      const auto level_set = model.GenerateTargetSector(m1_dagger, m_2);
+      const auto &basis_inv = model.GetTargetBasisInv();
+      const int dim_onsite = static_cast<int>(m1_dagger.row_dim);
+      const std::size_t site_constant_m1 = static_cast<std::size_t>(std::pow(dim_onsite, site_1));
+      const std::size_t site_constant_m2 = static_cast<std::size_t>(std::pow(dim_onsite, site_2));
+      const BraketVector &eigenvector = eigenvectors_.at(target_level);
+      BraketVector vector_work_m1;
+      BraketVector vector_work_m2;
+      RealType val = 0.0;
+      
+      for (const auto &level: level_set) {
+         if (model.isValidQNumber(level)) {
+            model.GenerateBasis(level);
+            const auto &basis = model.GetBasis(level);
+            const std::size_t dim_target = basis.size();
+            vector_work_m1.val.resize(dim_target);
+            vector_work_m2.val.resize(dim_target);
+   #pragma omp parallel for
+            for (std::size_t i = 0; i < dim_target; ++i) {
+               const std::size_t global_basis   = basis[i];
+               const int         local_basis_m1 = CalculateLocalBasis(global_basis, static_cast<int>(site_1), dim_onsite);
+               const int         local_basis_m2 = CalculateLocalBasis(global_basis, static_cast<int>(site_2), dim_onsite);
+               RealType temp_val_m1 = 0.0;
+               RealType temp_val_m2 = 0.0;
+               for (std::size_t j = m1_dagger.row[local_basis_m1]; j < m1_dagger.row[local_basis_m1 + 1]; ++j){
+                  const std::size_t a_basis = global_basis - (local_basis_m1 - m1_dagger.col[j])*site_constant_m1;
+                  if (basis_inv.count(a_basis) != 0) {
+                     temp_val_m1 += eigenvector.val[basis_inv.at(a_basis)]*m1_dagger.val[j];
+                  }
+               }
+               vector_work_m1.val[i] = temp_val_m1;
+               
+               for (std::size_t j = m_2.row[local_basis_m2]; j < m_2.row[local_basis_m2 + 1]; ++j){
+                  const std::size_t a_basis = global_basis - (local_basis_m2 - m_2.col[j])*site_constant_m2;
+                  if (basis_inv.count(a_basis) != 0) {
+                     temp_val_m2 += eigenvector.val[basis_inv.at(a_basis)]*m_2.val[j];
+                  }
+               }
+               vector_work_m2.val[i] = temp_val_m2;
+            }
+            val += sparse_matrix::CalculateInnerProduct(vector_work_m1, vector_work_m2);
+         }
+      }
+      return val;
    }
    
    inline const std::vector<BraketVector> &GetEigenvectors() const { return eigenvectors_; }

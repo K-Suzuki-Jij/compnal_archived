@@ -48,7 +48,7 @@ struct ParametersII {
       cg.flag_use_initial_vec = true;
    }
    
-   int    max_step = 2;
+   int    max_step = 3;
    double acc      = std::pow(10, -7);
    double diag_add = std::pow(10, -11);
    bool   flag_output_info = true;
