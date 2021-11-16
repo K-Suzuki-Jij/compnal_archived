@@ -49,6 +49,9 @@ public:
    }
       
    void CalculateGroundState(const std::string &diag_method = "Lanczos") {
+      if (model.GetCalculatedEigenvectorSet().count(0) != 0) {
+         return;
+      }
       model.GenerateBasis();
       CRS ham;
       GenerateHamiltonian(&ham);

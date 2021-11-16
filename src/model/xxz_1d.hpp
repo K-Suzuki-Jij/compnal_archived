@@ -371,8 +371,8 @@ public:
       for (std::size_t i = 0; i < m_1.row_dim; ++i) {
          for (std::size_t j = m_1.row[i]; j < m_1.row[i + 1]; ++j) {
             if (m_1.val[j] != 0.0) {
-               level_set.emplace(static_cast<int>(2*(i - m_1.col[j]) + total_2sz_));
-               level_set_m1.emplace(static_cast<int>(2*(i - m_1.col[j]) + total_2sz_));
+               level_set.emplace(static_cast<int>(2*(m_1.col[j] - i) + total_2sz_));
+               level_set_m1.emplace(static_cast<int>(2*(m_1.col[j] - i) + total_2sz_));
             }
          }
       }
@@ -380,8 +380,8 @@ public:
       for (std::size_t i = 0; i < m_2.row_dim; ++i) {
          for (std::size_t j = m_2.row[i]; j < m_2.row[i + 1]; ++j) {
             if (m_2.val[j] != 0.0) {
-               level_set.emplace(static_cast<int>(2*(i - m_2.col[j]) + total_2sz_));
-               level_set_m2.emplace(static_cast<int>(2*(i - m_1.col[j]) + total_2sz_));
+               level_set.emplace(static_cast<int>(2*(m_2.col[j] - i) + total_2sz_));
+               level_set_m2.emplace(static_cast<int>(2*(m_2.col[j] - i) + total_2sz_));
             }
          }
       }
