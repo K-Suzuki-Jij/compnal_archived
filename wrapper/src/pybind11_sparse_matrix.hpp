@@ -24,7 +24,7 @@ void pybind11SparseMatrixCRS(py::module &m) {
    using CRS = compnal::sparse_matrix::CRS<RealType>;
    
    py::class_<CRS>(m, "CRS", py::module_local())
-   .def(py::init<const std::size_t, const std::size_t>(), "row_dim"_a = 0, "col_dim"_a = 0)
+   .def(py::init<const std::int64_t, const std::int64_t>(), "row_dim"_a = 0, "col_dim"_a = 0)
    .def(py::init<const std::vector<std::vector<RealType>>&>(), "mat_vec")
    .def_readonly("row_dim", &CRS::row_dim)
    .def_readonly("col_dim", &CRS::col_dim)
@@ -68,8 +68,8 @@ void pybind11SparseMatrixCRS(py::module &m) {
    }, py::is_operator())
    .def("__repr__", [](const CRS &self) {
       std::ostringstream out;
-      for (std::size_t i = 0; i < self.row_dim; ++i) {
-         for (std::size_t j = self.row.at(i); j < self.row.at(i+1); ++j) {
+      for (std::int64_t i = 0; i < self.row_dim; ++i) {
+         for (std::int64_t j = self.row.at(i); j < self.row.at(i+1); ++j) {
             out << "M" << "[";
             out << std::noshowpos << std::left << std::setw(3) << i << "][";
             out << std::left << std::setw(3) << self.col[j] << "]=";
@@ -87,7 +87,7 @@ void pybind11SparseMatrixBraketVector(py::module &m) {
    
    using BKV = compnal::sparse_matrix::BraketVector<RealType>;
    py::class_<BKV>(m, "BraketVector", py::module_local())
-   .def(py::init<const std::size_t>(), "dim"_a = 0)
+   .def(py::init<const std::int64_t>(), "dim"_a = 0)
    .def(py::init<const std::vector<RealType>&>(), "vector"_a)
    .def_readonly("val", &BKV::val)
    .def("fill", &BKV::Fill, "val"_a)
@@ -101,7 +101,7 @@ void pybind11SparseMatrixBraketVector(py::module &m) {
    .def("__repr__", [](const BKV& self) {
       std::ostringstream out;
       out << "[";
-      for (std::size_t i = 0; i < self.val.size(); ++i) {
+      for (std::int64_t i = 0; i < self.val.size(); ++i) {
          if (i +1 == self.val.size()) {
             out << self.val.at(i);
          }

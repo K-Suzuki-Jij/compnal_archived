@@ -21,18 +21,18 @@ namespace sparse_matrix {
 template<typename RealType>
 struct CRS {
    
-   std::size_t row_dim = 0;
-   std::size_t col_dim = 0;
-   std::vector<std::size_t> row;
-   std::vector<std::size_t> col;
-   std::vector<RealType>    val;
+   std::int64_t row_dim = 0;
+   std::int64_t col_dim = 0;
+   std::vector<std::int64_t> row;
+   std::vector<std::int64_t> col;
+   std::vector<RealType>     val;
    
-   CRS(const std::size_t row_dim_in = 0, const std::size_t col_dim_in = 0) {
+   CRS(const std::int64_t row_dim_in = 0, const std::int64_t col_dim_in = 0) {
       this->row_dim = row_dim_in;
       this->col_dim = col_dim_in;
       this->row.resize(row_dim_in + 1);
 #pragma omp parallel for
-      for (std::size_t i = 0; i <= row_dim_in; ++i) {
+      for (std::int64_t i = 0; i <= row_dim_in; ++i) {
          this->row[i] = 0;
       }
    }
@@ -42,8 +42,8 @@ struct CRS {
       this->col_dim = 0;
       this->row.resize(this->row_dim + 1);
       this->row[0] = 0;
-      for (std::size_t i = 0; i < this->row_dim; ++i) {
-         for (std::size_t j = 0; j < mat_vec[i].size();++j) {
+      for (std::int64_t i = 0; i < this->row_dim; ++i) {
+         for (std::int64_t j = 0; j < mat_vec[i].size();++j) {
             if (mat_vec[i][j] != 0.0) {
                this->col.push_back(j);
                this->val.push_back(mat_vec[i][j]);
@@ -78,12 +78,12 @@ struct CRS {
       this->val.resize(matrix.col.size());
       
 #pragma omp parallel for
-      for (std::size_t i = 0; i <= matrix.row_dim; ++i) {
+      for (std::int64_t i = 0; i <= matrix.row_dim; ++i) {
          this->row[i] = matrix.row[i];
       }
       
 #pragma omp parallel for
-      for (std::size_t i = 0; i < matrix.col.size(); ++i) {
+      for (std::int64_t i = 0; i < matrix.col.size(); ++i) {
          this->col[i] = matrix.col[i];
          this->val[i] = matrix.val[i];
       }
@@ -92,7 +92,7 @@ struct CRS {
    void MultiplyByScalar(const RealType coeef) {
       if (coeef == 0.0) {
 #pragma omp parallel for
-         for (std::size_t i = 0; i < this->row_dim; ++i) {
+         for (std::int64_t i = 0; i < this->row_dim; ++i) {
             this->row[i + 1] = 0;
          }
          this->col.clear();
@@ -100,7 +100,7 @@ struct CRS {
       }
       else {
 #pragma omp parallel for
-         for (std::size_t i = 0; i < this->col.size(); ++i) {
+         for (std::int64_t i = 0; i < this->col.size(); ++i) {
             this->val[i] *= coeef;
          }
       }
@@ -114,9 +114,9 @@ struct CRS {
          throw std::runtime_error(ss.str());
       }
 #pragma omp parallel for
-      for (std::size_t i = 0; i < this->row_dim; ++i) {
+      for (std::int64_t i = 0; i < this->row_dim; ++i) {
          bool flag = true;
-         for (std::size_t j = this->row[i]; j < this->row[i + 1]; ++j) {
+         for (std::int64_t j = this->row[i]; j < this->row[i + 1]; ++j) {
             if (i == this->col[j]) {
                this->val[j] += diag_add;
                flag = false;
@@ -138,8 +138,8 @@ struct CRS {
    void Free() {
       this->row_dim = 0;
       this->col_dim = 0;
-      std::vector<std::size_t>().swap(this->row);
-      std::vector<std::size_t>().swap(this->col);
+      std::vector<std::int64_t>().swap(this->row);
+      std::vector<std::int64_t>().swap(this->col);
       std::vector<RealType>().swap(this->val);
       this->row.push_back(0);
    }
@@ -155,14 +155,14 @@ struct CRS {
    
    void SortCol() {
 #pragma omp parallel for schedule (guided)
-      for (std::size_t i = 0; i < this->row_dim; ++i) {
-         utility::QuickSort<std::size_t, RealType>(&this->col, &this->val, this->row[i], this->row[i + 1]);
+      for (std::int64_t i = 0; i < this->row_dim; ++i) {
+         utility::QuickSort<std::int64_t, RealType>(&this->col, &this->val, this->row[i], this->row[i + 1]);
       }
    }
    
    void PrintMatrix(const std::string display_name = "Matrix") const {
-      for (std::size_t i = 0; i < this->row_dim; ++i) {
-         for (std::size_t j = this->row.at(i); j < this->row.at(i+1); ++j) {
+      for (std::int64_t i = 0; i < this->row_dim; ++i) {
+         for (std::int64_t j = this->row.at(i); j < this->row.at(i+1); ++j) {
             std::cout << display_name << "[";
             std::cout << std::noshowpos << std::left << std::setw(3) << i << "][";
             std::cout << std::left << std::setw(3) << this->col[j] << "]=";
@@ -176,20 +176,20 @@ struct CRS {
       std::cout << "Print information about CRS: " << display_name << std::endl;
       std::cout << "row_dim = " << this->row_dim << std::endl;
       std::cout << "col_dim = " << this->col_dim << std::endl;
-      for (std::size_t i = 0; i < this->row.size(); ++i) {
+      for (std::int64_t i = 0; i < this->row.size(); ++i) {
          std::cout << "row[" << i << "] = " << this->row.at(i) << std::endl;
       }
-      for (std::size_t i = 0; i < this->col.size(); ++i) {
+      for (std::int64_t i = 0; i < this->col.size(); ++i) {
          std::cout << "col[" << i << "] = " << this->col.at(i) << std::endl;
       }
-      for (std::size_t i = 0; i < this->val.size(); ++i) {
+      for (std::int64_t i = 0; i < this->val.size(); ++i) {
          std::cout << "val[" << i << "] = " << this->val.at(i) << std::endl;
       }
    }
    
    bool isSymmetric(const RealType threshold = 0.000000000000001/*pow(10,-15)*/) const {
-      for (std::size_t i = 0; i < this->row_dim; ++i) {
-         for (std::size_t j = this->row[i]; j < this->row[i + 1]; ++j) {
+      for (std::int64_t i = 0; i < this->row_dim; ++i) {
+         for (std::int64_t j = this->row[i]; j < this->row[i + 1]; ++j) {
             const auto iter_begin = this->col.begin() + this->row[col[j]];
             const auto iter_end   = this->col.begin() + this->row[col[j] + 1];
             const auto iter_find  = std::lower_bound(iter_begin, iter_end, i);
@@ -216,11 +216,11 @@ template<typename RealType>
 void CalculateTransposedMatrix(CRS<RealType> *matrix_out,
                                const CRS<RealType> &matrix_in) {
    
-   std::vector<std::size_t> row_count(matrix_in.row_dim);
+   std::vector<std::int64_t> row_count(matrix_in.row_dim);
    matrix_out->Clear();
-   for (std::size_t i = 0; i < matrix_in.col_dim; ++i) {
-      for (std::size_t j = 0; j < matrix_in.row_dim; ++j) {
-         const std::size_t row = matrix_in.row[j] + row_count[j];
+   for (std::int64_t i = 0; i < matrix_in.col_dim; ++i) {
+      for (std::int64_t j = 0; j < matrix_in.row_dim; ++j) {
+         const std::int64_t row = matrix_in.row[j] + row_count[j];
          if (row < matrix_in.row[j + 1] && matrix_in.col[row] == i) {
             matrix_out->val.push_back(matrix_in.val[row]);
             matrix_out->col.push_back(j);
@@ -262,16 +262,16 @@ void CreateMatrixProduct(CRS<RealType> *matrix_out,
    std::vector<RealType> temp_v1(matrix_1.col_dim, 0.0);
    std::vector<RealType> temp_v2(matrix_2.col_dim, 0.0);
    
-   for (std::size_t i = 0; i < matrix_1.row_dim; ++i) {
-      for (std::size_t j = matrix_1.row[i]; j < matrix_1.row[i + 1]; ++j) {
+   for (std::int64_t i = 0; i < matrix_1.row_dim; ++i) {
+      for (std::int64_t j = matrix_1.row[i]; j < matrix_1.row[i + 1]; ++j) {
          temp_v1[matrix_1.col[j]] = coeef_1*matrix_1.val[j];
       }
-      for (std::size_t j = 0; j < matrix_1.col_dim; ++j) {
-         for (std::size_t k = matrix_2.row[j]; k < matrix_2.row[j + 1]; ++k) {
+      for (std::int64_t j = 0; j < matrix_1.col_dim; ++j) {
+         for (std::int64_t k = matrix_2.row[j]; k < matrix_2.row[j + 1]; ++k) {
             temp_v2[matrix_2.col[k]] += temp_v1[j]*coeef_2*matrix_2.val[k];
          }
       }
-      for (std::size_t j = 0; j < matrix_2.col_dim; ++j) {
+      for (std::int64_t j = 0; j < matrix_2.col_dim; ++j) {
          if (std::abs(temp_v2[j]) > 0.0) {
             matrix_out->val.push_back(temp_v2[j]);
             matrix_out->col.push_back(j);
@@ -280,10 +280,10 @@ void CreateMatrixProduct(CRS<RealType> *matrix_out,
       
       matrix_out->row[i + 1] = matrix_out->col.size();
       
-      for (std::size_t j = matrix_1.row[i]; j < matrix_1.row[i + 1]; ++j) {
+      for (std::int64_t j = matrix_1.row[i]; j < matrix_1.row[i + 1]; ++j) {
          temp_v1[matrix_1.col[j]] = 0.0;
       }
-      for (std::size_t j = matrix_out->row[i]; j < matrix_out->row[i + 1]; ++j) {
+      for (std::int64_t j = matrix_out->row[i]; j < matrix_out->row[i + 1]; ++j) {
          temp_v2[matrix_out->col[j]] = 0.0;
       }
    }
@@ -310,34 +310,34 @@ void CreateMatrixSum(CRS<RealType> *matrix_out,
    }
    
    *matrix_out = CRS<RealType>(matrix_1.row_dim, matrix_1.col_dim);
-   for (std::size_t i = 0; i < matrix_1.row_dim; ++i) {
+   for (std::int64_t i = 0; i < matrix_1.row_dim; ++i) {
       
       int check = 0;
-      std::size_t count_1 = 0;
-      std::size_t count_2 = 0;
+      std::int64_t count_1 = 0;
+      std::int64_t count_2 = 0;
       
-      const std::size_t row_lower_1 = matrix_1.row[  i  ];
-      const std::size_t row_upper_1 = matrix_1.row[i + 1];
-      const std::size_t row_lower_2 = matrix_2.row[  i  ];
-      const std::size_t row_upper_2 = matrix_2.row[i + 1];
+      const std::int64_t row_lower_1 = matrix_1.row[  i  ];
+      const std::int64_t row_upper_1 = matrix_1.row[i + 1];
+      const std::int64_t row_lower_2 = matrix_2.row[  i  ];
+      const std::int64_t row_upper_2 = matrix_2.row[i + 1];
       
-      const std::size_t m1_count = row_upper_1 - row_lower_1;
-      const std::size_t m2_count = row_upper_2 - row_lower_2;
+      const std::int64_t m1_count = row_upper_1 - row_lower_1;
+      const std::int64_t m2_count = row_upper_2 - row_lower_2;
       
       if (m1_count != 0 && m2_count == 0) {
-         for (std::size_t j = row_lower_1; j < row_upper_1; ++j) {
+         for (std::int64_t j = row_lower_1; j < row_upper_1; ++j) {
             matrix_out->val.push_back(coeef_1*matrix_1.val[j]);
             matrix_out->col.push_back(matrix_1.col[j]);
          }
       }
       else if (m1_count == 0 && m2_count != 0) {
-         for (std::size_t j = row_lower_2; j < row_upper_2; ++j) {
+         for (std::int64_t j = row_lower_2; j < row_upper_2; ++j) {
             matrix_out->val.push_back(coeef_2*matrix_2.val[j]);
             matrix_out->col.push_back(matrix_2.col[j]);
          }
       }
       else if (m1_count != 0 && m2_count != 0) {
-         for (std::size_t j = 0; j < m1_count + m2_count; ++j) {
+         for (std::int64_t j = 0; j < m1_count + m2_count; ++j) {
             if (matrix_1.col[row_lower_1 + count_1] < matrix_2.col[row_lower_2 + count_2]) {
                matrix_out->val.push_back(coeef_1*matrix_1.val[row_lower_1 + count_1]);
                matrix_out->col.push_back(matrix_1.col[row_lower_1 + count_1]);
@@ -354,8 +354,8 @@ void CreateMatrixSum(CRS<RealType> *matrix_out,
                   matrix_out->col.push_back(matrix_1.col[row_lower_1 + count_1]);
                   count_1++;
                   count_2++;
-                  const std::size_t temp_count_1 = row_lower_1 + count_1;
-                  const std::size_t temp_count_2 = row_lower_2 + count_2;
+                  const std::int64_t temp_count_1 = row_lower_1 + count_1;
+                  const std::int64_t temp_count_2 = row_lower_2 + count_2;
                   if (temp_count_1 == row_upper_1 && temp_count_2 < row_upper_2) {
                      check = 1;
                      break;
@@ -372,8 +372,8 @@ void CreateMatrixSum(CRS<RealType> *matrix_out,
                else {
                   count_1++;
                   count_2++;
-                  const std::size_t temp_count_1 = row_lower_1 + count_1;
-                  const std::size_t temp_count_2 = row_lower_2 + count_2;
+                  const std::int64_t temp_count_1 = row_lower_1 + count_1;
+                  const std::int64_t temp_count_2 = row_lower_2 + count_2;
                   if (temp_count_1 == row_upper_1 && temp_count_2 < row_upper_2) {
                      check = 1;
                      break;
@@ -399,13 +399,13 @@ void CreateMatrixSum(CRS<RealType> *matrix_out,
             }
          }
          if (check == 1) {
-            for (std::size_t j = row_lower_2 + count_2; j < row_upper_2; ++j) {
+            for (std::int64_t j = row_lower_2 + count_2; j < row_upper_2; ++j) {
                matrix_out->val.push_back(coeef_2*matrix_2.val[j]);
                matrix_out->col.push_back(matrix_2.col[j]);
             }
          }
          else if (check == 2) {
-            for (std::size_t j = row_lower_1 + count_1; j < row_upper_1; ++j) {
+            for (std::int64_t j = row_lower_1 + count_1; j < row_upper_1; ++j) {
                matrix_out->val.push_back(coeef_1*matrix_1.val[j]);
                matrix_out->col.push_back(matrix_1.col[j]);
             }

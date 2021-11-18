@@ -46,8 +46,8 @@ void pybind11ModelXXZ1D(py::module &m) {
       .def("get_num_conserved_quantity", &XXZ1D::GetNumConservedQuantity)
       .def("get_J_z" , py::overload_cast<>(&XXZ1D::GetJz, py::const_))
       .def("get_J_xy", py::overload_cast<>(&XXZ1D::GetJxy, py::const_))
-      .def("get_J_z" , py::overload_cast<const std::size_t>(&XXZ1D::GetJz, py::const_) , "index"_a)
-      .def("get_J_xy", py::overload_cast<const std::size_t>(&XXZ1D::GetJxy, py::const_), "index"_a)
+      .def("get_J_z" , py::overload_cast<const std::int64_t>(&XXZ1D::GetJz, py::const_) , "index"_a)
+      .def("get_J_xy", py::overload_cast<const std::int64_t>(&XXZ1D::GetJxy, py::const_), "index"_a)
       .def("get_h_z", &XXZ1D::GetHz)
       .def("get_D_z", &XXZ1D::GetDz)
       .def_property("system_size", &XXZ1D::GetSystemSize, &XXZ1D::SetSystemSize)
@@ -92,11 +92,11 @@ void pybind11ModelXXZ1D(py::module &m) {
          out << "////////////////////////" << std::endl;
          out << "Heisenberg Model Interaction" << std::endl;
          out << "Sz-Sz Interaction: J_z ="     << std::endl;
-         for (std::size_t i = 0; i < self.GetJz().size(); ++i) {
+         for (std::int64_t i = 0; i < self.GetJz().size(); ++i) {
             out << i + 1 << "-th neighber: " << self.GetJz().at(i) << std::endl;
          }
          out << "Sx-Sx, Sy-Sy Interactions: J_xy =" << std::endl;
-         for (std::size_t i = 0; i < self.GetJxy().size(); ++i) {
+         for (std::int64_t i = 0; i < self.GetJxy().size(); ++i) {
             out << i + 1 << "-th neighber: " << self.GetJxy().at(i) << std::endl;
          }
          out << "External Magnetic Fields for the z-direction: h_z = " << self.GetHz() << std::endl;

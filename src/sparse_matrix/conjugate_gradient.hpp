@@ -44,7 +44,7 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
    }
    
    const auto start = std::chrono::system_clock::now();
-   const std::size_t dim = matrix_in.row_dim;
+   const std::int64_t dim = matrix_in.row_dim;
    BraketVector<RealType> rrr(dim);
    BraketVector<RealType> ppp(dim);
    BraketVector<RealType> yyy(dim);
@@ -54,7 +54,7 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
 #ifdef _OPENMP
       vectors_work.resize(omp_get_max_threads());
 #pragma omp parallel for
-      for (std::size_t i = 0; i < vectors_work.size(); ++i) {
+      for (std::int64_t i = 0; i < vectors_work.size(); ++i) {
          vectors_work[i].resize(dim, 0.0);
       }
 #endif
@@ -73,7 +73,7 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
       std::mt19937 random_number_engine;
       random_number_engine.seed(std::random_device()());
       vec_out->val.resize(dim);
-      for (std::size_t i = 0; i < dim; ++i) {
+      for (std::int64_t i = 0; i < dim; ++i) {
          vec_out->val[i] = uniform_rand(random_number_engine);
       }
    }
@@ -88,7 +88,7 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
    }
    
 #pragma omp parallel for
-   for (std::size_t i = 0; i < dim; ++i) {
+   for (std::int64_t i = 0; i < dim; ++i) {
       rrr.val[i] = vec_in.val[i] - rrr.val[i];
       ppp.val[i] = rrr.val[i];
    }
@@ -105,7 +105,7 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
       const RealType alpha      = inner_prod/CalculateInnerProduct(ppp, yyy);
       
 #pragma omp parallel for
-      for (std::size_t i = 0; i < dim; ++i) {
+      for (std::int64_t i = 0; i < dim; ++i) {
          vec_out->val[i] += alpha*ppp.val[i];
          rrr.val[i]      -= alpha*yyy.val[i];
       }
@@ -129,7 +129,7 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
       const RealType beta = residual_error/inner_prod;
       
 #pragma omp parallel for
-      for (std::size_t i = 0; i < dim; ++i) {
+      for (std::int64_t i = 0; i < dim; ++i) {
          ppp.val[i] = rrr.val[i] + beta*ppp.val[i];
       }
    }

@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: compnal
+Version: 0.0.1
+Summary: DESCRIPTION
+Home-page: UNKNOWN
+Author: Pagliacci
+License: Apache License 2.0
+Platform: Operating System :: Microsoft :: Windows :: Windows 10
+Platform: Operating System :: MacOS :: MacOS X
+Platform: Operating System :: POSIX :: Linux
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Requires-Python: >=3.7, <3.10
+
+UNKNOWN
+

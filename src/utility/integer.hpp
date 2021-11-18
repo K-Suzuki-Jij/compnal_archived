@@ -57,14 +57,14 @@ void GenerateIntegerPartition(std::vector<std::vector<int>> *results, int n, int
 }
 
 
-std::size_t CalculateBinomialCoefficient(int n, const int k) {
+std::int64_t CalculateBinomialCoefficient(int n, const int k) {
    if (n < 0 || k < 0) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       throw std::runtime_error(ss.str());
    }
    
-   std::size_t r = 1;
+   std::int64_t r = 1;
    
    for (int d = 1; d <= k; d++) {
        r *= n--;
@@ -75,7 +75,7 @@ std::size_t CalculateBinomialCoefficient(int n, const int k) {
    
 }
 
-std::size_t CalculateNumCombination(const std::vector<int> &list) {
+std::int64_t CalculateNumCombination(const std::vector<int> &list) {
    
    std::unordered_map<int, int> u_map;
    
@@ -83,7 +83,7 @@ std::size_t CalculateNumCombination(const std::vector<int> &list) {
       u_map[it]++;
    }
    
-   std::size_t result = 1;
+   std::int64_t result = 1;
    int size_list = static_cast<int>(list.size());
    
    for (const auto &it: u_map) {
@@ -95,7 +95,7 @@ std::size_t CalculateNumCombination(const std::vector<int> &list) {
    
 }
 
-void CalculateNthPermutation(std::vector<int> *vec, std::size_t target_num) {
+void CalculateNthPermutation(std::vector<int> *vec, std::int64_t target_num) {
    
    std::unordered_map<int, int> u_map;
    
@@ -106,11 +106,11 @@ void CalculateNthPermutation(std::vector<int> *vec, std::size_t target_num) {
    int size_vec = static_cast<int>(vec->size());
    
    for (int i = 0; i < size_vec; ++i) {
-      std::size_t temp1 = 0;
+      std::int64_t temp1 = 0;
       for (auto &&it: u_map) {
          if (it.second > 0) {
             it.second -= 1;
-            std::size_t temp2 = 1;
+            std::int64_t temp2 = 1;
             int size = size_vec - (i + 1);
             for (const auto it2: u_map) {
                temp2 *= CalculateBinomialCoefficient(size, it2.second);

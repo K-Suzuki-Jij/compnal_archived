@@ -30,9 +30,9 @@ void CalculateMatrixVectorProduct(BraketVector<RealType> *vector_out,
    }
    vector_out->val.resize(matrix_in.row_dim);
 #pragma omp parallel for
-   for (std::size_t i = 0; i < matrix_in.row_dim; ++i) {
+   for (std::int64_t i = 0; i < matrix_in.row_dim; ++i) {
       RealType temp = 0.0;
-      for (std::size_t j = matrix_in.row[i]; j < matrix_in.row[i+1]; ++j) {
+      for (std::int64_t j = matrix_in.row[i]; j < matrix_in.row[i+1]; ++j) {
          temp += matrix_in.val[j]*vector_in.val[matrix_in.col[j]];
       }
       vector_out->val[i] = temp*coeef;
@@ -73,11 +73,11 @@ void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
    }
    
 #pragma omp parallel for schedule (guided)
-   for (std::size_t i = 0; i < matrix_in.row_dim; ++i) {
+   for (std::int64_t i = 0; i < matrix_in.row_dim; ++i) {
       const int      thread_num  = omp_get_thread_num();
       const RealType temp_vec_in = vector_in.val[i];
       RealType       temp_val    = matrix_in.val[matrix_in.row[i + 1] - 1]*temp_vec_in;
-      for (std::size_t j = matrix_in.row[i]; j < matrix_in.row[i + 1] - 1; ++j) {
+      for (std::int64_t j = matrix_in.row[i]; j < matrix_in.row[i + 1] - 1; ++j) {
          temp_val += matrix_in.val[j]*vector_in.val[matrix_in.col[j]];
          (*vectors_work)[thread_num][matrix_in.col[j]] += matrix_in.val[j]*temp_vec_in;
       }
@@ -85,7 +85,7 @@ void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
    }
    
 #pragma omp parallel for
-   for (std::size_t i = 0; i < matrix_in.row_dim; ++i) {
+   for (std::int64_t i = 0; i < matrix_in.row_dim; ++i) {
       RealType temp_val = 0.0;
       for (int thread_num = 0; thread_num < num_threads; ++thread_num) {
          temp_val += (*vectors_work)[thread_num][i];
@@ -96,10 +96,10 @@ void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
    
 #else
    vector_out->Fill(0.0);
-   for (std::size_t i = 0; i < matrix_in.row_dim; ++i) {
+   for (std::int64_t i = 0; i < matrix_in.row_dim; ++i) {
       const RealType temp_vec_in = vector_in.val[i];
       RealType       temp_val    = matrix_in.val[matrix_in.row[i + 1] - 1]*temp_vec_in;
-      for (std::size_t j = matrix_in.row[i]; j < matrix_in.row[i + 1] - 1; ++j) {
+      for (std::int64_t j = matrix_in.row[i]; j < matrix_in.row[i + 1] - 1; ++j) {
          temp_val += matrix_in.val[j]*vector_in.val[matrix_in.col[j]];
          vector_out->val[matrix_in.col[j]] += matrix_in.val[j]*temp_vec_in;
       }
@@ -133,10 +133,10 @@ void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
    vector_out->val.resize(matrix_in.row_dim);
    
    vector_out->Fill(0.0);
-   for (std::size_t i = 0; i < matrix_in.row_dim; ++i) {
+   for (std::int64_t i = 0; i < matrix_in.row_dim; ++i) {
       const RealType temp_vec_in = vector_in.val[i];
       RealType       temp_val    = matrix_in.val[matrix_in.row[i + 1] - 1]*temp_vec_in;
-      for (std::size_t j = matrix_in.row[i]; j < matrix_in.row[i + 1] - 1; ++j) {
+      for (std::int64_t j = matrix_in.row[i]; j < matrix_in.row[i + 1] - 1; ++j) {
          temp_val += matrix_in.val[j]*vector_in.val[matrix_in.col[j]];
          vector_out->val[matrix_in.col[j]] += matrix_in.val[j]*temp_vec_in;
       }

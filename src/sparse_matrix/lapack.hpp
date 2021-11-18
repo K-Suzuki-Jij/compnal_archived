@@ -41,14 +41,14 @@ void LapackDsyev(RealType *gs_value,
    
    double matrix_array[matrix_in.row_dim][matrix_in.col_dim];
    
-   for (std::size_t i = 0; i < matrix_in.row_dim; ++i) {
-      for (std::size_t j = 0; j < matrix_in.col_dim; ++j) {
+   for (std::int64_t i = 0; i < matrix_in.row_dim; ++i) {
+      for (std::int64_t j = 0; j < matrix_in.col_dim; ++j) {
          matrix_array[i][j] = 0.0;
       }
    }
    
-   for (std::size_t i = 0; i < matrix_in.row_dim; ++i) {
-      for (std::size_t j = matrix_in.row[i]; j < matrix_in.row[i + 1]; ++j) {
+   for (std::int64_t i = 0; i < matrix_in.row_dim; ++i) {
+      for (std::int64_t j = matrix_in.row[i]; j < matrix_in.row[i + 1]; ++j) {
          matrix_array[i][matrix_in.col[j]] = static_cast<double>(matrix_in.val[j]);
          matrix_array[matrix_in.col[j]][i] = static_cast<double>(matrix_in.val[j]);
       }
@@ -65,7 +65,7 @@ void LapackDsyev(RealType *gs_value,
    
    gs_vector->resize(matrix_in.row_dim);
    
-   for (std::size_t i = 0; i < matrix_in.row_dim; ++i) {
+   for (std::int64_t i = 0; i < matrix_in.row_dim; ++i) {
        (*gs_vector)[i] = static_cast<RealType>(matrix_array[0][i]);
    }
    
