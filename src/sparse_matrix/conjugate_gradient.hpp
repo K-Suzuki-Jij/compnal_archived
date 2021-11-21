@@ -36,7 +36,7 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
       throw std::runtime_error(ss.str());
    }
    
-   if (vec_in.val.size() != matrix_in.row_dim) {
+   if (static_cast<std::int64_t>(vec_in.val.size()) != matrix_in.row_dim) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "Matrix vector product (Ax=b) cannot be defined." << std::endl;
@@ -52,16 +52,12 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
    
    if (params.flag_symmetric_crs) {
 #ifdef _OPENMP
-      vectors_work.resize(omp_get_max_threads());
-#pragma omp parallel for
-      for (std::int64_t i = 0; i < vectors_work.size(); ++i) {
-         vectors_work[i].resize(dim, 0.0);
-      }
+      vectors_work = std::vector<std::vector<RealType>>(omp_get_max_threads(), std::vector<RealType>(dim));
 #endif
    }
    
    if (params.flag_use_initial_vec) {
-      if (vec_out->val.size() != dim) {
+      if (static_cast<std::int64_t>(vec_out->val.size()) != dim) {
          std::stringstream ss;
          ss << "Error in " << __func__ << std::endl;
          ss << "The dimension of the initial vector is not equal to that of the input matrix." << std::endl;

@@ -43,7 +43,8 @@ struct CRS {
       this->row.resize(this->row_dim + 1);
       this->row[0] = 0;
       for (std::int64_t i = 0; i < this->row_dim; ++i) {
-         for (std::int64_t j = 0; j < mat_vec[i].size();++j) {
+         const std::int64_t size = static_cast<std::int64_t>(mat_vec[i].size());
+         for (std::int64_t j = 0; j < size;++j) {
             if (mat_vec[i][j] != 0.0) {
                this->col.push_back(j);
                this->val.push_back(mat_vec[i][j]);
@@ -83,7 +84,7 @@ struct CRS {
       }
       
 #pragma omp parallel for
-      for (std::int64_t i = 0; i < matrix.col.size(); ++i) {
+      for (std::size_t i = 0; i < matrix.col.size(); ++i) {
          this->col[i] = matrix.col[i];
          this->val[i] = matrix.val[i];
       }
@@ -176,13 +177,13 @@ struct CRS {
       std::cout << "Print information about CRS: " << display_name << std::endl;
       std::cout << "row_dim = " << this->row_dim << std::endl;
       std::cout << "col_dim = " << this->col_dim << std::endl;
-      for (std::int64_t i = 0; i < this->row.size(); ++i) {
+      for (std::size_t i = 0; i < this->row.size(); ++i) {
          std::cout << "row[" << i << "] = " << this->row.at(i) << std::endl;
       }
-      for (std::int64_t i = 0; i < this->col.size(); ++i) {
+      for (std::size_t i = 0; i < this->col.size(); ++i) {
          std::cout << "col[" << i << "] = " << this->col.at(i) << std::endl;
       }
-      for (std::int64_t i = 0; i < this->val.size(); ++i) {
+      for (std::size_t i = 0; i < this->val.size(); ++i) {
          std::cout << "val[" << i << "] = " << this->val.at(i) << std::endl;
       }
    }

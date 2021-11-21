@@ -20,7 +20,7 @@ void CalculateMatrixVectorProduct(BraketVector<RealType> *vector_out,
                                   const CRS<RealType> &matrix_in,
                                   const BraketVector<RealType> &vector_in) {
    
-   if (matrix_in.col_dim != vector_in.val.size()) {
+   if (matrix_in.col_dim != static_cast<std::int64_t>(vector_in.val.size())) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "The column of the input matrix is " << matrix_in.col_dim  << std::endl;
@@ -53,7 +53,7 @@ void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
       throw std::runtime_error(ss.str());
    }
    
-   if (matrix_in.col_dim != vector_in.val.size()) {
+   if (matrix_in.col_dim != static_cast<std::int64_t>(vector_in.val.size())) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "The column of the input matrix is " << matrix_in.col_dim  << std::endl;
@@ -122,7 +122,7 @@ void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
       throw std::runtime_error(ss.str());
    }
    
-   if (matrix_in.col_dim != vector_in.val.size()) {
+   if (matrix_in.col_dim != static_cast<std::int64_t>(vector_in.val.size())) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "The column of the input matrix is " << matrix_in.col_dim  << std::endl;

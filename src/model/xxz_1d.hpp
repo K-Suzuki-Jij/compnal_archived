@@ -8,7 +8,7 @@
 #ifndef COMPNAL_MODEL_XXZ_1D_HPP_
 #define COMPNAL_MODEL_XXZ_1D_HPP_
 
-#include "./base.hpp"
+#include "./base_u1_spin_1d.hpp"
 
 #ifdef _OPENMP
 #include <omp.h>
@@ -23,7 +23,9 @@ class XXZ_1D: public BaseU1Spin_1D<RealType> {
    using CRS = sparse_matrix::CRS<RealType>;
    
 public:
-   XXZ_1D(): BaseU1Spin_1D<RealType>() {}
+   XXZ_1D(): BaseU1Spin_1D<RealType>() {
+      onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2spin_);
+   }
    
    explicit XXZ_1D(const int system_size): BaseU1Spin_1D<RealType>(system_size) {
       onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2spin_);

@@ -119,11 +119,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
    
    if (params.flag_symmetric_crs) {
 #ifdef _OPENMP
-      vectors_work.resize(omp_get_max_threads());
-#pragma omp parallel for
-      for (std::int64_t i = 0; i < vectors_work.size(); ++i) {
-         vectors_work[i].resize(dim, 0.0);
-      }
+      vectors_work = std::vector<std::vector<RealType>>(omp_get_max_threads(), std::vector<RealType>(dim));
 #endif
    }
 
@@ -332,11 +328,7 @@ std::pair<int, double> EigenvalueDecompositionLOBPCG(RealType                *gs
 
    if (params.flag_symmetric_crs) {
 #ifdef _OPENMP
-      vectors_work.resize(omp_get_max_threads());
-#pragma omp parallel for
-      for (std::int64_t i = 0; i < vectors_work.size(); ++i) {
-         vectors_work[i].resize(dim, 0.0);
-      }
+      vectors_work = std::vector<std::vector<RealType>>(omp_get_max_threads(), std::vector<RealType>(dim));
 #endif
    }
    

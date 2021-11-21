@@ -5,8 +5,8 @@
 //  Created by Kohei Suzuki on 2021/11/18.
 //
 
-#ifndef COMPNAL_MODEL_BASE_HPP_
-#define COMPNAL_MODEL_BASE_HPP_
+#ifndef COMPNAL_MODEL_BASE_U1_SPIN_1D_HPP_
+#define COMPNAL_MODEL_BASE_U1_SPIN_1D_HPP_
 
 #include "../sparse_matrix/all.hpp"
 #include "../utility/all.hpp"
@@ -176,6 +176,7 @@ public:
    void GenerateBasis(const double total_sz) {
       const auto start = std::chrono::system_clock::now();
       const int total_2sz = utility::DoubleTheNumber(total_sz);
+      
       if (isValidQNumber(total_2sz) == false) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__ << std::endl;
@@ -208,17 +209,15 @@ public:
 #ifdef _OPENMP
       const int num_threads = omp_get_max_threads();
       std::vector<std::vector<std::int64_t>> temp_basis(num_threads);
-      
-      for (std::int64_t i = 0; i < partition_integers.size(); ++i) {
-         const bool condition1 = (0 < partition_integers[i].size()) && (static_cast<int>(partition_integers[i].size()) <= system_size_);
-         const bool condition2 = (partition_integers[i].size() == 0) && (shifted_2sz  == 0);
+      for (auto &&integer_list: partition_integers) {
+         const bool condition1 = (0 < integer_list.size()) && (static_cast<int>(integer_list.size()) <= system_size_);
+         const bool condition2 = (integer_list.size() == 0) && (shifted_2sz  == 0);
          if (condition1 || condition2) {
-            
-            for (int j = static_cast<int>(partition_integers[i].size()); j < system_size_; ++j) {
-               partition_integers[i].push_back(0);
+            for (int j = static_cast<int>(integer_list.size()); j < system_size_; ++j) {
+               integer_list.push_back(0);
             }
             
-            const std::int64_t size = utility::CalculateNumCombination(partition_integers[i]);
+            const std::int64_t size = utility::CalculateNumCombination(integer_list);
             std::vector<std::vector<int>> temp_partition_integer(num_threads);
             
 #pragma omp parallel num_threads (num_threads)
@@ -226,13 +225,15 @@ public:
                const int thread_num = omp_get_thread_num();
                const std::int64_t loop_begin = thread_num*size/num_threads;
                const std::int64_t loop_end   = (thread_num + 1)*size/num_threads;
-               temp_partition_integer[thread_num] = partition_integers[i];
+               temp_partition_integer[thread_num] = integer_list;
                utility::CalculateNthPermutation(&temp_partition_integer[thread_num], loop_begin);
                
                for (std::int64_t j = loop_begin; j < loop_end; ++j) {
                   std::int64_t basis_global = 0;
-                  for (std::int64_t k = 0; k < temp_partition_integer[thread_num].size(); ++k) {
-                     basis_global += temp_partition_integer[thread_num][k]*site_constant[k];
+                  const auto iter_begin = temp_partition_integer[thread_num].begin();
+                  const auto iter_end   = temp_partition_integer[thread_num].end();
+                  for (auto itr = iter_begin; itr != iter_end; ++itr) {
+                     basis_global += *itr*site_constant[std::distance(iter_begin, itr)];
                   }
                   temp_basis[thread_num].push_back(basis_global);
                   std::next_permutation(temp_partition_integer[thread_num].begin(), temp_partition_integer[thread_num].end());
@@ -240,38 +241,38 @@ public:
             }
          }
       }
-      
-      for (std::int64_t i = 0; i < temp_basis.size(); ++i) {
-         bases_.at(total_2sz).insert(bases_.at(total_2sz).end(), temp_basis[i].begin(), temp_basis[i].end());
-         std::vector<std::int64_t>().swap(temp_basis[i]);
+      for (auto &&basis: temp_basis) {
+         bases_.at(total_2sz).insert(bases_.at(total_2sz).end(), basis.begin(), basis.end());
+         std::vector<std::int64_t>().swap(basis);
       }
       
 #else
       basis->reserve(dim_target);
       
-      for (std::int64_t i = 0; i < partition_integers.size(); ++i) {
-         const bool condition1 = (0 < partition_integers[i].size()) && (partition_integers[i].size() <= system_size_);
-         const bool condition2 = (partition_integers[i].size() == 0) && (shifted_2sz  == 0);
+      for (auto &&integer_list: partition_integers) {
+         const bool condition1 = (0 < integer_list.size()) && (integer_list.size() <= system_size_);
+         const bool condition2 = (integer_list.size() == 0) && (shifted_2sz  == 0);
          if (condition1 || condition2) {
             
-            for (std::int64_t j = partition_integers[i].size(); j < system_size_; ++j) {
-               partition_integers[i].push_back(0);
+            for (std::int64_t j = integer_list.size(); j < system_size_; ++j) {
+               integer_list.push_back(0);
             }
             
-            std::sort(partition_integers[i].begin(), partition_integers[i].end());
+            std::sort(integer_list.begin(), integer_list.end());
             
             do {
                std::int64_t basis_global = 0;
-               for (std::int64_t j = 0; j < partition_integers[i].size(); ++j) {
-                  basis_global += partition_integers[i][j]*site_constant[j];
+               for (std::int64_t j = 0; j < integer_list.size(); ++j) {
+                  basis_global += integer_list[j]*site_constant[j];
                }
                basis->push_back(basis_global);
-            } while (std::next_permutation(partition_integers[i].begin(), partition_integers[i].end()));
+            } while (std::next_permutation(integer_list.begin(), integer_list.end()));
          }
       }
+
 #endif
-      
-      if (bases_.at(total_2sz).size() != dim_target) {
+         
+      if (static_cast<std::int64_t>(bases_.at(total_2sz).size()) != dim_target) {
          std::stringstream ss;
          ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
          throw std::runtime_error(ss.str());
@@ -283,12 +284,9 @@ public:
          bases_inv_[total_2sz] = std::unordered_map<std::int64_t, std::int64_t>();
       }
       bases_inv_.at(total_2sz).clear();
-      
-      std::vector<std::int64_t> &temp_basis_by_total_2sz = bases_.at(total_2sz);
-      std::unordered_map<std::int64_t, std::int64_t> &temp_inv_by_total_2sz = bases_inv_.at(total_2sz);
-      
-      for (std::int64_t i = 0; i < temp_basis_by_total_2sz.size(); ++i) {
-         temp_inv_by_total_2sz[temp_basis_by_total_2sz[i]] = i;
+            
+      for (std::int64_t i = 0; i < dim_target; ++i) {
+         bases_inv_.at(total_2sz)[bases_.at(total_2sz)[i]] = i;
       }
       
       const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
@@ -507,4 +505,4 @@ protected:
 }
 
 
-#endif /* COMPNAL_MODEL_BASE_HPP_ */
+#endif /* COMPNAL_MODEL_BASE_U1_SPIN_1D_HPP_ */

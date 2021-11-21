@@ -48,7 +48,7 @@ struct BraketVector {
    
    void Fill(const RealType val_in) {
 #pragma omp parallel for
-      for (std::int64_t i = 0; i < this->val.size(); ++i) {
+      for (std::size_t i = 0; i < this->val.size(); ++i) {
          this->val[i] = val_in;
       }
    }
@@ -64,7 +64,7 @@ struct BraketVector {
    void Assign(const BraketVector &vector) {
       this->val.resize(vector.val.size());
 #pragma omp parallel for
-      for (std::int64_t i = 0; i < vector.val.size(); ++i) {
+      for (std::size_t i = 0; i < vector.val.size(); ++i) {
          this->val[i] = vector.val[i];
       }
    }
@@ -72,7 +72,7 @@ struct BraketVector {
    void Assign(const std::vector<RealType> &vector) {
       this->val.resize(vector.size());
 #pragma omp parallel for
-      for (std::int64_t i = 0; i < vector.size(); ++i) {
+      for (std::size_t i = 0; i < vector.size(); ++i) {
          this->val[i] = vector[i];
       }
    }
@@ -90,7 +90,7 @@ struct BraketVector {
    
    void MultiplyByScalar(const RealType coeef) {
 #pragma omp parallel for
-      for (std::int64_t i = 0; i < this->val.size(); ++i) {
+      for (std::size_t i = 0; i < this->val.size(); ++i) {
          this->val[i] *= coeef;
       }
    }
@@ -108,14 +108,14 @@ struct BraketVector {
    RealType L2Norm() const {
       RealType inner_product = 0.0;
 #pragma omp parallel for reduction (+:inner_product)
-      for (std::int64_t i = 0; i < this->val.size(); ++i) {
+      for (std::size_t i = 0; i < this->val.size(); ++i) {
          inner_product += val[i]*val[i];
       }
       return std::sqrt(inner_product);
    }
    
    void Print(const std::string display_name = "BraketVector") const {
-      for (std::int64_t i = 0; i < this->val.size(); i++) {
+      for (std::size_t i = 0; i < this->val.size(); i++) {
          std::cout << display_name << "[" << i << "]=" << this->val[i] << std::endl;
       }
    }
@@ -137,7 +137,7 @@ void CalculateVectorSum(BraketVector<RealType> *vector_out,
    }
    vector_out->val.resize(braket_vector_1.val.size());
 #pragma omp parallel for
-   for (std::int64_t i = 0; i < braket_vector_1.val.size(); ++i) {
+   for (std::size_t i = 0; i < braket_vector_1.val.size(); ++i) {
       vector_out->val[i] = coeef_1*braket_vector_1.val[i] + coeef_2*braket_vector_2.val[i];
    }
 }
@@ -159,7 +159,7 @@ RealType CalculateL1Norm(const RealType coeef_1,
    
    RealType val_out = 0.0;
 #pragma omp parallel for reduction (+: val_out)
-   for (std::int64_t i = 0; i < braket_vector_1.val.size(); ++i) {
+   for (std::size_t i = 0; i < braket_vector_1.val.size(); ++i) {
       val_out += std::abs(coeef_1*braket_vector_1.val[i] - coeef_2*braket_vector_2.val[i]);
    }
    return val_out;
@@ -177,7 +177,7 @@ RealType CalculateInnerProduct(const BraketVector<RealType> &braket_vector_1,
    }
    RealType val_out = 0.0;
 #pragma omp parallel for reduction (+: val_out)
-   for (std::int64_t i = 0; i < braket_vector_1.val.size(); ++i) {
+   for (std::size_t i = 0; i < braket_vector_1.val.size(); ++i) {
       val_out += braket_vector_1.val[i]*braket_vector_2.val[i];
    }
    return val_out;

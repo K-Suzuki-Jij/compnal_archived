@@ -79,7 +79,7 @@ public:
       model.SetCalculatedEigenvectorSet(0);
    }
    
-   RealType CalculateExpectationValue(const CRS &m, const std::int64_t site, const std::int64_t level = 0) const {
+   RealType CalculateExpectationValue(const CRS &m, const int site, const int level = 0) const {
       if (model.GetCalculatedEigenvectorSet().count(level) == 0) {
          std::stringstream ss;
          ss << "Error in " << __func__ << std::endl;
@@ -119,7 +119,7 @@ public:
       return val;
    }
    
-   RealType CalculateCorrelationFunction(const CRS &m_1, const std::int64_t site_1, const CRS &m_2, const std::int64_t site_2, const std::int64_t target_level = 0) {
+   RealType CalculateCorrelationFunction(const CRS &m_1, const int site_1, const CRS &m_2, const int site_2, const int target_level = 0) {
       if (model.GetCalculatedEigenvectorSet().count(target_level) == 0) {
          std::stringstream ss;
          ss << "Error in " << __func__ << std::endl;
@@ -322,9 +322,10 @@ private:
       for (std::int64_t row = 0; row < dim_target; ++row) {
          const int thread_num = omp_get_thread_num();
          GenerateMatrixComponents(&components[thread_num], basis[row], model);
-         for (std::int64_t i = 0; i < components[thread_num].basis_affected.size(); ++i) {
+         const std::size_t size = components[thread_num].basis_affected.size();
+         for (std::size_t i = 0; i < size; ++i) {
             const std::int64_t  a_basis = components[thread_num].basis_affected[i];
-            const RealType     val     = components[thread_num].val[i];
+            const RealType     val      = components[thread_num].val[i];
             if (basis_inv.count(a_basis) > 0) {
                const std::int64_t inv = basis_inv.at(a_basis);
                if (inv <= row) {
@@ -404,8 +405,8 @@ private:
       ham->col_dim = dim_target;
       
       const bool flag_check_1 = (ham->row[dim_target] != num_total_elements);
-      const bool flag_check_2 = (ham->col.size() != num_total_elements);
-      const bool flag_check_3 = (ham->val.size() != num_total_elements);
+      const bool flag_check_2 = (static_cast<std::int64_t>(ham->col.size()) != num_total_elements);
+      const bool flag_check_3 = (static_cast<std::int64_t>(ham->val.size()) != num_total_elements);
       
       if (flag_check_1 || flag_check_2 || flag_check_3) {
          std::stringstream ss;
