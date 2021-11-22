@@ -19,11 +19,12 @@ namespace py = pybind11;
 using namespace pybind11::literals;
 
 template<class ModelClass>
-void pybind11SolverExactDiag(py::module &m) {
+void pybind11SolverExactDiag(py::module &m, const std::string &mtype_str) {
    
    using ED = compnal::solver::ExactDiag<ModelClass>;
+   auto str = std::string("ExactDiag")+mtype_str;
    
-   py::class_<ED>(m, "ExactDiag", py::module_local())
+   py::class_<ED>(m, str.c_str(), py::module_local())
    .def(py::init<const ModelClass&>(), "model"_a)
    .def(py::init<const ModelClass&, compnal::sparse_matrix::ParametersAll&>(), "model"_a, "params"_a)
    .def_readonly("model", &ED::model)
@@ -39,6 +40,11 @@ void pybind11SolverExactDiag(py::module &m) {
       );
       self.CalculateGroundState(diag_method);
    }, "diag_method"_a = "Lanczos");
+   
+   auto mkci_str = std::string("make_exact_diag_system");
+   m.def(mkci_str.c_str(), [](const ModelClass &model) {
+      return compnal::solver::ExactDiag<ModelClass>(model);
+   }, "model"_a);
    
 
 }

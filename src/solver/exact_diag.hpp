@@ -18,7 +18,7 @@ template<typename RealType>
 struct ExactDiagMatrixComponents {
    std::vector<RealType> val;
    std::vector<std::int64_t>  basis_affected;
-   std::vector<int>          basis_onsite;
+   std::vector<int>           basis_onsite;
    std::vector<std::int64_t>  site_constant;
    std::unordered_map<std::int64_t, std::int64_t> inv_basis_affected;
    double zero_precision = std::pow(10, -15);
@@ -217,10 +217,7 @@ private:
             edmc->basis_affected.push_back(a_basis);
          }
          else {
-            const RealType val = edmc->val[edmc->inv_basis_affected.at(a_basis)] + coeef*matrix_onsite.val[i];
-            if (std::abs(val) > edmc->zero_precision) {
-               edmc->val[edmc->inv_basis_affected.at(a_basis)] = val;
-            }
+            edmc->val[edmc->inv_basis_affected.at(a_basis)] += coeef*matrix_onsite.val[i];
          }
       }
    }
@@ -288,14 +285,17 @@ private:
       for (std::int64_t row = 0; row < dim_target; ++row) {
          const int thread_num = omp_get_thread_num();
          GenerateMatrixComponents(&components[thread_num], basis[row], model);
-         for (const auto &a_basis: components[thread_num].basis_affected) {
-            if (basis_inv.count(a_basis) > 0) {
+         const std::size_t size = components[thread_num].basis_affected.size();
+         for (std::size_t i = 0; i < size; ++i) {
+            const std::int64_t a_basis = components[thread_num].basis_affected[i];
+            const RealType     val     = components[thread_num].val[i];
+            if (basis_inv.count(a_basis) > 0 && std::abs(val) > components[thread_num].zero_precision) {
                const std::int64_t inv = basis_inv.at(a_basis);
                if (inv <= row) {
                   num_row_element[row + 1]++;
                }
             }
-            else {
+            else if (basis_inv.count(a_basis) == 0 && std::abs(val) > components[thread_num].zero_precision) {
                throw std::runtime_error("Matrix elements are not in the target space");
             }
          }
@@ -324,9 +324,9 @@ private:
          GenerateMatrixComponents(&components[thread_num], basis[row], model);
          const std::size_t size = components[thread_num].basis_affected.size();
          for (std::size_t i = 0; i < size; ++i) {
-            const std::int64_t  a_basis = components[thread_num].basis_affected[i];
-            const RealType     val      = components[thread_num].val[i];
-            if (basis_inv.count(a_basis) > 0) {
+            const std::int64_t a_basis = components[thread_num].basis_affected[i];
+            const RealType     val     = components[thread_num].val[i];
+            if (basis_inv.count(a_basis) > 0 && std::abs(val) > components[thread_num].zero_precision) {
                const std::int64_t inv = basis_inv.at(a_basis);
                if (inv <= row) {
                   ham->col[num_row_element[row]] = inv;
