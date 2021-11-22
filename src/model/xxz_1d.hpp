@@ -19,7 +19,7 @@ namespace model {
 
 template<typename RealType>
 class XXZ_1D: public BaseU1Spin_1D<RealType> {
-  
+   
    using CRS = sparse_matrix::CRS<RealType>;
    
 public:
@@ -31,19 +31,18 @@ public:
       onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2spin_);
    }
    
-   XXZ_1D(const int system_size,
-          const double magnitude_spin): BaseU1Spin_1D<RealType>(system_size, magnitude_spin) {
+   XXZ_1D(const int system_size, const double magnitude_spin):
+   BaseU1Spin_1D<RealType>(system_size, magnitude_spin) {
       onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2spin_);
    }
    
-   XXZ_1D(const int system_size,
-          const utility::BoundaryCondition bc): BaseU1Spin_1D<RealType>(system_size, bc) {
+   XXZ_1D(const int system_size, const utility::BoundaryCondition bc):
+   BaseU1Spin_1D<RealType>(system_size, bc) {
       onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2spin_);
    }
    
-   XXZ_1D(const int system_size,
-          const double magnitude_spin,
-          const utility::BoundaryCondition bc): BaseU1Spin_1D<RealType>(system_size, magnitude_spin, bc) {
+   XXZ_1D(const int system_size, const double magnitude_spin, const utility::BoundaryCondition bc):
+   BaseU1Spin_1D<RealType>(system_size, magnitude_spin, bc) {
       onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2spin_);
    }
    
@@ -150,7 +149,7 @@ public:
    }
    
    inline const CRS &GetOnsiteOperatorHam() const { return onsite_operator_ham_; }
-
+   
    inline const std::vector<RealType> &GetJz () const { return J_z_ ; }
    inline const std::vector<RealType> &GetJxy() const { return J_xy_; }
    

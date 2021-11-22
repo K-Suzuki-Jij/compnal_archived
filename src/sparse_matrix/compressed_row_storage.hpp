@@ -101,9 +101,23 @@ struct CRS {
       }
       else {
 #pragma omp parallel for
-         for (std::int64_t i = 0; i < this->col.size(); ++i) {
+         for (std::size_t i = 0; i < this->col.size(); ++i) {
             this->val[i] *= coeef;
          }
+      }
+   }
+   
+   CRS MultiplyByScalar(const RealType coeef) const {
+      if (coeef == 0.0) {
+         return CRS(this->row_dim, this->col_dim);
+      }
+      else {
+         CRS m = *this;
+#pragma omp parallel for
+         for (std::size_t i = 0; i < m.col.size(); ++i) {
+            m.val[i] *= coeef;
+         }
+         return m;
       }
    }
    
@@ -243,11 +257,21 @@ CRS<RealType> CalculateTransposedMatrix(const CRS<RealType> &matrix_in) {
 }
 
 template<typename RealType>
-void CreateMatrixProduct(CRS<RealType> *matrix_out,
-                         const RealType coeef_1,
-                         const CRS<RealType> &matrix_1,
-                         const RealType coeef_2,
-                         const CRS<RealType> &matrix_2) {
+CRS<RealType> CalculateMatrixMatrixProduct(const RealType coeef_1,
+                                           const CRS<RealType> &matrix_1,
+                                           const RealType coeef_2,
+                                           const CRS<RealType> &matrix_2) {
+   CRS<RealType> m;
+   CalculateMatrixMatrixProduct(&m, coeef_1, matrix_1, coeef_2, matrix_2);
+   return m;
+}
+
+template<typename RealType>
+void CalculateMatrixMatrixProduct(CRS<RealType> *matrix_out,
+                                  const RealType coeef_1,
+                                  const CRS<RealType> &matrix_1,
+                                  const RealType coeef_2,
+                                  const CRS<RealType> &matrix_2) {
    
    if (matrix_1.col_dim != matrix_2.row_dim) {
       std::stringstream ss;
@@ -291,6 +315,18 @@ void CreateMatrixProduct(CRS<RealType> *matrix_out,
    
    matrix_out->row_dim = matrix_1.row_dim;
    matrix_out->col_dim = matrix_2.col_dim;
+   
+}
+
+template<typename RealType>
+CRS<RealType> CreateMatrixSum(const RealType coeef_1,
+                              const CRS<RealType> &matrix_1,
+                              const RealType coeef_2,
+                              const CRS<RealType> &matrix_2) {
+   
+   CRS<RealType> m;
+   CreateMatrixSum(&m, coeef_1, matrix_1, coeef_2, matrix_2);
+   return m;
    
 }
 

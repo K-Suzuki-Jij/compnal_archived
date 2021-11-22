@@ -477,6 +477,39 @@ private:
       
    }
    
+   void GenerateMatrixComponents(ExactDiagMatrixComponents<RealType> *edmc, const std::int64_t basis, const model::U1Spin_1D<RealType> &model_input) const {
+      
+      for (int site = 0; site < model_input.GetSystemSize(); ++site) {
+         edmc->basis_onsite[site] = CalculateLocalBasis(basis, site, model_input.GetDimOnsite());
+      }
+      
+      //Onsite elements
+      for (const auto &it: model_input.GetOnsiteOperatorList()) {
+         GenerateMatrixComponentsOnsite(edmc, basis, it.first, it.second, 1.0);
+      }
+      
+      //Intersite elements
+      for (const auto &it1: model.GetIntersiteOperatorList()) {
+         const int site_1 = it1.first;
+         for (const auto &it2: it1.second) {
+            const int site_2 = it2.first;
+            for (const auto &it3: it2.second) {
+               const auto &m_1 = it3.first;
+               const auto &m_2 = it3.second;
+               GenerateMatrixComponentsIntersite(edmc, basis, site_1, m_1, site_2, m_2, 1.0);
+            }
+         }
+      }
+      
+      //Fill zero in the diagonal elements for symmetric matrix vector product calculation.
+      if (edmc->inv_basis_affected.count(basis) == 0) {
+         edmc->inv_basis_affected[basis] = edmc->basis_affected.size();
+         edmc->val.push_back(0.0);
+         edmc->basis_affected.push_back(basis);
+      }
+      
+   }
+   
    
    
 };

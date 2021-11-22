@@ -5,8 +5,8 @@
 //  Created by Kohei Suzuki on 2021/11/18.
 //
 
-#ifndef COMPNAL_MODEL_BASE_U1_SPIN_1D_HPP_
-#define COMPNAL_MODEL_BASE_U1_SPIN_1D_HPP_
+#ifndef COMPNAL_MODEL_BASE_U1SPIN_1D_HPP_
+#define COMPNAL_MODEL_BASE_U1SPIN_1D_HPP_
 
 #include "../sparse_matrix/all.hpp"
 #include "../utility/all.hpp"
@@ -505,4 +505,4 @@ protected:
 }
 
 
-#endif /* COMPNAL_MODEL_BASE_U1_SPIN_1D_HPP_ */
+#endif /* COMPNAL_MODEL_BASE_U1SPIN_1D_HPP_ */

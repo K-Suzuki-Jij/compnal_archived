@@ -9,5 +9,6 @@
 #define COMPNAL_MODEL_HPP_
 
 #include "xxz_1d.hpp"
+#include "u1_spin_1d.hpp"
 
 #endif /* COMPNAL_MODEL_HPP_ */

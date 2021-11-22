@@ -29,5 +29,27 @@ TEST(XXZ, Basic) {
                                                       1));
 }
 
+TEST(U1Spin, Basis) {
+   compnal::model::U1Spin_1D<double> model(4, 0.5);
+
+   model.AddOnsitePotential(model.GetOnsiteOperatorSz(), 0);
+   model.AddOnsitePotential(model.GetOnsiteOperatorSz(), 1);
+   model.AddOnsitePotential(model.GetOnsiteOperatorSz(), 2);
+   model.AddOnsitePotential(model.GetOnsiteOperatorSz(), 3);
+   
+   model.AddInteraction(model.GetOnsiteOperatorSm(), 0, model.GetOnsiteOperatorSp(), 1);
+   model.AddInteraction(model.GetOnsiteOperatorSm(), 1, model.GetOnsiteOperatorSp(), 0);
+
+   model.AddInteraction(model.GetOnsiteOperatorSm(), 1, model.GetOnsiteOperatorSp(), 2);
+   model.AddInteraction(model.GetOnsiteOperatorSm(), 2, model.GetOnsiteOperatorSp(), 1);
+   
+   model.AddInteraction(model.GetOnsiteOperatorSm(), 2, model.GetOnsiteOperatorSp(), 3);
+   model.AddInteraction(model.GetOnsiteOperatorSm(), 3, model.GetOnsiteOperatorSp(), 1);
+   
+   compnal::solver::ExactDiag ed(model);
+   ed.CalculateGroundState("Lanczos");
+   printf("%.30lf\n", ed.GetEigenvalues()[0]);
+
+}
 
 #endif /* TEST_SOLVER_EXACT_DIAG_HPP_*/

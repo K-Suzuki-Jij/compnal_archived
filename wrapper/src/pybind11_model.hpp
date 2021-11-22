@@ -18,7 +18,7 @@ namespace py = pybind11;
 using namespace pybind11::literals;
 
 void pybind11ModelBoundaryCondition(py::module &m) {
-   py::enum_<compnal::utility::BoundaryCondition>(m, "bc")
+   py::enum_<compnal::utility::BoundaryCondition>(m, "BC")
            .value("OBC", compnal::utility::BoundaryCondition::OBC)
            .value("PBC", compnal::utility::BoundaryCondition::PBC)
            .value("SSD", compnal::utility::BoundaryCondition::SSD)
@@ -31,6 +31,7 @@ void pybind11ModelXXZ1D(py::module &m) {
    using XXZ1D = compnal::model::XXZ_1D<RealType>;
       
    py::class_<XXZ1D>(m, "XXZ_1D", py::module_local())
+      .def(py::init<>())
       .def(py::init<const int>(), "system_size"_a)
       .def(py::init<const int, const double>(), "system_size"_a, "spin"_a)
       .def(py::init<const int, const compnal::utility::BoundaryCondition>(), "system_size"_a, "boundary_condition"_a)
@@ -63,7 +64,6 @@ void pybind11ModelXXZ1D(py::module &m) {
       .def_static("create_onsite_operator_Sx"  , &XXZ1D::CreateOnsiteOperatorSx  , "spin"_a)
       .def_static("create_onsite_operator_iSy" , &XXZ1D::CreateOnsiteOperatoriSy , "spin"_a)
       .def_static("create_onsite_operator_Sz"  , &XXZ1D::CreateOnsiteOperatorSz  , "spin"_a)
-      .def_static("create_onsite_operator_SzSz", &XXZ1D::CreateOnsiteOperatorSzSz, "spin"_a)
       .def_static("create_onsite_operator_Sp"  , &XXZ1D::CreateOnsiteOperatorSp  , "spin"_a)
       .def_static("create_onsite_operator_Sm"  , &XXZ1D::CreateOnsiteOperatorSm  , "spin"_a)
       .def_static("create_onsite_operator_Ham" , &XXZ1D::CreateOnsiteOperatorHam , "spin"_a, "h_z"_a = 0.0, "D_z"_a = 0.0)
@@ -102,10 +102,51 @@ void pybind11ModelXXZ1D(py::module &m) {
          out << "External Magnetic Fields for the z-direction: h_z = " << self.GetHz() << std::endl;
          out << "Uniaxial Anisotropy for the z-direction: D_z = "      << self.GetDz();
          return out.str();
-      })
+      });
    
-   ;
+}
+
+template<typename RealType>
+void pybind11ModelU1Spin1D(py::module &m) {
    
+   using U1Spin1D = compnal::model::U1Spin_1D<RealType>;
+   using CRS = compnal::sparse_matrix::CRS<RealType>;
+   
+   py::class_<U1Spin1D>(m, "U1Spin_1D", py::module_local())
+      .def(py::init<>())
+      .def(py::init<const int>(), "system_size"_a)
+      .def(py::init<const int, const double>(), "system_size"_a, "spin"_a)
+      .def("calculate_target_dim"  , py::overload_cast<>(&U1Spin1D::CalculateTargetDim, py::const_))
+      .def("get_dim_onsite"        , &U1Spin1D::GetDimOnsite)
+      .def("get_num_conserved_quantity", &U1Spin1D::GetNumConservedQuantity)
+      .def("add_onsite_potential", py::overload_cast<const RealType, const CRS&, const int>(&U1Spin1D::AddOnsitePotential), "val"_a, "m"_a, "site"_a)
+      .def("add_onsite_potential", py::overload_cast<const CRS&, const int>(&U1Spin1D::AddOnsitePotential), "m"_a, "site"_a)
+      .def("add_interaction", py::overload_cast<const RealType, const CRS&, const int, const CRS&, const int>(&U1Spin1D::AddInteraction), "val"_a, "m_1"_a, "site_1"_a, "m_2"_a, "site_2"_a)
+      .def("add_interaction", py::overload_cast<const CRS&, const int, const CRS&, const int>(&U1Spin1D::AddInteraction), "m_1"_a, "site_1"_a, "m_2"_a, "site_2"_a)
+      .def_property("system_size", &U1Spin1D::GetSystemSize, &U1Spin1D::SetSystemSize)
+      .def_property("spin", &U1Spin1D::GetMagnitudeSpin, &U1Spin1D::SetMagnitudeSpin)
+      .def_property("total_sz", &U1Spin1D::GetTotalSz, &U1Spin1D::SetTotalSz)
+      .def_property_readonly("Sx" , &U1Spin1D::GetOnsiteOperatorSx )
+      .def_property_readonly("iSy", &U1Spin1D::GetOnsiteOperatoriSy)
+      .def_property_readonly("Sz" , &U1Spin1D::GetOnsiteOperatorSz )
+      .def_property_readonly("Sp" , &U1Spin1D::GetOnsiteOperatorSp )
+      .def_property_readonly("Sm" , &U1Spin1D::GetOnsiteOperatorSm )
+      .def_static("create_onsite_operator_Sx"  , &U1Spin1D::CreateOnsiteOperatorSx  , "spin"_a)
+      .def_static("create_onsite_operator_iSy" , &U1Spin1D::CreateOnsiteOperatoriSy , "spin"_a)
+      .def_static("create_onsite_operator_Sz"  , &U1Spin1D::CreateOnsiteOperatorSz  , "spin"_a)
+      .def_static("create_onsite_operator_Sp"  , &U1Spin1D::CreateOnsiteOperatorSp  , "spin"_a)
+      .def_static("create_onsite_operator_Sm"  , &U1Spin1D::CreateOnsiteOperatorSm  , "spin"_a)
+      .def("__repr__", [](const U1Spin1D &self) {
+         std::ostringstream out;
+         out << "U(1) Spin Model Infomation:" << std::endl;
+         out << "system_size            = " << self.GetSystemSize()           << std::endl;
+         out << "spin                   = " << self.GetMagnitudeSpin()        << std::endl;
+         out << "total_2sz              = " << self.GetTotalSz()              << std::endl;
+         out << "dim_target             = " << self.CalculateTargetDim()      << std::endl;
+         out << "dim_onsite             = " << self.GetDimOnsite()            << std::endl;
+         out << "num_conserved_quantity = " << self.GetNumConservedQuantity() << std::endl;
+         return out.str();
+      });
    
 }
 

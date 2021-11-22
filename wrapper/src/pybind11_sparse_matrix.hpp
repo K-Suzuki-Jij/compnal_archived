@@ -32,13 +32,13 @@ void pybind11SparseMatrixCRS(py::module &m) {
    .def_readonly("col", &CRS::col)
    .def_readonly("val", &CRS::val)
    .def("assign", &CRS::Assign)
-   .def("multiply_by_scalar", &CRS::MultiplyByScalar, "scalar"_a)
+   .def("multiply_by_scalar", py::overload_cast<const RealType>(&CRS::MultiplyByScalar), "scalar"_a)
    .def("free", &CRS::Free)
    .def("Clear", &CRS::Clear)
    .def("is_symmetric", &CRS::isSymmetric, "threshold"_a = 0.000000000000001/*pow(10,-15)*/)
    .def("__mul__", [](const CRS &lhs, const CRS &rhs) {
       CRS mat;
-      compnal::sparse_matrix::CreateMatrixProduct(&mat, 1.0, lhs, 1.0, rhs);
+      compnal::sparse_matrix::CalculateMatrixMatrixProduct(&mat, 1.0, lhs, 1.0, rhs);
       return mat;
    }, py::is_operator())
    .def("__add__", [](const CRS &lhs, const CRS &rhs) {
@@ -63,7 +63,7 @@ void pybind11SparseMatrixCRS(py::module &m) {
    }, py::is_operator())
    .def("__imul__", [](CRS &self, const CRS &rhs) {
       const CRS lhs = self;
-      compnal::sparse_matrix::CreateMatrixProduct(&self, 1.0, lhs, 1.0, rhs);
+      compnal::sparse_matrix::CalculateMatrixMatrixProduct(&self, 1.0, lhs, 1.0, rhs);
       return self;
    }, py::is_operator())
    .def("__repr__", [](const CRS &self) {
