@@ -92,13 +92,14 @@ public:
    }
    
    void SetTotalSz(const double total_sz) {
-      const int total_2sz = utility::DoubleTheNumber(total_sz);
-      if (isValidQNumber(total_2sz)) {
+      if (isValidQNumber(total_sz)) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__  << std::endl;
          ss << "There is no target space specified by total_sz = " << total_sz << std::endl;
          throw std::runtime_error(ss.str());
       }
+      const int total_2sz = utility::DoubleTheNumber(total_sz);
+
       if (total_2sz_ != total_2sz) {
          total_2sz_ = total_2sz;
          calculated_eigenvector_set_.clear();
@@ -117,10 +118,11 @@ public:
       calculated_eigenvector_set_.erase(level);
    }
    
-   bool isValidQNumber(const int total_2sz) const {
+   bool isValidQNumber(const double total_sz) const {
+      const int total_2sz = utility::DoubleTheNumber(total_sz);
       const bool c1 = ((system_size_*magnitude_2spin_ - total_2sz)%2 == 0);
-      const bool c2 = (-system_size_*magnitude_2spin_ < total_2sz);
-      const bool c3 = (total_2sz < +system_size_*magnitude_2spin_);
+      const bool c2 = (-system_size_*magnitude_2spin_ <= total_2sz);
+      const bool c3 = (total_2sz <= system_size_*magnitude_2spin_);
       if (c1 && c2 && c3) {
          return true;
       }
@@ -141,14 +143,13 @@ public:
    }
    
    std::int64_t CalculateTargetDim(const double total_sz) const {
-      const int total_2sz = utility::DoubleTheNumber(total_sz);
-      if (isValidQNumber(total_2sz) == false) {
+      if (isValidQNumber(total_sz) == false) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__ << std::endl;
          ss << "Invalid parameters (system_size or magnitude_spin or total_sz)" << std::endl;
          throw std::runtime_error(ss.str());
       }
-      
+      const int total_2sz = utility::DoubleTheNumber(total_sz);
       const int max_total_2sz = system_size_*magnitude_2spin_;
       std::vector<std::vector<std::int64_t>> dim(system_size_, std::vector<std::int64_t>(max_total_2sz + 1));
       for (int s = -magnitude_2spin_; s <= magnitude_2spin_; s += 2) {
@@ -174,16 +175,16 @@ public:
    }
    
    void GenerateBasis(const double total_sz) {
-      const auto start = std::chrono::system_clock::now();
-      const int total_2sz = utility::DoubleTheNumber(total_sz);
-      
-      if (isValidQNumber(total_2sz) == false) {
+      if (isValidQNumber(total_sz) == false) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__ << std::endl;
          ss << "Invalid parameters (system_size or magnitude_spin or total_sz)" << std::endl;
          throw std::runtime_error(ss.str());
       }
       
+      const auto start = std::chrono::system_clock::now();
+      const int total_2sz = utility::DoubleTheNumber(total_sz);
+
       if (bases_.count(total_2sz) != 0) {
          return;
       }
@@ -191,7 +192,7 @@ public:
       std::cout << "Generating Basis..." << std::flush;
       
       const int shifted_2sz = (system_size_*magnitude_2spin_ - total_2sz)/2;
-      const std::int64_t dim_target = CalculateTargetDim(total_2sz);
+      const std::int64_t dim_target = CalculateTargetDim(total_sz);
       std::vector<std::vector<int>> partition_integers;
       utility::GenerateIntegerPartition(&partition_integers, shifted_2sz, magnitude_2spin_);
       
