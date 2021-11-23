@@ -6,8 +6,8 @@ from pybind11.setup_helpers import Pybind11Extension, build_ext
 from setuptools import setup
 import os
 
-os.environ["CC"]= "clang++"
-
+# os.environ["CC"]= "icpc"
+# os.environ["CXX"]= "icpc"
 
 __version__ = "0.0.1"
 
@@ -20,10 +20,11 @@ __version__ = "0.0.1"
 #   Sort input source files if you glob sources to ensure bit-for-bit
 #   reproducible builds (https://github.com/pybind/python_example/pull/53)
 
-if os.environ["CC"] == "icpc":
-    os.environ["CFLAGS"]='-qopenmp'
+if "CC" in os.environ and os.environ["CC"] == "icpc":
+    os.environ["CFLAGS"]='-qopenmp -static-intel -qmkl'
 else:
-    os.environ["CFLAGS"]='-Xpreprocessor -fopenmp'
+    os.environ["CFLAGS"]='-Xpreprocessor -fopenmp -lomp -llapack'
+
 
 ext_modules = [
         Pybind11Extension("compnal",
