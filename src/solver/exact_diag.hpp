@@ -91,7 +91,7 @@ public:
       const auto &basis_inv = model.GetTargetBasisInv();
       
       const std::int64_t dim = eigenvectors_.at(level).val.size();
-      if (basis.size() != dim || basis_inv.size() != dim) {
+      if (static_cast<std::int64_t>(basis.size()) != dim || static_cast<std::int64_t>(basis_inv.size()) != dim) {
          std::stringstream ss;
          ss << "Error in " << __func__ << std::endl;
          ss << "Unknown error detected" << std::endl;
@@ -352,14 +352,17 @@ private:
       
       for (std::int64_t row = 0; row < dim_target; ++row) {
          GenerateMatrixComponents(&components, basis[row], model);
-         for (const auto &a_basis: components.basis_affected) {
-            if (basis_inv.count(a_basis) > 0) {
+         const std::size_t size = components.basis_affected.size();
+         for (std::size_t i = 0; i < size; ++i) {
+            const std::int64_t a_basis = components.basis_affected[i];
+            const RealType     val     = components.val[i];
+            if (basis_inv.count(a_basis) > 0 && std::abs(val) > components.zero_precision) {
                const std::int64_t inv = basis_inv.at(a_basis);
                if (inv <= row) {
                   num_row_element[row + 1]++;
                }
             }
-            else {
+            else if (basis_inv.count(a_basis) == 0 && std::abs(val) > components.zero_precision) {
                throw std::runtime_error("Matrix elements are not in the target space");
             }
          }
@@ -382,10 +385,11 @@ private:
       
       for (int row = 0; row < dim_target; ++row) {
          GenerateMatrixComponents(&components, basis[row], model);
-         for (std::int64_t i = 0; i < components.basis_affected.size(); ++i) {
-            const std::int64_t  a_basis = components.basis_affected[i];
-            const RealType val     = components.val[i];
-            if (basis_inv.count(a_basis) > 0) {
+         const std::size_t size = components.basis_affected.size();
+         for (std::size_t i = 0; i < size; ++i) {
+            const std::int64_t a_basis = components.basis_affected[i];
+            const RealType     val     = components.val[i];
+            if (basis_inv.count(a_basis) > 0 && std::abs(val) > components.zero_precision) {
                const std::int64_t inv = basis_inv.at(a_basis);
                if (inv <= row) {
                   ham->col[num_row_element[row]] = inv;

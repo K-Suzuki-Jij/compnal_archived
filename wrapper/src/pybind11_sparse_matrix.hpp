@@ -101,8 +101,8 @@ void pybind11SparseMatrixBraketVector(py::module &m) {
    .def("__repr__", [](const BKV& self) {
       std::ostringstream out;
       out << "[";
-      for (std::int64_t i = 0; i < self.val.size(); ++i) {
-         if (i +1 == self.val.size()) {
+      for (std::size_t i = 0; i < self.val.size(); ++i) {
+         if (i + 1 == self.val.size()) {
             out << self.val.at(i);
          }
          else {

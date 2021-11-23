@@ -92,11 +92,11 @@ void pybind11ModelXXZ1D(py::module &m) {
          out << "////////////////////////" << std::endl;
          out << "Heisenberg Model Interaction" << std::endl;
          out << "Sz-Sz Interaction: J_z ="     << std::endl;
-         for (std::int64_t i = 0; i < self.GetJz().size(); ++i) {
+         for (std::size_t i = 0; i < self.GetJz().size(); ++i) {
             out << i + 1 << "-th neighber: " << self.GetJz().at(i) << std::endl;
          }
          out << "Sx-Sx, Sy-Sy Interactions: J_xy =" << std::endl;
-         for (std::int64_t i = 0; i < self.GetJxy().size(); ++i) {
+         for (std::size_t i = 0; i < self.GetJxy().size(); ++i) {
             out << i + 1 << "-th neighber: " << self.GetJxy().at(i) << std::endl;
          }
          out << "External Magnetic Fields for the z-direction: h_z = " << self.GetHz() << std::endl;

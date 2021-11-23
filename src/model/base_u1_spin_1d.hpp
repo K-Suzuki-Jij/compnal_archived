@@ -247,10 +247,10 @@ public:
       }
       
 #else
-      basis->reserve(dim_target);
+      bases_.at(total_2sz).reserve(dim_target);
       
       for (auto &&integer_list: partition_integers) {
-         const bool condition1 = (0 < integer_list.size()) && (integer_list.size() <= system_size_);
+         const bool condition1 = (0 < integer_list.size()) && (static_cast<int>(integer_list.size()) <= system_size_);
          const bool condition2 = (integer_list.size() == 0) && (shifted_2sz  == 0);
          if (condition1 || condition2) {
             
@@ -262,10 +262,10 @@ public:
             
             do {
                std::int64_t basis_global = 0;
-               for (std::int64_t j = 0; j < integer_list.size(); ++j) {
+               for (std::size_t j = 0; j < integer_list.size(); ++j) {
                   basis_global += integer_list[j]*site_constant[j];
                }
-               basis->push_back(basis_global);
+               bases_.at(total_2sz).push_back(basis_global);
             } while (std::next_permutation(integer_list.begin(), integer_list.end()));
          }
       }

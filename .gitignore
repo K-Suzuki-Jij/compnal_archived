@@ -5,3 +5,7 @@
 *.entitlements
 *.venv
 *.so
+build
+.eggs
+dist
+*.egg-info
