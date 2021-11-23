@@ -4,6 +4,10 @@ from pybind11 import get_cmake_dir
 # Available at setup time due to pyproject.toml
 from pybind11.setup_helpers import Pybind11Extension, build_ext
 from setuptools import setup
+import os
+
+os.environ["CC"]= "clang++"
+
 
 __version__ = "0.0.1"
 
@@ -15,6 +19,11 @@ __version__ = "0.0.1"
 # Note:
 #   Sort input source files if you glob sources to ensure bit-for-bit
 #   reproducible builds (https://github.com/pybind/python_example/pull/53)
+
+if os.environ["CC"] == "icpc":
+    os.environ["CFLAGS"]='-qopenmp'
+else:
+    os.environ["CFLAGS"]='-Xpreprocessor -fopenmp'
 
 ext_modules = [
         Pybind11Extension("compnal",
@@ -31,6 +40,7 @@ setup(
     url="https://github.com/K-Suzuki-Jij/compnal",
     description="Numerical caluculation library for condensed matter physics",
     long_description="",
+    language="c++",
     ext_modules=ext_modules,
     extras_require={"test": "pytest"},
     # Currently, build_ext only provides an optional "highest supported C++
