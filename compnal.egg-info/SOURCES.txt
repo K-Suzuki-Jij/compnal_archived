@@ -1,9 +1,0 @@
-README.md
-setup.py
-compnal.egg-info/PKG-INFO
-compnal.egg-info/SOURCES.txt
-compnal.egg-info/dependency_links.txt
-compnal.egg-info/not-zip-safe
-compnal.egg-info/requires.txt
-compnal.egg-info/top_level.txt
-wrapper/pybind11_main.cpp
