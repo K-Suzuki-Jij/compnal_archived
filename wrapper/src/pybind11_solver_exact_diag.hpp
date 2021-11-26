@@ -22,6 +22,7 @@ template<class ModelClass>
 void pybind11SolverExactDiag(py::module &m, const std::string &mtype_str) {
    
    using ED = compnal::solver::ExactDiag<ModelClass>;
+   using CRS = compnal::sparse_matrix::CRS<typename ModelClass::ValueType>;
    auto str = std::string("ExactDiag")+mtype_str;
    
    py::class_<ED>(m, str.c_str(), py::module_local())
@@ -32,7 +33,8 @@ void pybind11SolverExactDiag(py::module &m, const std::string &mtype_str) {
    .def("get_eigenvectors", &ED::GetEigenvectors)
    .def("get_eigenvalues", &ED::GetEigenvalues)
    .def("calculate_expectation_value", &ED::CalculateExpectationValue, "operator"_a, "site"_a, "level"_a = 0)
-   .def("calculate_correlation_function", &ED::CalculateCorrelationFunction, "m_1"_a, "site_1"_a, "m_2"_a, "site_2"_a, "level"_a = 0)
+   .def("calculate_correlation_function", py::overload_cast<const CRS&, const int, const CRS&, const int, const int>(&ED::CalculateCorrelationFunction), "m_1"_a, "site_1"_a, "m_2"_a, "site_2"_a, "level"_a = 0)
+   .def("calculate_correlation_function", py::overload_cast<const CRS&, const int, const CRS&, const int, const CRS&, const int, const int>(&ED::CalculateCorrelationFunction), "m_1"_a, "site_1"_a, "m_2"_a, "site_2"_a, "m_3"_a, "site_3"_a, "level"_a = 0)
    .def("calculate_ground_state", [](ED &self, const std::string &diag_method) {
       py::scoped_ostream_redirect stream(
           std::cout,                                // std::ostream&
@@ -41,7 +43,7 @@ void pybind11SolverExactDiag(py::module &m, const std::string &mtype_str) {
       self.CalculateGroundState(diag_method);
    }, "diag_method"_a = "Lanczos");
    
-   auto mkci_str = std::string("make_exact_diag_system");
+   auto mkci_str = std::string("ExactDiag");
    m.def(mkci_str.c_str(), [](const ModelClass &model) {
       return compnal::solver::ExactDiag<ModelClass>(model);
    }, "model"_a);
