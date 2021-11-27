@@ -374,7 +374,7 @@ public:
       return target_sector_set;
    }
    
-   std::vector<std::tuple<int, int, int, int>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_bra, const CRS &m_3_ket, const CRS &m_4_ket) const {
+   std::vector<std::tuple<int, int, int>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_bra, const CRS &m_3_ket, const CRS &m_4_ket) const {
       std::unordered_set<int> delta_sector_set_m1;
       std::unordered_set<int> delta_sector_set_m2;
       std::unordered_set<int> delta_sector_set_m3;
@@ -412,7 +412,7 @@ public:
          }
       }
       
-      std::vector<std::tuple<int, int, int, int>> target_sector_set;
+      std::vector<std::tuple<int, int, int>> target_sector_set;
       for (const auto &del_sec_m1: delta_sector_set_m1) {
          for (const auto &del_sec_m2: delta_sector_set_m2) {
             for (const auto &del_sec_m3: delta_sector_set_m3) {
@@ -421,7 +421,6 @@ public:
                      target_sector_set.push_back({
                         del_sec_m1 + total_2sz_,
                         del_sec_m1 + del_sec_m2 + total_2sz_,
-                        del_sec_m3 + del_sec_m4 + total_2sz_,
                         del_sec_m4 + total_2sz_
                      });
                   }
