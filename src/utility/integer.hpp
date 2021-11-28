@@ -75,6 +75,21 @@ std::int64_t CalculateBinomialCoefficient(int n, const int k) {
    
 }
 
+std::vector<std::vector<std::int64_t>> CalculateBinomialTable(int N) {
+   std::vector<std::vector<std::int64_t>> vec(N + 1, std::vector<std::int64_t>(N + 1));
+   for (int i = 0; i <= N; ++i) {
+      for (int j = 0; j <= i; j++) {
+         if (j == 0 || j == i) {
+            vec[i][j] = 1;
+         }
+         else {
+            vec[i][j] = vec[i - 1][j - 1] + vec[i - 1][j];
+         }
+      }
+   }
+   return vec;
+}
+
 std::int64_t CalculateNumCombination(const std::vector<int> &list) {
    
    std::unordered_map<int, int> u_map;

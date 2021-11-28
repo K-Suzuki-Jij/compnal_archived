@@ -723,7 +723,8 @@ private:
       
    }
    
-   void GenerateMatrixComponents(ExactDiagMatrixComponents<RealType> *edmc, const std::int64_t basis, const model::U1Spin_1D<RealType> &model_input) const {
+   template<class BaseClass>
+   void GenerateMatrixComponents(ExactDiagMatrixComponents<RealType> *edmc, const std::int64_t basis, const model::GeneralModel_1D<BaseClass> &model_input) const {
       
       for (int site = 0; site < model_input.GetSystemSize(); ++site) {
          edmc->basis_onsite[site] = CalculateLocalBasis(basis, site, model_input.GetDimOnsite());

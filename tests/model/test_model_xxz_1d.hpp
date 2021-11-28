@@ -23,5 +23,14 @@ TEST(XXZ_1D, Basic) {
    
 }
 
+TEST(General, Basic) {
+   
+   compnal::model::GeneralModel_1D<compnal::model::BaseU1Electron_1D<double>> model_ele;
+   compnal::model::GeneralModel_1D<compnal::model::BaseU1Spin_1D<double>>     model_spin;
+   
+   
+   
+   
+}
 
 #endif /* TEST_MODEL_XXZ_1D_HPP_ */

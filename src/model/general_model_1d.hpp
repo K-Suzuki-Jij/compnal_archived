@@ -1,27 +1,29 @@
 //
-//  u1_spin_1d.hpp
+//  u1_electron_1d.hpp
 //  compnal
 //
-//  Created by Kohei Suzuki on 2021/11/18.
+//  Created by Kohei Suzuki on 2021/11/27.
 //
 
-#ifndef COMPNAL_MODEL_U1SPIN_1D_HPP_
-#define COMPNAL_MODEL_U1SPIN_1D_HPP_
+#ifndef COMPNAL_MODEL_U1_ELECTRON_1D_HPP_
+#define COMPNAL_MODEL_U1_ELECTRON_1D_HPP_
+
+#include "../sparse_matrix/all.hpp"
+
+#include <unordered_map>
+#include <vector>
 
 namespace compnal {
 namespace model {
 
-template<typename RealType>
-class U1Spin_1D: public BaseU1Spin_1D<RealType> {
+template<class BaseClass>
+class GeneralModel_1D: public BaseClass {
    
+   using RealType = typename BaseClass::ValueType;
    using CRS = sparse_matrix::CRS<RealType>;
    
 public:
-   U1Spin_1D(): BaseU1Spin_1D<RealType>() {}
-   
-   explicit U1Spin_1D(const int system_size): BaseU1Spin_1D<RealType>(system_size) {}
-   
-   U1Spin_1D(const int system_size, const double magnitude_spin): BaseU1Spin_1D<RealType>(system_size, magnitude_spin) {}
+   using BaseClass::BaseClass;
    
    void AddOnsitePotential(const RealType val, const CRS &m, const int site) {
       if (val == 0.0) {
@@ -37,7 +39,7 @@ public:
          onsite_operator_list_[site] = m.MultiplyByScalar(val);
       }
       else {
-         onsite_operator_list_.at(site) = CreateMatrixSum(val, m, 1.0, onsite_operator_list_.at(site));
+         onsite_operator_list_.at(site) = CalculateMatrixMatrixSum(val, m, 1.0, onsite_operator_list_.at(site));
       }
    }
    
@@ -84,12 +86,11 @@ private:
    
 };
 
-
-
-
-
 }
 }
 
 
-#endif /* COMPNAL_MODEL_U1_SPIN_1D_HPP_ */
+
+
+
+#endif /* COMPNAL_MODEL_U1_ELECTRON_1D_HPP_ */

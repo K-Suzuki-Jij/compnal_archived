@@ -10,10 +10,6 @@
 
 #include "./base_u1_spin_1d.hpp"
 
-#ifdef _OPENMP
-#include <omp.h>
-#endif
-
 namespace compnal {
 namespace model {
 

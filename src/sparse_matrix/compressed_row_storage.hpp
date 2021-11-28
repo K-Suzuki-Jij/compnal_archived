@@ -319,19 +319,19 @@ void CalculateMatrixMatrixProduct(CRS<RealType> *matrix_out,
 }
 
 template<typename RealType>
-CRS<RealType> CreateMatrixSum(const RealType coeef_1,
+CRS<RealType> CalculateMatrixMatrixSum(const RealType coeef_1,
                               const CRS<RealType> &matrix_1,
                               const RealType coeef_2,
                               const CRS<RealType> &matrix_2) {
    
    CRS<RealType> m;
-   CreateMatrixSum(&m, coeef_1, matrix_1, coeef_2, matrix_2);
+   CalculateMatrixMatrixSum(&m, coeef_1, matrix_1, coeef_2, matrix_2);
    return m;
    
 }
 
 template<typename RealType>
-void CreateMatrixSum(CRS<RealType> *matrix_out,
+void CalculateMatrixMatrixSum(CRS<RealType> *matrix_out,
                      const RealType coeef_1,
                      const CRS<RealType> &matrix_1,
                      const RealType coeef_2,

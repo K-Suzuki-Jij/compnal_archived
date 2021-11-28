@@ -31,7 +31,7 @@ TEST(XXZ, Basic) {
 
 TEST(U1Spin, Basis) {
    const int N = 4;
-   compnal::model::U1Spin_1D<double> model(N, 0.5);
+   compnal::model::GeneralModel_1D<compnal::model::BaseU1Spin_1D<double>> model(N, 0.5);
 
    for (int i = 0; i < N - 1; ++i) {
       model.AddInteraction(model.GetOnsiteOperatorSz(), i, model.GetOnsiteOperatorSz(), i+1);
@@ -43,6 +43,11 @@ TEST(U1Spin, Basis) {
    ed.CalculateGroundState("Lanczos");
    printf("%.30lf\n", ed.GetEigenvalues()[0]);
 
+}
+
+TEST(U1Electron, Basis) {
+   compnal::model::GeneralModel_1D<compnal::model::BaseU1Electron_1D<double>> model;
+   compnal::solver::ExactDiag ed(model);
 }
 
 #endif /* TEST_SOLVER_EXACT_DIAG_HPP_*/

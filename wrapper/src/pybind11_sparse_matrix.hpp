@@ -43,22 +43,22 @@ void pybind11SparseMatrixCRS(py::module &m) {
    }, py::is_operator())
    .def("__add__", [](const CRS &lhs, const CRS &rhs) {
       CRS mat;
-      compnal::sparse_matrix::CreateMatrixSum(&mat, 1.0, lhs, 1.0, rhs);
+      compnal::sparse_matrix::CalculateMatrixMatrixSum(&mat, 1.0, lhs, 1.0, rhs);
       return mat;
    }, py::is_operator())
    .def("__sub__", [](const CRS &lhs, const CRS &rhs) {
       CRS mat;
-      compnal::sparse_matrix::CreateMatrixSum(&mat, 1.0, lhs, -1.0, rhs);
+      compnal::sparse_matrix::CalculateMatrixMatrixSum(&mat, 1.0, lhs, -1.0, rhs);
       return mat;
    }, py::is_operator())
    .def("__iadd__", [](CRS &self, const CRS &rhs) {
       const CRS lhs = self;
-      compnal::sparse_matrix::CreateMatrixSum(&self, 1.0, lhs, 1.0, rhs);
+      compnal::sparse_matrix::CalculateMatrixMatrixSum(&self, 1.0, lhs, 1.0, rhs);
       return self;
    }, py::is_operator())
    .def("__isub__", [](CRS &self, const CRS &rhs) {
       const CRS lhs = self;
-      compnal::sparse_matrix::CreateMatrixSum(&self, 1.0, lhs, -1.0, rhs);
+      compnal::sparse_matrix::CalculateMatrixMatrixSum(&self, 1.0, lhs, -1.0, rhs);
       return self;
    }, py::is_operator())
    .def("__imul__", [](CRS &self, const CRS &rhs) {

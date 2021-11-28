@@ -541,6 +541,7 @@ public:
       return matrix;
    }
    
+   // TODO: Move Boundary Condition to Derivrd Class.
    inline utility::BoundaryCondition GetBoundaryCondition() const { return boundary_condition_; }
    inline int GetSystemSize()           const { return system_size_;            }
    inline int GetDimOnsite()            const { return dim_onsite_;             }
