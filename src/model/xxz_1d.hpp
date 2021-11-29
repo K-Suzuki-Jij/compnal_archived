@@ -19,28 +19,7 @@ class XXZ_1D: public BaseU1Spin_1D<RealType> {
    using CRS = sparse_matrix::CRS<RealType>;
    
 public:
-   XXZ_1D(): BaseU1Spin_1D<RealType>() {
-      onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2spin_);
-   }
-   
-   explicit XXZ_1D(const int system_size): BaseU1Spin_1D<RealType>(system_size) {
-      onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2spin_);
-   }
-   
-   XXZ_1D(const int system_size, const double magnitude_spin):
-   BaseU1Spin_1D<RealType>(system_size, magnitude_spin) {
-      onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2spin_);
-   }
-   
-   XXZ_1D(const int system_size, const utility::BoundaryCondition bc):
-   BaseU1Spin_1D<RealType>(system_size, bc) {
-      onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2spin_);
-   }
-   
-   XXZ_1D(const int system_size, const double magnitude_spin, const utility::BoundaryCondition bc):
-   BaseU1Spin_1D<RealType>(system_size, magnitude_spin, bc) {
-      onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2spin_);
-   }
+   using BaseU1Spin_1D<RealType>::BaseU1Spin_1D;
    
    void SetJz(const std::vector<RealType> &J_z) {
       if (J_z_ != J_z) {
@@ -106,7 +85,7 @@ public:
          bc = "SSD";
       }
       std::cout << "Print Heisenberg Model Infomation:" << std::endl;
-      std::cout << "boundary_condition     = " << this->bc                      << std::endl;
+      std::cout << "boundary_condition     = " << this->boundary_condition_     << std::endl;
       std::cout << "system_size            = " << this->system_size_            << std::endl;
       std::cout << "magnitute_2spin        = " << this->magnitude_2spin_        << std::endl;
       std::cout << "total_2sz              = " << this->total_2sz_              << std::endl;
@@ -116,11 +95,11 @@ public:
       
       std::cout << "Print Heisenberg Interaction" << std::endl;
       std::cout << "Sz-Sz Interaction: J_z =" << std::endl;
-      for (std::int64_t i = 0; i < J_z_.size(); ++i) {
+      for (std::size_t i = 0; i < J_z_.size(); ++i) {
          std::cout << i + 1 << "-th neighber: " << J_z_.at(i) << std::endl;
       }
       std::cout << "Sx-Sx, Sy-Sy Interactions: J_xy =" << std::endl;
-      for (std::int64_t i = 0; i < J_xy_.size(); ++i) {
+      for (std::size_t i = 0; i < J_xy_.size(); ++i) {
          std::cout << i + 1 << "-th neighber: " << J_xy_.at(i) << std::endl;
       }
       std::cout << "External Magnetic Fields for the z-direction: h_z =" << h_z_ << std::endl;

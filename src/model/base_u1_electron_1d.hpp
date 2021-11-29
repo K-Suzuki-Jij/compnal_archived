@@ -363,7 +363,7 @@ public:
    inline int    GetTotal2Sz()             const { return total_2sz_;              }
    inline double GetTotalSz()              const { return 0.5*total_2sz_;          }
    inline int    GetNumConservedQuantity() const { return num_conserved_quantity_; }
-   inline double GetMagnitudeSpin()        const { return 0.5; }
+   inline int    GetTotalElectron()        const { return total_electron_; }
    
    inline const CRS &GetOnsiteOperatorCUp()         const {return onsite_operator_c_up_;   }
    inline const CRS &GetOnsiteOperatorCDown()       const {return onsite_operator_c_down_; }
@@ -372,11 +372,11 @@ public:
    inline const CRS &GetOnsiteOperatorNCUp()        const {return onsite_operator_nc_up_; }
    inline const CRS &GetOnsiteOperatorNCDown()      const {return onsite_operator_nc_down_; }
    inline const CRS &GetOnsiteOperatorNC()          const {return onsite_operator_nc_; }
-   inline const CRS &GetOnsiteOperatorSx () const { return onsite_operator_sx_ ; }
-   inline const CRS &GetOnsiteOperatoriSy() const { return onsite_operator_isy_; }
-   inline const CRS &GetOnsiteOperatorSz () const { return onsite_operator_sz_ ; }
-   inline const CRS &GetOnsiteOperatorSp () const { return onsite_operator_sp_ ; }
-   inline const CRS &GetOnsiteOperatorSm () const { return onsite_operator_sm_ ; }
+   inline const CRS &GetOnsiteOperatorSx ()         const { return onsite_operator_sx_ ; }
+   inline const CRS &GetOnsiteOperatoriSy()         const { return onsite_operator_isy_; }
+   inline const CRS &GetOnsiteOperatorSz ()         const { return onsite_operator_sz_ ; }
+   inline const CRS &GetOnsiteOperatorSp ()         const { return onsite_operator_sp_ ; }
+   inline const CRS &GetOnsiteOperatorSm ()         const { return onsite_operator_sm_ ; }
    
    inline const std::unordered_set<int> &GetCalculatedEigenvectorSet() const {
       return calculated_eigenvector_set_;
@@ -411,9 +411,7 @@ protected:
    CRS onsite_operator_sz_;
    CRS onsite_operator_sp_;
    CRS onsite_operator_sm_;
-   
-   utility::BoundaryCondition boundary_condition_ = utility::BoundaryCondition::OBC;
-   
+      
    int system_size_    = 0;
    int total_2sz_      = 0;
    int total_electron_ = 0;
