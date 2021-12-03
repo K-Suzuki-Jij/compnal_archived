@@ -23,7 +23,7 @@ namespace model {
 
 template<typename RealType>
 class BaseU1Electron_1D {
-
+   
    using CRS = sparse_matrix::CRS<RealType>;
    
 public:
@@ -32,7 +32,7 @@ public:
    BaseU1Electron_1D() {
       SetOnsiteOperator();
    }
-
+   
    explicit BaseU1Electron_1D(const int system_size): BaseU1Electron_1D() {
       SetSystemSize(system_size);
    }
@@ -58,14 +58,14 @@ public:
    }
    
    void SetTotalSz(const double total_sz) {
-      if (isValidQNumber(total_sz, total_electron_)) {
+      if (!isValidQNumber({total_electron_, total_sz})) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__  << std::endl;
          ss << "There is no target space specified by total_sz = " << total_sz << std::endl;
          throw std::runtime_error(ss.str());
       }
       const int total_2sz = utility::DoubleTheNumber(total_sz);
-
+      
       if (total_2sz_ != total_2sz) {
          total_2sz_ = total_2sz;
          calculated_eigenvector_set_.clear();
@@ -73,7 +73,7 @@ public:
    }
    
    void SetTotalElectron(const int total_electron) {
-      if (isValidQNumber(0.5*total_2sz_, total_electron)) {
+      if (!isValidQNumber({total_electron, 0.5*total_2sz_})) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__  << std::endl;
          ss << "There is no target space specified by total_sz = " << total_2sz_ << std::endl;
@@ -85,8 +85,13 @@ public:
       }
    }
    
-   bool isValidQNumber(const double total_sz, const int total_electron) const {
-      const int total_2sz = utility::DoubleTheNumber(total_sz);
+   void SetCalculatedEigenvectorSet(const std::int64_t level) {
+      calculated_eigenvector_set_.emplace(level);
+   }
+   
+   bool isValidQNumber(const std::pair<int, double> &quantum_number) const {
+      const int total_electron = quantum_number.first;
+      const int total_2sz      = utility::DoubleTheNumber(quantum_number.second);
       const bool c1 = (0 <= total_electron && total_electron <= 2*system_size_);
       const bool c2 = ((total_electron - total_2sz)%2 == 0);
       const bool c3 = (-total_electron <= total_2sz && total_2sz <= total_electron);
@@ -106,18 +111,22 @@ public:
    }
    
    std::int64_t CalculateTargetDim() const {
-      return CalculateTargetDim(total_electron_, 0.5*total_2sz_);
+      return CalculateTargetDim({total_electron_, 0.5*total_2sz_});
    }
    
    std::int64_t CalculateTargetDim(const int total_electron, const double total_sz) const {
-      if (isValidQNumber(total_sz, total_electron) == false) {
+      return CalculateTargetDim({total_electron, total_sz});
+   }
+   
+   std::int64_t CalculateTargetDim(const std::pair<int, double> &quantum_number) const {
+      if (!isValidQNumber(quantum_number)) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__ << std::endl;
          ss << "Invalid parameters (system_size or magnitude_spin or total_sz)" << std::endl;
          throw std::runtime_error(ss.str());
       }
-      
-      const int total_2sz = utility::DoubleTheNumber(total_sz);
+      const int total_electron = quantum_number.first;
+      const int total_2sz      = utility::DoubleTheNumber(quantum_number.second);
       const std::vector<std::vector<std::int64_t>> binom = utility::CalculateBinomialTable(system_size_);
       const int max_n_up_down = static_cast<int>(total_electron/2);
       std::int64_t dim = 0;
@@ -134,30 +143,32 @@ public:
    }
    
    void GenerateBasis() {
-      GenerateBasis(total_electron_, 0.5*total_2sz_);
+      GenerateBasis({total_electron_, 0.5*total_2sz_});
    }
    
-   void GenerateBasis(const int total_electron, const double total_sz) {
-      if (isValidQNumber(total_sz, total_electron) == false) {
+   void GenerateBasis(const std::pair<int, double> &quantum_number) {
+      if (!isValidQNumber(quantum_number)) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__ << std::endl;
          ss << "Invalid parameters (system_size or magnitude_spin or total_sz)" << std::endl;
          throw std::runtime_error(ss.str());
       }
       
-      const auto start     = std::chrono::system_clock::now();
-      const int  total_2sz = utility::DoubleTheNumber(total_sz);
+      const auto start         = std::chrono::system_clock::now();
+      const int total_electron = quantum_number.first;
+      const double total_sz    = quantum_number.second;
+      const int total_2sz      = utility::DoubleTheNumber(total_sz);
       
-      if (bases_.count(total_electron) != 0 && bases_.at(total_electron).count(total_sz) != 0) {
+      if (bases_.count({total_electron, total_2sz}) != 0) {
          return;
       }
       
       std::cout << "Generating Basis..." << std::flush;
       const int max_n_up_down = static_cast<int>(total_electron/2);
-      const std::int64_t dim_target = CalculateTargetDim(total_electron, total_sz);
+      const std::int64_t dim_target = CalculateTargetDim({total_electron, total_sz});
       
-      std::vector<std::int64_t>().swap(bases_[total_electron][total_2sz]);
-      auto &basis_ref = bases_.at(total_electron).at(total_2sz);
+      std::vector<std::int64_t>().swap(bases_[{total_electron, total_2sz}]);
+      auto &basis_ref = bases_.at({total_electron, total_2sz});
       
       std::vector<std::int64_t> site_constant(system_size_);
       for (int site = 0; site < system_size_; ++site) {
@@ -165,7 +176,7 @@ public:
       }
       
       std::vector<int> basis_list(system_size_);
-
+      
 #ifdef _OPENMP
       const int num_threads = omp_get_max_threads();
       std::vector<std::vector<std::int64_t>> temp_basis(num_threads);
@@ -246,17 +257,17 @@ public:
       }
 #endif
       
-      if (static_cast<std::int64_t>(bases_.at(total_electron).at(total_2sz).size()) != dim_target) {
+      if (static_cast<std::int64_t>(bases_.at({total_electron, total_2sz}).size()) != dim_target) {
          std::stringstream ss;
          ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
          throw std::runtime_error(ss.str());
       }
       
-      std::sort(bases_.at(total_electron).at(total_2sz).begin(), bases_.at(total_electron).at(total_2sz).end());
+      std::sort(basis_ref.begin(), basis_ref.end());
       
-      bases_inv_[total_electron][total_2sz].clear();
+      bases_inv_[{total_electron, total_2sz}].clear();
       
-      auto &basis_inv_ref = bases_inv_.at(total_electron).at(total_2sz);
+      auto &basis_inv_ref = bases_inv_.at({total_electron, total_2sz});
       for (std::int64_t i = 0; i < dim_target; ++i) {
          basis_inv_ref[basis_ref[i]] = i;
       }
@@ -264,6 +275,148 @@ public:
       const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
       const double time_sec   = static_cast<double>(time_count)/sparse_matrix::TIME_UNIT_CONSTANT;
       std::cout << "\rElapsed time of generating basis:" << time_sec << "[sec]" << std::endl;
+   }
+   
+   std::vector<std::pair<int, double>> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
+      std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m1;
+      std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m2;
+      for (std::int64_t i = 0; i < m_1.row_dim; ++i) {
+         for (std::int64_t j = m_1.row[i]; j < m_1.row[i + 1]; ++j) {
+            if (m_1.val[j] != 0.0) {
+               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_1.col[j])));
+            }
+         }
+      }
+      for (std::int64_t i = 0; i < m_2.row_dim; ++i) {
+         for (std::int64_t j = m_2.row[i]; j < m_2.row[i + 1]; ++j) {
+            if (m_2.val[j] != 0.0) {
+               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_2.col[j])));
+            }
+         }
+      }
+      std::vector<std::pair<int, double>> target_sector_set;
+      for (const auto &del_sec_m1: delta_sector_set_m1) {
+         for (const auto &del_sec_m2: delta_sector_set_m2) {
+            if (del_sec_m1 == del_sec_m2) {
+               target_sector_set.push_back(std::pair<int, double>{del_sec_m1.first + total_electron_, del_sec_m1.second + 0.5*total_2sz_});
+            }
+         }
+      }
+      std::sort(target_sector_set.begin(), target_sector_set.end());
+      target_sector_set.erase(std::unique(target_sector_set.begin(), target_sector_set.end()), target_sector_set.end());
+      return target_sector_set;
+   }
+   
+   std::vector<std::pair<std::pair<int, double>, std::pair<int, double>>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_ket, const CRS &m_3_ket) const {
+      std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m1;
+      std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m2;
+      std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m3;
+      
+      for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
+         for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
+            if (m_1_bra.val[j] != 0.0) {
+               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(i, m_1_bra.col[j]));
+            }
+         }
+      }
+      
+      for (std::int64_t i = 0; i < m_2_ket.row_dim; ++i) {
+         for (std::int64_t j = m_2_ket.row[i]; j < m_2_ket.row[i + 1]; ++j) {
+            if (m_2_ket.val[j] != 0.0) {
+               delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(i, m_2_ket.col[j]));
+            }
+         }
+      }
+      
+      for (std::int64_t i = 0; i < m_3_ket.row_dim; ++i) {
+         for (std::int64_t j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
+            if (m_3_ket.val[j] != 0.0) {
+               delta_sector_set_m3.emplace(CalculateQuntumNumberDifference(i, m_3_ket.col[j]));
+            }
+         }
+      }
+      
+      std::vector<std::pair<std::pair<int, double>, std::pair<int, double>>> target_sector_set;
+      
+      for (const auto &del_sec_m1: delta_sector_set_m1) {
+         for (const auto &del_sec_m2: delta_sector_set_m2) {
+            for (const auto &del_sec_m3: delta_sector_set_m3) {
+               const std::pair<int, double> del_sec_m2_m3 = {del_sec_m2.first + del_sec_m3.first, del_sec_m2.second + del_sec_m3.second};
+               if (del_sec_m1 == del_sec_m2_m3) {
+                  target_sector_set.push_back({
+                     {del_sec_m1.first + total_electron_, del_sec_m1.second + 0.5*total_2sz_},
+                     {del_sec_m3.first + total_electron_, del_sec_m3.second + 0.5*total_2sz_}
+                  });
+               }
+            }
+         }
+      }
+      std::sort(target_sector_set.begin(), target_sector_set.end());
+      target_sector_set.erase(std::unique(target_sector_set.begin(), target_sector_set.end()), target_sector_set.end());
+      return target_sector_set;
+   }
+   
+   std::vector<std::tuple<std::pair<int, double>, std::pair<int, double>, std::pair<int, double>>>
+   GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_bra, const CRS &m_3_ket, const CRS &m_4_ket) const {
+      std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m1;
+      std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m2;
+      std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m3;
+      std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m4;
+      
+      for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
+         for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
+            if (m_1_bra.val[j] != 0.0) {
+               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(i, m_1_bra.col[j]));
+            }
+         }
+      }
+      
+      for (std::int64_t i = 0; i < m_2_bra.row_dim; ++i) {
+         for (std::int64_t j = m_2_bra.row[i]; j < m_2_bra.row[i + 1]; ++j) {
+            if (m_2_bra.val[j] != 0.0) {
+               delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(i, m_2_bra.col[j]));
+            }
+         }
+      }
+      
+      for (std::int64_t i = 0; i < m_3_ket.row_dim; ++i) {
+         for (std::int64_t j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
+            if (m_3_ket.val[j] != 0.0) {
+               delta_sector_set_m3.emplace(CalculateQuntumNumberDifference(i, m_3_ket.col[j]));
+            }
+         }
+      }
+      
+      for (std::int64_t i = 0; i < m_4_ket.row_dim; ++i) {
+         for (std::int64_t j = m_4_ket.row[i]; j < m_4_ket.row[i + 1]; ++j) {
+            if (m_4_ket.val[j] != 0.0) {
+               delta_sector_set_m4.emplace(CalculateQuntumNumberDifference(i, m_4_ket.col[j]));
+            }
+         }
+      }
+      
+      std::vector<std::tuple<std::pair<int, double>, std::pair<int, double>, std::pair<int, double>>> target_sector_set;
+      for (const auto &del_sec_m1: delta_sector_set_m1) {
+         for (const auto &del_sec_m2: delta_sector_set_m2) {
+            for (const auto &del_sec_m3: delta_sector_set_m3) {
+               for (const auto &del_sec_m4: delta_sector_set_m4) {
+                  const std::pair<int, double> del_sec_m1_m2 = {del_sec_m1.first + del_sec_m2.first, del_sec_m1.second + del_sec_m2.second};
+                  const std::pair<int, double> del_sec_m3_m4 = {del_sec_m3.first + del_sec_m4.first, del_sec_m3.second + del_sec_m4.second};
+                  if (del_sec_m1_m2 == del_sec_m3_m4) {
+                     target_sector_set.push_back({
+                        {del_sec_m1.first    + total_electron_, del_sec_m1.second    + 0.5*total_2sz_},
+                        {del_sec_m1_m2.first + total_electron_, del_sec_m1_m2.second + 0.5*total_2sz_},
+                        {del_sec_m4.first    + total_electron_, del_sec_m4.second    + 0.5*total_2sz_}
+                     });
+                  }
+               }
+            }
+         }
+      }
+      
+      std::sort(target_sector_set.begin(), target_sector_set.end());
+      target_sector_set.erase(std::unique(target_sector_set.begin(), target_sector_set.end()), target_sector_set.end());
+      return target_sector_set;
    }
    
    static CRS CreateOnsiteOperatorCUp() {
@@ -365,13 +518,13 @@ public:
    inline int    GetNumConservedQuantity() const { return num_conserved_quantity_; }
    inline int    GetTotalElectron()        const { return total_electron_; }
    
-   inline const CRS &GetOnsiteOperatorCUp()         const {return onsite_operator_c_up_;   }
-   inline const CRS &GetOnsiteOperatorCDown()       const {return onsite_operator_c_down_; }
-   inline const CRS &GetOnsiteOperatorCUpDagger()   const {return onsite_operator_c_up_dagger_; }
-   inline const CRS &GetOnsiteOperatorCDownDagger() const {return onsite_operator_c_down_dagger_; }
-   inline const CRS &GetOnsiteOperatorNCUp()        const {return onsite_operator_nc_up_; }
-   inline const CRS &GetOnsiteOperatorNCDown()      const {return onsite_operator_nc_down_; }
-   inline const CRS &GetOnsiteOperatorNC()          const {return onsite_operator_nc_; }
+   inline const CRS &GetOnsiteOperatorCUp()         const { return onsite_operator_c_up_;   }
+   inline const CRS &GetOnsiteOperatorCDown()       const { return onsite_operator_c_down_; }
+   inline const CRS &GetOnsiteOperatorCUpDagger()   const { return onsite_operator_c_up_dagger_; }
+   inline const CRS &GetOnsiteOperatorCDownDagger() const { return onsite_operator_c_down_dagger_; }
+   inline const CRS &GetOnsiteOperatorNCUp()        const { return onsite_operator_nc_up_; }
+   inline const CRS &GetOnsiteOperatorNCDown()      const { return onsite_operator_nc_down_; }
+   inline const CRS &GetOnsiteOperatorNC()          const { return onsite_operator_nc_; }
    inline const CRS &GetOnsiteOperatorSx ()         const { return onsite_operator_sx_ ; }
    inline const CRS &GetOnsiteOperatoriSy()         const { return onsite_operator_isy_; }
    inline const CRS &GetOnsiteOperatorSz ()         const { return onsite_operator_sz_ ; }
@@ -382,20 +535,20 @@ public:
       return calculated_eigenvector_set_;
    }
    
-   inline const std::vector<std::int64_t> &GetBasis(const int system_size, const double total_sz) const {
-      return bases_.at(system_size).at(utility::DoubleTheNumber(total_sz));
+   inline const std::vector<std::int64_t> &GetBasis(const std::pair<int, double> &quantum_number) const {
+      return bases_.at({quantum_number.first, utility::DoubleTheNumber(quantum_number.second)});
    }
    
-   inline const std::unordered_map<std::int64_t, std::int64_t> &GetBasisInv(const int system_size, const double total_sz) const {
-      return bases_inv_.at(system_size).at(utility::DoubleTheNumber(total_sz));
+   inline const std::unordered_map<std::int64_t, std::int64_t> &GetBasisInv(const std::pair<int, double> &quantum_number) const {
+      return bases_inv_.at({quantum_number.first, utility::DoubleTheNumber(quantum_number.second)});
    }
    
    inline const std::vector<std::int64_t> &GetTargetBasis() const {
-      return bases_.at(system_size_).at(total_2sz_);
+      return bases_.at({total_electron_, total_2sz_});
    }
    
    inline const std::unordered_map<std::int64_t, std::int64_t> &GetTargetBasisInv() const {
-      return bases_inv_.at(system_size_).at(total_2sz_);
+      return bases_inv_.at({total_electron_, total_2sz_});
    }
    
 protected:
@@ -411,7 +564,7 @@ protected:
    CRS onsite_operator_sz_;
    CRS onsite_operator_sp_;
    CRS onsite_operator_sm_;
-      
+   
    int system_size_    = 0;
    int total_2sz_      = 0;
    int total_electron_ = 0;
@@ -419,11 +572,11 @@ protected:
    const int dim_onsite_ = 4;
    
    const int num_conserved_quantity_ = 2;
-
+   
    std::unordered_set<int> calculated_eigenvector_set_;
    
-   std::unordered_map<int, std::unordered_map<int, std::vector<std::int64_t>>> bases_;
-   std::unordered_map<int, std::unordered_map<int, std::unordered_map<std::int64_t, std::int64_t>>> bases_inv_;
+   std::unordered_map<std::pair<int, int>, std::vector<std::int64_t>, utility::pair_hash> bases_;
+   std::unordered_map<std::pair<int, int>, std::unordered_map<std::int64_t, std::int64_t>, utility::pair_hash> bases_inv_;
    
    void SetOnsiteOperator() {
       onsite_operator_c_up_   = CreateOnsiteOperatorCUp();
@@ -440,6 +593,53 @@ protected:
       onsite_operator_sm_ = CreateOnsiteOperatorSm ();
    }
    
+   std::pair<int, double> CalculateQuntumNumberDifference(const int row, const int col) const {
+      if (row == col && 0 <= row && row < 4 && 0 <= col && col < 4) {
+         return {+0, +0.0};
+      }
+      else if (row == 0 && col == 1) {
+         return {-1, -0.5};
+      }
+      else if (row == 0 && col == 2) {
+         return {-1, +0.5};
+      }
+      else if (row == 0 && col == 3) {
+         return {-2, +0.0};
+      }
+      else if (row == 1 && col == 0) {
+         return {+1, +0.5};
+      }
+      else if (row == 1 && col == 2) {
+         return {+0, +1.0};
+      }
+      else if (row == 1 && col == 3) {
+         return {-1, +0.5};
+      }
+      else if (row == 2 && col == 0) {
+         return {+1, -0.5};
+      }
+      else if (row == 2 && col == 1) {
+         return {+0, -1.0};
+      }
+      else if (row == 2 && col == 3) {
+         return {-1, -0.5};
+      }
+      else if (row == 3 && col == 0) {
+         return {+2, +0.0};
+      }
+      else if (row == 3 && col == 1) {
+         return {+1, -0.5};
+      }
+      else if (row == 3 && col == 2) {
+         return {+1, +0.5};
+      }
+      else {
+         std::stringstream ss;
+         ss << "Error in " << __func__ << std::endl;
+         ss << "The dimenstion of the matrix must be 4";
+         throw std::runtime_error(ss.str());
+      }
+   }
    
    
 };

@@ -92,7 +92,7 @@ public:
    }
    
    void SetTotalSz(const double total_sz) {
-      if (isValidQNumber(total_sz)) {
+      if (isValidQNumber(total_sz) == false) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__  << std::endl;
          ss << "There is no target space specified by total_sz = " << total_sz << std::endl;
@@ -295,15 +295,15 @@ public:
       std::cout << "\rElapsed time of generating basis:" << time_sec << "[sec]" << std::endl;
    }
    
-   std::unordered_set<int> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
-      std::unordered_set<int> level_set;
-      std::unordered_set<int> level_set_m1;
-      std::unordered_set<int> level_set_m2;
+   std::unordered_set<double> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
+      std::unordered_set<double> level_set;
+      std::unordered_set<double> level_set_m1;
+      std::unordered_set<double> level_set_m2;
       for (std::int64_t i = 0; i < m_1.row_dim; ++i) {
          for (std::int64_t j = m_1.row[i]; j < m_1.row[i + 1]; ++j) {
             if (m_1.val[j] != 0.0) {
-               level_set.emplace(static_cast<int>((m_1.col[j] - i) + total_2sz_));
-               level_set_m1.emplace(static_cast<int>((m_1.col[j] - i) + total_2sz_));
+               level_set.emplace(m_1.col[j] - i + 0.5*total_2sz_);
+               level_set_m1.emplace(m_1.col[j] - i + 0.5*total_2sz_);
             }
          }
       }
@@ -311,13 +311,13 @@ public:
       for (std::int64_t i = 0; i < m_2.row_dim; ++i) {
          for (std::int64_t j = m_2.row[i]; j < m_2.row[i + 1]; ++j) {
             if (m_2.val[j] != 0.0) {
-               level_set.emplace(static_cast<int>((m_2.col[j] - i) + total_2sz_));
-               level_set_m2.emplace(static_cast<int>((m_2.col[j] - i) + total_2sz_));
+               level_set.emplace(m_2.col[j] - i + 0.5*total_2sz_);
+               level_set_m2.emplace(m_2.col[j] - i + 0.5*total_2sz_);
             }
          }
       }
       
-      std::unordered_set<int> level_set_intersection;
+      std::unordered_set<double> level_set_intersection;
       
       for (const auto &level: level_set) {
          if (level_set_m1.count(level) != 0 && level_set_m2.count(level) != 0) {
@@ -328,15 +328,15 @@ public:
       return level_set_intersection;
    }
       
-   std::vector<std::pair<int, int>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_ket, const CRS &m_3_ket) const {
-      std::unordered_set<int> delta_sector_set_m1;
-      std::unordered_set<int> delta_sector_set_m2;
-      std::unordered_set<int> delta_sector_set_m3;
+   std::vector<std::pair<double, double>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_ket, const CRS &m_3_ket) const {
+      std::unordered_set<double> delta_sector_set_m1;
+      std::unordered_set<double> delta_sector_set_m2;
+      std::unordered_set<double> delta_sector_set_m3;
 
       for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
          for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
             if (m_1_bra.val[j] != 0.0) {
-               delta_sector_set_m1.emplace(static_cast<int>(m_1_bra.col[j]) - i);
+               delta_sector_set_m1.emplace(m_1_bra.col[j] - i);
             }
          }
       }
@@ -344,7 +344,7 @@ public:
       for (std::int64_t i = 0; i < m_2_ket.row_dim; ++i) {
          for (std::int64_t j = m_2_ket.row[i]; j < m_2_ket.row[i + 1]; ++j) {
             if (m_2_ket.val[j] != 0.0) {
-               delta_sector_set_m2.emplace(static_cast<int>(m_2_ket.col[j]) - i);
+               delta_sector_set_m2.emplace(m_2_ket.col[j] - i);
             }
          }
       }
@@ -352,20 +352,20 @@ public:
       for (std::int64_t i = 0; i < m_3_ket.row_dim; ++i) {
          for (std::int64_t j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
             if (m_3_ket.val[j] != 0.0) {
-               delta_sector_set_m3.emplace(static_cast<int>(m_3_ket.col[j]) - i);
+               delta_sector_set_m3.emplace(m_3_ket.col[j] - i);
             }
          }
       }
       
-      std::vector<std::pair<int, int>> target_sector_set;
+      std::vector<std::pair<double, double>> target_sector_set;
       
       for (const auto &del_sec_m1: delta_sector_set_m1) {
          for (const auto &del_sec_m2: delta_sector_set_m2) {
             for (const auto &del_sec_m3: delta_sector_set_m3) {
                if (del_sec_m1 == del_sec_m2 + del_sec_m3) {
                   target_sector_set.push_back({
-                     del_sec_m1 + total_2sz_,
-                     del_sec_m3 + total_2sz_
+                     del_sec_m1 + 0.5*total_2sz_,
+                     del_sec_m3 + 0.5*total_2sz_
                   });
                }
             }
@@ -374,16 +374,16 @@ public:
       return target_sector_set;
    }
    
-   std::vector<std::tuple<int, int, int>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_bra, const CRS &m_3_ket, const CRS &m_4_ket) const {
-      std::unordered_set<int> delta_sector_set_m1;
-      std::unordered_set<int> delta_sector_set_m2;
-      std::unordered_set<int> delta_sector_set_m3;
-      std::unordered_set<int> delta_sector_set_m4;
+   std::vector<std::tuple<double, double, double>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_bra, const CRS &m_3_ket, const CRS &m_4_ket) const {
+      std::unordered_set<double> delta_sector_set_m1;
+      std::unordered_set<double> delta_sector_set_m2;
+      std::unordered_set<double> delta_sector_set_m3;
+      std::unordered_set<double> delta_sector_set_m4;
 
       for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
          for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
             if (m_1_bra.val[j] != 0.0) {
-               delta_sector_set_m1.emplace(static_cast<int>(m_1_bra.col[j]) - i);
+               delta_sector_set_m1.emplace(m_1_bra.col[j] - i);
             }
          }
       }
@@ -391,7 +391,7 @@ public:
       for (std::int64_t i = 0; i < m_2_bra.row_dim; ++i) {
          for (std::int64_t j = m_2_bra.row[i]; j < m_2_bra.row[i + 1]; ++j) {
             if (m_2_bra.val[j] != 0.0) {
-               delta_sector_set_m2.emplace(static_cast<int>(m_2_bra.col[j]) - i);
+               delta_sector_set_m2.emplace(m_2_bra.col[j] - i);
             }
          }
       }
@@ -399,7 +399,7 @@ public:
       for (std::int64_t i = 0; i < m_3_ket.row_dim; ++i) {
          for (std::int64_t j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
             if (m_3_ket.val[j] != 0.0) {
-               delta_sector_set_m3.emplace(static_cast<int>(m_3_ket.col[j]) - i);
+               delta_sector_set_m3.emplace(m_3_ket.col[j] - i);
             }
          }
       }
@@ -407,21 +407,21 @@ public:
       for (std::int64_t i = 0; i < m_4_ket.row_dim; ++i) {
          for (std::int64_t j = m_4_ket.row[i]; j < m_4_ket.row[i + 1]; ++j) {
             if (m_4_ket.val[j] != 0.0) {
-               delta_sector_set_m4.emplace(static_cast<int>(m_4_ket.col[j]) - i);
+               delta_sector_set_m4.emplace(m_4_ket.col[j] - i);
             }
          }
       }
       
-      std::vector<std::tuple<int, int, int>> target_sector_set;
+      std::vector<std::tuple<double, double, double>> target_sector_set;
       for (const auto &del_sec_m1: delta_sector_set_m1) {
          for (const auto &del_sec_m2: delta_sector_set_m2) {
             for (const auto &del_sec_m3: delta_sector_set_m3) {
                for (const auto &del_sec_m4: delta_sector_set_m4) {
                   if (del_sec_m1 + del_sec_m2 == del_sec_m3 + del_sec_m4) {
                      target_sector_set.push_back({
-                        del_sec_m1 + total_2sz_,
-                        del_sec_m1 + del_sec_m2 + total_2sz_,
-                        del_sec_m4 + total_2sz_
+                        del_sec_m1 + 0.5*total_2sz_,
+                        del_sec_m1 + del_sec_m2 + 0.5*total_2sz_,
+                        del_sec_m4 + 0.5*total_2sz_
                      });
                   }
                }

@@ -33,7 +33,7 @@ void pybind11ModelBaseElectron1D(py::module &m) {
    py::class_<BUE1D>(m, "BaseU1Electron_1D", py::module_local())
    .def(py::init<>())
    .def(py::init<const int>(), "system_size"_a)
-   .def(py::init<const int, const int>(), "system_size"_a, "total_electron"_a)
+   .def(py::init<const int, const double>(), "total_electron"_a, "total_sz"_a)
    .def("print_basis_onsite"     , &BUE1D::PrintBasisOnsite)
    .def("calculate_target_dim"   , py::overload_cast<>(&BUE1D::CalculateTargetDim, py::const_))
    .def("calculate_target_dim"   , py::overload_cast<const int, const double>(&BUE1D::CalculateTargetDim, py::const_), "total_electron"_a, "total_sz"_a)

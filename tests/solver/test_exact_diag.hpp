@@ -10,6 +10,7 @@
 
 #include "../../src/solver/all.hpp"
 #include "../../src/model/all.hpp"
+#include <gtest/gtest.h>
 
 TEST(XXZ, Basic) {
    compnal::model::XXZ_1D<double> model;
@@ -46,8 +47,23 @@ TEST(U1Spin, Basis) {
 }
 
 TEST(U1Electron, Basis) {
+   printf("asdfghjkl;\n");
    compnal::model::GeneralModel_1D<compnal::model::BaseU1Electron_1D<double>> model;
+   model.SetSystemSize(4);
+   model.SetTotalElectron(4);
    compnal::solver::ExactDiag ed(model);
+   ed.CalculateGroundState("Lanczos");
+   printf("%.30lf\n", ed.GetEigenvalues()[0]);
+   printf("%.15lf\n", ed.CalculateCorrelationFunction(model.GetOnsiteOperatorSz(),
+                                                      0,
+                                                      model.GetOnsiteOperatorSz(),
+                                                      1));
+   
+   printf("%.15lf\n", ed.CalculateCorrelationFunction(model.GetOnsiteOperatorSx(),
+                                                      0,
+                                                      model.GetOnsiteOperatorSx(),
+                                                      1));
+   
 }
 
 #endif /* TEST_SOLVER_EXACT_DIAG_HPP_*/

@@ -228,8 +228,8 @@ public:
       RealType val = 0.0;
       
       for (const auto &it: target_sectors) {
-         const int sector_m1 = std::get<0>(it);
-         const int sector_m3 = std::get<1>(it);
+         const auto sector_m1 = std::get<0>(it);
+         const auto sector_m3 = std::get<1>(it);
          if (model.isValidQNumber(sector_m1) && model.isValidQNumber(sector_m3)) {
             model.GenerateBasis(sector_m1);
             model.GenerateBasis(sector_m3);
@@ -342,10 +342,12 @@ public:
       RealType val = 0.0;
       
       for (const auto &it: target_sectors) {
-         const int sector_bra_change_1 = std::get<0>(it);
-         const int sector_bra_change_2 = std::get<1>(it);
-         const int sector_ket_change_1 = std::get<2>(it);
-         if (model.isValidQNumber(sector_bra_change_1) && model.isValidQNumber(sector_bra_change_2) && model.isValidQNumber(sector_ket_change_1)) {
+         const auto sector_bra_change_1 = std::get<0>(it);
+         const auto sector_bra_change_2 = std::get<1>(it);
+         const auto sector_ket_change_1 = std::get<2>(it);
+         if (model.isValidQNumber(sector_bra_change_1) &&
+             model.isValidQNumber(sector_bra_change_2) &&
+             model.isValidQNumber(sector_ket_change_1)) {
             model.GenerateBasis(sector_bra_change_1);
             model.GenerateBasis(sector_bra_change_2);
             model.GenerateBasis(sector_ket_change_1);
@@ -531,9 +533,9 @@ private:
          for (std::size_t i = 0; i < size; ++i) {
             const std::int64_t a_basis = components[thread_num].basis_affected[i];
             const RealType     val     = components[thread_num].val[i];
-            if (basis_inv.count(a_basis) > 0 && std::abs(val) > components[thread_num].zero_precision) {
+            if (basis_inv.count(a_basis) > 0) {
                const std::int64_t inv = basis_inv.at(a_basis);
-               if (inv <= row) {
+               if ((inv <= row && std::abs(val) > components[thread_num].zero_precision) || inv == row) {
                   num_row_element[row + 1]++;
                }
             }
@@ -568,9 +570,9 @@ private:
          for (std::size_t i = 0; i < size; ++i) {
             const std::int64_t a_basis = components[thread_num].basis_affected[i];
             const RealType     val     = components[thread_num].val[i];
-            if (basis_inv.count(a_basis) > 0 && std::abs(val) > components[thread_num].zero_precision) {
+            if (basis_inv.count(a_basis) > 0) {
                const std::int64_t inv = basis_inv.at(a_basis);
-               if (inv <= row) {
+               if ((inv <= row && std::abs(val) > components[thread_num].zero_precision) || inv == row) {
                   ham->col[num_row_element[row]] = inv;
                   ham->val[num_row_element[row]] = val;
                   num_row_element[row]++;
@@ -598,9 +600,9 @@ private:
          for (std::size_t i = 0; i < size; ++i) {
             const std::int64_t a_basis = components.basis_affected[i];
             const RealType     val     = components.val[i];
-            if (basis_inv.count(a_basis) > 0 && std::abs(val) > components.zero_precision) {
+            if (basis_inv.count(a_basis) > 0) {
                const std::int64_t inv = basis_inv.at(a_basis);
-               if (inv <= row) {
+               if ((inv <= row && std::abs(val) > components.zero_precision) || inv == row) {
                   num_row_element[row + 1]++;
                }
             }
@@ -631,9 +633,9 @@ private:
          for (std::size_t i = 0; i < size; ++i) {
             const std::int64_t a_basis = components.basis_affected[i];
             const RealType     val     = components.val[i];
-            if (basis_inv.count(a_basis) > 0 && std::abs(val) > components.zero_precision) {
+            if (basis_inv.count(a_basis) > 0) {
                const std::int64_t inv = basis_inv.at(a_basis);
-               if (inv <= row) {
+               if ((inv <= row && std::abs(val) > components.zero_precision) || inv == row) {
                   ham->col[num_row_element[row]] = inv;
                   ham->val[num_row_element[row]] = val;
                   num_row_element[row]++;

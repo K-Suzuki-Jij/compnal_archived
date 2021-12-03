@@ -19,7 +19,21 @@ class XXZ_1D: public BaseU1Spin_1D<RealType> {
    using CRS = sparse_matrix::CRS<RealType>;
    
 public:
-   using BaseU1Spin_1D<RealType>::BaseU1Spin_1D;
+   XXZ_1D(): BaseU1Spin_1D<RealType>() {
+      onsite_operator_ham_ = CreateOnsiteOperatorHam(this->magnitude_2spin_, h_z_, D_z_);
+   }
+   
+   explicit XXZ_1D(const int system_size): BaseU1Spin_1D<RealType>(system_size) {
+      onsite_operator_ham_ = CreateOnsiteOperatorHam(this->magnitude_2spin_, h_z_, D_z_);
+   }
+   
+   XXZ_1D(const int system_size, const double magnitude_spin): BaseU1Spin_1D<RealType>(system_size, magnitude_spin) {
+      onsite_operator_ham_ = CreateOnsiteOperatorHam(this->magnitude_2spin_, h_z_, D_z_);
+   }
+   
+   XXZ_1D(const int system_size, const double magnitude_spin, const utility::BoundaryCondition bc): BaseU1Spin_1D<RealType>(system_size, magnitude_spin, bc) {
+      onsite_operator_ham_ = CreateOnsiteOperatorHam(this->magnitude_2spin_, h_z_, D_z_);
+   }
    
    void SetJz(const std::vector<RealType> &J_z) {
       if (J_z_ != J_z) {
