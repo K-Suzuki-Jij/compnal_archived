@@ -64,8 +64,6 @@ void pybind11ModelBaseSpin1D(py::module &m) {
       .def(py::init<>())
       .def(py::init<const int>(), "system_size"_a)
       .def(py::init<const int, const double>(), "system_size"_a, "spin"_a)
-      .def(py::init<const int, const compnal::utility::BoundaryCondition>(), "system_size"_a, "boundary_condition"_a)
-      .def(py::init<const int, const double, const compnal::utility::BoundaryCondition>(), "system_size"_a, "spin"_a, "boundary_condition"_a)
       .def("print_basis_onsite"     , &BUS1D::PrintBasisOnsite)
       .def("calculate_target_dim"   , py::overload_cast<>(&BUS1D::CalculateTargetDim, py::const_))
       .def("calculate_target_dim"   , py::overload_cast<const double>(&BUS1D::CalculateTargetDim, py::const_), "total_sz"_a)
@@ -76,8 +74,7 @@ void pybind11ModelBaseSpin1D(py::module &m) {
       .def_property_readonly("Sm" , &BUS1D::GetOnsiteOperatorSm )
       .def_property("system_size"       , &BUS1D::GetSystemSize, &BUS1D::SetSystemSize)
       .def_property("spin"              , &BUS1D::GetMagnitudeSpin, &BUS1D::SetMagnitudeSpin)
-      .def_property("total_sz"          , &BUS1D::GetTotalSz, &BUS1D::SetTotalSz)
-      .def_property("boundary_condition", &BUS1D::GetBoundaryCondition, &BUS1D::SetBoundaryCondition);
+      .def_property("total_sz"          , &BUS1D::GetTotalSz, &BUS1D::SetTotalSz);
 
 }
 
@@ -93,18 +90,15 @@ void pybind11ModelGeneral1D(py::module &m) {
    using CRS = compnal::sparse_matrix::CRS<RealType>;
    
    py::class_<GM1Dspin, BUS1D> gm1d_spin(m, "U1Spin_1D"    , py::module_local());
-   py::class_<GM1DElec, BUE1D> gm1d_elec(m, "U1Electron_1D", py::module_local());
-   
    gm1d_spin.def(py::init<>());
    gm1d_spin.def(py::init<const int>(), "system_size"_a);
    gm1d_spin.def(py::init<const int, const double>(), "system_size"_a, "spin"_a);
-   gm1d_spin.def(py::init<const int, const compnal::utility::BoundaryCondition>(), "system_size"_a, "boundary_condition"_a);
-   gm1d_spin.def(py::init<const int, const double, const compnal::utility::BoundaryCondition>(), "system_size"_a, "spin"_a, "boundary_condition"_a);
    gm1d_spin.def("add_onsite_potential", py::overload_cast<const RealType, const CRS&, const int>(&GM1Dspin::AddOnsitePotential), "value"_a, "m"_a, "site"_a);
    gm1d_spin.def("add_onsite_potential", py::overload_cast<const CRS&, const int>(&GM1Dspin::AddOnsitePotential), "m"_a, "site"_a);
    gm1d_spin.def("add_interaction"     , py::overload_cast<const RealType, const CRS&, const int, const CRS&, const int>(&GM1Dspin::AddInteraction), "value"_a, "m_1"_a, "site_1"_a, "m_2"_a, "site_2"_a);
    gm1d_spin.def("add_interaction"     , py::overload_cast<const CRS&, const int, const CRS&, const int>(&GM1Dspin::AddInteraction), "m_1"_a, "site_1"_a, "m_2"_a, "site_2"_a);
       
+   py::class_<GM1DElec, BUE1D> gm1d_elec(m, "U1Electron_1D", py::module_local());
    gm1d_elec.def(py::init<>());
    gm1d_elec.def(py::init<const int>(), "system_size"_a);
    gm1d_elec.def(py::init<const int, const int>(), "system_size"_a, "total_electron"_a);

@@ -31,8 +31,18 @@ public:
       onsite_operator_ham_ = CreateOnsiteOperatorHam(this->magnitude_2spin_, h_z_, D_z_);
    }
    
-   XXZ_1D(const int system_size, const double magnitude_spin, const utility::BoundaryCondition bc): BaseU1Spin_1D<RealType>(system_size, magnitude_spin, bc) {
+   XXZ_1D(const int system_size, const utility::BoundaryCondition bc): BaseU1Spin_1D<RealType>(system_size) {
+      SetBoundaryCondition(bc);
       onsite_operator_ham_ = CreateOnsiteOperatorHam(this->magnitude_2spin_, h_z_, D_z_);
+   }
+   
+   XXZ_1D(const int system_size, const double magnitude_spin, const utility::BoundaryCondition bc): BaseU1Spin_1D<RealType>(system_size, magnitude_spin) {
+      SetBoundaryCondition(bc);
+      onsite_operator_ham_ = CreateOnsiteOperatorHam(this->magnitude_2spin_, h_z_, D_z_);
+   }
+   
+   void SetBoundaryCondition(const utility::BoundaryCondition bc) {
+      boundary_condition_ = bc;
    }
    
    void SetJz(const std::vector<RealType> &J_z) {
@@ -148,9 +158,12 @@ public:
    inline RealType GetHz() const { return h_z_; }
    inline RealType GetDz() const { return D_z_; }
    
+   inline utility::BoundaryCondition GetBoundaryCondition() const { return boundary_condition_; }
    
 private:
    CRS onsite_operator_ham_;
+   
+   utility::BoundaryCondition boundary_condition_ = utility::BoundaryCondition::OBC;
    
    std::vector<RealType> J_z_  = {1.0};
    std::vector<RealType> J_xy_ = {1.0};

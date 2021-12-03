@@ -43,20 +43,7 @@ public:
                  ): BaseU1Spin_1D(system_size) {
       SetMagnitudeSpin(magnitude_spin);
    }
-   
-   BaseU1Spin_1D(const int system_size,
-                 const utility::BoundaryCondition bc
-                 ): BaseU1Spin_1D(system_size) {
-      SetBoundaryCondition(bc);
-   }
-   
-   BaseU1Spin_1D(const int system_size,
-                 const double magnitude_spin,
-                 const utility::BoundaryCondition bc
-                 ): BaseU1Spin_1D(system_size, magnitude_spin) {
-      SetBoundaryCondition(bc);
-   }
-   
+      
    void SetSystemSize(const int system_size) {
       if (system_size <= 0) {
          std::stringstream ss;
@@ -105,11 +92,7 @@ public:
          calculated_eigenvector_set_.clear();
       }
    }
-   
-   void SetBoundaryCondition(const utility::BoundaryCondition bc) {
-      boundary_condition_ = bc;
-   }
-   
+      
    void SetCalculatedEigenvectorSet(const std::int64_t level) {
       calculated_eigenvector_set_.emplace(level);
    }
@@ -542,7 +525,6 @@ public:
    }
    
    // TODO: Move Boundary Condition to Derivrd Class.
-   inline utility::BoundaryCondition GetBoundaryCondition() const { return boundary_condition_; }
    inline int GetSystemSize()           const { return system_size_;            }
    inline int GetDimOnsite()            const { return dim_onsite_;             }
    inline int GetMagnitude2Spin()       const { return magnitude_2spin_;        }
@@ -579,9 +561,7 @@ protected:
    CRS onsite_operator_sz_;
    CRS onsite_operator_sp_;
    CRS onsite_operator_sm_;
-   
-   utility::BoundaryCondition boundary_condition_ = utility::BoundaryCondition::OBC;
-   
+      
    int system_size_     = 0;
    int total_2sz_       = 0;
    int dim_onsite_      = 2;
