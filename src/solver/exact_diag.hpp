@@ -237,7 +237,7 @@ public:
             const auto &basis_m3 = model.GetBasis(sector_m3);
             const std::int64_t dim_target_m1 = static_cast<std::int64_t>(basis_m1.size());
             const std::int64_t dim_target_m3 = static_cast<std::int64_t>(basis_m3.size());
-                        
+            
             //m3|gs>
             vector_work_a.val.resize(dim_target_m3);
 #pragma omp parallel for
@@ -425,7 +425,7 @@ public:
       }
       return val;
    }
-      
+   
    inline const std::vector<BraketVector> &GetEigenvectors() const { return eigenvectors_; }
    inline const std::vector<RealType>     &GetEigenvalues()  const { return eigenvalues_; }
    
@@ -450,7 +450,7 @@ private:
          return;
       }
       
-      const int         basis_onsite  = edmc->basis_onsite[site];
+      const int          basis_onsite  = edmc->basis_onsite[site];
       const std::int64_t site_constant = edmc->site_constant[site];
       
       for (std::int64_t i = matrix_onsite.row[basis_onsite]; i < matrix_onsite.row[basis_onsite + 1]; ++i) {
@@ -479,13 +479,13 @@ private:
          return;
       }
       
-      const int         basis_onsite_1  = edmc->basis_onsite[site_1];
-      const int         basis_onsite_2  = edmc->basis_onsite[site_2];
+      const int          basis_onsite_1  = edmc->basis_onsite[site_1];
+      const int          basis_onsite_2  = edmc->basis_onsite[site_2];
       const std::int64_t site_constant_1 = edmc->site_constant[site_1];
       const std::int64_t site_constant_2 = edmc->site_constant[site_2];
       
       for (std::int64_t i1 = matrix_onsite_1.row[basis_onsite_1]; i1 < matrix_onsite_1.row[basis_onsite_1 + 1]; ++i1) {
-         const RealType    val_1 = matrix_onsite_1.val[i1];
+         const RealType     val_1 = matrix_onsite_1.val[i1];
          const std::int64_t col_1 = matrix_onsite_1.col[i1];
          for (std::int64_t i2 = matrix_onsite_2.row[basis_onsite_2]; i2 < matrix_onsite_2.row[basis_onsite_2 + 1]; ++i2) {
             const std::int64_t a_basis = basis + (col_1 - basis_onsite_1)*site_constant_1 + (matrix_onsite_2.col[i2] - basis_onsite_2)*site_constant_2;
@@ -712,6 +712,82 @@ private:
                const auto d2 = i;
                GenerateMatrixComponentsIntersite(edmc, basis, d1, model_input.GetOnsiteOperatorSp(), d2, model_input.GetOnsiteOperatorSm(), 0.5*model_input.GetJxy(distance - 1));
                GenerateMatrixComponentsIntersite(edmc, basis, d1, model_input.GetOnsiteOperatorSm(), d2, model_input.GetOnsiteOperatorSp(), 0.5*model.GetJxy(distance - 1));
+            }
+         }
+      }
+      
+      //Fill zero in the diagonal elements for symmetric matrix vector product calculation.
+      if (edmc->inv_basis_affected.count(basis) == 0) {
+         edmc->inv_basis_affected[basis] = edmc->basis_affected.size();
+         edmc->val.push_back(0.0);
+         edmc->basis_affected.push_back(basis);
+      }
+      
+   }
+   
+   void GenerateMatrixComponents(ExactDiagMatrixComponents<RealType> *edmc, const std::int64_t basis, const model::Hubbard_1D<RealType> &model_input) const {
+      
+      const auto &nc            = model_input->GetOnsiteOperatorNC();
+      const auto &c_up          = model_input->GetOnsiteOperatorCUp();
+      const auto &c_up_dagger   = model_input->GetOnsiteOperatorCUpDagger();
+      const auto &c_down        = model_input->GetOnsiteOperatorCDown();
+      const auto &c_down_dagger = model_input->GetOnsiteOperatorCDownDagger();
+      
+      for (int site = 0; site < model_input.GetSystemSize(); ++site) {
+         edmc->basis_onsite[site] = CalculateLocalBasis(basis, site, model_input.GetDimOnsite());
+      }
+      
+      //Onsite elements
+      for (int site = 0; site < model_input.GetSystemSize(); ++site) {
+         GenerateMatrixComponentsOnsite(edmc, basis, site, model_input.GetOnsiteOperatorHam(), 1.0);
+      }
+      
+      //Intersite Coulomb
+      for (int distance = 1; distance <= static_cast<int>(model_input.GetIntersiteCoulomb().size()); ++distance) {
+         for (int site = 0; site < model_input.GetSystemSize() - distance; ++site) {
+            GenerateMatrixComponentsIntersite(edmc, basis, site, nc, site + distance, nc, model_input.GetIntersiteCoulomb(distance - 1));
+         }
+      }
+      
+      //Intersite Hopping
+      for (int distance = 1; distance <= static_cast<int>(model_input.GetHopping().size()); ++distance) {
+         for (int site = 0; site < model_input.GetSystemSize() - distance; ++site) {
+            const auto t = model_input.GetHopping(distance - 1);
+            int n_electron = 0;
+            for (int s = site; s < site + distance; ++s) {
+               n_electron += model_input.GetNumElectrons(edmc->basis_onsite[s]);
+            }
+            GenerateMatrixComponentsIntersite(edmc, basis, site, c_up_dagger  , site + distance, c_up         , +1.0*t, 2*(n_electron%2) - 1);
+            GenerateMatrixComponentsIntersite(edmc, basis, site, c_up         , site + distance, c_up_dagger  , -1.0*t, 2*(n_electron%2) - 1);
+            GenerateMatrixComponentsIntersite(edmc, basis, site, c_down_dagger, site + distance, c_down       , +1.0*t, 2*(n_electron%2) - 1);
+            GenerateMatrixComponentsIntersite(edmc, basis, site, c_down       , site + distance, c_down_dagger, -1.0*t, 2*(n_electron%2) - 1);
+         }
+      }
+      
+      if (model_input.GetBoundaryCondition() == utility::BoundaryCondition::PBC) {
+         //Intersite elements SzSz
+         for (int distance = 1; distance <= static_cast<int>(model_input.GetIntersiteCoulomb().size()); ++distance) {
+            for (int i = 0; i < distance; ++i) {
+               const auto d1 = model_input.GetSystemSize() - distance + i;
+               const auto d2 = i;
+               GenerateMatrixComponentsIntersite(edmc, basis, d1, nc, d2, nc, model_input.GetIntersiteCoulomb(distance - 1));
+            }
+         }
+         
+         //Intersite elements 0.5*(SpSm + SmSp) = SxSx + SySy
+         for (int distance = 1; distance <= static_cast<int>(model_input.GetHopping().size()); ++distance) {
+            for (int i = 0; i < distance; ++i) {
+               const auto d1 = model_input.GetSystemSize() - distance + i;
+               const auto d2 = i;
+               const auto t = model_input.GetHopping(distance - 1);
+               int n_electron = 0;
+               for (int s = d2; s < d2 + d1; ++s) {
+                  n_electron += model_input.GetNumElectrons(edmc->basis_onsite[s]);
+               }
+               GenerateMatrixComponentsIntersite(edmc, basis, d1, c_up_dagger  , d2, c_up         , +1.0*t, 2*(n_electron%2) - 1);
+               GenerateMatrixComponentsIntersite(edmc, basis, d1, c_up         , d2, c_up_dagger  , -1.0*t, 2*(n_electron%2) - 1);
+               GenerateMatrixComponentsIntersite(edmc, basis, d1, c_down_dagger, d2, c_down       , +1.0*t, 2*(n_electron%2) - 1);
+               GenerateMatrixComponentsIntersite(edmc, basis, d1, c_down       , d2, c_down_dagger, -1.0*t, 2*(n_electron%2) - 1);
             }
          }
       }

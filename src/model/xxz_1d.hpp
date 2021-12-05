@@ -99,13 +99,13 @@ public:
    
    void PrintInfo() const {
       std::string bc = "None";
-      if (this->boundary_condition_ == utility::BoundaryCondition::OBC) {
+      if (boundary_condition_ == utility::BoundaryCondition::OBC) {
          bc = "OBC";
       }
-      else if (this->boundary_condition_ == utility::BoundaryCondition::PBC) {
+      else if (boundary_condition_ == utility::BoundaryCondition::PBC) {
          bc = "PBC";
       }
-      else if (this->boundary_condition_ == utility::BoundaryCondition::SSD) {
+      else if (boundary_condition_ == utility::BoundaryCondition::SSD) {
          bc = "SSD";
       }
       std::cout << "Print Heisenberg Model Infomation:" << std::endl;
@@ -169,7 +169,6 @@ private:
    std::vector<RealType> J_xy_ = {1.0};
    RealType h_z_ = 0.0;
    RealType D_z_ = 0.0;
-   
    
 };
 

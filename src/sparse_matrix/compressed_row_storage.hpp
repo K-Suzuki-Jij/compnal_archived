@@ -18,6 +18,11 @@
 namespace compnal {
 namespace sparse_matrix {
 
+enum CRSTag {
+   NONE = 0,
+   FERMION = 1
+};
+
 template<typename RealType>
 struct CRS {
    
@@ -26,8 +31,9 @@ struct CRS {
    std::vector<std::int64_t> row;
    std::vector<std::int64_t> col;
    std::vector<RealType>     val;
+   CRSTag tag = CRSTag::NONE;
    
-   CRS(const std::int64_t row_dim_in = 0, const std::int64_t col_dim_in = 0) {
+   CRS(const std::int64_t row_dim_in = 0, const std::int64_t col_dim_in = 0, const CRSTag tag_in = CRSTag::NONE) {
       this->row_dim = row_dim_in;
       this->col_dim = col_dim_in;
       this->row.resize(row_dim_in + 1);
@@ -35,9 +41,10 @@ struct CRS {
       for (std::int64_t i = 0; i <= row_dim_in; ++i) {
          this->row[i] = 0;
       }
+      this->tag = tag_in;
    }
    
-   explicit CRS(const std::vector<std::vector<RealType>> &mat_vec) {
+   explicit CRS(const std::vector<std::vector<RealType>> &mat_vec, const CRSTag tag_in = CRSTag::NONE) {
       this->row_dim = mat_vec.size();
       this->col_dim = 0;
       this->row.resize(this->row_dim + 1);
@@ -55,6 +62,7 @@ struct CRS {
          }
          this->row[i + 1] = this->col.size();
       }
+      this->tag = tag_in;
    }
    
    CRS(const CRS &matrix) {
@@ -88,6 +96,7 @@ struct CRS {
          this->col[i] = matrix.col[i];
          this->val[i] = matrix.val[i];
       }
+      this->tag = matrix.tag;
    }
    
    void MultiplyByScalar(const RealType coeef) {
@@ -109,7 +118,7 @@ struct CRS {
    
    CRS MultiplyByScalar(const RealType coeef) const {
       if (coeef == 0.0) {
-         return CRS(this->row_dim, this->col_dim);
+         return CRS(this->row_dim, this->col_dim, this->tag);
       }
       else {
          CRS m = *this;
@@ -157,6 +166,7 @@ struct CRS {
       std::vector<std::int64_t>().swap(this->col);
       std::vector<RealType>().swap(this->val);
       this->row.push_back(0);
+      this->tag = CRSTag::NONE;
    }
    
    void Clear() {
@@ -166,6 +176,7 @@ struct CRS {
       this->col.clear();
       this->val.clear();
       this->row.push_back(0);
+      this->tag = CRSTag::NONE;
    }
    
    void SortCol() {
@@ -228,8 +239,7 @@ struct CRS {
 };
 
 template<typename RealType>
-void CalculateTransposedMatrix(CRS<RealType> *matrix_out,
-                               const CRS<RealType> &matrix_in) {
+void CalculateTransposedMatrix(CRS<RealType> *matrix_out, const CRS<RealType> &matrix_in) {
    
    std::vector<std::int64_t> row_count(matrix_in.row_dim);
    matrix_out->Clear();
@@ -246,6 +256,7 @@ void CalculateTransposedMatrix(CRS<RealType> *matrix_out,
    }
    matrix_out->row_dim = matrix_in.col_dim;
    matrix_out->col_dim = matrix_in.row_dim;
+   matrix_out->tag     = matrix_in.tag;
 }
 
 
@@ -316,13 +327,20 @@ void CalculateMatrixMatrixProduct(CRS<RealType> *matrix_out,
    matrix_out->row_dim = matrix_1.row_dim;
    matrix_out->col_dim = matrix_2.col_dim;
    
+   if (matrix_1.tag == matrix_2.tag) {
+      matrix_out->tag = CRSTag::NONE;
+   }
+   else {
+      matrix_out->tag = CRSTag::FERMION;
+   }
+   
 }
 
 template<typename RealType>
 CRS<RealType> CalculateMatrixMatrixSum(const RealType coeef_1,
-                              const CRS<RealType> &matrix_1,
-                              const RealType coeef_2,
-                              const CRS<RealType> &matrix_2) {
+                                       const CRS<RealType> &matrix_1,
+                                       const RealType coeef_2,
+                                       const CRS<RealType> &matrix_2) {
    
    CRS<RealType> m;
    CalculateMatrixMatrixSum(&m, coeef_1, matrix_1, coeef_2, matrix_2);
@@ -332,10 +350,10 @@ CRS<RealType> CalculateMatrixMatrixSum(const RealType coeef_1,
 
 template<typename RealType>
 void CalculateMatrixMatrixSum(CRS<RealType> *matrix_out,
-                     const RealType coeef_1,
-                     const CRS<RealType> &matrix_1,
-                     const RealType coeef_2,
-                     const CRS<RealType> &matrix_2) {
+                              const RealType coeef_1,
+                              const CRS<RealType> &matrix_1,
+                              const RealType coeef_2,
+                              const CRS<RealType> &matrix_2) {
    
    if (matrix_1.row_dim != matrix_2.row_dim || matrix_1.col_dim != matrix_2.col_dim) {
       std::stringstream ss;
@@ -343,6 +361,13 @@ void CalculateMatrixMatrixSum(CRS<RealType> *matrix_out,
       ss << "The summation of the matrices cannot be defined." << std::endl;
       ss << "matrix_1.row_dim = " << matrix_1.row_dim << ", matrix_1.col_dim = " << matrix_1.col_dim << std::endl;
       ss << "matrix_2.row_dim = " << matrix_2.row_dim << ", matrix_2.col_dim = " << matrix_2.col_dim << std::endl;
+      throw std::runtime_error(ss.str());
+   }
+   
+   if (matrix_1.tag != matrix_2.tag) {
+      std::stringstream ss;
+      ss << "Error in " << __func__ << std::endl;
+      ss << "The summation of bosonic and fermionic operator cannot be defined." << std::endl;
       throw std::runtime_error(ss.str());
    }
    
@@ -450,6 +475,8 @@ void CalculateMatrixMatrixSum(CRS<RealType> *matrix_out,
       }
       matrix_out->row[i + 1] = matrix_out->col.size();
    }
+   
+   matrix_out->tag = matrix_1.tag;
    
 }
 

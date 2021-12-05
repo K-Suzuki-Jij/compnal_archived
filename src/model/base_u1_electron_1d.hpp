@@ -103,6 +103,33 @@ public:
       }
    }
    
+   int GetNumElectrons(const int basis_onsite) const {
+      
+      //--------------------------------
+      // # <->  [Cherge  ] -- (N,  2*sz)
+      // 0 <->  [        ] -- (0,  0   )
+      // 1 <->  [up      ] -- (1,  1   )
+      // 2 <->  [down    ] -- (1, -1   )
+      // 3 <->  [up&down ] -- (2,  0   )
+      //--------------------------------
+      
+      if (basis_onsite == 0) {
+         return 0;
+      }
+      else if (basis_onsite == 1 || basis_onsite == 2) {
+         return 1;
+      }
+      else if (basis_onsite == 3) {
+         return 2;
+      }
+      else {
+         std::stringstream ss;
+         ss << "Error in " << __FUNCTION__  << std::endl;
+         ss << "Invalid onsite basis" << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+   }
+   
    void PrintBasisOnsite() const {
       std::cout << "row " << 0 << ": |vac>" << std::endl;
       std::cout << "row " << 1 << ": |↑>"   << std::endl;
@@ -440,6 +467,9 @@ public:
          }
          matrix.row[row + 1] = matrix.col.size();
       }
+      
+      matrix.tag = sparse_matrix::CRSTag::FERMION;
+      
       return matrix;
    }
    
@@ -468,6 +498,9 @@ public:
          }
          matrix.row[row + 1] = matrix.col.size();
       }
+      
+      matrix.tag = sparse_matrix::CRSTag::FERMION;
+
       return matrix;
    }
    
