@@ -535,7 +535,7 @@ private:
             const RealType     val     = components[thread_num].val[i];
             if (basis_inv.count(a_basis) > 0) {
                const std::int64_t inv = basis_inv.at(a_basis);
-               if ((inv <= row && std::abs(val) > components[thread_num].zero_precision) || inv == row) {
+               if ((inv < row && std::abs(val) > components[thread_num].zero_precision) || inv == row) {
                   num_row_element[row + 1]++;
                }
             }
@@ -572,7 +572,7 @@ private:
             const RealType     val     = components[thread_num].val[i];
             if (basis_inv.count(a_basis) > 0) {
                const std::int64_t inv = basis_inv.at(a_basis);
-               if ((inv <= row && std::abs(val) > components[thread_num].zero_precision) || inv == row) {
+               if ((inv < row && std::abs(val) > components[thread_num].zero_precision) || inv == row) {
                   ham->col[num_row_element[row]] = inv;
                   ham->val[num_row_element[row]] = val;
                   num_row_element[row]++;
@@ -727,11 +727,11 @@ private:
    
    void GenerateMatrixComponents(ExactDiagMatrixComponents<RealType> *edmc, const std::int64_t basis, const model::Hubbard_1D<RealType> &model_input) const {
       
-      const auto &nc            = model_input->GetOnsiteOperatorNC();
-      const auto &c_up          = model_input->GetOnsiteOperatorCUp();
-      const auto &c_up_dagger   = model_input->GetOnsiteOperatorCUpDagger();
-      const auto &c_down        = model_input->GetOnsiteOperatorCDown();
-      const auto &c_down_dagger = model_input->GetOnsiteOperatorCDownDagger();
+      const auto &nc            = model_input.GetOnsiteOperatorNC();
+      const auto &c_up          = model_input.GetOnsiteOperatorCUp();
+      const auto &c_up_dagger   = model_input.GetOnsiteOperatorCUpDagger();
+      const auto &c_down        = model_input.GetOnsiteOperatorCDown();
+      const auto &c_down_dagger = model_input.GetOnsiteOperatorCDownDagger();
       
       for (int site = 0; site < model_input.GetSystemSize(); ++site) {
          edmc->basis_onsite[site] = CalculateLocalBasis(basis, site, model_input.GetDimOnsite());
@@ -765,7 +765,7 @@ private:
       }
       
       if (model_input.GetBoundaryCondition() == utility::BoundaryCondition::PBC) {
-         //Intersite elements SzSz
+         //Intersite Coulomb
          for (int distance = 1; distance <= static_cast<int>(model_input.GetIntersiteCoulomb().size()); ++distance) {
             for (int i = 0; i < distance; ++i) {
                const auto d1 = model_input.GetSystemSize() - distance + i;
@@ -774,7 +774,7 @@ private:
             }
          }
          
-         //Intersite elements 0.5*(SpSm + SmSp) = SxSx + SySy
+         //Intersite Hopping
          for (int distance = 1; distance <= static_cast<int>(model_input.GetHopping().size()); ++distance) {
             for (int i = 0; i < distance; ++i) {
                const auto d1 = model_input.GetSystemSize() - distance + i;

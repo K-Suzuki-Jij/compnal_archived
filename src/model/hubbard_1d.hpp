@@ -71,7 +71,7 @@ public:
       }
    }
    
-   void SetIntersiteCoulomb(const RealType &V) {
+   void SetIntersiteCoulomb(const RealType V) {
       if (V_.size() == 0) {
          V_.push_back(V);
          this->calculated_eigenvector_set_.clear();

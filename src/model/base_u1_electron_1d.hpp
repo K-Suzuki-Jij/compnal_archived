@@ -299,6 +299,12 @@ public:
          basis_inv_ref[basis_ref[i]] = i;
       }
       
+      if (basis_inv_ref.size() != basis_ref.size()) {
+         std::stringstream ss;
+         ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+         ss << "The same basis has been detected" << std::endl;
+         throw std::runtime_error(ss.str());
+      }
       const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
       const double time_sec   = static_cast<double>(time_count)/sparse_matrix::TIME_UNIT_CONSTANT;
       std::cout << "\rElapsed time of generating basis:" << time_sec << "[sec]" << std::endl;

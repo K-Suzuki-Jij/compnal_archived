@@ -10,6 +10,7 @@
 
 #include <sstream>
 #include <vector>
+#include <map>
 #include <unordered_map>
 
 namespace compnal {
@@ -112,7 +113,7 @@ std::int64_t CalculateNumCombination(const std::vector<int> &list) {
 
 void CalculateNthPermutation(std::vector<int> *vec, std::int64_t target_num) {
    
-   std::unordered_map<int, int> u_map;
+   std::map<int, int> u_map;
    
    for (const auto &it: *vec) {
       u_map[it]++;

@@ -30,6 +30,24 @@ TEST(XXZ, Basic) {
                                                       1));
 }
 
+TEST(Hubbard, Basic) {
+   compnal::model::Hubbard_1D<double> model;
+   model.SetSystemSize(4);
+   model.SetTotalElectron(4);
+   compnal::solver::ExactDiag ed(model);
+   ed.CalculateGroundState("Lanczos");
+   printf("%.30lf\n", ed.GetEigenvalues()[0]);
+   printf("%.15lf\n", ed.CalculateCorrelationFunction(model.GetOnsiteOperatorSz(),
+                                                      0,
+                                                      model.GetOnsiteOperatorSz(),
+                                                      1));
+   
+   printf("%.15lf\n", ed.CalculateCorrelationFunction(model.GetOnsiteOperatorSx(),
+                                                      0,
+                                                      model.GetOnsiteOperatorSx(),
+                                                      1));
+}
+
 TEST(U1Spin, Basis) {
    const int N = 4;
    compnal::model::GeneralModel_1D<compnal::model::BaseU1Spin_1D<double>> model(N, 0.5);
@@ -47,7 +65,6 @@ TEST(U1Spin, Basis) {
 }
 
 TEST(U1Electron, Basis) {
-   printf("asdfghjkl;\n");
    compnal::model::GeneralModel_1D<compnal::model::BaseU1Electron_1D<double>> model;
    model.SetSystemSize(4);
    model.SetTotalElectron(4);
