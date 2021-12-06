@@ -323,7 +323,7 @@ public:
       for (std::int64_t i = 0; i < m_2.row_dim; ++i) {
          for (std::int64_t j = m_2.row[i]; j < m_2.row[i + 1]; ++j) {
             if (m_2.val[j] != 0.0) {
-               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_2.col[j])));
+               delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_2.col[j])));
             }
          }
       }
@@ -331,7 +331,7 @@ public:
       for (const auto &del_sec_m1: delta_sector_set_m1) {
          for (const auto &del_sec_m2: delta_sector_set_m2) {
             if (del_sec_m1 == del_sec_m2) {
-               target_sector_set.push_back(std::pair<int, double>{del_sec_m1.first + total_electron_, del_sec_m1.second + 0.5*total_2sz_});
+               target_sector_set.push_back({del_sec_m1.first + total_electron_, del_sec_m1.second + 0.5*total_2sz_});
             }
          }
       }
@@ -527,7 +527,7 @@ public:
    }
    
    static CRS CreateOnsiteOperatorNC() {
-      return sparse_matrix::CalculateMatrixMatrixSum(1.0, CreateOnsiteOperatorNCUp(), 1.0, CreateOnsiteOperatorNCUp());
+      return sparse_matrix::CalculateMatrixMatrixSum(1.0, CreateOnsiteOperatorNCUp(), 1.0, CreateOnsiteOperatorNCDown());
    }
    
    static CRS CreateOnsiteOperatorSx() {
