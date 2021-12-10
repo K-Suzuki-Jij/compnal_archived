@@ -79,6 +79,56 @@ public:
       model.SetCalculatedEigenvectorSet(0);
    }
    
+   void CalculateTargetState(const int target_sector, const std::string &diag_method = "Lanczos") {
+      if (target_sector < 0) {
+         std::stringstream ss;
+         ss << "Error in " << __func__ << std::endl;
+         ss << "Invalid target_sector: " << target_sector << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      if (target_sector == 0) {
+         CalculateGroundState(diag_method);
+         return;
+      }
+      if (model.GetCalculatedEigenvectorSet().count(target_sector) != 0) {
+         return;
+      }
+      
+      model.GenerateBasis();
+      CRS ham;
+      GenerateHamiltonian(&ham);
+      if (diag_method == "Lanczos") {
+         for (int sector = 1; sector <= target_sector; ++sector) {
+            if (model.GetCalculatedEigenvectorSet().count(sector) == 0) {
+               if (eigenvectors_.size() != sector) {
+                  std::stringstream ss;
+                  ss << "Unknown Error in " << __func__ << std::endl;
+                  throw std::runtime_error(ss.str());
+               }
+               sparse_matrix::BraketVector<RealType> temp_vector(ham.row_dim);
+               RealType temp_value = 0.0;
+               sparse_matrix::EigenvalueDecompositionLanczos(&temp_value, &temp_vector, ham, sector, eigenvectors_);
+               eigenvalues_.push_back(temp_value);
+               eigenvectors_.push_back(temp_vector);
+               model.SetCalculatedEigenvectorSet(sector);
+            }
+         }
+      }
+      else if (diag_method == "LOBPCG") {
+         std::stringstream ss;
+         ss << "Error in " << __func__ << std::endl;
+         ss << "LOBPCG is under construction: " << target_sector << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      else {
+         std::stringstream ss;
+         ss << "Error in " << __func__ << std::endl;
+         ss << "Invalid diag_method: " << target_sector << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      
+   }
+   
    RealType CalculateExpectationValue(const CRS &m, const int site, const int level = 0) const {
       if (model.GetCalculatedEigenvectorSet().count(level) == 0) {
          std::stringstream ss;

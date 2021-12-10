@@ -29,13 +29,21 @@ void dspgv_(const int &ITYPE,const char &JOBZ, const char &UPLO, const int &N, d
 template <typename RealType>
 void LapackDsyev(RealType *gs_value,
                  std::vector<RealType> *gs_vector,
-                 const CRS<RealType> &matrix_in) {
+                 const CRS<RealType> &matrix_in,
+                 const int target_level = 0
+                 ) {
    
    if (matrix_in.row_dim != matrix_in.col_dim || matrix_in.row_dim < 1 || matrix_in.col_dim < 1) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "The input matrix is not a square one" << std::endl;
       ss << "row=" << matrix_in.row_dim << ", col=" << matrix_in.col_dim << std::endl;
+      throw std::runtime_error(ss.str());
+   }
+   
+   if (target_level < 0) {
+      std::stringstream ss;
+      ss << "Invalid target_level" << std::endl;
       throw std::runtime_error(ss.str());
    }
    
@@ -66,10 +74,10 @@ void LapackDsyev(RealType *gs_value,
    gs_vector->resize(matrix_in.row_dim);
    
    for (std::int64_t i = 0; i < matrix_in.row_dim; ++i) {
-       (*gs_vector)[i] = static_cast<RealType>(matrix_array[0][i]);
+       (*gs_vector)[i] = static_cast<RealType>(matrix_array[target_level][i]);
    }
    
-   *gs_value = static_cast<RealType>(val_array[0]);
+   *gs_value = static_cast<RealType>(val_array[target_level]);
 }
 
 template <typename RealType>

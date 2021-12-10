@@ -15,5 +15,6 @@
 #include "matrix_vector_operation.hpp"
 #include "conjugate_gradient.hpp"
 #include "inverse_iteration.hpp"
+#include "orthonormalize.hpp"
 
 #endif /* COMPNAL_SPARSE_MATRIX_ALL_HPP_ */
