@@ -148,9 +148,8 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *t
          vector_0.val[i] = uniform_rand(random_number_engine);
       }
    }
-   
-   vector_0.Normalize();
    Orthonormalize(&vector_0, subspace_vectors);
+   vector_0.Normalize();
    
    if (params.flag_store_vec) {
       rits_vector.push_back(vector_0.val);
@@ -170,8 +169,8 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *t
    for (int step = 0; step < params.max_step; ++step) {
       vector_2.Assign(vector_1);
       off_diagonal_value.push_back(vector_2.L2Norm());
-      vector_2.Normalize();
       Orthonormalize(&vector_2, subspace_vectors);
+      vector_2.Normalize();
       
       if (params.flag_store_vec) {
          rits_vector.push_back(vector_2.val);
@@ -243,9 +242,9 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *t
          }
       }
       
-      vector_0.Normalize();
       Orthonormalize(&vector_0, subspace_vectors);
-      
+      vector_0.Normalize();
+
       CalculateVectorSum(target_vector_out, 1.0, *target_vector_out, krylov_eigen_vector[0], vector_0);
       if (params.flag_symmetric_crs) {
          CalculateSymmetricMatrixVectorProduct(&vector_1, 1.0, matrix_in, vector_0, &vectors_work);
@@ -258,8 +257,8 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *t
       
       for (int step = 1; step <= converge_step_number; ++step) {
          vector_2.Assign(vector_1);
-         vector_2.Normalize();
          Orthonormalize(&vector_2, subspace_vectors);
+         vector_2.Normalize();
          CalculateVectorSum(target_vector_out, 1.0, *target_vector_out, krylov_eigen_vector[step], vector_2);
          
          if (params.flag_symmetric_crs) {

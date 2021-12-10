@@ -25,7 +25,8 @@ template<typename RealType>
 std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
                                          const CRS<RealType>    &matrix_in,
                                          const BraketVector<RealType> &vec_in,
-                                         const ParametersCG &params = ParametersCG()
+                                         const ParametersCG &params = ParametersCG(),
+                                         const std::vector<BraketVector<RealType>> &subspace_vectors = {}
                                          ) {
    
    if (matrix_in.row_dim != matrix_in.col_dim) {
@@ -73,9 +74,8 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
          vec_out->val[i] = uniform_rand(random_number_engine);
       }
    }
-   
+   Orthonormalize(vec_out, subspace_vectors);
    vec_out->Normalize();
-   
    if (params.flag_symmetric_crs) {
       CalculateSymmetricMatrixVectorProduct(&rrr, 1.0, matrix_in, *vec_out, &vectors_work);
    }
@@ -89,6 +89,9 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
       ppp.val[i] = rrr.val[i];
    }
    
+   Orthonormalize(&rrr, subspace_vectors);
+   Orthonormalize(&ppp, subspace_vectors);
+   
    for (int step = 0; step < params.max_step; ++step) {
       if (params.flag_symmetric_crs) {
          CalculateSymmetricMatrixVectorProduct(&yyy, 1.0, matrix_in, ppp, &vectors_work);
@@ -96,6 +99,8 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
       else {
          CalculateMatrixVectorProduct(&yyy, 1.0, matrix_in, ppp);
       }
+      
+      Orthonormalize(&yyy, subspace_vectors);
       
       const RealType inner_prod = CalculateInnerProduct(rrr, rrr);
       const RealType alpha      = inner_prod/CalculateInnerProduct(ppp, yyy);
@@ -105,6 +110,9 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
          vec_out->val[i] += alpha*ppp.val[i];
          rrr.val[i]      -= alpha*yyy.val[i];
       }
+      
+      Orthonormalize(vec_out, subspace_vectors);
+      Orthonormalize(&rrr    , subspace_vectors);
       
       const RealType residual_error = CalculateInnerProduct(rrr, rrr);
       
@@ -128,6 +136,7 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
       for (std::int64_t i = 0; i < dim; ++i) {
          ppp.val[i] = rrr.val[i] + beta*ppp.val[i];
       }
+      Orthonormalize(&ppp, subspace_vectors);
    }
    
    std::stringstream ss;

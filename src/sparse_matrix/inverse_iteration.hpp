@@ -18,7 +18,8 @@ template<typename RealType>
 std::pair<int, double> InverseIteration(CRS<RealType>          *matrix_in,
                                         BraketVector<RealType> *eigenvector,
                                         const RealType         eigenvalue,
-                                        const ParametersII     &params = ParametersII()
+                                        const ParametersII     &params = ParametersII(),
+                                        const std::vector<BraketVector<RealType>> &subspace_vectors = {}
                                         ) {
    
    if (matrix_in->row_dim != matrix_in->col_dim) {
@@ -70,7 +71,7 @@ std::pair<int, double> InverseIteration(CRS<RealType>          *matrix_in,
          return {step, time_sec};
       }
 
-      ConjugateGradient(&improved_eigenvector, *matrix_in, *eigenvector, params.cg);
+      ConjugateGradient(&improved_eigenvector, *matrix_in, *eigenvector, params.cg, subspace_vectors);
       improved_eigenvector.Normalize();
       eigenvector->Assign(improved_eigenvector);
    }

@@ -25,7 +25,6 @@ void Orthonormalize(std::vector<BraketVector<RealType>> *vectors) {
             vectors[i]->val[k] += inner_product*vectors[j]->val[k];
          }
       }
-      vectors[i]->Normalize();
    }
 }
 
@@ -39,7 +38,6 @@ void Orthonormalize(BraketVector<RealType> *target_vector, const std::vector<Bra
          target_vector->val[j] += inner_product*vectors[i].val[j];
       }
    }
-   target_vector->Normalize();
 }
 
 }  // namespace sparse_matrix

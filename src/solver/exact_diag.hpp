@@ -106,6 +106,7 @@ public:
                BraketVector temp_vector(ham.row_dim);
                RealType temp_value = 0.0;
                sparse_matrix::EigenvalueDecompositionLanczos(&temp_value, &temp_vector, ham, sector, eigenvectors_, params.lanczos);
+               sparse_matrix::InverseIteration(&ham, &temp_vector, temp_value, params.ii, eigenvectors_);
                eigenvalues_.push_back(temp_value);
                eigenvectors_.push_back(temp_vector);
                model.SetCalculatedEigenvectorSet(sector);
