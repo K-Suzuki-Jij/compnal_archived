@@ -86,10 +86,7 @@ public:
          ss << "Invalid target_sector: " << target_sector << std::endl;
          throw std::runtime_error(ss.str());
       }
-      if (target_sector == 0) {
-         CalculateGroundState(diag_method);
-         return;
-      }
+      CalculateGroundState(diag_method);
       if (model.GetCalculatedEigenvectorSet().count(target_sector) != 0) {
          return;
       }
@@ -100,14 +97,15 @@ public:
       if (diag_method == "Lanczos") {
          for (int sector = 1; sector <= target_sector; ++sector) {
             if (model.GetCalculatedEigenvectorSet().count(sector) == 0) {
-               if (eigenvectors_.size() != sector) {
+               if (static_cast<int>(eigenvectors_.size()) != sector) {
                   std::stringstream ss;
                   ss << "Unknown Error in " << __func__ << std::endl;
+                  ss << "sector: " << sector << ", size: " << eigenvectors_.size() << std::endl;
                   throw std::runtime_error(ss.str());
                }
-               sparse_matrix::BraketVector<RealType> temp_vector(ham.row_dim);
+               BraketVector temp_vector(ham.row_dim);
                RealType temp_value = 0.0;
-               sparse_matrix::EigenvalueDecompositionLanczos(&temp_value, &temp_vector, ham, sector, eigenvectors_);
+               sparse_matrix::EigenvalueDecompositionLanczos(&temp_value, &temp_vector, ham, sector, eigenvectors_, params.lanczos);
                eigenvalues_.push_back(temp_value);
                eigenvectors_.push_back(temp_vector);
                model.SetCalculatedEigenvectorSet(sector);

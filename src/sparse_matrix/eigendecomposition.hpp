@@ -108,7 +108,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *t
       return {0, time_sec};
    }
    
-   if (target_level != subspace_vectors.size()) {
+   if (target_level != static_cast<int>(subspace_vectors.size())) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "Invalid size of subspace_vectors" << std::endl;
@@ -150,7 +150,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *t
    }
    
    vector_0.Normalize();
-   Orthonormalize(vector_0, subspace_vectors);
+   Orthonormalize(&vector_0, subspace_vectors);
    
    if (params.flag_store_vec) {
       rits_vector.push_back(vector_0.val);
@@ -171,7 +171,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *t
       vector_2.Assign(vector_1);
       off_diagonal_value.push_back(vector_2.L2Norm());
       vector_2.Normalize();
-      Orthonormalize(vector_2, subspace_vectors);
+      Orthonormalize(&vector_2, subspace_vectors);
       
       if (params.flag_store_vec) {
          rits_vector.push_back(vector_2.val);
@@ -244,7 +244,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *t
       }
       
       vector_0.Normalize();
-      Orthonormalize(vector_0, subspace_vectors);
+      Orthonormalize(&vector_0, subspace_vectors);
       
       CalculateVectorSum(target_vector_out, 1.0, *target_vector_out, krylov_eigen_vector[0], vector_0);
       if (params.flag_symmetric_crs) {
@@ -259,7 +259,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *t
       for (int step = 1; step <= converge_step_number; ++step) {
          vector_2.Assign(vector_1);
          vector_2.Normalize();
-         Orthonormalize(vector_2, subspace_vectors);
+         Orthonormalize(&vector_2, subspace_vectors);
          CalculateVectorSum(target_vector_out, 1.0, *target_vector_out, krylov_eigen_vector[step], vector_2);
          
          if (params.flag_symmetric_crs) {

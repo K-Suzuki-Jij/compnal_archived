@@ -31,12 +31,12 @@ void Orthonormalize(std::vector<BraketVector<RealType>> *vectors) {
 
 template<typename RealType>
 void Orthonormalize(BraketVector<RealType> *target_vector, const std::vector<BraketVector<RealType>> &vectors) {
-   const int64_t dim = static_cast<std::int64_t>(target_vector->size());
+   const int64_t dim = static_cast<std::int64_t>(target_vector->val.size());
    for (std::size_t i = 0; i < vectors.size(); ++i) {
       const RealType inner_product = -1.0*CalculateInnerProduct(*target_vector, vectors[i]);
 #pragma omp parallel for
       for (std::int64_t j = 0; j < dim; ++j) {
-         (*target_vector)[j] += inner_product*vectors[i].val[j];
+         target_vector->val[j] += inner_product*vectors[i].val[j];
       }
    }
    target_vector->Normalize();

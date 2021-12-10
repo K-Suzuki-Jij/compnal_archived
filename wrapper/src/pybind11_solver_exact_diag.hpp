@@ -48,7 +48,14 @@ void pybind11SolverExactDiag(py::module &m, const std::string &mtype_str) {
           py::module_::import("sys").attr("stdout") // Python output
       );
       self.CalculateGroundState(diag_method);
-   }, "diag_method"_a = "Lanczos");
+   }, "diag_method"_a = "Lanczos")
+   .def("calculate_target_state", [](ED &self, const int target_sector, const std::string &diag_method) {
+      py::scoped_ostream_redirect stream(
+          std::cout,                                // std::ostream&
+          py::module_::import("sys").attr("stdout") // Python output
+      );
+      self.CalculateTargetState(target_sector, diag_method);
+   }, "target_sector"_a, "diag_method"_a = "Lanczos");
    
    auto mkci_str = std::string("ExactDiag");
    m.def(mkci_str.c_str(), [](const ModelClass &model) {
