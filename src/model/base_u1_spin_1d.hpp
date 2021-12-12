@@ -38,12 +38,10 @@ public:
       SetSystemSize(system_size);
    }
    
-   BaseU1Spin_1D(const int system_size,
-                 const double magnitude_spin
-                 ): BaseU1Spin_1D(system_size) {
+   BaseU1Spin_1D(const int system_size, const double magnitude_spin): BaseU1Spin_1D(system_size) {
       SetMagnitudeSpin(magnitude_spin);
    }
-      
+   
    void SetSystemSize(const int system_size) {
       if (system_size <= 0) {
          std::stringstream ss;
@@ -86,13 +84,13 @@ public:
          throw std::runtime_error(ss.str());
       }
       const int total_2sz = utility::DoubleTheNumber(total_sz);
-
+      
       if (total_2sz_ != total_2sz) {
          total_2sz_ = total_2sz;
          calculated_eigenvector_set_.clear();
       }
    }
-      
+   
    void SetCalculatedEigenvectorSet(const std::int64_t level) {
       calculated_eigenvector_set_.emplace(level);
    }
@@ -102,16 +100,7 @@ public:
    }
    
    bool isValidQNumber(const double total_sz) const {
-      const int total_2sz = utility::DoubleTheNumber(total_sz);
-      const bool c1 = ((system_size_*magnitude_2spin_ - total_2sz)%2 == 0);
-      const bool c2 = (-system_size_*magnitude_2spin_ <= total_2sz);
-      const bool c3 = (total_2sz <= system_size_*magnitude_2spin_);
-      if (c1 && c2 && c3) {
-         return true;
-      }
-      else {
-         return false;
-      }
+      return isValidQNumber(system_size_, 0.5*magnitude_2spin_, total_sz);
    }
    
    void PrintBasisOnsite() const {
@@ -126,31 +115,7 @@ public:
    }
    
    std::int64_t CalculateTargetDim(const double total_sz) const {
-      if (isValidQNumber(total_sz) == false) {
-         std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << std::endl;
-         ss << "Invalid parameters (system_size or magnitude_spin or total_sz)" << std::endl;
-         throw std::runtime_error(ss.str());
-      }
-      const int total_2sz = utility::DoubleTheNumber(total_sz);
-      const int max_total_2sz = system_size_*magnitude_2spin_;
-      std::vector<std::vector<std::int64_t>> dim(system_size_, std::vector<std::int64_t>(max_total_2sz + 1));
-      for (int s = -magnitude_2spin_; s <= magnitude_2spin_; s += 2) {
-         dim[0][(s + magnitude_2spin_)/2] = 1;
-      }
-      for (int site = 1; site < system_size_; site++) {
-         for (int s = -magnitude_2spin_; s <= magnitude_2spin_; s += 2) {
-            for (int s_prev = -magnitude_2spin_*site; s_prev <= magnitude_2spin_*site; s_prev += 2) {
-               const std::int64_t a = dim[site    ][(s + s_prev + magnitude_2spin_*(site + 1))/2];
-               const std::int64_t b = dim[site - 1][(s_prev + magnitude_2spin_*site)/2];
-               if (a >= INT64_MAX - b) {
-                  throw std::runtime_error("Overflow detected for sumation using uint64_t");
-               }
-               dim[site][(s + s_prev + magnitude_2spin_*(site + 1))/2] = a + b;
-            }
-         }
-      }
-      return dim[system_size_ - 1][(total_2sz + max_total_2sz)/2];
+      return CalculateTargetDim(system_size_, 0.5*magnitude_2spin_, total_sz);
    }
    
    void GenerateBasis() {
@@ -158,7 +123,7 @@ public:
    }
    
    void GenerateBasis(const double total_sz) {
-      if (isValidQNumber(total_sz) == false) {
+      if (!isValidQNumber(total_sz)) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__ << std::endl;
          ss << "Invalid parameters (system_size or magnitude_spin or total_sz)" << std::endl;
@@ -167,7 +132,7 @@ public:
       
       const auto start = std::chrono::system_clock::now();
       const int total_2sz = utility::DoubleTheNumber(total_sz);
-
+      
       if (bases_.count(total_2sz) != 0) {
          return;
       }
@@ -253,9 +218,9 @@ public:
             } while (std::next_permutation(integer_list.begin(), integer_list.end()));
          }
       }
-
+      
 #endif
-         
+      
       if (static_cast<std::int64_t>(bases_.at(total_2sz).size()) != dim_target) {
          std::stringstream ss;
          ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
@@ -268,7 +233,7 @@ public:
          bases_inv_[total_2sz] = std::unordered_map<std::int64_t, std::int64_t>();
       }
       bases_inv_.at(total_2sz).clear();
-            
+      
       for (std::int64_t i = 0; i < dim_target; ++i) {
          bases_inv_.at(total_2sz)[bases_.at(total_2sz)[i]] = i;
       }
@@ -285,8 +250,8 @@ public:
       for (std::int64_t i = 0; i < m_1.row_dim; ++i) {
          for (std::int64_t j = m_1.row[i]; j < m_1.row[i + 1]; ++j) {
             if (m_1.val[j] != 0.0) {
-               level_set.emplace(m_1.col[j] - i + 0.5*total_2sz_);
-               level_set_m1.emplace(m_1.col[j] - i + 0.5*total_2sz_);
+               level_set.emplace(CalculateQuntumNumberDifference(i, m_1.col[j]) + 0.5*total_2sz_);
+               level_set_m1.emplace(CalculateQuntumNumberDifference(i, m_1.col[j]) + 0.5*total_2sz_);
             }
          }
       }
@@ -294,8 +259,8 @@ public:
       for (std::int64_t i = 0; i < m_2.row_dim; ++i) {
          for (std::int64_t j = m_2.row[i]; j < m_2.row[i + 1]; ++j) {
             if (m_2.val[j] != 0.0) {
-               level_set.emplace(m_2.col[j] - i + 0.5*total_2sz_);
-               level_set_m2.emplace(m_2.col[j] - i + 0.5*total_2sz_);
+               level_set.emplace(CalculateQuntumNumberDifference(i, m_2.col[j]) + 0.5*total_2sz_);
+               level_set_m2.emplace(CalculateQuntumNumberDifference(i, m_2.col[j]) + 0.5*total_2sz_);
             }
          }
       }
@@ -310,16 +275,16 @@ public:
       
       return level_set_intersection;
    }
-      
+   
    std::vector<std::pair<double, double>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_ket, const CRS &m_3_ket) const {
       std::unordered_set<double> delta_sector_set_m1;
       std::unordered_set<double> delta_sector_set_m2;
       std::unordered_set<double> delta_sector_set_m3;
-
+      
       for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
          for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
             if (m_1_bra.val[j] != 0.0) {
-               delta_sector_set_m1.emplace(m_1_bra.col[j] - i);
+               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(i, m_1_bra.col[j]));
             }
          }
       }
@@ -327,7 +292,7 @@ public:
       for (std::int64_t i = 0; i < m_2_ket.row_dim; ++i) {
          for (std::int64_t j = m_2_ket.row[i]; j < m_2_ket.row[i + 1]; ++j) {
             if (m_2_ket.val[j] != 0.0) {
-               delta_sector_set_m2.emplace(m_2_ket.col[j] - i);
+               delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(i, m_2_ket.col[j]));
             }
          }
       }
@@ -335,7 +300,7 @@ public:
       for (std::int64_t i = 0; i < m_3_ket.row_dim; ++i) {
          for (std::int64_t j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
             if (m_3_ket.val[j] != 0.0) {
-               delta_sector_set_m3.emplace(m_3_ket.col[j] - i);
+               delta_sector_set_m3.emplace(CalculateQuntumNumberDifference(i, m_3_ket.col[j]));
             }
          }
       }
@@ -362,11 +327,11 @@ public:
       std::unordered_set<double> delta_sector_set_m2;
       std::unordered_set<double> delta_sector_set_m3;
       std::unordered_set<double> delta_sector_set_m4;
-
+      
       for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
          for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
             if (m_1_bra.val[j] != 0.0) {
-               delta_sector_set_m1.emplace(m_1_bra.col[j] - i);
+               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(i, m_1_bra.col[j]));
             }
          }
       }
@@ -374,7 +339,7 @@ public:
       for (std::int64_t i = 0; i < m_2_bra.row_dim; ++i) {
          for (std::int64_t j = m_2_bra.row[i]; j < m_2_bra.row[i + 1]; ++j) {
             if (m_2_bra.val[j] != 0.0) {
-               delta_sector_set_m2.emplace(m_2_bra.col[j] - i);
+               delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(i, m_2_bra.col[j]));
             }
          }
       }
@@ -382,7 +347,7 @@ public:
       for (std::int64_t i = 0; i < m_3_ket.row_dim; ++i) {
          for (std::int64_t j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
             if (m_3_ket.val[j] != 0.0) {
-               delta_sector_set_m3.emplace(m_3_ket.col[j] - i);
+               delta_sector_set_m3.emplace(CalculateQuntumNumberDifference(i, m_3_ket.col[j]));
             }
          }
       }
@@ -390,7 +355,7 @@ public:
       for (std::int64_t i = 0; i < m_4_ket.row_dim; ++i) {
          for (std::int64_t j = m_4_ket.row[i]; j < m_4_ket.row[i + 1]; ++j) {
             if (m_4_ket.val[j] != 0.0) {
-               delta_sector_set_m4.emplace(m_4_ket.col[j] - i);
+               delta_sector_set_m4.emplace(CalculateQuntumNumberDifference(i, m_4_ket.col[j]));
             }
          }
       }
@@ -412,6 +377,46 @@ public:
          }
       }
       return target_sector_set;
+   }
+   
+   static bool isValidQNumber(const int system_size, const double magnitude_spin, const double total_sz) {
+      const int total_2sz = utility::DoubleTheNumber(total_sz);
+      const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
+      const bool c1 = ((system_size*magnitude_2spin - total_2sz)%2 == 0);
+      const bool c2 = (-system_size*magnitude_2spin <= total_2sz);
+      const bool c3 = (total_2sz <= system_size*magnitude_2spin);
+      if (c1 && c2 && c3) {
+         return true;
+      }
+      else {
+         return false;
+      }
+   }
+   
+   static std::int64_t CalculateTargetDim(const int system_size, const double magnitude_spin, const double total_sz) {
+      const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
+      if (!isValidQNumber(system_size, magnitude_spin, total_sz)) {
+         return 0;
+      }
+      const int total_2sz = utility::DoubleTheNumber(total_sz);
+      const int max_total_2sz = system_size*magnitude_2spin;
+      std::vector<std::vector<std::int64_t>> dim(system_size, std::vector<std::int64_t>(max_total_2sz + 1));
+      for (int s = -magnitude_2spin; s <= magnitude_2spin; s += 2) {
+         dim[0][(s + magnitude_2spin)/2] = 1;
+      }
+      for (int site = 1; site < system_size; site++) {
+         for (int s = -magnitude_2spin; s <= magnitude_2spin; s += 2) {
+            for (int s_prev = -magnitude_2spin*site; s_prev <= magnitude_2spin*site; s_prev += 2) {
+               const std::int64_t a = dim[site    ][(s + s_prev + magnitude_2spin*(site + 1))/2];
+               const std::int64_t b = dim[site - 1][(s_prev + magnitude_2spin*site)/2];
+               if (a >= INT64_MAX - b) {
+                  throw std::runtime_error("Overflow detected for sumation using uint64_t");
+               }
+               dim[site][(s + s_prev + magnitude_2spin*(site + 1))/2] = a + b;
+            }
+         }
+      }
+      return dim[system_size - 1][(total_2sz + max_total_2sz)/2];
    }
    
    static CRS CreateOnsiteOperatorSx(const double magnitude_spin) {
@@ -524,6 +529,11 @@ public:
       return matrix;
    }
    
+   template<typename IntegerType>
+   inline static IntegerType CalculateQuntumNumberDifference(const IntegerType row, const IntegerType col) {
+      return col - row;
+   }
+   
    // TODO: Move Boundary Condition to Derivrd Class.
    inline int GetSystemSize()           const { return system_size_;            }
    inline int GetDimOnsite()            const { return dim_onsite_;             }
@@ -561,7 +571,7 @@ protected:
    CRS onsite_operator_sz_;
    CRS onsite_operator_sp_;
    CRS onsite_operator_sm_;
-      
+   
    int system_size_     = 0;
    int total_2sz_       = 0;
    int dim_onsite_      = 2;

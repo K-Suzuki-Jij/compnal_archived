@@ -16,6 +16,7 @@ PYBIND11_MODULE(compnal, m) {
    py::module_ m_model = m.def_submodule("model");
    pybind11ModelBaseElectron1D<RealType>(m_model);
    pybind11ModelBaseSpin1D<RealType>(m_model);
+   pybind11ModelBaseSpinElectron1D<RealType>(m_model);
    pybind11ModelXXZ1D<RealType>(m_model);
    pybind11ModelHubbard1D<RealType>(m_model);
    pybind11ModelGeneral1D<RealType>(m_model);
@@ -31,5 +32,6 @@ PYBIND11_MODULE(compnal, m) {
    pybind11SolverExactDiag<compnal::model::Hubbard_1D<RealType>>(m_solver, "Hubbard");
    pybind11SolverExactDiag<compnal::model::GeneralModel_1D<compnal::model::BaseU1Spin_1D<RealType>>>(m_solver, "U1Spin");
    pybind11SolverExactDiag<compnal::model::GeneralModel_1D<compnal::model::BaseU1Electron_1D<RealType>>>(m_solver, "U1Electron");
+   pybind11SolverExactDiag<compnal::model::GeneralModel_1D<compnal::model::BaseU1SpinElectron_1D<RealType>>>(m_solver, "U1SpinElectron");
 
 };

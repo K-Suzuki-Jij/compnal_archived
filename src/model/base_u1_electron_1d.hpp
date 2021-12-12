@@ -90,17 +90,11 @@ public:
    }
    
    bool isValidQNumber(const std::pair<int, double> &quantum_number) const {
-      const int total_electron = quantum_number.first;
-      const int total_2sz      = utility::DoubleTheNumber(quantum_number.second);
-      const bool c1 = (0 <= total_electron && total_electron <= 2*system_size_);
-      const bool c2 = ((total_electron - total_2sz)%2 == 0);
-      const bool c3 = (-total_electron <= total_2sz && total_2sz <= total_electron);
-      if (c1 && c2 && c3) {
-         return true;
-      }
-      else {
-         return false;
-      }
+      return isValidQNumber(system_size_, quantum_number.first, quantum_number.second);
+   }
+   
+   bool isValidQNumber(const int total_electron, const double total_sz) {
+      return isValidQNumber(system_size_, total_electron, total_sz);
    }
    
    int GetNumElectrons(const int basis_onsite) const {
@@ -138,35 +132,15 @@ public:
    }
    
    std::int64_t CalculateTargetDim() const {
-      return CalculateTargetDim({total_electron_, 0.5*total_2sz_});
+      return CalculateTargetDim(system_size_, total_electron_, 0.5*total_2sz_);
    }
    
    std::int64_t CalculateTargetDim(const int total_electron, const double total_sz) const {
-      return CalculateTargetDim({total_electron, total_sz});
+      return CalculateTargetDim(system_size_, total_electron, total_sz);
    }
    
    std::int64_t CalculateTargetDim(const std::pair<int, double> &quantum_number) const {
-      if (!isValidQNumber(quantum_number)) {
-         std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << std::endl;
-         ss << "Invalid parameters (system_size or magnitude_spin or total_sz)" << std::endl;
-         throw std::runtime_error(ss.str());
-      }
-      const int total_electron = quantum_number.first;
-      const int total_2sz      = utility::DoubleTheNumber(quantum_number.second);
-      const std::vector<std::vector<std::int64_t>> binom = utility::CalculateBinomialTable(system_size_);
-      const int max_n_up_down = static_cast<int>(total_electron/2);
-      std::int64_t dim = 0;
-      for (int n_up_down = 0; n_up_down <= max_n_up_down; ++n_up_down) {
-         const int n_up   = static_cast<int>((total_electron - 2*n_up_down + total_2sz)/2);
-         const int n_down = static_cast<int>((total_electron - 2*n_up_down - total_2sz)/2);
-         const int n_vac  = system_size_ - total_electron + n_up_down;
-         if (0 <= n_up && 0 <= n_down && 0 <= n_vac) {
-            // TODO: Detect Overflow
-            dim += binom[system_size_][n_up]*binom[system_size_ - n_up][n_down]*binom[system_size_ - n_up - n_down][n_up_down];
-         }
-      }
-      return dim;
+      return CalculateTargetDim(system_size_, quantum_number.first, quantum_number.second);
    }
    
    void GenerateBasis() {
@@ -316,14 +290,14 @@ public:
       for (std::int64_t i = 0; i < m_1.row_dim; ++i) {
          for (std::int64_t j = m_1.row[i]; j < m_1.row[i + 1]; ++j) {
             if (m_1.val[j] != 0.0) {
-               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_1.col[j])));
+               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(i, m_1.col[j]));
             }
          }
       }
       for (std::int64_t i = 0; i < m_2.row_dim; ++i) {
          for (std::int64_t j = m_2.row[i]; j < m_2.row[i + 1]; ++j) {
             if (m_2.val[j] != 0.0) {
-               delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_2.col[j])));
+               delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(i, m_2.col[j]));
             }
          }
       }
@@ -451,7 +425,40 @@ public:
       target_sector_set.erase(std::unique(target_sector_set.begin(), target_sector_set.end()), target_sector_set.end());
       return target_sector_set;
    }
+      
+   static bool isValidQNumber(const int system_size, const int total_electron, const double total_sz) {
+      const int total_2sz = utility::DoubleTheNumber(total_sz);
+      const bool c1 = (0 <= total_electron && total_electron <= 2*system_size);
+      const bool c2 = ((total_electron - total_2sz)%2 == 0);
+      const bool c3 = (-total_electron <= total_2sz && total_2sz <= total_electron);
+      if (c1 && c2 && c3) {
+         return true;
+      }
+      else {
+         return false;
+      }
+   }
    
+   static std::int64_t CalculateTargetDim(const int system_size, const int total_electron, const double total_sz) {
+      if (!isValidQNumber(system_size, total_electron, total_sz)) {
+         return 0;
+      }
+      const int total_2sz = utility::DoubleTheNumber(total_sz);
+      const std::vector<std::vector<std::int64_t>> binom = utility::CalculateBinomialTable(system_size);
+      const int max_n_up_down = static_cast<int>(total_electron/2);
+      std::int64_t dim = 0;
+      for (int n_up_down = 0; n_up_down <= max_n_up_down; ++n_up_down) {
+         const int n_up   = static_cast<int>((total_electron - 2*n_up_down + total_2sz)/2);
+         const int n_down = static_cast<int>((total_electron - 2*n_up_down - total_2sz)/2);
+         const int n_vac  = system_size - total_electron + n_up_down;
+         if (0 <= n_up && 0 <= n_down && 0 <= n_vac) {
+            // TODO: Detect Overflow
+            dim += binom[system_size][n_up]*binom[system_size - n_up][n_down]*binom[system_size - n_up - n_down][n_up_down];
+         }
+      }
+      return dim;
+   }
+      
    static CRS CreateOnsiteOperatorCUp() {
       
       //--------------------------------
@@ -550,6 +557,55 @@ public:
       return sparse_matrix::CalculateMatrixMatrixProduct(1.0, CreateOnsiteOperatorCDownDagger(), 1.0, CreateOnsiteOperatorCUp());
    }
    
+   template<typename IntegerType>
+   static std::pair<int, double> CalculateQuntumNumberDifference(const IntegerType row, const IntegerType col) {
+      if (row == col && 0 <= row && row < 4 && 0 <= col && col < 4) {
+         return {+0, +0.0};
+      }
+      else if (row == 0 && col == 1) {
+         return {-1, -0.5};
+      }
+      else if (row == 0 && col == 2) {
+         return {-1, +0.5};
+      }
+      else if (row == 0 && col == 3) {
+         return {-2, +0.0};
+      }
+      else if (row == 1 && col == 0) {
+         return {+1, +0.5};
+      }
+      else if (row == 1 && col == 2) {
+         return {+0, +1.0};
+      }
+      else if (row == 1 && col == 3) {
+         return {-1, +0.5};
+      }
+      else if (row == 2 && col == 0) {
+         return {+1, -0.5};
+      }
+      else if (row == 2 && col == 1) {
+         return {+0, -1.0};
+      }
+      else if (row == 2 && col == 3) {
+         return {-1, -0.5};
+      }
+      else if (row == 3 && col == 0) {
+         return {+2, +0.0};
+      }
+      else if (row == 3 && col == 1) {
+         return {+1, -0.5};
+      }
+      else if (row == 3 && col == 2) {
+         return {+1, +0.5};
+      }
+      else {
+         std::stringstream ss;
+         ss << "Error in " << __func__ << std::endl;
+         ss << "The dimenstion of the matrix must be 4";
+         throw std::runtime_error(ss.str());
+      }
+   }
+   
    inline int    GetSystemSize()           const { return system_size_;            }
    inline int    GetDimOnsite()            const { return dim_onsite_;             }
    inline int    GetTotal2Sz()             const { return total_2sz_;              }
@@ -631,55 +687,6 @@ protected:
       onsite_operator_sp_ = CreateOnsiteOperatorSp ();
       onsite_operator_sm_ = CreateOnsiteOperatorSm ();
    }
-   
-   std::pair<int, double> CalculateQuntumNumberDifference(const int row, const int col) const {
-      if (row == col && 0 <= row && row < 4 && 0 <= col && col < 4) {
-         return {+0, +0.0};
-      }
-      else if (row == 0 && col == 1) {
-         return {-1, -0.5};
-      }
-      else if (row == 0 && col == 2) {
-         return {-1, +0.5};
-      }
-      else if (row == 0 && col == 3) {
-         return {-2, +0.0};
-      }
-      else if (row == 1 && col == 0) {
-         return {+1, +0.5};
-      }
-      else if (row == 1 && col == 2) {
-         return {+0, +1.0};
-      }
-      else if (row == 1 && col == 3) {
-         return {-1, +0.5};
-      }
-      else if (row == 2 && col == 0) {
-         return {+1, -0.5};
-      }
-      else if (row == 2 && col == 1) {
-         return {+0, -1.0};
-      }
-      else if (row == 2 && col == 3) {
-         return {-1, -0.5};
-      }
-      else if (row == 3 && col == 0) {
-         return {+2, +0.0};
-      }
-      else if (row == 3 && col == 1) {
-         return {+1, -0.5};
-      }
-      else if (row == 3 && col == 2) {
-         return {+1, +0.5};
-      }
-      else {
-         std::stringstream ss;
-         ss << "Error in " << __func__ << std::endl;
-         ss << "The dimenstion of the matrix must be 4";
-         throw std::runtime_error(ss.str());
-      }
-   }
-   
    
 };
 

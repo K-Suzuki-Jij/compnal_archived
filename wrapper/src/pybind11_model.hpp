@@ -80,6 +80,44 @@ void pybind11ModelBaseSpin1D(py::module &m) {
 }
 
 template<typename RealType>
+void pybind11ModelBaseSpinElectron1D(py::module &m) {
+   
+   using BUSE1D = compnal::model::BaseU1SpinElectron_1D<RealType>;
+   
+   py::class_<BUSE1D>(m, "BaseU1SpinElectron_1D", py::module_local())
+      .def(py::init<>())
+      .def(py::init<const int>(), "system_size"_a)
+      .def(py::init<const int, const double>(), "system_size"_a, "spin"_a)
+      .def(py::init<const int, const int>(), "system_size"_a, "total_electron"_a)
+      .def(py::init<const int, const double, const int>(), "system_size"_a, "spin"_a, "total_electron"_a)
+      .def("calculate_target_dim"   , py::overload_cast<>(&BUSE1D::CalculateTargetDim, py::const_))
+      .def("calculate_target_dim"   , py::overload_cast<const int, const double>(&BUSE1D::CalculateTargetDim, py::const_), "total_electron"_a, "total_sz"_a)
+      .def_property_readonly("CUp"         , &BUSE1D::GetOnsiteOperatorCUp        )
+      .def_property_readonly("CDown"       , &BUSE1D::GetOnsiteOperatorCDown      )
+      .def_property_readonly("CUpDagger"   , &BUSE1D::GetOnsiteOperatorCUpDagger  )
+      .def_property_readonly("CDownDagger" , &BUSE1D::GetOnsiteOperatorCDownDagger)
+      .def_property_readonly("NCUp"        , &BUSE1D::GetOnsiteOperatorNCUp       )
+      .def_property_readonly("NCDown"      , &BUSE1D::GetOnsiteOperatorNCDown     )
+      .def_property_readonly("NC"          , &BUSE1D::GetOnsiteOperatorNC         )
+      .def_property_readonly("SxC" , &BUSE1D::GetOnsiteOperatorSxC )
+      .def_property_readonly("iSyC", &BUSE1D::GetOnsiteOperatoriSyC)
+      .def_property_readonly("SzC" , &BUSE1D::GetOnsiteOperatorSzC )
+      .def_property_readonly("SpC" , &BUSE1D::GetOnsiteOperatorSpC )
+      .def_property_readonly("SmC" , &BUSE1D::GetOnsiteOperatorSmC )
+      .def_property_readonly("SxL" , &BUSE1D::GetOnsiteOperatorSxL )
+      .def_property_readonly("iSyL", &BUSE1D::GetOnsiteOperatoriSyL)
+      .def_property_readonly("SzL" , &BUSE1D::GetOnsiteOperatorSzL )
+      .def_property_readonly("SpL" , &BUSE1D::GetOnsiteOperatorSpL )
+      .def_property_readonly("SmL" , &BUSE1D::GetOnsiteOperatorSmL )
+      .def_property_readonly("SCSL", &BUSE1D::GetOnsiteOperatorSCSL)
+      .def_property("system_size"  , &BUSE1D::GetSystemSize, &BUSE1D::SetSystemSize)
+      .def_property("spin"         , &BUSE1D::GetMagnitudeSpin, &BUSE1D::SetMagnitudeLSpin)
+      .def_property("total_sz"     , &BUSE1D::GetTotalSz, &BUSE1D::SetTotalSz)
+      .def_property("total_electron", &BUSE1D::GetTotalElectron, &BUSE1D::SetTotalElectron);
+   
+}
+
+template<typename RealType>
 void pybind11ModelGeneral1D(py::module &m) {
    
    using BUS1D    = compnal::model::BaseU1Spin_1D<RealType>;
@@ -87,6 +125,9 @@ void pybind11ModelGeneral1D(py::module &m) {
    
    using BUE1D    = compnal::model::BaseU1Electron_1D<RealType>;
    using GM1DElec = compnal::model::GeneralModel_1D<BUE1D>;
+   
+   using BUSE1D   = compnal::model::BaseU1SpinElectron_1D<RealType>;
+   using GM1DSE   = compnal::model::GeneralModel_1D<BUSE1D>;
    
    using CRS = compnal::sparse_matrix::CRS<RealType>;
    
@@ -107,6 +148,17 @@ void pybind11ModelGeneral1D(py::module &m) {
    gm1d_elec.def("add_onsite_potential", py::overload_cast<const CRS&, const int>(&GM1DElec::AddOnsitePotential), "m"_a, "site"_a);
    gm1d_elec.def("add_interaction"     , py::overload_cast<const RealType, const CRS&, const int, const CRS&, const int>(&GM1DElec::AddInteraction), "value"_a, "m_1"_a, "site_1"_a, "m_2"_a, "site_2"_a);
    gm1d_elec.def("add_interaction"     , py::overload_cast<const CRS&, const int, const CRS&, const int>(&GM1DElec::AddInteraction), "m_1"_a, "site_1"_a, "m_2"_a, "site_2"_a);
+   
+   py::class_<GM1DSE, BUSE1D> gm1d_spin_elec(m, "U1SpinElectron_1D", py::module_local());
+   gm1d_spin_elec.def(py::init<>());
+   gm1d_spin_elec.def(py::init<const int>(), "system_size"_a);
+   gm1d_spin_elec.def(py::init<const int, const double>(), "system_size"_a, "spin"_a);
+   gm1d_spin_elec.def(py::init<const int, const int>(), "system_size"_a, "total_electron"_a);
+   gm1d_spin_elec.def(py::init<const int, const double, const int>(), "system_size"_a, "spin"_a, "total_electron"_a);
+   gm1d_spin_elec.def("add_onsite_potential", py::overload_cast<const RealType, const CRS&, const int>(&GM1DSE::AddOnsitePotential), "value"_a, "m"_a, "site"_a);
+   gm1d_spin_elec.def("add_onsite_potential", py::overload_cast<const CRS&, const int>(&GM1DSE::AddOnsitePotential), "m"_a, "site"_a);
+   gm1d_spin_elec.def("add_interaction"     , py::overload_cast<const RealType, const CRS&, const int, const CRS&, const int>(&GM1DSE::AddInteraction), "value"_a, "m_1"_a, "site_1"_a, "m_2"_a, "site_2"_a);
+   gm1d_spin_elec.def("add_interaction"     , py::overload_cast<const CRS&, const int, const CRS&, const int>(&GM1DSE::AddInteraction), "m_1"_a, "site_1"_a, "m_2"_a, "site_2"_a);
    
 }
 
