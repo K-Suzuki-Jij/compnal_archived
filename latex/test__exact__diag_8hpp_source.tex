@@ -1,0 +1,92 @@
+\hypertarget{test__exact__diag_8hpp_source}{}\doxysection{test\+\_\+exact\+\_\+diag.\+hpp}
+\label{test__exact__diag_8hpp_source}\index{tests/solver/test\_exact\_diag.hpp@{tests/solver/test\_exact\_diag.hpp}}
+\mbox{\hyperlink{test__exact__diag_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00001}00001 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00002}00002 \textcolor{comment}{//  test\_exact\_diag.hpp}}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00003}00003 \textcolor{comment}{//  compnal}}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00004}00004 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00005}00005 \textcolor{comment}{//  Created by Kohei Suzuki on 2021/11/07.}}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00006}00006 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00008}00008 \textcolor{preprocessor}{\#ifndef TEST\_SOLVER\_EXACT\_DIAG\_HPP\_}}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00009}00009 \textcolor{preprocessor}{\#define TEST\_SOLVER\_EXACT\_DIAG\_HPP\_}}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00011}00011 \textcolor{preprocessor}{\#include "{}../../src/solver/all.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00012}00012 \textcolor{preprocessor}{\#include "{}../../src/model/all.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00013}00013 \textcolor{preprocessor}{\#include <gtest/gtest.h>}}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00015}\mbox{\hyperlink{test__exact__diag_8hpp_ac1aeba18309e6c10b25505004f88b7e1}{00015}} \mbox{\hyperlink{test__exact__diag_8hpp_ac1aeba18309e6c10b25505004f88b7e1}{TEST}}(XXZ, Basic) \{}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00016}00016    \mbox{\hyperlink{classcompnal_1_1model_1_1_x_x_z__1_d}{compnal::model::XXZ\_1D<double>}} model;}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00017}00017    model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ab34e5e3dd6fdb9581c785c92f3ded892}{SetSystemSize}}(4);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00018}00018    model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a200a44a8ea5b4d47d904208b24984f98}{SetMagnitudeSpin}}(0.5);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00019}00019    \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal::solver::ExactDiag}} ed(model);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00020}00020    ed.\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a04a8e2c2aa3e67824f83a459fafd5092}{CalculateGroundState}}(\textcolor{stringliteral}{"{}Lanczos"{}});}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00021}00021    printf(\textcolor{stringliteral}{"{}\%.30lf\(\backslash\)n"{}}, ed.\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acaaec962f1fe4e3fcddc0b1e2ecebfc6}{GetEigenvalues}}()[0]);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00022}00022    printf(\textcolor{stringliteral}{"{}\%.15lf\(\backslash\)n"{}}, ed.\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a490b6895fcfb239a483be3dd2f10134a}{CalculateCorrelationFunction}}(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a506fddc0454a4008ed2cda1315b59f1e}{GetOnsiteOperatorSz}}(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00023}00023                                                       0,}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00024}00024                                                       model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a506fddc0454a4008ed2cda1315b59f1e}{GetOnsiteOperatorSz}}(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00025}00025                                                       1));}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00026}00026    }
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00027}00027    printf(\textcolor{stringliteral}{"{}\%.15lf\(\backslash\)n"{}}, ed.\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a490b6895fcfb239a483be3dd2f10134a}{CalculateCorrelationFunction}}(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a30092d8e74a2246007842fb4dfcefcf8}{GetOnsiteOperatorSx}}(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00028}00028                                                       0,}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00029}00029                                                       model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a30092d8e74a2246007842fb4dfcefcf8}{GetOnsiteOperatorSx}}(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00030}00030                                                       1));}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00031}00031 \}}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00033}\mbox{\hyperlink{test__exact__diag_8hpp_aab2efa37d4c619544b32e6aaaf612d03}{00033}} \mbox{\hyperlink{test__exact__diag_8hpp_ac1aeba18309e6c10b25505004f88b7e1}{TEST}}(Hubbard, Basic) \{}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00034}00034    \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d}{compnal::model::Hubbard\_1D<double>}} model;}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00035}00035    model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a4d218a9889fb9fac1f10d592e9c6524b}{SetSystemSize}}(4);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00036}00036    model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a1c3eb6bf3ebf8e161f3f5c3e6d96d549}{SetTotalElectron}}(4);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00037}00037    \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal::solver::ExactDiag}} ed(model);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00038}00038    ed.\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a04a8e2c2aa3e67824f83a459fafd5092}{CalculateGroundState}}(\textcolor{stringliteral}{"{}Lanczos"{}});}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00039}00039    printf(\textcolor{stringliteral}{"{}\%.30lf\(\backslash\)n"{}}, ed.\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acaaec962f1fe4e3fcddc0b1e2ecebfc6}{GetEigenvalues}}()[0]);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00040}00040    printf(\textcolor{stringliteral}{"{}\%.15lf\(\backslash\)n"{}}, ed.\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a490b6895fcfb239a483be3dd2f10134a}{CalculateCorrelationFunction}}(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a4d101c612f474f7f1360e01fb2e11458}{GetOnsiteOperatorSz}}(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00041}00041                                                       0,}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00042}00042                                                       model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a4d101c612f474f7f1360e01fb2e11458}{GetOnsiteOperatorSz}}(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00043}00043                                                       1));}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00044}00044    }
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00045}00045    printf(\textcolor{stringliteral}{"{}\%.15lf\(\backslash\)n"{}}, ed.\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a490b6895fcfb239a483be3dd2f10134a}{CalculateCorrelationFunction}}(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a804fcc953f4094c743ff7a090c5c5648}{GetOnsiteOperatorSx}}(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00046}00046                                                       0,}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00047}00047                                                       model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a804fcc953f4094c743ff7a090c5c5648}{GetOnsiteOperatorSx}}(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00048}00048                                                       1));}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00049}00049 \}}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00051}\mbox{\hyperlink{test__exact__diag_8hpp_ae03bc0b6169926f28069bf730ffd59bc}{00051}} \mbox{\hyperlink{test__exact__diag_8hpp_ac1aeba18309e6c10b25505004f88b7e1}{TEST}}(U1Spin, Basis) \{}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00052}00052    \textcolor{keyword}{const} \textcolor{keywordtype}{int} N = 4;}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00053}00053    \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d}{compnal::model::GeneralModel\_1D<compnal::model::BaseU1Spin\_1D<double>}}> model(N, 0.5);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00055}00055    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < N -\/ 1; ++i) \{}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00056}00056       model.\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a11bd36ed6a869440b9bd8ed666152f4e}{AddInteraction}}(model.GetOnsiteOperatorSz(), i, model.GetOnsiteOperatorSz(), i+1);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00057}00057       model.\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a11bd36ed6a869440b9bd8ed666152f4e}{AddInteraction}}(model.GetOnsiteOperatorSx(), i, model.GetOnsiteOperatorSx(), i+1);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00058}00058       model.\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a11bd36ed6a869440b9bd8ed666152f4e}{AddInteraction}}(-\/1.0, model.GetOnsiteOperatoriSy(), i, model.GetOnsiteOperatoriSy(), i+1);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00059}00059    \}}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00060}00060       }
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00061}00061    \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal::solver::ExactDiag}} ed(model);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00062}00062    ed.\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a04a8e2c2aa3e67824f83a459fafd5092}{CalculateGroundState}}(\textcolor{stringliteral}{"{}Lanczos"{}});}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00063}00063    printf(\textcolor{stringliteral}{"{}\%.30lf\(\backslash\)n"{}}, ed.\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acaaec962f1fe4e3fcddc0b1e2ecebfc6}{GetEigenvalues}}()[0]);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00064}00064 }
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00065}00065 \}}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00066}00066 }
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00067}\mbox{\hyperlink{test__exact__diag_8hpp_ab219348481cacdca2e5b8f9160f79326}{00067}} \mbox{\hyperlink{test__exact__diag_8hpp_ac1aeba18309e6c10b25505004f88b7e1}{TEST}}(U1Electron, Basis) \{}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00068}00068    \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d}{compnal::model::GeneralModel\_1D<compnal::model::BaseU1Electron\_1D<double>}}> model;}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00069}00069    model.SetSystemSize(4);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00070}00070    model.SetTotalElectron(4);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00071}00071    \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal::solver::ExactDiag}} ed(model);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00072}00072    ed.\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a04a8e2c2aa3e67824f83a459fafd5092}{CalculateGroundState}}(\textcolor{stringliteral}{"{}Lanczos"{}});}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00073}00073    printf(\textcolor{stringliteral}{"{}\%.30lf\(\backslash\)n"{}}, ed.\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acaaec962f1fe4e3fcddc0b1e2ecebfc6}{GetEigenvalues}}()[0]);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00074}00074    printf(\textcolor{stringliteral}{"{}\%.15lf\(\backslash\)n"{}}, ed.\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a490b6895fcfb239a483be3dd2f10134a}{CalculateCorrelationFunction}}(model.GetOnsiteOperatorSz(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00075}00075                                                       0,}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00076}00076                                                       model.GetOnsiteOperatorSz(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00077}00077                                                       1));}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00078}00078    }
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00079}00079    printf(\textcolor{stringliteral}{"{}\%.15lf\(\backslash\)n"{}}, ed.\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a490b6895fcfb239a483be3dd2f10134a}{CalculateCorrelationFunction}}(model.GetOnsiteOperatorSx(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00080}00080                                                       0,}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00081}00081                                                       model.GetOnsiteOperatorSx(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00082}00082                                                       1));}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00083}00083    }
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00084}00084 \}}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00085}00085 }
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_source_l00086}00086 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* TEST\_SOLVER\_EXACT\_DIAG\_HPP\_*/}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

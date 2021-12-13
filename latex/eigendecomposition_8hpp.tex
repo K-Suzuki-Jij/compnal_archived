@@ -1,0 +1,54 @@
+\hypertarget{eigendecomposition_8hpp}{}\doxysection{src/sparse\+\_\+matrix/eigendecomposition.hpp File Reference}
+\label{eigendecomposition_8hpp}\index{src/sparse\_matrix/eigendecomposition.hpp@{src/sparse\_matrix/eigendecomposition.hpp}}
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+{\ttfamily \#include \char`\"{}lapack.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}compressed\+\_\+row\+\_\+storage.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}braket\+\_\+vector.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}orthonormalize.\+hpp\char`\"{}}\newline
+Include dependency graph for eigendecomposition.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eigendecomposition_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{eigendecomposition_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_lanczos}{compnal\+::sparse\+\_\+matrix\+::\+Parameters\+Lanczos}}
+\item 
+struct \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_c_g}{compnal\+::sparse\+\_\+matrix\+::\+Parameters\+CG}}
+\item 
+struct \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_i_i}{compnal\+::sparse\+\_\+matrix\+::\+Parameters\+II}}
+\item 
+struct \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_all}{compnal\+::sparse\+\_\+matrix\+::\+Parameters\+All}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecompnal}{compnal}}
+\item 
+namespace \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix}{compnal\+::sparse\+\_\+matrix}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\std\+::pair$<$ int, double $>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab653e2e978de33c4cb8eaa35562e6fdd}{compnal\+::sparse\+\_\+matrix\+::\+Eigenvalue\+Decomposition\+Lanczos}} (Real\+Type $\ast$target\+\_\+value\+\_\+out, Braket\+Vector$<$ Real\+Type $>$ $\ast$target\+\_\+vector\+\_\+out, const CRS$<$ Real\+Type $>$ \&matrix\+\_\+in, const int target\+\_\+level, const std\+::vector$<$ Braket\+Vector$<$ Real\+Type $>$ $>$ \&subspace\+\_\+vectors, const Parameters\+Lanczos \&params=Parameters\+Lanczos())
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\std\+::pair$<$ int, double $>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a785dabd2915fe57f77fa60259958a92c}{compnal\+::sparse\+\_\+matrix\+::\+Eigenvalue\+Decomposition\+Lanczos}} (Real\+Type $\ast$gs\+\_\+value\+\_\+out, Braket\+Vector$<$ Real\+Type $>$ $\ast$gs\+\_\+vector\+\_\+out, const CRS$<$ Real\+Type $>$ \&matrix\+\_\+in, const Parameters\+Lanczos \&params=Parameters\+Lanczos())
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\std\+::pair$<$ int, double $>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a7fe5c3d33825a5f1d493f29c61f3c086}{compnal\+::sparse\+\_\+matrix\+::\+Eigenvalue\+Decomposition\+LOBPCG}} (Real\+Type $\ast$gs\+\_\+value\+\_\+out, Braket\+Vector$<$ Real\+Type $>$ $\ast$gs\+\_\+vector\+\_\+out, const CRS$<$ Real\+Type $>$ \&matrix\+\_\+in, const Parameters\+Lanczos \&params=Parameters\+Lanczos())
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_abc3cda835ae580805bef02651b4a7fbd}{compnal\+::sparse\+\_\+matrix\+::\+TIME\+\_\+\+UNIT\+\_\+\+CONSTANT}} = 1000$\ast$1000
+\end{DoxyCompactItemize}

@@ -21,26 +21,45 @@
 namespace compnal {
 namespace model {
 
+//! @brief The base class electron systems with the U(1) symmetry.
+//! @tparam RealType The type of real values.
 template<typename RealType>
 class BaseU1Electron_1D {
    
+   //! @brief Alias of compressed row strage (CRS) with RealType.
    using CRS = sparse_matrix::CRS<RealType>;
    
 public:
+   
+   //! @brief The type of real values.
    using ValueType = RealType;
    
+   //------------------------------------------------------------------
+   //---------------------------Constructors---------------------------
+   //------------------------------------------------------------------
+   //! @brief Constructor of BaseU1Electron_1D class.
    BaseU1Electron_1D() {
       SetOnsiteOperator();
    }
    
+   //! @brief Constructor of BaseU1Electron_1D class.
+   //! @param system_size The system size.
    explicit BaseU1Electron_1D(const int system_size): BaseU1Electron_1D() {
       SetSystemSize(system_size);
    }
    
+   //! @brief Constructor of BaseU1Electron_1D class.
+   //! @param system_size The system size.
+   //! @param total_electron The number of the total electrons.
    BaseU1Electron_1D(const int system_size, const int total_electron): BaseU1Electron_1D(system_size) {
       SetTotalElectron(total_electron);
    }
    
+   //------------------------------------------------------------------
+   //----------------------Public Member functions---------------------
+   //------------------------------------------------------------------
+   //! @brief Set system size.
+   //! @param system_size The system size.
    void SetSystemSize(const int system_size) {
       if (system_size <= 0) {
          std::stringstream ss;
@@ -57,6 +76,9 @@ public:
       }
    }
    
+   //! @brief Set target Hilbert space specified by the total sz to be diagonalized.
+   //! @param total_sz The total sz is the expectation value of the following operator:
+   //! \f[ \hat{S}^{z}_{\rm tot}=\sum^{N}_{i=1}\hat{S}^{z}_{i} \f]
    void SetTotalSz(const double total_sz) {
       if (!isValidQNumber({total_electron_, total_sz})) {
          std::stringstream ss;
@@ -72,6 +94,9 @@ public:
       }
    }
    
+   //! @brief Set the number of total electrons.
+   //! @param total_electron The number of total electrons is represented by the expectation value of the following operator:
+   //! \f[ \hat{N}_{\rm e}=\sum^{N}_{i=1}\hat{n}_{i} \f]
    void SetTotalElectron(const int total_electron) {
       if (!isValidQNumber({total_electron, 0.5*total_2sz_})) {
          std::stringstream ss;
@@ -85,18 +110,30 @@ public:
       }
    }
    
+   //! @brief Set calculated_eigenvector_set_, which represents the calculated eigenvectors and eigenvalues.
+   //! @param level Energy level.
    void SetCalculatedEigenvectorSet(const std::int64_t level) {
       calculated_eigenvector_set_.emplace(level);
    }
    
+   //! @brief Check if there is a subspace specified by the input quantum numbers.
+   //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
+   //! @return ture if there exists corresponding subspace, otherwise false.
    bool isValidQNumber(const std::pair<int, double> &quantum_number) const {
       return isValidQNumber(system_size_, quantum_number.first, quantum_number.second);
    }
    
-   bool isValidQNumber(const int total_electron, const double total_sz) {
+   //! @brief Check if there is a subspace specified by the input quantum numbers.
+   //! @param total_electron The total electron \f$ \langle\hat{N}_{\rm e}\rangle\f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
+   //! @return ture if there exists corresponding subspace, otherwise false.
+   bool isValidQNumber(const int total_electron, const double total_sz) const {
       return isValidQNumber(system_size_, total_electron, total_sz);
    }
    
+   //! @brief Calculate the number of electrons from the input onsite basis.
+   //! @param basis_onsite The onsite basis.
+   //! @return The number of electrons.
    int GetNumElectrons(const int basis_onsite) const {
       
       //--------------------------------
@@ -124,6 +161,7 @@ public:
       }
    }
    
+   //! @brief Print onsite bases.
    void PrintBasisOnsite() const {
       std::cout << "row " << 0 << ": |vac>" << std::endl;
       std::cout << "row " << 1 << ": |↑>"   << std::endl;
@@ -131,22 +169,39 @@ public:
       std::cout << "row " << 3 << ": |↑↓>"  << std::endl;
    }
    
+   //! @brief Calculate the dimension of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$, and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @return The dimension of the target Hilbert space.
    std::int64_t CalculateTargetDim() const {
       return CalculateTargetDim(system_size_, total_electron_, 0.5*total_2sz_);
    }
    
+   //! @brief Calculate the dimension of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$, and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param total_electron The total electron \f$ \langle\hat{N}_{\rm e}\rangle\f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
+   //! @return The dimension of the target Hilbert space.
    std::int64_t CalculateTargetDim(const int total_electron, const double total_sz) const {
       return CalculateTargetDim(system_size_, total_electron, total_sz);
    }
    
+   //! @brief Calculate the dimension of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$, and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
+   //! @return The dimension of the target Hilbert space.
    std::int64_t CalculateTargetDim(const std::pair<int, double> &quantum_number) const {
       return CalculateTargetDim(system_size_, quantum_number.first, quantum_number.second);
    }
    
+   //! @brief Generate bases of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$, and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    void GenerateBasis() {
       GenerateBasis({total_electron_, 0.5*total_2sz_});
    }
    
+   //! @brief Generate bases of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$, and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
    void GenerateBasis(const std::pair<int, double> &quantum_number) {
       if (!isValidQNumber(quantum_number)) {
          std::stringstream ss;
@@ -284,20 +339,24 @@ public:
       std::cout << "\rElapsed time of generating basis:" << time_sec << "[sec]" << std::endl;
    }
    
+   //! @brief Calculate the quantum numbers of excited states that appear when calculating the correlation functions.
+   //! @param m_1 The matrix of an onsite operator.
+   //! @param m_2 The matrix of an onsite operator.
+   //! @return The list of quantum numbers.
    std::vector<std::pair<int, double>> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
       std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m1;
       std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m2;
       for (std::int64_t i = 0; i < m_1.row_dim; ++i) {
          for (std::int64_t j = m_1.row[i]; j < m_1.row[i + 1]; ++j) {
             if (m_1.val[j] != 0.0) {
-               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(i, m_1.col[j]));
+               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_1.col[j])));
             }
          }
       }
       for (std::int64_t i = 0; i < m_2.row_dim; ++i) {
          for (std::int64_t j = m_2.row[i]; j < m_2.row[i + 1]; ++j) {
             if (m_2.val[j] != 0.0) {
-               delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(i, m_2.col[j]));
+               delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_2.col[j])));
             }
          }
       }
@@ -314,6 +373,11 @@ public:
       return target_sector_set;
    }
    
+   //! @brief Calculate the quantum numbers of excited states that appear when calculating the correlation functions.
+   //! @param m_1_bra The matrix of an onsite operator.
+   //! @param m_2_ket The matrix of an onsite operator.
+   //! @param m_3_ket The matrix of an onsite operator.
+   //! @return The list of quantum numbers.
    std::vector<std::pair<std::pair<int, double>, std::pair<int, double>>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_ket, const CRS &m_3_ket) const {
       std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m1;
       std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m2;
@@ -322,7 +386,7 @@ public:
       for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
          for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
             if (m_1_bra.val[j] != 0.0) {
-               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(i, m_1_bra.col[j]));
+               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_1_bra.col[j])));
             }
          }
       }
@@ -330,7 +394,7 @@ public:
       for (std::int64_t i = 0; i < m_2_ket.row_dim; ++i) {
          for (std::int64_t j = m_2_ket.row[i]; j < m_2_ket.row[i + 1]; ++j) {
             if (m_2_ket.val[j] != 0.0) {
-               delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(i, m_2_ket.col[j]));
+               delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_2_ket.col[j])));
             }
          }
       }
@@ -338,7 +402,7 @@ public:
       for (std::int64_t i = 0; i < m_3_ket.row_dim; ++i) {
          for (std::int64_t j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
             if (m_3_ket.val[j] != 0.0) {
-               delta_sector_set_m3.emplace(CalculateQuntumNumberDifference(i, m_3_ket.col[j]));
+               delta_sector_set_m3.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_3_ket.col[j])));
             }
          }
       }
@@ -363,6 +427,12 @@ public:
       return target_sector_set;
    }
    
+   //! @brief Calculate the quantum numbers of excited states that appear when calculating the correlation functions.
+   //! @param m_1_bra The matrix of an onsite operator.
+   //! @param m_2_bra The matrix of an onsite operator.
+   //! @param m_3_ket The matrix of an onsite operator.
+   //! @param m_4_ket The matrix of an onsite operator.
+   //! @return The list of quantum numbers.
    std::vector<std::tuple<std::pair<int, double>, std::pair<int, double>, std::pair<int, double>>>
    GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_bra, const CRS &m_3_ket, const CRS &m_4_ket) const {
       std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m1;
@@ -373,7 +443,7 @@ public:
       for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
          for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
             if (m_1_bra.val[j] != 0.0) {
-               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(i, m_1_bra.col[j]));
+               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_1_bra.col[j])));
             }
          }
       }
@@ -381,7 +451,7 @@ public:
       for (std::int64_t i = 0; i < m_2_bra.row_dim; ++i) {
          for (std::int64_t j = m_2_bra.row[i]; j < m_2_bra.row[i + 1]; ++j) {
             if (m_2_bra.val[j] != 0.0) {
-               delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(i, m_2_bra.col[j]));
+               delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_2_bra.col[j])));
             }
          }
       }
@@ -389,7 +459,7 @@ public:
       for (std::int64_t i = 0; i < m_3_ket.row_dim; ++i) {
          for (std::int64_t j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
             if (m_3_ket.val[j] != 0.0) {
-               delta_sector_set_m3.emplace(CalculateQuntumNumberDifference(i, m_3_ket.col[j]));
+               delta_sector_set_m3.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_3_ket.col[j])));
             }
          }
       }
@@ -397,7 +467,7 @@ public:
       for (std::int64_t i = 0; i < m_4_ket.row_dim; ++i) {
          for (std::int64_t j = m_4_ket.row[i]; j < m_4_ket.row[i + 1]; ++j) {
             if (m_4_ket.val[j] != 0.0) {
-               delta_sector_set_m4.emplace(CalculateQuntumNumberDifference(i, m_4_ket.col[j]));
+               delta_sector_set_m4.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_4_ket.col[j])));
             }
          }
       }
@@ -426,6 +496,11 @@ public:
       return target_sector_set;
    }
       
+   //! @brief Check if there is a subspace specified by the input quantum numbers.
+   //! @param system_size The system size \f$ N\f$.
+   //! @param total_electron The total electron \f$ \langle\hat{N}_{\rm e}\rangle\f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
+   //! @return ture if there exists corresponding subspace, otherwise false.
    static bool isValidQNumber(const int system_size, const int total_electron, const double total_sz) {
       const int total_2sz = utility::DoubleTheNumber(total_sz);
       const bool c1 = (0 <= total_electron && total_electron <= 2*system_size);
@@ -439,6 +514,11 @@ public:
       }
    }
    
+   //! @brief Generate bases of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$, and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param system_size The system size \f$ N\f$.
+   //! @param total_electron The total electron \f$ \langle\hat{N}_{\rm e}\rangle\f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    static std::int64_t CalculateTargetDim(const int system_size, const int total_electron, const double total_sz) {
       if (!isValidQNumber(system_size, total_electron, total_sz)) {
          return 0;
@@ -458,7 +538,9 @@ public:
       }
       return dim;
    }
-      
+   
+   //! @brief Generate the annihilation operator for the electrons with the up spin \f$ \hat{c}_{\uparrow}\f$.
+   //! @return The matrix of \f$ \hat{c}_{\uparrow}\f$.
    static CRS CreateOnsiteOperatorCUp() {
       
       //--------------------------------
@@ -486,6 +568,8 @@ public:
       return matrix;
    }
    
+   //! @brief Generate the annihilation operator for the electrons with the down spin \f$ \hat{c}_{\downarrow}\f$.
+   //! @return The matrix of \f$ \hat{c}_{\downarrow}\f$.
    static CRS CreateOnsiteOperatorCDown() {
       
       //--------------------------------
@@ -517,48 +601,83 @@ public:
       return matrix;
    }
    
+   //! @brief Generate the creation operator for the electrons with the up spin
+   //! \f$ \hat{c}^{\dagger}_{\uparrow}\f$.
+   //! @return The matrix of \f$ \hat{c}^{\dagger}_{\uparrow}\f$.
    static CRS CreateOnsiteOperatorCUpDagger() {
       return sparse_matrix::CalculateTransposedMatrix(CreateOnsiteOperatorCUp());
    }
    
+   //! @brief Generate the creation operator for the electrons with the down spin
+   //! \f$ \hat{c}^{\dagger}_{\downarrow}\f$.
+   //! @return The matrix of \f$ \hat{c}^{\dagger}_{\downarrow}\f$.
    static CRS CreateOnsiteOperatorCDownDagger() {
       return sparse_matrix::CalculateTransposedMatrix(CreateOnsiteOperatorCDown());
    }
    
+   //! @brief Generate the number operator for the electrons with the up spin
+   //! \f$ \hat{n}_{\uparrow}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow}\f$.
+   //! @return The matrix of \f$ \hat{n}_{\uparrow}\f$.
    static CRS CreateOnsiteOperatorNCUp() {
       return sparse_matrix::CalculateMatrixMatrixProduct(1.0, CreateOnsiteOperatorCUpDagger(), 1.0, CreateOnsiteOperatorCUp());
    }
    
+   //! @brief Generate the number operator for the electrons with the down spin
+   //! \f$ \hat{n}_{\downarrow}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow}\f$.
+   //! @return The matrix of \f$ \hat{n}_{\downarrow}\f$.
    static CRS CreateOnsiteOperatorNCDown() {
       return sparse_matrix::CalculateMatrixMatrixProduct(1.0, CreateOnsiteOperatorCDownDagger(), 1.0, CreateOnsiteOperatorCDown());
    }
    
+   //! @brief Generate the number operator for the electrons
+   //! \f$ \hat{n}=\hat{n}_{\uparrow} + \hat{n}_{\downarrow}\f$.
+   //! @return The matrix of \f$ \hat{n}\f$.
    static CRS CreateOnsiteOperatorNC() {
       return sparse_matrix::CalculateMatrixMatrixSum(1.0, CreateOnsiteOperatorNCUp(), 1.0, CreateOnsiteOperatorNCDown());
    }
    
+   //! @brief Generate the spin operator for the x-direction for the electrons
+   //! \f$ \hat{s}^{x}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} + \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})\f$.
+   //! @return The matrix of \f$ \hat{s}^{x}\f$.
    static CRS CreateOnsiteOperatorSx() {
       return sparse_matrix::CalculateMatrixMatrixSum(0.5, CreateOnsiteOperatorSp(), 0.5, CreateOnsiteOperatorSm());
    }
    
+   //! @brief Generate the spin operator for the y-direction for the electrons
+   //! \f$ i\hat{s}^{y}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})\f$.
+   //! Here \f$ i=\sqrt{-1}\f$ is the the imaginary unit.
+   //! @return The matrix of \f$ i\hat{s}^{y}\f$.
    static CRS CreateOnsiteOperatoriSy() {
       return sparse_matrix::CalculateMatrixMatrixSum(0.5, CreateOnsiteOperatorSp(), -0.5, CreateOnsiteOperatorSm());
    }
    
+   //! @brief Generate the spin operator for the z-direction for the electrons
+   //! \f$ \hat{s}^{z}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow})\f$.
+   //! @return The matrix of \f$ \hat{s}^{z}\f$.
    static CRS CreateOnsiteOperatorSz() {
       return sparse_matrix::CalculateMatrixMatrixSum(0.5, CreateOnsiteOperatorNCUp(), -0.5,CreateOnsiteOperatorNCDown());
    }
    
+   //! @brief Generate the raising operator for spin of the electrons
+   //! \f$ \hat{s}^{+}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow}\f$.
+   //! @return The matrix of \f$ \hat{s}^{+}\f$.
    static CRS CreateOnsiteOperatorSp() {
       return sparse_matrix::CalculateMatrixMatrixProduct(1.0, CreateOnsiteOperatorCUpDagger(), 1.0, CreateOnsiteOperatorCDown());
    }
    
+   //! @brief Generate the lowering operator for spin of the electrons
+   //! \f$ \hat{s}^{-}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow}\f$.
+   //! @return The matrix of \f$ \hat{s}^{-}\f$.
    static CRS CreateOnsiteOperatorSm() {
       return sparse_matrix::CalculateMatrixMatrixProduct(1.0, CreateOnsiteOperatorCDownDagger(), 1.0, CreateOnsiteOperatorCUp());
    }
    
-   template<typename IntegerType>
-   static std::pair<int, double> CalculateQuntumNumberDifference(const IntegerType row, const IntegerType col) {
+   //! @brief Calculate difference of the number of total electrons and the total sz
+   //! from the rows and columns in the matrix representation of an onsite operator.
+   //! @param row The row in the matrix representation of an onsite operator.
+   //! @param col The column in the matrix representation of an onsite operator.
+   //! @return The differences of the total electron and the total sz.
+   static std::pair<int, double> CalculateQuntumNumberDifference(const int row, const int col) {
       if (row == col && 0 <= row && row < 4 && 0 <= col && col < 4) {
          return {+0, +0.0};
       }
@@ -606,73 +725,191 @@ public:
       }
    }
    
-   inline int    GetSystemSize()           const { return system_size_;            }
-   inline int    GetDimOnsite()            const { return dim_onsite_;             }
-   inline int    GetTotal2Sz()             const { return total_2sz_;              }
-   inline double GetTotalSz()              const { return 0.5*total_2sz_;          }
-   inline int    GetNumConservedQuantity() const { return num_conserved_quantity_; }
-   inline int    GetTotalElectron()        const { return total_electron_; }
+   //! @brief Get the system size \f$ N\f$.
+   //! @return the system size \f$ N\f$.
+   inline int GetSystemSize() const { return system_size_; }
    
-   inline const CRS &GetOnsiteOperatorCUp()         const { return onsite_operator_c_up_;   }
-   inline const CRS &GetOnsiteOperatorCDown()       const { return onsite_operator_c_down_; }
-   inline const CRS &GetOnsiteOperatorCUpDagger()   const { return onsite_operator_c_up_dagger_; }
+   //! @brief Get dimension of the local Hilbert space, 4.
+   //! @return The dimension of the local Hilbert space, 4.
+   inline int GetDimOnsite() const { return dim_onsite_; }
+   
+   //! @brief Get the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
+   //! @return The total sz.
+   inline double GetTotalSz() const { return 0.5*total_2sz_; }
+   
+   //! @brief Get the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$.
+   //! @return The total electrons.
+   inline int GetTotalElectron() const { return total_electron_; }
+   
+   //! @brief Get the annihilation operator for the electrons with the up spin \f$ \hat{c}_{\uparrow}\f$.
+   //! @return The matrix of \f$ \hat{c}_{\uparrow}\f$.
+   inline const CRS &GetOnsiteOperatorCUp() const { return onsite_operator_c_up_;   }
+   
+   //! @brief Get the annihilation operator for the electrons with the down spin \f$ \hat{c}_{\downarrow}\f$.
+   //! @return The matrix of \f$ \hat{c}_{\downarrow}\f$.
+   inline const CRS &GetOnsiteOperatorCDown() const { return onsite_operator_c_down_; }
+   
+   //! @brief Get the creation operator for the electrons with the up spin
+   //! \f$ \hat{c}^{\dagger}_{\uparrow}\f$.
+   //! @return The matrix of \f$ \hat{c}^{\dagger}_{\uparrow}\f$.
+   inline const CRS &GetOnsiteOperatorCUpDagger() const { return onsite_operator_c_up_dagger_; }
+   
+   //! @brief Get the creation operator for the electrons with the down spin
+   //! \f$ \hat{c}^{\dagger}_{\downarrow}\f$.
+   //! @return The matrix of \f$ \hat{c}^{\dagger}_{\downarrow}\f$.
    inline const CRS &GetOnsiteOperatorCDownDagger() const { return onsite_operator_c_down_dagger_; }
-   inline const CRS &GetOnsiteOperatorNCUp()        const { return onsite_operator_nc_up_; }
-   inline const CRS &GetOnsiteOperatorNCDown()      const { return onsite_operator_nc_down_; }
-   inline const CRS &GetOnsiteOperatorNC()          const { return onsite_operator_nc_; }
-   inline const CRS &GetOnsiteOperatorSx ()         const { return onsite_operator_sx_ ; }
-   inline const CRS &GetOnsiteOperatoriSy()         const { return onsite_operator_isy_; }
-   inline const CRS &GetOnsiteOperatorSz ()         const { return onsite_operator_sz_ ; }
-   inline const CRS &GetOnsiteOperatorSp ()         const { return onsite_operator_sp_ ; }
-   inline const CRS &GetOnsiteOperatorSm ()         const { return onsite_operator_sm_ ; }
    
+   //! @brief Get the number operator for the electrons with the up spin
+   //! \f$ \hat{n}_{\uparrow}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow}\f$.
+   //! @return The matrix of \f$ \hat{n}_{\uparrow}\f$.
+   inline const CRS &GetOnsiteOperatorNCUp() const { return onsite_operator_nc_up_; }
+   
+   //! @brief Get the number operator for the electrons with the down spin
+   //! \f$ \hat{n}_{\downarrow}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow}\f$.
+   //! @return The matrix of \f$ \hat{n}_{\downarrow}\f$.
+   inline const CRS &GetOnsiteOperatorNCDown() const { return onsite_operator_nc_down_; }
+   
+   //! @brief Get the number operator for the electrons
+   //! \f$ \hat{n}=\hat{n}_{\uparrow} + \hat{n}_{\downarrow}\f$.
+   //! @return The matrix of \f$ \hat{n}\f$.
+   inline const CRS &GetOnsiteOperatorNC() const { return onsite_operator_nc_; }
+   
+   //! @brief Get the spin operator for the x-direction for the electrons
+   //! \f$ \hat{s}^{x}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} + \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})\f$.
+   //! @return The matrix of \f$ \hat{s}^{x}\f$.
+   inline const CRS &GetOnsiteOperatorSx () const { return onsite_operator_sx_ ; }
+   
+   //! @brief Get the spin operator for the y-direction for the electrons
+   //! \f$ i\hat{s}^{y}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})\f$.
+   //! Here \f$ i=\sqrt{-1}\f$ is the the imaginary unit.
+   //! @return The matrix of \f$ i\hat{s}^{y}\f$.
+   inline const CRS &GetOnsiteOperatoriSy() const { return onsite_operator_isy_; }
+   
+   //! @brief Get the spin operator for the z-direction for the electrons
+   //! \f$ \hat{s}^{z}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow})\f$.
+   //! @return The matrix of \f$ \hat{s}^{z}\f$.
+   inline const CRS &GetOnsiteOperatorSz () const { return onsite_operator_sz_ ; }
+   
+   //! @brief Get the raising operator for spin of the electrons
+   //! \f$ \hat{s}^{+}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow}\f$.
+   //! @return The matrix of \f$ \hat{s}^{+}\f$.
+   inline const CRS &GetOnsiteOperatorSp () const { return onsite_operator_sp_ ; }
+   
+   //! @brief Get the lowering operator for spin of the electrons
+   //! \f$ \hat{s}^{-}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow}\f$.
+   //! @return The matrix of \f$ \hat{s}^{-}\f$.
+   inline const CRS &GetOnsiteOperatorSm () const { return onsite_operator_sm_ ; }
+   
+   //! @brief Get calculated_eigenvector_set_, which represents the calculated eigenvectors and eigenvalues.
+   //! @return calculated_eigenvector_set_.
    inline const std::unordered_set<int> &GetCalculatedEigenvectorSet() const {
       return calculated_eigenvector_set_;
    }
    
+   //! @brief Get basis of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$, and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param quantum_number The pair of the total electron
+   //! \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
+   //! @return Basis.
    inline const std::vector<std::int64_t> &GetBasis(const std::pair<int, double> &quantum_number) const {
       return bases_.at({quantum_number.first, utility::DoubleTheNumber(quantum_number.second)});
    }
    
+   //! @brief Get inverse basis of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$, and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param quantum_number The pair of the total electron
+   //! \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
+   //! @return Basis.
    inline const std::unordered_map<std::int64_t, std::int64_t> &GetBasisInv(const std::pair<int, double> &quantum_number) const {
       return bases_inv_.at({quantum_number.first, utility::DoubleTheNumber(quantum_number.second)});
    }
    
+   //! @brief Get basis of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$, and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @return Basis.
    inline const std::vector<std::int64_t> &GetTargetBasis() const {
       return bases_.at({total_electron_, total_2sz_});
    }
    
+   //! @brief Get inverse basis of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$, and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @return Inverse basis.
    inline const std::unordered_map<std::int64_t, std::int64_t> &GetTargetBasisInv() const {
       return bases_inv_.at({total_electron_, total_2sz_});
    }
    
 protected:
+   //! @brief The annihilation operator for the electrons with the up spin \f$ \hat{c}_{\uparrow}\f$.
    CRS onsite_operator_c_up_;
+   
+   //! @brief The annihilation operator for the electrons with the down spin \f$ \hat{c}_{\downarrow}\f$.
    CRS onsite_operator_c_down_;
+   
+   //! @brief The creation operator for the electrons with the up spin.
+   //! \f$ \hat{c}^{\dagger}_{\uparrow}\f$.
    CRS onsite_operator_c_up_dagger_;
+   
+   //! @brief The creation operator for the electrons with the down spin.
+   //! \f$ \hat{c}^{\dagger}_{\downarrow}\f$.
    CRS onsite_operator_c_down_dagger_;
+   
+   //! @brief The number operator for the electrons with the up spin
+   //! \f$ \hat{n}_{\uparrow}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow}\f$.
    CRS onsite_operator_nc_up_;
+   
+   //! @brief The number operator for the electrons with the down spin
+   //! \f$ \hat{n}_{\downarrow}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow}\f$.
    CRS onsite_operator_nc_down_;
+   
+   //! @brief The number operator for the electrons
+   //! \f$ \hat{n}=\hat{n}_{\uparrow} + \hat{n}_{\downarrow}\f$.
    CRS onsite_operator_nc_;
+   
+   //! @brief The spin operator for the x-direction for the electrons
+   //! \f$ \hat{s}^{x}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} + \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})\f$.
    CRS onsite_operator_sx_;
+   
+   //! @brief The spin operator for the y-direction for the electrons
+   //! \f$ i\hat{s}^{y}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})\f$.
+   //! Here \f$ i=\sqrt{-1}\f$ is the the imaginary unit.
    CRS onsite_operator_isy_;
+   
+   //! @brief The spin operator for the z-direction for the electrons
+   //! \f$ \hat{s}^{z}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow})\f$.
    CRS onsite_operator_sz_;
+   
+   //! @brief The raising operator for spin of the electrons
+   //! \f$ \hat{s}^{+}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow}\f$.
    CRS onsite_operator_sp_;
+   
+   //! @brief The lowering operator for spin of the electrons
+   //! \f$ \hat{s}^{-}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow}\f$.
    CRS onsite_operator_sm_;
    
+   //! @brief The system size
    int system_size_    = 0;
+   
+   //! @brief Twice the number of the total sz \f$ 2\langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    int total_2sz_      = 0;
+   
+   //! @brief The total electron \f$ \langle\hat{N}_{\rm e}\rangle\f$.
    int total_electron_ = 0;
    
+   //! @brief dimension of the local Hilbert space, 4.
    const int dim_onsite_ = 4;
    
-   const int num_conserved_quantity_ = 2;
-   
+   //! @brief The calculated eigenvectors and eigenvalues.
    std::unordered_set<int> calculated_eigenvector_set_;
    
+   //! @brief Bases of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$, and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    std::unordered_map<std::pair<int, int>, std::vector<std::int64_t>, utility::pair_hash> bases_;
+   
+   //! @brief Inverse bases of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$, and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    std::unordered_map<std::pair<int, int>, std::unordered_map<std::int64_t, std::int64_t>, utility::pair_hash> bases_inv_;
    
+   //! @brief Set onsite operators.
    void SetOnsiteOperator() {
       onsite_operator_c_up_   = CreateOnsiteOperatorCUp();
       onsite_operator_c_down_ = CreateOnsiteOperatorCDown();

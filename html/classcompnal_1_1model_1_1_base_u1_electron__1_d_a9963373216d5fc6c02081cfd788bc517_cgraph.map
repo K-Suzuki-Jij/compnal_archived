@@ -1,0 +1,5 @@
+<map id="compnal::model::BaseU1Electron_1D::BaseU1Electron_1D" name="compnal::model::BaseU1Electron_1D::BaseU1Electron_1D">
+<area shape="rect" id="node1" title="Constructor of BaseU1Electron_1D class." alt="" coords="5,29,223,71"/>
+<area shape="rect" id="node2" href="$classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a1c3eb6bf3ebf8e161f3f5c3e6d96d549" title="Set the number of total electrons." alt="" coords="271,29,488,71"/>
+<area shape="rect" id="node3" href="$classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a64022e64b08a17a985b6b7c83ead6f13" title="Check if there is a subspace specified by the input quantum numbers." alt="" coords="536,29,753,71"/>
+</map>

@@ -41,7 +41,6 @@ void pybind11ModelBaseElectron1D(py::module &m) {
       .def_property("system_size"   , &BUE1D::GetSystemSize   , &BUE1D::SetSystemSize)
       .def_property("total_electron", &BUE1D::GetTotalElectron, &BUE1D::SetTotalElectron)
       .def_property("total_sz"      , &BUE1D::GetTotalSz      , &BUE1D::SetTotalSz)
-      .def_property_readonly("num_conserved_quantity", &BUE1D::GetNumConservedQuantity)
       .def_property_readonly("CUp"         , &BUE1D::GetOnsiteOperatorCUp        )
       .def_property_readonly("CDown"       , &BUE1D::GetOnsiteOperatorCDown      )
       .def_property_readonly("CUpDagger"   , &BUE1D::GetOnsiteOperatorCUpDagger  )

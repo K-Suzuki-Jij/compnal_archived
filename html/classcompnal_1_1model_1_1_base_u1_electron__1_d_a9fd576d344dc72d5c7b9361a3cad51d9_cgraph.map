@@ -1,0 +1,4 @@
+<map id="compnal::model::BaseU1Electron_1D::CreateOnsiteOperatorNCDown" name="compnal::model::BaseU1Electron_1D::CreateOnsiteOperatorNCDown">
+<area shape="rect" id="node1" title="Generate the number operator for the electrons with the down spin ." alt="" coords="5,29,240,71"/>
+<area shape="rect" id="node2" href="$namespacecompnal_1_1sparse__matrix.html#ae96031f37623a90ebb421f75d8f3ae83" title=" " alt="" coords="288,29,491,71"/>
+</map>

@@ -1,0 +1,93 @@
+\hypertarget{test__braket__vector_8hpp}{}\doxysection{tests/sparse\+\_\+matrix/test\+\_\+braket\+\_\+vector.hpp File Reference}
+\label{test__braket__vector_8hpp}\index{tests/sparse\_matrix/test\_braket\_vector.hpp@{tests/sparse\_matrix/test\_braket\_vector.hpp}}
+{\ttfamily \#include \char`\"{}../../src/sparse\+\_\+matrix/all.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$gtest/gtest.\+h$>$}\newline
+Include dependency graph for test\+\_\+braket\+\_\+vector.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{test__braket__vector_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{test__braket__vector_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{test__braket__vector_8hpp_ac080c6a4c827b0b08194a0943975eef6}{TEST}} (Matrix\+Vector\+Operatopn, Matrix\+Vector\+Product)
+\item 
+\mbox{\hyperlink{test__braket__vector_8hpp_ad839c338ffc442414a759a6d92b13fe3}{TEST}} (Matrix\+Vector\+Operatopn, Syymetric\+Matrix\+Vector\+Product)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{test__braket__vector_8hpp_ac080c6a4c827b0b08194a0943975eef6}\label{test__braket__vector_8hpp_ac080c6a4c827b0b08194a0943975eef6}} 
+\index{test\_braket\_vector.hpp@{test\_braket\_vector.hpp}!TEST@{TEST}}
+\index{TEST@{TEST}!test\_braket\_vector.hpp@{test\_braket\_vector.hpp}}
+\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily TEST (\begin{DoxyParamCaption}\item[{Matrix\+Vector\+Operatopn}]{,  }\item[{Matrix\+Vector\+Product}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{test__braket__vector_8hpp_source_l00014}{14}} of file \mbox{\hyperlink{test__braket__vector_8hpp_source}{test\+\_\+braket\+\_\+vector.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00014}00014                                                  \{}
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00015}00015    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{compnal::sparse\_matrix::CRS<double>}} matrix(std::vector<std::vector<double>>\{}
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00016}00016       \{1.0, 2.0, 0.0\},}
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00017}00017       \{2.0, 3.0, 4.0\},}
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00018}00018       \{0.0, 4.0, 5.0\}}
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00019}00019    \});}
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00020}00020    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{compnal::sparse\_matrix::BraketVector<double>}} vec(std::vector<double>\{1.0, 1.0, 1.0\});}
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00021}00021    \textcolor{keyword}{const} \textcolor{keyword}{auto} vec\_out = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab4434cd1f0754845236fda113f33393b}{compnal::sparse\_matrix::CalculateMatrixVectorProduct}}(1.0, matrix, vec);}
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00022}00022    vec\_out.Print();}
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00023}00023    }
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00024}00024 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=311pt]{test__braket__vector_8hpp_ac080c6a4c827b0b08194a0943975eef6_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{test__braket__vector_8hpp_ad839c338ffc442414a759a6d92b13fe3}\label{test__braket__vector_8hpp_ad839c338ffc442414a759a6d92b13fe3}} 
+\index{test\_braket\_vector.hpp@{test\_braket\_vector.hpp}!TEST@{TEST}}
+\index{TEST@{TEST}!test\_braket\_vector.hpp@{test\_braket\_vector.hpp}}
+\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily TEST (\begin{DoxyParamCaption}\item[{Matrix\+Vector\+Operatopn}]{,  }\item[{Syymetric\+Matrix\+Vector\+Product}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{test__braket__vector_8hpp_source_l00026}{26}} of file \mbox{\hyperlink{test__braket__vector_8hpp_source}{test\+\_\+braket\+\_\+vector.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00026}00026                                                           \{}
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00027}00027    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{compnal::sparse\_matrix::CRS<double>}} matrix(std::vector<std::vector<double>>\{}
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00028}00028       \{1.0, 0.0, 0.0\},}
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00029}00029       \{2.0, 3.0, 0.0\},}
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00030}00030       \{0.0, 4.0, 5.0\}}
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00031}00031    \});}
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00032}00032    matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a984f9042aade4c462eca059bb64ee346}{PrintInfo}}();}
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00033}00033    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{compnal::sparse\_matrix::BraketVector<double>}} vec(std::vector<double>\{1.0, 1.0, 1.0\});}
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00034}00034    \textcolor{keyword}{const} \textcolor{keyword}{auto} vec\_out = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a413b2336cf26abb302f7fd6f2ac5830c}{compnal::sparse\_matrix::CalculateSymmetricMatrixVectorProduct}}(1.0, matrix, vec);}
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00035}00035    vec\_out.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_a78473574eb1916f76d473a6de08f8040}{Print}}();}
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00036}00036    }
+\DoxyCodeLine{\Hypertarget{test__braket__vector_8hpp_l00037}00037 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{test__braket__vector_8hpp_ad839c338ffc442414a759a6d92b13fe3_cgraph}
+\end{center}
+\end{figure}

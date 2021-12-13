@@ -1,0 +1,5 @@
+<map id="compnal::model::BaseU1Electron_1D::CalculateTargetDim" name="compnal::model::BaseU1Electron_1D::CalculateTargetDim">
+<area shape="rect" id="node1" title="Calculate the dimension of the target Hilbert space specified by the system size ,..." alt="" coords="271,39,488,80"/>
+<area shape="rect" id="node2" href="$classcompnal_1_1model_1_1_base_u1_electron__1_d.html#afc740670c6c78c1583461093a02aad4e" title="Generate bases of the target Hilbert space specified by the system size , the number of the total ele..." alt="" coords="5,5,223,47"/>
+<area shape="rect" id="node3" href="$classcompnal_1_1model_1_1_hubbard__1_d.html#ac28018ecc651e50c7eab9bffd28b882c" title=" " alt="" coords="29,71,199,112"/>
+</map>

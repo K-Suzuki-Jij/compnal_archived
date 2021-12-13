@@ -1,0 +1,206 @@
+\hypertarget{braket__vector_8hpp_source}{}\doxysection{braket\+\_\+vector.\+hpp}
+\label{braket__vector_8hpp_source}\index{src/sparse\_matrix/braket\_vector.hpp@{src/sparse\_matrix/braket\_vector.hpp}}
+\mbox{\hyperlink{braket__vector_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00001}00001 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00002}00002 \textcolor{comment}{//  braket\_vector.hpp}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00003}00003 \textcolor{comment}{//  compnal}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00004}00004 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00005}00005 \textcolor{comment}{//  Created by Kohei Suzuki on 2021/05/22.}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00006}00006 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00008}00008 \textcolor{preprocessor}{\#ifndef COMPNAL\_SPARSE\_MATRIX\_BRAKET\_VECTOR\_HPP\_}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00009}00009 \textcolor{preprocessor}{\#define COMPNAL\_SPARSE\_MATRIX\_BRAKET\_VECTOR\_HPP\_}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00011}00011 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00012}00012 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00013}00013 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00014}00014 \textcolor{preprocessor}{\#include <cmath>}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00015}00015 }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00016}00016 \textcolor{preprocessor}{\#ifdef \_OPENMP}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00017}00017 \textcolor{preprocessor}{\#include <omp.h>}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00018}00018 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00019}00019 }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00020}00020 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00021}\mbox{\hyperlink{namespacecompnal_1_1sparse__matrix}{00021}} \textcolor{keyword}{namespace }sparse\_matrix \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00022}00022 }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00023}00023 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00024}\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{00024}} \textcolor{keyword}{struct }\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector}} \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00025}00025    }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00026}\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{00026}}    std::vector<RealType> \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}};}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00027}00027    }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00028}\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_a22707abc6dbdace2535a3e09729b3ed7}{00028}}    \textcolor{keyword}{explicit} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_a22707abc6dbdace2535a3e09729b3ed7}{BraketVector}}(\textcolor{keyword}{const} std::int64\_t dim = 0) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00029}00029       this-\/>val.resize(dim);}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00030}00030 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00031}00031       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < dim; ++i) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00032}00032          this-\/>val[i] = 0.0;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00033}00033       \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00034}00034    \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00035}00035    }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00036}\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_aa3a2db3bdb374fc1bc3b0b7d39fba345}{00036}}    \textcolor{keyword}{explicit} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_aa3a2db3bdb374fc1bc3b0b7d39fba345}{BraketVector}}(\textcolor{keyword}{const} std::vector<RealType> \&vector) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00037}00037       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_afd6b6047b0a723c2b892c11a46b8947b}{Assign}}(vector);}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00038}00038    \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00039}00039    }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00040}\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_afc6811b78fadbcf84fea85b2dcae01e9}{00040}}    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_afc6811b78fadbcf84fea85b2dcae01e9}{BraketVector}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector}} \&vector) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00041}00041       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_afd6b6047b0a723c2b892c11a46b8947b}{Assign}}(vector);}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00042}00042    \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00043}00043    }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00044}\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_af436a236c13a190b1d91475319dab215}{00044}}    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector}} \&\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_af436a236c13a190b1d91475319dab215}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector}} \&vector) \& \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00045}00045       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_afd6b6047b0a723c2b892c11a46b8947b}{Assign}}(vector);}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00046}00046       \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00047}00047    \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00048}00048    }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00049}\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_abce9f7ffdc98fd45a75f29c76bfb2fcb}{00049}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_abce9f7ffdc98fd45a75f29c76bfb2fcb}{Fill}}(\textcolor{keyword}{const} RealType val\_in) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00050}00050 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00051}00051       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>val.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00052}00052          this-\/>val[i] = val\_in;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00053}00053       \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00054}00054    \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00055}00055    }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00056}\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_abfb93aceef563dc171c807f0fe8391d3}{00056}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_abfb93aceef563dc171c807f0fe8391d3}{Free}}() \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00057}00057       std::vector<RealType>().swap(\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}});}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00058}00058    \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00059}00059    }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00060}\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_aea9a7595862adf9c7e98138aaf0806e1}{00060}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_aea9a7595862adf9c7e98138aaf0806e1}{Clear}}() \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00061}00061       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.clear();}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00062}00062    \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00063}00063    }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00064}\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_afd6b6047b0a723c2b892c11a46b8947b}{00064}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_afd6b6047b0a723c2b892c11a46b8947b}{Assign}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector}} \&vector) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00065}00065       this-\/>val.resize(vector.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size());}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00066}00066 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00067}00067       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < vector.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00068}00068          this-\/>val[i] = vector.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i];}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00069}00069       \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00070}00070    \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00071}00071    }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00072}\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_aa0adc0cdf252f0cf68a02f7147678d37}{00072}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_aa0adc0cdf252f0cf68a02f7147678d37}{Assign}}(\textcolor{keyword}{const} std::vector<RealType> \&vector) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00073}00073       this-\/>val.resize(vector.size());}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00074}00074 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00075}00075       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < vector.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00076}00076          this-\/>val[i] = vector[i];}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00077}00077       \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00078}00078    \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00079}00079    }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00080}\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae74e77fff5c779f264238f0b4bf0bdb6}{00080}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae74e77fff5c779f264238f0b4bf0bdb6}{Normalize}}(\textcolor{keyword}{const} RealType normalization\_factor = 1.0) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00081}00081       \textcolor{keyword}{const} RealType norm = \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_a86a86a5b08913d8b9262e3b7c27d68cf}{L2Norm}}();}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00082}00082       \textcolor{keywordflow}{if} (norm == 0.0) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00083}00083          std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00084}00084          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00085}00085          ss << \textcolor{stringliteral}{"{}All the elements are zero"{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00086}00086          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00087}00087       \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00088}00088       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_a84f352668f31818b5b947ca932d3b18f}{MultiplyByScalar}}(normalization\_factor/norm);}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00089}00089    \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00090}00090    }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00091}\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_a84f352668f31818b5b947ca932d3b18f}{00091}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_a84f352668f31818b5b947ca932d3b18f}{MultiplyByScalar}}(\textcolor{keyword}{const} RealType coeef) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00092}00092 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00093}00093       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>val.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00094}00094          this-\/>val[i] *= coeef;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00095}00095       \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00096}00096    \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00097}00097    }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00098}\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_a827fce19bf033d6317537d3f15ecca48}{00098}}    RealType \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_a827fce19bf033d6317537d3f15ecca48}{L1Norm}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00099}00099       RealType norm = 0.0;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00100}00100 \textcolor{preprocessor}{\#pragma omp parallel for reduction (+:norm)}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00101}00101       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>val.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00102}00102          norm += std::abs(\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i]);}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00103}00103       \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00104}00104       \textcolor{keywordflow}{return} norm;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00105}00105    \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00106}00106    }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00107}00107    }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00108}\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_a86a86a5b08913d8b9262e3b7c27d68cf}{00108}}    RealType \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_a86a86a5b08913d8b9262e3b7c27d68cf}{L2Norm}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00109}00109       RealType inner\_product = 0.0;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00110}00110 \textcolor{preprocessor}{\#pragma omp parallel for reduction (+:inner\_product)}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00111}00111       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>val.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00112}00112          inner\_product += \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i]*\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i];}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00113}00113       \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00114}00114       \textcolor{keywordflow}{return} std::sqrt(inner\_product);}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00115}00115    \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00116}00116    }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00117}\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_a78473574eb1916f76d473a6de08f8040}{00117}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_a78473574eb1916f76d473a6de08f8040}{Print}}(\textcolor{keyword}{const} std::string display\_name = \textcolor{stringliteral}{"{}BraketVector"{}})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00118}00118       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>val.size(); i++) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00119}00119          std::cout << display\_name << \textcolor{stringliteral}{"{}["{}} << i << \textcolor{stringliteral}{"{}]="{}} << this-\/>val[i] << std::endl;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00120}00120       \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00121}00121    \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00122}00122    }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00123}00123 \};}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00124}00124 }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00125}00125 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00126}\mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ac6379142a8da9a140ba3ff9de1e3ab35}{00126}} \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ac6379142a8da9a140ba3ff9de1e3ab35}{CalculateVectorSum}}(\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector<RealType>}} *vector\_out,}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00127}00127                         \textcolor{keyword}{const} RealType coeef\_1,}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00128}00128                         \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector<RealType>}} \&braket\_vector\_1,}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00129}00129                         \textcolor{keyword}{const} RealType coeef\_2,}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00130}00130                         \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector<RealType>}} \&braket\_vector\_2) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00131}00131    \textcolor{keywordflow}{if} (braket\_vector\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size() != braket\_vector\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size()) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00132}00132       std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00133}00133       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00134}00134       ss << \textcolor{stringliteral}{"{}BraketVector types do not match each other"{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00135}00135       ss << \textcolor{stringliteral}{"{}dim\_1 = "{}} << braket\_vector\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size() << \textcolor{stringliteral}{"{}, dim\_2 = "{}} << braket\_vector\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size() << std::endl;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00136}00136       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00137}00137    \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00138}00138    vector\_out-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.resize(braket\_vector\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size());}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00139}00139 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00140}00140    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < braket\_vector\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00141}00141       vector\_out-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] = coeef\_1*braket\_vector\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] + coeef\_2*braket\_vector\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i];}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00142}00142    \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00143}00143 \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00144}00144 }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00145}00145 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00146}\mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a1a9993418bced60b2ec89ed57b48c665}{00146}} RealType \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a1a9993418bced60b2ec89ed57b48c665}{CalculateL1Norm}}(\textcolor{keyword}{const} RealType coeef\_1,}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00147}00147                          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector<RealType>}} \&braket\_vector\_1,}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00148}00148                          \textcolor{keyword}{const} RealType coeef\_2,}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00149}00149                          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector<RealType>}} \&braket\_vector\_2}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00150}00150                          ) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00151}00151    }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00152}00152    \textcolor{keywordflow}{if} (braket\_vector\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size() != braket\_vector\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size()) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00153}00153       std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00154}00154       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00155}00155       ss << \textcolor{stringliteral}{"{}BraketVector types do not match each other"{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00156}00156       ss << \textcolor{stringliteral}{"{}dim\_1 = "{}} << braket\_vector\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size() << \textcolor{stringliteral}{"{}, dim\_2 = "{}} << braket\_vector\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size() << std::endl;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00157}00157       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00158}00158    \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00159}00159    }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00160}00160    RealType val\_out = 0.0;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00161}00161 \textcolor{preprocessor}{\#pragma omp parallel for reduction (+: val\_out)}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00162}00162    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < braket\_vector\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00163}00163       val\_out += std::abs(coeef\_1*braket\_vector\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] -\/ coeef\_2*braket\_vector\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i]);}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00164}00164    \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00165}00165    \textcolor{keywordflow}{return} val\_out;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00166}00166 \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00167}00167 }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00168}00168 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00169}\mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ac72eb2d652259d294644b3b00745a9df}{00169}} RealType \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ac72eb2d652259d294644b3b00745a9df}{CalculateInnerProduct}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector<RealType>}} \&braket\_vector\_1,}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00170}00170                                \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector<RealType>}} \&braket\_vector\_2) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00171}00171    \textcolor{keywordflow}{if} (braket\_vector\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size() != braket\_vector\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size()) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00172}00172       std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00173}00173       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00174}00174       ss << \textcolor{stringliteral}{"{}BraketVector types do not match each other"{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00175}00175       ss << \textcolor{stringliteral}{"{}dim\_1 = "{}} << braket\_vector\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size() << \textcolor{stringliteral}{"{}, dim\_2 = "{}} << braket\_vector\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size() << std::endl;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00176}00176       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00177}00177    \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00178}00178    RealType val\_out = 0.0;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00179}00179 \textcolor{preprocessor}{\#pragma omp parallel for reduction (+: val\_out)}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00180}00180    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < braket\_vector\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00181}00181       val\_out += braket\_vector\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i]*braket\_vector\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i];}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00182}00182    \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00183}00183    \textcolor{keywordflow}{return} val\_out;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00184}00184 \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00185}00185 }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00186}00186 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00187}\mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a3942b79c66a1a5c4603698e0eb56c9ca}{00187}} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector<RealType>}} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ac6379142a8da9a140ba3ff9de1e3ab35}{CalculateVectorSum}}(\textcolor{keyword}{const} RealType coeef\_1,}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00188}00188                                           \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector<RealType>}} \&braket\_vector\_1,}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00189}00189                                           \textcolor{keyword}{const} RealType coeef\_2,}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00190}00190                                           \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector<RealType>}} \&braket\_vector\_2) \{}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00191}00191    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector<RealType>}} vector\_out;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00192}00192    \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ac6379142a8da9a140ba3ff9de1e3ab35}{CalculateVectorSum}}(\&vector\_out, coeef\_1, braket\_vector\_1, coeef\_2, braket\_vector\_2);}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00193}00193    \textcolor{keywordflow}{return} vector\_out;}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00194}00194 \}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00195}00195 }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00196}00196 \} \textcolor{comment}{// namespace sparse\_matrix}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00197}00197 \} \textcolor{comment}{// namespace compnal}}
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00198}00198 }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00199}00199 }
+\DoxyCodeLine{\Hypertarget{braket__vector_8hpp_source_l00200}00200 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_SPARSE\_MATRIX\_BRAKET\_VECTOR\_HPP\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}
