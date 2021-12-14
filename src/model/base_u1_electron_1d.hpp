@@ -21,7 +21,7 @@
 namespace compnal {
 namespace model {
 
-//! @brief The base class electron systems with the U(1) symmetry.
+//! @brief The base class for one-dimensional electron systems with the U(1) symmetry.
 //! @tparam RealType The type of real values.
 template<typename RealType>
 class BaseU1Electron_1D {
@@ -43,14 +43,15 @@ public:
    }
    
    //! @brief Constructor of BaseU1Electron_1D class.
-   //! @param system_size The system size.
+   //! @param system_size The system size \f$ N \f$.
    explicit BaseU1Electron_1D(const int system_size): BaseU1Electron_1D() {
       SetSystemSize(system_size);
    }
    
    //! @brief Constructor of BaseU1Electron_1D class.
-   //! @param system_size The system size.
-   //! @param total_electron The number of the total electrons.
+   //! @param system_size The system size \f$ N \f$.
+   //! @param total_electron The number of the total electrons
+   //! \f$ \langle \hat{N}_{e}\rangle =\sum^{N}_{i=1}\langle\hat{n}_{i}\rangle\f$.
    BaseU1Electron_1D(const int system_size, const int total_electron): BaseU1Electron_1D(system_size) {
       SetTotalElectron(total_electron);
    }
@@ -59,7 +60,7 @@ public:
    //----------------------Public Member functions---------------------
    //------------------------------------------------------------------
    //! @brief Set system size.
-   //! @param system_size The system size.
+   //! @param system_size The system size \f$ N \f$.
    void SetSystemSize(const int system_size) {
       if (system_size <= 0) {
          std::stringstream ss;

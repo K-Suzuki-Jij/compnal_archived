@@ -1,7 +1,8 @@
 <map id="compnal::sparse_matrix::CRS::MultiplyByScalar" name="compnal::sparse_matrix::CRS::MultiplyByScalar">
-<area shape="rect" id="node1" title=" " alt="" coords="757,64,923,105"/>
+<area shape="rect" id="node1" title=" " alt="" coords="757,93,923,135"/>
 <area shape="rect" id="node2" href="$classcompnal_1_1model_1_1_general_model__1_d.html#a11bd36ed6a869440b9bd8ed666152f4e" title=" " alt="" coords="256,35,459,76"/>
 <area shape="rect" id="node5" href="$classcompnal_1_1model_1_1_general_model__1_d.html#ab3cd64496b8e2876648f3c935b53e48e" title=" " alt="" coords="507,93,709,135"/>
+<area shape="rect" id="node7" href="$namespacecompnal_1_1sparse__matrix.html#a9afa61e49111cba41d14680b179886af" title=" " alt="" coords="527,159,689,200"/>
 <area shape="rect" id="node3" href="$classcompnal_1_1model_1_1_general_model__1_d.html#a29f2987eb544d43923121fa98ae2b6b6" title=" " alt="" coords="5,5,208,47"/>
 <area shape="rect" id="node4" href="$test__exact__diag_8hpp.html#ae03bc0b6169926f28069bf730ffd59bc" title=" " alt="" coords="79,71,135,98"/>
 <area shape="rect" id="node6" href="$classcompnal_1_1model_1_1_general_model__1_d.html#a01d85f8969816d57cd3f4aa8b79e239a" title=" " alt="" coords="256,100,459,141"/>

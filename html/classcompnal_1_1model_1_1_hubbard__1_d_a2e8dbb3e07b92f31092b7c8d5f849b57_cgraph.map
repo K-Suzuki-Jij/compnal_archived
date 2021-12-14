@@ -1,9 +1,10 @@
 <map id="compnal::model::Hubbard_1D::SetOnsiteCoulomb" name="compnal::model::Hubbard_1D::SetOnsiteCoulomb">
-<area shape="rect" id="node1" title=" " alt="" coords="5,99,176,141"/>
-<area shape="rect" id="node2" href="$classcompnal_1_1model_1_1_hubbard__1_d.html#a1ad1d8ad82ade28ba5dbe9919424fa38" title=" " alt="" coords="224,99,433,141"/>
-<area shape="rect" id="node3" href="$namespacecompnal_1_1sparse__matrix.html#ae96031f37623a90ebb421f75d8f3ae83" title=" " alt="" coords="764,34,967,75"/>
-<area shape="rect" id="node4" href="$namespacecompnal_1_1sparse__matrix.html#ac96ccd3b32760093ebb9dbc2481053b2" title=" " alt="" coords="773,187,957,229"/>
-<area shape="rect" id="node5" href="$classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a9fd576d344dc72d5c7b9361a3cad51d9" title="Generate the number operator for the electrons with the down spin ." alt="" coords="481,34,716,75"/>
-<area shape="rect" id="node6" href="$classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a3b8fcfdefbef8ade799801c8119e3f04" title="Generate the number operator for the electrons with the up spin ." alt="" coords="489,99,708,141"/>
-<area shape="rect" id="node7" href="$classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a5835026708b0d6a101027b0d84c3d3f9" title="Generate the spin operator for the z&#45;direction for the electrons ." alt="" coords="490,217,707,258"/>
+<area shape="rect" id="node1" title="Set the onsite density interactions." alt="" coords="5,104,176,145"/>
+<area shape="rect" id="node2" href="$classcompnal_1_1model_1_1_hubbard__1_d.html#a879169d51bdfedd522454e9cf9af42ee" title="Create the onsite Hamiltonian." alt="" coords="224,104,433,145"/>
+<area shape="rect" id="node3" href="$classcompnal_1_1model_1_1_base_u1_electron__1_d.html#aec77c76276610fa623fe1127594bf8e7" title="Generate the number operator for the electrons ." alt="" coords="490,5,707,47"/>
+<area shape="rect" id="node5" href="$classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a9fd576d344dc72d5c7b9361a3cad51d9" title="Generate the number operator for the electrons with the down spin ." alt="" coords="481,136,716,177"/>
+<area shape="rect" id="node7" href="$classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a3b8fcfdefbef8ade799801c8119e3f04" title="Generate the number operator for the electrons with the up spin ." alt="" coords="489,201,708,243"/>
+<area shape="rect" id="node8" href="$classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a5835026708b0d6a101027b0d84c3d3f9" title="Generate the spin operator for the z&#45;direction for the electrons ." alt="" coords="490,71,707,112"/>
+<area shape="rect" id="node4" href="$namespacecompnal_1_1sparse__matrix.html#ac96ccd3b32760093ebb9dbc2481053b2" title=" " alt="" coords="773,49,957,91"/>
+<area shape="rect" id="node6" href="$namespacecompnal_1_1sparse__matrix.html#ae96031f37623a90ebb421f75d8f3ae83" title=" " alt="" coords="764,159,967,200"/>
 </map>

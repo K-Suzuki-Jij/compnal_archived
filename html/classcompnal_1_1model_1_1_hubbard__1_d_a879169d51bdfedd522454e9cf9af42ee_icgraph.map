@@ -1,0 +1,7 @@
+<map id="compnal::model::Hubbard_1D::CreateOnsiteOperatorHam" name="compnal::model::Hubbard_1D::CreateOnsiteOperatorHam">
+<area shape="rect" id="node1" title="Create the onsite Hamiltonian." alt="" coords="233,104,443,145"/>
+<area shape="rect" id="node2" href="$classcompnal_1_1model_1_1_hubbard__1_d.html#a3d421777171753d4388c9c6e545a5f27" title="Constructor of Hubbard_1D class." alt="" coords="10,5,181,47"/>
+<area shape="rect" id="node3" href="$classcompnal_1_1model_1_1_hubbard__1_d.html#aba696ed51bc3a98aeb35e8d3d9206639" title="Set the chemical potential." alt="" coords="5,71,185,112"/>
+<area shape="rect" id="node4" href="$classcompnal_1_1model_1_1_hubbard__1_d.html#abcf228a598e68e3c787c5f91ec61fd5b" title="Set the magnetic fields for the z&#45;direction." alt="" coords="10,136,181,177"/>
+<area shape="rect" id="node5" href="$classcompnal_1_1model_1_1_hubbard__1_d.html#a2e8dbb3e07b92f31092b7c8d5f849b57" title="Set the onsite density interactions." alt="" coords="10,201,181,243"/>
+</map>

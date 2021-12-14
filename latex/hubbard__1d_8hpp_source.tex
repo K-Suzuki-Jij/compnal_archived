@@ -17,159 +17,184 @@
 \DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00013}00013 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
 \DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00014}00014 \textcolor{keyword}{namespace }model \{}
 \DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00015}00015 }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00016}00016 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00017}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d}{00017}} \textcolor{keyword}{class }\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d}{Hubbard\_1D}}: \textcolor{keyword}{public} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{BaseU1Electron\_1D}}<RealType> \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00018}00018    }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00019}00019    \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} = \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{sparse\_matrix::CRS<RealType>}};}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00020}00020    }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00021}00021 }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00022}00022 \textcolor{keyword}{public}:}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00023}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a3d421777171753d4388c9c6e545a5f27}{00023}}    \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a3d421777171753d4388c9c6e545a5f27}{Hubbard\_1D}}(): \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{BaseU1Electron\_1D}}<RealType>() \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00024}00024       onsite\_operator\_ham\_ = \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a1ad1d8ad82ade28ba5dbe9919424fa38}{CreateOnsiteOperatorHam}}(h\_z\_);}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00025}00025    \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00024}00024 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00025}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d}{00025}} \textcolor{keyword}{class }\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d}{Hubbard\_1D}}: \textcolor{keyword}{public} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{BaseU1Electron\_1D}}<RealType> \{}
 \DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00026}00026    }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00027}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a1d6f924faf9b57f1d4e8efb2dd94d10d}{00027}}    \textcolor{keyword}{explicit} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a1d6f924faf9b57f1d4e8efb2dd94d10d}{Hubbard\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size): \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{BaseU1Electron\_1D}}<RealType>(system\_size) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00028}00028       onsite\_operator\_ham\_ = \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a1ad1d8ad82ade28ba5dbe9919424fa38}{CreateOnsiteOperatorHam}}(h\_z\_);}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00029}00029    \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00030}00030    }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00031}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a74229a2efce3f694b109916686a969a6}{00031}}    \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a74229a2efce3f694b109916686a969a6}{Hubbard\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size, \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_electron): \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{BaseU1Electron\_1D}}<RealType>(system\_size, total\_electron) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00032}00032       onsite\_operator\_ham\_ = \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a1ad1d8ad82ade28ba5dbe9919424fa38}{CreateOnsiteOperatorHam}}(h\_z\_);}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00033}00033    \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00034}00034    }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00035}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a208607b3f9990a5b30c4df7cbd18d05a}{00035}}    \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a208607b3f9990a5b30c4df7cbd18d05a}{Hubbard\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size, \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}{utility::BoundaryCondition}} bc): \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{BaseU1Electron\_1D}}<RealType>(system\_size) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00036}00036       \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a85c27c1da3c38e1d1b169cbaabd7518a}{SetBoundaryCondition}}(bc);}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00037}00037       onsite\_operator\_ham\_ = \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a1ad1d8ad82ade28ba5dbe9919424fa38}{CreateOnsiteOperatorHam}}(h\_z\_);}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00028}00028    \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} = \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{sparse\_matrix::CRS<RealType>}};}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00029}00029    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00030}00030 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00031}00031    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00032}00032    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00033}00033    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Constructors-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00034}00034    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00036}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a3d421777171753d4388c9c6e545a5f27}{00036}} \textcolor{comment}{}   \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a3d421777171753d4388c9c6e545a5f27}{Hubbard\_1D}}(): \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{BaseU1Electron\_1D}}<RealType>() \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00037}00037       onsite\_operator\_ham\_ = \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a879169d51bdfedd522454e9cf9af42ee}{CreateOnsiteOperatorHam}}(h\_z\_);}
 \DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00038}00038    \}}
 \DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00039}00039    }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00040}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_afc77688201ab36d821cf551805016d3c}{00040}}    \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_afc77688201ab36d821cf551805016d3c}{Hubbard\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size, \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_electron, \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}{utility::BoundaryCondition}} bc): \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{BaseU1Electron\_1D}}<RealType>(system\_size, total\_electron) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00041}00041       \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a85c27c1da3c38e1d1b169cbaabd7518a}{SetBoundaryCondition}}(bc);}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00042}00042       onsite\_operator\_ham\_ = \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a1ad1d8ad82ade28ba5dbe9919424fa38}{CreateOnsiteOperatorHam}}(h\_z\_);}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00043}00043    \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00044}00044    }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00045}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a85c27c1da3c38e1d1b169cbaabd7518a}{00045}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a85c27c1da3c38e1d1b169cbaabd7518a}{SetBoundaryCondition}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}{utility::BoundaryCondition}} bc) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00046}00046       boundary\_condition\_ = bc;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00047}00047    \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00048}00048    }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00049}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a2368889d8113853bbef602a47e20eced}{00049}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a2368889d8113853bbef602a47e20eced}{SetHopping}}(\textcolor{keyword}{const} std::vector<RealType> \&t) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00050}00050       \textcolor{keywordflow}{if} (t\_ != t) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00051}00051          t\_ = t;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00052}00052          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aee93327a0e55a00bb8d759247c17fb3d}{calculated\_eigenvector\_set\_}}.clear();}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00053}00053       \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00054}00054    \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00055}00055    }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00056}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a7337fa43df6a16af1677701c71cefa1d}{00056}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a7337fa43df6a16af1677701c71cefa1d}{SetHopping}}(\textcolor{keyword}{const} RealType t) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00057}00057       \textcolor{keywordflow}{if} (t\_.size() == 0) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00058}00058          t\_.push\_back(t);}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00059}00059          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aee93327a0e55a00bb8d759247c17fb3d}{calculated\_eigenvector\_set\_}}.clear();}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00060}00060       \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00061}00061       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (t\_[0] != t) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00062}00062          t\_[0] = t;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00063}00063          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aee93327a0e55a00bb8d759247c17fb3d}{calculated\_eigenvector\_set\_}}.clear();}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00064}00064       \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00065}00065    \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00066}00066    }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00067}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_ac1f506d9c7a5ed95cbc63b42eb9bbd88}{00067}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_ac1f506d9c7a5ed95cbc63b42eb9bbd88}{SetIntersiteCoulomb}}(\textcolor{keyword}{const} std::vector<RealType> \&V) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00068}00068       \textcolor{keywordflow}{if} (V\_ != V) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00069}00069          V\_ = V;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00070}00070          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aee93327a0e55a00bb8d759247c17fb3d}{calculated\_eigenvector\_set\_}}.clear();}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00071}00071       \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00072}00072    \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00073}00073    }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00074}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a98ecc8748deda159e8c8fa8b3a214767}{00074}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a98ecc8748deda159e8c8fa8b3a214767}{SetIntersiteCoulomb}}(\textcolor{keyword}{const} RealType V) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00075}00075       \textcolor{keywordflow}{if} (V\_.size() == 0) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00076}00076          V\_.push\_back(V);}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00077}00077          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aee93327a0e55a00bb8d759247c17fb3d}{calculated\_eigenvector\_set\_}}.clear();}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00078}00078       \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00079}00079       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (V\_[0] != V) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00080}00080          V\_[0] = V;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00081}00081          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aee93327a0e55a00bb8d759247c17fb3d}{calculated\_eigenvector\_set\_}}.clear();}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00082}00082       \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00042}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a1d6f924faf9b57f1d4e8efb2dd94d10d}{00042}}    \textcolor{keyword}{explicit} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a1d6f924faf9b57f1d4e8efb2dd94d10d}{Hubbard\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size): \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{BaseU1Electron\_1D}}<RealType>(system\_size) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00043}00043       onsite\_operator\_ham\_ = \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a879169d51bdfedd522454e9cf9af42ee}{CreateOnsiteOperatorHam}}(h\_z\_);}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00044}00044    \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00045}00045    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00050}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a74229a2efce3f694b109916686a969a6}{00050}}    \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a74229a2efce3f694b109916686a969a6}{Hubbard\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size, \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_electron): \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{BaseU1Electron\_1D}}<RealType>(system\_size, total\_electron) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00051}00051       onsite\_operator\_ham\_ = \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a879169d51bdfedd522454e9cf9af42ee}{CreateOnsiteOperatorHam}}(h\_z\_);}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00052}00052    \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00053}00053    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00058}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a376fe9753f40f152db27a340c3d1e8ca}{00058}}    \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a376fe9753f40f152db27a340c3d1e8ca}{Hubbard\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size, \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}{utility::BoundaryCondition}} boundary\_condition): \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{BaseU1Electron\_1D}}<RealType>(system\_size) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00059}00059       \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a39d703d09ed605ab39b9d337ad149c05}{SetBoundaryCondition}}(boundary\_condition);}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00060}00060       onsite\_operator\_ham\_ = \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a879169d51bdfedd522454e9cf9af42ee}{CreateOnsiteOperatorHam}}(h\_z\_);}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00061}00061    \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00062}00062    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00069}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_aa2c290aaa024444873b3149004a61d22}{00069}}    \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_aa2c290aaa024444873b3149004a61d22}{Hubbard\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size, \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_electron,}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00070}00070               \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}{utility::BoundaryCondition}} boundary\_condition): \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{BaseU1Electron\_1D}}<RealType>(system\_size, total\_electron) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00071}00071       \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a39d703d09ed605ab39b9d337ad149c05}{SetBoundaryCondition}}(boundary\_condition);}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00072}00072       onsite\_operator\_ham\_ = \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a879169d51bdfedd522454e9cf9af42ee}{CreateOnsiteOperatorHam}}(h\_z\_);}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00073}00073    \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00074}00074    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00075}00075    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00076}00076    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Public Member functions-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00077}00077    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00081}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a39d703d09ed605ab39b9d337ad149c05}{00081}} \textcolor{comment}{}   \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a39d703d09ed605ab39b9d337ad149c05}{SetBoundaryCondition}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}{utility::BoundaryCondition}} boundary\_condition) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00082}00082       boundary\_condition\_ = boundary\_condition;}
 \DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00083}00083    \}}
 \DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00084}00084    }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00085}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a2e8dbb3e07b92f31092b7c8d5f849b57}{00085}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a2e8dbb3e07b92f31092b7c8d5f849b57}{SetOnsiteCoulomb}}(\textcolor{keyword}{const} RealType U) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00086}00086       \textcolor{keywordflow}{if} (U\_ != U) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00087}00087          U\_ = U;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00088}00088          onsite\_operator\_ham\_ = \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a1ad1d8ad82ade28ba5dbe9919424fa38}{CreateOnsiteOperatorHam}}(h\_z\_, U\_);}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00089}00089          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aee93327a0e55a00bb8d759247c17fb3d}{calculated\_eigenvector\_set\_}}.clear();}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00090}00090       \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00091}00091    \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00092}00092    }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00093}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_abcf228a598e68e3c787c5f91ec61fd5b}{00093}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_abcf228a598e68e3c787c5f91ec61fd5b}{SetMagneticField}}(\textcolor{keyword}{const} RealType h\_z) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00094}00094       \textcolor{keywordflow}{if} (h\_z\_ != h\_z) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00095}00095          h\_z\_ = h\_z;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00096}00096          onsite\_operator\_ham\_ = \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a1ad1d8ad82ade28ba5dbe9919424fa38}{CreateOnsiteOperatorHam}}(h\_z\_, U\_);}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00097}00097          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aee93327a0e55a00bb8d759247c17fb3d}{calculated\_eigenvector\_set\_}}.clear();}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00098}00098       \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00099}00099    \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00100}00100    }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00101}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_ac28018ecc651e50c7eab9bffd28b882c}{00101}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_ac28018ecc651e50c7eab9bffd28b882c}{PrintInfo}}()\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00102}00102       std::string bc = \textcolor{stringliteral}{"{}None"{}};}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00103}00103       \textcolor{keywordflow}{if} (boundary\_condition\_ == \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712ac18b965543663a1ec9a4836656f07d86}{utility::BoundaryCondition::OBC}}) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00104}00104          bc = \textcolor{stringliteral}{"{}OBC"{}};}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00105}00105       \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00106}00106       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (boundary\_condition\_ == \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712a37907335b66872484f695a3d2d6116b2}{utility::BoundaryCondition::PBC}}) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00107}00107          bc = \textcolor{stringliteral}{"{}PBC"{}};}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00108}00108       \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00109}00109       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (boundary\_condition\_ == \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712a855ae200ce7bb41425769e9981a4d02e}{utility::BoundaryCondition::SSD}}) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00110}00110          bc = \textcolor{stringliteral}{"{}SSD"{}};}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00111}00111       \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00112}00112       std::cout << \textcolor{stringliteral}{"{}Print Hubbard Model Infomation:"{}} << std::endl;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00113}00113       std::cout << \textcolor{stringliteral}{"{}boundary\_condition     = "{}} << this-\/>boundary\_condition\_     << std::endl;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00114}00114       std::cout << \textcolor{stringliteral}{"{}system\_size            = "{}} << this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a48de32d5c4d81ab303856679df0e2040}{system\_size\_}}            << std::endl;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00115}00115       std::cout << \textcolor{stringliteral}{"{}total\_sz               = "{}} << 0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_af32092dc9d581d77d60b126fc71f9237}{total\_2sz\_}}          << std::endl;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00116}00116       std::cout << \textcolor{stringliteral}{"{}dim\_target             = "{}} << this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ac274d1305642a32127c47e7bbcf3e325}{CalculateTargetDim}}()    << std::endl;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00117}00117       std::cout << \textcolor{stringliteral}{"{}dim\_onsite             = "{}} << this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a55ca064c4d2105e1d477488c9a95bdbf}{dim\_onsite\_}}             << std::endl;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00118}00118       std::cout << \textcolor{stringliteral}{"{}num\_conserved\_quantity = "{}} << this-\/>num\_conserved\_quantity\_ << std::endl;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00119}00119       }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00120}00120       std::cout << \textcolor{stringliteral}{"{}Print Interaction"{}} << std::endl;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00121}00121       std::cout << \textcolor{stringliteral}{"{}Electron Hopping: t ="{}} << std::endl;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00122}00122       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < t\_.size(); ++i) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00123}00123          std::cout << i + 1 << \textcolor{stringliteral}{"{}-\/th neighber: "{}} << t\_.at(i) << std::endl;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00124}00124       \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00125}00125       std::cout << \textcolor{stringliteral}{"{}Onsite Coulomb: U ="{}} << U\_ << std::endl;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00126}00126       std::cout << \textcolor{stringliteral}{"{}Magnetic Field for the z-\/direction: h\_z ="{}} << h\_z\_ << std::endl;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00127}00127       std::cout << \textcolor{stringliteral}{"{}Intersite Coulomb: V ="{}} << std::endl;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00128}00128       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < V\_.size(); ++i) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00129}00129          std::cout << i + 1 << \textcolor{stringliteral}{"{}-\/th neighber: "{}} << V\_.at(i) << std::endl;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00130}00130       \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00131}00131    \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00132}00132    }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00133}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a1ad1d8ad82ade28ba5dbe9919424fa38}{00133}}    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a1ad1d8ad82ade28ba5dbe9919424fa38}{CreateOnsiteOperatorHam}}(\textcolor{keyword}{const} RealType h\_z = 0.0, \textcolor{keyword}{const} RealType U = 0.0) \{}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00134}00134       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} m\_s\_z       = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a5835026708b0d6a101027b0d84c3d3f9}{BaseU1Electron\_1D<RealType>::CreateOnsiteOperatorSz}}();}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00135}00135       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} m\_n\_up      = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a3b8fcfdefbef8ade799801c8119e3f04}{BaseU1Electron\_1D<RealType>::CreateOnsiteOperatorNCUp}}();}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00136}00136       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} m\_n\_down    = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a9fd576d344dc72d5c7b9361a3cad51d9}{BaseU1Electron\_1D<RealType>::CreateOnsiteOperatorNCDown}}();}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00137}00137       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} m\_n\_up\_down = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ae96031f37623a90ebb421f75d8f3ae83}{sparse\_matrix::CalculateMatrixMatrixProduct}}(1.0, m\_n\_up, 1.0, m\_n\_down);}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00138}00138       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ac96ccd3b32760093ebb9dbc2481053b2}{sparse\_matrix::CalculateMatrixMatrixSum}}(U, m\_n\_up\_down, h\_z, m\_s\_z);}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00139}00139    \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00140}00140    }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00141}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a36690ef3139f372438941e9ea951ced5}{00141}}    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a36690ef3139f372438941e9ea951ced5}{GetOnsiteOperatorHam}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_ham\_; \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00142}00142    }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00143}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_ac394b7e36cdd24c59f7b516f13c4582c}{00143}}    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<RealType> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_ac394b7e36cdd24c59f7b516f13c4582c}{GetHopping}}         ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} t\_ ; \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00144}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a7255933f15b117c4b40aa4a5816a3b8b}{00144}}    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<RealType> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a7255933f15b117c4b40aa4a5816a3b8b}{GetIntersiteCoulomb}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} V\_; \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00145}00145    }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00146}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_afcdac5f6053b8266925493ce009f3a4c}{00146}}    \textcolor{keyword}{inline} RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_afcdac5f6053b8266925493ce009f3a4c}{GetHopping}}         (\textcolor{keyword}{const} std::int64\_t index)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} t\_.at(index); \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00147}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a74592bf783dff6301e7d4c5e3bf593c4}{00147}}    \textcolor{keyword}{inline} RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a74592bf783dff6301e7d4c5e3bf593c4}{GetIntersiteCoulomb}}(\textcolor{keyword}{const} std::int64\_t index)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} V\_.at(index); \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00087}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a2368889d8113853bbef602a47e20eced}{00087}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a2368889d8113853bbef602a47e20eced}{SetHopping}}(\textcolor{keyword}{const} std::vector<RealType> \&t) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00088}00088       \textcolor{keywordflow}{if} (t\_ != t) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00089}00089          t\_ = t;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00090}00090          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aee93327a0e55a00bb8d759247c17fb3d}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00091}00091       \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00092}00092    \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00093}00093    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00096}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a7337fa43df6a16af1677701c71cefa1d}{00096}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a7337fa43df6a16af1677701c71cefa1d}{SetHopping}}(\textcolor{keyword}{const} RealType t) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00097}00097       \textcolor{keywordflow}{if} (t\_.size() == 0) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00098}00098          t\_.push\_back(t);}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00099}00099          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aee93327a0e55a00bb8d759247c17fb3d}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00100}00100       \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00101}00101       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (t\_[0] != t) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00102}00102          t\_[0] = t;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00103}00103          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aee93327a0e55a00bb8d759247c17fb3d}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00104}00104       \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00105}00105    \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00106}00106    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00109}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_ac1f506d9c7a5ed95cbc63b42eb9bbd88}{00109}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_ac1f506d9c7a5ed95cbc63b42eb9bbd88}{SetIntersiteCoulomb}}(\textcolor{keyword}{const} std::vector<RealType> \&V) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00110}00110       \textcolor{keywordflow}{if} (V\_ != V) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00111}00111          V\_ = V;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00112}00112          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aee93327a0e55a00bb8d759247c17fb3d}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00113}00113       \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00114}00114    \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00115}00115    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00118}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a98ecc8748deda159e8c8fa8b3a214767}{00118}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a98ecc8748deda159e8c8fa8b3a214767}{SetIntersiteCoulomb}}(\textcolor{keyword}{const} RealType V) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00119}00119       \textcolor{keywordflow}{if} (V\_.size() == 0) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00120}00120          V\_.push\_back(V);}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00121}00121          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aee93327a0e55a00bb8d759247c17fb3d}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00122}00122       \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00123}00123       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (V\_[0] != V) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00124}00124          V\_[0] = V;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00125}00125          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aee93327a0e55a00bb8d759247c17fb3d}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00126}00126       \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00127}00127    \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00128}00128    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00131}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a2e8dbb3e07b92f31092b7c8d5f849b57}{00131}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a2e8dbb3e07b92f31092b7c8d5f849b57}{SetOnsiteCoulomb}}(\textcolor{keyword}{const} RealType U) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00132}00132       \textcolor{keywordflow}{if} (U\_ != U) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00133}00133          U\_ = U;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00134}00134          onsite\_operator\_ham\_ = \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a879169d51bdfedd522454e9cf9af42ee}{CreateOnsiteOperatorHam}}(h\_z\_, U\_);}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00135}00135          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aee93327a0e55a00bb8d759247c17fb3d}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00136}00136       \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00137}00137    \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00138}00138    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00141}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_abcf228a598e68e3c787c5f91ec61fd5b}{00141}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_abcf228a598e68e3c787c5f91ec61fd5b}{SetMagneticField}}(\textcolor{keyword}{const} RealType h\_z) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00142}00142       \textcolor{keywordflow}{if} (h\_z\_ != h\_z) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00143}00143          h\_z\_ = h\_z;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00144}00144          onsite\_operator\_ham\_ = \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a879169d51bdfedd522454e9cf9af42ee}{CreateOnsiteOperatorHam}}(h\_z\_, U\_);}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00145}00145          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aee93327a0e55a00bb8d759247c17fb3d}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00146}00146       \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00147}00147    \}}
 \DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00148}00148    }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00149}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_afc1760e3ec108a9b13b4030a7b3fd5b1}{00149}}    \textcolor{keyword}{inline} RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_afc1760e3ec108a9b13b4030a7b3fd5b1}{GetOnsiteCoulomb}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} U\_; \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00150}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a231e8eb3592cefce29fb8ddce1e351ab}{00150}}    \textcolor{keyword}{inline} RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a231e8eb3592cefce29fb8ddce1e351ab}{GetMagneticField}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} h\_z\_; \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00151}00151    }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00152}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_af4c5a29840c700cc26a047a19e878b02}{00152}}    \textcolor{keyword}{inline} \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}{utility::BoundaryCondition}} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_af4c5a29840c700cc26a047a19e878b02}{GetBoundaryCondition}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} boundary\_condition\_; \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00153}00153 }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00154}00154 \textcolor{keyword}{private}:}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00155}00155    CRS onsite\_operator\_ham\_;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00156}00156 }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00157}00157    \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}{utility::BoundaryCondition}} boundary\_condition\_ = \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712ac18b965543663a1ec9a4836656f07d86}{utility::BoundaryCondition::OBC}};}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00158}00158 }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00159}00159    std::vector<RealType> t\_ = \{1.0\};}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00160}00160    std::vector<RealType> V\_ = \{\};}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00161}00161    RealType U\_   = 1.0;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00162}00162    RealType h\_z\_ = 0.0;}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00163}00163    }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00164}00164 \};}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00165}00165 }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00166}00166 \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00167}00167 \}}
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00168}00168 }
-\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00169}00169 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_MODEL\_HUBBARD\_1D\_HPP\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00151}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_aba696ed51bc3a98aeb35e8d3d9206639}{00151}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_aba696ed51bc3a98aeb35e8d3d9206639}{SetChemicalPotential}}(\textcolor{keyword}{const} RealType mu) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00152}00152       \textcolor{keywordflow}{if} (mu\_ != mu) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00153}00153          mu\_ = mu;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00154}00154          onsite\_operator\_ham\_ = \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a879169d51bdfedd522454e9cf9af42ee}{CreateOnsiteOperatorHam}}(h\_z\_, U\_);}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00155}00155          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aee93327a0e55a00bb8d759247c17fb3d}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00156}00156       \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00157}00157    \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00158}00158    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00160}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_ac28018ecc651e50c7eab9bffd28b882c}{00160}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_ac28018ecc651e50c7eab9bffd28b882c}{PrintInfo}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00161}00161       std::string bc = \textcolor{stringliteral}{"{}None"{}};}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00162}00162       \textcolor{keywordflow}{if} (boundary\_condition\_ == \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712ac18b965543663a1ec9a4836656f07d86}{utility::BoundaryCondition::OBC}}) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00163}00163          bc = \textcolor{stringliteral}{"{}OBC"{}};}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00164}00164       \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00165}00165       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (boundary\_condition\_ == \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712a37907335b66872484f695a3d2d6116b2}{utility::BoundaryCondition::PBC}}) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00166}00166          bc = \textcolor{stringliteral}{"{}PBC"{}};}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00167}00167       \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00168}00168       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (boundary\_condition\_ == \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712a855ae200ce7bb41425769e9981a4d02e}{utility::BoundaryCondition::SSD}}) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00169}00169          bc = \textcolor{stringliteral}{"{}SSD"{}};}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00170}00170       \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00171}00171       std::cout << \textcolor{stringliteral}{"{}Print Hubbard Model Infomation:"{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00172}00172       std::cout << \textcolor{stringliteral}{"{}boundary\_condition     = "{}} << this-\/>boundary\_condition\_     << std::endl;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00173}00173       std::cout << \textcolor{stringliteral}{"{}system\_size            = "{}} << this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a48de32d5c4d81ab303856679df0e2040}{system\_size\_}}            << std::endl;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00174}00174       std::cout << \textcolor{stringliteral}{"{}total\_sz               = "{}} << 0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_af32092dc9d581d77d60b126fc71f9237}{total\_2sz\_}}          << std::endl;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00175}00175       std::cout << \textcolor{stringliteral}{"{}dim\_target             = "{}} << this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ac274d1305642a32127c47e7bbcf3e325}{CalculateTargetDim}}()    << std::endl;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00176}00176       std::cout << \textcolor{stringliteral}{"{}dim\_onsite             = "{}} << this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a55ca064c4d2105e1d477488c9a95bdbf}{dim\_onsite\_}}             << std::endl;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00177}00177       std::cout << \textcolor{stringliteral}{"{}num\_conserved\_quantity = "{}} << this-\/>num\_conserved\_quantity\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00178}00178       }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00179}00179       std::cout << \textcolor{stringliteral}{"{}Print Interaction"{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00180}00180       std::cout << \textcolor{stringliteral}{"{}Electron Hopping: t ="{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00181}00181       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < t\_.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00182}00182          std::cout << i + 1 << \textcolor{stringliteral}{"{}-\/th neighber: "{}} << t\_.at(i) << std::endl;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00183}00183       \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00184}00184       std::cout << \textcolor{stringliteral}{"{}Onsite Coulomb: U ="{}} << U\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00185}00185       std::cout << \textcolor{stringliteral}{"{}Magnetic Field for the z-\/direction: h\_z ="{}} << h\_z\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00186}00186       std::cout << \textcolor{stringliteral}{"{}Intersite Coulomb: V ="{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00187}00187       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < V\_.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00188}00188          std::cout << i + 1 << \textcolor{stringliteral}{"{}-\/th neighber: "{}} << V\_.at(i) << std::endl;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00189}00189       \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00190}00190    \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00191}00191    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00195}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a879169d51bdfedd522454e9cf9af42ee}{00195}}    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a879169d51bdfedd522454e9cf9af42ee}{CreateOnsiteOperatorHam}}(\textcolor{keyword}{const} RealType h\_z = 0.0, \textcolor{keyword}{const} RealType U = 0.0, \textcolor{keyword}{const} RealType mu = 0.0) \{}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00196}00196       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} m\_s\_z    = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a5835026708b0d6a101027b0d84c3d3f9}{BaseU1Electron\_1D<RealType>::CreateOnsiteOperatorSz}}();}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00197}00197       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} m\_n\_up   = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a3b8fcfdefbef8ade799801c8119e3f04}{BaseU1Electron\_1D<RealType>::CreateOnsiteOperatorNCUp}}();}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00198}00198       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} m\_n\_down = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a9fd576d344dc72d5c7b9361a3cad51d9}{BaseU1Electron\_1D<RealType>::CreateOnsiteOperatorNCDown}}();}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00199}00199       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} m\_mu     = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aec77c76276610fa623fe1127594bf8e7}{BaseU1Electron\_1D<RealType>::CreateOnsiteOperatorNC}}();}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00200}00200       \textcolor{keywordflow}{return} h\_z*m\_s\_z + U*m\_n\_up*m\_n\_down + mu*m\_mu;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00201}00201    \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00202}00202    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00206}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a36690ef3139f372438941e9ea951ced5}{00206}}    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a36690ef3139f372438941e9ea951ced5}{GetOnsiteOperatorHam}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_ham\_; \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00207}00207    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00210}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_ac394b7e36cdd24c59f7b516f13c4582c}{00210}}    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<RealType> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_ac394b7e36cdd24c59f7b516f13c4582c}{GetHopping}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} t\_ ; \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00211}00211    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00214}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a7255933f15b117c4b40aa4a5816a3b8b}{00214}}    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<RealType> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a7255933f15b117c4b40aa4a5816a3b8b}{GetIntersiteCoulomb}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} V\_; \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00215}00215    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00219}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_afcdac5f6053b8266925493ce009f3a4c}{00219}}    \textcolor{keyword}{inline} RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_afcdac5f6053b8266925493ce009f3a4c}{GetHopping}}(\textcolor{keyword}{const} std::int64\_t index)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} t\_.at(index); \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00220}00220    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00223}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a74592bf783dff6301e7d4c5e3bf593c4}{00223}}    \textcolor{keyword}{inline} RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a74592bf783dff6301e7d4c5e3bf593c4}{GetIntersiteCoulomb}}(\textcolor{keyword}{const} std::int64\_t index)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} V\_.at(index); \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00224}00224    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00227}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_afc1760e3ec108a9b13b4030a7b3fd5b1}{00227}}    \textcolor{keyword}{inline} RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_afc1760e3ec108a9b13b4030a7b3fd5b1}{GetOnsiteCoulomb}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} U\_; \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00228}00228    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00231}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a231e8eb3592cefce29fb8ddce1e351ab}{00231}}    \textcolor{keyword}{inline} RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a231e8eb3592cefce29fb8ddce1e351ab}{GetMagneticField}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} h\_z\_; \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00232}00232    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00235}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_acbf8a11cc68b7c12ab32bc60a88c6bc9}{00235}}    \textcolor{keyword}{inline} RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_acbf8a11cc68b7c12ab32bc60a88c6bc9}{GetChemicalPotential}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} mu\_; \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00236}00236    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00239}\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_af4c5a29840c700cc26a047a19e878b02}{00239}}    \textcolor{keyword}{inline} \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}{utility::BoundaryCondition}} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_af4c5a29840c700cc26a047a19e878b02}{GetBoundaryCondition}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} boundary\_condition\_; \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00240}00240 }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00241}00241 \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00244}00244    CRS onsite\_operator\_ham\_;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00245}00245 }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00248}00248    \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}{utility::BoundaryCondition}} boundary\_condition\_ = \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712ac18b965543663a1ec9a4836656f07d86}{utility::BoundaryCondition::OBC}};}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00249}00249 }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00251}00251    std::vector<RealType> t\_ = \{1.0\};}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00252}00252    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00254}00254    std::vector<RealType> V\_ = \{\};}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00255}00255    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00257}00257    RealType U\_   = 1.0;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00258}00258    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00260}00260    RealType h\_z\_ = 0.0;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00261}00261    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00263}00263    RealType mu\_  = 0.0;}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00264}00264    }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00265}00265 \};}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00266}00266 }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00267}00267 \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00268}00268 \}}
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00269}00269 }
+\DoxyCodeLine{\Hypertarget{hubbard__1d_8hpp_source_l00270}00270 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_MODEL\_HUBBARD\_1D\_HPP\_ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

@@ -238,6 +238,32 @@ struct CRS {
    
 };
 
+//Operator overloading
+template<typename RealType>
+CRS<RealType> operator+(const CRS<RealType> &lhs, const CRS<RealType> &rhs) {
+   return CalculateMatrixMatrixSum(1.0, lhs, 1.0, rhs);
+}
+
+template<typename RealType>
+CRS<RealType> operator-(const CRS<RealType> &lhs, const CRS<RealType> &rhs) {
+   return CalculateMatrixMatrixSum(1.0, lhs, -1.0, rhs);
+}
+
+template<typename RealType>
+CRS<RealType> operator*(const CRS<RealType> &lhs, const CRS<RealType> &rhs) {
+   return CalculateMatrixMatrixProduct(1.0, lhs, 1.0, rhs);
+}
+
+template<typename RealType>
+CRS<RealType> operator*(const RealType &lhs, const CRS<RealType> &rhs) {
+   return rhs.MultiplyByScalar(lhs);
+}
+
+template<typename RealType>
+CRS<RealType> operator*(const CRS<RealType> &lhs, const RealType &rhs) {
+   return lhs.MultiplyByScalar(rhs);
+}
+
 template<typename RealType>
 void CalculateTransposedMatrix(CRS<RealType> *matrix_out, const CRS<RealType> &matrix_in) {
    

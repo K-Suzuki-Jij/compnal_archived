@@ -27,3 +27,18 @@
 \_form#26=53x19:$ \hat{s}^{-}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow}$
 \_form#27=13x10:$ \hat{s}^{-}$
 \_form#28=36x16:$ 2\langle\hat{S}^{z}_{\rm tot}\rangle$
+\_form#29=11x10:$ N $
+\_form#30=94x18:$ \langle \hat{N}_{e}\rangle =\langle\sum^{N}_{i=1}\hat{n}_{i}\rangle$
+\_form#31=91x18:$ \langle \hat{N}_{e}\rangle =\sum^{N}_{i=1}\langle\hat{n}_{i}\rangle$
+\_form#32=498x40:\[ \hat{H}=\sum_{d}t_{d}\sum^{N}_{i=1}\sum_{\sigma=\uparrow,\downarrow} \left(\hat{c}^{\dagger}_{i,\sigma}\hat{c}_{i+d,\sigma}+{\rm h.c.}\right)+ U\sum^{N}_{i=1}\hat{n}_{i,\uparrow}\hat{n}_{i,\downarrow}+ \sum_{d}V_{d}\sum^{N}_{i=1}\hat{n}_{i}\hat{n}_{i+d}+ h_z\sum^{N}_{i=1}s^{z}_{i} + \mu\sum^{N}_{i=1}\hat{n}_{i} \]
+\_form#33=5x9:$ t $
+\_form#34=203x16:$ \hat{H}_{\rm onsite}=h_z\hat{s}^{z}+U\hat{n}_{\uparrow}\hat{n}_{\downarrow}+\mu(\hat{n}_{\uparrow}+\hat{n}_{\downarrow})$
+\_form#35=36x15:$ \hat{H}_{\rm onsite}$
+\_form#36=203x16:\[ \hat{H}_{\rm onsite}=h_z\hat{s}^{z}+U\hat{n}_{\uparrow}\hat{n}_{\downarrow}+\mu(\hat{n}_{\uparrow}+\hat{n}_{\downarrow})\]
+\_form#37=10x10:$ V $
+\_form#38=11x11:$ t_{d} $
+\_form#39=6x10:$ d $
+\_form#40=13x13:$ V_{d} $
+\_form#41=10x10:$ U $
+\_form#42=13x13:$ h_z $
+\_form#43=19x6:$ mu $
