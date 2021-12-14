@@ -1,0 +1,190 @@
+\hypertarget{test__exact__diag_8hpp}{}\doxysection{tests/solver/test\+\_\+exact\+\_\+diag.hpp File Reference}
+\label{test__exact__diag_8hpp}\index{tests/solver/test\_exact\_diag.hpp@{tests/solver/test\_exact\_diag.hpp}}
+{\ttfamily \#include \char`\"{}../../src/solver/all.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../../src/model/all.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$gtest/gtest.\+h$>$}\newline
+Include dependency graph for test\+\_\+exact\+\_\+diag.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{test__exact__diag_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{test__exact__diag_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{test__exact__diag_8hpp_ac1aeba18309e6c10b25505004f88b7e1}{TEST}} (XXZ, Basic)
+\item 
+\mbox{\hyperlink{test__exact__diag_8hpp_aab2efa37d4c619544b32e6aaaf612d03}{TEST}} (Hubbard, Basic)
+\item 
+\mbox{\hyperlink{test__exact__diag_8hpp_ae03bc0b6169926f28069bf730ffd59bc}{TEST}} (U1\+Spin, Basis)
+\item 
+\mbox{\hyperlink{test__exact__diag_8hpp_ab219348481cacdca2e5b8f9160f79326}{TEST}} (U1\+Electron, Basis)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{test__exact__diag_8hpp_aab2efa37d4c619544b32e6aaaf612d03}\label{test__exact__diag_8hpp_aab2efa37d4c619544b32e6aaaf612d03}} 
+\index{test\_exact\_diag.hpp@{test\_exact\_diag.hpp}!TEST@{TEST}}
+\index{TEST@{TEST}!test\_exact\_diag.hpp@{test\_exact\_diag.hpp}}
+\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily TEST (\begin{DoxyParamCaption}\item[{Hubbard}]{,  }\item[{Basic}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{test__exact__diag_8hpp_source_l00033}{33}} of file \mbox{\hyperlink{test__exact__diag_8hpp_source}{test\+\_\+exact\+\_\+diag.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00033}00033                      \{}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00034}00034    \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d}{compnal::model::Hubbard\_1D<double>}} model;}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00035}00035    model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a4d218a9889fb9fac1f10d592e9c6524b}{SetSystemSize}}(4);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00036}00036    model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a1c3eb6bf3ebf8e161f3f5c3e6d96d549}{SetTotalElectron}}(4);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00037}00037    \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal::solver::ExactDiag}} ed(model);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00038}00038    ed.CalculateGroundState(\textcolor{stringliteral}{"{}Lanczos"{}});}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00039}00039    printf(\textcolor{stringliteral}{"{}\%.30lf\(\backslash\)n"{}}, ed.GetEigenvalues()[0]);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00040}00040    printf(\textcolor{stringliteral}{"{}\%.15lf\(\backslash\)n"{}}, ed.CalculateCorrelationFunction(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a4d101c612f474f7f1360e01fb2e11458}{GetOnsiteOperatorSz}}(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00041}00041                                                       0,}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00042}00042                                                       model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a4d101c612f474f7f1360e01fb2e11458}{GetOnsiteOperatorSz}}(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00043}00043                                                       1));}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00044}00044    }
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00045}00045    printf(\textcolor{stringliteral}{"{}\%.15lf\(\backslash\)n"{}}, ed.CalculateCorrelationFunction(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a804fcc953f4094c743ff7a090c5c5648}{GetOnsiteOperatorSx}}(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00046}00046                                                       0,}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00047}00047                                                       model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a804fcc953f4094c743ff7a090c5c5648}{GetOnsiteOperatorSx}}(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00048}00048                                                       1));}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00049}00049 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{test__exact__diag_8hpp_aab2efa37d4c619544b32e6aaaf612d03_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{test__exact__diag_8hpp_ab219348481cacdca2e5b8f9160f79326}\label{test__exact__diag_8hpp_ab219348481cacdca2e5b8f9160f79326}} 
+\index{test\_exact\_diag.hpp@{test\_exact\_diag.hpp}!TEST@{TEST}}
+\index{TEST@{TEST}!test\_exact\_diag.hpp@{test\_exact\_diag.hpp}}
+\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily TEST (\begin{DoxyParamCaption}\item[{U1\+Electron}]{,  }\item[{Basis}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{test__exact__diag_8hpp_source_l00067}{67}} of file \mbox{\hyperlink{test__exact__diag_8hpp_source}{test\+\_\+exact\+\_\+diag.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00067}00067                         \{}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00068}00068    \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d}{compnal::model::GeneralModel\_1D<compnal::model::BaseU1Electron\_1D<double>}}> model;}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00069}00069    model.SetSystemSize(4);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00070}00070    model.SetTotalElectron(4);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00071}00071    \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal::solver::ExactDiag}} ed(model);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00072}00072    ed.CalculateGroundState(\textcolor{stringliteral}{"{}Lanczos"{}});}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00073}00073    printf(\textcolor{stringliteral}{"{}\%.30lf\(\backslash\)n"{}}, ed.GetEigenvalues()[0]);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00074}00074    printf(\textcolor{stringliteral}{"{}\%.15lf\(\backslash\)n"{}}, ed.CalculateCorrelationFunction(model.GetOnsiteOperatorSz(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00075}00075                                                       0,}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00076}00076                                                       model.GetOnsiteOperatorSz(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00077}00077                                                       1));}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00078}00078    }
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00079}00079    printf(\textcolor{stringliteral}{"{}\%.15lf\(\backslash\)n"{}}, ed.CalculateCorrelationFunction(model.GetOnsiteOperatorSx(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00080}00080                                                       0,}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00081}00081                                                       model.GetOnsiteOperatorSx(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00082}00082                                                       1));}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00083}00083    }
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00084}00084 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{test__exact__diag_8hpp_ab219348481cacdca2e5b8f9160f79326_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{test__exact__diag_8hpp_ae03bc0b6169926f28069bf730ffd59bc}\label{test__exact__diag_8hpp_ae03bc0b6169926f28069bf730ffd59bc}} 
+\index{test\_exact\_diag.hpp@{test\_exact\_diag.hpp}!TEST@{TEST}}
+\index{TEST@{TEST}!test\_exact\_diag.hpp@{test\_exact\_diag.hpp}}
+\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily TEST (\begin{DoxyParamCaption}\item[{U1\+Spin}]{,  }\item[{Basis}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{test__exact__diag_8hpp_source_l00051}{51}} of file \mbox{\hyperlink{test__exact__diag_8hpp_source}{test\+\_\+exact\+\_\+diag.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00051}00051                     \{}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00052}00052    \textcolor{keyword}{const} \textcolor{keywordtype}{int} N = 4;}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00053}00053    \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d}{compnal::model::GeneralModel\_1D<compnal::model::BaseU1Spin\_1D<double>}}> model(N, 0.5);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00055}00055    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < N -\/ 1; ++i) \{}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00056}00056       model.AddInteraction(model.GetOnsiteOperatorSz(), i, model.GetOnsiteOperatorSz(), i+1);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00057}00057       model.AddInteraction(model.GetOnsiteOperatorSx(), i, model.GetOnsiteOperatorSx(), i+1);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00058}00058       model.AddInteraction(-\/1.0, model.GetOnsiteOperatoriSy(), i, model.GetOnsiteOperatoriSy(), i+1);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00059}00059    \}}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00060}00060       }
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00061}00061    \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal::solver::ExactDiag}} ed(model);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00062}00062    ed.CalculateGroundState(\textcolor{stringliteral}{"{}Lanczos"{}});}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00063}00063    printf(\textcolor{stringliteral}{"{}\%.30lf\(\backslash\)n"{}}, ed.GetEigenvalues()[0]);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00064}00064 }
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00065}00065 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{test__exact__diag_8hpp_ae03bc0b6169926f28069bf730ffd59bc_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{test__exact__diag_8hpp_ac1aeba18309e6c10b25505004f88b7e1}\label{test__exact__diag_8hpp_ac1aeba18309e6c10b25505004f88b7e1}} 
+\index{test\_exact\_diag.hpp@{test\_exact\_diag.hpp}!TEST@{TEST}}
+\index{TEST@{TEST}!test\_exact\_diag.hpp@{test\_exact\_diag.hpp}}
+\doxysubsubsection{\texorpdfstring{TEST()}{TEST()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily TEST (\begin{DoxyParamCaption}\item[{XXZ}]{,  }\item[{Basic}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{test__exact__diag_8hpp_source_l00015}{15}} of file \mbox{\hyperlink{test__exact__diag_8hpp_source}{test\+\_\+exact\+\_\+diag.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00015}00015                  \{}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00016}00016    \mbox{\hyperlink{classcompnal_1_1model_1_1_x_x_z__1_d}{compnal::model::XXZ\_1D<double>}} model;}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00017}00017    model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ab34e5e3dd6fdb9581c785c92f3ded892}{SetSystemSize}}(4);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00018}00018    model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a200a44a8ea5b4d47d904208b24984f98}{SetMagnitudeSpin}}(0.5);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00019}00019    \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal::solver::ExactDiag}} ed(model);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00020}00020    ed.CalculateGroundState(\textcolor{stringliteral}{"{}Lanczos"{}});}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00021}00021    printf(\textcolor{stringliteral}{"{}\%.30lf\(\backslash\)n"{}}, ed.GetEigenvalues()[0]);}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00022}00022    printf(\textcolor{stringliteral}{"{}\%.15lf\(\backslash\)n"{}}, ed.CalculateCorrelationFunction(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a506fddc0454a4008ed2cda1315b59f1e}{GetOnsiteOperatorSz}}(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00023}00023                                                       0,}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00024}00024                                                       model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a506fddc0454a4008ed2cda1315b59f1e}{GetOnsiteOperatorSz}}(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00025}00025                                                       1));}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00026}00026    }
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00027}00027    printf(\textcolor{stringliteral}{"{}\%.15lf\(\backslash\)n"{}}, ed.CalculateCorrelationFunction(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a30092d8e74a2246007842fb4dfcefcf8}{GetOnsiteOperatorSx}}(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00028}00028                                                       0,}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00029}00029                                                       model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a30092d8e74a2246007842fb4dfcefcf8}{GetOnsiteOperatorSx}}(),}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00030}00030                                                       1));}
+\DoxyCodeLine{\Hypertarget{test__exact__diag_8hpp_l00031}00031 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{test__exact__diag_8hpp_ac1aeba18309e6c10b25505004f88b7e1_cgraph}
+\end{center}
+\end{figure}

@@ -1,0 +1,464 @@
+\hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector}{}\doxysection{compnal\+::sparse\+\_\+matrix\+::Braket\+Vector\texorpdfstring{$<$}{<} Real\+Type \texorpdfstring{$>$}{>} Struct Template Reference}
+\label{structcompnal_1_1sparse__matrix_1_1_braket_vector}\index{compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}}
+
+
+{\ttfamily \#include $<$braket\+\_\+vector.\+hpp$>$}
+
+
+
+Collaboration diagram for compnal\+::sparse\+\_\+matrix\+::Braket\+Vector\texorpdfstring{$<$}{<} Real\+Type \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{structcompnal_1_1sparse__matrix_1_1_braket_vector__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_a22707abc6dbdace2535a3e09729b3ed7}{Braket\+Vector}} (const std\+::int64\+\_\+t dim=0)
+\item 
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_aa3a2db3bdb374fc1bc3b0b7d39fba345}{Braket\+Vector}} (const std\+::vector$<$ Real\+Type $>$ \&vector)
+\item 
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_afc6811b78fadbcf84fea85b2dcae01e9}{Braket\+Vector}} (const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}} \&vector)
+\item 
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}} \& \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_af436a236c13a190b1d91475319dab215}{operator=}} (const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}} \&vector) \&
+\item 
+void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_abce9f7ffdc98fd45a75f29c76bfb2fcb}{Fill}} (const Real\+Type val\+\_\+in)
+\item 
+void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_abfb93aceef563dc171c807f0fe8391d3}{Free}} ()
+\item 
+void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_aea9a7595862adf9c7e98138aaf0806e1}{Clear}} ()
+\item 
+void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_afd6b6047b0a723c2b892c11a46b8947b}{Assign}} (const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}} \&vector)
+\item 
+void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_aa0adc0cdf252f0cf68a02f7147678d37}{Assign}} (const std\+::vector$<$ Real\+Type $>$ \&vector)
+\item 
+void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae74e77fff5c779f264238f0b4bf0bdb6}{Normalize}} (const Real\+Type normalization\+\_\+factor=1.\+0)
+\item 
+void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_a84f352668f31818b5b947ca932d3b18f}{Multiply\+By\+Scalar}} (const Real\+Type coeef)
+\item 
+Real\+Type \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_a827fce19bf033d6317537d3f15ecca48}{L1\+Norm}} () const
+\item 
+Real\+Type \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_a86a86a5b08913d8b9262e3b7c27d68cf}{L2\+Norm}} () const
+\item 
+void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_a78473574eb1916f76d473a6de08f8040}{Print}} (const std\+::string display\+\_\+name=\char`\"{}Braket\+Vector\char`\"{}) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ Real\+Type $>$ \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Real\+Type$>$\newline
+struct compnal\+::sparse\+\_\+matrix\+::\+Braket\+Vector$<$ Real\+Type $>$}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00024}{24}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_a22707abc6dbdace2535a3e09729b3ed7}\label{structcompnal_1_1sparse__matrix_1_1_braket_vector_a22707abc6dbdace2535a3e09729b3ed7}} 
+\index{compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}!BraketVector@{BraketVector}}
+\index{BraketVector@{BraketVector}!compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{BraketVector()}{BraketVector()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{compnal\+::sparse\+\_\+matrix\+::\+Braket\+Vector}}$<$ Real\+Type $>$\+::\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}} (\begin{DoxyParamCaption}\item[{const std\+::int64\+\_\+t}]{dim = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00028}{28}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00028}00028                                                    \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00029}00029       this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.resize(dim);}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00030}00030 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00031}00031       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < dim; ++i) \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00032}00032          this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] = 0.0;}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00033}00033       \}}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00034}00034    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_aa3a2db3bdb374fc1bc3b0b7d39fba345}\label{structcompnal_1_1sparse__matrix_1_1_braket_vector_aa3a2db3bdb374fc1bc3b0b7d39fba345}} 
+\index{compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}!BraketVector@{BraketVector}}
+\index{BraketVector@{BraketVector}!compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{BraketVector()}{BraketVector()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{compnal\+::sparse\+\_\+matrix\+::\+Braket\+Vector}}$<$ Real\+Type $>$\+::\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}} (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ Real\+Type $>$ \&}]{vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00036}{36}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00036}00036                                                             \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00037}00037       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_afd6b6047b0a723c2b892c11a46b8947b}{Assign}}(vector);}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00038}00038    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structcompnal_1_1sparse__matrix_1_1_braket_vector_aa3a2db3bdb374fc1bc3b0b7d39fba345_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_afc6811b78fadbcf84fea85b2dcae01e9}\label{structcompnal_1_1sparse__matrix_1_1_braket_vector_afc6811b78fadbcf84fea85b2dcae01e9}} 
+\index{compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}!BraketVector@{BraketVector}}
+\index{BraketVector@{BraketVector}!compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{BraketVector()}{BraketVector()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{compnal\+::sparse\+\_\+matrix\+::\+Braket\+Vector}}$<$ Real\+Type $>$\+::\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}}$<$ Real\+Type $>$ \&}]{vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00040}{40}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00040}00040                                             \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00041}00041       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_afd6b6047b0a723c2b892c11a46b8947b}{Assign}}(vector);}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00042}00042    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structcompnal_1_1sparse__matrix_1_1_braket_vector_afc6811b78fadbcf84fea85b2dcae01e9_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_afd6b6047b0a723c2b892c11a46b8947b}\label{structcompnal_1_1sparse__matrix_1_1_braket_vector_afd6b6047b0a723c2b892c11a46b8947b}} 
+\index{compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}!Assign@{Assign}}
+\index{Assign@{Assign}!compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{Assign()}{Assign()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{compnal\+::sparse\+\_\+matrix\+::\+Braket\+Vector}}$<$ Real\+Type $>$\+::Assign (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}}$<$ Real\+Type $>$ \&}]{vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00064}{64}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00064}00064                                            \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00065}00065       this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.resize(vector.val.size());}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00066}00066 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00067}00067       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < vector.val.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00068}00068          this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] = vector.val[i];}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00069}00069       \}}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00070}00070    \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structcompnal_1_1sparse__matrix_1_1_braket_vector_afd6b6047b0a723c2b892c11a46b8947b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_aa0adc0cdf252f0cf68a02f7147678d37}\label{structcompnal_1_1sparse__matrix_1_1_braket_vector_aa0adc0cdf252f0cf68a02f7147678d37}} 
+\index{compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}!Assign@{Assign}}
+\index{Assign@{Assign}!compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{Assign()}{Assign()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{compnal\+::sparse\+\_\+matrix\+::\+Braket\+Vector}}$<$ Real\+Type $>$\+::Assign (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ Real\+Type $>$ \&}]{vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00072}{72}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00072}00072                                                   \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00073}00073       this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.resize(vector.size());}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00074}00074 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00075}00075       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < vector.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00076}00076          this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] = vector[i];}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00077}00077       \}}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00078}00078    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_aea9a7595862adf9c7e98138aaf0806e1}\label{structcompnal_1_1sparse__matrix_1_1_braket_vector_aea9a7595862adf9c7e98138aaf0806e1}} 
+\index{compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}!Clear@{Clear}}
+\index{Clear@{Clear}!compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{Clear()}{Clear()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{compnal\+::sparse\+\_\+matrix\+::\+Braket\+Vector}}$<$ Real\+Type $>$\+::Clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00060}{60}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00060}00060                 \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00061}00061       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.clear();}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00062}00062    \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structcompnal_1_1sparse__matrix_1_1_braket_vector_aea9a7595862adf9c7e98138aaf0806e1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_abce9f7ffdc98fd45a75f29c76bfb2fcb}\label{structcompnal_1_1sparse__matrix_1_1_braket_vector_abce9f7ffdc98fd45a75f29c76bfb2fcb}} 
+\index{compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}!Fill@{Fill}}
+\index{Fill@{Fill}!compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{Fill()}{Fill()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{compnal\+::sparse\+\_\+matrix\+::\+Braket\+Vector}}$<$ Real\+Type $>$\+::Fill (\begin{DoxyParamCaption}\item[{const Real\+Type}]{val\+\_\+in }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00049}{49}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00049}00049                                     \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00050}00050 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00051}00051       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00052}00052          this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] = val\_in;}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00053}00053       \}}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00054}00054    \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structcompnal_1_1sparse__matrix_1_1_braket_vector_abce9f7ffdc98fd45a75f29c76bfb2fcb_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_abfb93aceef563dc171c807f0fe8391d3}\label{structcompnal_1_1sparse__matrix_1_1_braket_vector_abfb93aceef563dc171c807f0fe8391d3}} 
+\index{compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}!Free@{Free}}
+\index{Free@{Free}!compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{Free()}{Free()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{compnal\+::sparse\+\_\+matrix\+::\+Braket\+Vector}}$<$ Real\+Type $>$\+::Free (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00056}{56}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00056}00056                \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00057}00057       std::vector<RealType>().swap(\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}});}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00058}00058    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_a827fce19bf033d6317537d3f15ecca48}\label{structcompnal_1_1sparse__matrix_1_1_braket_vector_a827fce19bf033d6317537d3f15ecca48}} 
+\index{compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}!L1Norm@{L1Norm}}
+\index{L1Norm@{L1Norm}!compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{L1Norm()}{L1Norm()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+Real\+Type \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{compnal\+::sparse\+\_\+matrix\+::\+Braket\+Vector}}$<$ Real\+Type $>$\+::L1\+Norm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00098}{98}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00098}00098                            \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00099}00099       RealType norm = 0.0;}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00100}00100 \textcolor{preprocessor}{\#pragma omp parallel for reduction (+:norm)}}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00101}00101       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00102}00102          norm += std::abs(\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i]);}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00103}00103       \}}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00104}00104       \textcolor{keywordflow}{return} norm;}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00105}00105    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_a86a86a5b08913d8b9262e3b7c27d68cf}\label{structcompnal_1_1sparse__matrix_1_1_braket_vector_a86a86a5b08913d8b9262e3b7c27d68cf}} 
+\index{compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}!L2Norm@{L2Norm}}
+\index{L2Norm@{L2Norm}!compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{L2Norm()}{L2Norm()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+Real\+Type \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{compnal\+::sparse\+\_\+matrix\+::\+Braket\+Vector}}$<$ Real\+Type $>$\+::L2\+Norm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00108}{108}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00108}00108                            \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00109}00109       RealType inner\_product = 0.0;}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00110}00110 \textcolor{preprocessor}{\#pragma omp parallel for reduction (+:inner\_product)}}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00111}00111       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00112}00112          inner\_product += \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i]*\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i];}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00113}00113       \}}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00114}00114       \textcolor{keywordflow}{return} std::sqrt(inner\_product);}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00115}00115    \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structcompnal_1_1sparse__matrix_1_1_braket_vector_a86a86a5b08913d8b9262e3b7c27d68cf_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_a84f352668f31818b5b947ca932d3b18f}\label{structcompnal_1_1sparse__matrix_1_1_braket_vector_a84f352668f31818b5b947ca932d3b18f}} 
+\index{compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}!MultiplyByScalar@{MultiplyByScalar}}
+\index{MultiplyByScalar@{MultiplyByScalar}!compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{MultiplyByScalar()}{MultiplyByScalar()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{compnal\+::sparse\+\_\+matrix\+::\+Braket\+Vector}}$<$ Real\+Type $>$\+::Multiply\+By\+Scalar (\begin{DoxyParamCaption}\item[{const Real\+Type}]{coeef }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00091}{91}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00091}00091                                                \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00092}00092 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00093}00093       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00094}00094          this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] *= coeef;}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00095}00095       \}}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00096}00096    \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structcompnal_1_1sparse__matrix_1_1_braket_vector_a84f352668f31818b5b947ca932d3b18f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae74e77fff5c779f264238f0b4bf0bdb6}\label{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae74e77fff5c779f264238f0b4bf0bdb6}} 
+\index{compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}!Normalize@{Normalize}}
+\index{Normalize@{Normalize}!compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{Normalize()}{Normalize()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{compnal\+::sparse\+\_\+matrix\+::\+Braket\+Vector}}$<$ Real\+Type $>$\+::Normalize (\begin{DoxyParamCaption}\item[{const Real\+Type}]{normalization\+\_\+factor = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00080}{80}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00080}00080                                                              \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00081}00081       \textcolor{keyword}{const} RealType norm = \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_a86a86a5b08913d8b9262e3b7c27d68cf}{L2Norm}}();}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00082}00082       \textcolor{keywordflow}{if} (norm == 0.0) \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00083}00083          std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00084}00084          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00085}00085          ss << \textcolor{stringliteral}{"{}All the elements are zero"{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00086}00086          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00087}00087       \}}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00088}00088       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_a84f352668f31818b5b947ca932d3b18f}{MultiplyByScalar}}(normalization\_factor/norm);}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00089}00089    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae74e77fff5c779f264238f0b4bf0bdb6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae74e77fff5c779f264238f0b4bf0bdb6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_af436a236c13a190b1d91475319dab215}\label{structcompnal_1_1sparse__matrix_1_1_braket_vector_af436a236c13a190b1d91475319dab215}} 
+\index{compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}} \& \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{compnal\+::sparse\+\_\+matrix\+::\+Braket\+Vector}}$<$ Real\+Type $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}}$<$ Real\+Type $>$ \&}]{vector }\end{DoxyParamCaption}) \&\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00044}{44}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00044}00044                                                          \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00045}00045       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_afd6b6047b0a723c2b892c11a46b8947b}{Assign}}(vector);}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00046}00046       \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00047}00047    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structcompnal_1_1sparse__matrix_1_1_braket_vector_af436a236c13a190b1d91475319dab215_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_a78473574eb1916f76d473a6de08f8040}\label{structcompnal_1_1sparse__matrix_1_1_braket_vector_a78473574eb1916f76d473a6de08f8040}} 
+\index{compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}!Print@{Print}}
+\index{Print@{Print}!compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{Print()}{Print()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{compnal\+::sparse\+\_\+matrix\+::\+Braket\+Vector}}$<$ Real\+Type $>$\+::Print (\begin{DoxyParamCaption}\item[{const std\+::string}]{display\+\_\+name = {\ttfamily \char`\"{}BraketVector$<$~RealType~$>$\char`\"{}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00117}{117}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00117}00117                                                                    \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00118}00118       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size(); i++) \{}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00119}00119          std::cout << display\_name << \textcolor{stringliteral}{"{}["{}} << i << \textcolor{stringliteral}{"{}]="{}} << this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] << std::endl;}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00120}00120       \}}
+\DoxyCodeLine{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_l00121}00121    \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=279pt]{structcompnal_1_1sparse__matrix_1_1_braket_vector_a78473574eb1916f76d473a6de08f8040_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}\label{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}} 
+\index{compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}!val@{val}}
+\index{val@{val}!compnal::sparse\_matrix::BraketVector$<$ RealType $>$@{compnal::sparse\_matrix::BraketVector$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{val}{val}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::vector$<$Real\+Type$>$ \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{compnal\+::sparse\+\_\+matrix\+::\+Braket\+Vector}}$<$ Real\+Type $>$\+::val}
+
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00026}{26}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/sparse\+\_\+matrix/\mbox{\hyperlink{braket__vector_8hpp}{braket\+\_\+vector.\+hpp}}\end{DoxyCompactItemize}

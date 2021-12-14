@@ -1,0 +1,69 @@
+\hypertarget{pybind11__main_8cpp}{}\doxysection{wrapper/pybind11\+\_\+main.cpp File Reference}
+\label{pybind11__main_8cpp}\index{wrapper/pybind11\_main.cpp@{wrapper/pybind11\_main.cpp}}
+{\ttfamily \#include \char`\"{}./src/pybind11\+\_\+model.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}./src/pybind11\+\_\+sparse\+\_\+matrix.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}./src/pybind11\+\_\+solver\+\_\+exact\+\_\+diag.\+hpp\char`\"{}}\newline
+Include dependency graph for pybind11\+\_\+main.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pybind11__main_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{pybind11__main_8cpp_a053de877c3d5ac11707dfcec300bf28a}{PYBIND11\+\_\+\+MODULE}} (compnal, m)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{pybind11__main_8cpp_a053de877c3d5ac11707dfcec300bf28a}\label{pybind11__main_8cpp_a053de877c3d5ac11707dfcec300bf28a}} 
+\index{pybind11\_main.cpp@{pybind11\_main.cpp}!PYBIND11\_MODULE@{PYBIND11\_MODULE}}
+\index{PYBIND11\_MODULE@{PYBIND11\_MODULE}!pybind11\_main.cpp@{pybind11\_main.cpp}}
+\doxysubsubsection{\texorpdfstring{PYBIND11\_MODULE()}{PYBIND11\_MODULE()}}
+{\footnotesize\ttfamily PYBIND11\+\_\+\+MODULE (\begin{DoxyParamCaption}\item[{compnal}]{,  }\item[{m}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{pybind11__main_8cpp_source_l00012}{12}} of file \mbox{\hyperlink{pybind11__main_8cpp_source}{pybind11\+\_\+main.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00012}00012                             \{}
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00013}00013    }
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00014}00014    \textcolor{keyword}{using} RealType = double;}
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00015}00015    }
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00016}00016    py::module\_ m\_model = m.def\_submodule(\textcolor{stringliteral}{"{}model"{}});}
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00017}00017    pybind11ModelBaseElectron1D<RealType>(m\_model);}
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00018}00018    pybind11ModelBaseSpin1D<RealType>(m\_model);}
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00019}00019    pybind11ModelBaseSpinElectron1D<RealType>(m\_model);}
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00020}00020    pybind11ModelXXZ1D<RealType>(m\_model);}
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00021}00021    pybind11ModelHubbard1D<RealType>(m\_model);}
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00022}00022    pybind11ModelGeneral1D<RealType>(m\_model);}
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00023}00023    \mbox{\hyperlink{pybind11__model_8hpp_a04c6143ee6ea61b0f52675df87ecbd74}{pybind11ModelBoundaryCondition}}(m\_model);}
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00025}00025    py::module\_ m\_sp\_mat = m.def\_submodule(\textcolor{stringliteral}{"{}sparse\_matrix"{}});}
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00026}00026    pybind11SparseMatrixCRS<RealType>(m\_sp\_mat);}
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00027}00027    pybind11SparseMatrixBraketVector<RealType>(m\_sp\_mat);}
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00028}00028    \mbox{\hyperlink{pybind11__sparse__matrix_8hpp_a6dd5cfc23697327caa56597e45cbee45}{pybind11SparseMatrixParameters}}(m\_sp\_mat);}
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00029}00029    }
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00030}00030    py::module\_ m\_solver = m.def\_submodule(\textcolor{stringliteral}{"{}solver"{}});}
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00031}00031    pybind11SolverExactDiag<compnal::model::XXZ\_1D<RealType>>(m\_solver, \textcolor{stringliteral}{"{}XXZ"{}});}
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00032}00032    pybind11SolverExactDiag<compnal::model::Hubbard\_1D<RealType>>(m\_solver, \textcolor{stringliteral}{"{}Hubbard"{}});}
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00033}00033    pybind11SolverExactDiag<compnal::model::GeneralModel\_1D<compnal::model::BaseU1Spin\_1D<RealType>>>(m\_solver, \textcolor{stringliteral}{"{}U1Spin"{}});}
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00034}00034    pybind11SolverExactDiag<compnal::model::GeneralModel\_1D<compnal::model::BaseU1Electron\_1D<RealType>>>(m\_solver, \textcolor{stringliteral}{"{}U1Electron"{}});}
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00035}00035    pybind11SolverExactDiag<compnal::model::GeneralModel\_1D<compnal::model::BaseU1SpinElectron\_1D<RealType>>>(m\_solver, \textcolor{stringliteral}{"{}U1SpinElectron"{}});}
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00036}00036 }
+\DoxyCodeLine{\Hypertarget{pybind11__main_8cpp_l00037}00037 \};}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pybind11__main_8cpp_a053de877c3d5ac11707dfcec300bf28a_cgraph}
+\end{center}
+\end{figure}

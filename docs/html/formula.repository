@@ -1,0 +1,42 @@
+\_form#0=14x12:$ N $
+\_form#1=110x21:$ \langle \hat{N}_{e}\rangle =\sum^{N}_{i=1}\langle\hat{n}_{i}\rangle$
+\_form#2=86x45:\[ \hat{S}^{z}_{\rm tot}=\sum^{N}_{i=1}\hat{S}^{z}_{i} \]
+\_form#3=77x45:\[ \hat{N}_{\rm e}=\sum^{N}_{i=1}\hat{n}_{i} \]
+\_form#4=29x20:$ \langle\hat{N}_{\rm e}\rangle $
+\_form#5=36x20:$ \langle\hat{S}^{z}_{\rm tot}\rangle$
+\_form#6=29x20:$ \langle\hat{N}_{\rm e}\rangle$
+\_form#7=14x12:$ N$
+\_form#8=36x20:$ \langle\hat{S}^{z}_{\rm tot}\rangle $
+\_form#9=12x17:$ \hat{c}_{\uparrow}$
+\_form#10=12x17:$ \hat{c}_{\downarrow}$
+\_form#11=12x23:$ \hat{c}^{\dagger}_{\uparrow}$
+\_form#12=12x23:$ \hat{c}^{\dagger}_{\downarrow}$
+\_form#13=63x23:$ \hat{n}_{\uparrow}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow}$
+\_form#14=17x17:$ \hat{n}_{\uparrow}$
+\_form#15=63x23:$ \hat{n}_{\downarrow}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow}$
+\_form#16=17x17:$ \hat{n}_{\downarrow}$
+\_form#17=80x17:$ \hat{n}=\hat{n}_{\uparrow} + \hat{n}_{\downarrow}$
+\_form#18=11x12:$ \hat{n}$
+\_form#19=126x23:$ \hat{s}^{x}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} + \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})$
+\_form#20=14x12:$ \hat{s}^{x}$
+\_form#21=132x23:$ i\hat{s}^{y}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})$
+\_form#22=59x17:$ i=\sqrt{-1}$
+\_form#23=20x12:$ i\hat{s}^{y}$
+\_form#24=126x23:$ \hat{s}^{z}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow})$
+\_form#25=12x12:$ \hat{s}^{z}$
+\_form#26=63x23:$ \hat{s}^{+}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow}$
+\_form#27=15x14:$ \hat{s}^{+}$
+\_form#28=63x23:$ \hat{s}^{-}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow}$
+\_form#29=15x12:$ \hat{s}^{-}$
+\_form#30=44x20:$ 2\langle\hat{S}^{z}_{\rm tot}\rangle$
+\_form#31=597x48:\[ \hat{H}=\sum_{d}t_{d}\sum^{N}_{i=1}\sum_{\sigma=\uparrow,\downarrow} \left(\hat{c}^{\dagger}_{i,\sigma}\hat{c}_{i+d,\sigma}+{\rm h.c.}\right)+ U\sum^{N}_{i=1}\hat{n}_{i,\uparrow}\hat{n}_{i,\downarrow}+ \sum_{d}V_{d}\sum^{N}_{i=1}\hat{n}_{i}\hat{n}_{i+d}+ h_z\sum^{N}_{i=1}s^{z}_{i} + \mu\sum^{N}_{i=1}\hat{n}_{i} \]
+\_form#32=6x11:$ t $
+\_form#33=243x20:\[ \hat{H}_{\rm onsite}=h_z\hat{s}^{z}+U\hat{n}_{\uparrow}\hat{n}_{\downarrow}+\mu(\hat{n}_{\uparrow}+\hat{n}_{\downarrow})\]
+\_form#34=44x18:$ \hat{H}_{\rm onsite}$
+\_form#35=12x12:$ V $
+\_form#36=14x14:$ t_{d} $
+\_form#37=8x12:$ d $
+\_form#38=15x15:$ V_{d} $
+\_form#39=12x12:$ U $
+\_form#40=15x15:$ h_z $
+\_form#41=23x8:$ mu $

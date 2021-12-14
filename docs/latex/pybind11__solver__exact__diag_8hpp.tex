@@ -1,0 +1,90 @@
+\hypertarget{pybind11__solver__exact__diag_8hpp}{}\doxysection{wrapper/src/pybind11\+\_\+solver\+\_\+exact\+\_\+diag.hpp File Reference}
+\label{pybind11__solver__exact__diag_8hpp}\index{wrapper/src/pybind11\_solver\_exact\_diag.hpp@{wrapper/src/pybind11\_solver\_exact\_diag.hpp}}
+{\ttfamily \#include \char`\"{}../../src/solver/all.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$pybind11/pybind11.\+h$>$}\newline
+{\ttfamily \#include $<$pybind11/stl.\+h$>$}\newline
+{\ttfamily \#include $<$pybind11/iostream.\+h$>$}\newline
+Include dependency graph for pybind11\+\_\+solver\+\_\+exact\+\_\+diag.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pybind11__solver__exact__diag_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{pybind11__solver__exact__diag_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class Model\+Class $>$ }\\void \mbox{\hyperlink{pybind11__solver__exact__diag_8hpp_a676b4d65e2eb2767e7a2e7a39f8c46d3}{pybind11\+Solver\+Exact\+Diag}} (py\+::module \&m, const std\+::string \&mtype\+\_\+str)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{pybind11__solver__exact__diag_8hpp_a676b4d65e2eb2767e7a2e7a39f8c46d3}\label{pybind11__solver__exact__diag_8hpp_a676b4d65e2eb2767e7a2e7a39f8c46d3}} 
+\index{pybind11\_solver\_exact\_diag.hpp@{pybind11\_solver\_exact\_diag.hpp}!pybind11SolverExactDiag@{pybind11SolverExactDiag}}
+\index{pybind11SolverExactDiag@{pybind11SolverExactDiag}!pybind11\_solver\_exact\_diag.hpp@{pybind11\_solver\_exact\_diag.hpp}}
+\doxysubsubsection{\texorpdfstring{pybind11SolverExactDiag()}{pybind11SolverExactDiag()}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+void pybind11\+Solver\+Exact\+Diag (\begin{DoxyParamCaption}\item[{py\+::module \&}]{m,  }\item[{const std\+::string \&}]{mtype\+\_\+str }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{pybind11__solver__exact__diag_8hpp_source_l00022}{22}} of file \mbox{\hyperlink{pybind11__solver__exact__diag_8hpp_source}{pybind11\+\_\+solver\+\_\+exact\+\_\+diag.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00022}00022                                                                       \{}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00023}00023    }
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00024}00024    \textcolor{keyword}{using} ED = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal::solver::ExactDiag<ModelClass>}};}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00025}00025    \textcolor{keyword}{using} CRS = \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{compnal::sparse\_matrix::CRS<typename ModelClass::ValueType>}};}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00026}00026    \textcolor{keyword}{auto} str = std::string(\textcolor{stringliteral}{"{}ExactDiag"{}}) + mtype\_str;}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00027}00027    }
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00028}00028    py::class\_<ED>(m, str.c\_str(), py::module\_local())}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00029}00029    .def(py::init<const ModelClass\&>(), \textcolor{stringliteral}{"{}model"{}}\_a)}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00030}00030    .def(py::init<const ModelClass\&, compnal::sparse\_matrix::ParametersAll\&>(), \textcolor{stringliteral}{"{}model"{}}\_a, \textcolor{stringliteral}{"{}params"{}}\_a)}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00031}00031    .def\_readonly(\textcolor{stringliteral}{"{}model"{}}, \&ED::model)}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00032}00032    .def\_readonly(\textcolor{stringliteral}{"{}params"{}}, \&ED::params)}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00033}00033    .def(\textcolor{stringliteral}{"{}get\_eigenvectors"{}}, \&ED::GetEigenvectors)}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00034}00034    .def(\textcolor{stringliteral}{"{}get\_eigenvalues"{}}, \&ED::GetEigenvalues)}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00035}00035    .def(\textcolor{stringliteral}{"{}calculate\_expectation\_value"{}}, \&ED::CalculateExpectationValue, \textcolor{stringliteral}{"{}operator"{}}\_a, \textcolor{stringliteral}{"{}site"{}}\_a, \textcolor{stringliteral}{"{}level"{}}\_a = 0)}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00036}00036    .def(\textcolor{stringliteral}{"{}calculate\_correlation\_function"{}},}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00037}00037         py::overload\_cast<const CRS\&, const int, const CRS\&, const int, const int>(\&ED::CalculateCorrelationFunction),}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00038}00038         \textcolor{stringliteral}{"{}m\_1"{}}\_a, \textcolor{stringliteral}{"{}site\_1"{}}\_a, \textcolor{stringliteral}{"{}m\_2"{}}\_a, \textcolor{stringliteral}{"{}site\_2"{}}\_a, \textcolor{stringliteral}{"{}level"{}}\_a = 0)}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00039}00039    .def(\textcolor{stringliteral}{"{}calculate\_correlation\_function"{}},}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00040}00040         py::overload\_cast<const CRS\&, const int, const CRS\&, const int, const CRS\&, const int, const int>(\&ED::CalculateCorrelationFunction),}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00041}00041         \textcolor{stringliteral}{"{}m\_1"{}}\_a, \textcolor{stringliteral}{"{}site\_1"{}}\_a, \textcolor{stringliteral}{"{}m\_2"{}}\_a, \textcolor{stringliteral}{"{}site\_2"{}}\_a, \textcolor{stringliteral}{"{}m\_3"{}}\_a, \textcolor{stringliteral}{"{}site\_3"{}}\_a, \textcolor{stringliteral}{"{}level"{}}\_a = 0)}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00042}00042    .def(\textcolor{stringliteral}{"{}calculate\_correlation\_function"{}},}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00043}00043         py::overload\_cast<const CRS\&, const int, const CRS\&, const int, const CRS\&, const int, const CRS\&, const int, const int>(\&ED::CalculateCorrelationFunction),}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00044}00044         \textcolor{stringliteral}{"{}m\_1"{}}\_a, \textcolor{stringliteral}{"{}site\_1"{}}\_a, \textcolor{stringliteral}{"{}m\_2"{}}\_a, \textcolor{stringliteral}{"{}site\_2"{}}\_a, \textcolor{stringliteral}{"{}m\_3"{}}\_a, \textcolor{stringliteral}{"{}site\_3"{}}\_a, \textcolor{stringliteral}{"{}m\_4"{}}\_a, \textcolor{stringliteral}{"{}site\_4"{}}\_a, \textcolor{stringliteral}{"{}level"{}}\_a = 0)}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00045}00045    .def(\textcolor{stringliteral}{"{}calculate\_ground\_state"{}}, [](ED \&\textcolor{keyword}{self}, \textcolor{keyword}{const} std::string \&diag\_method) \{}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00046}00046       py::scoped\_ostream\_redirect stream(}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00047}00047           std::cout,                                \textcolor{comment}{// std::ostream\&}}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00048}00048           py::module\_::import(\textcolor{stringliteral}{"{}sys"{}}).attr(\textcolor{stringliteral}{"{}stdout"{}}) \textcolor{comment}{// Python output}}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00049}00049       );}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00050}00050       \textcolor{keyword}{self}.CalculateGroundState(diag\_method);}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00051}00051    \}, \textcolor{stringliteral}{"{}diag\_method"{}}\_a = \textcolor{stringliteral}{"{}Lanczos"{}})}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00052}00052    .def(\textcolor{stringliteral}{"{}calculate\_target\_state"{}}, [](ED \&\textcolor{keyword}{self}, \textcolor{keyword}{const} \textcolor{keywordtype}{int} target\_sector, \textcolor{keyword}{const} std::string \&diag\_method) \{}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00053}00053       py::scoped\_ostream\_redirect stream(}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00054}00054           std::cout,                                \textcolor{comment}{// std::ostream\&}}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00055}00055           py::module\_::import(\textcolor{stringliteral}{"{}sys"{}}).attr(\textcolor{stringliteral}{"{}stdout"{}}) \textcolor{comment}{// Python output}}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00056}00056       );}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00057}00057       \textcolor{keyword}{self}.CalculateTargetState(target\_sector, diag\_method);}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00058}00058    \}, \textcolor{stringliteral}{"{}target\_sector"{}}\_a, \textcolor{stringliteral}{"{}diag\_method"{}}\_a = \textcolor{stringliteral}{"{}Lanczos"{}});}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00059}00059    }
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00060}00060    \textcolor{keyword}{auto} mkci\_str = std::string(\textcolor{stringliteral}{"{}ExactDiag"{}});}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00061}00061    m.def(mkci\_str.c\_str(), [](\textcolor{keyword}{const} ModelClass \&model) \{}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00062}00062       return compnal::solver::ExactDiag<ModelClass>(model);}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00063}00063    \}, \textcolor{stringliteral}{"{}model"{}}\_a);}
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00064}00064    }
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{pybind11__solver__exact__diag_8hpp_l00066}00066 \}}
+
+\end{DoxyCode}

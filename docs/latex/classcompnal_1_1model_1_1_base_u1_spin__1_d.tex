@@ -1,0 +1,1805 @@
+\hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d}{}\doxysection{compnal\+::model\+::Base\+U1\+Spin\+\_\+1D\texorpdfstring{$<$}{<} Real\+Type \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classcompnal_1_1model_1_1_base_u1_spin__1_d}\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+
+
+{\ttfamily \#include $<$base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp$>$}
+
+
+
+Inheritance diagram for compnal\+::model\+::Base\+U1\+Spin\+\_\+1D\texorpdfstring{$<$}{<} Real\+Type \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for compnal\+::model\+::Base\+U1\+Spin\+\_\+1D\texorpdfstring{$<$}{<} Real\+Type \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=267pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a44c9489af0b9d886187ffa94b7cbecad}{Value\+Type}} = Real\+Type
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_abdfcbc3475819c0858af77cf31e4b164}{Base\+U1\+Spin\+\_\+1D}} ()
+\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a20288b7e59875d82c99307127877d060}{Base\+U1\+Spin\+\_\+1D}} (const int system\+\_\+size)
+\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a868c9b7ff1bb2d8ad976959f1013b044}{Base\+U1\+Spin\+\_\+1D}} (const int system\+\_\+size, const double magnitude\+\_\+spin)
+\item 
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ab34e5e3dd6fdb9581c785c92f3ded892}{Set\+System\+Size}} (const int system\+\_\+size)
+\item 
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a200a44a8ea5b4d47d904208b24984f98}{Set\+Magnitude\+Spin}} (const double magnitude\+\_\+spin)
+\item 
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a4412e8c37d3c49bab4c5f983b89d06e9}{Set\+Total\+Sz}} (const double total\+\_\+sz)
+\item 
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a1eaf81e0f4eb1f295d203984ede5aabc}{Set\+Calculated\+Eigenvector\+Set}} (const std\+::int64\+\_\+t level)
+\item 
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ad52df0e32d74247ee937e3208c34d115}{Remove\+Calculated\+Eigenvector\+Set}} (const std\+::int64\+\_\+t level)
+\item 
+bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae77f7a42530aabf69cf9bbd7b9e42dd9}{is\+Valid\+QNumber}} (const double total\+\_\+sz) const
+\item 
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a3304d8eb9d66f44fbdd833dd8a51d467}{Print\+Basis\+Onsite}} () const
+\item 
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a2457e64fe751736bc3e533aebe3db1d3}{Calculate\+Target\+Dim}} () const
+\item 
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a931e027ba146cb7283de8e3a0fa4b58e}{Calculate\+Target\+Dim}} (const double total\+\_\+sz) const
+\item 
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a0d5752987edf3d3ca6eca59696d32a6d}{Generate\+Basis}} ()
+\item 
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a60f9a90328ba84738a35f5d0c2e519c7}{Generate\+Basis}} (const double total\+\_\+sz)
+\item 
+std\+::unordered\+\_\+set$<$ double $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a57d428dbd6473f7b45eb81fa18aa8c92}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\+\_\+1, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\+\_\+2) const
+\item 
+std\+::vector$<$ std\+::pair$<$ double, double $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7c22a3e6833514f10450ad6f26214c3c}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\+\_\+1\+\_\+bra, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\+\_\+2\+\_\+ket, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\+\_\+3\+\_\+ket) const
+\item 
+std\+::vector$<$ std\+::tuple$<$ double, double, double $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a95726829789fd80f9814d7f43651ac6f}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\+\_\+1\+\_\+bra, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\+\_\+2\+\_\+bra, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\+\_\+3\+\_\+ket, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\+\_\+4\+\_\+ket) const
+\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_aa81237fe786d60d4ba859a889d95040c}{Get\+System\+Size}} () const
+\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ac08fdfaf7f9574d95c5a450b67104dd2}{Get\+Dim\+Onsite}} () const
+\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a4daa6f25ec9ea3195dbbd5091828a264}{Get\+Magnitude2\+Spin}} () const
+\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a84695e721597fe6d9e9c5217febb97c9}{Get\+Total2\+Sz}} () const
+\item 
+double \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a9ec6e2ae96a566a5775017faccdcb35f}{Get\+Total\+Sz}} () const
+\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a44e14822fb6399cb60417ac20e00b48e}{Get\+Num\+Conserved\+Quantity}} () const
+\item 
+double \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae9885c94867739757b8408566fe84326}{Get\+Magnitude\+Spin}} () const
+\item 
+const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a30092d8e74a2246007842fb4dfcefcf8}{Get\+Onsite\+Operator\+Sx}} () const
+\item 
+const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a98076b01b7cd2adb89ce89f1ec9da89d}{Get\+Onsite\+Operatori\+Sy}} () const
+\item 
+const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a506fddc0454a4008ed2cda1315b59f1e}{Get\+Onsite\+Operator\+Sz}} () const
+\item 
+const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_af28691e881c5f8b981c8e6712b29283b}{Get\+Onsite\+Operator\+Sp}} () const
+\item 
+const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a66ad7be43af97b8162f2aadeda0512ad}{Get\+Onsite\+Operator\+Sm}} () const
+\item 
+const std\+::unordered\+\_\+set$<$ int $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a49ec19ada4660c35eb02fa6edfab3f8f}{Get\+Calculated\+Eigenvector\+Set}} () const
+\item 
+const std\+::vector$<$ std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a9d991926c779bf24c6608279a7f10601}{Get\+Basis}} (const double total\+\_\+sz) const
+\item 
+const std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ac878a891c7aa10eca8840f3de0e8d0e1}{Get\+Basis\+Inv}} (const double total\+\_\+sz) const
+\item 
+const std\+::vector$<$ std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a150a88b5f29693fd0342ec9d5f826be6}{Get\+Target\+Basis}} () const
+\item 
+const std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a40d13ea34bab79bcc0dc312922d105b3}{Get\+Target\+Basis\+Inv}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_af1c5be1ab60a0a335a52cc78bd9190d7}{is\+Valid\+QNumber}} (const int system\+\_\+size, const double magnitude\+\_\+spin, const double total\+\_\+sz)
+\item 
+static std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_abe62f6fab5eb37595dc8bbbb99db7991}{Calculate\+Target\+Dim}} (const int system\+\_\+size, const double magnitude\+\_\+spin, const double total\+\_\+sz)
+\item 
+static \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a63e052b4fac0a797486ae37f288775d8}{Create\+Onsite\+Operator\+Sx}} (const double magnitude\+\_\+spin)
+\item 
+static \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a805af825f870052d613484dfc32bf781}{Create\+Onsite\+Operatori\+Sy}} (const double magnitude\+\_\+spin)
+\item 
+static \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a4b021604c01c8b7f9f2eab804cc78608}{Create\+Onsite\+Operator\+Sz}} (const double magnitude\+\_\+spin)
+\item 
+static \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a2c17c2baee22281d6d02f5dd5ab0b39d}{Create\+Onsite\+Operator\+Sp}} (const double magnitude\+\_\+spin)
+\item 
+static \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae10de81ba249004460d22bd991efe4f9}{Create\+Onsite\+Operator\+Sm}} (const double magnitude\+\_\+spin)
+\item 
+{\footnotesize template$<$typename Integer\+Type $>$ }\\static Integer\+Type \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a55e5656a115dbbbac91b535e4a87057d}{Calculate\+Quntum\+Number\+Difference}} (const Integer\+Type row, const Integer\+Type col)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a580d5de16a28c5246363c3a1b2975430}{Set\+Onsite\+Operator}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a482541fe5c7239b8de7982d8aed891b9}{onsite\+\_\+operator\+\_\+sx\+\_\+}}
+\item 
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_aed9107549c634b2fb418968479eedffa}{onsite\+\_\+operator\+\_\+isy\+\_\+}}
+\item 
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_abfa21ea7f92f51e8514542414ae33ccb}{onsite\+\_\+operator\+\_\+sz\+\_\+}}
+\item 
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_aa158ac550bb1a52a0833c2f955384cb8}{onsite\+\_\+operator\+\_\+sp\+\_\+}}
+\item 
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a813e8a32bf3b2ec8deba2c6092d4682d}{onsite\+\_\+operator\+\_\+sm\+\_\+}}
+\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7d24d3a81f90fd3181c76094bde48617}{system\+\_\+size\+\_\+}} = 0
+\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}{total\+\_\+2sz\+\_\+}} = 0
+\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a9924b41c451f42c5cef0a2047c6b64db}{dim\+\_\+onsite\+\_\+}} = 2
+\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_acaa58974948a62739c8d584a45e24981}{magnitude\+\_\+2spin\+\_\+}} = 1
+\item 
+const int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_aa89a9ff9ab6deaae3c2319f88f8120fd}{num\+\_\+conserved\+\_\+quantity\+\_\+}} = 1
+\item 
+std\+::unordered\+\_\+set$<$ int $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae9be05e81a30dddb6cd321248c66caf5}{calculated\+\_\+eigenvector\+\_\+set\+\_\+}}
+\item 
+std\+::unordered\+\_\+map$<$ int, std\+::vector$<$ std\+::int64\+\_\+t $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}{bases\+\_\+}}
+\item 
+std\+::unordered\+\_\+map$<$ int, std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_abeabf635a134fc6176db74e7fef56245}{bases\+\_\+inv\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Real\+Type$>$\newline
+class compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1\+D$<$ Real\+Type $>$}
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00025}{25}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a44c9489af0b9d886187ffa94b7cbecad}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a44c9489af0b9d886187ffa94b7cbecad}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!ValueType@{ValueType}}
+\index{ValueType@{ValueType}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{ValueType}{ValueType}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a44c9489af0b9d886187ffa94b7cbecad}{Value\+Type}} =  Real\+Type}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00031}{31}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_abdfcbc3475819c0858af77cf31e4b164}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_abdfcbc3475819c0858af77cf31e4b164}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!BaseU1Spin\_1D@{BaseU1Spin\_1D}}
+\index{BaseU1Spin\_1D@{BaseU1Spin\_1D}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{BaseU1Spin\_1D()}{BaseU1Spin\_1D()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{Base\+U1\+Spin\+\_\+1D}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00033}{33}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00033}00033                    \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00034}00034       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a580d5de16a28c5246363c3a1b2975430}{SetOnsiteOperator}}();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00035}00035    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_abdfcbc3475819c0858af77cf31e4b164_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a20288b7e59875d82c99307127877d060}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a20288b7e59875d82c99307127877d060}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!BaseU1Spin\_1D@{BaseU1Spin\_1D}}
+\index{BaseU1Spin\_1D@{BaseU1Spin\_1D}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{BaseU1Spin\_1D()}{BaseU1Spin\_1D()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{Base\+U1\+Spin\+\_\+1D}} (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00037}{37}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00037}00037                                                 : \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_abdfcbc3475819c0858af77cf31e4b164}{BaseU1Spin\_1D}}() \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00038}00038       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ab34e5e3dd6fdb9581c785c92f3ded892}{SetSystemSize}}(system\_size);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00039}00039    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a20288b7e59875d82c99307127877d060_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a868c9b7ff1bb2d8ad976959f1013b044}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a868c9b7ff1bb2d8ad976959f1013b044}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!BaseU1Spin\_1D@{BaseU1Spin\_1D}}
+\index{BaseU1Spin\_1D@{BaseU1Spin\_1D}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{BaseU1Spin\_1D()}{BaseU1Spin\_1D()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{Base\+U1\+Spin\+\_\+1D}} (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const double}]{magnitude\+\_\+spin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00041}{41}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00041}00041                                                                     : \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_abdfcbc3475819c0858af77cf31e4b164}{BaseU1Spin\_1D}}(system\_size) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00042}00042       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a200a44a8ea5b4d47d904208b24984f98}{SetMagnitudeSpin}}(magnitude\_spin);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00043}00043    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a868c9b7ff1bb2d8ad976959f1013b044_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a55e5656a115dbbbac91b535e4a87057d}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a55e5656a115dbbbac91b535e4a87057d}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!CalculateQuntumNumberDifference@{CalculateQuntumNumberDifference}}
+\index{CalculateQuntumNumberDifference@{CalculateQuntumNumberDifference}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateQuntumNumberDifference()}{CalculateQuntumNumberDifference()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+template$<$typename Integer\+Type $>$ \\
+static Integer\+Type \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Calculate\+Quntum\+Number\+Difference (\begin{DoxyParamCaption}\item[{const Integer\+Type}]{row,  }\item[{const Integer\+Type}]{col }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00533}{533}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00533}00533                                                                                                            \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00534}00534       \textcolor{keywordflow}{return} col -\/ row;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00535}00535    \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a55e5656a115dbbbac91b535e4a87057d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a2457e64fe751736bc3e533aebe3db1d3}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a2457e64fe751736bc3e533aebe3db1d3}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!CalculateTargetDim@{CalculateTargetDim}}
+\index{CalculateTargetDim@{CalculateTargetDim}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateTargetDim()}{CalculateTargetDim()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Calculate\+Target\+Dim (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00113}{113}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00113}00113                                          \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00114}00114       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a2457e64fe751736bc3e533aebe3db1d3}{CalculateTargetDim}}(0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}{total\_2sz\_}});}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00115}00115    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a2457e64fe751736bc3e533aebe3db1d3_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a2457e64fe751736bc3e533aebe3db1d3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a931e027ba146cb7283de8e3a0fa4b58e}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a931e027ba146cb7283de8e3a0fa4b58e}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!CalculateTargetDim@{CalculateTargetDim}}
+\index{CalculateTargetDim@{CalculateTargetDim}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateTargetDim()}{CalculateTargetDim()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Calculate\+Target\+Dim (\begin{DoxyParamCaption}\item[{const double}]{total\+\_\+sz }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00117}{117}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00117}00117                                                               \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00118}00118       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a2457e64fe751736bc3e533aebe3db1d3}{CalculateTargetDim}}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7d24d3a81f90fd3181c76094bde48617}{system\_size\_}}, 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_acaa58974948a62739c8d584a45e24981}{magnitude\_2spin\_}}, total\_sz);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00119}00119    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a931e027ba146cb7283de8e3a0fa4b58e_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_abe62f6fab5eb37595dc8bbbb99db7991}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_abe62f6fab5eb37595dc8bbbb99db7991}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!CalculateTargetDim@{CalculateTargetDim}}
+\index{CalculateTargetDim@{CalculateTargetDim}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateTargetDim()}{CalculateTargetDim()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Calculate\+Target\+Dim (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const double}]{magnitude\+\_\+spin,  }\item[{const double}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00396}{396}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00396}00396                                                                                                                    \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00397}00397       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_abe920cc5242e3538cc6b4007331e516e}{utility::DoubleTheNumber}}(magnitude\_spin);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00398}00398       \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae77f7a42530aabf69cf9bbd7b9e42dd9}{isValidQNumber}}(system\_size, magnitude\_spin, total\_sz)) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00399}00399          \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00400}00400       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00401}00401       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = \mbox{\hyperlink{namespacecompnal_1_1utility_abe920cc5242e3538cc6b4007331e516e}{utility::DoubleTheNumber}}(total\_sz);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00402}00402       \textcolor{keyword}{const} \textcolor{keywordtype}{int} max\_total\_2sz = system\_size*magnitude\_2spin;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00403}00403       std::vector<std::vector<std::int64\_t>> dim(system\_size, std::vector<std::int64\_t>(max\_total\_2sz + 1));}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00404}00404       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} s = -\/magnitude\_2spin; s <= magnitude\_2spin; s += 2) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00405}00405          dim[0][(s + magnitude\_2spin)/2] = 1;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00406}00406       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00407}00407       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} site = 1; site < system\_size; site++) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00408}00408          \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} s = -\/magnitude\_2spin; s <= magnitude\_2spin; s += 2) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00409}00409             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} s\_prev = -\/magnitude\_2spin*site; s\_prev <= magnitude\_2spin*site; s\_prev += 2) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00410}00410                \textcolor{keyword}{const} std::int64\_t a = dim[site    ][(s + s\_prev + magnitude\_2spin*(site + 1))/2];}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00411}00411                \textcolor{keyword}{const} std::int64\_t b = dim[site -\/ 1][(s\_prev + magnitude\_2spin*site)/2];}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00412}00412                \textcolor{keywordflow}{if} (a >= INT64\_MAX -\/ b) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00413}00413                   \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Overflow detected for sumation using uint64\_t"{}});}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00414}00414                \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00415}00415                dim[site][(s + s\_prev + magnitude\_2spin*(site + 1))/2] = a + b;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00416}00416             \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00417}00417          \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00418}00418       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00419}00419       \textcolor{keywordflow}{return} dim[system\_size -\/ 1][(total\_2sz + max\_total\_2sz)/2];}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00420}00420    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_abe62f6fab5eb37595dc8bbbb99db7991_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a805af825f870052d613484dfc32bf781}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a805af825f870052d613484dfc32bf781}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!CreateOnsiteOperatoriSy@{CreateOnsiteOperatoriSy}}
+\index{CreateOnsiteOperatoriSy@{CreateOnsiteOperatoriSy}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatoriSy()}{CreateOnsiteOperatoriSy()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Create\+Onsite\+Operatori\+Sy (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+spin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00456}{456}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00456}00456                                                                    \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00457}00457       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_abe920cc5242e3538cc6b4007331e516e}{utility::DoubleTheNumber}}(magnitude\_spin);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00458}00458       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite      = magnitude\_2spin + 1;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00459}00459       CRS matrix(dim\_onsite, dim\_onsite);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00460}00460       \textcolor{keywordtype}{int} a = 0;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00461}00461       \textcolor{keywordtype}{int} b = 1;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00462}00462       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00463}00463       matrix.val.push\_back(0.5*std::sqrt( (magnitude\_spin + 1)*(a + b + 1) -\/ (a + 1)*(b + 1) ) );}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00464}00464       matrix.col.push\_back(b);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00465}00465       matrix.row[1] = matrix.col.size();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00466}00466       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00467}00467       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 1; row < dim\_onsite -\/ 1; ++row) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00468}00468          a = row;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00469}00469          b = row -\/ 1;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00470}00470          matrix.val.push\_back(-\/0.5*std::sqrt( (magnitude\_spin + 1)*(a + b + 1) -\/ (a + 1)*(b + 1) ) );}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00471}00471          matrix.col.push\_back(b);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00472}00472          }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00473}00473          a = row;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00474}00474          b = row + 1;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00475}00475          matrix.val.push\_back(0.5*std::sqrt( (magnitude\_spin + 1)*(a + b + 1) -\/ (a + 1)*(b + 1) ) );}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00476}00476          matrix.col.push\_back(b);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00477}00477          }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00478}00478          matrix.row[row + 1] = matrix.col.size();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00479}00479       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00480}00480       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00481}00481       a = dim\_onsite -\/ 1;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00482}00482       b = dim\_onsite -\/ 2;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00483}00483       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00484}00484       matrix.val.push\_back(-\/0.5*std::sqrt( (magnitude\_spin + 1)*(a + b + 1) -\/ (a + 1)*(b + 1) ) );}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00485}00485       matrix.col.push\_back(b);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00486}00486       matrix.row[dim\_onsite] = matrix.col.size();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00487}00487       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00488}00488       \textcolor{keywordflow}{return} matrix;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00489}00489    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a805af825f870052d613484dfc32bf781_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a805af825f870052d613484dfc32bf781_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae10de81ba249004460d22bd991efe4f9}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae10de81ba249004460d22bd991efe4f9}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!CreateOnsiteOperatorSm@{CreateOnsiteOperatorSm}}
+\index{CreateOnsiteOperatorSm@{CreateOnsiteOperatorSm}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSm()}{CreateOnsiteOperatorSm()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Create\+Onsite\+Operator\+Sm (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+spin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00520}{520}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00520}00520                                                                   \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00521}00521       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_abe920cc5242e3538cc6b4007331e516e}{utility::DoubleTheNumber}}(magnitude\_spin);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00522}00522       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite      = magnitude\_2spin + 1;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00523}00523       CRS matrix(dim\_onsite, dim\_onsite);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00524}00524       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 1; row < dim\_onsite; ++row) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00525}00525          matrix.val.push\_back(std::sqrt((magnitude\_spin + 1)*2*row -\/ row*(row + 1)));}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00526}00526          matrix.col.push\_back(row -\/ 1);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00527}00527          matrix.row[row + 1] = matrix.col.size();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00528}00528       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00529}00529       \textcolor{keywordflow}{return} matrix;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00530}00530    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae10de81ba249004460d22bd991efe4f9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae10de81ba249004460d22bd991efe4f9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a2c17c2baee22281d6d02f5dd5ab0b39d}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a2c17c2baee22281d6d02f5dd5ab0b39d}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!CreateOnsiteOperatorSp@{CreateOnsiteOperatorSp}}
+\index{CreateOnsiteOperatorSp@{CreateOnsiteOperatorSp}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSp()}{CreateOnsiteOperatorSp()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Create\+Onsite\+Operator\+Sp (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+spin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00507}{507}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00507}00507                                                                   \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00508}00508       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_abe920cc5242e3538cc6b4007331e516e}{utility::DoubleTheNumber}}(magnitude\_spin);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00509}00509       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite      = magnitude\_2spin + 1;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00510}00510       CRS matrix(dim\_onsite, dim\_onsite);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00511}00511       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 1; row < dim\_onsite; ++row) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00512}00512          matrix.val.push\_back(std::sqrt((magnitude\_spin + 1)*2*row -\/ row*(row + 1)));}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00513}00513          matrix.col.push\_back(row);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00514}00514          matrix.row[row] = matrix.col.size();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00515}00515       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00516}00516       matrix.row[dim\_onsite] = matrix.col.size();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00517}00517       \textcolor{keywordflow}{return} matrix;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00518}00518    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a2c17c2baee22281d6d02f5dd5ab0b39d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a2c17c2baee22281d6d02f5dd5ab0b39d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a63e052b4fac0a797486ae37f288775d8}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a63e052b4fac0a797486ae37f288775d8}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!CreateOnsiteOperatorSx@{CreateOnsiteOperatorSx}}
+\index{CreateOnsiteOperatorSx@{CreateOnsiteOperatorSx}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSx()}{CreateOnsiteOperatorSx()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Create\+Onsite\+Operator\+Sx (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+spin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00422}{422}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00422}00422                                                                   \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00423}00423       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_abe920cc5242e3538cc6b4007331e516e}{utility::DoubleTheNumber}}(magnitude\_spin);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00424}00424       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite      = magnitude\_2spin + 1;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00425}00425       CRS matrix(dim\_onsite, dim\_onsite);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00426}00426       \textcolor{keywordtype}{int} a = 0;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00427}00427       \textcolor{keywordtype}{int} b = 1;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00428}00428       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00429}00429       matrix.val.push\_back(0.5*std::sqrt((magnitude\_spin + 1)*(a + b + 1) -\/ (a + 1)*(b + 1)) );}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00430}00430       matrix.col.push\_back(b);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00431}00431       matrix.row[1] = matrix.col.size();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00432}00432       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00433}00433       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 1; row < dim\_onsite -\/ 1; ++row) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00434}00434          a = row;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00435}00435          b = row -\/ 1;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00436}00436          matrix.val.push\_back(0.5*std::sqrt((magnitude\_spin + 1)*(a + b + 1) -\/ (a + 1)*(b + 1)) );}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00437}00437          matrix.col.push\_back(b);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00438}00438          }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00439}00439          a = row;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00440}00440          b = row + 1;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00441}00441          matrix.val.push\_back(0.5*std::sqrt((magnitude\_spin + 1)*(a + b + 1) -\/ (a + 1)*(b + 1)) );}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00442}00442          matrix.col.push\_back(b);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00443}00443          matrix.row[row + 1] = matrix.col.size();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00444}00444       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00445}00445       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00446}00446       a = dim\_onsite -\/ 1;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00447}00447       b = dim\_onsite -\/ 2;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00448}00448       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00449}00449       matrix.val.push\_back(0.5*std::sqrt((magnitude\_spin + 1)*(a + b + 1) -\/ (a + 1)*(b + 1)) );}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00450}00450       matrix.col.push\_back(b);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00451}00451       matrix.row[dim\_onsite] = matrix.col.size();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00452}00452       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00453}00453       \textcolor{keywordflow}{return} matrix;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00454}00454    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a63e052b4fac0a797486ae37f288775d8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a63e052b4fac0a797486ae37f288775d8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a4b021604c01c8b7f9f2eab804cc78608}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a4b021604c01c8b7f9f2eab804cc78608}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!CreateOnsiteOperatorSz@{CreateOnsiteOperatorSz}}
+\index{CreateOnsiteOperatorSz@{CreateOnsiteOperatorSz}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSz()}{CreateOnsiteOperatorSz()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Create\+Onsite\+Operator\+Sz (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+spin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00491}{491}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00491}00491                                                                   \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00492}00492       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_abe920cc5242e3538cc6b4007331e516e}{utility::DoubleTheNumber}}(magnitude\_spin);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00493}00493       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite      = magnitude\_2spin + 1;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00494}00494       CRS matrix(dim\_onsite, dim\_onsite);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00495}00495       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00496}00496       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 0; row < dim\_onsite; ++row) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00497}00497          \textcolor{keyword}{const} RealType val = magnitude\_spin -\/ row;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00498}00498          \textcolor{keywordflow}{if} (val != 0.0) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00499}00499             matrix.val.push\_back(val);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00500}00500             matrix.col.push\_back(row);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00501}00501          \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00502}00502          matrix.row[row + 1] = matrix.col.size();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00503}00503       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00504}00504       \textcolor{keywordflow}{return} matrix;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00505}00505    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a4b021604c01c8b7f9f2eab804cc78608_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a4b021604c01c8b7f9f2eab804cc78608_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a0d5752987edf3d3ca6eca59696d32a6d}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a0d5752987edf3d3ca6eca59696d32a6d}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GenerateBasis@{GenerateBasis}}
+\index{GenerateBasis@{GenerateBasis}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateBasis()}{GenerateBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Generate\+Basis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00121}{121}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00121}00121                         \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00122}00122       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a0d5752987edf3d3ca6eca59696d32a6d}{GenerateBasis}}(0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}{total\_2sz\_}});}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00123}00123    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a0d5752987edf3d3ca6eca59696d32a6d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a0d5752987edf3d3ca6eca59696d32a6d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a60f9a90328ba84738a35f5d0c2e519c7}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a60f9a90328ba84738a35f5d0c2e519c7}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GenerateBasis@{GenerateBasis}}
+\index{GenerateBasis@{GenerateBasis}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateBasis()}{GenerateBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Generate\+Basis (\begin{DoxyParamCaption}\item[{const double}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00125}{125}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00125}00125                                              \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00126}00126       \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae77f7a42530aabf69cf9bbd7b9e42dd9}{isValidQNumber}}(total\_sz)) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00127}00127          std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00128}00128          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00129}00129          ss << \textcolor{stringliteral}{"{}Invalid parameters (system\_size or magnitude\_spin or total\_sz)"{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00130}00130          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00131}00131       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00132}00132       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00133}00133       \textcolor{keyword}{const} \textcolor{keyword}{auto} start = std::chrono::system\_clock::now();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00134}00134       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = \mbox{\hyperlink{namespacecompnal_1_1utility_abe920cc5242e3538cc6b4007331e516e}{utility::DoubleTheNumber}}(total\_sz);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00135}00135       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00136}00136       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}{bases\_}}.count(total\_2sz) != 0) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00137}00137          \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00138}00138       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00139}00139       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00140}00140       std::cout << \textcolor{stringliteral}{"{}Generating Basis..."{}} << std::flush;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00141}00141       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00142}00142       \textcolor{keyword}{const} \textcolor{keywordtype}{int} shifted\_2sz = (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7d24d3a81f90fd3181c76094bde48617}{system\_size\_}}*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_acaa58974948a62739c8d584a45e24981}{magnitude\_2spin\_}} -\/ total\_2sz)/2;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00143}00143       \textcolor{keyword}{const} std::int64\_t dim\_target = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a2457e64fe751736bc3e533aebe3db1d3}{CalculateTargetDim}}(total\_sz);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00144}00144       std::vector<std::vector<int>> partition\_integers;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00145}00145       \mbox{\hyperlink{namespacecompnal_1_1utility_a2580357fcc88b1c7bac5627e5b47925f}{utility::GenerateIntegerPartition}}(\&partition\_integers, shifted\_2sz, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_acaa58974948a62739c8d584a45e24981}{magnitude\_2spin\_}});}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00146}00146       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00147}00147       std::vector<std::int64\_t> site\_constant(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7d24d3a81f90fd3181c76094bde48617}{system\_size\_}});}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00148}00148       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} site = 0; site < \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7d24d3a81f90fd3181c76094bde48617}{system\_size\_}}; ++site) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00149}00149          site\_constant[site] = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(std::pow(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a9924b41c451f42c5cef0a2047c6b64db}{dim\_onsite\_}}, site));}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00150}00150       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00151}00151       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00152}00152       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}{bases\_}}.count(total\_2sz) == 0) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00153}00153          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}{bases\_}}[total\_2sz] = std::vector<std::int64\_t>();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00154}00154       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00155}00155       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00156}00156       std::vector<std::int64\_t>().swap(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}{bases\_}}.at(total\_2sz));}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00157}00157       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00158}00158 \textcolor{preprocessor}{\#ifdef \_OPENMP}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00159}00159       \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_threads = omp\_get\_max\_threads();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00160}00160       std::vector<std::vector<std::int64\_t>> temp\_basis(num\_threads);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00161}00161       \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} \&\&integer\_list: partition\_integers) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00162}00162          \textcolor{keyword}{const} \textcolor{keywordtype}{bool} condition1 = (0 < integer\_list.size()) \&\& (\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(integer\_list.size()) <= \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7d24d3a81f90fd3181c76094bde48617}{system\_size\_}});}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00163}00163          \textcolor{keyword}{const} \textcolor{keywordtype}{bool} condition2 = (integer\_list.size() == 0) \&\& (shifted\_2sz  == 0);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00164}00164          \textcolor{keywordflow}{if} (condition1 || condition2) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00165}00165             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(integer\_list.size()); j < \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7d24d3a81f90fd3181c76094bde48617}{system\_size\_}}; ++j) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00166}00166                integer\_list.push\_back(0);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00167}00167             \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00168}00168             }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00169}00169             \textcolor{keyword}{const} std::int64\_t size = \mbox{\hyperlink{namespacecompnal_1_1utility_a31be084029ddf129959d1682fd54cdf5}{utility::CalculateNumCombination}}(integer\_list);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00170}00170             std::vector<std::vector<int>> temp\_partition\_integer(num\_threads);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00171}00171             }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00172}00172 \textcolor{preprocessor}{\#pragma omp parallel num\_threads (num\_threads)}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00173}00173             \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00174}00174                \textcolor{keyword}{const} \textcolor{keywordtype}{int} thread\_num = omp\_get\_thread\_num();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00175}00175                \textcolor{keyword}{const} std::int64\_t loop\_begin = thread\_num*size/num\_threads;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00176}00176                \textcolor{keyword}{const} std::int64\_t loop\_end   = (thread\_num + 1)*size/num\_threads;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00177}00177                temp\_partition\_integer[thread\_num] = integer\_list;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00178}00178                \mbox{\hyperlink{namespacecompnal_1_1utility_a6d7737688a03ef322d62fc96017af67a}{utility::CalculateNthPermutation}}(\&temp\_partition\_integer[thread\_num], loop\_begin);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00179}00179                }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00180}00180                \textcolor{keywordflow}{for} (std::int64\_t j = loop\_begin; j < loop\_end; ++j) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00181}00181                   std::int64\_t basis\_global = 0;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00182}00182                   \textcolor{keyword}{const} \textcolor{keyword}{auto} iter\_begin = temp\_partition\_integer[thread\_num].begin();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00183}00183                   \textcolor{keyword}{const} \textcolor{keyword}{auto} iter\_end   = temp\_partition\_integer[thread\_num].end();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00184}00184                   \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} itr = iter\_begin; itr != iter\_end; ++itr) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00185}00185                      basis\_global += *itr*site\_constant[std::distance(iter\_begin, itr)];}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00186}00186                   \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00187}00187                   temp\_basis[thread\_num].push\_back(basis\_global);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00188}00188                   std::next\_permutation(temp\_partition\_integer[thread\_num].begin(), temp\_partition\_integer[thread\_num].end());}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00189}00189                \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00190}00190             \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00191}00191          \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00192}00192       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00193}00193       \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} \&\&basis: temp\_basis) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00194}00194          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}{bases\_}}.at(total\_2sz).insert(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}{bases\_}}.at(total\_2sz).end(), basis.begin(), basis.end());}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00195}00195          std::vector<std::int64\_t>().swap(basis);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00196}00196       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00197}00197       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00198}00198 \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00199}00199       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}{bases\_}}.at(total\_2sz).reserve(dim\_target);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00200}00200       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00201}00201       \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} \&\&integer\_list: partition\_integers) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00202}00202          \textcolor{keyword}{const} \textcolor{keywordtype}{bool} condition1 = (0 < integer\_list.size()) \&\& (\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(integer\_list.size()) <= \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7d24d3a81f90fd3181c76094bde48617}{system\_size\_}});}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00203}00203          \textcolor{keyword}{const} \textcolor{keywordtype}{bool} condition2 = (integer\_list.size() == 0) \&\& (shifted\_2sz  == 0);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00204}00204          \textcolor{keywordflow}{if} (condition1 || condition2) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00205}00205             }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00206}00206             \textcolor{keywordflow}{for} (std::int64\_t j = integer\_list.size(); j < \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7d24d3a81f90fd3181c76094bde48617}{system\_size\_}}; ++j) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00207}00207                integer\_list.push\_back(0);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00208}00208             \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00209}00209             }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00210}00210             std::sort(integer\_list.begin(), integer\_list.end());}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00211}00211             }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00212}00212             \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00213}00213                std::int64\_t basis\_global = 0;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00214}00214                \textcolor{keywordflow}{for} (std::size\_t j = 0; j < integer\_list.size(); ++j) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00215}00215                   basis\_global += integer\_list[j]*site\_constant[j];}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00216}00216                \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00217}00217                \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}{bases\_}}.at(total\_2sz).push\_back(basis\_global);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00218}00218             \} \textcolor{keywordflow}{while} (std::next\_permutation(integer\_list.begin(), integer\_list.end()));}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00219}00219          \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00220}00220       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00221}00221       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00222}00222 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00223}00223       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00224}00224       \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}{bases\_}}.at(total\_2sz).size()) != dim\_target) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00225}00225          std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00226}00226          ss << \textcolor{stringliteral}{"{}Unknown error detected in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00227}00227          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00228}00228       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00229}00229       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00230}00230       std::sort(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}{bases\_}}.at(total\_2sz).begin(), \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}{bases\_}}.at(total\_2sz).end());}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00231}00231       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00232}00232       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_abeabf635a134fc6176db74e7fef56245}{bases\_inv\_}}.count(total\_2sz) == 0) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00233}00233          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_abeabf635a134fc6176db74e7fef56245}{bases\_inv\_}}[total\_2sz] = std::unordered\_map<std::int64\_t, std::int64\_t>();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00234}00234       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00235}00235       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_abeabf635a134fc6176db74e7fef56245}{bases\_inv\_}}.at(total\_2sz).clear();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00236}00236       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00237}00237       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < dim\_target; ++i) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00238}00238          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_abeabf635a134fc6176db74e7fef56245}{bases\_inv\_}}.at(total\_2sz)[\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}{bases\_}}.at(total\_2sz)[i]] = i;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00239}00239       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00240}00240       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00241}00241       \textcolor{keyword}{const} \textcolor{keyword}{auto}   time\_count = std::chrono::duration\_cast<std::chrono::microseconds>(std::chrono::system\_clock::now() -\/ start).count();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00242}00242       \textcolor{keyword}{const} \textcolor{keywordtype}{double} time\_sec   = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(time\_count)/\mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_abc3cda835ae580805bef02651b4a7fbd}{sparse\_matrix::TIME\_UNIT\_CONSTANT}};}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00243}00243       std::cout << \textcolor{stringliteral}{"{}\(\backslash\)rElapsed time of generating basis:"{}} << time\_sec << \textcolor{stringliteral}{"{}[sec]"{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00244}00244    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a60f9a90328ba84738a35f5d0c2e519c7_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a57d428dbd6473f7b45eb81fa18aa8c92}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a57d428dbd6473f7b45eb81fa18aa8c92}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GenerateTargetSector@{GenerateTargetSector}}
+\index{GenerateTargetSector@{GenerateTargetSector}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateTargetSector()}{GenerateTargetSector()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::unordered\+\_\+set$<$ double $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&}]{m\+\_\+1,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&}]{m\+\_\+2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00246}{246}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00246}00246                                                                                        \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00247}00247       std::unordered\_set<double> level\_set;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00248}00248       std::unordered\_set<double> level\_set\_m1;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00249}00249       std::unordered\_set<double> level\_set\_m2;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00250}00250       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_1.row\_dim; ++i) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00251}00251          \textcolor{keywordflow}{for} (std::int64\_t j = m\_1.row[i]; j < m\_1.row[i + 1]; ++j) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00252}00252             \textcolor{keywordflow}{if} (m\_1.val[j] != 0.0) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00253}00253                level\_set.emplace(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a55e5656a115dbbbac91b535e4a87057d}{CalculateQuntumNumberDifference}}(i, m\_1.col[j]) + 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}{total\_2sz\_}});}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00254}00254                level\_set\_m1.emplace(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a55e5656a115dbbbac91b535e4a87057d}{CalculateQuntumNumberDifference}}(i, m\_1.col[j]) + 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}{total\_2sz\_}});}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00255}00255             \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00256}00256          \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00257}00257       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00258}00258       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00259}00259       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_2.row\_dim; ++i) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00260}00260          \textcolor{keywordflow}{for} (std::int64\_t j = m\_2.row[i]; j < m\_2.row[i + 1]; ++j) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00261}00261             \textcolor{keywordflow}{if} (m\_2.val[j] != 0.0) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00262}00262                level\_set.emplace(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a55e5656a115dbbbac91b535e4a87057d}{CalculateQuntumNumberDifference}}(i, m\_2.col[j]) + 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}{total\_2sz\_}});}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00263}00263                level\_set\_m2.emplace(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a55e5656a115dbbbac91b535e4a87057d}{CalculateQuntumNumberDifference}}(i, m\_2.col[j]) + 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}{total\_2sz\_}});}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00264}00264             \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00265}00265          \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00266}00266       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00267}00267       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00268}00268       std::unordered\_set<double> level\_set\_intersection;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00269}00269       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00270}00270       \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&level: level\_set) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00271}00271          \textcolor{keywordflow}{if} (level\_set\_m1.count(level) != 0 \&\& level\_set\_m2.count(level) != 0) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00272}00272             level\_set\_intersection.emplace(level);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00273}00273          \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00274}00274       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00275}00275       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00276}00276       \textcolor{keywordflow}{return} level\_set\_intersection;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00277}00277    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a57d428dbd6473f7b45eb81fa18aa8c92_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a95726829789fd80f9814d7f43651ac6f}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a95726829789fd80f9814d7f43651ac6f}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GenerateTargetSector@{GenerateTargetSector}}
+\index{GenerateTargetSector@{GenerateTargetSector}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateTargetSector()}{GenerateTargetSector()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::vector$<$ std\+::tuple$<$ double, double, double $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&}]{m\+\_\+1\+\_\+bra,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&}]{m\+\_\+2\+\_\+bra,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&}]{m\+\_\+3\+\_\+ket,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&}]{m\+\_\+4\+\_\+ket }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00325}{325}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00325}00325                                                                                                                                                           \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00326}00326       std::unordered\_set<double> delta\_sector\_set\_m1;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00327}00327       std::unordered\_set<double> delta\_sector\_set\_m2;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00328}00328       std::unordered\_set<double> delta\_sector\_set\_m3;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00329}00329       std::unordered\_set<double> delta\_sector\_set\_m4;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00330}00330       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00331}00331       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_1\_bra.row\_dim; ++i) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00332}00332          \textcolor{keywordflow}{for} (std::int64\_t j = m\_1\_bra.row[i]; j < m\_1\_bra.row[i + 1]; ++j) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00333}00333             \textcolor{keywordflow}{if} (m\_1\_bra.val[j] != 0.0) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00334}00334                delta\_sector\_set\_m1.emplace(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a55e5656a115dbbbac91b535e4a87057d}{CalculateQuntumNumberDifference}}(i, m\_1\_bra.col[j]));}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00335}00335             \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00336}00336          \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00337}00337       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00338}00338       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00339}00339       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_2\_bra.row\_dim; ++i) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00340}00340          \textcolor{keywordflow}{for} (std::int64\_t j = m\_2\_bra.row[i]; j < m\_2\_bra.row[i + 1]; ++j) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00341}00341             \textcolor{keywordflow}{if} (m\_2\_bra.val[j] != 0.0) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00342}00342                delta\_sector\_set\_m2.emplace(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a55e5656a115dbbbac91b535e4a87057d}{CalculateQuntumNumberDifference}}(i, m\_2\_bra.col[j]));}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00343}00343             \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00344}00344          \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00345}00345       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00346}00346       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00347}00347       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_3\_ket.row\_dim; ++i) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00348}00348          \textcolor{keywordflow}{for} (std::int64\_t j = m\_3\_ket.row[i]; j < m\_3\_ket.row[i + 1]; ++j) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00349}00349             \textcolor{keywordflow}{if} (m\_3\_ket.val[j] != 0.0) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00350}00350                delta\_sector\_set\_m3.emplace(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a55e5656a115dbbbac91b535e4a87057d}{CalculateQuntumNumberDifference}}(i, m\_3\_ket.col[j]));}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00351}00351             \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00352}00352          \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00353}00353       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00354}00354       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00355}00355       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_4\_ket.row\_dim; ++i) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00356}00356          \textcolor{keywordflow}{for} (std::int64\_t j = m\_4\_ket.row[i]; j < m\_4\_ket.row[i + 1]; ++j) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00357}00357             \textcolor{keywordflow}{if} (m\_4\_ket.val[j] != 0.0) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00358}00358                delta\_sector\_set\_m4.emplace(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a55e5656a115dbbbac91b535e4a87057d}{CalculateQuntumNumberDifference}}(i, m\_4\_ket.col[j]));}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00359}00359             \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00360}00360          \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00361}00361       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00362}00362       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00363}00363       std::vector<std::tuple<double, double, double>> target\_sector\_set;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00364}00364       \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&del\_sec\_m1: delta\_sector\_set\_m1) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00365}00365          \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&del\_sec\_m2: delta\_sector\_set\_m2) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00366}00366             \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&del\_sec\_m3: delta\_sector\_set\_m3) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00367}00367                \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&del\_sec\_m4: delta\_sector\_set\_m4) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00368}00368                   \textcolor{keywordflow}{if} (del\_sec\_m1 + del\_sec\_m2 == del\_sec\_m3 + del\_sec\_m4) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00369}00369                      target\_sector\_set.push\_back(\{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00370}00370                         del\_sec\_m1 + 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}{total\_2sz\_}},}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00371}00371                         del\_sec\_m1 + del\_sec\_m2 + 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}{total\_2sz\_}},}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00372}00372                         del\_sec\_m4 + 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}{total\_2sz\_}}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00373}00373                      \});}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00374}00374                   \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00375}00375                \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00376}00376             \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00377}00377          \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00378}00378       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00379}00379       \textcolor{keywordflow}{return} target\_sector\_set;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00380}00380    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a95726829789fd80f9814d7f43651ac6f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7c22a3e6833514f10450ad6f26214c3c}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7c22a3e6833514f10450ad6f26214c3c}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GenerateTargetSector@{GenerateTargetSector}}
+\index{GenerateTargetSector@{GenerateTargetSector}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateTargetSector()}{GenerateTargetSector()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::vector$<$ std\+::pair$<$ double, double $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&}]{m\+\_\+1\+\_\+bra,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&}]{m\+\_\+2\+\_\+ket,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&}]{m\+\_\+3\+\_\+ket }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00279}{279}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00279}00279                                                                                                                              \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00280}00280       std::unordered\_set<double> delta\_sector\_set\_m1;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00281}00281       std::unordered\_set<double> delta\_sector\_set\_m2;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00282}00282       std::unordered\_set<double> delta\_sector\_set\_m3;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00283}00283       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00284}00284       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_1\_bra.row\_dim; ++i) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00285}00285          \textcolor{keywordflow}{for} (std::int64\_t j = m\_1\_bra.row[i]; j < m\_1\_bra.row[i + 1]; ++j) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00286}00286             \textcolor{keywordflow}{if} (m\_1\_bra.val[j] != 0.0) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00287}00287                delta\_sector\_set\_m1.emplace(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a55e5656a115dbbbac91b535e4a87057d}{CalculateQuntumNumberDifference}}(i, m\_1\_bra.col[j]));}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00288}00288             \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00289}00289          \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00290}00290       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00291}00291       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00292}00292       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_2\_ket.row\_dim; ++i) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00293}00293          \textcolor{keywordflow}{for} (std::int64\_t j = m\_2\_ket.row[i]; j < m\_2\_ket.row[i + 1]; ++j) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00294}00294             \textcolor{keywordflow}{if} (m\_2\_ket.val[j] != 0.0) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00295}00295                delta\_sector\_set\_m2.emplace(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a55e5656a115dbbbac91b535e4a87057d}{CalculateQuntumNumberDifference}}(i, m\_2\_ket.col[j]));}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00296}00296             \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00297}00297          \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00298}00298       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00299}00299       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00300}00300       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_3\_ket.row\_dim; ++i) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00301}00301          \textcolor{keywordflow}{for} (std::int64\_t j = m\_3\_ket.row[i]; j < m\_3\_ket.row[i + 1]; ++j) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00302}00302             \textcolor{keywordflow}{if} (m\_3\_ket.val[j] != 0.0) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00303}00303                delta\_sector\_set\_m3.emplace(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a55e5656a115dbbbac91b535e4a87057d}{CalculateQuntumNumberDifference}}(i, m\_3\_ket.col[j]));}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00304}00304             \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00305}00305          \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00306}00306       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00307}00307       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00308}00308       std::vector<std::pair<double, double>> target\_sector\_set;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00309}00309       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00310}00310       \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&del\_sec\_m1: delta\_sector\_set\_m1) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00311}00311          \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&del\_sec\_m2: delta\_sector\_set\_m2) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00312}00312             \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&del\_sec\_m3: delta\_sector\_set\_m3) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00313}00313                \textcolor{keywordflow}{if} (del\_sec\_m1 == del\_sec\_m2 + del\_sec\_m3) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00314}00314                   target\_sector\_set.push\_back(\{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00315}00315                      del\_sec\_m1 + 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}{total\_2sz\_}},}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00316}00316                      del\_sec\_m3 + 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}{total\_2sz\_}}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00317}00317                   \});}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00318}00318                \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00319}00319             \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00320}00320          \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00321}00321       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00322}00322       \textcolor{keywordflow}{return} target\_sector\_set;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00323}00323    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7c22a3e6833514f10450ad6f26214c3c_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a9d991926c779bf24c6608279a7f10601}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a9d991926c779bf24c6608279a7f10601}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetBasis@{GetBasis}}
+\index{GetBasis@{GetBasis}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetBasis()}{GetBasis()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const std\+::vector$<$ std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Get\+Basis (\begin{DoxyParamCaption}\item[{const double}]{total\+\_\+sz }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00555}{555}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00555}00555                                                                              \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00556}00556       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}{bases\_}}.at(\mbox{\hyperlink{namespacecompnal_1_1utility_abe920cc5242e3538cc6b4007331e516e}{utility::DoubleTheNumber}}(total\_sz));}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00557}00557    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a9d991926c779bf24c6608279a7f10601_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_ac878a891c7aa10eca8840f3de0e8d0e1}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_ac878a891c7aa10eca8840f3de0e8d0e1}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetBasisInv@{GetBasisInv}}
+\index{GetBasisInv@{GetBasisInv}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetBasisInv()}{GetBasisInv()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Get\+Basis\+Inv (\begin{DoxyParamCaption}\item[{const double}]{total\+\_\+sz }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00558}{558}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00558}00558                                                                                                    \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00559}00559       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_abeabf635a134fc6176db74e7fef56245}{bases\_inv\_}}.at(\mbox{\hyperlink{namespacecompnal_1_1utility_abe920cc5242e3538cc6b4007331e516e}{utility::DoubleTheNumber}}(total\_sz));}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00560}00560    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_ac878a891c7aa10eca8840f3de0e8d0e1_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a49ec19ada4660c35eb02fa6edfab3f8f}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a49ec19ada4660c35eb02fa6edfab3f8f}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetCalculatedEigenvectorSet@{GetCalculatedEigenvectorSet}}
+\index{GetCalculatedEigenvectorSet@{GetCalculatedEigenvectorSet}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetCalculatedEigenvectorSet()}{GetCalculatedEigenvectorSet()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const std\+::unordered\+\_\+set$<$ int $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Get\+Calculated\+Eigenvector\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00552}{552}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00552}00552                                                                            \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00553}00553       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae9be05e81a30dddb6cd321248c66caf5}{calculated\_eigenvector\_set\_}};}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00554}00554    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_ac08fdfaf7f9574d95c5a450b67104dd2}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_ac08fdfaf7f9574d95c5a450b67104dd2}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetDimOnsite@{GetDimOnsite}}
+\index{GetDimOnsite@{GetDimOnsite}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetDimOnsite()}{GetDimOnsite()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Get\+Dim\+Onsite (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00539}{539}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00539}00539 \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a9924b41c451f42c5cef0a2047c6b64db}{dim\_onsite\_}};             \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a4daa6f25ec9ea3195dbbd5091828a264}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a4daa6f25ec9ea3195dbbd5091828a264}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetMagnitude2Spin@{GetMagnitude2Spin}}
+\index{GetMagnitude2Spin@{GetMagnitude2Spin}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetMagnitude2Spin()}{GetMagnitude2Spin()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Get\+Magnitude2\+Spin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00540}{540}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00540}00540 \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_acaa58974948a62739c8d584a45e24981}{magnitude\_2spin\_}};        \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae9885c94867739757b8408566fe84326}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae9885c94867739757b8408566fe84326}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetMagnitudeSpin@{GetMagnitudeSpin}}
+\index{GetMagnitudeSpin@{GetMagnitudeSpin}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetMagnitudeSpin()}{GetMagnitudeSpin()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+double \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Get\+Magnitude\+Spin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00544}{544}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00544}00544 \{ \textcolor{keywordflow}{return} 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_acaa58974948a62739c8d584a45e24981}{magnitude\_2spin\_}};    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a44e14822fb6399cb60417ac20e00b48e}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a44e14822fb6399cb60417ac20e00b48e}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetNumConservedQuantity@{GetNumConservedQuantity}}
+\index{GetNumConservedQuantity@{GetNumConservedQuantity}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetNumConservedQuantity()}{GetNumConservedQuantity()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Get\+Num\+Conserved\+Quantity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00543}{543}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00543}00543 \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_aa89a9ff9ab6deaae3c2319f88f8120fd}{num\_conserved\_quantity\_}}; \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a98076b01b7cd2adb89ce89f1ec9da89d}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a98076b01b7cd2adb89ce89f1ec9da89d}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetOnsiteOperatoriSy@{GetOnsiteOperatoriSy}}
+\index{GetOnsiteOperatoriSy@{GetOnsiteOperatoriSy}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatoriSy()}{GetOnsiteOperatoriSy()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Get\+Onsite\+Operatori\+Sy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00547}{547}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00547}00547 \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_aed9107549c634b2fb418968479eedffa}{onsite\_operator\_isy\_}}; \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a66ad7be43af97b8162f2aadeda0512ad}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a66ad7be43af97b8162f2aadeda0512ad}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetOnsiteOperatorSm@{GetOnsiteOperatorSm}}
+\index{GetOnsiteOperatorSm@{GetOnsiteOperatorSm}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSm()}{GetOnsiteOperatorSm()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Get\+Onsite\+Operator\+Sm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00550}{550}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00550}00550 \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a813e8a32bf3b2ec8deba2c6092d4682d}{onsite\_operator\_sm\_}} ; \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a66ad7be43af97b8162f2aadeda0512ad_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_af28691e881c5f8b981c8e6712b29283b}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_af28691e881c5f8b981c8e6712b29283b}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetOnsiteOperatorSp@{GetOnsiteOperatorSp}}
+\index{GetOnsiteOperatorSp@{GetOnsiteOperatorSp}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSp()}{GetOnsiteOperatorSp()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Get\+Onsite\+Operator\+Sp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00549}{549}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00549}00549 \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_aa158ac550bb1a52a0833c2f955384cb8}{onsite\_operator\_sp\_}} ; \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_af28691e881c5f8b981c8e6712b29283b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a30092d8e74a2246007842fb4dfcefcf8}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a30092d8e74a2246007842fb4dfcefcf8}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetOnsiteOperatorSx@{GetOnsiteOperatorSx}}
+\index{GetOnsiteOperatorSx@{GetOnsiteOperatorSx}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSx()}{GetOnsiteOperatorSx()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Get\+Onsite\+Operator\+Sx (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00546}{546}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00546}00546 \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a482541fe5c7239b8de7982d8aed891b9}{onsite\_operator\_sx\_}} ; \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a30092d8e74a2246007842fb4dfcefcf8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a506fddc0454a4008ed2cda1315b59f1e}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a506fddc0454a4008ed2cda1315b59f1e}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetOnsiteOperatorSz@{GetOnsiteOperatorSz}}
+\index{GetOnsiteOperatorSz@{GetOnsiteOperatorSz}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSz()}{GetOnsiteOperatorSz()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Get\+Onsite\+Operator\+Sz (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00548}{548}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00548}00548 \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_abfa21ea7f92f51e8514542414ae33ccb}{onsite\_operator\_sz\_}} ; \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a506fddc0454a4008ed2cda1315b59f1e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_aa81237fe786d60d4ba859a889d95040c}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_aa81237fe786d60d4ba859a889d95040c}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetSystemSize@{GetSystemSize}}
+\index{GetSystemSize@{GetSystemSize}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetSystemSize()}{GetSystemSize()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Get\+System\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00538}{538}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00538}00538 \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7d24d3a81f90fd3181c76094bde48617}{system\_size\_}};            \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a150a88b5f29693fd0342ec9d5f826be6}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a150a88b5f29693fd0342ec9d5f826be6}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetTargetBasis@{GetTargetBasis}}
+\index{GetTargetBasis@{GetTargetBasis}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetTargetBasis()}{GetTargetBasis()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const std\+::vector$<$ std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Get\+Target\+Basis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00561}{561}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00561}00561                                                               \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00562}00562       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}{bases\_}}.at(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}{total\_2sz\_}});}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00563}00563    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a40d13ea34bab79bcc0dc312922d105b3}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a40d13ea34bab79bcc0dc312922d105b3}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetTargetBasisInv@{GetTargetBasisInv}}
+\index{GetTargetBasisInv@{GetTargetBasisInv}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetTargetBasisInv()}{GetTargetBasisInv()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Get\+Target\+Basis\+Inv (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00564}{564}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00564}00564                                                                                     \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00565}00565       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_abeabf635a134fc6176db74e7fef56245}{bases\_inv\_}}.at(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}{total\_2sz\_}});}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00566}00566    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a84695e721597fe6d9e9c5217febb97c9}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a84695e721597fe6d9e9c5217febb97c9}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetTotal2Sz@{GetTotal2Sz}}
+\index{GetTotal2Sz@{GetTotal2Sz}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetTotal2Sz()}{GetTotal2Sz()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Get\+Total2\+Sz (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00541}{541}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00541}00541 \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}{total\_2sz\_}};              \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a9ec6e2ae96a566a5775017faccdcb35f}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a9ec6e2ae96a566a5775017faccdcb35f}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetTotalSz@{GetTotalSz}}
+\index{GetTotalSz@{GetTotalSz}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetTotalSz()}{GetTotalSz()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+double \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Get\+Total\+Sz (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00542}{542}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00542}00542 \{ \textcolor{keywordflow}{return} 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}{total\_2sz\_}};          \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae77f7a42530aabf69cf9bbd7b9e42dd9}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae77f7a42530aabf69cf9bbd7b9e42dd9}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!isValidQNumber@{isValidQNumber}}
+\index{isValidQNumber@{isValidQNumber}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{isValidQNumber()}{isValidQNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::is\+Valid\+QNumber (\begin{DoxyParamCaption}\item[{const double}]{total\+\_\+sz }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00102}{102}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00102}00102                                                     \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00103}00103       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae77f7a42530aabf69cf9bbd7b9e42dd9}{isValidQNumber}}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7d24d3a81f90fd3181c76094bde48617}{system\_size\_}}, 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_acaa58974948a62739c8d584a45e24981}{magnitude\_2spin\_}}, total\_sz);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00104}00104    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae77f7a42530aabf69cf9bbd7b9e42dd9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae77f7a42530aabf69cf9bbd7b9e42dd9_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_af1c5be1ab60a0a335a52cc78bd9190d7}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_af1c5be1ab60a0a335a52cc78bd9190d7}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!isValidQNumber@{isValidQNumber}}
+\index{isValidQNumber@{isValidQNumber}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{isValidQNumber()}{isValidQNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::is\+Valid\+QNumber (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const double}]{magnitude\+\_\+spin,  }\item[{const double}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00382}{382}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00382}00382                                                                                                          \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00383}00383       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = \mbox{\hyperlink{namespacecompnal_1_1utility_abe920cc5242e3538cc6b4007331e516e}{utility::DoubleTheNumber}}(total\_sz);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00384}00384       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_abe920cc5242e3538cc6b4007331e516e}{utility::DoubleTheNumber}}(magnitude\_spin);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00385}00385       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c1 = ((system\_size*magnitude\_2spin -\/ total\_2sz)\%2 == 0);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00386}00386       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c2 = (-\/system\_size*magnitude\_2spin <= total\_2sz);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00387}00387       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c3 = (total\_2sz <= system\_size*magnitude\_2spin);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00388}00388       \textcolor{keywordflow}{if} (c1 \&\& c2 \&\& c3) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00389}00389          \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00390}00390       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00391}00391       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00392}00392          \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00393}00393       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00394}00394    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_af1c5be1ab60a0a335a52cc78bd9190d7_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a3304d8eb9d66f44fbdd833dd8a51d467}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a3304d8eb9d66f44fbdd833dd8a51d467}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!PrintBasisOnsite@{PrintBasisOnsite}}
+\index{PrintBasisOnsite@{PrintBasisOnsite}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{PrintBasisOnsite()}{PrintBasisOnsite()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Print\+Basis\+Onsite (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00106}{106}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00106}00106                                  \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00107}00107       \textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_spin = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_acaa58974948a62739c8d584a45e24981}{magnitude\_2spin\_}}/2.0;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00108}00108       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 0; row < \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a9924b41c451f42c5cef0a2047c6b64db}{dim\_onsite\_}}; ++row) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00109}00109          std::cout << \textcolor{stringliteral}{"{}row "{}} << row << \textcolor{stringliteral}{"{}: |Sz="{}} << magnitude\_spin -\/ row << \textcolor{stringliteral}{"{}>"{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00110}00110       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00111}00111    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_ad52df0e32d74247ee937e3208c34d115}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_ad52df0e32d74247ee937e3208c34d115}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!RemoveCalculatedEigenvectorSet@{RemoveCalculatedEigenvectorSet}}
+\index{RemoveCalculatedEigenvectorSet@{RemoveCalculatedEigenvectorSet}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{RemoveCalculatedEigenvectorSet()}{RemoveCalculatedEigenvectorSet()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Remove\+Calculated\+Eigenvector\+Set (\begin{DoxyParamCaption}\item[{const std\+::int64\+\_\+t}]{level }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00098}{98}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00098}00098                                                                \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00099}00099       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae9be05e81a30dddb6cd321248c66caf5}{calculated\_eigenvector\_set\_}}.erase(level);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00100}00100    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a1eaf81e0f4eb1f295d203984ede5aabc}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a1eaf81e0f4eb1f295d203984ede5aabc}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!SetCalculatedEigenvectorSet@{SetCalculatedEigenvectorSet}}
+\index{SetCalculatedEigenvectorSet@{SetCalculatedEigenvectorSet}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{SetCalculatedEigenvectorSet()}{SetCalculatedEigenvectorSet()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Set\+Calculated\+Eigenvector\+Set (\begin{DoxyParamCaption}\item[{const std\+::int64\+\_\+t}]{level }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00094}{94}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00094}00094                                                             \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00095}00095       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae9be05e81a30dddb6cd321248c66caf5}{calculated\_eigenvector\_set\_}}.emplace(level);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00096}00096    \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a200a44a8ea5b4d47d904208b24984f98}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a200a44a8ea5b4d47d904208b24984f98}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!SetMagnitudeSpin@{SetMagnitudeSpin}}
+\index{SetMagnitudeSpin@{SetMagnitudeSpin}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{SetMagnitudeSpin()}{SetMagnitudeSpin()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Set\+Magnitude\+Spin (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+spin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00061}{61}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00061}00061                                                       \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00062}00062       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_abe920cc5242e3538cc6b4007331e516e}{utility::DoubleTheNumber}}(magnitude\_spin);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00063}00063       \textcolor{keywordflow}{if} (magnitude\_2spin <= 0) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00064}00064          std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00065}00065          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00066}00066          ss << \textcolor{stringliteral}{"{}Please set magnitude\_2spin > 0"{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00067}00067          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00068}00068       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00069}00069       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_acaa58974948a62739c8d584a45e24981}{magnitude\_2spin\_}} != magnitude\_2spin) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00070}00070          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_acaa58974948a62739c8d584a45e24981}{magnitude\_2spin\_}} = magnitude\_2spin;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00071}00071          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a9924b41c451f42c5cef0a2047c6b64db}{dim\_onsite\_}}      = magnitude\_2spin + 1;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00072}00072          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a580d5de16a28c5246363c3a1b2975430}{SetOnsiteOperator}}();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00073}00073          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}{bases\_}}.clear();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00074}00074          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_abeabf635a134fc6176db74e7fef56245}{bases\_inv\_}}.clear();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00075}00075          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae9be05e81a30dddb6cd321248c66caf5}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00076}00076       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00077}00077    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a200a44a8ea5b4d47d904208b24984f98_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a200a44a8ea5b4d47d904208b24984f98_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a580d5de16a28c5246363c3a1b2975430}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a580d5de16a28c5246363c3a1b2975430}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!SetOnsiteOperator@{SetOnsiteOperator}}
+\index{SetOnsiteOperator@{SetOnsiteOperator}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{SetOnsiteOperator()}{SetOnsiteOperator()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Set\+Onsite\+Operator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00587}{587}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00587}00587                             \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00588}00588       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a482541fe5c7239b8de7982d8aed891b9}{onsite\_operator\_sx\_}}  = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a63e052b4fac0a797486ae37f288775d8}{CreateOnsiteOperatorSx}} (0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_acaa58974948a62739c8d584a45e24981}{magnitude\_2spin\_}});}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00589}00589       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_aed9107549c634b2fb418968479eedffa}{onsite\_operator\_isy\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a805af825f870052d613484dfc32bf781}{CreateOnsiteOperatoriSy}}(0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_acaa58974948a62739c8d584a45e24981}{magnitude\_2spin\_}});}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00590}00590       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_abfa21ea7f92f51e8514542414ae33ccb}{onsite\_operator\_sz\_}}  = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a4b021604c01c8b7f9f2eab804cc78608}{CreateOnsiteOperatorSz}} (0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_acaa58974948a62739c8d584a45e24981}{magnitude\_2spin\_}});}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00591}00591       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_aa158ac550bb1a52a0833c2f955384cb8}{onsite\_operator\_sp\_}}  = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a2c17c2baee22281d6d02f5dd5ab0b39d}{CreateOnsiteOperatorSp}} (0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_acaa58974948a62739c8d584a45e24981}{magnitude\_2spin\_}});}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00592}00592       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a813e8a32bf3b2ec8deba2c6092d4682d}{onsite\_operator\_sm\_}}  = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae10de81ba249004460d22bd991efe4f9}{CreateOnsiteOperatorSm}} (0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_acaa58974948a62739c8d584a45e24981}{magnitude\_2spin\_}});}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00593}00593    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a580d5de16a28c5246363c3a1b2975430_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a580d5de16a28c5246363c3a1b2975430_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_ab34e5e3dd6fdb9581c785c92f3ded892}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_ab34e5e3dd6fdb9581c785c92f3ded892}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!SetSystemSize@{SetSystemSize}}
+\index{SetSystemSize@{SetSystemSize}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{SetSystemSize()}{SetSystemSize()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Set\+System\+Size (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00045}{45}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00045}00045                                              \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00046}00046       \textcolor{keywordflow}{if} (system\_size <= 0) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00047}00047          std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00048}00048          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00049}00049          ss << \textcolor{stringliteral}{"{}system\_size must be a non-\/negative integer"{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00050}00050          ss << \textcolor{stringliteral}{"{}system\_size="{}} << system\_size << \textcolor{stringliteral}{"{}is not allowed"{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00051}00051          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00052}00052       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00053}00053       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7d24d3a81f90fd3181c76094bde48617}{system\_size\_}} != system\_size) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00054}00054          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7d24d3a81f90fd3181c76094bde48617}{system\_size\_}} = system\_size;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00055}00055          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}{bases\_}}.clear();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00056}00056          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_abeabf635a134fc6176db74e7fef56245}{bases\_inv\_}}.clear();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00057}00057          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae9be05e81a30dddb6cd321248c66caf5}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00058}00058       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00059}00059    \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_ab34e5e3dd6fdb9581c785c92f3ded892_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a4412e8c37d3c49bab4c5f983b89d06e9}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a4412e8c37d3c49bab4c5f983b89d06e9}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!SetTotalSz@{SetTotalSz}}
+\index{SetTotalSz@{SetTotalSz}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{SetTotalSz()}{SetTotalSz()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::Set\+Total\+Sz (\begin{DoxyParamCaption}\item[{const double}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00079}{79}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00079}00079                                           \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00080}00080       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae77f7a42530aabf69cf9bbd7b9e42dd9}{isValidQNumber}}(total\_sz) == \textcolor{keyword}{false}) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00081}00081          std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00082}00082          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_  << std::endl;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00083}00083          ss << \textcolor{stringliteral}{"{}There is no target space specified by total\_sz = "{}} << total\_sz << std::endl;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00084}00084          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00085}00085       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00086}00086       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = \mbox{\hyperlink{namespacecompnal_1_1utility_abe920cc5242e3538cc6b4007331e516e}{utility::DoubleTheNumber}}(total\_sz);}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00087}00087       }
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00088}00088       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}{total\_2sz\_}} != total\_2sz) \{}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00089}00089          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}{total\_2sz\_}} = total\_2sz;}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00090}00090          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae9be05e81a30dddb6cd321248c66caf5}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00091}00091       \}}
+\DoxyCodeLine{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_l00092}00092    \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d_a4412e8c37d3c49bab4c5f983b89d06e9_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!bases\_@{bases\_}}
+\index{bases\_@{bases\_}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{bases\_}{bases\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::unordered\+\_\+map$<$int, std\+::vector$<$std\+::int64\+\_\+t$>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::bases\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00584}{584}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_abeabf635a134fc6176db74e7fef56245}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_abeabf635a134fc6176db74e7fef56245}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!bases\_inv\_@{bases\_inv\_}}
+\index{bases\_inv\_@{bases\_inv\_}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{bases\_inv\_}{bases\_inv\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::unordered\+\_\+map$<$int, std\+::unordered\+\_\+map$<$std\+::int64\+\_\+t, std\+::int64\+\_\+t$>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::bases\+\_\+inv\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00585}{585}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae9be05e81a30dddb6cd321248c66caf5}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae9be05e81a30dddb6cd321248c66caf5}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!calculated\_eigenvector\_set\_@{calculated\_eigenvector\_set\_}}
+\index{calculated\_eigenvector\_set\_@{calculated\_eigenvector\_set\_}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{calculated\_eigenvector\_set\_}{calculated\_eigenvector\_set\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::unordered\+\_\+set$<$int$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::calculated\+\_\+eigenvector\+\_\+set\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00582}{582}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a9924b41c451f42c5cef0a2047c6b64db}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a9924b41c451f42c5cef0a2047c6b64db}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!dim\_onsite\_@{dim\_onsite\_}}
+\index{dim\_onsite\_@{dim\_onsite\_}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{dim\_onsite\_}{dim\_onsite\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::dim\+\_\+onsite\+\_\+ = 2\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00577}{577}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_acaa58974948a62739c8d584a45e24981}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_acaa58974948a62739c8d584a45e24981}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!magnitude\_2spin\_@{magnitude\_2spin\_}}
+\index{magnitude\_2spin\_@{magnitude\_2spin\_}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{magnitude\_2spin\_}{magnitude\_2spin\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::magnitude\+\_\+2spin\+\_\+ = 1\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00578}{578}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_aa89a9ff9ab6deaae3c2319f88f8120fd}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_aa89a9ff9ab6deaae3c2319f88f8120fd}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!num\_conserved\_quantity\_@{num\_conserved\_quantity\_}}
+\index{num\_conserved\_quantity\_@{num\_conserved\_quantity\_}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{num\_conserved\_quantity\_}{num\_conserved\_quantity\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::num\+\_\+conserved\+\_\+quantity\+\_\+ = 1\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00580}{580}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_aed9107549c634b2fb418968479eedffa}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_aed9107549c634b2fb418968479eedffa}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!onsite\_operator\_isy\_@{onsite\_operator\_isy\_}}
+\index{onsite\_operator\_isy\_@{onsite\_operator\_isy\_}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_isy\_}{onsite\_operator\_isy\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+isy\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00570}{570}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a813e8a32bf3b2ec8deba2c6092d4682d}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a813e8a32bf3b2ec8deba2c6092d4682d}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!onsite\_operator\_sm\_@{onsite\_operator\_sm\_}}
+\index{onsite\_operator\_sm\_@{onsite\_operator\_sm\_}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_sm\_}{onsite\_operator\_sm\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+sm\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00573}{573}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_aa158ac550bb1a52a0833c2f955384cb8}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_aa158ac550bb1a52a0833c2f955384cb8}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!onsite\_operator\_sp\_@{onsite\_operator\_sp\_}}
+\index{onsite\_operator\_sp\_@{onsite\_operator\_sp\_}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_sp\_}{onsite\_operator\_sp\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+sp\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00572}{572}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a482541fe5c7239b8de7982d8aed891b9}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a482541fe5c7239b8de7982d8aed891b9}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!onsite\_operator\_sx\_@{onsite\_operator\_sx\_}}
+\index{onsite\_operator\_sx\_@{onsite\_operator\_sx\_}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_sx\_}{onsite\_operator\_sx\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+sx\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00569}{569}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_abfa21ea7f92f51e8514542414ae33ccb}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_abfa21ea7f92f51e8514542414ae33ccb}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!onsite\_operator\_sz\_@{onsite\_operator\_sz\_}}
+\index{onsite\_operator\_sz\_@{onsite\_operator\_sz\_}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_sz\_}{onsite\_operator\_sz\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+sz\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00571}{571}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7d24d3a81f90fd3181c76094bde48617}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7d24d3a81f90fd3181c76094bde48617}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!system\_size\_@{system\_size\_}}
+\index{system\_size\_@{system\_size\_}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{system\_size\_}{system\_size\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::system\+\_\+size\+\_\+ = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00575}{575}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!total\_2sz\_@{total\_2sz\_}}
+\index{total\_2sz\_@{total\_2sz\_}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{total\_2sz\_}{total\_2sz\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::total\+\_\+2sz\+\_\+ = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \mbox{\hyperlink{base__u1__spin__1d_8hpp_source_l00576}{576}} of file \mbox{\hyperlink{base__u1__spin__1d_8hpp_source}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/model/\mbox{\hyperlink{base__u1__spin__1d_8hpp}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}\end{DoxyCompactItemize}
