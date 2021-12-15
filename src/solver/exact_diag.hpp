@@ -14,16 +14,6 @@
 namespace compnal {
 namespace solver {
 
-template<typename RealType>
-struct ExactDiagMatrixComponents {
-   std::vector<RealType> val;
-   std::vector<std::int64_t>  basis_affected;
-   std::vector<int>           basis_onsite;
-   std::vector<std::int64_t>  site_constant;
-   std::unordered_map<std::int64_t, std::int64_t> inv_basis_affected;
-   double zero_precision = std::pow(10, -15);
-};
-
 template<class ModelClass>
 class ExactDiag {
    
@@ -32,6 +22,16 @@ class ExactDiag {
    using CRS = sparse_matrix::CRS<RealType>;
    
    using BraketVector = sparse_matrix::BraketVector<RealType>;
+
+   struct ExactDiagMatrixComponents {
+      std::vector<RealType> val;
+      std::vector<std::int64_t>  basis_affected;
+      std::vector<int>           basis_onsite;
+      std::vector<std::int64_t>  site_constant;
+      std::unordered_map<std::int64_t, std::int64_t> inv_basis_affected;
+      double zero_precision = std::pow(10, -15);
+   };
+
    
 public:
    
@@ -493,7 +493,7 @@ private:
       return static_cast<int>(global_basis%dim_onsite);
    }
    
-   void GenerateMatrixComponentsOnsite(ExactDiagMatrixComponents<RealType> *edmc,
+   void GenerateMatrixComponentsOnsite(ExactDiagMatrixComponents *edmc,
                                        const std::int64_t basis,
                                        const int site,
                                        const CRS &matrix_onsite,
@@ -519,7 +519,7 @@ private:
       }
    }
    
-   void GenerateMatrixComponentsIntersite(ExactDiagMatrixComponents<RealType> *edmc,
+   void GenerateMatrixComponentsIntersite(ExactDiagMatrixComponents *edmc,
                                           const std::int64_t basis,
                                           const int site_1,
                                           const CRS &matrix_onsite_1,
@@ -566,7 +566,7 @@ private:
       
 #ifdef _OPENMP
       const int num_threads = omp_get_max_threads();
-      std::vector<ExactDiagMatrixComponents<RealType>> components(num_threads);
+      std::vector<ExactDiagMatrixComponents> components(num_threads);
       
       for (int thread_num = 0; thread_num < num_threads; ++thread_num) {
          components[thread_num].site_constant.resize(model.GetSystemSize());
@@ -638,7 +638,7 @@ private:
          components[thread_num].inv_basis_affected.clear();
       }
 #else
-      ExactDiagMatrixComponents<RealType> components;
+      ExactDiagMatrixComponents components;
       components.site_constant.resize(model.GetSystemSize());
       for (int site = 0; site < model.GetSystemSize(); ++site) {
          components.site_constant[site] = static_cast<std::int64_t>(std::pow(model.GetDimOnsite(), site));
@@ -722,7 +722,7 @@ private:
       
    }
    
-   void GenerateMatrixComponents(ExactDiagMatrixComponents<RealType> *edmc, const std::int64_t basis, const model::XXZ_1D<RealType> &model_input) const {
+   void GenerateMatrixComponents(ExactDiagMatrixComponents *edmc, const std::int64_t basis, const model::XXZ_1D<RealType> &model_input) const {
       
       for (int site = 0; site < model_input.GetSystemSize(); ++site) {
          edmc->basis_onsite[site] = CalculateLocalBasis(basis, site, model_input.GetDimOnsite());
@@ -778,7 +778,7 @@ private:
       
    }
    
-   void GenerateMatrixComponents(ExactDiagMatrixComponents<RealType> *edmc, const std::int64_t basis, const model::Hubbard_1D<RealType> &model_input) const {
+   void GenerateMatrixComponents(ExactDiagMatrixComponents *edmc, const std::int64_t basis, const model::Hubbard_1D<RealType> &model_input) const {
       
       const auto &nc            = model_input.GetOnsiteOperatorNC();
       const auto &c_up          = model_input.GetOnsiteOperatorCUp();
@@ -855,7 +855,7 @@ private:
    }
    
    template<class BaseClass>
-   void GenerateMatrixComponents(ExactDiagMatrixComponents<RealType> *edmc, const std::int64_t basis, const model::GeneralModel_1D<BaseClass> &model_input) const {
+   void GenerateMatrixComponents(ExactDiagMatrixComponents *edmc, const std::int64_t basis, const model::GeneralModel_1D<BaseClass> &model_input) const {
       
       for (int site = 0; site < model_input.GetSystemSize(); ++site) {
          edmc->basis_onsite[site] = CalculateLocalBasis(basis, site, model_input.GetDimOnsite());

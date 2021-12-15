@@ -10,5 +10,5 @@ var searchData=
   ['even_5fodd_7',['EVEN_ODD',['../namespacecompnal_1_1utility.html#a7276a99232fbbca2396b81d8619f1cf0a53bd3e09e07da56d3e05dfc58610e7a7',1,'compnal::utility']]],
   ['exact_5fdiag_2ehpp_8',['exact_diag.hpp',['../exact__diag_8hpp.html',1,'']]],
   ['exactdiag_9',['ExactDiag',['../classcompnal_1_1solver_1_1_exact_diag.html',1,'compnal::solver::ExactDiag&lt; ModelClass &gt;'],['../classcompnal_1_1solver_1_1_exact_diag.html#a535e85ef2697a25abb2e128542d65c68',1,'compnal::solver::ExactDiag::ExactDiag(const ModelClass &amp;model_input)'],['../classcompnal_1_1solver_1_1_exact_diag.html#a2cdd5d5e73ad0ff77578a0dca66fc565',1,'compnal::solver::ExactDiag::ExactDiag(const ModelClass &amp;model_input, const sparse_matrix::ParametersAll &amp;params_input)']]],
-  ['exactdiagmatrixcomponents_10',['ExactDiagMatrixComponents',['../structcompnal_1_1solver_1_1_exact_diag_matrix_components.html',1,'compnal::solver']]]
+  ['exactdiagmatrixcomponents_10',['ExactDiagMatrixComponents',['../structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components.html',1,'compnal::solver::ExactDiag']]]
 ];
