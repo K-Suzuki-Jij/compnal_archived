@@ -12,6 +12,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -21,7 +28,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">COMPNAL<span id="projectnumber">&#160;0.0.1</span>
+   <div id="projectname">COMPNAL<span id="projectnumber">&#160;0.1.0</span>
    </div>
   </td>
  </tr>
@@ -74,14 +81,6 @@ $(function() {
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="hash_8hpp_source.html">hash.hpp</a>&gt;</code></p>
-<div class="dynheader">
-Collaboration diagram for compnal::utility::pair_hash:</div>
-<div class="dyncontent">
-<div class="center"><img src="structcompnal_1_1utility_1_1pair__hash__coll__graph.png" border="0" usemap="#acompnal_1_1utility_1_1pair__hash_coll__map" alt="Collaboration graph"/></div>
-<map name="acompnal_1_1utility_1_1pair__hash_coll__map" id="acompnal_1_1utility_1_1pair__hash_coll__map">
-<area shape="rect" title=" " alt="" coords="5,5,180,83"/>
-</map>
-</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -89,10 +88,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abbcc643377355f0cb356e1fadd101494"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structcompnal_1_1utility_1_1pair__hash.html#abbcc643377355f0cb356e1fadd101494">operator()</a> (const std::pair&lt; T1, T2 &gt; &amp;p) const</td></tr>
 <tr class="separator:abbcc643377355f0cb356e1fadd101494"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="hash_8hpp_source.html#l00014">14</a> of file <a class="el" href="hash_8hpp_source.html">hash.hpp</a>.</p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="abbcc643377355f0cb356e1fadd101494" name="abbcc643377355f0cb356e1fadd101494"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abbcc643377355f0cb356e1fadd101494">&#9670;&nbsp;</a></span>operator()()</h2>
 
@@ -119,12 +115,6 @@ template&lt;class T1 , class T2 &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="hash_8hpp_source.html#l00016">16</a> of file <a class="el" href="hash_8hpp_source.html">hash.hpp</a>.</p>
-<div class="fragment"><div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>                                                         {</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>      std::size_t lhs = std::hash&lt;T1&gt;()(p.first), rhs = std::hash&lt;T2&gt;()(p.second);</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>      <span class="keywordflow">return</span> lhs^(rhs+0x9e3779b9+(lhs&lt;&lt;6)+(lhs&gt;&gt;2));</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>   }</div>
-</div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>

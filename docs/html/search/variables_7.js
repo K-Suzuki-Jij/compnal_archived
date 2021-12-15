@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['lanczos_0',['lanczos',['../structcompnal_1_1sparse__matrix_1_1_parameters_all.html#a784b841d78c62a54161ab569519b2d99',1,'compnal::sparse_matrix::ParametersAll']]],
-  ['language_1',['language',['../namespacesetup.html#a168564db8c275401f52bb8888c1e8fad',1,'setup']]],
-  ['long_5fdescription_2',['long_description',['../namespacesetup.html#a4cda9dbfb952875376a0749fe08a5bde',1,'setup']]]
+  ['ii_0',['ii',['../structcompnal_1_1sparse__matrix_1_1_parameters_all.html#abdff80529ad29e3797baaf430a2f651f',1,'compnal::sparse_matrix::ParametersAll']]],
+  ['intersite_5foperator_5flist_5f_1',['intersite_operator_list_',['../classcompnal_1_1model_1_1_general_model__1_d.html#ae0210d87867a43654eea74b9a892cce1',1,'compnal::model::GeneralModel_1D']]],
+  ['inv_5fbasis_5faffected_2',['inv_basis_affected',['../structcompnal_1_1solver_1_1_exact_diag_matrix_components.html#a253673ab20bc51bc09af60c5daccf531',1,'compnal::solver::ExactDiagMatrixComponents']]]
 ];

@@ -1,6 +1,0 @@
-<map id="compnal::model::BaseU1Electron_1D::SetTotalSz" name="compnal::model::BaseU1Electron_1D::SetTotalSz">
-<area shape="rect" id="node1" title="Set target Hilbert space specified by the total sz to be diagonalized." alt="" coords="5,51,223,92"/>
-<area shape="rect" id="node2" href="$namespacecompnal_1_1utility.html#abe920cc5242e3538cc6b4007331e516e" title=" " alt="" coords="300,5,459,47"/>
-<area shape="rect" id="node4" href="$classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a64022e64b08a17a985b6b7c83ead6f13" title="Check if there is a subspace specified by the input quantum numbers." alt="" coords="271,95,488,136"/>
-<area shape="rect" id="node3" href="$namespacecompnal_1_1utility.html#abf9e7e67bef6223906e6269589428337" title=" " alt="" coords="536,5,716,47"/>
-</map>

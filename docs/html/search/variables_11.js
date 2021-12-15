@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['zero_5fprecision_0',['zero_precision',['../structcompnal_1_1solver_1_1_exact_diag_matrix_components.html#a4c81b233063eedecf43f9a44c78ee01e',1,'compnal::solver::ExactDiagMatrixComponents']]],
-  ['zip_5fsafe_1',['zip_safe',['../namespacesetup.html#a13510753661cb74083a0c664db11dde9',1,'setup']]]
+  ['u_5f_0',['U_',['../classcompnal_1_1model_1_1_hubbard__1_d.html#a03858ea78a86b3c9dbdc296af055f71f',1,'compnal::model::Hubbard_1D']]]
 ];

@@ -12,6 +12,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -21,7 +28,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">COMPNAL<span id="projectnumber">&#160;0.0.1</span>
+   <div id="projectname">COMPNAL<span id="projectnumber">&#160;0.1.0</span>
    </div>
   </td>
  </tr>
@@ -69,9 +76,11 @@ $(function() {
 <li>onsite_operator_c_down_dagger_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a27cbc9f82f413f94d626123485e34ce8">compnal::model::BaseU1Electron_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#aa023e8e0e363652be18a35e335e67eff">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>
 <li>onsite_operator_c_up_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a80ce3f95ed41479a23b48beaa97f9dc8">compnal::model::BaseU1Electron_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a4f4b44337e2e4b45c75f9bbcc3257cc2">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>
 <li>onsite_operator_c_up_dagger_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a94f04fbce3a0534df21565ab36084e52">compnal::model::BaseU1Electron_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a5e500721cdcc0e73d3b572631e65cb87">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>
+<li>onsite_operator_ham_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_hubbard__1_d.html#a09dcf07645d9eb40ff4daddc81eab3f6">compnal::model::Hubbard_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_x_x_z__1_d.html#adfebf5d2f20664029e2e01a84a6cdfbc">compnal::model::XXZ_1D&lt; RealType &gt;</a></li>
 <li>onsite_operator_isy_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a5660d6dd3578e59266896709f6b8d7e8">compnal::model::BaseU1Electron_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin__1_d.html#aed9107549c634b2fb418968479eedffa">compnal::model::BaseU1Spin_1D&lt; RealType &gt;</a></li>
 <li>onsite_operator_isyc_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a96478f08b354373c3dec567b7590bccf">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>
 <li>onsite_operator_isyl_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a78c2ceb6db085371d2cd60e605ef7ff4">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>
+<li>onsite_operator_list_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#a85936d1c3308aea6746eac1c6cc97f8f">compnal::model::GeneralModel_1D&lt; BaseClass &gt;</a></li>
 <li>onsite_operator_nc_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#ac4b973da5fe608fa25bc4109661ebb10">compnal::model::BaseU1Electron_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a8da46d41a7a2c3e25c9c1f53dec353cc">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>
 <li>onsite_operator_nc_down_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a2ed9eed4ec767decefd586405a602901">compnal::model::BaseU1Electron_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a56691845e86a007fddfa1c60e1583903">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>
 <li>onsite_operator_nc_up_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a2ee108993d5d6e18643705073af3c71a">compnal::model::BaseU1Electron_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#aa0bbb2132cfe81e999fb854523447ac1">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>

@@ -1,5 +1,0 @@
-<map id="compnal::model::BaseU1Electron_1D::CreateOnsiteOperatorCDownDagger" name="compnal::model::BaseU1Electron_1D::CreateOnsiteOperatorCDownDagger">
-<area shape="rect" id="node1" title="Generate the creation operator for the electrons with the down spin ." alt="" coords="5,5,272,47"/>
-<area shape="rect" id="node2" href="$namespacecompnal_1_1sparse__matrix.html#a55b77bf4b52994ffde7829a8b1ad8637" title=" " alt="" coords="320,5,509,47"/>
-<area shape="rect" id="node3" href="$structcompnal_1_1sparse__matrix_1_1_c_r_s.html#ac196a07cc2959d23578ef9e25d2121c2" title=" " alt="" coords="557,5,719,47"/>
-</map>

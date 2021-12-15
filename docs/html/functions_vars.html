@@ -12,6 +12,13 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX","output/HTML-CSS"],
+});
+</script>
+<script type="text/javascript" async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -21,7 +28,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">COMPNAL<span id="projectnumber">&#160;0.0.1</span>
+   <div id="projectname">COMPNAL<span id="projectnumber">&#160;0.1.0</span>
    </div>
   </td>
  </tr>
@@ -74,6 +81,7 @@ $(function() {
 <li>bases_inv_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a8d4240a146ab6a5d15c9fce28cf54aaa">compnal::model::BaseU1Electron_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin__1_d.html#abeabf635a134fc6176db74e7fef56245">compnal::model::BaseU1Spin_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a102531aa4fd1a8e8506b452314802488">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>
 <li>basis_affected&#160;:&#160;<a class="el" href="structcompnal_1_1solver_1_1_exact_diag_matrix_components.html#a5a060bd6aa290ed87ceaa581399e21ba">compnal::solver::ExactDiagMatrixComponents&lt; RealType &gt;</a></li>
 <li>basis_onsite&#160;:&#160;<a class="el" href="structcompnal_1_1solver_1_1_exact_diag_matrix_components.html#a7329695bd8377ce171a1774a1ecb36a9">compnal::solver::ExactDiagMatrixComponents&lt; RealType &gt;</a></li>
+<li>boundary_condition_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_hubbard__1_d.html#ac23994ee7372ee51a351b2c6a8ca1c35">compnal::model::Hubbard_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_x_x_z__1_d.html#a138ba0925801cf09e4407ac5e48e5f59">compnal::model::XXZ_1D&lt; RealType &gt;</a></li>
 </ul>
 
 
@@ -86,10 +94,17 @@ $(function() {
 
 
 <h3><a id="index_d" name="index_d"></a>- d -</h3><ul>
+<li>D_z_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_x_x_z__1_d.html#a6a8b927914bb1fc81430b9d07b48e709">compnal::model::XXZ_1D&lt; RealType &gt;</a></li>
 <li>diag_add&#160;:&#160;<a class="el" href="structcompnal_1_1sparse__matrix_1_1_parameters_i_i.html#a41b46226c3df3aaeb6c400a90a6b0c83">compnal::sparse_matrix::ParametersII</a></li>
 <li>dim_onsite_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a55ca064c4d2105e1d477488c9a95bdbf">compnal::model::BaseU1Electron_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin__1_d.html#a9924b41c451f42c5cef0a2047c6b64db">compnal::model::BaseU1Spin_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a297a8ff80c53ce114d7901ebe3a457b9">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>
 <li>dim_onsite_electron_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#aba02ab8543186f7a1eb82ba4e4cd8093">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>
 <li>dim_onsite_lspin_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a88e6fb30eb30c28620dae59f67181249">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>
+</ul>
+
+
+<h3><a id="index_e" name="index_e"></a>- e -</h3><ul>
+<li>eigenvalues_&#160;:&#160;<a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#a08b1c95d031f0b29727039f031480c1d">compnal::solver::ExactDiag&lt; ModelClass &gt;</a></li>
+<li>eigenvectors_&#160;:&#160;<a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#a9792ea70dd7ac9a0ac1b964c60cbba57">compnal::solver::ExactDiag&lt; ModelClass &gt;</a></li>
 </ul>
 
 
@@ -101,9 +116,21 @@ $(function() {
 </ul>
 
 
+<h3><a id="index_h" name="index_h"></a>- h -</h3><ul>
+<li>h_z_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_hubbard__1_d.html#a16270efb32faedb15bed5122f5cf938d">compnal::model::Hubbard_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_x_x_z__1_d.html#a60f8f2c82e1d846201f52d0a32ec6c85">compnal::model::XXZ_1D&lt; RealType &gt;</a></li>
+</ul>
+
+
 <h3><a id="index_i" name="index_i"></a>- i -</h3><ul>
 <li>ii&#160;:&#160;<a class="el" href="structcompnal_1_1sparse__matrix_1_1_parameters_all.html#abdff80529ad29e3797baaf430a2f651f">compnal::sparse_matrix::ParametersAll</a></li>
+<li>intersite_operator_list_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#ae0210d87867a43654eea74b9a892cce1">compnal::model::GeneralModel_1D&lt; BaseClass &gt;</a></li>
 <li>inv_basis_affected&#160;:&#160;<a class="el" href="structcompnal_1_1solver_1_1_exact_diag_matrix_components.html#a253673ab20bc51bc09af60c5daccf531">compnal::solver::ExactDiagMatrixComponents&lt; RealType &gt;</a></li>
+</ul>
+
+
+<h3><a id="index_j" name="index_j"></a>- j -</h3><ul>
+<li>J_xy_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_x_x_z__1_d.html#a18b56cdf63c39ee96c9d70758e0f363f">compnal::model::XXZ_1D&lt; RealType &gt;</a></li>
+<li>J_z_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_x_x_z__1_d.html#a9df84d61c7bd9677e74da2aef52c94f3">compnal::model::XXZ_1D&lt; RealType &gt;</a></li>
 </ul>
 
 
@@ -119,6 +146,7 @@ $(function() {
 <li>max_step&#160;:&#160;<a class="el" href="structcompnal_1_1sparse__matrix_1_1_parameters_c_g.html#a10b4190e1585c5e57c378165d72ddb69">compnal::sparse_matrix::ParametersCG</a>, <a class="el" href="structcompnal_1_1sparse__matrix_1_1_parameters_i_i.html#a5d2bc4ffc7ce3c90b24acf47b0f164f8">compnal::sparse_matrix::ParametersII</a>, <a class="el" href="structcompnal_1_1sparse__matrix_1_1_parameters_lanczos.html#adc7f6d768228c64cbdb1d33b12c9de09">compnal::sparse_matrix::ParametersLanczos</a></li>
 <li>min_step&#160;:&#160;<a class="el" href="structcompnal_1_1sparse__matrix_1_1_parameters_lanczos.html#a7ef7b43a9660fc136be725620fbeaf6f">compnal::sparse_matrix::ParametersLanczos</a></li>
 <li>model&#160;:&#160;<a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#a1c927aeeccff28853123195f26af3b70">compnal::solver::ExactDiag&lt; ModelClass &gt;</a></li>
+<li>mu_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_hubbard__1_d.html#ae31b371c7fa400ff47b5ba46d18ddff2">compnal::model::Hubbard_1D&lt; RealType &gt;</a></li>
 </ul>
 
 
@@ -132,9 +160,11 @@ $(function() {
 <li>onsite_operator_c_down_dagger_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a27cbc9f82f413f94d626123485e34ce8">compnal::model::BaseU1Electron_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#aa023e8e0e363652be18a35e335e67eff">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>
 <li>onsite_operator_c_up_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a80ce3f95ed41479a23b48beaa97f9dc8">compnal::model::BaseU1Electron_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a4f4b44337e2e4b45c75f9bbcc3257cc2">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>
 <li>onsite_operator_c_up_dagger_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a94f04fbce3a0534df21565ab36084e52">compnal::model::BaseU1Electron_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a5e500721cdcc0e73d3b572631e65cb87">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>
+<li>onsite_operator_ham_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_hubbard__1_d.html#a09dcf07645d9eb40ff4daddc81eab3f6">compnal::model::Hubbard_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_x_x_z__1_d.html#adfebf5d2f20664029e2e01a84a6cdfbc">compnal::model::XXZ_1D&lt; RealType &gt;</a></li>
 <li>onsite_operator_isy_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a5660d6dd3578e59266896709f6b8d7e8">compnal::model::BaseU1Electron_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin__1_d.html#aed9107549c634b2fb418968479eedffa">compnal::model::BaseU1Spin_1D&lt; RealType &gt;</a></li>
 <li>onsite_operator_isyc_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a96478f08b354373c3dec567b7590bccf">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>
 <li>onsite_operator_isyl_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a78c2ceb6db085371d2cd60e605ef7ff4">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>
+<li>onsite_operator_list_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#a85936d1c3308aea6746eac1c6cc97f8f">compnal::model::GeneralModel_1D&lt; BaseClass &gt;</a></li>
 <li>onsite_operator_nc_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#ac4b973da5fe608fa25bc4109661ebb10">compnal::model::BaseU1Electron_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a8da46d41a7a2c3e25c9c1f53dec353cc">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>
 <li>onsite_operator_nc_down_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a2ed9eed4ec767decefd586405a602901">compnal::model::BaseU1Electron_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a56691845e86a007fddfa1c60e1583903">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>
 <li>onsite_operator_nc_up_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a2ee108993d5d6e18643705073af3c71a">compnal::model::BaseU1Electron_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#aa0bbb2132cfe81e999fb854523447ac1">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>
@@ -172,13 +202,20 @@ $(function() {
 
 
 <h3><a id="index_t" name="index_t"></a>- t -</h3><ul>
+<li>t_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_hubbard__1_d.html#ad3ab8c5f909cbbeec29aad22b271f56a">compnal::model::Hubbard_1D&lt; RealType &gt;</a></li>
 <li>tag&#160;:&#160;<a class="el" href="structcompnal_1_1sparse__matrix_1_1_c_r_s.html#a6e745b9eae6656c2210783e1e9d1d2b7">compnal::sparse_matrix::CRS&lt; RealType &gt;</a></li>
 <li>total_2sz_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#af32092dc9d581d77d60b126fc71f9237">compnal::model::BaseU1Electron_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin__1_d.html#a822529c233c911a2db759c809628ed32">compnal::model::BaseU1Spin_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#acc57b3a69df57dfbbc7795223a43290d">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>
 <li>total_electron_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a36eefbf738be25b44035a74a3b5030fe">compnal::model::BaseU1Electron_1D&lt; RealType &gt;</a>, <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a441bd504ba6be4decd9cf69d615b4b32">compnal::model::BaseU1SpinElectron_1D&lt; RealType &gt;</a></li>
 </ul>
 
 
+<h3><a id="index_u" name="index_u"></a>- u -</h3><ul>
+<li>U_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_hubbard__1_d.html#a03858ea78a86b3c9dbdc296af055f71f">compnal::model::Hubbard_1D&lt; RealType &gt;</a></li>
+</ul>
+
+
 <h3><a id="index_v" name="index_v"></a>- v -</h3><ul>
+<li>V_&#160;:&#160;<a class="el" href="classcompnal_1_1model_1_1_hubbard__1_d.html#a712b9fd211ae7e8e8bdf9799421b500a">compnal::model::Hubbard_1D&lt; RealType &gt;</a></li>
 <li>val&#160;:&#160;<a class="el" href="structcompnal_1_1solver_1_1_exact_diag_matrix_components.html#a2aa3acff1c3ac82a96a1713a0c26b260">compnal::solver::ExactDiagMatrixComponents&lt; RealType &gt;</a>, <a class="el" href="structcompnal_1_1sparse__matrix_1_1_braket_vector.html#ae87a30e388c5e8cbc7617b72d21ee801">compnal::sparse_matrix::BraketVector&lt; RealType &gt;</a>, <a class="el" href="structcompnal_1_1sparse__matrix_1_1_c_r_s.html#ad7d38a64390cfa0a645d635d396660ed">compnal::sparse_matrix::CRS&lt; RealType &gt;</a></li>
 </ul>
 

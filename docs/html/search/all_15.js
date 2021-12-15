@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['zero_5fprecision_0',['zero_precision',['../structcompnal_1_1solver_1_1_exact_diag_matrix_components.html#a4c81b233063eedecf43f9a44c78ee01e',1,'compnal::solver::ExactDiagMatrixComponents']]],
-  ['zip_5fsafe_1',['zip_safe',['../namespacesetup.html#a13510753661cb74083a0c664db11dde9',1,'setup']]]
+  ['xxz_5f1d_0',['XXZ_1D',['../classcompnal_1_1model_1_1_x_x_z__1_d.html',1,'compnal::model::XXZ_1D&lt; RealType &gt;'],['../classcompnal_1_1model_1_1_x_x_z__1_d.html#a57c101b518a4ecbb029c24c8104e0679',1,'compnal::model::XXZ_1D::XXZ_1D()'],['../classcompnal_1_1model_1_1_x_x_z__1_d.html#a806c46ae40094e3671d12d1c375f0a6e',1,'compnal::model::XXZ_1D::XXZ_1D(const int system_size)'],['../classcompnal_1_1model_1_1_x_x_z__1_d.html#a93713e1eadc2fd9c22fb4bcce67b2239',1,'compnal::model::XXZ_1D::XXZ_1D(const int system_size, const double magnitude_spin)'],['../classcompnal_1_1model_1_1_x_x_z__1_d.html#a31c12dbf6a8dfa0cc91e22cc418079c1',1,'compnal::model::XXZ_1D::XXZ_1D(const int system_size, const utility::BoundaryCondition bc)'],['../classcompnal_1_1model_1_1_x_x_z__1_d.html#a39adc628c25eff2abe99b0a036dd83c5',1,'compnal::model::XXZ_1D::XXZ_1D(const int system_size, const double magnitude_spin, const utility::BoundaryCondition bc)']]],
+  ['xxz_5f1d_2ehpp_1',['xxz_1d.hpp',['../xxz__1d_8hpp.html',1,'']]]
 ];

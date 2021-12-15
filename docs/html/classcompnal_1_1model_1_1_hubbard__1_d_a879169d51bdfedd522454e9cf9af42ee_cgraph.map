@@ -1,9 +1,0 @@
-<map id="compnal::model::Hubbard_1D::CreateOnsiteOperatorHam" name="compnal::model::Hubbard_1D::CreateOnsiteOperatorHam">
-<area shape="rect" id="node1" title="Create the onsite Hamiltonian." alt="" coords="5,104,215,145"/>
-<area shape="rect" id="node2" href="$classcompnal_1_1model_1_1_base_u1_electron__1_d.html#aec77c76276610fa623fe1127594bf8e7" title="Generate the number operator for the electrons ." alt="" coords="271,5,489,47"/>
-<area shape="rect" id="node4" href="$classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a9fd576d344dc72d5c7b9361a3cad51d9" title="Generate the number operator for the electrons with the down spin ." alt="" coords="263,136,497,177"/>
-<area shape="rect" id="node6" href="$classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a3b8fcfdefbef8ade799801c8119e3f04" title="Generate the number operator for the electrons with the up spin ." alt="" coords="271,201,489,243"/>
-<area shape="rect" id="node7" href="$classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a5835026708b0d6a101027b0d84c3d3f9" title="Generate the spin operator for the z&#45;direction for the electrons ." alt="" coords="271,71,489,112"/>
-<area shape="rect" id="node3" href="$namespacecompnal_1_1sparse__matrix.html#ac96ccd3b32760093ebb9dbc2481053b2" title=" " alt="" coords="555,49,739,91"/>
-<area shape="rect" id="node5" href="$namespacecompnal_1_1sparse__matrix.html#ae96031f37623a90ebb421f75d8f3ae83" title=" " alt="" coords="545,159,748,200"/>
-</map>

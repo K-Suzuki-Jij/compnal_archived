@@ -1,14 +1,10 @@
 var searchData=
 [
-  ['magnitude_5f2cspin_5f_0',['magnitude_2cspin_',['../classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a5c145e4310b24dfe1e2135b831b95507',1,'compnal::model::BaseU1SpinElectron_1D']]],
-  ['magnitude_5f2lspin_5f_1',['magnitude_2lspin_',['../classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a1d3d813515a57a1866f9c255d1a16f7e',1,'compnal::model::BaseU1SpinElectron_1D']]],
-  ['magnitude_5f2spin_5f_2',['magnitude_2spin_',['../classcompnal_1_1model_1_1_base_u1_spin__1_d.html#acaa58974948a62739c8d584a45e24981',1,'compnal::model::BaseU1Spin_1D']]],
-  ['main_3',['main',['../main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c',1,'main(int argc, const char *argv[]):&#160;main.cpp'],['../test__main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;test_main.cpp']]],
-  ['main_2ecpp_4',['main.cpp',['../main_8cpp.html',1,'']]],
-  ['matrix_5fvector_5foperation_2ehpp_5',['matrix_vector_operation.hpp',['../matrix__vector__operation_8hpp.html',1,'']]],
-  ['max_5fstep_6',['max_step',['../structcompnal_1_1sparse__matrix_1_1_parameters_lanczos.html#adc7f6d768228c64cbdb1d33b12c9de09',1,'compnal::sparse_matrix::ParametersLanczos::max_step()'],['../structcompnal_1_1sparse__matrix_1_1_parameters_c_g.html#a10b4190e1585c5e57c378165d72ddb69',1,'compnal::sparse_matrix::ParametersCG::max_step()'],['../structcompnal_1_1sparse__matrix_1_1_parameters_i_i.html#a5d2bc4ffc7ce3c90b24acf47b0f164f8',1,'compnal::sparse_matrix::ParametersII::max_step()']]],
-  ['min_5fstep_7',['min_step',['../structcompnal_1_1sparse__matrix_1_1_parameters_lanczos.html#a7ef7b43a9660fc136be725620fbeaf6f',1,'compnal::sparse_matrix::ParametersLanczos']]],
-  ['model_8',['model',['../classcompnal_1_1solver_1_1_exact_diag.html#a1c927aeeccff28853123195f26af3b70',1,'compnal::solver::ExactDiag']]],
-  ['model_2ehpp_9',['model.hpp',['../model_8hpp.html',1,'']]],
-  ['multiplybyscalar_10',['MultiplyByScalar',['../structcompnal_1_1sparse__matrix_1_1_braket_vector.html#a84f352668f31818b5b947ca932d3b18f',1,'compnal::sparse_matrix::BraketVector::MultiplyByScalar()'],['../structcompnal_1_1sparse__matrix_1_1_c_r_s.html#a818173aa562d5c541552627b1570244f',1,'compnal::sparse_matrix::CRS::MultiplyByScalar(const RealType coeef)'],['../structcompnal_1_1sparse__matrix_1_1_c_r_s.html#a6050c1888c1b37645e19d7379c19c4ad',1,'compnal::sparse_matrix::CRS::MultiplyByScalar(const RealType coeef) const']]]
+  ['l1norm_0',['L1Norm',['../structcompnal_1_1sparse__matrix_1_1_braket_vector.html#a827fce19bf033d6317537d3f15ecca48',1,'compnal::sparse_matrix::BraketVector']]],
+  ['l2norm_1',['L2Norm',['../structcompnal_1_1sparse__matrix_1_1_braket_vector.html#a86a86a5b08913d8b9262e3b7c27d68cf',1,'compnal::sparse_matrix::BraketVector']]],
+  ['lanczos_2',['lanczos',['../structcompnal_1_1sparse__matrix_1_1_parameters_all.html#a784b841d78c62a54161ab569519b2d99',1,'compnal::sparse_matrix::ParametersAll']]],
+  ['lapack_2ehpp_3',['lapack.hpp',['../lapack_8hpp.html',1,'']]],
+  ['lapackdspgv_4',['LapackDspgv',['../namespacecompnal_1_1sparse__matrix.html#a027e3543114e86368649fd738a2f9f78',1,'compnal::sparse_matrix']]],
+  ['lapackdstev_5',['LapackDstev',['../namespacecompnal_1_1sparse__matrix.html#ae2d62a5674340dcaccc874b8a1acbc26',1,'compnal::sparse_matrix']]],
+  ['lapackdsyev_6',['LapackDsyev',['../namespacecompnal_1_1sparse__matrix.html#a7b228b82df60b48a8e1b225bf3ec3bf7',1,'compnal::sparse_matrix']]]
 ];

@@ -1,8 +1,0 @@
-<map id="compnal::model::BaseU1Electron_1D::isValidQNumber" name="compnal::model::BaseU1Electron_1D::isValidQNumber">
-<area shape="rect" id="node1" title="Check if there is a subspace specified by the input quantum numbers." alt="" coords="536,71,753,112"/>
-<area shape="rect" id="node2" href="$classcompnal_1_1model_1_1_base_u1_electron__1_d.html#afc740670c6c78c1583461093a02aad4e" title="Generate bases of the target Hilbert space specified by the system size , the number of the total ele..." alt="" coords="271,5,488,47"/>
-<area shape="rect" id="node3" href="$classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a1c3eb6bf3ebf8e161f3f5c3e6d96d549" title="Set the number of total electrons." alt="" coords="271,71,488,112"/>
-<area shape="rect" id="node6" href="$classcompnal_1_1model_1_1_base_u1_electron__1_d.html#aa1b973c2fc19f93b869304baea8de4ba" title="Set target Hilbert space specified by the total sz to be diagonalized." alt="" coords="271,136,488,177"/>
-<area shape="rect" id="node4" href="$classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a9963373216d5fc6c02081cfd788bc517" title="Constructor of BaseU1Electron_1D class." alt="" coords="5,41,223,83"/>
-<area shape="rect" id="node5" href="$test__exact__diag_8hpp.html#aab2efa37d4c619544b32e6aaaf612d03" title=" " alt="" coords="86,107,142,134"/>
-</map>

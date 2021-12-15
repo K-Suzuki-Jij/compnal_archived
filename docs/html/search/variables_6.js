@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['ii_0',['ii',['../structcompnal_1_1sparse__matrix_1_1_parameters_all.html#abdff80529ad29e3797baaf430a2f651f',1,'compnal::sparse_matrix::ParametersAll']]],
-  ['inv_5fbasis_5faffected_1',['inv_basis_affected',['../structcompnal_1_1solver_1_1_exact_diag_matrix_components.html#a253673ab20bc51bc09af60c5daccf531',1,'compnal::solver::ExactDiagMatrixComponents']]]
+  ['h_5fz_5f_0',['h_z_',['../classcompnal_1_1model_1_1_hubbard__1_d.html#a16270efb32faedb15bed5122f5cf938d',1,'compnal::model::Hubbard_1D::h_z_()'],['../classcompnal_1_1model_1_1_x_x_z__1_d.html#a60f8f2c82e1d846201f52d0a32ec6c85',1,'compnal::model::XXZ_1D::h_z_()']]]
 ];
