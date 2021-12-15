@@ -162,7 +162,7 @@ public:
       }
    }
    
-   //! @brief Print onsite bases.
+   //! @brief Print the onsite bases.
    void PrintBasisOnsite() const {
       std::cout << "row " << 0 << ": |vac>" << std::endl;
       std::cout << "row " << 1 << ": |↑>"   << std::endl;
@@ -727,7 +727,7 @@ public:
    }
    
    //! @brief Get the system size \f$ N\f$.
-   //! @return the system size \f$ N\f$.
+   //! @return The system size \f$ N\f$.
    inline int GetSystemSize() const { return system_size_; }
    
    //! @brief Get dimension of the local Hilbert space, 4.

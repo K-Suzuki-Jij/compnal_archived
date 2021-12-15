@@ -21,27 +21,42 @@
 namespace compnal {
 namespace model {
 
+//! @brief The base class for one-dimensional spin systems with the U(1) symmetry.
+//! @tparam RealType The type of real values.
 template<typename RealType>
 class BaseU1Spin_1D {
    
+   //! @brief Alias of compressed row strage (CRS) with RealType.
    using CRS = sparse_matrix::CRS<RealType>;
    
 public:
    
+   //! @brief The type of real values.
    using ValueType = RealType;
    
+   //------------------------------------------------------------------
+   //---------------------------Constructors---------------------------
+   //------------------------------------------------------------------
+   //! @brief Constructor of BaseU1Spin_1D class.
    BaseU1Spin_1D() {
       SetOnsiteOperator();
    }
    
+   //! @brief Constructor of BaseU1Spin_1D class.
+   //! @param system_size The system size \f$ N \f$.
    explicit BaseU1Spin_1D(const int system_size): BaseU1Spin_1D() {
       SetSystemSize(system_size);
    }
    
+   //! @brief Constructor of BaseU1Spin_1D class.
+   //! @param system_size The system size \f$ N \f$.
+   //! @param magnitude_spin The magnitude of spins \f$ S \f$.
    BaseU1Spin_1D(const int system_size, const double magnitude_spin): BaseU1Spin_1D(system_size) {
       SetMagnitudeSpin(magnitude_spin);
    }
    
+   //! @brief Set system size.
+   //! @param system_size The system size \f$ N \f$.
    void SetSystemSize(const int system_size) {
       if (system_size <= 0) {
          std::stringstream ss;
@@ -58,6 +73,8 @@ public:
       }
    }
    
+   //! @brief Set the magnitude of spins \f$ S \f$.
+   //! @param magnitude_spin The magnitude of spins \f$ S \f$.
    void SetMagnitudeSpin(const double magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       if (magnitude_2spin <= 0) {
@@ -76,6 +93,8 @@ public:
       }
    }
    
+   //! @brief Set target Hilbert space specified by the total sz to be diagonalized.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{S}^{z}_{i}\rangle \f$.
    void SetTotalSz(const double total_sz) {
       if (isValidQNumber(total_sz) == false) {
          std::stringstream ss;
@@ -91,18 +110,20 @@ public:
       }
    }
    
+   //! @brief Set calculated_eigenvector_set_, which represents the calculated eigenvectors and eigenvalues.
+   //! @param level Energy level.
    void SetCalculatedEigenvectorSet(const std::int64_t level) {
       calculated_eigenvector_set_.emplace(level);
    }
-   
-   void RemoveCalculatedEigenvectorSet(const std::int64_t level) {
-      calculated_eigenvector_set_.erase(level);
-   }
-   
+      
+   //! @brief Check if there is a subspace specified by the input total sz.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{S}^{z}_{i}\rangle \f$
+   //! @return ture if there exists corresponding subspace, otherwise false.
    bool isValidQNumber(const double total_sz) const {
       return isValidQNumber(system_size_, 0.5*magnitude_2spin_, total_sz);
    }
    
+   //! @brief Print the onsite bases.
    void PrintBasisOnsite() const {
       const double magnitude_spin = magnitude_2spin_/2.0;
       for (int row = 0; row < dim_onsite_; ++row) {
@@ -110,18 +131,30 @@ public:
       }
    }
    
+   //! @brief Calculate the dimension of the target Hilbert space specified by
+   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @return The dimension of the target Hilbert space.
    std::int64_t CalculateTargetDim() const {
       return CalculateTargetDim(0.5*total_2sz_);
    }
    
+   //! @brief Calculate the dimension of the target Hilbert space specified by
+   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @return The dimension of the target Hilbert space.
    std::int64_t CalculateTargetDim(const double total_sz) const {
       return CalculateTargetDim(system_size_, 0.5*magnitude_2spin_, total_sz);
    }
    
+   //! @brief Generate bases of the target Hilbert space specified by
+   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    void GenerateBasis() {
       GenerateBasis(0.5*total_2sz_);
    }
    
+   //! @brief Generate bases of the target Hilbert space specified by
+   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    void GenerateBasis(const double total_sz) {
       if (!isValidQNumber(total_sz)) {
          std::stringstream ss;
@@ -243,6 +276,10 @@ public:
       std::cout << "\rElapsed time of generating basis:" << time_sec << "[sec]" << std::endl;
    }
    
+   //! @brief Calculate the quantum numbers of excited states that appear when calculating the correlation functions.
+   //! @param m_1 The matrix of an onsite operator.
+   //! @param m_2 The matrix of an onsite operator.
+   //! @return The list of quantum numbers.
    std::unordered_set<double> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
       std::unordered_set<double> level_set;
       std::unordered_set<double> level_set_m1;
@@ -250,8 +287,8 @@ public:
       for (std::int64_t i = 0; i < m_1.row_dim; ++i) {
          for (std::int64_t j = m_1.row[i]; j < m_1.row[i + 1]; ++j) {
             if (m_1.val[j] != 0.0) {
-               level_set.emplace(CalculateQuntumNumberDifference(i, m_1.col[j]) + 0.5*total_2sz_);
-               level_set_m1.emplace(CalculateQuntumNumberDifference(i, m_1.col[j]) + 0.5*total_2sz_);
+               level_set.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_1.col[j])) + 0.5*total_2sz_);
+               level_set_m1.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_1.col[j])) + 0.5*total_2sz_);
             }
          }
       }
@@ -259,8 +296,8 @@ public:
       for (std::int64_t i = 0; i < m_2.row_dim; ++i) {
          for (std::int64_t j = m_2.row[i]; j < m_2.row[i + 1]; ++j) {
             if (m_2.val[j] != 0.0) {
-               level_set.emplace(CalculateQuntumNumberDifference(i, m_2.col[j]) + 0.5*total_2sz_);
-               level_set_m2.emplace(CalculateQuntumNumberDifference(i, m_2.col[j]) + 0.5*total_2sz_);
+               level_set.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_2.col[j])) + 0.5*total_2sz_);
+               level_set_m2.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_2.col[j])) + 0.5*total_2sz_);
             }
          }
       }
@@ -276,6 +313,11 @@ public:
       return level_set_intersection;
    }
    
+   //! @brief Calculate the quantum numbers of excited states that appear when calculating the correlation functions.
+   //! @param m_1_bra The matrix of an onsite operator.
+   //! @param m_2_ket The matrix of an onsite operator.
+   //! @param m_3_ket The matrix of an onsite operator.
+   //! @return The list of quantum numbers.
    std::vector<std::pair<double, double>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_ket, const CRS &m_3_ket) const {
       std::unordered_set<double> delta_sector_set_m1;
       std::unordered_set<double> delta_sector_set_m2;
@@ -284,7 +326,7 @@ public:
       for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
          for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
             if (m_1_bra.val[j] != 0.0) {
-               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(i, m_1_bra.col[j]));
+               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_1_bra.col[j])));
             }
          }
       }
@@ -292,7 +334,7 @@ public:
       for (std::int64_t i = 0; i < m_2_ket.row_dim; ++i) {
          for (std::int64_t j = m_2_ket.row[i]; j < m_2_ket.row[i + 1]; ++j) {
             if (m_2_ket.val[j] != 0.0) {
-               delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(i, m_2_ket.col[j]));
+               delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_2_ket.col[j])));
             }
          }
       }
@@ -300,7 +342,7 @@ public:
       for (std::int64_t i = 0; i < m_3_ket.row_dim; ++i) {
          for (std::int64_t j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
             if (m_3_ket.val[j] != 0.0) {
-               delta_sector_set_m3.emplace(CalculateQuntumNumberDifference(i, m_3_ket.col[j]));
+               delta_sector_set_m3.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_3_ket.col[j])));
             }
          }
       }
@@ -322,6 +364,12 @@ public:
       return target_sector_set;
    }
    
+   //! @brief Calculate the quantum numbers of excited states that appear when calculating the correlation functions.
+   //! @param m_1_bra The matrix of an onsite operator.
+   //! @param m_2_bra The matrix of an onsite operator.
+   //! @param m_3_ket The matrix of an onsite operator.
+   //! @param m_4_ket The matrix of an onsite operator.
+   //! @return The list of quantum numbers.
    std::vector<std::tuple<double, double, double>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_bra, const CRS &m_3_ket, const CRS &m_4_ket) const {
       std::unordered_set<double> delta_sector_set_m1;
       std::unordered_set<double> delta_sector_set_m2;
@@ -331,7 +379,7 @@ public:
       for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
          for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
             if (m_1_bra.val[j] != 0.0) {
-               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(i, m_1_bra.col[j]));
+               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_1_bra.col[j])));
             }
          }
       }
@@ -339,7 +387,7 @@ public:
       for (std::int64_t i = 0; i < m_2_bra.row_dim; ++i) {
          for (std::int64_t j = m_2_bra.row[i]; j < m_2_bra.row[i + 1]; ++j) {
             if (m_2_bra.val[j] != 0.0) {
-               delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(i, m_2_bra.col[j]));
+               delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_2_bra.col[j])));
             }
          }
       }
@@ -347,7 +395,7 @@ public:
       for (std::int64_t i = 0; i < m_3_ket.row_dim; ++i) {
          for (std::int64_t j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
             if (m_3_ket.val[j] != 0.0) {
-               delta_sector_set_m3.emplace(CalculateQuntumNumberDifference(i, m_3_ket.col[j]));
+               delta_sector_set_m3.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_3_ket.col[j])));
             }
          }
       }
@@ -355,7 +403,7 @@ public:
       for (std::int64_t i = 0; i < m_4_ket.row_dim; ++i) {
          for (std::int64_t j = m_4_ket.row[i]; j < m_4_ket.row[i + 1]; ++j) {
             if (m_4_ket.val[j] != 0.0) {
-               delta_sector_set_m4.emplace(CalculateQuntumNumberDifference(i, m_4_ket.col[j]));
+               delta_sector_set_m4.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_4_ket.col[j])));
             }
          }
       }
@@ -379,6 +427,11 @@ public:
       return target_sector_set;
    }
    
+   //! @brief Check if there is a subspace specified by the input quantum numbers.
+   //! @param system_size The system size \f$ N\f$.
+   //! @param magnitude_spin The magnitude of spins \f$ S \f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
+   //! @return ture if there exists corresponding subspace, otherwise false.
    static bool isValidQNumber(const int system_size, const double magnitude_spin, const double total_sz) {
       const int total_2sz = utility::DoubleTheNumber(total_sz);
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
@@ -393,6 +446,11 @@ public:
       }
    }
    
+   //! @brief Generate bases of the target Hilbert space specified by
+   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param system_size The system size \f$ N\f$.
+   //! @param magnitude_spin The magnitude of spins \f$ S \f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    static std::int64_t CalculateTargetDim(const int system_size, const double magnitude_spin, const double total_sz) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       if (!isValidQNumber(system_size, magnitude_spin, total_sz)) {
@@ -419,6 +477,9 @@ public:
       return dim[system_size - 1][(total_2sz + max_total_2sz)/2];
    }
    
+   //! @brief Generate the spin-\f$ S\f$ operator for the x-direction \f$ \hat{s}^{x}\f$.
+   //! @param magnitude_spin The magnitude of spins \f$ S \f$.
+   //! @return The matrix of \f$ \hat{s}^{x}\f$.
    static CRS CreateOnsiteOperatorSx(const double magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       const int dim_onsite      = magnitude_2spin + 1;
@@ -453,6 +514,9 @@ public:
       return matrix;
    }
    
+   //! @brief Generate the spin-\f$ S\f$ operator for the y-direction \f$ i\hat{s}^{y}\f$ with \f$ i\f$ being the imaginary unit.
+   //! @param magnitude_spin The magnitude of spins \f$ S \f$.
+   //! @return The matrix of \f$ i\hat{s}^{y}\f$.
    static CRS CreateOnsiteOperatoriSy(const double magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       const int dim_onsite      = magnitude_2spin + 1;
@@ -488,6 +552,9 @@ public:
       return matrix;
    }
    
+   //! @brief Generate the spin-\f$ S\f$ operator for the z-direction \f$ \hat{s}^{z}\f$.
+   //! @param magnitude_spin The magnitude of spins \f$ S \f$.
+   //! @return The matrix of \f$ \hat{s}^{z}\f$.
    static CRS CreateOnsiteOperatorSz(const double magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       const int dim_onsite      = magnitude_2spin + 1;
@@ -504,6 +571,9 @@ public:
       return matrix;
    }
    
+   //! @brief Generate the spin-\f$ S\f$ raising operator \f$ \hat{s}^{+}\f$.
+   //! @param magnitude_spin The magnitude of spins \f$ S \f$.
+   //! @return The matrix of \f$ \hat{s}^{+}\f$.
    static CRS CreateOnsiteOperatorSp(const double magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       const int dim_onsite      = magnitude_2spin + 1;
@@ -517,6 +587,9 @@ public:
       return matrix;
    }
    
+   //! @brief Generate the spin-\f$ S\f$ raising operator \f$ \hat{s}^{-}\f$.
+   //! @param magnitude_spin The magnitude of spins \f$ S \f$.
+   //! @return The matrix of \f$ \hat{s}^{-}\f$.
    static CRS CreateOnsiteOperatorSm(const double magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       const int dim_onsite      = magnitude_2spin + 1;
@@ -529,61 +602,127 @@ public:
       return matrix;
    }
    
-   template<typename IntegerType>
-   inline static IntegerType CalculateQuntumNumberDifference(const IntegerType row, const IntegerType col) {
+   //! @brief Calculate difference of the total sz from the rows and columns in the matrix representation of an onsite operator.
+   //! @param row The row in the matrix representation of an onsite operator.
+   //! @param col The column in the matrix representation of an onsite operator.
+   //! @return The differences of the total sz.
+   inline static int CalculateQuntumNumberDifference(const int row, const int col) {
       return col - row;
    }
+
+   //! @brief Get the system size \f$ N\f$.
+   //! @return The system size \f$ N\f$.
+   inline int GetSystemSize() const { return system_size_; }
    
-   // TODO: Move Boundary Condition to Derivrd Class.
-   inline int GetSystemSize()           const { return system_size_;            }
-   inline int GetDimOnsite()            const { return dim_onsite_;             }
-   inline int GetMagnitude2Spin()       const { return magnitude_2spin_;        }
-   inline int GetTotal2Sz()             const { return total_2sz_;              }
-   inline double GetTotalSz()           const { return 0.5*total_2sz_;          }
-   inline int GetNumConservedQuantity() const { return num_conserved_quantity_; }
-   inline double GetMagnitudeSpin()     const { return 0.5*magnitude_2spin_;    }
+   //! @brief Get dimension of the local Hilbert space, \f$ 2S+1\f$.
+   //! @return The dimension of the local Hilbert space, \f$ 2S+1\f$.
+   inline int GetDimOnsite() const { return dim_onsite_; }
+      
+   //! @brief Get the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
+   //! @return The total sz.
+   inline double GetTotalSz() const { return 0.5*total_2sz_; }
    
-   inline const CRS &GetOnsiteOperatorSx () const { return onsite_operator_sx_ ; }
+   //! @brief Get the magnitude of spins \f$ S\f$.
+   //! @return The magnitude of spins \f$ S\f$.
+   inline double GetMagnitudeSpin() const { return 0.5*magnitude_2spin_; }
+   
+   //! @brief Get the spin-\f$ S\f$ operator for the x-direction \f$ \hat{s}^{x}\f$.
+   //! @return The matrix of \f$ \hat{s}^{x}\f$.
+   inline const CRS &GetOnsiteOperatorSx () const { return onsite_operator_sx_; }
+   
+   //! @brief Get the spin-\f$ S\f$ operator for the y-direction \f$ i\hat{s}^{y}\f$ with \f$ i\f$ being the imaginary unit.
+   //! @return The matrix of \f$ i\hat{s}^{y}\f$.
    inline const CRS &GetOnsiteOperatoriSy() const { return onsite_operator_isy_; }
-   inline const CRS &GetOnsiteOperatorSz () const { return onsite_operator_sz_ ; }
-   inline const CRS &GetOnsiteOperatorSp () const { return onsite_operator_sp_ ; }
-   inline const CRS &GetOnsiteOperatorSm () const { return onsite_operator_sm_ ; }
    
+   //! @brief Get the spin-\f$ S\f$ operator for the z-direction \f$ \hat{s}^{z}\f$.
+   //! @return The matrix of \f$ \hat{s}^{z}\f$.
+   inline const CRS &GetOnsiteOperatorSz () const { return onsite_operator_sz_; }
+   
+   //! @brief Get the spin-\f$ S\f$ raising operator \f$ \hat{s}^{+}\f$.
+   //! @return The matrix of \f$ \hat{s}^{+}\f$.
+   inline const CRS &GetOnsiteOperatorSp () const { return onsite_operator_sp_; }
+   
+   //! @brief Get the spin-\f$ S\f$ raising operator \f$ \hat{s}^{-}\f$.
+   //! @return The matrix of \f$ \hat{s}^{-}\f$.
+   inline const CRS &GetOnsiteOperatorSm () const { return onsite_operator_sm_; }
+   
+   //! @brief Get calculated_eigenvector_set_, which represents the calculated eigenvectors and eigenvalues.
+   //! @return calculated_eigenvector_set_.
    inline const std::unordered_set<int> &GetCalculatedEigenvectorSet() const {
       return calculated_eigenvector_set_;
    }
+   
+   //! @brief Get basis of the target Hilbert space specified by
+   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @return Basis.
    inline const std::vector<std::int64_t> &GetBasis(const double total_sz) const {
       return bases_.at(utility::DoubleTheNumber(total_sz));
    }
+   
+   //! @brief Get inverse basis of the target Hilbert space specified by
+   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @return Inverse basis.
    inline const std::unordered_map<std::int64_t, std::int64_t> &GetBasisInv(const double total_sz) const {
       return bases_inv_.at(utility::DoubleTheNumber(total_sz));
    }
+   
+   //! @brief Get basis of the target Hilbert space specified by
+   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @return Basis.
    inline const std::vector<std::int64_t> &GetTargetBasis() const {
       return bases_.at(total_2sz_);
    }
+   
+   //! @brief Get inverse basis of the target Hilbert space specified by
+   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @return Inverse basis.
    inline const std::unordered_map<std::int64_t, std::int64_t> &GetTargetBasisInv() const {
       return bases_inv_.at(total_2sz_);
    }
    
 protected:
+   
+   //! @brief The spin-\f$ S\f$ operator for the x-direction \f$ \hat{s}^{x}\f$.
    CRS onsite_operator_sx_;
+   
+   //! @brief The spin-\f$ S\f$ operator for the y-direction \f$ i\hat{s}^{y}\f$ with \f$ i\f$ being the imaginary unit.
    CRS onsite_operator_isy_;
+   
+   //! @brief The spin-\f$ S\f$ operator for the z-direction \f$ \hat{s}^{z}\f$.
    CRS onsite_operator_sz_;
+   
+   //! @brief The spin-\f$ S\f$ raising operator \f$ \hat{s}^{+}\f$.
    CRS onsite_operator_sp_;
+   
+   //! @brief The the spin-\f$ S\f$ raising operator \f$ \hat{s}^{-}\f$.
    CRS onsite_operator_sm_;
    
-   int system_size_     = 0;
-   int total_2sz_       = 0;
-   int dim_onsite_      = 2;
+   //! @brief The system size
+   int system_size_ = 0;
+   
+   //! @brief Twice the number of the total sz \f$ 2\langle\hat{S}^{z}_{\rm tot}\rangle\f$.
+   int total_2sz_ = 0;
+   
+   //! @brief dimension of the local Hilbert space, \f$ 2S + 1\f$.
+   int dim_onsite_ = 2;
+   
+   //! @brief The magnitude of spins \f$ S\f$.
    int magnitude_2spin_ = 1;
-   
-   const int num_conserved_quantity_ = 1;
-   
+      
+   //! @brief The calculated eigenvectors and eigenvalues.
    std::unordered_set<int> calculated_eigenvector_set_;
    
+   //! @brief Bases of the target Hilbert space specified by
+   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    std::unordered_map<int, std::vector<std::int64_t>> bases_;
+   
+   //! @brief Inverse bases of the target Hilbert space specified by
+   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    std::unordered_map<int, std::unordered_map<std::int64_t, std::int64_t>> bases_inv_;
    
+   //! @brief Set onsite operators.
    void SetOnsiteOperator() {
       onsite_operator_sx_  = CreateOnsiteOperatorSx (0.5*magnitude_2spin_);
       onsite_operator_isy_ = CreateOnsiteOperatoriSy(0.5*magnitude_2spin_);
