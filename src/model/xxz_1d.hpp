@@ -13,38 +13,70 @@
 namespace compnal {
 namespace model {
 
+//! @brief The class for the one-dimensional XXZ model with the magnitude of the spin \f$ S\f$.
+//! The Hamiltonian reads
+//! \f[ \hat{H}=\sum_{d}J_{d}\sum^{N}_{i=1}\left(J^{xy}_{d}\hat{S}^{x}_{i}\hat{S}^{x}_{i+d}+
+//! J^{xy}_{d}\hat{S}^{y}_{i}\hat{S}^{y}_{i+d}+
+//! J^{z}_{d}\hat{S}^{z}_{i}\hat{S}^{z}_{i+d}\right) \f]
+//! @tparam RealType The type of real values.
 template<typename RealType>
 class XXZ_1D: public BaseU1Spin_1D<RealType> {
    
+   //! @brief Alias of compressed row strage (CRS) with RealType.
    using CRS = sparse_matrix::CRS<RealType>;
    
 public:
+   
+   //------------------------------------------------------------------
+   //---------------------------Constructors---------------------------
+   //------------------------------------------------------------------
+   //! @brief Constructor of XXZ_1D class.
    XXZ_1D(): BaseU1Spin_1D<RealType>() {
       onsite_operator_ham_ = CreateOnsiteOperatorHam(this->magnitude_2spin_, h_z_, D_z_);
    }
    
+   //! @brief Constructor of XXZ_1D class.
+   //! @param system_size The system size \f$ N \f$.
    explicit XXZ_1D(const int system_size): BaseU1Spin_1D<RealType>(system_size) {
       onsite_operator_ham_ = CreateOnsiteOperatorHam(this->magnitude_2spin_, h_z_, D_z_);
    }
    
+   //! @brief Constructor of XXZ_1D class.
+   //! @param system_size The system size \f$ N \f$.
+   //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    XXZ_1D(const int system_size, const double magnitude_spin): BaseU1Spin_1D<RealType>(system_size, magnitude_spin) {
       onsite_operator_ham_ = CreateOnsiteOperatorHam(this->magnitude_2spin_, h_z_, D_z_);
    }
    
-   XXZ_1D(const int system_size, const utility::BoundaryCondition bc): BaseU1Spin_1D<RealType>(system_size) {
-      SetBoundaryCondition(bc);
+   //! @brief Constructor of XXZ_1D class.
+   //! @param system_size The system size \f$ N \f$.
+   //! @param boundary_condition Boundary condition.
+   XXZ_1D(const int system_size, const utility::BoundaryCondition boundary_condition): BaseU1Spin_1D<RealType>(system_size) {
+      SetBoundaryCondition(boundary_condition);
       onsite_operator_ham_ = CreateOnsiteOperatorHam(this->magnitude_2spin_, h_z_, D_z_);
    }
    
-   XXZ_1D(const int system_size, const double magnitude_spin, const utility::BoundaryCondition bc): BaseU1Spin_1D<RealType>(system_size, magnitude_spin) {
-      SetBoundaryCondition(bc);
+   //! @brief Constructor of XXZ_1D class.
+   //! @param system_size The system size \f$ N \f$.
+   //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
+   //! @param boundary_condition Boundary condition.
+   XXZ_1D(const int system_size, const double magnitude_spin, const utility::BoundaryCondition boundary_condition): BaseU1Spin_1D<RealType>(system_size, magnitude_spin) {
+      SetBoundaryCondition(boundary_condition);
       onsite_operator_ham_ = CreateOnsiteOperatorHam(this->magnitude_2spin_, h_z_, D_z_);
    }
    
-   void SetBoundaryCondition(const utility::BoundaryCondition bc) {
-      boundary_condition_ = bc;
+   //------------------------------------------------------------------
+   //----------------------Public Member functions---------------------
+   //------------------------------------------------------------------
+   //! @brief Set the boundary condition.
+   //! @param boundary_condition Boundary condition.
+   //! Open boundary condition (OBC), periodic boundary condition (PBC), or sine square deformation (SSD).
+   void SetBoundaryCondition(const utility::BoundaryCondition boundary_condition) {
+      boundary_condition_ = boundary_condition;
    }
    
+   //! @brief Set the spin-spin interaction along the z-direction \f$ J^{z} \f$.
+   //! @param J_z The spin-spin interaction along the z-direction \f$ J^{z} \f$.
    void SetJz(const std::vector<RealType> &J_z) {
       if (J_z_ != J_z) {
          J_z_ = J_z;
@@ -52,6 +84,8 @@ public:
       }
    }
    
+   //! @brief Set the spin-spin interaction along the z-direction \f$ J^{z}_{0} \f$.
+   //! @param J_z The spin-spin interaction along the z-direction \f$ J^{z}_{0} \f$.
    void SetJz(const RealType J_z) {
       if (J_z_.size() == 0) {
          J_z_.push_back(J_z);
@@ -63,6 +97,8 @@ public:
       }
    }
    
+   //! @brief Set the spin-spin interaction along the x, y-direction \f$ J^{xy} \f$.
+   //! @param J_xy The spin-spin interaction along the x, y-direction \f$ J^{xy} \f$.
    void SetJxy(const std::vector<RealType> &J_xy) {
       if (J_xy_ != J_xy) {
          J_xy_ = J_xy;
@@ -70,6 +106,8 @@ public:
       }
    }
    
+   //! @brief Set the spin-spin interaction along the x, y-direction \f$ J^{xy}_{0} \f$.
+   //! @param J_xy The spin-spin interaction along the x, y-direction \f$ J^{xy}_{0} \f$.
    void SetJxy(const RealType J_xy) {
       if (J_xy_.size() == 0) {
          J_xy_.push_back(J_xy);
@@ -81,6 +119,8 @@ public:
       }
    }
    
+   //! @brief Set the magnetic field for the z-direction \f$ h_z\f$.
+   //! @param h_z The magnetic field for the z-direction \f$ h_z\f$.
    void SetHz(const RealType h_z) {
       if (h_z_ != h_z) {
          h_z_ = h_z;
@@ -89,6 +129,8 @@ public:
       }
    }
    
+   //! @brief Set the uniaxial anisotropy to the z-direction \f$ D_z\f$.
+   //! @param D_z The uniaxial anisotropy to the z-direction \f$ D_z\f$.
    void SetDz(const RealType D_z) {
       if (D_z_ != D_z) {
          D_z_ = D_z;
@@ -97,6 +139,7 @@ public:
       }
    }
    
+   //! @brief Print information about this class.
    void PrintInfo() const {
       std::string bc = "None";
       if (boundary_condition_ == utility::BoundaryCondition::OBC) {
@@ -130,7 +173,9 @@ public:
       std::cout << "Uniaxial Anisotropy for the z-direction: D_z =" << D_z_ << std::endl;
    }
    
-   
+   //! @brief Create the onsite Hamiltonian.
+   //! \f[ \hat{H}_{\rm onsite}=h_z\hat{S}^{z}+D_z\left(\hat{S}^{z}\right)^{2}\f]
+   //! @return The matrix of \f$ \hat{H}_{\rm onsite}\f$.
    static CRS CreateOnsiteOperatorHam(const double magnitude_spin, const RealType h_z = 0.0, const RealType D_z = 0.0) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       const int dim_onsite      = magnitude_2spin + 1;
@@ -147,27 +192,60 @@ public:
       return matrix;
    }
    
+   //! @brief Get the onsite Hamiltonian.
+   //! \f[ \hat{H}_{\rm onsite}=h_z\hat{S}^{z}+D_z\left(\hat{S}^{z}\right)^{2}\f]
+   //! @return The matrix of \f$ \hat{H}_{\rm onsite}\f$.
    inline const CRS &GetOnsiteOperatorHam() const { return onsite_operator_ham_; }
    
-   inline const std::vector<RealType> &GetJz () const { return J_z_ ; }
+   //! @brief Get the spin-spin interaction along the z-direction \f$ J^{z} \f$.
+   //! @return J_z The spin-spin interaction along the z-direction \f$ J^{z} \f$.
+   inline const std::vector<RealType> &GetJz() const { return J_z_ ; }
+   
+   //! @brief Get the spin-spin interaction along the x, y-direction \f$ J^{xy} \f$.
+   //! @return J_xy The spin-spin interaction along the x, y-direction \f$ J^{xy} \f$.
    inline const std::vector<RealType> &GetJxy() const { return J_xy_; }
    
-   inline RealType GetJz (const std::int64_t index) const { return J_z_ .at(index); }
+   //! @brief Get the spin-spin interaction along the z-direction \f$ J^{z}_{d} \f$.
+   //! @param index The distance \f$ d\f$.
+   //! @return J_z The spin-spin interaction along the z-direction \f$ J^{z}_{d} \f$.
+   inline RealType GetJz (const std::int64_t index) const { return J_z_.at(index); }
+   
+   //! @brief Get the spin-spin interaction along the x, y-direction \f$ J^{xy}_{d} \f$.
+   //! @param index The distance \f$ d\f$.
+   //! @return J_xy The spin-spin interaction along the x, y-direction \f$ J^{xy}_{d} \f$.
    inline RealType GetJxy(const std::int64_t index) const { return J_xy_.at(index); }
    
+   //! @brief Get the magnetic field for the z-direction \f$ h_z\f$.
+   //! @return h_z The magnetic field for the z-direction \f$ h_z\f$.
    inline RealType GetHz() const { return h_z_; }
+   
+   //! @brief Get the uniaxial anisotropy to the z-direction \f$ D_z\f$.
+   //! @return D_z The uniaxial anisotropy to the z-direction \f$ D_z\f$.
    inline RealType GetDz() const { return D_z_; }
    
+   //! @brief Get the boundary condition.
+   //! @return The boundary condition.
    inline utility::BoundaryCondition GetBoundaryCondition() const { return boundary_condition_; }
    
 private:
+   //! @brief The onsite Hamiltonian.
+   //! \f[ \hat{H}_{\rm onsite}=h_z\hat{S}^{z}+D_z\left(\hat{S}^{z}\right)^{2}\f]
    CRS onsite_operator_ham_;
    
+   //! @brief Boundary condition.
+   //! Open boundary condition (OBC), periodic boundary condition (PBC), or sine square deformation (SSD).
    utility::BoundaryCondition boundary_condition_ = utility::BoundaryCondition::OBC;
    
-   std::vector<RealType> J_z_  = {1.0};
+   //! @brief The spin-spin interaction along the z-direction \f$ J^{z} \f$.
+   std::vector<RealType> J_z_ = {1.0};
+   
+   //! @brief The spin-spin interaction along the x, y-direction \f$ J^{xy} \f$.
    std::vector<RealType> J_xy_ = {1.0};
+   
+   //! @brief The magnetic field for the z-direction \f$ h_z\f$.
    RealType h_z_ = 0.0;
+   
+   //! @brief The uniaxial anisotropy to the z-direction \f$ D_z\f$.
    RealType D_z_ = 0.0;
    
 };

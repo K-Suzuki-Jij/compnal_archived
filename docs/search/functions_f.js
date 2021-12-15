@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['setboundarycondition_0',['SetBoundaryCondition',['../classcompnal_1_1model_1_1_hubbard__1_d.html#a39d703d09ed605ab39b9d337ad149c05',1,'compnal::model::Hubbard_1D::SetBoundaryCondition()'],['../classcompnal_1_1model_1_1_x_x_z__1_d.html#ad251ccb953e41a777f9612e209ea6b1d',1,'compnal::model::XXZ_1D::SetBoundaryCondition()']]],
+  ['setboundarycondition_0',['SetBoundaryCondition',['../classcompnal_1_1model_1_1_hubbard__1_d.html#a39d703d09ed605ab39b9d337ad149c05',1,'compnal::model::Hubbard_1D::SetBoundaryCondition()'],['../classcompnal_1_1model_1_1_x_x_z__1_d.html#aa3ee04a08a9f005f783dd2148c8652c0',1,'compnal::model::XXZ_1D::SetBoundaryCondition()']]],
   ['setcalculatedeigenvectorset_1',['SetCalculatedEigenvectorSet',['../classcompnal_1_1model_1_1_base_u1_electron__1_d.html#af0bf4076c6d37899df7a84c9c92a7ce5',1,'compnal::model::BaseU1Electron_1D::SetCalculatedEigenvectorSet()'],['../classcompnal_1_1model_1_1_base_u1_spin__1_d.html#a1eaf81e0f4eb1f295d203984ede5aabc',1,'compnal::model::BaseU1Spin_1D::SetCalculatedEigenvectorSet()'],['../classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a5d21bcf936f2a2aa879ceb9050db8dfe',1,'compnal::model::BaseU1SpinElectron_1D::SetCalculatedEigenvectorSet()']]],
   ['setchemicalpotential_2',['SetChemicalPotential',['../classcompnal_1_1model_1_1_hubbard__1_d.html#aba696ed51bc3a98aeb35e8d3d9206639',1,'compnal::model::Hubbard_1D']]],
   ['setdz_3',['SetDz',['../classcompnal_1_1model_1_1_x_x_z__1_d.html#a1c9d27ff1e831306510f74ecadf11176',1,'compnal::model::XXZ_1D']]],

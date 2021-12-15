@@ -13,7 +13,7 @@
 namespace compnal {
 namespace model {
 
-//! @brief The class for the one-dimensional conventional Hubbard model.
+//! @brief The class for the one-dimensional Hubbard model.
 //! The Hamiltonian reads
 //! \f[ \hat{H}=\sum_{d}t_{d}\sum^{N}_{i=1}\sum_{\sigma=\uparrow,\downarrow}
 //! \left(\hat{c}^{\dagger}_{i,\sigma}\hat{c}_{i+d,\sigma}+{\rm h.c.}\right)+
