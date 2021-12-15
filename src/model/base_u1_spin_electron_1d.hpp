@@ -23,36 +23,64 @@
 namespace compnal {
 namespace model {
 
+//! @brief The base class for one-dimensional spin-electron systems with the U(1) symmetry.
+//! @tparam RealType The type of real values.
 template<typename RealType>
 class BaseU1SpinElectron_1D {
    
+   //! @brief Alias of compressed row strage (CRS) with RealType.
    using CRS = sparse_matrix::CRS<RealType>;
    
 public:
+   
+   //! @brief The type of real values.
    using ValueType = RealType;
    
+   //------------------------------------------------------------------
+   //---------------------------Constructors---------------------------
+   //------------------------------------------------------------------
+   //! @brief Constructor of BaseU1SpinElectron_1D class.
    BaseU1SpinElectron_1D() {
       SetOnsiteOperator();
    }
    
+   //! @brief Constructor of BaseU1SpinElectron_1D class.
+   //! @param system_size The system size \f$ N \f$.
    explicit BaseU1SpinElectron_1D(const int system_size): BaseU1SpinElectron_1D() {
       SetSystemSize(system_size);
    }
    
+   //! @brief Constructor of BaseU1SpinElectron_1D class.
+   //! @param system_size The system size \f$ N \f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    BaseU1SpinElectron_1D(const int system_size, const double magnitude_lspin): BaseU1SpinElectron_1D(system_size) {
       SetMagnitudeLSpin(magnitude_lspin);
    }
    
+   //! @brief Constructor of BaseU1Electron_1D class.
+   //! @param system_size The system size \f$ N \f$.
+   //! @param total_electron The number of the total electrons
+   //! \f$ \langle \hat{N}_{e}\rangle =\sum^{N}_{i=1}\langle\hat{n}_{i}\rangle\f$.
    BaseU1SpinElectron_1D(const int system_size, const int total_electron): BaseU1SpinElectron_1D(system_size) {
       SetTotalElectron(total_electron);
    }
    
+   //! @brief Constructor of BaseU1Electron_1D class.
+   //! @param system_size The system size \f$ N \f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @param total_electron The number of the total electrons
+   //! \f$ \langle \hat{N}_{e}\rangle =\sum^{N}_{i=1}\langle\hat{n}_{i}\rangle\f$.
    BaseU1SpinElectron_1D(const int system_size,
                          const double magnitude_lspin,
                          const int total_electron): BaseU1SpinElectron_1D(system_size, magnitude_lspin) {
       SetTotalElectron(total_electron);
    }
    
+   //------------------------------------------------------------------
+   //----------------------Public Member functions---------------------
+   //------------------------------------------------------------------
+   //! @brief Set system size.
+   //! @param system_size The system size \f$ N \f$.
    void SetSystemSize(const int system_size) {
       if (system_size <= 0) {
          std::stringstream ss;
@@ -69,6 +97,9 @@ public:
       }
    }
    
+   //! @brief Set target Hilbert space specified by the total sz to be diagonalized.
+   //! @param total_sz The total sz
+   //! \f$ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{s}^{z}_{i}+\hat{S}^{z}_{i}\rangle \f$
    void SetTotalSz(const double total_sz) {
       const int total_2sz = utility::DoubleTheNumber(total_sz);
       if (total_2sz_ != total_2sz) {
@@ -77,6 +108,9 @@ public:
       }
    }
    
+   //! @brief Set the number of total electrons.
+   //! @param total_electron The number of total electrons
+   //! \f$ \hat{N}_{\rm e}=\sum^{N}_{i=1}\hat{n}_{i} \f$
    void SetTotalElectron(const int total_electron) {
       if (total_electron_ != total_electron) {
          total_electron_ = total_electron;
@@ -84,6 +118,8 @@ public:
       }
    }
    
+   //! @brief Set the magnitude of the spin \f$ S \f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    void SetMagnitudeLSpin(const double magnitude_lspin) {
       const int magnitude_2lspin = utility::DoubleTheNumber(magnitude_lspin);
       if (magnitude_2lspin <= 0) {
@@ -103,42 +139,80 @@ public:
       }
    }
    
+   //! @brief Set calculated_eigenvector_set_, which represents the calculated eigenvectors and eigenvalues.
+   //! @param level Energy level.
    void SetCalculatedEigenvectorSet(const int level) {
       calculated_eigenvector_set_.emplace(level);
    }
    
-   bool isValidQNumber() const {
-      return isValidQNumber(system_size_, 0.5*magnitude_2lspin_, total_electron_, 0.5*total_2sz_);
-   }
-   
-   bool isValidQNumber(const int total_electron, const double total_sz) const {
-      return isValidQNumber(system_size_, 0.5*magnitude_2lspin_, total_electron, total_sz);
-   }
-   
+   //! @brief Check if there is a subspace specified by the input quantum numbers.
+   //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
+   //! @return ture if there exists corresponding subspace, otherwise false.
    bool isValidQNumber(const std::pair<int, double> &quantum_number) const {
       return isValidQNumber(system_size_, 0.5*magnitude_2lspin_, quantum_number.first, quantum_number.second);
    }
    
+   //! @brief Check if there is a subspace specified by the input quantum numbers.
+   //! @param total_electron The total electron \f$ \langle\hat{N}_{\rm e}\rangle\f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
+   //! @return ture if there exists corresponding subspace, otherwise false.
+   bool isValidQNumber(const int total_electron, const double total_sz) const {
+      return isValidQNumber(system_size_, 0.5*magnitude_2lspin_, total_electron, total_sz);
+   }
+   
+   //! @brief Calculate the dimension of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
+   //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @return The dimension of the target Hilbert space.
    std::int64_t CalculateTargetDim() const {
       return CalculateTargetDim(system_size_, 0.5*magnitude_2lspin_, total_electron_, 0.5*total_2sz_);
    }
    
+   //! @brief Calculate the dimension of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
+   //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param total_electron The total electron \f$ \langle\hat{N}_{\rm e}\rangle\f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
+   //! @return The dimension of the target Hilbert space.
    std::int64_t CalculateTargetDim(const int total_electron, const double total_sz) const {
       return CalculateTargetDim(system_size_, 0.5*magnitude_2lspin_, total_electron, total_sz);
    }
    
+   //! @brief Calculate the dimension of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
+   //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
+   //! @return The dimension of the target Hilbert space.
    std::int64_t CalculateTargetDim(const std::pair<int, double> &quantum_number) const {
       return CalculateTargetDim(system_size_, 0.5*magnitude_2lspin_, quantum_number.first, quantum_number.second);
    }
    
+   //! @brief Generate bases of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
+   //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    void GenerateBasis() {
       GenerateBasis(total_electron_, 0.5*total_2sz_);
    }
    
+   //! @brief Generate bases of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
+   //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
    void GenerateBasis(const std::pair<int, double> &quantum_number) {
       GenerateBasis(quantum_number.first, quantum_number.second);
    }
    
+   //! @brief Generate bases of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
+   //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param total_electron The total electron \f$ \langle\hat{N}_{\rm e}\rangle\f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    void GenerateBasis(const int total_electron, const double total_sz) {
       if (!isValidQNumber(total_electron, total_sz)) {
          std::stringstream ss;
@@ -310,6 +384,12 @@ public:
 
    }
    
+   //! @brief Check if there is a subspace specified by the input quantum numbers.
+   //! @param system_size The system size \f$ N\f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @param total_electron The total electron \f$ \langle\hat{N}_{\rm e}\rangle\f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
+   //! @return ture if there exists corresponding subspace, otherwise false.
    static bool isValidQNumber(const int system_size, const double magnitude_lspin, const int total_electron, const double total_sz) {
       const int total_2sz        = utility::DoubleTheNumber(total_sz);
       const int magnitude_2lspin = utility::DoubleTheNumber(magnitude_lspin);
@@ -325,6 +405,15 @@ public:
       }
    }
    
+   //! @brief Calculate the dimension of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
+   //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param system_size The system size \f$ N\f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @param total_electron The total electron \f$ \langle\hat{N}_{\rm e}\rangle\f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
+   //! @return The dimension of the target Hilbert space.
    static std::int64_t CalculateTargetDim(const int system_size, const double magnitude_lspin, const int total_electron, const double total_sz) {
       if (!isValidQNumber(system_size, magnitude_lspin, total_electron, total_sz)) {
          return 0;
@@ -347,6 +436,10 @@ public:
       return dim;
    }
    
+   //! @brief Calculate the quantum numbers of excited states that appear when calculating the correlation functions.
+   //! @param m_1 The matrix of an onsite operator.
+   //! @param m_2 The matrix of an onsite operator.
+   //! @return The list of quantum numbers.
    std::vector<std::pair<int, double>> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
       // TODO: Check input matrics
       std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m1;
@@ -378,6 +471,11 @@ public:
       return target_sector_set;
    }
    
+   //! @brief Calculate the quantum numbers of excited states that appear when calculating the correlation functions.
+   //! @param m_1_bra The matrix of an onsite operator.
+   //! @param m_2_ket The matrix of an onsite operator.
+   //! @param m_3_ket The matrix of an onsite operator.
+   //! @return The list of quantum numbers.
    std::vector<std::pair<std::pair<int, double>, std::pair<int, double>>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_ket, const CRS &m_3_ket) const {
       std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m1;
       std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m2;
@@ -427,6 +525,12 @@ public:
       return target_sector_set;
    }
    
+   //! @brief Calculate the quantum numbers of excited states that appear when calculating the correlation functions.
+   //! @param m_1_bra The matrix of an onsite operator.
+   //! @param m_2_bra The matrix of an onsite operator.
+   //! @param m_3_ket The matrix of an onsite operator.
+   //! @param m_4_ket The matrix of an onsite operator.
+   //! @return The list of quantum numbers.
    std::vector<std::tuple<std::pair<int, double>, std::pair<int, double>, std::pair<int, double>>>
    GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_bra, const CRS &m_3_ket, const CRS &m_4_ket) const {
       std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m1;
@@ -490,6 +594,9 @@ public:
       return target_sector_set;
    }
    
+   //! @brief Generate the annihilation operator for the electrons with the up spin \f$ \hat{c}_{\uparrow}\f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @return The matrix of \f$ \hat{c}_{\uparrow}\f$.
    static CRS CreateOnsiteOperatorCUp(const double magnitude_lspin) {
       
       const int magnitude_2lspin = utility::DoubleTheNumber(magnitude_lspin);
@@ -526,6 +633,9 @@ public:
       return matrix;
    }
    
+   //! @brief Generate the annihilation operator for the electrons with the down spin \f$ \hat{c}_{\downarrow}\f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @return The matrix of \f$ \hat{c}_{\downarrow}\f$.
    static CRS CreateOnsiteOperatorCDown(const double magnitude_lspin) {
       
       const int magnitude_2lspin = utility::DoubleTheNumber(magnitude_lspin);
@@ -562,6 +672,9 @@ public:
       return matrix;
    }
    
+   //! @brief Generate the spin-\f$ S\f$ operator of the local spin for the z-direction \f$ \hat{S}^{z}\f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @return The matrix of \f$ \hat{S}^{z}\f$.
    static CRS CreateOnsiteOperatorSzL(const double magnitude_lspin) {
       const int magnitude_2lspin    = utility::DoubleTheNumber(magnitude_lspin);
       const int dim_onsite_lspin    = magnitude_2lspin + 1;
@@ -583,6 +696,9 @@ public:
       return matrix;
    }
    
+   //! @brief Generate the spin-\f$ S\f$ raising operator of the local spin \f$ \hat{S}^{+}\f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @return The matrix of \f$ \hat{S}^{+}\f$.
    static CRS CreateOnsiteOperatorSpL(const double magnitude_lspin) {
       const int magnitude_2lspin    = utility::DoubleTheNumber(magnitude_lspin);
       const int dim_onsite_lspin    = magnitude_2lspin + 1;
@@ -602,6 +718,9 @@ public:
       return matrix;
    }
    
+   //! @brief Generate the spin-\f$ S\f$ raising operator of the local spin \f$ \hat{S}^{-}\f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @return The matrix of \f$ \hat{S}^{-}\f$.
    static CRS CreateOnsiteOperatorSmL(const double magnitude_lspin) {
       const int magnitude_2lspin    = utility::DoubleTheNumber(magnitude_lspin);
       const int dim_onsite_lspin    = magnitude_2lspin + 1;
@@ -621,6 +740,9 @@ public:
       return matrix;
    }
    
+   //! @brief Generate the spin-\f$ S\f$ operator of the local spin for the x-direction \f$ \hat{S}^{x}\f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @return The matrix of \f$ \hat{S}^{x}\f$.
    static CRS CreateOnsiteOperatorSxL(const double magnitude_lspin) {
       const int magnitude_2lspin    = utility::DoubleTheNumber(magnitude_lspin);
       const int dim_onsite_lspin    = magnitude_2lspin + 1;
@@ -660,6 +782,9 @@ public:
       return matrix;
    }
    
+   //! @brief Generate the spin-\f$ S\f$ operator of the local spin for the y-direction \f$ i\hat{S}^{y}\f$ with \f$ i\f$ being the imaginary unit.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @return The matrix of \f$ i\hat{S}^{y}\f$.
    static CRS CreateOnsiteOperatoriSyL(const double magnitude_lspin) {
       const int magnitude_2lspin    = utility::DoubleTheNumber(magnitude_lspin);
       const int dim_onsite_lspin    = magnitude_2lspin + 1;
@@ -701,54 +826,90 @@ public:
       return matrix;
    }
    
+   //! @brief Generate the creation operator for the electrons with the up spin
+   //! \f$ \hat{c}^{\dagger}_{\uparrow}\f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @return The matrix of \f$ \hat{c}^{\dagger}_{\uparrow}\f$.
    static CRS CreateOnsiteOperatorCUpDagger(const double magnitude_lspin) {
       return sparse_matrix::CalculateTransposedMatrix(CreateOnsiteOperatorCUp(magnitude_lspin));
    }
    
+   //! @brief Generate the creation operator for the electrons with the down spin
+   //! \f$ \hat{c}^{\dagger}_{\downarrow}\f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @return The matrix of \f$ \hat{c}^{\dagger}_{\downarrow}\f$.
    static CRS CreateOnsiteOperatorCDownDagger(const double magnitude_lspin) {
       return sparse_matrix::CalculateTransposedMatrix(CreateOnsiteOperatorCDown(magnitude_lspin));
    }
    
+   //! @brief Generate the number operator for the electrons with the up spin
+   //! \f$ \hat{n}_{\uparrow}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow}\f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @return The matrix of \f$ \hat{n}_{\uparrow}\f$.
    static CRS CreateOnsiteOperatorNCUp(const double magnitude_lspin) {
-      return sparse_matrix::CalculateMatrixMatrixProduct(1.0, CreateOnsiteOperatorCUpDagger(magnitude_lspin),
-                                                         1.0, CreateOnsiteOperatorCUp(magnitude_lspin));
+      return CreateOnsiteOperatorCUpDagger(magnitude_lspin)*CreateOnsiteOperatorCUp(magnitude_lspin);
    }
    
+   //! @brief Generate the number operator for the electrons with the down spin
+   //! \f$ \hat{n}_{\downarrow}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow}\f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @return The matrix of \f$ \hat{n}_{\downarrow}\f$.
    static CRS CreateOnsiteOperatorNCDown(const double magnitude_lspin) {
-      return sparse_matrix::CalculateMatrixMatrixProduct(1.0, CreateOnsiteOperatorCDownDagger(magnitude_lspin),
-                                                         1.0, CreateOnsiteOperatorCDown(magnitude_lspin));
+      return CreateOnsiteOperatorCDownDagger(magnitude_lspin)*CreateOnsiteOperatorCDown(magnitude_lspin);
    }
    
+   //! @brief Generate the number operator for the electrons
+   //! \f$ \hat{n}=\hat{n}_{\uparrow} + \hat{n}_{\downarrow}\f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @return The matrix of \f$ \hat{n}\f$.
    static CRS CreateOnsiteOperatorNC(const double magnitude_lspin) {
-      return sparse_matrix::CalculateMatrixMatrixSum(1.0, CreateOnsiteOperatorNCUp(magnitude_lspin),
-                                                     1.0, CreateOnsiteOperatorNCDown(magnitude_lspin));
+      return CreateOnsiteOperatorNCUp(magnitude_lspin) + CreateOnsiteOperatorNCDown(magnitude_lspin);
    }
    
+   //! @brief Generate the spin operator for the x-direction for the electrons
+   //! \f$ \hat{s}^{x}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} + \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})\f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @return The matrix of \f$ \hat{s}^{x}\f$.
    static CRS CreateOnsiteOperatorSxC(const double magnitude_lspin) {
-      return sparse_matrix::CalculateMatrixMatrixSum(0.5, CreateOnsiteOperatorSpC(magnitude_lspin),
-                                                     0.5, CreateOnsiteOperatorSmC(magnitude_lspin));
+      return CreateOnsiteOperatorSpC(magnitude_lspin) + CreateOnsiteOperatorSmC(magnitude_lspin);
    }
    
+   //! @brief Generate the spin operator for the y-direction for the electrons
+   //! \f$ i\hat{s}^{y}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})\f$.
+   //! Here \f$ i=\sqrt{-1}\f$ is the the imaginary unit.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @return The matrix of \f$ i\hat{s}^{y}\f$.
    static CRS CreateOnsiteOperatoriSyC(const double magnitude_lspin) {
-      return sparse_matrix::CalculateMatrixMatrixSum(+0.5, CreateOnsiteOperatorSpC(magnitude_lspin),
-                                                     -0.5, CreateOnsiteOperatorSmC(magnitude_lspin));
+      return 0.5*(CreateOnsiteOperatorSpC(magnitude_lspin) - CreateOnsiteOperatorSmC(magnitude_lspin));
    }
    
+   //! @brief Generate the spin operator for the z-direction for the electrons
+   //! \f$ \hat{s}^{z}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow})\f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @return The matrix of \f$ \hat{s}^{z}\f$.
    static CRS CreateOnsiteOperatorSzC(const double magnitude_lspin) {
-      return sparse_matrix::CalculateMatrixMatrixSum(+0.5, CreateOnsiteOperatorNCUp(magnitude_lspin),
-                                                     -0.5,CreateOnsiteOperatorNCDown(magnitude_lspin));
+      return 0.5*(CreateOnsiteOperatorNCUp(magnitude_lspin) - CreateOnsiteOperatorNCDown(magnitude_lspin));
    }
    
+   //! @brief Generate the raising operator for spin of the electrons
+   //! \f$ \hat{s}^{+}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow}\f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @return The matrix of \f$ \hat{s}^{+}\f$.
    static CRS CreateOnsiteOperatorSpC(const double magnitude_lspin) {
-      return sparse_matrix::CalculateMatrixMatrixProduct(1.0, CreateOnsiteOperatorCUpDagger(magnitude_lspin),
-                                                         1.0, CreateOnsiteOperatorCDown(magnitude_lspin));
+      return CreateOnsiteOperatorCUpDagger(magnitude_lspin)*CreateOnsiteOperatorCDown(magnitude_lspin);
    }
    
+   //! @brief Generate the lowering operator for spin of the electrons
+   //! \f$ \hat{s}^{-}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow}\f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @return The matrix of \f$ \hat{s}^{-}\f$.
    static CRS CreateOnsiteOperatorSmC(const double magnitude_lspin) {
-      return sparse_matrix::CalculateMatrixMatrixProduct(1.0, CreateOnsiteOperatorCDownDagger(magnitude_lspin),
-                                                         1.0, CreateOnsiteOperatorCUp(magnitude_lspin));
+      return CreateOnsiteOperatorCDownDagger(magnitude_lspin)*CreateOnsiteOperatorCUp(magnitude_lspin);
    }
    
+   //! @brief Generate \f$ \hat{\boldsymbol{s}}\cdot\hat{\boldsymbol{S}}=\hat{s}^{x}\hat{S}^{x}+\hat{s}^{y}\hat{S}^{y}+\hat{s}^{z}\hat{S}^{z}\f$
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @return The matrix of \f$ \hat{\boldsymbol{s}}\cdot\hat{\boldsymbol{S}}\f$.
    static CRS CreateOnsiteOperatorSCSL(const double magnitude_lspin) {
       const CRS spc = CreateOnsiteOperatorSpC(magnitude_lspin);
       const CRS smc = CreateOnsiteOperatorSmC(magnitude_lspin);
@@ -756,13 +917,14 @@ public:
       const CRS spl = CreateOnsiteOperatorSpL(magnitude_lspin);
       const CRS sml = CreateOnsiteOperatorSmL(magnitude_lspin);
       const CRS szl = CreateOnsiteOperatorSzL(magnitude_lspin);
-      const CRS spcsml = sparse_matrix::CalculateMatrixMatrixProduct(0.5, spc, 1.0, sml);
-      const CRS smcspl = sparse_matrix::CalculateMatrixMatrixProduct(0.5, smc, 1.0, spl);
-      const CRS szcszl = sparse_matrix::CalculateMatrixMatrixProduct(1.0, szc, 1.0, szl);
-      const CRS xy = sparse_matrix::CalculateMatrixMatrixSum(1.0, spcsml, 1.0, smcspl);
-      return sparse_matrix::CalculateMatrixMatrixSum(1.0, szcszl, 1.0, xy);
+      return szc*szl + 0.5*(spc*sml + smc*spl);
    }
    
+   //! @brief Calculate difference of the number of total electrons and the total sz
+   //! from the rows and columns in the matrix representation of an onsite operator.
+   //! @param row The row in the matrix representation of an onsite operator.
+   //! @param col The column in the matrix representation of an onsite operator.
+   //! @return The differences of the total electron and the total sz.
    inline std::pair<int, double> CalculateQuntumNumberDifference(const int row, const int col) const {
       const int row_electron = CalculateBasisOnsiteElectron(row);
       const int col_electron = CalculateBasisOnsiteElectron(col);
@@ -773,15 +935,29 @@ public:
       return {diff_electron.first, diff_electron.second + diff_lspin};
    }
       
-   inline int    GetSystemSize()           const { return system_size_;            }
-   inline int    GetDimOnsite()            const { return dim_onsite_;             }
-   inline int    GetTotal2Sz()             const { return total_2sz_;              }
-   inline double GetTotalSz()              const { return 0.5*total_2sz_;          }
-   inline int    GetNumConservedQuantity() const { return num_conserved_quantity_; }
-   inline double GetMagnitudeSpin()        const { return 0.5*magnitude_2lspin_;    }
-   inline int    GetTotalElectron()        const { return total_electron_; }
+   //! @brief Get the system size \f$ N\f$.
+   //! @return The system size \f$ N\f$.
+   inline int GetSystemSize() const { return system_size_; }
    
-   inline const CRS &GetOnsiteOperatorCUp()         const { return onsite_operator_c_up_;   }
+   //! @brief Get dimension of the local Hilbert space, \f$ 4*(2S+1)\f$.
+   //! @return The dimension of the local Hilbert space, \f$ 4*(2S+1)\f$.
+   inline int GetDimOnsite() const { return dim_onsite_; }
+   
+   //! @brief Get the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
+   //! @return The total sz.
+   inline double GetTotalSz() const { return 0.5*total_2sz_; }
+
+   //! @brief Get the magnitude of the local spin \f$ S\f$.
+   //! @return The magnitude of the spin \f$ S\f$.
+   inline double GetMagnitudeLSpin() const { return 0.5*magnitude_2lspin_; }
+   
+   //! @brief Get the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$.
+   //! @return The total electrons.
+   inline int GetTotalElectron() const { return total_electron_; }
+   
+   //! @brief Get the annihilation operator for the electrons with the up spin \f$ \hat{c}_{\uparrow}\f$.
+   //! @return The matrix of \f$ \hat{c}_{\uparrow}\f$.
+   inline const CRS &GetOnsiteOperatorCUp() const { return onsite_operator_c_up_; }
    inline const CRS &GetOnsiteOperatorCDown()       const { return onsite_operator_c_down_; }
    inline const CRS &GetOnsiteOperatorCUpDagger()   const { return onsite_operator_c_up_dagger_; }
    inline const CRS &GetOnsiteOperatorCDownDagger() const { return onsite_operator_c_down_dagger_; }

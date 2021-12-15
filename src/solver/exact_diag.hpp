@@ -168,6 +168,10 @@ public:
       return val;
    }
    
+   RealType CalculateCorrelationFunction(const CRS &m, const int site, const int target_level = 0) const {
+      return CalculateExpectationValue(m, site, target_level);
+   }
+   
    RealType CalculateCorrelationFunction(const CRS &m_1, const int site_1, const CRS &m_2, const int site_2, const int target_level = 0) {
       if (model.GetCalculatedEigenvectorSet().count(target_level) == 0) {
          std::stringstream ss;

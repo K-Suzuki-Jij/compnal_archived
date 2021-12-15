@@ -50,7 +50,7 @@ public:
    
    //! @brief Constructor of BaseU1Spin_1D class.
    //! @param system_size The system size \f$ N \f$.
-   //! @param magnitude_spin The magnitude of spins \f$ S \f$.
+   //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    BaseU1Spin_1D(const int system_size, const double magnitude_spin): BaseU1Spin_1D(system_size) {
       SetMagnitudeSpin(magnitude_spin);
    }
@@ -73,8 +73,8 @@ public:
       }
    }
    
-   //! @brief Set the magnitude of spins \f$ S \f$.
-   //! @param magnitude_spin The magnitude of spins \f$ S \f$.
+   //! @brief Set the magnitude of the spin \f$ S \f$.
+   //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    void SetMagnitudeSpin(const double magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       if (magnitude_2spin <= 0) {
@@ -429,7 +429,7 @@ public:
    
    //! @brief Check if there is a subspace specified by the input quantum numbers.
    //! @param system_size The system size \f$ N\f$.
-   //! @param magnitude_spin The magnitude of spins \f$ S \f$.
+   //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    //! @return ture if there exists corresponding subspace, otherwise false.
    static bool isValidQNumber(const int system_size, const double magnitude_spin, const double total_sz) {
@@ -449,7 +449,7 @@ public:
    //! @brief Generate bases of the target Hilbert space specified by
    //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param system_size The system size \f$ N\f$.
-   //! @param magnitude_spin The magnitude of spins \f$ S \f$.
+   //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    static std::int64_t CalculateTargetDim(const int system_size, const double magnitude_spin, const double total_sz) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
@@ -478,7 +478,7 @@ public:
    }
    
    //! @brief Generate the spin-\f$ S\f$ operator for the x-direction \f$ \hat{s}^{x}\f$.
-   //! @param magnitude_spin The magnitude of spins \f$ S \f$.
+   //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{s}^{x}\f$.
    static CRS CreateOnsiteOperatorSx(const double magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
@@ -515,7 +515,7 @@ public:
    }
    
    //! @brief Generate the spin-\f$ S\f$ operator for the y-direction \f$ i\hat{s}^{y}\f$ with \f$ i\f$ being the imaginary unit.
-   //! @param magnitude_spin The magnitude of spins \f$ S \f$.
+   //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ i\hat{s}^{y}\f$.
    static CRS CreateOnsiteOperatoriSy(const double magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
@@ -553,7 +553,7 @@ public:
    }
    
    //! @brief Generate the spin-\f$ S\f$ operator for the z-direction \f$ \hat{s}^{z}\f$.
-   //! @param magnitude_spin The magnitude of spins \f$ S \f$.
+   //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{s}^{z}\f$.
    static CRS CreateOnsiteOperatorSz(const double magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
@@ -572,7 +572,7 @@ public:
    }
    
    //! @brief Generate the spin-\f$ S\f$ raising operator \f$ \hat{s}^{+}\f$.
-   //! @param magnitude_spin The magnitude of spins \f$ S \f$.
+   //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{s}^{+}\f$.
    static CRS CreateOnsiteOperatorSp(const double magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
@@ -588,7 +588,7 @@ public:
    }
    
    //! @brief Generate the spin-\f$ S\f$ raising operator \f$ \hat{s}^{-}\f$.
-   //! @param magnitude_spin The magnitude of spins \f$ S \f$.
+   //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{s}^{-}\f$.
    static CRS CreateOnsiteOperatorSm(const double magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
@@ -622,8 +622,8 @@ public:
    //! @return The total sz.
    inline double GetTotalSz() const { return 0.5*total_2sz_; }
    
-   //! @brief Get the magnitude of spins \f$ S\f$.
-   //! @return The magnitude of spins \f$ S\f$.
+   //! @brief Get the magnitude of the spin \f$ S\f$.
+   //! @return The magnitude of the spin \f$ S\f$.
    inline double GetMagnitudeSpin() const { return 0.5*magnitude_2spin_; }
    
    //! @brief Get the spin-\f$ S\f$ operator for the x-direction \f$ \hat{s}^{x}\f$.
@@ -642,7 +642,7 @@ public:
    //! @return The matrix of \f$ \hat{s}^{+}\f$.
    inline const CRS &GetOnsiteOperatorSp () const { return onsite_operator_sp_; }
    
-   //! @brief Get the spin-\f$ S\f$ raising operator \f$ \hat{s}^{-}\f$.
+   //! @brief Get the spin-\f$ S\f$ lowering operator \f$ \hat{s}^{-}\f$.
    //! @return The matrix of \f$ \hat{s}^{-}\f$.
    inline const CRS &GetOnsiteOperatorSm () const { return onsite_operator_sm_; }
    
@@ -708,7 +708,7 @@ protected:
    //! @brief dimension of the local Hilbert space, \f$ 2S + 1\f$.
    int dim_onsite_ = 2;
    
-   //! @brief The magnitude of spins \f$ S\f$.
+   //! @brief The magnitude of the spin \f$ S\f$.
    int magnitude_2spin_ = 1;
       
    //! @brief The calculated eigenvectors and eigenvalues.

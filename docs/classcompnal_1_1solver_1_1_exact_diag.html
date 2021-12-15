@@ -98,6 +98,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a51767027245917e4537e78966d6e7915"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1aafb57ecb9c2dcc044f4a6828cc93e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#ada6514651bff6cb916c47982c1b70ba5">RealType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#a1aafb57ecb9c2dcc044f4a6828cc93e8">CalculateExpectationValue</a> (const <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#aa54a851fbc71d43eb274c08d03bb767a">CRS</a> &amp;m, const int site, const int level=0) const</td></tr>
 <tr class="separator:a1aafb57ecb9c2dcc044f4a6828cc93e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd281c111110b09eeeea7a456f5220b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#ada6514651bff6cb916c47982c1b70ba5">RealType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#acd281c111110b09eeeea7a456f5220b5">CalculateCorrelationFunction</a> (const <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#aa54a851fbc71d43eb274c08d03bb767a">CRS</a> &amp;m, const int site, const int target_level=0) const</td></tr>
+<tr class="separator:acd281c111110b09eeeea7a456f5220b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a490b6895fcfb239a483be3dd2f10134a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#ada6514651bff6cb916c47982c1b70ba5">RealType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#a490b6895fcfb239a483be3dd2f10134a">CalculateCorrelationFunction</a> (const <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#aa54a851fbc71d43eb274c08d03bb767a">CRS</a> &amp;m_1, const int site_1, const <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#aa54a851fbc71d43eb274c08d03bb767a">CRS</a> &amp;m_2, const int site_2, const int target_level=0)</td></tr>
 <tr class="separator:a490b6895fcfb239a483be3dd2f10134a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5779b9d1389557e8dcf81b91e978507"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#ada6514651bff6cb916c47982c1b70ba5">RealType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#ae5779b9d1389557e8dcf81b91e978507">CalculateCorrelationFunction</a> (const <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#aa54a851fbc71d43eb274c08d03bb767a">CRS</a> &amp;m_1, const int site_1, const <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#aa54a851fbc71d43eb274c08d03bb767a">CRS</a> &amp;m_2, const int site_2, const <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#aa54a851fbc71d43eb274c08d03bb767a">CRS</a> &amp;m_3, const int site_3, const int target_level=0)</td></tr>
@@ -291,8 +293,52 @@ template&lt;class ModelClass &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="acd281c111110b09eeeea7a456f5220b5" name="acd281c111110b09eeeea7a456f5220b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd281c111110b09eeeea7a456f5220b5">&#9670;&nbsp;</a></span>CalculateCorrelationFunction() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class ModelClass &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#ada6514651bff6cb916c47982c1b70ba5">RealType</a> <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html">compnal::solver::ExactDiag</a>&lt; ModelClass &gt;::CalculateCorrelationFunction </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#aa54a851fbc71d43eb274c08d03bb767a">CRS</a> &amp;&#160;</td>
+          <td class="paramname"><em>m</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>site</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>target_level</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a7c3c205f875f049444abaa9f17d2faeb" name="a7c3c205f875f049444abaa9f17d2faeb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c3c205f875f049444abaa9f17d2faeb">&#9670;&nbsp;</a></span>CalculateCorrelationFunction() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c3c205f875f049444abaa9f17d2faeb">&#9670;&nbsp;</a></span>CalculateCorrelationFunction() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -372,7 +418,7 @@ template&lt;class ModelClass &gt; </div>
 </div>
 </div>
 <a id="ae5779b9d1389557e8dcf81b91e978507" name="ae5779b9d1389557e8dcf81b91e978507"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae5779b9d1389557e8dcf81b91e978507">&#9670;&nbsp;</a></span>CalculateCorrelationFunction() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5779b9d1389557e8dcf81b91e978507">&#9670;&nbsp;</a></span>CalculateCorrelationFunction() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -440,7 +486,7 @@ template&lt;class ModelClass &gt; </div>
 </div>
 </div>
 <a id="a490b6895fcfb239a483be3dd2f10134a" name="a490b6895fcfb239a483be3dd2f10134a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a490b6895fcfb239a483be3dd2f10134a">&#9670;&nbsp;</a></span>CalculateCorrelationFunction() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a490b6895fcfb239a483be3dd2f10134a">&#9670;&nbsp;</a></span>CalculateCorrelationFunction() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
