@@ -888,15 +888,15 @@ protected:
    CRS onsite_operator_sm_;
    
    //! @brief The system size
-   int system_size_    = 0;
+   int system_size_ = 0;
    
    //! @brief Twice the number of the total sz \f$ 2\langle\hat{S}^{z}_{\rm tot}\rangle\f$.
-   int total_2sz_      = 0;
+   int total_2sz_ = 0;
    
    //! @brief The total electron \f$ \langle\hat{N}_{\rm e}\rangle\f$.
    int total_electron_ = 0;
    
-   //! @brief dimension of the local Hilbert space, 4.
+   //! @brief The dimension of the local Hilbert space, 4.
    const int dim_onsite_ = 4;
    
    //! @brief The calculated eigenvectors and eigenvalues.

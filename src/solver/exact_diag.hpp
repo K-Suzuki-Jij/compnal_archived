@@ -32,7 +32,6 @@ class ExactDiag {
       double zero_precision = std::pow(10, -15);
    };
 
-   
 public:
    
    ModelClass model;

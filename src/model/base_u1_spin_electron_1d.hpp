@@ -958,80 +958,230 @@ public:
    //! @brief Get the annihilation operator for the electrons with the up spin \f$ \hat{c}_{\uparrow}\f$.
    //! @return The matrix of \f$ \hat{c}_{\uparrow}\f$.
    inline const CRS &GetOnsiteOperatorCUp() const { return onsite_operator_c_up_; }
-   inline const CRS &GetOnsiteOperatorCDown()       const { return onsite_operator_c_down_; }
-   inline const CRS &GetOnsiteOperatorCUpDagger()   const { return onsite_operator_c_up_dagger_; }
-   inline const CRS &GetOnsiteOperatorCDownDagger() const { return onsite_operator_c_down_dagger_; }
-   inline const CRS &GetOnsiteOperatorNCUp()        const { return onsite_operator_nc_up_; }
-   inline const CRS &GetOnsiteOperatorNCDown()      const { return onsite_operator_nc_down_; }
-   inline const CRS &GetOnsiteOperatorNC()          const { return onsite_operator_nc_; }
-   inline const CRS &GetOnsiteOperatorSxC ()        const { return onsite_operator_sxc_ ; }
-   inline const CRS &GetOnsiteOperatoriSyC()        const { return onsite_operator_isyc_; }
-   inline const CRS &GetOnsiteOperatorSzC ()        const { return onsite_operator_szc_ ; }
-   inline const CRS &GetOnsiteOperatorSpC ()        const { return onsite_operator_spc_ ; }
-   inline const CRS &GetOnsiteOperatorSmC ()        const { return onsite_operator_smc_ ; }
    
+   //! @brief Get the annihilation operator for the electrons with the down spin \f$ \hat{c}_{\downarrow}\f$.
+   //! @return The matrix of \f$ \hat{c}_{\downarrow}\f$.
+   inline const CRS &GetOnsiteOperatorCDown() const { return onsite_operator_c_down_; }
+   
+   //! @brief Get the creation operator for the electrons with the up spin
+   //! \f$ \hat{c}^{\dagger}_{\uparrow}\f$.
+   //! @return The matrix of \f$ \hat{c}^{\dagger}_{\uparrow}\f$.
+   inline const CRS &GetOnsiteOperatorCUpDagger() const { return onsite_operator_c_up_dagger_; }
+   
+   //! @brief Get the creation operator for the electrons with the down spin
+   //! \f$ \hat{c}^{\dagger}_{\downarrow}\f$.
+   //! @return The matrix of \f$ \hat{c}^{\dagger}_{\downarrow}\f$.
+   inline const CRS &GetOnsiteOperatorCDownDagger() const { return onsite_operator_c_down_dagger_; }
+   
+   //! @brief Get the number operator for the electrons with the up spin
+   //! \f$ \hat{n}_{\uparrow}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow}\f$.
+   //! @return The matrix of \f$ \hat{n}_{\uparrow}\f$.
+   inline const CRS &GetOnsiteOperatorNCUp() const { return onsite_operator_nc_up_; }
+   
+   //! @brief Get the number operator for the electrons with the down spin
+   //! \f$ \hat{n}_{\downarrow}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow}\f$.
+   //! @return The matrix of \f$ \hat{n}_{\downarrow}\f$.
+   inline const CRS &GetOnsiteOperatorNCDown() const { return onsite_operator_nc_down_; }
+   
+   //! @brief Get the number operator for the electrons
+   //! \f$ \hat{n}=\hat{n}_{\uparrow} + \hat{n}_{\downarrow}\f$.
+   //! @return The matrix of \f$ \hat{n}\f$.
+   inline const CRS &GetOnsiteOperatorNC() const { return onsite_operator_nc_; }
+   
+   //! @brief Get the spin operator for the x-direction for the electrons
+   //! \f$ \hat{s}^{x}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} + \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})\f$.
+   //! @return The matrix of \f$ \hat{s}^{x}\f$.
+   inline const CRS &GetOnsiteOperatorSxC() const { return onsite_operator_sxc_ ; }
+   
+   //! @brief Get the spin operator for the y-direction for the electrons
+   //! \f$ i\hat{s}^{y}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})\f$.
+   //! Here \f$ i=\sqrt{-1}\f$ is the the imaginary unit.
+   //! @return The matrix of \f$ i\hat{s}^{y}\f$.
+   inline const CRS &GetOnsiteOperatoriSyC() const { return onsite_operator_isyc_; }
+   
+   //! @brief Get the spin operator for the z-direction for the electrons
+   //! \f$ \hat{s}^{z}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow})\f$.
+   //! @return The matrix of \f$ \hat{s}^{z}\f$.
+   inline const CRS &GetOnsiteOperatorSzC() const { return onsite_operator_szc_ ; }
+   
+   //! @brief Get the raising operator for spin of the electrons
+   //! \f$ \hat{s}^{+}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow}\f$.
+   //! @return The matrix of \f$ \hat{s}^{+}\f$.
+   inline const CRS &GetOnsiteOperatorSpC() const { return onsite_operator_spc_ ; }
+   
+   //! @brief Get the lowering operator for spin of the electrons
+   //! \f$ \hat{s}^{-}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow}\f$.
+   //! @return The matrix of \f$ \hat{s}^{-}\f$.
+   inline const CRS &GetOnsiteOperatorSmC() const { return onsite_operator_smc_ ; }
+   
+   //! @brief Get the spin-\f$ S\f$ operator of the local spin for the x-direction \f$ \hat{S}^{x}\f$.
+   //! @return The matrix of \f$ \hat{S}^{x}\f$.
    inline const CRS &GetOnsiteOperatorSxL()  const { return onsite_operator_sxl_; }
+   
+   //! @brief Get the spin-\f$ S\f$ operator of the local spin for the y-direction \f$ i\hat{S}^{y}\f$ with \f$ i\f$ being the imaginary unit.
+   //! @return The matrix of \f$ i\hat{S}^{y}\f$.
    inline const CRS &GetOnsiteOperatoriSyL() const { return onsite_operator_isyl_; }
+   
+   //! @brief Get the spin-\f$ S\f$ operator of the local spin for the z-direction \f$ \hat{S}^{z}\f$.
+   //! @return The matrix of \f$ \hat{S}^{z}\f$.
    inline const CRS &GetOnsiteOperatorSzL()  const { return onsite_operator_szl_; }
+   
+   //! @brief Get the spin-\f$ S\f$ raising operator of the local spin \f$ \hat{S}^{+}\f$.
+   //! @return The matrix of \f$ \hat{S}^{+}\f$.
    inline const CRS &GetOnsiteOperatorSpL()  const { return onsite_operator_spl_; }
+   
+   //! @brief Get the spin-\f$ S\f$ raising operator of the local spin \f$ \hat{S}^{-}\f$.
+   //! @return The matrix of \f$ \hat{S}^{-}\f$.
    inline const CRS &GetOnsiteOperatorSmL()  const { return onsite_operator_sml_; }
+   
+   //! @brief Get \f$ \hat{\boldsymbol{s}}\cdot\hat{\boldsymbol{S}}=\hat{s}^{x}\hat{S}^{x}+\hat{s}^{y}\hat{S}^{y}+\hat{s}^{z}\hat{S}^{z}\f$
+   //! @return The matrix of \f$ \hat{\boldsymbol{s}}\cdot\hat{\boldsymbol{S}}\f$.
    inline const CRS &GetOnsiteOperatorSCSL() const { return onsite_operator_scsl_; }
    
+   
+   //! @brief Get calculated_eigenvector_set_, which represents the calculated eigenvectors and eigenvalues.
+   //! @return calculated_eigenvector_set_.
    inline const std::unordered_set<int> &GetCalculatedEigenvectorSet() const {
       return calculated_eigenvector_set_;
    }
    
+   //! @brief Get basis of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
+   //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
+   //! @return Basis.
    inline const std::vector<std::int64_t> &GetBasis(const std::pair<int, double> &quantum_number) const {
       return bases_.at({quantum_number.first, utility::DoubleTheNumber(quantum_number.second)});
    }
    
+   //! @brief Get inverse basis of the target Hilbert space space specified by
+   //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
+   //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
+   //! @return Inverse basis.
    inline const std::unordered_map<std::int64_t, std::int64_t> &GetBasisInv(const std::pair<int, double> &quantum_number) const {
       return bases_inv_.at({quantum_number.first, utility::DoubleTheNumber(quantum_number.second)});
    }
    
+   //! @brief Get basis of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
+   //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @return Basis.
    inline const std::vector<std::int64_t> &GetTargetBasis() const {
       return bases_.at({total_electron_, total_2sz_});
    }
    
+   //! @brief Get inverse basis of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
+   //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @return Inverse basis.
    inline const std::unordered_map<std::int64_t, std::int64_t> &GetTargetBasisInv() const {
       return bases_inv_.at({total_electron_, total_2sz_});
    }
    
 protected:
+   //! @brief The annihilation operator for the electrons with the up spin \f$ \hat{c}_{\uparrow}\f$.
    CRS onsite_operator_c_up_;
+   
+   //! @brief The annihilation operator for the electrons with the down spin \f$ \hat{c}_{\downarrow}\f$.
    CRS onsite_operator_c_down_;
+   
+   //! @brief The creation operator for the electrons with the up spin \f$ \hat{c}^{\dagger}_{\uparrow}\f$.
    CRS onsite_operator_c_up_dagger_;
+   
+   //! @brief The the creation operator for the electrons with the down spin \f$ \hat{c}^{\dagger}_{\downarrow}\f$.
    CRS onsite_operator_c_down_dagger_;
+   
+   //! @brief The number operator for the electrons with the up spin \f$ \hat{n}_{\uparrow}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow}\f$.
    CRS onsite_operator_nc_up_;
+   
+   //! @brief The number operator for the electrons with the down spin \f$ \hat{n}_{\downarrow}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow}\f$.
    CRS onsite_operator_nc_down_;
+   
+   //! @brief The number operator for the electrons \f$ \hat{n}=\hat{n}_{\uparrow} + \hat{n}_{\downarrow}\f$.
    CRS onsite_operator_nc_;
+   
+   //! @brief The spin operator for the x-direction for the electrons
+   //! \f$ \hat{s}^{x}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} + \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})\f$.
    CRS onsite_operator_sxc_;
+   
+   //! @brief The spin operator for the y-direction for the electrons
+   //! \f$ i\hat{s}^{y}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})\f$.
+   //! Here \f$ i=\sqrt{-1}\f$ is the the imaginary unit.
    CRS onsite_operator_isyc_;
+   
+   //! @brief The spin operator for the z-direction for the electrons
+   //! \f$ \hat{s}^{z}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow})\f$.
    CRS onsite_operator_szc_;
+   
+   //! @brief The raising operator for spin of the electrons
+   //! \f$ \hat{s}^{+}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow}\f$.
    CRS onsite_operator_spc_;
+   
+   //! @brief The lowering operator for spin of the electrons
+   //! \f$ \hat{s}^{-}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow}\f$.
    CRS onsite_operator_smc_;
+   
+   //! @brief The spin-\f$ S\f$ operator of the local spin for the x-direction \f$ \hat{S}^{x}\f$.
    CRS onsite_operator_sxl_;
+   
+   //! @brief The spin-\f$ S\f$ operator of the local spin for the y-direction \f$ i\hat{S}^{y}\f$ with \f$ i\f$ being the imaginary unit.
    CRS onsite_operator_isyl_;
+   
+   //! @brief The spin-\f$ S\f$ operator of the local spin for the z-direction \f$ \hat{S}^{z}\f$.
    CRS onsite_operator_szl_;
+   
+   //! @brief The spin-\f$ S\f$ raising operator of the local spin \f$ \hat{S}^{+}\f$.
    CRS onsite_operator_spl_;
+   
+   //! @brief The spin-\f$ S\f$ raising operator of the local spin \f$ \hat{S}^{-}\f$.
    CRS onsite_operator_sml_;
+   
+   //! @brief The correlation between the electron spin and local spin
+   //! \f$ \hat{\boldsymbol{s}}\cdot\hat{\boldsymbol{S}}=\hat{s}^{x}\hat{S}^{x}+\hat{s}^{y}\hat{S}^{y}+\hat{s}^{z}\hat{S}^{z}\f$
    CRS onsite_operator_scsl_;
    
-   const int dim_onsite_electron_    = 4;
-   const int magnitude_2cspin_       = 1;
-   const int num_conserved_quantity_ = 2;
-   int system_size_      = 0;
-   int total_2sz_        = 0;
-   int total_electron_   = 0;
-   int magnitude_2lspin_ = 1;
-   int dim_onsite_lspin_ = magnitude_2lspin_ + 1;
-   int dim_onsite_       = dim_onsite_electron_*dim_onsite_lspin_;
+   //! @brief The dimension of the local Hilbert space for the electrons, 4.
+   const int dim_onsite_electron_ = 4;
    
+   //! @brief The dimension of the local Hilbert space, \f$ 2S + 1\f$.
+   int dim_onsite_lspin_ = magnitude_2lspin_ + 1;
+   
+   //! @brief The system size.
+   int system_size_ = 0;
+   
+   //! @brief Twice the number of the total sz \f$ 2\langle\hat{S}^{z}_{\rm tot}\rangle\f$.
+   int total_2sz_ = 0;
+   
+   //! @brief The total electron \f$ \langle\hat{N}_{\rm e}\rangle\f$.
+   int total_electron_ = 0;
+   
+   //! @brief The magnitude of the local spin \f$ S\f$.
+   int magnitude_2lspin_ = 1;
+   
+   //! @brief The dimension of the local Hilbert space, \f$ 4\times (2S + 1) \f$.
+   int dim_onsite_ = dim_onsite_electron_*dim_onsite_lspin_;
+   
+   //! @brief The calculated eigenvectors and eigenvalues.
    std::unordered_set<int> calculated_eigenvector_set_;
    
+   //! @brief Bases of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
+   //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    std::unordered_map<std::pair<int, int>, std::vector<std::int64_t>, utility::pair_hash> bases_;
+   
+   //! @brief Inverse bases of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
+   //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    std::unordered_map<std::pair<int, int>, std::unordered_map<std::int64_t, std::int64_t>, utility::pair_hash> bases_inv_;
    
+   //! @brief Set onsite operators.
    void SetOnsiteOperator() {
       onsite_operator_c_up_   = CreateOnsiteOperatorCUp(0.5*magnitude_2lspin_);
       onsite_operator_c_down_ = CreateOnsiteOperatorCDown(0.5*magnitude_2lspin_);
@@ -1053,10 +1203,16 @@ protected:
       onsite_operator_scsl_ = CreateOnsiteOperatorSCSL(0.5*magnitude_2lspin_);
    }
    
+   //! @brief Calculate onsite basis for the electrons from an onsite basis.
+   //! @param basis_onsite The onsite basis.
+   //! @return The onsite basis for the electrons.
    inline int CalculateBasisOnsiteElectron(const int basis_onsite) const {
       return basis_onsite/dim_onsite_lspin_;
    }
    
+   //! @brief Calculate onsite basis for the loca spins from an onsite basis.
+   //! @param basis_onsite The onsite basis.
+   //! @return The onsite basis for the local spins.
    inline int CalculateBasisOnsiteLSpin(const int basis_onsite) const {
       return basis_onsite%dim_onsite_lspin_;
    }

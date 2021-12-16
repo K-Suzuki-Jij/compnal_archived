@@ -699,13 +699,13 @@ protected:
    //! @brief The the spin-\f$ S\f$ raising operator \f$ \hat{s}^{-}\f$.
    CRS onsite_operator_sm_;
    
-   //! @brief The system size
+   //! @brief The system size.
    int system_size_ = 0;
    
    //! @brief Twice the number of the total sz \f$ 2\langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    int total_2sz_ = 0;
    
-   //! @brief dimension of the local Hilbert space, \f$ 2S + 1\f$.
+   //! @brief The dimension of the local Hilbert space, \f$ 2S + 1\f$.
    int dim_onsite_ = 2;
    
    //! @brief The magnitude of the spin \f$ S\f$.
