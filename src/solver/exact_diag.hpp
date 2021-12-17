@@ -259,10 +259,10 @@ public:
       }
       
       if (site_1 == site_2) {
-         return CalculateCorrelationFunction(sparse_matrix::CalculateMatrixMatrixProduct(1.0, m_1, 1.0, m_2), site_1, m_3, site_3, target_level);
+         return CalculateCorrelationFunction(m_1*m_2, site_1, m_3, site_3, target_level);
       }
       if (site_2 == site_3) {
-         return CalculateCorrelationFunction(m_1, site_1, sparse_matrix::CalculateMatrixMatrixProduct(1.0, m_2, 1.0, m_3), site_3, target_level);
+         return CalculateCorrelationFunction(m_1, site_1, m_2*m_3, site_3, target_level);
       }
       
       const CRS  m1_dagger      = sparse_matrix::CalculateTransposedMatrix(m_1);
@@ -367,13 +367,13 @@ public:
       }
       
       if (site_1 == site_2) {
-         return CalculateCorrelationFunction(sparse_matrix::CalculateMatrixMatrixProduct(1.0, m_1, 1.0, m_2), site_1, m_3, site_3, m_4, site_4);
+         return CalculateCorrelationFunction(m_1*m_2, site_1, m_3, site_3, m_4, site_4);
       }
       if (site_2 == site_3) {
-         return CalculateCorrelationFunction(m_1, site_1, sparse_matrix::CalculateMatrixMatrixProduct(1.0, m_2, 1.0, m_3), site_2, m_4, site_4);
+         return CalculateCorrelationFunction(m_1, site_1, m_2*m_3, site_2, m_4, site_4);
       }
       if (site_3 == site_4) {
-         return CalculateCorrelationFunction(m_1, site_1, m_2, site_2, sparse_matrix::CalculateMatrixMatrixProduct(1.0, m_3, 1.0, m_4), site_3);
+         return CalculateCorrelationFunction(m_1, site_1, m_2, site_2, m_3*m_4, site_3);
       }
       
       const CRS  m1_dagger = sparse_matrix::CalculateTransposedMatrix(m_1);

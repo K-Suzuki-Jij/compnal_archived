@@ -174,7 +174,6 @@ public:
       std::cout << "total_sz               = " << 0.5*this->total_2sz_          << std::endl;
       std::cout << "dim_target             = " << this->CalculateTargetDim()    << std::endl;
       std::cout << "dim_onsite             = " << this->dim_onsite_             << std::endl;
-      std::cout << "num_conserved_quantity = " << this->num_conserved_quantity_ << std::endl;
       
       std::cout << "Print Interaction" << std::endl;
       std::cout << "Electron Hopping: t =" << std::endl;

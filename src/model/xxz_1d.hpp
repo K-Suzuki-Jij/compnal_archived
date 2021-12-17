@@ -32,20 +32,20 @@ public:
    //------------------------------------------------------------------
    //! @brief Constructor of XXZ_1D class.
    XXZ_1D(): BaseU1Spin_1D<RealType>() {
-      onsite_operator_ham_ = CreateOnsiteOperatorHam(this->magnitude_2spin_, h_z_, D_z_);
+      onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2spin_, h_z_, D_z_);
    }
    
    //! @brief Constructor of XXZ_1D class.
    //! @param system_size The system size \f$ N \f$.
    explicit XXZ_1D(const int system_size): BaseU1Spin_1D<RealType>(system_size) {
-      onsite_operator_ham_ = CreateOnsiteOperatorHam(this->magnitude_2spin_, h_z_, D_z_);
+      onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2spin_, h_z_, D_z_);
    }
    
    //! @brief Constructor of XXZ_1D class.
    //! @param system_size The system size \f$ N \f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    XXZ_1D(const int system_size, const double magnitude_spin): BaseU1Spin_1D<RealType>(system_size, magnitude_spin) {
-      onsite_operator_ham_ = CreateOnsiteOperatorHam(this->magnitude_2spin_, h_z_, D_z_);
+      onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2spin_, h_z_, D_z_);
    }
    
    //! @brief Constructor of XXZ_1D class.
@@ -53,7 +53,7 @@ public:
    //! @param boundary_condition Boundary condition.
    XXZ_1D(const int system_size, const utility::BoundaryCondition boundary_condition): BaseU1Spin_1D<RealType>(system_size) {
       SetBoundaryCondition(boundary_condition);
-      onsite_operator_ham_ = CreateOnsiteOperatorHam(this->magnitude_2spin_, h_z_, D_z_);
+      onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2spin_, h_z_, D_z_);
    }
    
    //! @brief Constructor of XXZ_1D class.
@@ -62,7 +62,7 @@ public:
    //! @param boundary_condition Boundary condition.
    XXZ_1D(const int system_size, const double magnitude_spin, const utility::BoundaryCondition boundary_condition): BaseU1Spin_1D<RealType>(system_size, magnitude_spin) {
       SetBoundaryCondition(boundary_condition);
-      onsite_operator_ham_ = CreateOnsiteOperatorHam(this->magnitude_2spin_, h_z_, D_z_);
+      onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2spin_, h_z_, D_z_);
    }
    
    //------------------------------------------------------------------
@@ -158,7 +158,6 @@ public:
       std::cout << "total_2sz              = " << this->total_2sz_              << std::endl;
       std::cout << "dim_target             = " << this->CalculateTargetDim()    << std::endl;
       std::cout << "dim_onsite             = " << this->dim_onsite_             << std::endl;
-      std::cout << "num_conserved_quantity = " << this->num_conserved_quantity_ << std::endl;
       
       std::cout << "Print Heisenberg Interaction" << std::endl;
       std::cout << "Sz-Sz Interaction: J_z =" << std::endl;
@@ -249,8 +248,6 @@ private:
    RealType D_z_ = 0.0;
    
 };
-
-
 
 }
 }

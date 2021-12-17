@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['v_5f_0',['V_',['../classcompnal_1_1model_1_1_hubbard__1_d.html#a712b9fd211ae7e8e8bdf9799421b500a',1,'compnal::model::Hubbard_1D']]],
-  ['vacuum_1',['VACUUM',['../namespacecompnal_1_1utility.html#a7276a99232fbbca2396b81d8619f1cf0af859de8b12ae36fa30a8e5280f7508ee',1,'compnal::utility']]],
-  ['val_2',['val',['../structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components.html#a3963d8c56d40d8e574e8e19f4be25a4f',1,'compnal::solver::ExactDiag::ExactDiagMatrixComponents::val()'],['../structcompnal_1_1sparse__matrix_1_1_braket_vector.html#ae87a30e388c5e8cbc7617b72d21ee801',1,'compnal::sparse_matrix::BraketVector::val()'],['../structcompnal_1_1sparse__matrix_1_1_c_r_s.html#ad7d38a64390cfa0a645d635d396660ed',1,'compnal::sparse_matrix::CRS::val()']]],
-  ['valuetype_3',['ValueType',['../classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a6536848ae3bab6c5492ed59a5f6c6317',1,'compnal::model::BaseU1Electron_1D::ValueType()'],['../classcompnal_1_1model_1_1_base_u1_spin__1_d.html#a44c9489af0b9d886187ffa94b7cbecad',1,'compnal::model::BaseU1Spin_1D::ValueType()'],['../classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a8dc01cc9a5a716dcba48934cd34fc47e',1,'compnal::model::BaseU1SpinElectron_1D::ValueType()']]]
+  ['u_5f_0',['U_',['../classcompnal_1_1model_1_1_hubbard__1_d.html#a03858ea78a86b3c9dbdc296af055f71f',1,'compnal::model::Hubbard_1D']]],
+  ['up_1',['UP',['../namespacecompnal_1_1utility.html#a7276a99232fbbca2396b81d8619f1cf0a54a2f5730de1676c3fc6f2ec2d45e4e0',1,'compnal::utility']]],
+  ['up_5fdown_2',['UP_DOWN',['../namespacecompnal_1_1utility.html#a7276a99232fbbca2396b81d8619f1cf0af515cc351f0b1f342ca273378dca8ea1',1,'compnal::utility']]],
+  ['updaterow_3',['UpdateRow',['../structcompnal_1_1sparse__matrix_1_1_c_r_s.html#ab9b4e491715df3d7826086bb3f9a2e54',1,'compnal::sparse_matrix::CRS']]]
 ];
