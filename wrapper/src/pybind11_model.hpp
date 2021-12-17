@@ -110,7 +110,7 @@ void pybind11ModelBaseSpinElectron1D(py::module &m) {
       .def_property_readonly("SmL" , &BUSE1D::GetOnsiteOperatorSmL )
       .def_property_readonly("SCSL", &BUSE1D::GetOnsiteOperatorSCSL)
       .def_property("system_size"  , &BUSE1D::GetSystemSize, &BUSE1D::SetSystemSize)
-      .def_property("spin"         , &BUSE1D::GetMagnitudeSpin, &BUSE1D::SetMagnitudeLSpin)
+      .def_property("spin"         , &BUSE1D::GetMagnitudeLSpin, &BUSE1D::SetMagnitudeLSpin)
       .def_property("total_sz"     , &BUSE1D::GetTotalSz, &BUSE1D::SetTotalSz)
       .def_property("total_electron", &BUSE1D::GetTotalElectron, &BUSE1D::SetTotalElectron);
    

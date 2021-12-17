@@ -1147,10 +1147,7 @@ protected:
    
    //! @brief The dimension of the local Hilbert space for the electrons, 4.
    const int dim_onsite_electron_ = 4;
-   
-   //! @brief The dimension of the local Hilbert space, \f$ 2S + 1\f$.
-   int dim_onsite_lspin_ = magnitude_2lspin_ + 1;
-   
+      
    //! @brief The system size.
    int system_size_ = 0;
    
@@ -1162,6 +1159,9 @@ protected:
    
    //! @brief The magnitude of the local spin \f$ S\f$.
    int magnitude_2lspin_ = 1;
+   
+   //! @brief The dimension of the local Hilbert space, \f$ 2S + 1\f$.
+   int dim_onsite_lspin_ = magnitude_2lspin_ + 1;
    
    //! @brief The dimension of the local Hilbert space, \f$ 4\times (2S + 1) \f$.
    int dim_onsite_ = dim_onsite_electron_*dim_onsite_lspin_;
