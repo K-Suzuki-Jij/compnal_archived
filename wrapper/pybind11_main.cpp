@@ -19,6 +19,7 @@ PYBIND11_MODULE(compnal, m) {
    pybind11ModelBaseSpinElectron1D<RealType>(m_model);
    pybind11ModelXXZ1D<RealType>(m_model);
    pybind11ModelHubbard1D<RealType>(m_model);
+   pybind11ModelKondoLattice1D<RealType>(m_model);
    pybind11ModelGeneral1D<RealType>(m_model);
    pybind11ModelBoundaryCondition(m_model);
 

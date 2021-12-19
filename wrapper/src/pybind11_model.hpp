@@ -19,7 +19,7 @@ namespace py = pybind11;
 using namespace pybind11::literals;
 
 void pybind11ModelBoundaryCondition(py::module &m) {
-   py::enum_<compnal::utility::BoundaryCondition>(m, "BC")
+   py::enum_<compnal::utility::BoundaryCondition>(m, "BoundaryCondition")
       .value("OBC", compnal::utility::BoundaryCondition::OBC)
       .value("PBC", compnal::utility::BoundaryCondition::PBC)
       .value("SSD", compnal::utility::BoundaryCondition::SSD)
@@ -182,8 +182,8 @@ void pybind11ModelXXZ1D(py::module &m) {
       .def("get_J_xy", py::overload_cast<>(&XXZ1D::GetJxy, py::const_))
       .def("get_J_z" , py::overload_cast<const std::int64_t>(&XXZ1D::GetJz, py::const_) , "index"_a)
       .def("get_J_xy", py::overload_cast<const std::int64_t>(&XXZ1D::GetJxy, py::const_), "index"_a)
-      .def("get_h_z", &XXZ1D::GetHz)
-      .def("get_D_z", &XXZ1D::GetDz)
+      .def("get_h_z" , &XXZ1D::GetHz)
+      .def("get_D_z" , &XXZ1D::GetDz)
       .def("print_info", &XXZ1D::PrintInfo)
       .def_property("boundary_condition", &XXZ1D::GetBoundaryCondition, &XXZ1D::SetBoundaryCondition)
       .def_property_readonly("Ham", &XXZ1D::GetOnsiteOperatorHam);
@@ -215,11 +215,52 @@ void pybind11ModelHubbard1D(py::module &m) {
              py::module_::import("sys").attr("stdout") // Python output
          );
          self.PrintInfo();
-      })
-   ;
-   
+      });
    
 }
 
+template<typename RealType>
+void pybind11ModelKondoLattice1D(py::module &m) {
+   
+   using KLM1D = compnal::model::KondoLattice_1D<RealType>;
+   
+   auto c = py::class_<KLM1D, compnal::model::BaseU1SpinElectron_1D<RealType>>(m, "KondoLattice1D");
+   
+   //Constructors
+   c.def(py::init<>());
+   c.def(py::init<const int>(), "system_size"_a);
+   c.def(py::init<const int, const double>(), "system_size"_a, "spin"_a);
+   c.def(py::init<const int, const int>(), "system_size"_a, "total_electron"_a);
+   c.def(py::init<const int, const double, const int>(), "system_size"_a, "spin"_a, "total_electron"_a);
+   c.def(py::init<const int, const compnal::utility::BoundaryCondition>(), "system_size"_a, "boundary_condition"_a);
+   c.def(py::init<const int, const double, const compnal::utility::BoundaryCondition>(), "system_size"_a, "spin"_a, "boundary_condition"_a);
+   c.def(py::init<const int, const int, const compnal::utility::BoundaryCondition>(), "system_size"_a, "total_electron"_a, "boundary_condition"_a);
+   c.def(py::init<const int, const double, const int, const compnal::utility::BoundaryCondition>(), "system_size"_a, "spin"_a, "total_electron"_a, "boundary_condition"_a);
+   
+   //Member Functions
+   c.def("set_hopping", py::overload_cast<const RealType>(&KLM1D::SetHopping), "t"_a);
+   c.def("set_hopping", py::overload_cast<const std::vector<RealType>&>(&KLM1D::SetHopping), "t"_a);
+   c.def("set_J"   , &KLM1D::SetJ  , "J"_a   );
+   c.def("set_J_z" , &KLM1D::SetJz , "J_z"_a );
+   c.def("set_J_xy", &KLM1D::SetJxy, "J_xy"_a);
+   c.def("set_D_z" , &KLM1D::SetDz , "D_z"_a );
+   c.def("set_h_z" , &KLM1D::SetHz , "D_z"_a );
+   c.def("get_hopping", py::overload_cast<const std::int64_t>(&KLM1D::GetHopping, py::const_), "i"_a);
+   c.def("get_hopping", py::overload_cast<>(&KLM1D::GetHopping, py::const_));
+   c.def("get_J_z" , &KLM1D::GetJz );
+   c.def("get_J_xy", &KLM1D::GetJxy);
+   c.def("get_D_z" , &KLM1D::GetDz );
+   c.def("get_h_z" , &KLM1D::GetHz );
+   c.def("print_info", [](KLM1D &self) {
+      py::scoped_ostream_redirect stream(std::cout, py::module_::import("sys").attr("stdout"));
+      self.PrintInfo();
+   });
+
+   //Properties
+   c.def_property("boundary_condition", &KLM1D::GetBoundaryCondition, &KLM1D::SetBoundaryCondition);
+   c.def_property_readonly("Ham", &KLM1D::GetOnsiteOperatorHam);
+   
+   
+}
 
 #endif /* COMPNAL_PYBIND11_MODEL_HPP_ */

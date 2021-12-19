@@ -155,10 +155,10 @@ public:
    
    //! @brief Set the magnetic fields for the z-direction.
    //! @param h_z The magnetic fields for the z-direction.
-   void SetMagneticField(const RealType h_z) {
+   void SetHz(const RealType h_z) {
       if (h_z_ != h_z) {
          h_z_ = h_z;
-         onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2lspin, J_z_, J_xy_, h_z_, D_z_);
+         onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2lspin_, J_z_, J_xy_, h_z_, D_z_);
          this->calculated_eigenvector_set_.clear();
       }
    }
@@ -193,6 +193,13 @@ public:
       }
    }
    
+   //! @brief Set the Kondo exchange coupling along the z-direction \f$J_z \f$ and the x, y-direction \f$J_{xy} \f$.
+   //! @param J The Kondo exchange coupling along the z-direction \f$J_z \f$ and the x, y-direction \f$J_{xy} \f$.
+   void SetJ(const RealType J) {
+      SetJxy(J);
+      SetJz(J);
+   }
+   
    //! @brief Print information about this class.
    void PrintInfo() const {
       std::string bc = "None";
@@ -212,21 +219,14 @@ public:
       std::cout << "total_2sz              = " << this->total_2sz_              << std::endl;
       std::cout << "dim_target             = " << this->CalculateTargetDim()    << std::endl;
       std::cout << "dim_onsite             = " << this->dim_onsite_             << std::endl;
-      std::cout << "num_conserved_quantity = " << this->num_conserved_quantity_ << std::endl;
       
       std::cout << "Print Interactions" << std::endl;
       std::cout << "Electron Hopping: t =" << std::endl;
       for (std::size_t i = 0; i < t_.size(); ++i) {
          std::cout << i + 1 << "-th neighber: " << t_.at(i) << std::endl;
       }
-      std::cout << "Sz-Sz Interaction: J_z =" << std::endl;
-      for (std::size_t i = 0; i < J_z_.size(); ++i) {
-         std::cout << i + 1 << "-th neighber: " << J_z_.at(i) << std::endl;
-      }
-      std::cout << "Sx-Sx, Sy-Sy Interactions: J_xy =" << std::endl;
-      for (std::size_t i = 0; i < J_xy_.size(); ++i) {
-         std::cout << i + 1 << "-th neighber: " << J_xy_.at(i) << std::endl;
-      }
+      std::cout << "Sz-Sz Interaction: J_z =" << J_z_ << std::endl;
+      std::cout << "Sx-Sx, Sy-Sy Interactions: J_xy =" << J_xy_ << std::endl;
       std::cout << "External Magnetic Fields for the z-direction: h_z =" << h_z_ << std::endl;
       std::cout << "Uniaxial Anisotropy for the z-direction: D_z =" << D_z_ << std::endl;
    }
@@ -288,15 +288,16 @@ public:
    
    //! @brief Get the spin-spin interaction along the z-direction \f$ J_{z} \f$.
    //! @return J_z The spin-spin interaction along the z-direction \f$ J_{z} \f$.
-   inline RealType &GetJz() const { return J_z_ ; }
+   inline RealType GetJz() const { return J_z_ ; }
    
    //! @brief Get the spin-spin interaction along the x, y-direction \f$ J_{xy} \f$.
    //! @return J_xy The spin-spin interaction along the x, y-direction \f$ J_{xy} \f$.
-   inline RealType &GetJxy() const { return J_xy_; }
+   inline RealType GetJxy() const { return J_xy_; }
       
+   
    //! @brief Get the magnetic field for the z-direction \f$ h_z\f$.
    //! @return h_z The magnetic field for the z-direction \f$ h_z\f$.
-   inline RealType GetMagneticField() const { return h_z_; }
+   inline RealType GetHz() const { return h_z_; }
    
    //! @brief Get the uniaxial anisotropy to the z-direction \f$ D_z\f$.
    //! @return D_z The uniaxial anisotropy to the z-direction \f$ D_z\f$.
