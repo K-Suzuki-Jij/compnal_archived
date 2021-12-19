@@ -23,7 +23,7 @@ void pybind11SolverExactDiag(py::module &m, const std::string &mtype_str) {
    
    using ED = compnal::solver::ExactDiag<ModelClass>;
    using CRS = compnal::sparse_matrix::CRS<typename ModelClass::ValueType>;
-   auto str = std::string("ExactDiag") + mtype_str;
+   auto str = std::string("_ExactDiag") + mtype_str;
    
    py::class_<ED>(m, str.c_str(), py::module_local())
    .def(py::init<const ModelClass&>(), "model"_a)

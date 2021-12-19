@@ -160,6 +160,38 @@ public:
       return isValidQNumber(system_size_, 0.5*magnitude_2lspin_, total_electron, total_sz);
    }
    
+   //! @brief Calculate the number of electrons from the input onsite basis.
+   //! @param basis_onsite The onsite basis.
+   //! @return The number of electrons.
+   int GetNumElectrons(const int basis_onsite) const {
+      
+      //--------------------------------
+      // # <->  [Cherge  ] -- (N,  2*sz)
+      // 0 <->  [        ] -- (0,  0   )
+      // 1 <->  [up      ] -- (1,  1   )
+      // 2 <->  [down    ] -- (1, -1   )
+      // 3 <->  [up&down ] -- (2,  0   )
+      //--------------------------------
+      
+      const int basis_onsite_electron = CalculateBasisOnsiteElectron(basis_onsite);
+      
+      if (basis_onsite_electron == 0) {
+         return 0;
+      }
+      else if (basis_onsite_electron == 1 || basis_onsite_electron == 2) {
+         return 1;
+      }
+      else if (basis_onsite_electron == 3) {
+         return 2;
+      }
+      else {
+         std::stringstream ss;
+         ss << "Error in " << __FUNCTION__  << std::endl;
+         ss << "Invalid onsite basis" << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+   }
+   
    //! @brief Print the onsite bases.
    void PrintBasisOnsite() const {
       const double magnitude_lspin = magnitude_2lspin_/2.0;

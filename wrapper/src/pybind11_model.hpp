@@ -31,7 +31,7 @@ void pybind11ModelBaseElectron1D(py::module &m) {
    
    using BUE1D = compnal::model::BaseU1Electron_1D<RealType>;
    
-   auto c = py::class_<BUE1D>(m, "BaseU1Electron_1D", py::module_local());
+   auto c = py::class_<BUE1D>(m, "_BaseU1Electron_1D", py::module_local());
    
    //Constructors
    c.def(py::init<>());
@@ -86,7 +86,7 @@ void pybind11ModelBaseSpin1D(py::module &m) {
    
    using BUS1D = compnal::model::BaseU1Spin_1D<RealType>;
    
-   auto c = py::class_<BUS1D>(m, "BaseU1Spin_1D", py::module_local());
+   auto c = py::class_<BUS1D>(m, "_BaseU1Spin_1D", py::module_local());
    
    //Constructors
    c.def(py::init<>());
@@ -127,7 +127,7 @@ void pybind11ModelBaseSpinElectron1D(py::module &m) {
    
    using BUSE1D = compnal::model::BaseU1SpinElectron_1D<RealType>;
    
-   auto c = py::class_<BUSE1D>(m, "BaseU1SpinElectron_1D", py::module_local());
+   auto c = py::class_<BUSE1D>(m, "_BaseU1SpinElectron_1D", py::module_local());
    
    //Constructors
    c.def(py::init<>());

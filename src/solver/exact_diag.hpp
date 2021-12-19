@@ -845,6 +845,39 @@ private:
       
    }
    
+   void GenerateMatrixComponents(ExactDiagMatrixComponents *edmc, const std::int64_t basis, const model::KondoLattice_1D<RealType> &model_input) const {
+      
+      const auto &c_up          = model_input.GetOnsiteOperatorCUp();
+      const auto &c_up_dagger   = model_input.GetOnsiteOperatorCUpDagger();
+      const auto &c_down        = model_input.GetOnsiteOperatorCDown();
+      const auto &c_down_dagger = model_input.GetOnsiteOperatorCDownDagger();
+      
+      for (int site = 0; site < model_input.GetSystemSize(); ++site) {
+         edmc->basis_onsite[site] = CalculateLocalBasis(basis, site, model_input.GetDimOnsite());
+      }
+      
+      //Onsite elements
+      for (int site = 0; site < model_input.GetSystemSize(); ++site) {
+         GenerateMatrixComponentsOnsite(edmc, basis, site, model_input.GetOnsiteOperatorHam(), 1.0);
+      }
+      
+      //Intersite Hopping
+      for (int distance = 1; distance <= static_cast<int>(model_input.GetHopping().size()); ++distance) {
+         for (int site = 0; site < model_input.GetSystemSize() - distance; ++site) {
+            const auto t = model_input.GetHopping(distance - 1);
+            int n_electron = 0;
+            for (int s = site; s < site + distance; ++s) {
+               n_electron += model_input.GetNumElectrons(edmc->basis_onsite[s]);
+            }
+            GenerateMatrixComponentsIntersite(edmc, basis, site, c_up_dagger  , site + distance, c_up         , +1.0*t, 2*(n_electron%2) - 1);
+            GenerateMatrixComponentsIntersite(edmc, basis, site, c_up         , site + distance, c_up_dagger  , -1.0*t, 2*(n_electron%2) - 1);
+            GenerateMatrixComponentsIntersite(edmc, basis, site, c_down_dagger, site + distance, c_down       , +1.0*t, 2*(n_electron%2) - 1);
+            GenerateMatrixComponentsIntersite(edmc, basis, site, c_down       , site + distance, c_down_dagger, -1.0*t, 2*(n_electron%2) - 1);
+         }
+      }
+      
+   }
+   
    template<class BaseClass>
    void GenerateMatrixComponents(ExactDiagMatrixComponents *edmc, const std::int64_t basis, const model::GeneralModel_1D<BaseClass> &model_input) const {
       

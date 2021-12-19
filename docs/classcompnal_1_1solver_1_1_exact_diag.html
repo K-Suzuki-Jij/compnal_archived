@@ -147,6 +147,8 @@ Private Member Functions</h2></td></tr>
 <tr class="separator:a83023c48b79025c582483ff440b81ab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8dabf30e73ba8859c27d9bb5fdb60e42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#a8dabf30e73ba8859c27d9bb5fdb60e42">GenerateMatrixComponents</a> (<a class="el" href="structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components.html">ExactDiagMatrixComponents</a> *edmc, const std::int64_t basis, const <a class="el" href="classcompnal_1_1model_1_1_hubbard__1_d.html">model::Hubbard_1D</a>&lt; <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#ada6514651bff6cb916c47982c1b70ba5">RealType</a> &gt; &amp;model_input) const</td></tr>
 <tr class="separator:a8dabf30e73ba8859c27d9bb5fdb60e42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c8a65304f1bcd6df1a47f84d4eb7ebc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#a0c8a65304f1bcd6df1a47f84d4eb7ebc">GenerateMatrixComponents</a> (<a class="el" href="structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components.html">ExactDiagMatrixComponents</a> *edmc, const std::int64_t basis, const <a class="el" href="classcompnal_1_1model_1_1_kondo_lattice__1_d.html">model::KondoLattice_1D</a>&lt; <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#ada6514651bff6cb916c47982c1b70ba5">RealType</a> &gt; &amp;model_input) const</td></tr>
+<tr class="separator:a0c8a65304f1bcd6df1a47f84d4eb7ebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a744f7c1dff42c287169945e102506b66"><td class="memTemplParams" colspan="2">template&lt;class BaseClass &gt; </td></tr>
 <tr class="memitem:a744f7c1dff42c287169945e102506b66"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#a744f7c1dff42c287169945e102506b66">GenerateMatrixComponents</a> (<a class="el" href="structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components.html">ExactDiagMatrixComponents</a> *edmc, const std::int64_t basis, const <a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html">model::GeneralModel_1D</a>&lt; BaseClass &gt; &amp;model_input) const</td></tr>
 <tr class="separator:a744f7c1dff42c287169945e102506b66"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -730,7 +732,7 @@ template&lt;class ModelClass &gt; </div>
 </div>
 </div>
 <a id="a744f7c1dff42c287169945e102506b66" name="a744f7c1dff42c287169945e102506b66"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a744f7c1dff42c287169945e102506b66">&#9670;&nbsp;</a></span>GenerateMatrixComponents() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a744f7c1dff42c287169945e102506b66">&#9670;&nbsp;</a></span>GenerateMatrixComponents() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -776,7 +778,7 @@ template&lt;class BaseClass &gt; </div>
 </div>
 </div>
 <a id="a8dabf30e73ba8859c27d9bb5fdb60e42" name="a8dabf30e73ba8859c27d9bb5fdb60e42"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8dabf30e73ba8859c27d9bb5fdb60e42">&#9670;&nbsp;</a></span>GenerateMatrixComponents() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dabf30e73ba8859c27d9bb5fdb60e42">&#9670;&nbsp;</a></span>GenerateMatrixComponents() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -819,8 +821,52 @@ template&lt;class ModelClass &gt; </div>
 
 </div>
 </div>
+<a id="a0c8a65304f1bcd6df1a47f84d4eb7ebc" name="a0c8a65304f1bcd6df1a47f84d4eb7ebc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c8a65304f1bcd6df1a47f84d4eb7ebc">&#9670;&nbsp;</a></span>GenerateMatrixComponents() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class ModelClass &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html">compnal::solver::ExactDiag</a>&lt; ModelClass &gt;::GenerateMatrixComponents </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components.html">ExactDiagMatrixComponents</a> *&#160;</td>
+          <td class="paramname"><em>edmc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::int64_t&#160;</td>
+          <td class="paramname"><em>basis</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classcompnal_1_1model_1_1_kondo_lattice__1_d.html">model::KondoLattice_1D</a>&lt; <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#ada6514651bff6cb916c47982c1b70ba5">RealType</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>model_input</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a83023c48b79025c582483ff440b81ab2" name="a83023c48b79025c582483ff440b81ab2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a83023c48b79025c582483ff440b81ab2">&#9670;&nbsp;</a></span>GenerateMatrixComponents() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a83023c48b79025c582483ff440b81ab2">&#9670;&nbsp;</a></span>GenerateMatrixComponents() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
