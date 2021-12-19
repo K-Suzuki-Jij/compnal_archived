@@ -82,6 +82,9 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>The general model class for one-dimensional systems.  
+ <a href="classcompnal_1_1model_1_1_general_model__1_d.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="general__model__1d_8hpp_source.html">general_model_1d.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for compnal::model::GeneralModel_1D&lt; BaseClass &gt;:</div>
@@ -93,37 +96,58 @@ Inheritance diagram for compnal::model::GeneralModel_1D&lt; BaseClass &gt;:</div
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ab3cd64496b8e2876648f3c935b53e48e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#ab3cd64496b8e2876648f3c935b53e48e">AddOnsitePotential</a> (const <a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#a530e9f1a7e798931102c91eeeab65337">RealType</a> val, const <a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#ae77f72e0ca80789f30a0cf31701ac594">CRS</a> &amp;m, const int site)</td></tr>
+<tr class="memdesc:ab3cd64496b8e2876648f3c935b53e48e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an onsite potential term to the system \( c\times \hat{O}_{i} \).  <a href="classcompnal_1_1model_1_1_general_model__1_d.html#ab3cd64496b8e2876648f3c935b53e48e">More...</a><br /></td></tr>
 <tr class="separator:ab3cd64496b8e2876648f3c935b53e48e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01d85f8969816d57cd3f4aa8b79e239a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#a01d85f8969816d57cd3f4aa8b79e239a">AddOnsitePotential</a> (const <a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#ae77f72e0ca80789f30a0cf31701ac594">CRS</a> &amp;m, const int site)</td></tr>
+<tr class="memdesc:a01d85f8969816d57cd3f4aa8b79e239a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an onsite potential term to the system \( \hat{O}_{i} \).  <a href="classcompnal_1_1model_1_1_general_model__1_d.html#a01d85f8969816d57cd3f4aa8b79e239a">More...</a><br /></td></tr>
 <tr class="separator:a01d85f8969816d57cd3f4aa8b79e239a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11bd36ed6a869440b9bd8ed666152f4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#a11bd36ed6a869440b9bd8ed666152f4e">AddInteraction</a> (const <a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#a530e9f1a7e798931102c91eeeab65337">RealType</a> val, const <a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#ae77f72e0ca80789f30a0cf31701ac594">CRS</a> &amp;m_1, const int site_1, const <a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#ae77f72e0ca80789f30a0cf31701ac594">CRS</a> &amp;m_2, const int site_2)</td></tr>
+<tr class="memdesc:a11bd36ed6a869440b9bd8ed666152f4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an interaction term to the system \( c\times\hat{O}_{i}\hat{P}_{j} \).  <a href="classcompnal_1_1model_1_1_general_model__1_d.html#a11bd36ed6a869440b9bd8ed666152f4e">More...</a><br /></td></tr>
 <tr class="separator:a11bd36ed6a869440b9bd8ed666152f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29f2987eb544d43923121fa98ae2b6b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#a29f2987eb544d43923121fa98ae2b6b6">AddInteraction</a> (const <a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#ae77f72e0ca80789f30a0cf31701ac594">CRS</a> &amp;m_1, const int site_1, const <a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#ae77f72e0ca80789f30a0cf31701ac594">CRS</a> &amp;m_2, const int site_2)</td></tr>
+<tr class="memdesc:a29f2987eb544d43923121fa98ae2b6b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add an interaction term to the system \( \hat{O}_{i}\hat{P}_{j} \).  <a href="classcompnal_1_1model_1_1_general_model__1_d.html#a29f2987eb544d43923121fa98ae2b6b6">More...</a><br /></td></tr>
 <tr class="separator:a29f2987eb544d43923121fa98ae2b6b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a06a053ae83790d126cb115b5559682f5"><td class="memItemLeft" align="right" valign="top">const std::unordered_map&lt; int, <a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#ae77f72e0ca80789f30a0cf31701ac594">CRS</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#a06a053ae83790d126cb115b5559682f5">GetOnsiteOperatorList</a> () const</td></tr>
+<tr class="memdesc:a06a053ae83790d126cb115b5559682f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get onsite potential term list added to the system.  <a href="classcompnal_1_1model_1_1_general_model__1_d.html#a06a053ae83790d126cb115b5559682f5">More...</a><br /></td></tr>
 <tr class="separator:a06a053ae83790d126cb115b5559682f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7313b90fc9dc9c1da3cf17062a632f20"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#ae77f72e0ca80789f30a0cf31701ac594">CRS</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#a7313b90fc9dc9c1da3cf17062a632f20">GetOnsiteOperator</a> (const int site) const</td></tr>
+<tr class="memdesc:a7313b90fc9dc9c1da3cf17062a632f20"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an onsite potential term added to the system \( \hat{O}_{i}\).  <a href="classcompnal_1_1model_1_1_general_model__1_d.html#a7313b90fc9dc9c1da3cf17062a632f20">More...</a><br /></td></tr>
 <tr class="separator:a7313b90fc9dc9c1da3cf17062a632f20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f9817acdb9c4112f648cc5515065e93"><td class="memItemLeft" align="right" valign="top">const std::unordered_map&lt; int, std::unordered_map&lt; int, std::vector&lt; std::pair&lt; <a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#ae77f72e0ca80789f30a0cf31701ac594">CRS</a>, <a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#ae77f72e0ca80789f30a0cf31701ac594">CRS</a> &gt; &gt; &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#a7f9817acdb9c4112f648cc5515065e93">GetIntersiteOperatorList</a> () const</td></tr>
+<tr class="memdesc:a7f9817acdb9c4112f648cc5515065e93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get interaction term list added to the system.  <a href="classcompnal_1_1model_1_1_general_model__1_d.html#a7f9817acdb9c4112f648cc5515065e93">More...</a><br /></td></tr>
 <tr class="separator:a7f9817acdb9c4112f648cc5515065e93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef282dab7ad34ff8a3fafd050b49785b"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; std::pair&lt; <a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#ae77f72e0ca80789f30a0cf31701ac594">CRS</a>, <a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#ae77f72e0ca80789f30a0cf31701ac594">CRS</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#aef282dab7ad34ff8a3fafd050b49785b">GetIntersiteOperator</a> (const int site_1, const int site_2) const</td></tr>
+<tr class="memdesc:aef282dab7ad34ff8a3fafd050b49785b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get an interaction term added to the system \( \hat{O}_{i}\hat{P}_{j}\).  <a href="classcompnal_1_1model_1_1_general_model__1_d.html#aef282dab7ad34ff8a3fafd050b49785b">More...</a><br /></td></tr>
 <tr class="separator:aef282dab7ad34ff8a3fafd050b49785b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-types" name="pri-types"></a>
 Private Types</h2></td></tr>
 <tr class="memitem:a530e9f1a7e798931102c91eeeab65337"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#a530e9f1a7e798931102c91eeeab65337">RealType</a> = typename BaseClass::ValueType</td></tr>
+<tr class="memdesc:a530e9f1a7e798931102c91eeeab65337"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of real values.  <a href="classcompnal_1_1model_1_1_general_model__1_d.html#a530e9f1a7e798931102c91eeeab65337">More...</a><br /></td></tr>
 <tr class="separator:a530e9f1a7e798931102c91eeeab65337"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae77f72e0ca80789f30a0cf31701ac594"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#ae77f72e0ca80789f30a0cf31701ac594">CRS</a> = <a class="el" href="structcompnal_1_1sparse__matrix_1_1_c_r_s.html">sparse_matrix::CRS</a>&lt; <a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#a530e9f1a7e798931102c91eeeab65337">RealType</a> &gt;</td></tr>
+<tr class="memdesc:ae77f72e0ca80789f30a0cf31701ac594"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias of compressed row strage (CRS) with RealType.  <a href="classcompnal_1_1model_1_1_general_model__1_d.html#ae77f72e0ca80789f30a0cf31701ac594">More...</a><br /></td></tr>
 <tr class="separator:ae77f72e0ca80789f30a0cf31701ac594"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a85936d1c3308aea6746eac1c6cc97f8f"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; int, <a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#ae77f72e0ca80789f30a0cf31701ac594">CRS</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#a85936d1c3308aea6746eac1c6cc97f8f">onsite_operator_list_</a></td></tr>
+<tr class="memdesc:a85936d1c3308aea6746eac1c6cc97f8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Onsite potential term list added to the system.  <a href="classcompnal_1_1model_1_1_general_model__1_d.html#a85936d1c3308aea6746eac1c6cc97f8f">More...</a><br /></td></tr>
 <tr class="separator:a85936d1c3308aea6746eac1c6cc97f8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0210d87867a43654eea74b9a892cce1"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; int, std::unordered_map&lt; int, std::vector&lt; std::pair&lt; <a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#ae77f72e0ca80789f30a0cf31701ac594">CRS</a>, <a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#ae77f72e0ca80789f30a0cf31701ac594">CRS</a> &gt; &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_general_model__1_d.html#ae0210d87867a43654eea74b9a892cce1">intersite_operator_list_</a></td></tr>
+<tr class="memdesc:ae0210d87867a43654eea74b9a892cce1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interaction term list added to the system.  <a href="classcompnal_1_1model_1_1_general_model__1_d.html#ae0210d87867a43654eea74b9a892cce1">More...</a><br /></td></tr>
 <tr class="separator:ae0210d87867a43654eea74b9a892cce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class BaseClass&gt;<br />
+class compnal::model::GeneralModel_1D&lt; BaseClass &gt;</div><p >The general model class for one-dimensional systems. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">BaseClass</td><td>The base model classes. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="ae77f72e0ca80789f30a0cf31701ac594" name="ae77f72e0ca80789f30a0cf31701ac594"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae77f72e0ca80789f30a0cf31701ac594">&#9670;&nbsp;</a></span>CRS</h2>
 
@@ -145,6 +169,8 @@ template&lt;class BaseClass &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Alias of compressed row strage (CRS) with RealType. </p>
 
 </div>
 </div>
@@ -169,6 +195,8 @@ template&lt;class BaseClass &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The type of real values. </p>
 
 </div>
 </div>
@@ -220,6 +248,17 @@ template&lt;class BaseClass &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Add an interaction term to the system \( \hat{O}_{i}\hat{P}_{j} \). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m_1</td><td>The onsite operator \( \hat{O}_{i} \). </td></tr>
+    <tr><td class="paramname">site_1</td><td>The site \( i\). </td></tr>
+    <tr><td class="paramname">m_2</td><td>The onsite operator \( \hat{P}_{j} \). </td></tr>
+    <tr><td class="paramname">site_2</td><td>The site \( j\). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -277,6 +316,18 @@ template&lt;class BaseClass &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Add an interaction term to the system \( c\times\hat{O}_{i}\hat{P}_{j} \). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val</td><td>The coefficient of the interaction term \( c \). </td></tr>
+    <tr><td class="paramname">m_1</td><td>The onsite operator \( \hat{O}_{i} \). </td></tr>
+    <tr><td class="paramname">site_1</td><td>The site \( i\). </td></tr>
+    <tr><td class="paramname">m_2</td><td>The onsite operator \( \hat{P}_{j} \). </td></tr>
+    <tr><td class="paramname">site_2</td><td>The site \( j\). </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a01d85f8969816d57cd3f4aa8b79e239a" name="a01d85f8969816d57cd3f4aa8b79e239a"></a>
@@ -314,6 +365,15 @@ template&lt;class BaseClass &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Add an onsite potential term to the system \( \hat{O}_{i} \). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>The onsite operator \( \hat{O}_{i} \). </td></tr>
+    <tr><td class="paramname">site</td><td>The site \( i\). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -359,6 +419,16 @@ template&lt;class BaseClass &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Add an onsite potential term to the system \( c\times \hat{O}_{i} \). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val</td><td>The coefficient of the potential term \( c \). </td></tr>
+    <tr><td class="paramname">m</td><td>The onsite operator \( \hat{O}_{i} \). </td></tr>
+    <tr><td class="paramname">site</td><td>The site \( i\). </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="aef282dab7ad34ff8a3fafd050b49785b" name="aef282dab7ad34ff8a3fafd050b49785b"></a>
@@ -397,6 +467,16 @@ template&lt;class BaseClass &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Get an interaction term added to the system \( \hat{O}_{i}\hat{P}_{j}\). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">site_1</td><td>The site \( i\). </td></tr>
+    <tr><td class="paramname">site_2</td><td>The site \( j\). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The interaction term added to the system \( \hat{O}_{i}\) and \( \hat{P}_{j}\). </dd></dl>
+
 </div>
 </div>
 <a id="a7f9817acdb9c4112f648cc5515065e93" name="a7f9817acdb9c4112f648cc5515065e93"></a>
@@ -423,6 +503,9 @@ template&lt;class BaseClass &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Get interaction term list added to the system. </p>
+<dl class="section return"><dt>Returns</dt><dd>Interaction term list added to the system. </dd></dl>
 
 </div>
 </div>
@@ -452,6 +535,15 @@ template&lt;class BaseClass &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Get an onsite potential term added to the system \( \hat{O}_{i}\). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">site</td><td>The site \( i\). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The onsite potential term added to the system \( \hat{O}_{i}\). </dd></dl>
+
 </div>
 </div>
 <a id="a06a053ae83790d126cb115b5559682f5" name="a06a053ae83790d126cb115b5559682f5"></a>
@@ -479,6 +571,9 @@ template&lt;class BaseClass &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Get onsite potential term list added to the system. </p>
+<dl class="section return"><dt>Returns</dt><dd>Onsite potential term list added to the system. </dd></dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -504,6 +599,8 @@ template&lt;class BaseClass &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Interaction term list added to the system. </p>
+
 </div>
 </div>
 <a id="a85936d1c3308aea6746eac1c6cc97f8f" name="a85936d1c3308aea6746eac1c6cc97f8f"></a>
@@ -527,6 +624,8 @@ template&lt;class BaseClass &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Onsite potential term list added to the system. </p>
 
 </div>
 </div>
