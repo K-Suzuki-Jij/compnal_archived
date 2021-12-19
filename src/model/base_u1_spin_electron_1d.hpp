@@ -160,6 +160,27 @@ public:
       return isValidQNumber(system_size_, 0.5*magnitude_2lspin_, total_electron, total_sz);
    }
    
+   //! @brief Print the onsite bases.
+   void PrintBasisOnsite() const {
+      const double magnitude_lspin = magnitude_2lspin_/2.0;
+      for (int row = 0; row < dim_onsite_; ++row) {
+         std::string b_ele = "None";
+         if (CalculateBasisOnsiteElectron(row) == 0) {
+            b_ele = "|vac>";
+         }
+         else if (CalculateBasisOnsiteElectron(row) == 1) {
+            b_ele = "|↑>";
+         }
+         else if (CalculateBasisOnsiteElectron(row) == 2) {
+            b_ele = "|↓>";
+         }
+         else if (CalculateBasisOnsiteElectron(row) == 3) {
+            b_ele = "|↑↓>";
+         }
+         std::cout << "row " << row << ": " << b_ele << "|Sz=" << magnitude_lspin - CalculateBasisOnsiteLSpin(row) << ">" << std::endl;
+      }
+   }
+   
    //! @brief Calculate the dimension of the target Hilbert space specified by
    //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
    //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,

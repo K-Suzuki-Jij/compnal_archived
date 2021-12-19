@@ -31,28 +31,54 @@ void pybind11ModelBaseElectron1D(py::module &m) {
    
    using BUE1D = compnal::model::BaseU1Electron_1D<RealType>;
    
-   py::class_<BUE1D>(m, "BaseU1Electron_1D", py::module_local())
-      .def(py::init<>())
-      .def(py::init<const int>(), "system_size"_a)
-      .def(py::init<const int, const double>(), "total_electron"_a, "total_sz"_a)
-      .def("print_basis_onsite"     , &BUE1D::PrintBasisOnsite)
-      .def("calculate_target_dim"   , py::overload_cast<>(&BUE1D::CalculateTargetDim, py::const_))
-      .def("calculate_target_dim"   , py::overload_cast<const int, const double>(&BUE1D::CalculateTargetDim, py::const_), "total_electron"_a, "total_sz"_a)
-      .def_property("system_size"   , &BUE1D::GetSystemSize   , &BUE1D::SetSystemSize)
-      .def_property("total_electron", &BUE1D::GetTotalElectron, &BUE1D::SetTotalElectron)
-      .def_property("total_sz"      , &BUE1D::GetTotalSz      , &BUE1D::SetTotalSz)
-      .def_property_readonly("CUp"         , &BUE1D::GetOnsiteOperatorCUp        )
-      .def_property_readonly("CDown"       , &BUE1D::GetOnsiteOperatorCDown      )
-      .def_property_readonly("CUpDagger"   , &BUE1D::GetOnsiteOperatorCUpDagger  )
-      .def_property_readonly("CDownDagger" , &BUE1D::GetOnsiteOperatorCDownDagger)
-      .def_property_readonly("NCUp"        , &BUE1D::GetOnsiteOperatorNCUp       )
-      .def_property_readonly("NCDown"      , &BUE1D::GetOnsiteOperatorNCDown     )
-      .def_property_readonly("NC"          , &BUE1D::GetOnsiteOperatorNC         )
-      .def_property_readonly("Sx"          , &BUE1D::GetOnsiteOperatorSx         )
-      .def_property_readonly("iSy"         , &BUE1D::GetOnsiteOperatoriSy        )
-      .def_property_readonly("Sz"          , &BUE1D::GetOnsiteOperatorSz         )
-      .def_property_readonly("Sp"          , &BUE1D::GetOnsiteOperatorSp         )
-      .def_property_readonly("Sm"          , &BUE1D::GetOnsiteOperatorSm         );
+   auto c = py::class_<BUE1D>(m, "BaseU1Electron_1D", py::module_local());
+   
+   //Constructors
+   c.def(py::init<>());
+   c.def(py::init<const int>(), "system_size"_a);
+   c.def(py::init<const int, const double>(), "total_electron"_a, "total_sz"_a);
+   
+   //Public Member Functions
+   c.def("calculate_target_dim", py::overload_cast<>(&BUE1D::CalculateTargetDim, py::const_));
+   c.def("calculate_target_dim", py::overload_cast<const int, const double>(&BUE1D::CalculateTargetDim, py::const_), "total_electron"_a, "total_sz"_a);
+   c.def("print_basis_onsite"  , [](BUE1D &self) {
+      py::scoped_ostream_redirect stream(std::cout, py::module_::import("sys").attr("stdout"));
+      self.PrintBasisOnsite();
+   });
+   
+   //Static Member Functions
+   c.def_static("make_onsite_operator_c_up"  , &BUE1D::CreateOnsiteOperatorCUp);
+   c.def_static("make_onsite_operator_c_down", &BUE1D::CreateOnsiteOperatorCDown);
+   c.def_static("make_onsite_operator_c_up_dagger"  , &BUE1D::CreateOnsiteOperatorCUpDagger);
+   c.def_static("make_onsite_operator_c_down_dagger", &BUE1D::CreateOnsiteOperatorCDownDagger);
+   c.def_static("make_onsite_operator_nc_up", &BUE1D::CreateOnsiteOperatorNCUp);
+   c.def_static("make_onsite_operator_nc_down", &BUE1D::CreateOnsiteOperatorNCDown);
+   c.def_static("make_onsite_operator_nc", &BUE1D::CreateOnsiteOperatorNC);
+   c.def_static("make_onsite_operator_sx", &BUE1D::CreateOnsiteOperatorSx);
+   c.def_static("make_onsite_operator_isy", &BUE1D::CreateOnsiteOperatoriSy);
+   c.def_static("make_onsite_operator_sz", &BUE1D::CreateOnsiteOperatorSz);
+   c.def_static("make_onsite_operator_sp", &BUE1D::CreateOnsiteOperatorSp);
+   c.def_static("make_onsite_operator_sm", &BUE1D::CreateOnsiteOperatorSm);
+   
+   //Properties
+   c.def_property("system_size"   , &BUE1D::GetSystemSize   , &BUE1D::SetSystemSize);
+   c.def_property("total_electron", &BUE1D::GetTotalElectron, &BUE1D::SetTotalElectron);
+   c.def_property("total_sz"      , &BUE1D::GetTotalSz      , &BUE1D::SetTotalSz);
+   
+   //Read Only Properties
+   c.def_property_readonly("c_up"         , &BUE1D::GetOnsiteOperatorCUp        );
+   c.def_property_readonly("c_down"       , &BUE1D::GetOnsiteOperatorCDown      );
+   c.def_property_readonly("c_up_dagger"  , &BUE1D::GetOnsiteOperatorCUpDagger  );
+   c.def_property_readonly("c_down_dagger", &BUE1D::GetOnsiteOperatorCDownDagger);
+   c.def_property_readonly("nc_up"        , &BUE1D::GetOnsiteOperatorNCUp       );
+   c.def_property_readonly("nc_down"      , &BUE1D::GetOnsiteOperatorNCDown     );
+   c.def_property_readonly("nc" , &BUE1D::GetOnsiteOperatorNC );
+   c.def_property_readonly("sx" , &BUE1D::GetOnsiteOperatorSx );
+   c.def_property_readonly("isy", &BUE1D::GetOnsiteOperatoriSy);
+   c.def_property_readonly("sz" , &BUE1D::GetOnsiteOperatorSz );
+   c.def_property_readonly("sp" , &BUE1D::GetOnsiteOperatorSp );
+   c.def_property_readonly("sm" , &BUE1D::GetOnsiteOperatorSm );
+   
 }
 
 template<typename RealType>
@@ -60,22 +86,40 @@ void pybind11ModelBaseSpin1D(py::module &m) {
    
    using BUS1D = compnal::model::BaseU1Spin_1D<RealType>;
    
-   py::class_<BUS1D>(m, "BaseU1Spin_1D", py::module_local())
-      .def(py::init<>())
-      .def(py::init<const int>(), "system_size"_a)
-      .def(py::init<const int, const double>(), "system_size"_a, "spin"_a)
-      .def("print_basis_onsite"     , &BUS1D::PrintBasisOnsite)
-      .def("calculate_target_dim"   , py::overload_cast<>(&BUS1D::CalculateTargetDim, py::const_))
-      .def("calculate_target_dim"   , py::overload_cast<const double>(&BUS1D::CalculateTargetDim, py::const_), "total_sz"_a)
-      .def_property_readonly("Sx" , &BUS1D::GetOnsiteOperatorSx )
-      .def_property_readonly("iSy", &BUS1D::GetOnsiteOperatoriSy)
-      .def_property_readonly("Sz" , &BUS1D::GetOnsiteOperatorSz )
-      .def_property_readonly("Sp" , &BUS1D::GetOnsiteOperatorSp )
-      .def_property_readonly("Sm" , &BUS1D::GetOnsiteOperatorSm )
-      .def_property("system_size" , &BUS1D::GetSystemSize, &BUS1D::SetSystemSize)
-      .def_property("spin"        , &BUS1D::GetMagnitudeSpin, &BUS1D::SetMagnitudeSpin)
-      .def_property("total_sz"    , &BUS1D::GetTotalSz, &BUS1D::SetTotalSz);
+   auto c = py::class_<BUS1D>(m, "BaseU1Spin_1D", py::module_local());
    
+   //Constructors
+   c.def(py::init<>());
+   c.def(py::init<const int>(), "system_size"_a);
+   c.def(py::init<const int, const double>(), "system_size"_a, "spin"_a);
+   
+   //Public Member Functions
+   c.def("calculate_target_dim", py::overload_cast<>(&BUS1D::CalculateTargetDim, py::const_));
+   c.def("calculate_target_dim", py::overload_cast<const double>(&BUS1D::CalculateTargetDim, py::const_), "total_sz"_a);
+   c.def("print_basis_onsite"  , [](BUS1D &self) {
+      py::scoped_ostream_redirect stream(std::cout, py::module_::import("sys").attr("stdout"));
+      self.PrintBasisOnsite();
+   });
+   
+   //Static Member Functions
+   c.def_static("make_onsite_operator_sx" , &BUS1D::CreateOnsiteOperatorSx , "spin"_a);
+   c.def_static("make_onsite_operator_isy", &BUS1D::CreateOnsiteOperatoriSy, "spin"_a);
+   c.def_static("make_onsite_operator_sz" , &BUS1D::CreateOnsiteOperatorSz , "spin"_a);
+   c.def_static("make_onsite_operator_sp" , &BUS1D::CreateOnsiteOperatorSp , "spin"_a);
+   c.def_static("make_onsite_operator_sm" , &BUS1D::CreateOnsiteOperatorSm , "spin"_a);
+   
+   //Properties
+   c.def_property("system_size" , &BUS1D::GetSystemSize, &BUS1D::SetSystemSize);
+   c.def_property("spin"        , &BUS1D::GetMagnitudeSpin, &BUS1D::SetMagnitudeSpin);
+   c.def_property("total_sz"    , &BUS1D::GetTotalSz, &BUS1D::SetTotalSz);
+   
+   //Read Only Properties
+   c.def_property_readonly("sx" , &BUS1D::GetOnsiteOperatorSx );
+   c.def_property_readonly("isy", &BUS1D::GetOnsiteOperatoriSy);
+   c.def_property_readonly("sz" , &BUS1D::GetOnsiteOperatorSz );
+   c.def_property_readonly("sp" , &BUS1D::GetOnsiteOperatorSp );
+   c.def_property_readonly("sm" , &BUS1D::GetOnsiteOperatorSm );
+
 }
 
 template<typename RealType>
@@ -83,36 +127,67 @@ void pybind11ModelBaseSpinElectron1D(py::module &m) {
    
    using BUSE1D = compnal::model::BaseU1SpinElectron_1D<RealType>;
    
-   py::class_<BUSE1D>(m, "BaseU1SpinElectron_1D", py::module_local())
-      .def(py::init<>())
-      .def(py::init<const int>(), "system_size"_a)
-      .def(py::init<const int, const double>(), "system_size"_a, "spin"_a)
-      .def(py::init<const int, const int>(), "system_size"_a, "total_electron"_a)
-      .def(py::init<const int, const double, const int>(), "system_size"_a, "spin"_a, "total_electron"_a)
-      .def("calculate_target_dim"   , py::overload_cast<>(&BUSE1D::CalculateTargetDim, py::const_))
-      .def("calculate_target_dim"   , py::overload_cast<const int, const double>(&BUSE1D::CalculateTargetDim, py::const_), "total_electron"_a, "total_sz"_a)
-      .def_property_readonly("CUp"         , &BUSE1D::GetOnsiteOperatorCUp        )
-      .def_property_readonly("CDown"       , &BUSE1D::GetOnsiteOperatorCDown      )
-      .def_property_readonly("CUpDagger"   , &BUSE1D::GetOnsiteOperatorCUpDagger  )
-      .def_property_readonly("CDownDagger" , &BUSE1D::GetOnsiteOperatorCDownDagger)
-      .def_property_readonly("NCUp"        , &BUSE1D::GetOnsiteOperatorNCUp       )
-      .def_property_readonly("NCDown"      , &BUSE1D::GetOnsiteOperatorNCDown     )
-      .def_property_readonly("NC"          , &BUSE1D::GetOnsiteOperatorNC         )
-      .def_property_readonly("SxC" , &BUSE1D::GetOnsiteOperatorSxC )
-      .def_property_readonly("iSyC", &BUSE1D::GetOnsiteOperatoriSyC)
-      .def_property_readonly("SzC" , &BUSE1D::GetOnsiteOperatorSzC )
-      .def_property_readonly("SpC" , &BUSE1D::GetOnsiteOperatorSpC )
-      .def_property_readonly("SmC" , &BUSE1D::GetOnsiteOperatorSmC )
-      .def_property_readonly("SxL" , &BUSE1D::GetOnsiteOperatorSxL )
-      .def_property_readonly("iSyL", &BUSE1D::GetOnsiteOperatoriSyL)
-      .def_property_readonly("SzL" , &BUSE1D::GetOnsiteOperatorSzL )
-      .def_property_readonly("SpL" , &BUSE1D::GetOnsiteOperatorSpL )
-      .def_property_readonly("SmL" , &BUSE1D::GetOnsiteOperatorSmL )
-      .def_property_readonly("SCSL", &BUSE1D::GetOnsiteOperatorSCSL)
-      .def_property("system_size"  , &BUSE1D::GetSystemSize, &BUSE1D::SetSystemSize)
-      .def_property("spin"         , &BUSE1D::GetMagnitudeLSpin, &BUSE1D::SetMagnitudeLSpin)
-      .def_property("total_sz"     , &BUSE1D::GetTotalSz, &BUSE1D::SetTotalSz)
-      .def_property("total_electron", &BUSE1D::GetTotalElectron, &BUSE1D::SetTotalElectron);
+   auto c = py::class_<BUSE1D>(m, "BaseU1SpinElectron_1D", py::module_local());
+   
+   //Constructors
+   c.def(py::init<>());
+   c.def(py::init<const int>(), "system_size"_a);
+   c.def(py::init<const int, const double>(), "system_size"_a, "spin"_a);
+   c.def(py::init<const int, const int>(), "system_size"_a, "total_electron"_a);
+   c.def(py::init<const int, const double, const int>(), "system_size"_a, "spin"_a, "total_electron"_a);
+   
+   //Public Member Functions
+   c.def("calculate_target_dim", py::overload_cast<>(&BUSE1D::CalculateTargetDim, py::const_));
+   c.def("calculate_target_dim", py::overload_cast<const int, const double>(&BUSE1D::CalculateTargetDim, py::const_), "total_electron"_a, "total_sz"_a);
+   c.def("print_basis_onsite"  , [](BUSE1D &self) {
+      py::scoped_ostream_redirect stream(std::cout, py::module_::import("sys").attr("stdout"));
+      self.PrintBasisOnsite();
+   });
+   
+   //Static Member Functions
+   c.def_static("make_onsite_operator_c_up"         , &BUSE1D::CreateOnsiteOperatorCUp        , "spin"_a);
+   c.def_static("make_onsite_operator_c_down"       , &BUSE1D::CreateOnsiteOperatorCDown      , "spin"_a);
+   c.def_static("make_onsite_operator_c_up_dagger"  , &BUSE1D::CreateOnsiteOperatorCUpDagger  , "spin"_a);
+   c.def_static("make_onsite_operator_c_down_dagger", &BUSE1D::CreateOnsiteOperatorCDownDagger, "spin"_a);
+   c.def_static("make_onsite_operator_nc_up"        , &BUSE1D::CreateOnsiteOperatorNCUp       , "spin"_a);
+   c.def_static("make_onsite_operator_nc_down"      , &BUSE1D::CreateOnsiteOperatorNCDown     , "spin"_a);
+   c.def_static("make_onsite_operator_nc"           , &BUSE1D::CreateOnsiteOperatorNC         , "spin"_a);
+   c.def_static("make_onsite_operator_sx_c"         , &BUSE1D::CreateOnsiteOperatorSxC        , "spin"_a);
+   c.def_static("make_onsite_operator_isy_c"        , &BUSE1D::CreateOnsiteOperatoriSyC       , "spin"_a);
+   c.def_static("make_onsite_operator_sz_c"         , &BUSE1D::CreateOnsiteOperatorSzC        , "spin"_a);
+   c.def_static("make_onsite_operator_sp_c"         , &BUSE1D::CreateOnsiteOperatorSpC        , "spin"_a);
+   c.def_static("make_onsite_operator_sm_c"         , &BUSE1D::CreateOnsiteOperatorSmC        , "spin"_a);
+   c.def_static("make_onsite_operator_sx_l"         , &BUSE1D::CreateOnsiteOperatorSxL        , "spin"_a);
+   c.def_static("make_onsite_operator_isy_l"        , &BUSE1D::CreateOnsiteOperatoriSyL       , "spin"_a);
+   c.def_static("make_onsite_operator_sz_l"         , &BUSE1D::CreateOnsiteOperatorSzL        , "spin"_a);
+   c.def_static("make_onsite_operator_sp_l"         , &BUSE1D::CreateOnsiteOperatorSpL        , "spin"_a);
+   c.def_static("make_onsite_operator_sm_l"         , &BUSE1D::CreateOnsiteOperatorSmL        , "spin"_a);
+   
+   //Properties
+   c.def_property("system_size"   , &BUSE1D::GetSystemSize, &BUSE1D::SetSystemSize);
+   c.def_property("spin"          , &BUSE1D::GetMagnitudeLSpin, &BUSE1D::SetMagnitudeLSpin);
+   c.def_property("total_sz"      , &BUSE1D::GetTotalSz, &BUSE1D::SetTotalSz);
+   c.def_property("total_electron", &BUSE1D::GetTotalElectron, &BUSE1D::SetTotalElectron);
+   
+   //Read Only Properties
+   c.def_property_readonly("c_up"         , &BUSE1D::GetOnsiteOperatorCUp);
+   c.def_property_readonly("c_down"       , &BUSE1D::GetOnsiteOperatorCDown);
+   c.def_property_readonly("c_up_dagger"  , &BUSE1D::GetOnsiteOperatorCUpDagger);
+   c.def_property_readonly("c_down_dagger", &BUSE1D::GetOnsiteOperatorCDownDagger);
+   c.def_property_readonly("nc_up"        , &BUSE1D::GetOnsiteOperatorNCUp);
+   c.def_property_readonly("nc_down"      , &BUSE1D::GetOnsiteOperatorNCDown);
+   c.def_property_readonly("nc"           , &BUSE1D::GetOnsiteOperatorNC);
+   c.def_property_readonly("sx_c" , &BUSE1D::GetOnsiteOperatorSxC );
+   c.def_property_readonly("isy_c", &BUSE1D::GetOnsiteOperatoriSyC);
+   c.def_property_readonly("sz_c" , &BUSE1D::GetOnsiteOperatorSzC );
+   c.def_property_readonly("sp_c" , &BUSE1D::GetOnsiteOperatorSpC );
+   c.def_property_readonly("sm_c" , &BUSE1D::GetOnsiteOperatorSmC );
+   c.def_property_readonly("sx_l" , &BUSE1D::GetOnsiteOperatorSxL );
+   c.def_property_readonly("isy_l", &BUSE1D::GetOnsiteOperatoriSyL);
+   c.def_property_readonly("sz_l" , &BUSE1D::GetOnsiteOperatorSzL );
+   c.def_property_readonly("sp_l" , &BUSE1D::GetOnsiteOperatorSpL );
+   c.def_property_readonly("sm_l" , &BUSE1D::GetOnsiteOperatorSmL );
+   c.def_property_readonly("sc_sl", &BUSE1D::GetOnsiteOperatorSCSL);
    
 }
 
@@ -166,27 +241,38 @@ void pybind11ModelXXZ1D(py::module &m) {
    
    using XXZ1D = compnal::model::XXZ_1D<RealType>;
    
-   py::class_<XXZ1D, compnal::model::BaseU1Spin_1D<RealType>>(m, "XXZ_1D", py::module_local())
-      .def(py::init<>())
-      .def(py::init<const int>(), "system_size"_a)
-      .def(py::init<const int, const double>(), "system_size"_a, "spin"_a)
-      .def(py::init<const int, const compnal::utility::BoundaryCondition>(), "system_size"_a, "boundary_condition"_a)
-      .def(py::init<const int, const double, const compnal::utility::BoundaryCondition>(), "system_size"_a, "spin"_a, "boundary_condition"_a)
-      .def("set_J_z" , py::overload_cast<const std::vector<RealType>&>(&XXZ1D::SetJz), "J_z"_a)
-      .def("set_J_z" , py::overload_cast<const RealType>(&XXZ1D::SetJz), "J_z"_a)
-      .def("set_J_xy", py::overload_cast<const std::vector<RealType>&>(&XXZ1D::SetJxy), "J_xy"_a)
-      .def("set_J_xy", py::overload_cast<const RealType>(&XXZ1D::SetJxy), "J_xy"_a)
-      .def("set_h_z" ,&XXZ1D::SetHz, "h_z"_a)
-      .def("set_D_z" ,&XXZ1D::SetDz, "D_z"_a)
-      .def("get_J_z" , py::overload_cast<>(&XXZ1D::GetJz, py::const_))
-      .def("get_J_xy", py::overload_cast<>(&XXZ1D::GetJxy, py::const_))
-      .def("get_J_z" , py::overload_cast<const std::int64_t>(&XXZ1D::GetJz, py::const_) , "index"_a)
-      .def("get_J_xy", py::overload_cast<const std::int64_t>(&XXZ1D::GetJxy, py::const_), "index"_a)
-      .def("get_h_z" , &XXZ1D::GetHz)
-      .def("get_D_z" , &XXZ1D::GetDz)
-      .def("print_info", &XXZ1D::PrintInfo)
-      .def_property("boundary_condition", &XXZ1D::GetBoundaryCondition, &XXZ1D::SetBoundaryCondition)
-      .def_property_readonly("Ham", &XXZ1D::GetOnsiteOperatorHam);
+   auto c = py::class_<XXZ1D, compnal::model::BaseU1Spin_1D<RealType>>(m, "XXZ_1D", py::module_local());
+   
+   //Constructors
+   c.def(py::init<>());
+   c.def(py::init<const int>(), "system_size"_a);
+   c.def(py::init<const int, const double>(), "system_size"_a, "spin"_a);
+   c.def(py::init<const int, const compnal::utility::BoundaryCondition>(), "system_size"_a, "boundary_condition"_a);
+   c.def(py::init<const int, const double, const compnal::utility::BoundaryCondition>(), "system_size"_a, "spin"_a, "boundary_condition"_a);
+   
+   //Public Member Functions
+   c.def("set_J_z" , py::overload_cast<const std::vector<RealType>&>(&XXZ1D::SetJz), "J_z"_a);
+   c.def("set_J_z" , py::overload_cast<const RealType>(&XXZ1D::SetJz), "J_z"_a);
+   c.def("set_J_xy", py::overload_cast<const std::vector<RealType>&>(&XXZ1D::SetJxy), "J_xy"_a);
+   c.def("set_J_xy", py::overload_cast<const RealType>(&XXZ1D::SetJxy), "J_xy"_a);
+   c.def("set_h_z" , &XXZ1D::SetHz, "h_z"_a);
+   c.def("set_D_z" , &XXZ1D::SetDz, "D_z"_a);
+   c.def("get_J_z" , py::overload_cast<>(&XXZ1D::GetJz, py::const_));
+   c.def("get_J_xy", py::overload_cast<>(&XXZ1D::GetJxy, py::const_));
+   c.def("get_J_z" , py::overload_cast<const std::int64_t>(&XXZ1D::GetJz, py::const_) , "index"_a);
+   c.def("get_J_xy", py::overload_cast<const std::int64_t>(&XXZ1D::GetJxy, py::const_), "index"_a);
+   c.def("get_h_z" , &XXZ1D::GetHz);
+   c.def("get_D_z" , &XXZ1D::GetDz);
+   c.def("print_info", [](XXZ1D &self) {
+      py::scoped_ostream_redirect stream(std::cout, py::module_::import("sys").attr("stdout"));
+      self.PrintInfo();
+   });
+   
+   //Properties
+   c.def_property("boundary_condition", &XXZ1D::GetBoundaryCondition, &XXZ1D::SetBoundaryCondition);
+   
+   //Read Only Properties
+   c.def_property_readonly("Ham", &XXZ1D::GetOnsiteOperatorHam);
    
 }
 
@@ -195,27 +281,32 @@ void pybind11ModelHubbard1D(py::module &m) {
    
    using HBM1D = compnal::model::Hubbard_1D<RealType>;
    
-   py::class_<HBM1D, compnal::model::BaseU1Electron_1D<RealType>>(m, "Hubbard_1D", py::module_local())
-      .def(py::init<>())
-      .def(py::init<const int>(), "system_size"_a)
-      .def(py::init<const int, const int>(), "system_size"_a, "total_electron"_a)
-      .def(py::init<const int, const compnal::utility::BoundaryCondition>(), "system_size"_a, "boundary_condition"_a)
-      .def(py::init<const int, const int, const compnal::utility::BoundaryCondition>(), "system_size"_a, "total_electron"_a, "boundary_condition"_a)
-      .def("set_hopping"          , py::overload_cast<const RealType>(&HBM1D::SetHopping), "t"_a)
-      .def("set_hopping"          , py::overload_cast<const std::vector<RealType>&>(&HBM1D::SetHopping), "t"_a)
-      .def("set_intersite_coulomb", py::overload_cast<const RealType>(&HBM1D::SetIntersiteCoulomb), "V"_a)
-      .def("set_intersite_coulomb", py::overload_cast<const std::vector<RealType>&>(&HBM1D::SetIntersiteCoulomb), "V"_a)
-      .def("set_onsite_coulomb"   , &HBM1D::SetOnsiteCoulomb, "U"_a)
-      .def("set_magnetic_field"   , &HBM1D::SetMagneticField, "h_z"_a)
-      .def_property("boundary_condition", &HBM1D::GetBoundaryCondition, &HBM1D::SetBoundaryCondition)
-      .def_property_readonly("Ham", &HBM1D::GetOnsiteOperatorHam)
-      .def("print_info", [](HBM1D &self) {
-         py::scoped_ostream_redirect stream(
-             std::cout,                                // std::ostream&
-             py::module_::import("sys").attr("stdout") // Python output
-         );
-         self.PrintInfo();
-      });
+   auto c = py::class_<HBM1D, compnal::model::BaseU1Electron_1D<RealType>>(m, "Hubbard_1D", py::module_local());
+   
+   //Constructors
+   c.def(py::init<>());
+   c.def(py::init<const int>(), "system_size"_a);
+   c.def(py::init<const int, const int>(), "system_size"_a, "total_electron"_a);
+   c.def(py::init<const int, const compnal::utility::BoundaryCondition>(), "system_size"_a, "boundary_condition"_a);
+   c.def(py::init<const int, const int, const compnal::utility::BoundaryCondition>(), "system_size"_a, "total_electron"_a, "boundary_condition"_a);
+   
+   //Public Member Functions
+   c.def("set_t"  , py::overload_cast<const RealType>(&HBM1D::SetHopping), "t"_a);
+   c.def("set_t"  , py::overload_cast<const std::vector<RealType>&>(&HBM1D::SetHopping), "t"_a);
+   c.def("set_V"  , py::overload_cast<const RealType>(&HBM1D::SetIntersiteCoulomb), "V"_a);
+   c.def("set_V"  , py::overload_cast<const std::vector<RealType>&>(&HBM1D::SetIntersiteCoulomb), "V"_a);
+   c.def("set_U"  , &HBM1D::SetOnsiteCoulomb, "U"_a);
+   c.def("set_h_z", &HBM1D::SetMagneticField, "h_z"_a);
+   c.def("print_info", [](HBM1D &self) {
+      py::scoped_ostream_redirect stream(std::cout, py::module_::import("sys").attr("stdout"));
+      self.PrintInfo();
+   });
+   
+   //Properties
+   c.def_property("boundary_condition", &HBM1D::GetBoundaryCondition, &HBM1D::SetBoundaryCondition);
+   
+   //Read Only Properties
+   c.def_property_readonly("Ham", &HBM1D::GetOnsiteOperatorHam);
    
 }
 

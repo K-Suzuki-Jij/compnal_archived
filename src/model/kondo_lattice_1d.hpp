@@ -202,18 +202,18 @@ public:
    
    //! @brief Print information about this class.
    void PrintInfo() const {
-      std::string bc = "None";
+      std::string bc_string = "None";
       if (boundary_condition_ == utility::BoundaryCondition::OBC) {
-         bc = "OBC";
+         bc_string = "OBC";
       }
       else if (boundary_condition_ == utility::BoundaryCondition::PBC) {
-         bc = "PBC";
+         bc_string = "PBC";
       }
       else if (boundary_condition_ == utility::BoundaryCondition::SSD) {
-         bc = "SSD";
+         bc_string = "SSD";
       }
       std::cout << "Print Kondo Lattice Model Infomation:" << std::endl;
-      std::cout << "boundary_condition     = " << this->boundary_condition_     << std::endl;
+      std::cout << "boundary_condition     = " << bc_string << std::endl;
       std::cout << "system_size            = " << this->system_size_            << std::endl;
       std::cout << "magnitute_2lspin       = " << this->magnitude_2lspin_       << std::endl;
       std::cout << "total_2sz              = " << this->total_2sz_              << std::endl;
@@ -293,8 +293,7 @@ public:
    //! @brief Get the spin-spin interaction along the x, y-direction \f$ J_{xy} \f$.
    //! @return J_xy The spin-spin interaction along the x, y-direction \f$ J_{xy} \f$.
    inline RealType GetJxy() const { return J_xy_; }
-      
-   
+         
    //! @brief Get the magnetic field for the z-direction \f$ h_z\f$.
    //! @return h_z The magnetic field for the z-direction \f$ h_z\f$.
    inline RealType GetHz() const { return h_z_; }
@@ -330,10 +329,10 @@ private:
    RealType J_xy_ = 1.0;
    
    //! @brief The magnetic fields along the z-direction \f$ h_z \f$.
-   RealType h_z_;
+   RealType h_z_ = 0.0;
    
    //! @brief The uniaxial anisotropy to the z-direction \f$ D_z\f$.
-   RealType D_z_;
+   RealType D_z_ = 0.0;
    
 };
 
