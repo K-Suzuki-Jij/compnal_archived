@@ -280,37 +280,36 @@ public:
    //! @param m_1 The matrix of an onsite operator.
    //! @param m_2 The matrix of an onsite operator.
    //! @return The list of quantum numbers.
-   std::unordered_set<double> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
-      std::unordered_set<double> level_set;
-      std::unordered_set<double> level_set_m1;
-      std::unordered_set<double> level_set_m2;
+   std::vector<double> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
+      
+      std::unordered_set<double> delta_sector_set_m1;
+      std::unordered_set<double> delta_sector_set_m2;
       for (std::int64_t i = 0; i < m_1.row_dim; ++i) {
          for (std::int64_t j = m_1.row[i]; j < m_1.row[i + 1]; ++j) {
             if (m_1.val[j] != 0.0) {
-               level_set.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_1.col[j])) + 0.5*total_2sz_);
-               level_set_m1.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_1.col[j])) + 0.5*total_2sz_);
+               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_1.col[j])));
             }
          }
       }
-      
       for (std::int64_t i = 0; i < m_2.row_dim; ++i) {
          for (std::int64_t j = m_2.row[i]; j < m_2.row[i + 1]; ++j) {
             if (m_2.val[j] != 0.0) {
-               level_set.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_2.col[j])) + 0.5*total_2sz_);
-               level_set_m2.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_2.col[j])) + 0.5*total_2sz_);
+               delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_2.col[j])));
             }
          }
       }
-      
-      std::unordered_set<double> level_set_intersection;
-      
-      for (const auto &level: level_set) {
-         if (level_set_m1.count(level) != 0 && level_set_m2.count(level) != 0) {
-            level_set_intersection.emplace(level);
+      std::vector<double> target_sector_set;
+      for (const auto &del_sec_m1: delta_sector_set_m1) {
+         for (const auto &del_sec_m2: delta_sector_set_m2) {
+            const bool c1 = isValidQNumber(del_sec_m1 + 0.5*total_2sz_);
+            if (del_sec_m1 == del_sec_m2 && c1) {
+               target_sector_set.push_back(del_sec_m1 + 0.5*total_2sz_);
+            }
          }
       }
-      
-      return level_set_intersection;
+      std::sort(target_sector_set.begin(), target_sector_set.end());
+      target_sector_set.erase(std::unique(target_sector_set.begin(), target_sector_set.end()), target_sector_set.end());
+      return target_sector_set;
    }
    
    //! @brief Calculate the quantum numbers of excited states that appear when calculating the correlation functions.
@@ -352,7 +351,9 @@ public:
       for (const auto &del_sec_m1: delta_sector_set_m1) {
          for (const auto &del_sec_m2: delta_sector_set_m2) {
             for (const auto &del_sec_m3: delta_sector_set_m3) {
-               if (del_sec_m1 == del_sec_m2 + del_sec_m3) {
+               const bool c1 = isValidQNumber(del_sec_m1 + 0.5*total_2sz_);
+               const bool c2 = isValidQNumber(del_sec_m3 + 0.5*total_2sz_);
+               if (del_sec_m1 == del_sec_m2 + del_sec_m3 && c1 && c2) {
                   target_sector_set.push_back({
                      del_sec_m1 + 0.5*total_2sz_,
                      del_sec_m3 + 0.5*total_2sz_
@@ -413,7 +414,10 @@ public:
          for (const auto &del_sec_m2: delta_sector_set_m2) {
             for (const auto &del_sec_m3: delta_sector_set_m3) {
                for (const auto &del_sec_m4: delta_sector_set_m4) {
-                  if (del_sec_m1 + del_sec_m2 == del_sec_m3 + del_sec_m4) {
+                  const bool c1 = isValidQNumber(del_sec_m1 + 0.5*total_2sz_);
+                  const bool c2 = isValidQNumber(del_sec_m1 + del_sec_m2 + 0.5*total_2sz_);
+                  const bool c3 = isValidQNumber(del_sec_m4 + 0.5*total_2sz_);
+                  if (del_sec_m1 + del_sec_m2 == del_sec_m3 + del_sec_m4 && c1 && c2 && c3) {
                      target_sector_set.push_back({
                         del_sec_m1 + 0.5*total_2sz_,
                         del_sec_m1 + del_sec_m2 + 0.5*total_2sz_,

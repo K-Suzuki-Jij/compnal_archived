@@ -22,7 +22,7 @@ class ExactDiag {
    using CRS = sparse_matrix::CRS<RealType>;
    
    using BraketVector = sparse_matrix::BraketVector<RealType>;
-
+   
    struct ExactDiagMatrixComponents {
       std::vector<RealType> val;
       std::vector<std::int64_t>  basis_affected;
@@ -31,7 +31,7 @@ class ExactDiag {
       std::unordered_map<std::int64_t, std::int64_t> inv_basis_affected;
       double zero_precision = std::pow(10, -15);
    };
-
+   
 public:
    
    ModelClass model;
@@ -199,37 +199,35 @@ public:
       RealType val = 0.0;
       
       for (const auto &sector: target_sectors) {
-         if (model.isValidQNumber(sector)) {
-            model.GenerateBasis(sector);
-            const auto &basis = model.GetBasis(sector);
-            const std::int64_t dim_target = static_cast<std::int64_t>(basis.size());
-            vector_work_m1.val.resize(dim_target);
-            vector_work_m2.val.resize(dim_target);
+         model.GenerateBasis(sector);
+         const auto &basis = model.GetBasis(sector);
+         const std::int64_t dim_target = static_cast<std::int64_t>(basis.size());
+         vector_work_m1.val.resize(dim_target);
+         vector_work_m2.val.resize(dim_target);
 #pragma omp parallel for
-            for (std::int64_t i = 0; i < dim_target; ++i) {
-               const std::int64_t global_basis = basis[i];
-               const int local_basis_m1 = CalculateLocalBasis(global_basis, site_1, dim_onsite);
-               const int local_basis_m2 = CalculateLocalBasis(global_basis, site_2, dim_onsite);
-               RealType temp_val_m1 = 0.0;
-               RealType temp_val_m2 = 0.0;
-               for (std::int64_t j = m1_dagger.row[local_basis_m1]; j < m1_dagger.row[local_basis_m1 + 1]; ++j){
-                  const std::int64_t a_basis = global_basis - (local_basis_m1 - m1_dagger.col[j])*site_constant_m1;
-                  if (basis_inv.count(a_basis) != 0) {
-                     temp_val_m1 += eigenvector.val[basis_inv.at(a_basis)]*m1_dagger.val[j];
-                  }
+         for (std::int64_t i = 0; i < dim_target; ++i) {
+            const std::int64_t global_basis = basis[i];
+            const int local_basis_m1 = CalculateLocalBasis(global_basis, site_1, dim_onsite);
+            const int local_basis_m2 = CalculateLocalBasis(global_basis, site_2, dim_onsite);
+            RealType temp_val_m1 = 0.0;
+            RealType temp_val_m2 = 0.0;
+            for (std::int64_t j = m1_dagger.row[local_basis_m1]; j < m1_dagger.row[local_basis_m1 + 1]; ++j){
+               const std::int64_t a_basis = global_basis - (local_basis_m1 - m1_dagger.col[j])*site_constant_m1;
+               if (basis_inv.count(a_basis) != 0) {
+                  temp_val_m1 += eigenvector.val[basis_inv.at(a_basis)]*m1_dagger.val[j];
                }
-               vector_work_m1.val[i] = temp_val_m1;
-               
-               for (std::int64_t j = m_2.row[local_basis_m2]; j < m_2.row[local_basis_m2 + 1]; ++j){
-                  const std::int64_t a_basis = global_basis - (local_basis_m2 - m_2.col[j])*site_constant_m2;
-                  if (basis_inv.count(a_basis) != 0) {
-                     temp_val_m2 += eigenvector.val[basis_inv.at(a_basis)]*m_2.val[j];
-                  }
-               }
-               vector_work_m2.val[i] = temp_val_m2;
             }
-            val += sparse_matrix::CalculateInnerProduct(vector_work_m1, vector_work_m2);
+            vector_work_m1.val[i] = temp_val_m1;
+            
+            for (std::int64_t j = m_2.row[local_basis_m2]; j < m_2.row[local_basis_m2 + 1]; ++j){
+               const std::int64_t a_basis = global_basis - (local_basis_m2 - m_2.col[j])*site_constant_m2;
+               if (basis_inv.count(a_basis) != 0) {
+                  temp_val_m2 += eigenvector.val[basis_inv.at(a_basis)]*m_2.val[j];
+               }
+            }
+            vector_work_m2.val[i] = temp_val_m2;
          }
+         val += sparse_matrix::CalculateInnerProduct(vector_work_m1, vector_work_m2);
       }
       return val;
    }
@@ -282,60 +280,58 @@ public:
       for (const auto &it: target_sectors) {
          const auto sector_m1 = std::get<0>(it);
          const auto sector_m3 = std::get<1>(it);
-         if (model.isValidQNumber(sector_m1) && model.isValidQNumber(sector_m3)) {
-            model.GenerateBasis(sector_m1);
-            model.GenerateBasis(sector_m3);
-            const auto &basis_m1 = model.GetBasis(sector_m1);
-            const auto &basis_m3 = model.GetBasis(sector_m3);
-            const std::int64_t dim_target_m1 = static_cast<std::int64_t>(basis_m1.size());
-            const std::int64_t dim_target_m3 = static_cast<std::int64_t>(basis_m3.size());
-            
-            //m3|gs>
-            vector_work_a.val.resize(dim_target_m3);
+         model.GenerateBasis(sector_m1);
+         model.GenerateBasis(sector_m3);
+         const auto &basis_m1 = model.GetBasis(sector_m1);
+         const auto &basis_m3 = model.GetBasis(sector_m3);
+         const std::int64_t dim_target_m1 = static_cast<std::int64_t>(basis_m1.size());
+         const std::int64_t dim_target_m3 = static_cast<std::int64_t>(basis_m3.size());
+         
+         //m3|gs>
+         vector_work_a.val.resize(dim_target_m3);
 #pragma omp parallel for
-            for (std::int64_t i = 0; i < dim_target_m3; ++i) {
-               const std::int64_t global_basis = basis_m3[i];
-               const int local_basis = CalculateLocalBasis(global_basis, site_3, dim_onsite);
-               RealType temp_val = 0.0;
-               for (std::int64_t j = m_3.row[local_basis]; j < m_3.row[local_basis + 1]; ++j){
-                  const std::int64_t a_basis = global_basis - (local_basis - m_3.col[j])*site_constant_m3;
-                  if (basis_gs_sector_inv.count(a_basis) != 0) {
-                     temp_val += eigenvector.val[basis_gs_sector_inv.at(a_basis)]*m_3.val[j];
-                  }
+         for (std::int64_t i = 0; i < dim_target_m3; ++i) {
+            const std::int64_t global_basis = basis_m3[i];
+            const int local_basis = CalculateLocalBasis(global_basis, site_3, dim_onsite);
+            RealType temp_val = 0.0;
+            for (std::int64_t j = m_3.row[local_basis]; j < m_3.row[local_basis + 1]; ++j){
+               const std::int64_t a_basis = global_basis - (local_basis - m_3.col[j])*site_constant_m3;
+               if (basis_gs_sector_inv.count(a_basis) != 0) {
+                  temp_val += eigenvector.val[basis_gs_sector_inv.at(a_basis)]*m_3.val[j];
                }
-               vector_work_a.val[i] = temp_val;
             }
-            
-            //m2 * m3|gs> and m1_dag|gs>
-            vector_work_b.val.resize(dim_target_m1);
-            vector_work_c.val.resize(dim_target_m1);
-            const auto &basis_m3_sector_inv = model.GetBasisInv(sector_m3);
-#pragma omp parallel for
-            for (std::int64_t i = 0; i < dim_target_m1; ++i) {
-               const std::int64_t global_basis = basis_m1[i];
-               const int local_basis_m1 = CalculateLocalBasis(global_basis, site_1, dim_onsite);
-               const int local_basis_m2 = CalculateLocalBasis(global_basis, site_2, dim_onsite);
-               RealType temp_val_m1 = 0.0;
-               RealType temp_val_m2 = 0.0;
-               
-               for (std::int64_t j = m_2.row[local_basis_m2]; j < m_2.row[local_basis_m2 + 1]; ++j){
-                  const std::int64_t a_basis = global_basis - (local_basis_m2 - m_2.col[j])*site_constant_m2;
-                  if (basis_m3_sector_inv.count(a_basis) != 0) {
-                     temp_val_m2 += vector_work_a.val[basis_m3_sector_inv.at(a_basis)]*m_2.val[j];
-                  }
-               }
-               vector_work_b.val[i] = temp_val_m2;
-               
-               for (std::int64_t j = m_1.row[local_basis_m1]; j < m_1.row[local_basis_m1 + 1]; ++j){
-                  const std::int64_t a_basis = global_basis - (local_basis_m1 - m_1.col[j])*site_constant_m1;
-                  if (basis_gs_sector_inv.count(a_basis) != 0) {
-                     temp_val_m1 += eigenvector.val[basis_gs_sector_inv.at(a_basis)]*m_1.val[j];
-                  }
-               }
-               vector_work_c.val[i] = temp_val_m1;
-            }
-            val += sparse_matrix::CalculateInnerProduct(vector_work_b, vector_work_c);
+            vector_work_a.val[i] = temp_val;
          }
+         
+         //m2 * m3|gs> and m1_dag|gs>
+         vector_work_b.val.resize(dim_target_m1);
+         vector_work_c.val.resize(dim_target_m1);
+         const auto &basis_m3_sector_inv = model.GetBasisInv(sector_m3);
+#pragma omp parallel for
+         for (std::int64_t i = 0; i < dim_target_m1; ++i) {
+            const std::int64_t global_basis = basis_m1[i];
+            const int local_basis_m1 = CalculateLocalBasis(global_basis, site_1, dim_onsite);
+            const int local_basis_m2 = CalculateLocalBasis(global_basis, site_2, dim_onsite);
+            RealType temp_val_m1 = 0.0;
+            RealType temp_val_m2 = 0.0;
+            
+            for (std::int64_t j = m_2.row[local_basis_m2]; j < m_2.row[local_basis_m2 + 1]; ++j){
+               const std::int64_t a_basis = global_basis - (local_basis_m2 - m_2.col[j])*site_constant_m2;
+               if (basis_m3_sector_inv.count(a_basis) != 0) {
+                  temp_val_m2 += vector_work_a.val[basis_m3_sector_inv.at(a_basis)]*m_2.val[j];
+               }
+            }
+            vector_work_b.val[i] = temp_val_m2;
+            
+            for (std::int64_t j = m_1.row[local_basis_m1]; j < m_1.row[local_basis_m1 + 1]; ++j){
+               const std::int64_t a_basis = global_basis - (local_basis_m1 - m_1.col[j])*site_constant_m1;
+               if (basis_gs_sector_inv.count(a_basis) != 0) {
+                  temp_val_m1 += eigenvector.val[basis_gs_sector_inv.at(a_basis)]*m_1.val[j];
+               }
+            }
+            vector_work_c.val[i] = temp_val_m1;
+         }
+         val += sparse_matrix::CalculateInnerProduct(vector_work_b, vector_work_c);
       }
       return val;
    }
@@ -397,83 +393,79 @@ public:
          const auto sector_bra_change_1 = std::get<0>(it);
          const auto sector_bra_change_2 = std::get<1>(it);
          const auto sector_ket_change_1 = std::get<2>(it);
-         if (model.isValidQNumber(sector_bra_change_1) &&
-             model.isValidQNumber(sector_bra_change_2) &&
-             model.isValidQNumber(sector_ket_change_1)) {
-            model.GenerateBasis(sector_bra_change_1);
-            model.GenerateBasis(sector_bra_change_2);
-            model.GenerateBasis(sector_ket_change_1);
-            const auto &basis_bra_1 = model.GetBasis(sector_bra_change_1);
-            const auto &basis_bra_2 = model.GetBasis(sector_bra_change_2);
-            const auto &basis_ket_1 = model.GetBasis(sector_ket_change_1);
-            const auto &basis_ket_1_inv = model.GetBasisInv(sector_ket_change_1);
-            const auto &basis_bra_1_inv = model.GetBasisInv(sector_bra_change_1);
-            const std::int64_t dim_target_bra_1 = static_cast<std::int64_t>(basis_bra_1.size());
-            const std::int64_t dim_target_bra_2 = static_cast<std::int64_t>(basis_bra_2.size());
-            const std::int64_t dim_target_ket_1 = static_cast<std::int64_t>(basis_ket_1.size());
-            
-            //m4|gs>
-            vector_work_m4.val.resize(dim_target_ket_1);
+         model.GenerateBasis(sector_bra_change_1);
+         model.GenerateBasis(sector_bra_change_2);
+         model.GenerateBasis(sector_ket_change_1);
+         const auto &basis_bra_1 = model.GetBasis(sector_bra_change_1);
+         const auto &basis_bra_2 = model.GetBasis(sector_bra_change_2);
+         const auto &basis_ket_1 = model.GetBasis(sector_ket_change_1);
+         const auto &basis_ket_1_inv = model.GetBasisInv(sector_ket_change_1);
+         const auto &basis_bra_1_inv = model.GetBasisInv(sector_bra_change_1);
+         const std::int64_t dim_target_bra_1 = static_cast<std::int64_t>(basis_bra_1.size());
+         const std::int64_t dim_target_bra_2 = static_cast<std::int64_t>(basis_bra_2.size());
+         const std::int64_t dim_target_ket_1 = static_cast<std::int64_t>(basis_ket_1.size());
+         
+         //m4|gs>
+         vector_work_m4.val.resize(dim_target_ket_1);
 #pragma omp parallel for
-            for (std::int64_t i = 0; i < dim_target_ket_1; ++i) {
-               const std::int64_t global_basis = basis_ket_1[i];
-               const int local_basis = CalculateLocalBasis(global_basis, site_4, dim_onsite);
-               RealType temp_val = 0.0;
-               for (std::int64_t j = m_4.row[local_basis]; j < m_4.row[local_basis + 1]; ++j){
-                  const std::int64_t a_basis = global_basis - (local_basis - m_4.col[j])*site_constant_m4;
-                  if (basis_gs_sector_inv.count(a_basis) != 0) {
-                     temp_val += eigenvector.val[basis_gs_sector_inv.at(a_basis)]*m_4.val[j];
-                  }
+         for (std::int64_t i = 0; i < dim_target_ket_1; ++i) {
+            const std::int64_t global_basis = basis_ket_1[i];
+            const int local_basis = CalculateLocalBasis(global_basis, site_4, dim_onsite);
+            RealType temp_val = 0.0;
+            for (std::int64_t j = m_4.row[local_basis]; j < m_4.row[local_basis + 1]; ++j){
+               const std::int64_t a_basis = global_basis - (local_basis - m_4.col[j])*site_constant_m4;
+               if (basis_gs_sector_inv.count(a_basis) != 0) {
+                  temp_val += eigenvector.val[basis_gs_sector_inv.at(a_basis)]*m_4.val[j];
                }
-               vector_work_m4.val[i] = temp_val;
             }
-            
-            //m1_dag|gs>
-            vector_work_m1.val.resize(dim_target_bra_1);
-#pragma omp parallel for
-            for (std::int64_t i = 0; i < dim_target_bra_1; ++i) {
-               const std::int64_t global_basis = basis_bra_1[i];
-               const int local_basis = CalculateLocalBasis(global_basis, site_1, dim_onsite);
-               RealType temp_val = 0.0;
-               for (std::int64_t j = m1_dagger.row[local_basis]; j < m1_dagger.row[local_basis + 1]; ++j){
-                  const std::int64_t a_basis = global_basis - (local_basis - m1_dagger.col[j])*site_constant_m1;
-                  if (basis_gs_sector_inv.count(a_basis) != 0) {
-                     temp_val += eigenvector.val[basis_gs_sector_inv.at(a_basis)]*m1_dagger.val[j];
-                  }
-               }
-               vector_work_m1.val[i] = temp_val;
-            }
-            
-            //m3 * m4|gs> and m2_dag * m1_dag|gs>
-            vector_work_m3m4.val.resize(dim_target_bra_2);
-            vector_work_m2m1.val.resize(dim_target_bra_2);
-            
-#pragma omp parallel for
-            for (std::int64_t i = 0; i < dim_target_bra_2; ++i) {
-               const std::int64_t global_basis = basis_bra_2[i];
-               const int local_basis_m2 = CalculateLocalBasis(global_basis, site_2, dim_onsite);
-               const int local_basis_m3 = CalculateLocalBasis(global_basis, site_3, dim_onsite);
-               RealType temp_val = 0.0;
-               
-               for (std::int64_t j = m_3.row[local_basis_m3]; j < m_3.row[local_basis_m3 + 1]; ++j){
-                  const std::int64_t a_basis = global_basis - (local_basis_m3 - m_3.col[j])*site_constant_m3;
-                  if (basis_ket_1_inv.count(a_basis) != 0) {
-                     temp_val += vector_work_m4.val[basis_ket_1_inv.at(a_basis)]*m_3.val[j];
-                  }
-               }
-               vector_work_m3m4.val[i] = temp_val;
-               
-               temp_val = 0.0;
-               for (std::int64_t j = m2_dagger.row[local_basis_m2]; j < m2_dagger.row[local_basis_m2 + 1]; ++j){
-                  const std::int64_t a_basis = global_basis - (local_basis_m2 - m2_dagger.col[j])*site_constant_m2;
-                  if (basis_bra_1_inv.count(a_basis) != 0) {
-                     temp_val += vector_work_m1.val[basis_bra_1_inv.at(a_basis)]*m2_dagger.val[j];
-                  }
-               }
-               vector_work_m2m1.val[i] = temp_val;
-            }
-            val += sparse_matrix::CalculateInnerProduct(vector_work_m2m1, vector_work_m3m4);
+            vector_work_m4.val[i] = temp_val;
          }
+         
+         //m1_dag|gs>
+         vector_work_m1.val.resize(dim_target_bra_1);
+#pragma omp parallel for
+         for (std::int64_t i = 0; i < dim_target_bra_1; ++i) {
+            const std::int64_t global_basis = basis_bra_1[i];
+            const int local_basis = CalculateLocalBasis(global_basis, site_1, dim_onsite);
+            RealType temp_val = 0.0;
+            for (std::int64_t j = m1_dagger.row[local_basis]; j < m1_dagger.row[local_basis + 1]; ++j){
+               const std::int64_t a_basis = global_basis - (local_basis - m1_dagger.col[j])*site_constant_m1;
+               if (basis_gs_sector_inv.count(a_basis) != 0) {
+                  temp_val += eigenvector.val[basis_gs_sector_inv.at(a_basis)]*m1_dagger.val[j];
+               }
+            }
+            vector_work_m1.val[i] = temp_val;
+         }
+         
+         //m3 * m4|gs> and m2_dag * m1_dag|gs>
+         vector_work_m3m4.val.resize(dim_target_bra_2);
+         vector_work_m2m1.val.resize(dim_target_bra_2);
+         
+#pragma omp parallel for
+         for (std::int64_t i = 0; i < dim_target_bra_2; ++i) {
+            const std::int64_t global_basis = basis_bra_2[i];
+            const int local_basis_m2 = CalculateLocalBasis(global_basis, site_2, dim_onsite);
+            const int local_basis_m3 = CalculateLocalBasis(global_basis, site_3, dim_onsite);
+            RealType temp_val = 0.0;
+            
+            for (std::int64_t j = m_3.row[local_basis_m3]; j < m_3.row[local_basis_m3 + 1]; ++j){
+               const std::int64_t a_basis = global_basis - (local_basis_m3 - m_3.col[j])*site_constant_m3;
+               if (basis_ket_1_inv.count(a_basis) != 0) {
+                  temp_val += vector_work_m4.val[basis_ket_1_inv.at(a_basis)]*m_3.val[j];
+               }
+            }
+            vector_work_m3m4.val[i] = temp_val;
+            
+            temp_val = 0.0;
+            for (std::int64_t j = m2_dagger.row[local_basis_m2]; j < m2_dagger.row[local_basis_m2 + 1]; ++j){
+               const std::int64_t a_basis = global_basis - (local_basis_m2 - m2_dagger.col[j])*site_constant_m2;
+               if (basis_bra_1_inv.count(a_basis) != 0) {
+                  temp_val += vector_work_m1.val[basis_bra_1_inv.at(a_basis)]*m2_dagger.val[j];
+               }
+            }
+            vector_work_m2m1.val[i] = temp_val;
+         }
+         val += sparse_matrix::CalculateInnerProduct(vector_work_m2m1, vector_work_m3m4);
       }
       return val;
    }

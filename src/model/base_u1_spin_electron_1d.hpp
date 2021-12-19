@@ -461,7 +461,8 @@ public:
       std::vector<std::pair<int, double>> target_sector_set;
       for (const auto &del_sec_m1: delta_sector_set_m1) {
          for (const auto &del_sec_m2: delta_sector_set_m2) {
-            if (del_sec_m1 == del_sec_m2) {
+            const bool c1 = isValidQNumber(del_sec_m1.first + total_electron_, del_sec_m1.second + 0.5*total_2sz_);
+            if (del_sec_m1 == del_sec_m2 && c1) {
                target_sector_set.push_back({del_sec_m1.first + total_electron_, del_sec_m1.second + 0.5*total_2sz_});
             }
          }
@@ -511,7 +512,9 @@ public:
          for (const auto &del_sec_m2: delta_sector_set_m2) {
             for (const auto &del_sec_m3: delta_sector_set_m3) {
                const std::pair<int, double> del_sec_m2_m3 = {del_sec_m2.first + del_sec_m3.first, del_sec_m2.second + del_sec_m3.second};
-               if (del_sec_m1 == del_sec_m2_m3) {
+               const bool c1 = isValidQNumber(del_sec_m1.first + total_electron_, del_sec_m1.second + 0.5*total_2sz_);
+               const bool c2 = isValidQNumber(del_sec_m3.first + total_electron_, del_sec_m3.second + 0.5*total_2sz_);
+               if (del_sec_m1 == del_sec_m2_m3 && c1 && c2) {
                   target_sector_set.push_back({
                      {del_sec_m1.first + total_electron_, del_sec_m1.second + 0.5*total_2sz_},
                      {del_sec_m3.first + total_electron_, del_sec_m3.second + 0.5*total_2sz_}
@@ -577,7 +580,10 @@ public:
                for (const auto &del_sec_m4: delta_sector_set_m4) {
                   const std::pair<int, double> del_sec_m1_m2 = {del_sec_m1.first + del_sec_m2.first, del_sec_m1.second + del_sec_m2.second};
                   const std::pair<int, double> del_sec_m3_m4 = {del_sec_m3.first + del_sec_m4.first, del_sec_m3.second + del_sec_m4.second};
-                  if (del_sec_m1_m2 == del_sec_m3_m4) {
+                  const bool c1 = isValidQNumber(del_sec_m1.first    + total_electron_, del_sec_m1.second    + 0.5*total_2sz_);
+                  const bool c2 = isValidQNumber(del_sec_m1_m2.first + total_electron_, del_sec_m1_m2.second + 0.5*total_2sz_);
+                  const bool c3 = isValidQNumber(del_sec_m4.first    + total_electron_, del_sec_m4.second    + 0.5*total_2sz_);
+                  if (del_sec_m1_m2 == del_sec_m3_m4 && c1 && c2 && c3) {
                      target_sector_set.push_back({
                         {del_sec_m1.first    + total_electron_, del_sec_m1.second    + 0.5*total_2sz_},
                         {del_sec_m1_m2.first + total_electron_, del_sec_m1_m2.second + 0.5*total_2sz_},
