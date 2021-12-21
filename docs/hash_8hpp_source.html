@@ -89,21 +89,34 @@ $(function() {
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacecompnal.html">compnal</a> {</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="namespacecompnal_1_1utility.html">   12</a></span><span class="keyword">namespace </span>utility {</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="structcompnal_1_1utility_1_1pair__hash.html">   14</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcompnal_1_1utility_1_1pair__hash.html">pair_hash</a> {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="structcompnal_1_1utility_1_1_pair_hash.html">   14</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcompnal_1_1utility_1_1_pair_hash.html">PairHash</a> {</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>   <span class="keyword">template</span> &lt;<span class="keyword">class</span> T1, <span class="keyword">class</span> T2&gt;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="structcompnal_1_1utility_1_1pair__hash.html#abbcc643377355f0cb356e1fadd101494">   16</a></span>   std::size_t <a class="code hl_function" href="structcompnal_1_1utility_1_1pair__hash.html#abbcc643377355f0cb356e1fadd101494">operator() </a>(<span class="keyword">const</span> std::pair&lt;T1, T2&gt;&amp; p)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="structcompnal_1_1utility_1_1_pair_hash.html#a84d86428351acf249bd5c880e1bb5b54">   16</a></span>   std::size_t <a class="code hl_function" href="structcompnal_1_1utility_1_1_pair_hash.html#a84d86428351acf249bd5c880e1bb5b54">operator() </a>(<span class="keyword">const</span> std::pair&lt;T1, T2&gt;&amp; p)<span class="keyword"> const </span>{</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>      std::size_t lhs = std::hash&lt;T1&gt;()(p.first), rhs = std::hash&lt;T2&gt;()(p.second);</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>      <span class="keywordflow">return</span> lhs^(rhs+0x9e3779b9+(lhs&lt;&lt;6)+(lhs&gt;&gt;2));</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>   }</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>};</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>}</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>}</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#endif </span><span class="comment">/* COMPNAL_UTILITY_HASH_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structcompnal_1_1utility_1_1_vector_hash.html">   22</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcompnal_1_1utility_1_1_vector_hash.html">VectorHash</a> {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>   <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structcompnal_1_1utility_1_1_vector_hash.html#a310e7a1ae509887a41c7749e70f9ec61">   24</a></span>   std::size_t <a class="code hl_function" href="structcompnal_1_1utility_1_1_vector_hash.html#a310e7a1ae509887a41c7749e70f9ec61">operator() </a>(<span class="keyword">const</span> std::vector&lt;T&gt; &amp;V)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>      std::size_t hash = V.size();</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>      <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;i : V) {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>         hash ^= std::hash&lt;T&gt;()(i) + 0x9e3779b9 + (hash &lt;&lt; 6) + (hash &gt;&gt; 2);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>      }</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>      <span class="keywordflow">return</span> hash;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>   }</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>};</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>}</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>}</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#endif </span><span class="comment">/* COMPNAL_UTILITY_HASH_HPP_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="anamespacecompnal_html"><div class="ttname"><a href="namespacecompnal.html">compnal</a></div><div class="ttdef"><b>Definition:</b> base_u1_electron_1d.hpp:21</div></div>
-<div class="ttc" id="astructcompnal_1_1utility_1_1pair__hash_html"><div class="ttname"><a href="structcompnal_1_1utility_1_1pair__hash.html">compnal::utility::pair_hash</a></div><div class="ttdef"><b>Definition:</b> hash.hpp:14</div></div>
-<div class="ttc" id="astructcompnal_1_1utility_1_1pair__hash_html_abbcc643377355f0cb356e1fadd101494"><div class="ttname"><a href="structcompnal_1_1utility_1_1pair__hash.html#abbcc643377355f0cb356e1fadd101494">compnal::utility::pair_hash::operator()</a></div><div class="ttdeci">std::size_t operator()(const std::pair&lt; T1, T2 &gt; &amp;p) const</div><div class="ttdef"><b>Definition:</b> hash.hpp:16</div></div>
+<div class="ttc" id="astructcompnal_1_1utility_1_1_pair_hash_html"><div class="ttname"><a href="structcompnal_1_1utility_1_1_pair_hash.html">compnal::utility::PairHash</a></div><div class="ttdef"><b>Definition:</b> hash.hpp:14</div></div>
+<div class="ttc" id="astructcompnal_1_1utility_1_1_pair_hash_html_a84d86428351acf249bd5c880e1bb5b54"><div class="ttname"><a href="structcompnal_1_1utility_1_1_pair_hash.html#a84d86428351acf249bd5c880e1bb5b54">compnal::utility::PairHash::operator()</a></div><div class="ttdeci">std::size_t operator()(const std::pair&lt; T1, T2 &gt; &amp;p) const</div><div class="ttdef"><b>Definition:</b> hash.hpp:16</div></div>
+<div class="ttc" id="astructcompnal_1_1utility_1_1_vector_hash_html"><div class="ttname"><a href="structcompnal_1_1utility_1_1_vector_hash.html">compnal::utility::VectorHash</a></div><div class="ttdef"><b>Definition:</b> hash.hpp:22</div></div>
+<div class="ttc" id="astructcompnal_1_1utility_1_1_vector_hash_html_a310e7a1ae509887a41c7749e70f9ec61"><div class="ttname"><a href="structcompnal_1_1utility_1_1_vector_hash.html#a310e7a1ae509887a41c7749e70f9ec61">compnal::utility::VectorHash::operator()</a></div><div class="ttdeci">std::size_t operator()(const std::vector&lt; T &gt; &amp;V) const</div><div class="ttdef"><b>Definition:</b> hash.hpp:24</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

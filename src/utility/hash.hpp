@@ -11,11 +11,22 @@
 namespace compnal {
 namespace utility {
 
-struct pair_hash {
+struct PairHash {
    template <class T1, class T2>
    std::size_t operator() (const std::pair<T1, T2>& p) const {
       std::size_t lhs = std::hash<T1>()(p.first), rhs = std::hash<T2>()(p.second);
       return lhs^(rhs+0x9e3779b9+(lhs<<6)+(lhs>>2));
+   }
+};
+
+struct VectorHash {
+   template <class T>
+   std::size_t operator() (const std::vector<T> &V) const {
+      std::size_t hash = V.size();
+      for (auto &i : V) {
+         hash ^= std::hash<T>()(i) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+      }
+      return hash;
    }
 };
 

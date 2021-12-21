@@ -345,8 +345,8 @@ public:
    //! @param m_2 The matrix of an onsite operator.
    //! @return The list of quantum numbers.
    std::vector<std::pair<int, double>> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
-      std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m1;
-      std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m2;
+      std::unordered_set<std::pair<int, double>, utility::PairHash> delta_sector_set_m1;
+      std::unordered_set<std::pair<int, double>, utility::PairHash> delta_sector_set_m2;
       for (std::int64_t i = 0; i < m_1.row_dim; ++i) {
          for (std::int64_t j = m_1.row[i]; j < m_1.row[i + 1]; ++j) {
             if (m_1.val[j] != 0.0) {
@@ -381,9 +381,9 @@ public:
    //! @param m_3_ket The matrix of an onsite operator.
    //! @return The list of quantum numbers.
    std::vector<std::pair<std::pair<int, double>, std::pair<int, double>>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_ket, const CRS &m_3_ket) const {
-      std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m1;
-      std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m2;
-      std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m3;
+      std::unordered_set<std::pair<int, double>, utility::PairHash> delta_sector_set_m1;
+      std::unordered_set<std::pair<int, double>, utility::PairHash> delta_sector_set_m2;
+      std::unordered_set<std::pair<int, double>, utility::PairHash> delta_sector_set_m3;
       
       for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
          for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
@@ -439,10 +439,10 @@ public:
    //! @return The list of quantum numbers.
    std::vector<std::tuple<std::pair<int, double>, std::pair<int, double>, std::pair<int, double>>>
    GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_bra, const CRS &m_3_ket, const CRS &m_4_ket) const {
-      std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m1;
-      std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m2;
-      std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m3;
-      std::unordered_set<std::pair<int, double>, utility::pair_hash> delta_sector_set_m4;
+      std::unordered_set<std::pair<int, double>, utility::PairHash> delta_sector_set_m1;
+      std::unordered_set<std::pair<int, double>, utility::PairHash> delta_sector_set_m2;
+      std::unordered_set<std::pair<int, double>, utility::PairHash> delta_sector_set_m3;
+      std::unordered_set<std::pair<int, double>, utility::PairHash> delta_sector_set_m4;
       
       for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
          for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
@@ -910,11 +910,11 @@ protected:
    
    //! @brief Bases of the target Hilbert space specified by
    //! the system size \f$ N\f$, the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$, and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
-   std::unordered_map<std::pair<int, int>, std::vector<std::int64_t>, utility::pair_hash> bases_;
+   std::unordered_map<std::pair<int, int>, std::vector<std::int64_t>, utility::PairHash> bases_;
    
    //! @brief Inverse bases of the target Hilbert space specified by
    //! the system size \f$ N\f$, the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$, and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
-   std::unordered_map<std::pair<int, int>, std::unordered_map<std::int64_t, std::int64_t>, utility::pair_hash> bases_inv_;
+   std::unordered_map<std::pair<int, int>, std::unordered_map<std::int64_t, std::int64_t>, utility::PairHash> bases_inv_;
    
    //! @brief Set onsite operators.
    void SetOnsiteOperator() {
