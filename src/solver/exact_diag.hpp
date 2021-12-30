@@ -14,21 +14,39 @@
 namespace compnal {
 namespace solver {
 
+//! @brief The class for the exact diagonalization.
+//! @tparam ModelClass The model class.
 template<class ModelClass>
 class ExactDiag {
    
+   //! @brief The type of real values.
    using RealType = typename ModelClass::ValueType;
    
+   //! @brief Alias of compressed row strage (CRS) with RealType.
    using CRS = sparse_matrix::CRS<RealType>;
    
+   //! @brief Alias of the braket vector class with RealType.
    using BraketVector = sparse_matrix::BraketVector<RealType>;
    
+   //! @brief Information for calculating the matrix elements of the Hamiltonian.
    struct ExactDiagMatrixComponents {
+      
+      //! @brief Values of the matrix elements.
       std::vector<RealType> val;
+      
+      //! @brief Column number of the matrix elements.
       std::vector<std::int64_t>  basis_affected;
-      std::vector<int>           basis_onsite;
-      std::vector<std::int64_t>  site_constant;
+      
+      //! @brief The onsite basis.
+      std::vector<int> basis_onsite;
+      
+      //! @brief Constants for calculating matrix elements.
+      std::vector<std::int64_t> site_constant;
+      
+      //! @brief Inverse basis.
       std::unordered_map<std::int64_t, std::int64_t> inv_basis_affected;
+      
+      //! @brief Calculation accuracy of the matrix elements.
       double zero_precision = std::pow(10, -15);
    };
    
@@ -799,7 +817,7 @@ private:
             const auto t = model_input.GetHopping(distance - 1);
             int n_electron = 0;
             for (int s = site; s < site + distance; ++s) {
-               n_electron += model_input.GetNumElectrons(edmc->basis_onsite[s]);
+               n_electron += model_input.CalculateNumElectron(edmc->basis_onsite[s]);
             }
             GenerateMatrixComponentsIntersite(edmc, basis, site, c_up_dagger  , site + distance, c_up         , +1.0*t, 2*(n_electron%2) - 1);
             GenerateMatrixComponentsIntersite(edmc, basis, site, c_up         , site + distance, c_up_dagger  , -1.0*t, 2*(n_electron%2) - 1);
@@ -826,7 +844,7 @@ private:
                const auto t = model_input.GetHopping(distance - 1);
                int n_electron = 0;
                for (int s = d2; s < d2 + d1; ++s) {
-                  n_electron += model_input.GetNumElectrons(edmc->basis_onsite[s]);
+                  n_electron += model_input.CalculateNumElectron(edmc->basis_onsite[s]);
                }
                GenerateMatrixComponentsIntersite(edmc, basis, d1, c_up_dagger  , d2, c_up         , +1.0*t, 2*(n_electron%2) - 1);
                GenerateMatrixComponentsIntersite(edmc, basis, d1, c_up         , d2, c_up_dagger  , -1.0*t, 2*(n_electron%2) - 1);
@@ -867,7 +885,7 @@ private:
             const auto t = model_input.GetHopping(distance - 1);
             int n_electron = 0;
             for (int s = site; s < site + distance; ++s) {
-               n_electron += model_input.GetNumElectrons(edmc->basis_onsite[s]);
+               n_electron += model_input.CalculateNumElectron(edmc->basis_onsite[s]);
             }
             GenerateMatrixComponentsIntersite(edmc, basis, site, c_up_dagger  , site + distance, c_up         , +1.0*t, 2*(n_electron%2) - 1);
             GenerateMatrixComponentsIntersite(edmc, basis, site, c_up         , site + distance, c_up_dagger  , -1.0*t, 2*(n_electron%2) - 1);

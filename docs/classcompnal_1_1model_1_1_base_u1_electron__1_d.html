@@ -134,9 +134,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac0430da0873d39165b73d77bed146369"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#ac0430da0873d39165b73d77bed146369">isValidQNumber</a> (const int total_electron, const double total_sz) const</td></tr>
 <tr class="memdesc:ac0430da0873d39165b73d77bed146369"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if there is a subspace specified by the input quantum numbers.  <a href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#ac0430da0873d39165b73d77bed146369">More...</a><br /></td></tr>
 <tr class="separator:ac0430da0873d39165b73d77bed146369"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20877ff221ecd547f2bfc43ed756bdae"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a20877ff221ecd547f2bfc43ed756bdae">GetNumElectrons</a> (const int basis_onsite) const</td></tr>
-<tr class="memdesc:a20877ff221ecd547f2bfc43ed756bdae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the number of electrons from the input onsite basis.  <a href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a20877ff221ecd547f2bfc43ed756bdae">More...</a><br /></td></tr>
-<tr class="separator:a20877ff221ecd547f2bfc43ed756bdae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a465e32e606632a760db7e21c8c1c3e72"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a465e32e606632a760db7e21c8c1c3e72">CalculateNumElectron</a> (const int basis_onsite) const</td></tr>
+<tr class="memdesc:a465e32e606632a760db7e21c8c1c3e72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the number of electrons from the input onsite basis.  <a href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a465e32e606632a760db7e21c8c1c3e72">More...</a><br /></td></tr>
+<tr class="separator:a465e32e606632a760db7e21c8c1c3e72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5fd9f537769641895c16dab8da8318d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#ab5fd9f537769641895c16dab8da8318d">PrintBasisOnsite</a> () const</td></tr>
 <tr class="memdesc:ab5fd9f537769641895c16dab8da8318d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print the onsite bases.  <a href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html#ab5fd9f537769641895c16dab8da8318d">More...</a><br /></td></tr>
 <tr class="separator:ab5fd9f537769641895c16dab8da8318d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -516,6 +516,43 @@ template&lt;typename RealType &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a465e32e606632a760db7e21c8c1c3e72" name="a465e32e606632a760db7e21c8c1c3e72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a465e32e606632a760db7e21c8c1c3e72">&#9670;&nbsp;</a></span>CalculateNumElectron()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RealType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int <a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html">compnal::model::BaseU1Electron_1D</a>&lt; RealType &gt;::CalculateNumElectron </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>basis_onsite</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculate the number of electrons from the input onsite basis. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">basis_onsite</td><td>The onsite basis. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of electrons. </dd></dl>
+
+</div>
+</div>
 <a id="af4f1ee3947a7ecc796410024908c4c87" name="af4f1ee3947a7ecc796410024908c4c87"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af4f1ee3947a7ecc796410024908c4c87">&#9670;&nbsp;</a></span>CalculateQuntumNumberDifference()</h2>
 
@@ -1454,43 +1491,6 @@ template&lt;typename RealType &gt; </div>
 
 <p>Get dimension of the local Hilbert space, 4. </p>
 <dl class="section return"><dt>Returns</dt><dd>The dimension of the local Hilbert space, 4. </dd></dl>
-
-</div>
-</div>
-<a id="a20877ff221ecd547f2bfc43ed756bdae" name="a20877ff221ecd547f2bfc43ed756bdae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a20877ff221ecd547f2bfc43ed756bdae">&#9670;&nbsp;</a></span>GetNumElectrons()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename RealType &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int <a class="el" href="classcompnal_1_1model_1_1_base_u1_electron__1_d.html">compnal::model::BaseU1Electron_1D</a>&lt; RealType &gt;::GetNumElectrons </td>
-          <td>(</td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>basis_onsite</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Calculate the number of electrons from the input onsite basis. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">basis_onsite</td><td>The onsite basis. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The number of electrons. </dd></dl>
 
 </div>
 </div>

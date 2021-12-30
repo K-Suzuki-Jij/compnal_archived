@@ -254,6 +254,20 @@ public:
       return CreateOnsiteOperatorNCUp(magnitude_lspin, orbital, num_orbital) + CreateOnsiteOperatorNCDown(magnitude_lspin, orbital, num_orbital);
    }
    
+   //! @brief Generate the number operator for the electrons with the orbital \f$ \alpha \f$,
+   //! \f$ \hat{n}=\sum_{\alpha}\left(\hat{n}_{\alpha, \uparrow} + \hat{n}_{\alpha, \downarrow}\right)\f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
+   //! @return The matrix of \f$ \sum_{\alpha}\hat{n}_{\alpha}\f$.
+   static CRS CreateOnsiteOperatorNC(const double magnitude_lspin, const int num_orbital) {
+      const int dim = (utility::DoubleTheNumber(magnitude_lspin) + 1)*static_cast<int>(std::pow(4, num_orbital));
+      CRS out(dim, dim);
+      for (int o = 0; o < num_orbital; ++o) {
+         out = out + CreateOnsiteOperatorNC(magnitude_lspin, o, num_orbital);
+      }
+      return out;
+   }
+   
    //! @brief Generate the spin operator for the x-direction for the electrons with the orbital \f$ \alpha \f$,
    //! \f$ \hat{s}^{x}_{\alpha}=\frac{1}{2}(\hat{c}^{\dagger}_{\alpha, \uparrow}\hat{c}_{\alpha, \downarrow}
    //!  + \hat{c}^{\dagger}_{\alpha, \downarrow}\hat{c}_{\alpha, \uparrow})\f$.
@@ -494,6 +508,44 @@ protected:
    //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! The first value of std::vector<int> stores twice the number of the total sz and remaining values correspond to the orbitals of the electrons.
    std::unordered_map<std::vector<int>, std::unordered_map<std::int64_t, std::int64_t>, utility::VectorHash> bases_inv_;
+   
+   //! @brief Set onsite operators.
+   void SetOnsiteOperator() {
+      onsite_operator_c_up_         .resize(num_electron_orbital_);
+      onsite_operator_c_down_       .resize(num_electron_orbital_);
+      onsite_operator_c_up_dagger_  .resize(num_electron_orbital_);
+      onsite_operator_c_down_dagger_.resize(num_electron_orbital_);
+      onsite_operator_nc_up_        .resize(num_electron_orbital_);
+      onsite_operator_nc_down_      .resize(num_electron_orbital_);
+      onsite_operator_nc_           .resize(num_electron_orbital_);
+      onsite_operator_sxc_          .resize(num_electron_orbital_);
+      onsite_operator_isyc_         .resize(num_electron_orbital_);
+      onsite_operator_szc_          .resize(num_electron_orbital_);
+      onsite_operator_spc_          .resize(num_electron_orbital_);
+      onsite_operator_smc_          .resize(num_electron_orbital_);
+      onsite_operator_scsl_         .resize(num_electron_orbital_);
+      for (int o = 0; o < num_electron_orbital_; ++o) {
+         onsite_operator_c_up_          = CreateOnsiteOperatorCUp        (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_c_down_        = CreateOnsiteOperatorCDown      (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_c_up_dagger_   = CreateOnsiteOperatorCUpDagger  (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_c_down_dagger_ = CreateOnsiteOperatorCDownDagger(0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_nc_up_         = CreateOnsiteOperatorNCUp       (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_nc_down_       = CreateOnsiteOperatorNCDown     (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_nc_            = CreateOnsiteOperatorNC         (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_sxc_           = CreateOnsiteOperatorSxC        (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_isyc_          = CreateOnsiteOperatoriSyC       (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_szc_           = CreateOnsiteOperatorSzC        (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_spc_           = CreateOnsiteOperatorSpC        (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_smc_           = CreateOnsiteOperatorSmC        (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_scsl_          = CreateOnsiteOperatorSCSL       (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+      }
+      onsite_operator_nc_tot_ = CreateOnsiteOperatorNC  (0.5*magnitude_2lspin_, num_electron_orbital_);
+      onsite_operator_sxl_    = CreateOnsiteOperatorSxL (0.5*magnitude_2lspin_, num_electron_orbital_);
+      onsite_operator_isyl_   = CreateOnsiteOperatoriSyL(0.5*magnitude_2lspin_, num_electron_orbital_);
+      onsite_operator_szl_    = CreateOnsiteOperatorSzL (0.5*magnitude_2lspin_, num_electron_orbital_);
+      onsite_operator_spl_    = CreateOnsiteOperatorSpL (0.5*magnitude_2lspin_, num_electron_orbital_);
+      onsite_operator_sml_    = CreateOnsiteOperatorSmL (0.5*magnitude_2lspin_, num_electron_orbital_);
+   }
       
    //! @brief Calculate onsite basis for the electrons from an onsite basis.
    //! @param basis_onsite The onsite basis.

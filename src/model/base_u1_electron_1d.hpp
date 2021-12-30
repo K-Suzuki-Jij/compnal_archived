@@ -135,7 +135,7 @@ public:
    //! @brief Calculate the number of electrons from the input onsite basis.
    //! @param basis_onsite The onsite basis.
    //! @return The number of electrons.
-   int GetNumElectrons(const int basis_onsite) const {
+   int CalculateNumElectron(const int basis_onsite) const {
       
       //--------------------------------
       // # <->  [Cherge  ] -- (N,  2*sz)

@@ -163,7 +163,7 @@ public:
    //! @brief Calculate the number of electrons from the input onsite basis.
    //! @param basis_onsite The onsite basis.
    //! @return The number of electrons.
-   int GetNumElectrons(const int basis_onsite) const {
+   int CalculateNumElectron(const int basis_onsite) const {
       
       //--------------------------------
       // # <->  [Cherge  ] -- (N,  2*sz)
@@ -305,8 +305,8 @@ public:
       std::vector<std::int64_t> bias_basis;
       bias_basis.push_back(0);
       for (int n_up_down = 0; n_up_down <= max_n_up_down; ++n_up_down) {
-         for (int n_up = 0; n_up <= total_electron - 2*max_n_up_down; ++n_up) {
-            const int n_down = total_electron - 2*max_n_up_down - n_up;
+         for (int n_up = 0; n_up <= total_electron - 2*n_up_down; ++n_up) {
+            const int n_down = total_electron - 2*n_up_down - n_up;
             const int n_vac  = system_size_ - n_up - n_down - n_up_down;
             if (0 <= n_up && 0 <= n_down && 0 <= n_vac) {
                const double total_sz_electron = 0.5*(n_up - n_down);
@@ -475,8 +475,8 @@ public:
       const int max_n_up_down = static_cast<int>(total_electron/2);
       std::int64_t dim = 0;
       for (int n_up_down = 0; n_up_down <= max_n_up_down; ++n_up_down) {
-         for (int n_up = 0; n_up <= total_electron - 2*max_n_up_down; ++n_up) {
-            const int n_down = total_electron - 2*max_n_up_down - n_up;
+         for (int n_up = 0; n_up <= total_electron - 2*n_up_down; ++n_up) {
+            const int n_down = total_electron - 2*n_up_down - n_up;
             const int n_vac  = system_size - n_up - n_down - n_up_down;
             if (0 <= n_up && 0 <= n_down && 0 <= n_vac) {
                const double total_sz_electron  = 0.5*(n_up - n_down);

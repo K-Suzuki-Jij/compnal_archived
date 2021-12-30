@@ -85,11 +85,15 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>The class for the exact diagonalization.  
+ <a href="classcompnal_1_1solver_1_1_exact_diag.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="exact__diag_8hpp_source.html">exact_diag.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components.html">ExactDiagMatrixComponents</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Information for calculating the matrix elements of the Hamiltonian.  <a href="structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -127,10 +131,13 @@ Public Attributes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-types" name="pri-types"></a>
 Private Types</h2></td></tr>
 <tr class="memitem:ada6514651bff6cb916c47982c1b70ba5"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#ada6514651bff6cb916c47982c1b70ba5">RealType</a> = typename ModelClass::ValueType</td></tr>
+<tr class="memdesc:ada6514651bff6cb916c47982c1b70ba5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of real values.  <a href="classcompnal_1_1solver_1_1_exact_diag.html#ada6514651bff6cb916c47982c1b70ba5">More...</a><br /></td></tr>
 <tr class="separator:ada6514651bff6cb916c47982c1b70ba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa54a851fbc71d43eb274c08d03bb767a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#aa54a851fbc71d43eb274c08d03bb767a">CRS</a> = <a class="el" href="structcompnal_1_1sparse__matrix_1_1_c_r_s.html">sparse_matrix::CRS</a>&lt; <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#ada6514651bff6cb916c47982c1b70ba5">RealType</a> &gt;</td></tr>
+<tr class="memdesc:aa54a851fbc71d43eb274c08d03bb767a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias of compressed row strage (CRS) with RealType.  <a href="classcompnal_1_1solver_1_1_exact_diag.html#aa54a851fbc71d43eb274c08d03bb767a">More...</a><br /></td></tr>
 <tr class="separator:aa54a851fbc71d43eb274c08d03bb767a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f0d8fc6964c81f7d3d749a2dd8ed634"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#a8f0d8fc6964c81f7d3d749a2dd8ed634">BraketVector</a> = <a class="el" href="structcompnal_1_1sparse__matrix_1_1_braket_vector.html">sparse_matrix::BraketVector</a>&lt; <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#ada6514651bff6cb916c47982c1b70ba5">RealType</a> &gt;</td></tr>
+<tr class="memdesc:a8f0d8fc6964c81f7d3d749a2dd8ed634"><td class="mdescLeft">&#160;</td><td class="mdescRight">Alias of the braket vector class with RealType.  <a href="classcompnal_1_1solver_1_1_exact_diag.html#a8f0d8fc6964c81f7d3d749a2dd8ed634">More...</a><br /></td></tr>
 <tr class="separator:a8f0d8fc6964c81f7d3d749a2dd8ed634"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
@@ -160,7 +167,16 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a08b1c95d031f0b29727039f031480c1d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#ada6514651bff6cb916c47982c1b70ba5">RealType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#a08b1c95d031f0b29727039f031480c1d">eigenvalues_</a></td></tr>
 <tr class="separator:a08b1c95d031f0b29727039f031480c1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;class ModelClass&gt;<br />
+class compnal::solver::ExactDiag&lt; ModelClass &gt;</div><p >The class for the exact diagonalization. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ModelClass</td><td>The model class. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a8f0d8fc6964c81f7d3d749a2dd8ed634" name="a8f0d8fc6964c81f7d3d749a2dd8ed634"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8f0d8fc6964c81f7d3d749a2dd8ed634">&#9670;&nbsp;</a></span>BraketVector</h2>
 
@@ -182,6 +198,8 @@ template&lt;class ModelClass &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Alias of the braket vector class with RealType. </p>
 
 </div>
 </div>
@@ -207,6 +225,8 @@ template&lt;class ModelClass &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Alias of compressed row strage (CRS) with RealType. </p>
+
 </div>
 </div>
 <a id="ada6514651bff6cb916c47982c1b70ba5" name="ada6514651bff6cb916c47982c1b70ba5"></a>
@@ -230,6 +250,8 @@ template&lt;class ModelClass &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>The type of real values. </p>
 
 </div>
 </div>
