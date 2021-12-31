@@ -129,9 +129,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9f2ce1110f21411fd86e2b4f9de8ec54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a9f2ce1110f21411fd86e2b4f9de8ec54">SetCalculatedEigenvectorSet</a> (const int level)</td></tr>
 <tr class="memdesc:a9f2ce1110f21411fd86e2b4f9de8ec54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set calculated_eigenvector_set_, which represents the calculated eigenvectors and eigenvalues.  <a href="classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a9f2ce1110f21411fd86e2b4f9de8ec54">More...</a><br /></td></tr>
 <tr class="separator:a9f2ce1110f21411fd86e2b4f9de8ec54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88ed76b9d7bc9696bbb28ba1a522ba9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a88ed76b9d7bc9696bbb28ba1a522ba9b">PrintBasisOnsite</a> () const</td></tr>
+<tr class="memdesc:a88ed76b9d7bc9696bbb28ba1a522ba9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print the onsite bases.  <a href="classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a88ed76b9d7bc9696bbb28ba1a522ba9b">More...</a><br /></td></tr>
+<tr class="separator:a88ed76b9d7bc9696bbb28ba1a522ba9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a77b358e0381c6658d61fd2cc78448a03"><td class="memItemLeft" align="right" valign="top">static std::int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a77b358e0381c6658d61fd2cc78448a03">CalculateTargetDim</a> (const int system_size, const double magnitude_lspin, const std::vector&lt; int &gt; &amp;total_electron, const double total_sz)</td></tr>
+<tr class="memdesc:a77b358e0381c6658d61fd2cc78448a03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the dimension of the target Hilbert space specified by the system size \( N\), the magnitude of the local spin \( S\), the number of the total electrons \( \langle\hat{N}_{\rm e}\rangle\), and the total sz \( \langle\hat{S}^{z}_{\rm tot}\rangle \).  <a href="classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a77b358e0381c6658d61fd2cc78448a03">More...</a><br /></td></tr>
+<tr class="separator:a77b358e0381c6658d61fd2cc78448a03"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64eb887ad8446e6fbf72ed8f3bf0f449"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#aa965a550e0bd60f064188dff5dae450b">CRS</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a64eb887ad8446e6fbf72ed8f3bf0f449">CreateOnsiteOperatorCUp</a> (const double magnitude_lspin, const int orbital, const int num_orbital)</td></tr>
 <tr class="memdesc:a64eb887ad8446e6fbf72ed8f3bf0f449"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate the annihilation operator for the electrons with the orbital \( \alpha \) and the up spin \( \hat{c}_{\alpha, \uparrow}\).  <a href="classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a64eb887ad8446e6fbf72ed8f3bf0f449">More...</a><br /></td></tr>
 <tr class="separator:a64eb887ad8446e6fbf72ed8f3bf0f449"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,6 +219,8 @@ Static Protected Member Functions</h2></td></tr>
 <tr class="memitem:ab394d2f496c5f83209968c6c82d006bc"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#ab394d2f496c5f83209968c6c82d006bc">CalculateNumElectron</a> (const int basis_electron_onsite)</td></tr>
 <tr class="memdesc:ab394d2f496c5f83209968c6c82d006bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the number of electrons from the onsite electron basis.  <a href="classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#ab394d2f496c5f83209968c6c82d006bc">More...</a><br /></td></tr>
 <tr class="separator:ab394d2f496c5f83209968c6c82d006bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ea3a542efc8659172ea383f9e5b6b5d"><td class="memItemLeft" align="right" valign="top">static std::vector&lt; std::vector&lt; int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a9ea3a542efc8659172ea383f9e5b6b5d">GenerateElectronConfigurations</a> (const int system_size, const int total_electron)</td></tr>
+<tr class="separator:a9ea3a542efc8659172ea383f9e5b6b5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -766,6 +774,68 @@ template&lt;typename RealType &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of electrons </dd></dl>
+
+</div>
+</div>
+<a id="a77b358e0381c6658d61fd2cc78448a03" name="a77b358e0381c6658d61fd2cc78448a03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77b358e0381c6658d61fd2cc78448a03">&#9670;&nbsp;</a></span>CalculateTargetDim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RealType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::int64_t <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html">compnal::model::BaseU1SpinMultiElectrons_1D</a>&lt; RealType &gt;::CalculateTargetDim </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>system_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>magnitude_lspin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>total_electron</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>total_sz</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculate the dimension of the target Hilbert space specified by the system size \( N\), the magnitude of the local spin \( S\), the number of the total electrons \( \langle\hat{N}_{\rm e}\rangle\), and the total sz \( \langle\hat{S}^{z}_{\rm tot}\rangle \). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">system_size</td><td>The system size \( N\). </td></tr>
+    <tr><td class="paramname">magnitude_lspin</td><td>The magnitude of the local spin \( S \). </td></tr>
+    <tr><td class="paramname">total_electron</td><td>The total electron at each orbital \( \alpha \), \( \langle\hat{N}_{{\rm e}, \alpha}\rangle\). </td></tr>
+    <tr><td class="paramname">total_sz</td><td>The total sz \( \langle\hat{S}^{z}_{\rm tot}\rangle\). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The dimension of the target Hilbert space. </dd></dl>
 
 </div>
 </div>
@@ -1817,6 +1887,73 @@ template&lt;typename RealType &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The matrix of \( \hat{S}^{z}\). </dd></dl>
+
+</div>
+</div>
+<a id="a9ea3a542efc8659172ea383f9e5b6b5d" name="a9ea3a542efc8659172ea383f9e5b6b5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ea3a542efc8659172ea383f9e5b6b5d">&#9670;&nbsp;</a></span>GenerateElectronConfigurations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RealType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::vector&lt; std::vector&lt; int &gt; &gt; <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html">compnal::model::BaseU1SpinMultiElectrons_1D</a>&lt; RealType &gt;::GenerateElectronConfigurations </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>system_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>total_electron</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a88ed76b9d7bc9696bbb28ba1a522ba9b" name="a88ed76b9d7bc9696bbb28ba1a522ba9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88ed76b9d7bc9696bbb28ba1a522ba9b">&#9670;&nbsp;</a></span>PrintBasisOnsite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RealType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html">compnal::model::BaseU1SpinMultiElectrons_1D</a>&lt; RealType &gt;::PrintBasisOnsite </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Print the onsite bases. </p>
 
 </div>
 </div>

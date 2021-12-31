@@ -147,6 +147,86 @@ public:
       calculated_eigenvector_set_.emplace(level);
    }
    
+   //! @brief Print the onsite bases.
+   void PrintBasisOnsite() const {
+      const double magnitude_lspin = magnitude_2lspin_/2.0;
+      for (int row = 0; row < dim_onsite_; ++row) {
+         std::vector<std::string> b_ele;
+         for (int o = 0; o < num_electron_orbital_; ++o) {
+            if (CalculateBasisOnsiteElectron(row, o) == 0) {
+               b_ele.push_back("|vac>");
+            }
+            else if (CalculateBasisOnsiteElectron(row, o) == 1) {
+               b_ele.push_back("|↑>");
+            }
+            else if (CalculateBasisOnsiteElectron(row, o) == 2) {
+               b_ele.push_back("|↓>");
+            }
+            else if (CalculateBasisOnsiteElectron(row, o) == 3) {
+               b_ele.push_back("|↑↓>");
+            }
+            else {
+               std::stringstream ss;
+               ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+               throw std::runtime_error(ss.str());
+            }
+         }
+         std::cout << "row " << row << ": ";
+         for (const auto &it: b_ele) {
+            std::cout << it;
+         }
+         std::cout << "|Sz=" << magnitude_lspin - CalculateBasisOnsiteLSpin(row) << ">" << std::endl;
+      }
+   }
+   
+   //! @brief Calculate the dimension of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
+   //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param system_size The system size \f$ N\f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @param total_electron The total electron at each orbital \f$ \alpha \f$, \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
+   //! @return The dimension of the target Hilbert space.
+   static std::int64_t CalculateTargetDim(const int system_size,
+                                          const double magnitude_lspin,
+                                          const std::vector<int> &total_electron,
+                                          const double total_sz) {
+      std::vector<std::vector<std::vector<int>>> electron_configuration_list;
+      std::vector<int> length_list;
+      std::int64_t length = 1;
+      for (const auto num_electron: total_electron) {
+         const auto electron_configuration = GenerateElectronConfigurations(system_size, num_electron);
+         electron_configuration_list.push_back(electron_configuration);
+         length_list.push_back(electron_configuration[0].size());
+         length *= electron_configuration[0].size();
+      }
+      const int total_2sz = utility::DoubleTheNumber(total_sz);
+      const std::vector<std::vector<std::int64_t>> binom = utility::CalculateBinomialTable(system_size);
+      std::int64_t dim = 0;
+      for (std::int64_t i = 0; i < length; ++i) {
+         int electron_2sz = 0;
+         std::int64_t electron_dim = 1;
+         for (std::size_t j = 0; j < length_list.size(); ++j) {
+            std::int64_t prod = 1;
+            for (std::size_t k = j + 1; k < length_list.size(); ++k) {
+               prod *= length_list[k];
+            }
+            const std::size_t index = (i/prod)%length_list[j];
+            const int n_up_down = electron_configuration_list[j][0][index];
+            const int n_up      = electron_configuration_list[j][1][index];
+            const int n_down    = electron_configuration_list[j][2][index];
+            electron_2sz += n_up - n_down;
+            electron_dim *= binom[system_size][n_up]*binom[system_size - n_up][n_down]*binom[system_size - n_up - n_down][n_up_down];
+         }
+         const int spin_2sz = total_2sz - electron_2sz;
+         if (BaseU1Spin_1D<RealType>::isValidQNumber(system_size, magnitude_lspin, 0.5*spin_2sz)) {
+            dim += electron_dim*BaseU1Spin_1D<RealType>::CalculateTargetDim(system_size, magnitude_lspin, 0.5*spin_2sz);
+         }
+      }
+      return dim;
+   }
+   
    //! @brief Generate the annihilation operator for the electrons
    //! with the orbital \f$ \alpha \f$ and the up spin \f$ \hat{c}_{\alpha, \uparrow}\f$.
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
@@ -723,6 +803,24 @@ protected:
          ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
          throw std::runtime_error(ss.str());
       }
+   }
+   
+   static std::vector<std::vector<int>> GenerateElectronConfigurations(const int system_size, const int total_electron) {
+      const int max_n_up_down = static_cast<int>(total_electron/2);
+      std::vector<std::vector<int>> ele_configurations(4);
+      for (int n_up_down = 0; n_up_down <= max_n_up_down; ++n_up_down) {
+         for (int n_up = 0; n_up <= total_electron - 2*n_up_down; ++n_up) {
+            const int n_down = total_electron - 2*n_up_down - n_up;
+            const int n_vac  = system_size - n_up - n_down - n_up_down;
+            if (0 <= n_up && 0 <= n_down && 0 <= n_vac) {
+               ele_configurations[0].push_back(n_up_down);
+               ele_configurations[1].push_back(n_up     );
+               ele_configurations[2].push_back(n_down   );
+               ele_configurations[3].push_back(n_vac    );
+            }
+         }
+      }
+      return ele_configurations;
    }
    
 };
