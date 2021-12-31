@@ -11,6 +11,8 @@
 namespace compnal {
 namespace model {
 
+//! @brief The base class for one-dimensional spin-multiband-electron systems with the U(1) symmetry.
+//! @tparam RealType The type of real values.
 template<typename RealType>
 class BaseU1SpinMultiElectrons_1D {
    
@@ -25,8 +27,124 @@ public:
    //------------------------------------------------------------------
    //---------------------------Constructors---------------------------
    //------------------------------------------------------------------
+   //! @brief Constructor of BaseU1SpinMultiElectrons_1D class.
    BaseU1SpinMultiElectrons_1D() {
-      
+      SetOnsiteOperator();
+   }
+   
+   //! @brief Constructor of BaseU1SpinMultiElectrons_1D class.
+   //! @param system_size The system size \f$ N \f$.
+   explicit BaseU1SpinMultiElectrons_1D(const int system_size): BaseU1SpinMultiElectrons_1D() {
+      SetSystemSize(system_size);
+   }
+   
+   //! @brief Constructor of BaseU1SpinMultiElectrons_1D class.
+   //! @param system_size The system size \f$ N \f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   BaseU1SpinMultiElectrons_1D(const int system_size, const double magnitude_lspin): BaseU1SpinMultiElectrons_1D(system_size) {
+      SetMagnitudeLSpin(magnitude_lspin);
+   }
+   
+   //! @brief Constructor of BaseU1SpinMultiElectrons_1D class.
+   //! @param system_size The system size \f$ N \f$.
+   //! @param total_electron The total electron at each orbital \f$ \alpha \f$, \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$.
+   BaseU1SpinMultiElectrons_1D(const int system_size,
+                               const std::vector<int> &total_electron): BaseU1SpinMultiElectrons_1D(system_size) {
+      SetTotalElectron(total_electron);
+   }
+   
+   //! @brief Constructor of BaseU1Electron_1D class.
+   //! @param system_size The system size \f$ N \f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @param total_electron The total electron at each orbital \f$ \alpha \f$, \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$.
+   BaseU1SpinMultiElectrons_1D(const int system_size,
+                               const double magnitude_lspin,
+                               const std::vector<int> &total_electron): BaseU1SpinMultiElectrons_1D(system_size, magnitude_lspin) {
+      SetTotalElectron(total_electron);
+   }
+   
+   //------------------------------------------------------------------
+   //----------------------Public Member functions---------------------
+   //------------------------------------------------------------------
+   //! @brief Set system size.
+   //! @param system_size The system size \f$ N \f$.
+   void SetSystemSize(const int system_size) {
+      if (system_size <= 0) {
+         std::stringstream ss;
+         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "system_size must be a non-negative integer" << std::endl;
+         ss << "system_size=" << system_size << "is not allowed" << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      if (system_size_ != system_size) {
+         system_size_ = system_size;
+         bases_.clear();
+         bases_inv_.clear();
+         calculated_eigenvector_set_.clear();
+      }
+   }
+   
+   //! @brief Set target Hilbert space specified by the total sz to be diagonalized.
+   //! @param total_sz The total sz
+   //! \f$ \langle\hat{S}^{z}_{\rm tot}\rangle =
+   //! \sum^{N}_{i=1}\left(\hat{S}^{z}_{i} + \sum_{\alpha}\hat{s}^{z}_{i,\alpha}\right)\f$.
+   void SetTotalSz(const double total_sz) {
+      const int total_2sz = utility::DoubleTheNumber(total_sz);
+      if (total_2sz_ != total_2sz) {
+         total_2sz_ = total_2sz;
+         calculated_eigenvector_set_.clear();
+      }
+   }
+   
+   //! @brief Set the number of total electrons.
+   //! @param total_electron The total electron at each orbital \f$ \alpha \f$, \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$.
+   void SetTotalElectron(const std::vector<int> &total_electron) {
+      if (total_electron_.size() < total_electron.size()) {
+         for (std::size_t i = 0; i < total_electron_.size(); ++i) {
+            if (total_electron_.at(i) != total_electron.at(i)) {
+               total_electron_.at(i) = total_electron.at(i);
+            }
+         }
+         for (std::size_t i = total_electron_.size(); i < total_electron.size(); ++i) {
+            total_electron_.push_back(total_electron.at(i));
+         }
+         calculated_eigenvector_set_.clear();
+      }
+      else {
+         for (std::size_t i = 0; i < total_electron.size(); ++i) {
+            if (total_electron_.at(i) != total_electron.at(i)) {
+               total_electron_.at(i) = total_electron.at(i);
+               calculated_eigenvector_set_.clear();
+            }
+         }
+      }
+   }
+   
+   //! @brief Set the magnitude of the spin \f$ S \f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   void SetMagnitudeLSpin(const double magnitude_lspin) {
+      const int magnitude_2lspin = utility::DoubleTheNumber(magnitude_lspin);
+      if (magnitude_2lspin <= 0) {
+         std::stringstream ss;
+         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "Please set magnitude_2lspin > 0" << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      if (magnitude_2lspin_ != magnitude_2lspin) {
+         magnitude_2lspin_ = magnitude_2lspin;
+         dim_onsite_lspin_ = magnitude_2lspin + 1;
+         dim_onsite_       = dim_onsite_lspin_*dim_onsite_electron_;
+         SetOnsiteOperator();
+         bases_.clear();
+         bases_inv_.clear();
+         calculated_eigenvector_set_.clear();
+      }
+   }
+   
+   //! @brief Set calculated_eigenvector_set_, which represents the calculated eigenvectors and eigenvalues.
+   //! @param level Energy level.
+   void SetCalculatedEigenvectorSet(const int level) {
+      calculated_eigenvector_set_.emplace(level);
    }
    
    //! @brief Generate the annihilation operator for the electrons
@@ -525,19 +643,19 @@ protected:
       onsite_operator_smc_          .resize(num_electron_orbital_);
       onsite_operator_scsl_         .resize(num_electron_orbital_);
       for (int o = 0; o < num_electron_orbital_; ++o) {
-         onsite_operator_c_up_          = CreateOnsiteOperatorCUp        (0.5*magnitude_2lspin_, o, num_electron_orbital_);
-         onsite_operator_c_down_        = CreateOnsiteOperatorCDown      (0.5*magnitude_2lspin_, o, num_electron_orbital_);
-         onsite_operator_c_up_dagger_   = CreateOnsiteOperatorCUpDagger  (0.5*magnitude_2lspin_, o, num_electron_orbital_);
-         onsite_operator_c_down_dagger_ = CreateOnsiteOperatorCDownDagger(0.5*magnitude_2lspin_, o, num_electron_orbital_);
-         onsite_operator_nc_up_         = CreateOnsiteOperatorNCUp       (0.5*magnitude_2lspin_, o, num_electron_orbital_);
-         onsite_operator_nc_down_       = CreateOnsiteOperatorNCDown     (0.5*magnitude_2lspin_, o, num_electron_orbital_);
-         onsite_operator_nc_            = CreateOnsiteOperatorNC         (0.5*magnitude_2lspin_, o, num_electron_orbital_);
-         onsite_operator_sxc_           = CreateOnsiteOperatorSxC        (0.5*magnitude_2lspin_, o, num_electron_orbital_);
-         onsite_operator_isyc_          = CreateOnsiteOperatoriSyC       (0.5*magnitude_2lspin_, o, num_electron_orbital_);
-         onsite_operator_szc_           = CreateOnsiteOperatorSzC        (0.5*magnitude_2lspin_, o, num_electron_orbital_);
-         onsite_operator_spc_           = CreateOnsiteOperatorSpC        (0.5*magnitude_2lspin_, o, num_electron_orbital_);
-         onsite_operator_smc_           = CreateOnsiteOperatorSmC        (0.5*magnitude_2lspin_, o, num_electron_orbital_);
-         onsite_operator_scsl_          = CreateOnsiteOperatorSCSL       (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_c_up_[o]          = CreateOnsiteOperatorCUp        (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_c_down_[o]        = CreateOnsiteOperatorCDown      (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_c_up_dagger_[o]   = CreateOnsiteOperatorCUpDagger  (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_c_down_dagger_[o] = CreateOnsiteOperatorCDownDagger(0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_nc_up_[o]         = CreateOnsiteOperatorNCUp       (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_nc_down_[o]       = CreateOnsiteOperatorNCDown     (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_nc_[o]            = CreateOnsiteOperatorNC         (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_sxc_[o]           = CreateOnsiteOperatorSxC        (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_isyc_[o]          = CreateOnsiteOperatoriSyC       (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_szc_[o]           = CreateOnsiteOperatorSzC        (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_spc_[o]           = CreateOnsiteOperatorSpC        (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_smc_[o]           = CreateOnsiteOperatorSmC        (0.5*magnitude_2lspin_, o, num_electron_orbital_);
+         onsite_operator_scsl_[o]          = CreateOnsiteOperatorSCSL       (0.5*magnitude_2lspin_, o, num_electron_orbital_);
       }
       onsite_operator_nc_tot_ = CreateOnsiteOperatorNC  (0.5*magnitude_2lspin_, num_electron_orbital_);
       onsite_operator_sxl_    = CreateOnsiteOperatorSxL (0.5*magnitude_2lspin_, num_electron_orbital_);
