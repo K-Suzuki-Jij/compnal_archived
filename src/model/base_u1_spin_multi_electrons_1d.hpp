@@ -180,6 +180,263 @@ public:
    }
    
    //! @brief Calculate the dimension of the target Hilbert space specified by
+   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @return The dimension of the target Hilbert space.
+   std::int64_t CalculateTargetDim() const {
+      return CalculateTargetDim(0.5*total_2sz_);
+   }
+   
+   //! @brief Calculate the dimension of the target Hilbert space specified by
+   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @return The dimension of the target Hilbert space.
+   std::int64_t CalculateTargetDim(const double total_sz) const {
+      return CalculateTargetDim(system_size_, 0.5*magnitude_2lspin_, total_electron_, total_sz);
+   }
+   
+   //! @brief Generate bases of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
+   //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param total_electron The total electron at each orbital \f$ \alpha \f$, \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
+   void GenerateBasis(const std::vector<int> &total_electron, const double total_sz) {
+      const auto start     = std::chrono::system_clock::now();
+      const int  total_2sz = utility::DoubleTheNumber(total_sz);
+      if (bases_.count({total_electron, total_2sz}) != 0) {
+         return;
+      }
+      std::cout << "Generating Basis..." << std::flush;
+            
+      std::vector<std::vector<std::vector<int>>> electron_configuration_list;
+      std::vector<int> length_list;
+      std::int64_t length = 1;
+      for (const auto num_electron: total_electron) {
+         const auto electron_configuration = GenerateElectronConfigurations(system_size_, num_electron);
+         electron_configuration_list.push_back(electron_configuration);
+         length_list.push_back(electron_configuration[0].size());
+         length *= electron_configuration[0].size();
+      }
+      const std::vector<std::vector<std::int64_t>> binom = utility::CalculateBinomialTable(system_size_);
+      const std::int64_t dim_target_global = CalculateTargetDim(total_electron, total_sz);
+
+      std::vector<std::vector<int>> q_number_n_up_down;
+      std::vector<std::vector<int>> q_number_n_up;
+      std::vector<std::vector<int>> q_number_n_down;
+      std::vector<std::vector<int>> q_number_n_vac;
+      std::vector<std::vector<int>> q_number_ele_list;
+      std::vector<int> q_number_spin_vec;
+      std::vector<std::int64_t> total_electron_dim_list;
+      std::vector<std::vector<std::int64_t>> each_electron_basis_dim_prod;
+      std::vector<std::vector<std::int64_t>> each_electron_basis_dim;
+      std::vector<std::int64_t> bias_basis;
+      bias_basis.push_back(0);
+      
+      for (std::int64_t i = 0; i < length; ++i) {
+         int electron_2sz = 0;
+         std::vector<int> temp_n_up_down;
+         std::vector<int> temp_n_up;
+         std::vector<int> temp_n_down;
+         std::vector<int> temp_n_vac;
+         std::int64_t electron_dim = 1;
+         for (std::size_t j = 0; j < length_list.size(); ++j) {
+            std::int64_t prod = 1;
+            for (std::size_t k = j + 1; k < length_list.size(); ++k) {
+               prod *= length_list[k];
+            }
+            const std::size_t index = (i/prod)%length_list[j];
+            const int n_up_down = electron_configuration_list[j][0][index];
+            const int n_up      = electron_configuration_list[j][1][index];
+            const int n_down    = electron_configuration_list[j][2][index];
+            const int n_vac     = electron_configuration_list[j][3][index];
+            electron_2sz += n_up - n_down;
+            temp_n_up_down.push_back(n_up_down);
+            temp_n_up     .push_back(n_up     );
+            temp_n_down   .push_back(n_down   );
+            temp_n_vac    .push_back(n_vac    );
+            electron_dim *= binom[system_size_][n_up]*binom[system_size_ - n_up][n_down]*binom[system_size_ - n_up - n_down][n_up_down];
+         }
+         const int spin_2sz = total_2sz - electron_2sz;
+         if (BaseU1Spin_1D<RealType>::isValidQNumber(system_size_, 0.5*magnitude_2lspin_, 0.5*spin_2sz)) {
+            q_number_n_up_down.push_back(temp_n_up_down);
+            q_number_n_up     .push_back(temp_n_up     );
+            q_number_n_down   .push_back(temp_n_down   );
+            q_number_n_vac    .push_back(temp_n_vac    );
+            q_number_spin_vec .push_back(spin_2sz);
+            total_electron_dim_list.push_back(electron_dim);
+            each_electron_basis_dim.emplace_back();
+            bias_basis.push_back(electron_dim*BaseU1Spin_1D<RealType>::CalculateTargetDim(system_size_, 0.5*magnitude_2lspin_, 0.5*spin_2sz));
+            for (std::size_t j = 0; j < length_list.size(); ++j) {
+               q_number_ele_list.push_back({temp_n_up_down[j], temp_n_up[j], temp_n_down[j], temp_n_vac[j]});
+               each_electron_basis_dim.back().push_back(binom[system_size_][temp_n_up[j]]*
+                                                        binom[system_size_ - temp_n_up[j]][temp_n_down[j]]*
+                                                        binom[system_size_ - temp_n_up[j] - temp_n_down[j]][temp_n_up_down[j]]);
+               
+            }
+         }
+      }
+      
+      each_electron_basis_dim_prod.resize(each_electron_basis_dim.size());
+      for (std::size_t i = 0; i < each_electron_basis_dim_prod.size(); ++i) {
+         each_electron_basis_dim_prod[i].resize(total_electron.size());
+         for (std::size_t j = 0; j < total_electron.size(); ++j) {
+            std::int64_t prod = 1;
+            for (std::size_t k = j + 1; k < total_electron.size(); ++k) {
+               prod *= each_electron_basis_dim[i][k];
+            }
+            each_electron_basis_dim_prod[i][j] = prod;
+         }
+      }
+      
+      for (std::size_t i = 0; i < bias_basis.size(); ++i) {
+         bias_basis[i+1] += bias_basis[i];
+      }
+      
+      if (static_cast<std::int64_t>(bias_basis[bias_basis.size()]) != dim_target_global) {
+         std::stringstream ss;
+         ss << "Unknown error in " << __FUNCTION__ << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      
+      std::vector<std::int64_t> site_constant_global(system_size_);
+      std::vector<std::int64_t> ele_constant_global(system_size_);
+
+      for (int site = 0; site < system_size_; ++site) {
+         site_constant_global[site] = static_cast<std::int64_t>(std::pow(dim_onsite_, site));
+      }
+      
+      for (int o = 0; o < static_cast<int>(total_electron.size()); ++o) {
+         ele_constant_global[o] = static_cast<std::int64_t>(std::pow(dim_onsite_electron_, o));
+      }
+      
+      //Generate spin bases
+      std::vector<int> temp_q_number_spin_vec = q_number_spin_vec;
+      std::sort(temp_q_number_spin_vec.begin(), temp_q_number_spin_vec.end());
+      temp_q_number_spin_vec.erase(std::unique(temp_q_number_spin_vec.begin(), temp_q_number_spin_vec.end()), temp_q_number_spin_vec.end());
+      std::unordered_map<int, std::vector<std::int64_t>> spin_bases;
+#pragma omp parallel for
+      for (std::int64_t i = 0; i < static_cast<std::int64_t>(temp_q_number_spin_vec.size()); ++i) {
+         const int total_2_sz_lspin = temp_q_number_spin_vec[i];
+         const int shifted_2sz      = (system_size_*magnitude_2lspin_ - total_2_sz_lspin)/2;
+         const std::int64_t dim_target_lspin = BaseU1Spin_1D<RealType>::CalculateTargetDim(system_size_, 0.5*magnitude_2lspin_, 0.5*total_2_sz_lspin);
+         std::vector<std::vector<int>> partition_integers;
+         utility::GenerateIntegerPartition(&partition_integers, shifted_2sz, magnitude_2lspin_);
+         auto &spin_basis = spin_bases[total_2_sz_lspin];
+         spin_basis.reserve(dim_target_lspin);
+         for (auto &&integer_list: partition_integers) {
+            const bool condition1 = (0 < integer_list.size()) && (static_cast<int>(integer_list.size()) <= system_size_);
+            const bool condition2 = (integer_list.size() == 0) && (shifted_2sz  == 0);
+            if (condition1 || condition2) {
+               for (int j = static_cast<int>(integer_list.size()); j < system_size_; ++j) {
+                  integer_list.push_back(0);
+               }
+               std::sort(integer_list.begin(), integer_list.end());
+               do {
+                  std::int64_t basis_global = 0;
+                  for (std::size_t j = 0; j < integer_list.size(); ++j) {
+                     basis_global += integer_list[j]*site_constant_global[j];
+                  }
+                  spin_basis.push_back(basis_global);
+               } while (std::next_permutation(integer_list.begin(), integer_list.end()));
+            }
+         }
+         if (static_cast<std::int64_t>(spin_basis.size()) != dim_target_lspin) {
+            std::stringstream ss;
+            ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+            throw std::runtime_error(ss.str());
+         }
+         std::sort(spin_basis.begin(), spin_basis.end());
+      }
+      
+      //Generate electron bases
+      const std::int64_t loop_size = static_cast<std::int64_t>(q_number_spin_vec.size());
+      std::unordered_map<std::vector<int>, std::vector<std::int64_t>, utility::VectorHash> electron_bases;
+      std::vector<std::vector<int>> temp_q_number_ele_list = q_number_ele_list;
+      std::sort(temp_q_number_ele_list.begin(), temp_q_number_ele_list.end());
+      temp_q_number_ele_list.erase(std::unique(temp_q_number_ele_list.begin(), temp_q_number_ele_list.end()), temp_q_number_ele_list.end());
+      
+#pragma omp parallel for
+      for (std::size_t i = 0; i < temp_q_number_ele_list.size(); ++i) {
+         const int n_up_down = temp_q_number_ele_list[i][0];
+         const int n_down    = temp_q_number_ele_list[i][1];
+         const int n_up      = temp_q_number_ele_list[i][2];
+         const int n_vac     = temp_q_number_ele_list[i][3];
+         std::vector<int> basis_list_electron(system_size_);
+         for (int s = 0; s < n_vac; ++s) {
+            basis_list_electron[s] = 0;
+         }
+         for (int s = 0; s < n_up; ++s) {
+            basis_list_electron[s + n_vac] = 1;
+         }
+         for (int s = 0; s < n_down; ++s) {
+            basis_list_electron[s + n_vac + n_up] = 2;
+         }
+         for (int s = 0; s < n_up_down; ++s) {
+            basis_list_electron[s + n_vac + n_up + n_down] = 3;
+         }
+         do {
+            std::int64_t basis_global_electron = 0;
+            for (std::size_t j = 0; j < basis_list_electron.size(); ++j) {
+               basis_global_electron += basis_list_electron[j]*site_constant_global[j]*dim_onsite_lspin_;
+            }
+         } while (std::next_permutation(basis_list_electron.begin(), basis_list_electron.end()));
+      }
+      
+      //Generate global bases
+      std::vector<std::int64_t>().swap(bases_[{total_electron, total_2sz}]);
+      auto &global_basis_ref = bases_.at({total_electron, total_2sz});
+      global_basis_ref.resize(dim_target_global);
+      
+#pragma omp parallel for
+      for (std::int64_t i = 0; i < loop_size; ++i) {
+         std::int64_t count = bias_basis[i];
+         const int total_2sz_lspin = q_number_spin_vec[i];
+         const std::int64_t total_electron_dim = total_electron_dim_list[i];
+         for (const auto &spin_basis: spin_bases.at(total_2sz_lspin)) {
+            
+            for (std::int64_t j = 0; j < total_electron_dim; ++j) {
+               std::int64_t global_basis = spin_basis;
+               for (std::size_t k = 0; k < total_electron.size(); ++k) {
+                  const int n_up_down = q_number_n_up_down[i][k];
+                  const int n_up      = q_number_n_up     [i][k];
+                  const int n_down    = q_number_n_down   [i][k];
+                  const int n_vac     = q_number_n_vac    [i][k];
+                  std::size_t index = (j/each_electron_basis_dim_prod[i][k])%each_electron_basis_dim[i][k];
+                  global_basis += electron_bases.at({n_up_down, n_up, n_down, n_vac})[index];
+               }
+               global_basis_ref[count++] = global_basis;
+            }
+         }
+      }
+      
+      if (static_cast<std::int64_t>(bases_.at({total_electron, total_2sz}).size()) != dim_target_global) {
+         std::stringstream ss;
+         ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      
+      std::sort(global_basis_ref.begin(), global_basis_ref.end());
+      
+      bases_inv_[{total_electron, total_2sz}].clear();
+      
+      auto &basis_inv_ref = bases_inv_.at({total_electron, total_2sz});
+      for (std::int64_t i = 0; i < dim_target_global; ++i) {
+         basis_inv_ref[global_basis_ref[i]] = i;
+      }
+      
+      if (basis_inv_ref.size() != global_basis_ref.size()) {
+         std::stringstream ss;
+         ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+         ss << "The same basis has been detected" << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
+      const double time_sec   = static_cast<double>(time_count)/sparse_matrix::TIME_UNIT_CONSTANT;
+      std::cout << "\rElapsed time of generating basis:" << time_sec << "[sec]" << std::endl;
+      
+   }
+   
+   //! @brief Calculate the dimension of the target Hilbert space specified by
    //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
    //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
    //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
@@ -698,14 +955,14 @@ protected:
    //! the number of the total electrons at each orbital \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$,
    //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! The first value of std::vector<int> stores twice the number of the total sz and remaining values correspond to the orbitals of the electrons.
-   std::unordered_map<std::vector<int>, std::vector<std::int64_t>, utility::VectorHash> bases_;
+   std::unordered_map<std::pair<int, std::vector<int>>, std::vector<std::int64_t>, utility::VectorIntHash> bases_;
    
    //! @brief Inverse bases of the target Hilbert space specified by
    //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
    //! the number of the total electrons at each orbital \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$,
    //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! The first value of std::vector<int> stores twice the number of the total sz and remaining values correspond to the orbitals of the electrons.
-   std::unordered_map<std::vector<int>, std::unordered_map<std::int64_t, std::int64_t>, utility::VectorHash> bases_inv_;
+   std::unordered_map<std::pair<int, std::vector<int>>, std::unordered_map<std::int64_t, std::int64_t>, utility::VectorIntHash> bases_inv_;
    
    //! @brief Set onsite operators.
    void SetOnsiteOperator() {

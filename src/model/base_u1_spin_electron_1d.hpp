@@ -343,7 +343,7 @@ public:
       for (std::int64_t i = 0; i < static_cast<std::int64_t>(temp_q_number_spin_vec.size()); ++i) {
          const int total_2_sz_lspin = temp_q_number_spin_vec[i];
          const int shifted_2sz      = (system_size_*magnitude_2lspin_ - total_2_sz_lspin)/2;
-         const std::int64_t dim_target_lspin = BaseU1Spin_1D<RealType>::CalculateTargetDim(system_size_, magnitude_2lspin_/2, total_2_sz_lspin);
+         const std::int64_t dim_target_lspin = BaseU1Spin_1D<RealType>::CalculateTargetDim(system_size_, magnitude_2lspin_/2, total_2_sz_lspin/2);
          std::vector<std::vector<int>> partition_integers;
          utility::GenerateIntegerPartition(&partition_integers, shifted_2sz, magnitude_2lspin_);
          auto &spin_basis = spin_bases[total_2_sz_lspin];
@@ -405,7 +405,6 @@ public:
             }
             for (const auto &basis_global_lspin: spin_bases.at(total_2sz_lspin)) {
                global_basis_ref[count++] = basis_global_electron + basis_global_lspin;
-               
             }
          } while (std::next_permutation(basis_list_electron.begin(), basis_list_electron.end()));
       }
