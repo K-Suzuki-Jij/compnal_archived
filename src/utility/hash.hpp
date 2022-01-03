@@ -32,12 +32,12 @@ struct VectorHash {
 
 struct VectorIntHash {
    template<class T1, class T2>
-   std::size_t operator() (const std::pair<T1, std::vector<T2>>& p) const {
-      std::size_t hash = p.second.size();
-      for (auto &i: p.second) {
-         hash ^= std::hash<T2>()(i) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+   std::size_t operator() (const std::pair<std::vector<T1>, T2>& p) const {
+      std::size_t hash = p.first.size();
+      for (auto &i: p.first) {
+         hash ^= std::hash<T1>()(i) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
       }
-      std::size_t lhs = std::hash<T1>()(p.first);
+      std::size_t lhs = std::hash<T2>()(p.second);
       hash ^= lhs^(0x9e3779b9 + (lhs << 6));
       return hash;
    }

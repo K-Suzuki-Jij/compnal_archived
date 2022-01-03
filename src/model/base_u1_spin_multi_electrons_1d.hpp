@@ -179,6 +179,21 @@ public:
       }
    }
    
+   //! @brief Check if there is a subspace specified by the input quantum numbers.
+   //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
+   //! @return ture if there exists corresponding subspace, otherwise false.
+   bool isValidQNumber(const std::pair<std::vector<int>, double> &quantum_number) const {
+      return isValidQNumber(system_size_, 0.5*magnitude_2lspin_, quantum_number.first, quantum_number.second);
+   }
+   
+   //! @brief Check if there is a subspace specified by the input quantum numbers.
+   //! @param total_electron The total electron at each orbital \f$ \alpha \f$, \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
+   //! @return ture if there exists corresponding subspace, otherwise false.
+   bool isValidQNumber(const std::vector<int> &total_electron, const double total_sz) const {
+      return isValidQNumber(system_size_, 0.5*magnitude_2lspin_, total_electron, total_sz);
+   }
+   
    //! @brief Calculate the dimension of the target Hilbert space specified by
    //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @return The dimension of the target Hilbert space.
@@ -192,6 +207,173 @@ public:
    //! @return The dimension of the target Hilbert space.
    std::int64_t CalculateTargetDim(const double total_sz) const {
       return CalculateTargetDim(system_size_, 0.5*magnitude_2lspin_, total_electron_, total_sz);
+   }
+   
+   //! @brief Calculate the quantum numbers of excited states that appear when calculating the correlation functions.
+   //! @param m_1 The matrix of an onsite operator.
+   //! @param m_2 The matrix of an onsite operator.
+   //! @return The list of quantum numbers.
+   std::vector<std::pair<std::vector<int>, double>> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
+      // TODO: Check input matrics
+      std::unordered_set<std::pair<std::vector<int>, double>, utility::PairHash> delta_sector_set_m1;
+      std::unordered_set<std::pair<std::vector<int>, double>, utility::PairHash> delta_sector_set_m2;
+      for (std::int64_t i = 0; i < m_1.row_dim; ++i) {
+         for (std::int64_t j = m_1.row[i]; j < m_1.row[i + 1]; ++j) {
+            if (m_1.val[j] != 0.0) {
+               delta_sector_set_m1.emplace(CalculateTargetQuantumNumber(i, m_1.col[j]));
+            }
+         }
+      }
+      for (std::int64_t i = 0; i < m_2.row_dim; ++i) {
+         for (std::int64_t j = m_2.row[i]; j < m_2.row[i + 1]; ++j) {
+            if (m_2.val[j] != 0.0) {
+               delta_sector_set_m2.emplace(CalculateTargetQuantumNumber(i, m_2.col[j]));
+            }
+         }
+      }
+      std::vector<std::pair<std::vector<int>, double>> target_sector_set;
+      for (const auto &del_sec_m1: delta_sector_set_m1) {
+         for (const auto &del_sec_m2: delta_sector_set_m2) {
+            const bool c1 = isValidQNumber(del_sec_m1.first, del_sec_m1.second);
+            if (del_sec_m1 == del_sec_m2 && c1) {
+               target_sector_set.push_back(del_sec_m1);
+            }
+         }
+      }
+      std::sort(target_sector_set.begin(), target_sector_set.end());
+      target_sector_set.erase(std::unique(target_sector_set.begin(), target_sector_set.end()), target_sector_set.end());
+      return target_sector_set;
+   }
+   
+   //! @brief Calculate the quantum numbers of excited states that appear when calculating the correlation functions.
+   //! @param m_1_bra The matrix of an onsite operator.
+   //! @param m_2_ket The matrix of an onsite operator.
+   //! @param m_3_ket The matrix of an onsite operator.
+   //! @return The list of quantum numbers.
+   std::vector<std::pair<std::pair<std::vector<int>, double>, std::pair<std::vector<int>, double>>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_ket, const CRS &m_3_ket) const {
+      std::unordered_set<std::pair<std::vector<int>, double>, utility::VectorIntHash> delta_sector_set_m1;
+      std::unordered_set<std::pair<std::vector<int>, double>, utility::VectorIntHash> delta_sector_set_m2;
+      std::unordered_set<std::pair<std::vector<int>, double>, utility::VectorIntHash> delta_sector_set_m3;
+      
+      for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
+         for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
+            if (m_1_bra.val[j] != 0.0) {
+               delta_sector_set_m1.emplace(CalculateTargetQuantumNumber(i, m_1_bra.col[j]));
+            }
+         }
+      }
+      
+      for (std::int64_t i = 0; i < m_2_ket.row_dim; ++i) {
+         for (std::int64_t j = m_2_ket.row[i]; j < m_2_ket.row[i + 1]; ++j) {
+            if (m_2_ket.val[j] != 0.0) {
+               delta_sector_set_m2.emplace(CalculateTargetQuantumNumber(i, m_2_ket.col[j]));
+            }
+         }
+      }
+      
+      for (std::int64_t i = 0; i < m_3_ket.row_dim; ++i) {
+         for (std::int64_t j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
+            if (m_3_ket.val[j] != 0.0) {
+               delta_sector_set_m3.emplace(CalculateTargetQuantumNumber(i, m_3_ket.col[j]));
+            }
+         }
+      }
+      
+      std::vector<std::pair<std::pair<std::vector<int>, double>, std::pair<std::vector<int>, double>>> target_sector_set;
+      
+      for (const auto &del_sec_m1: delta_sector_set_m1) {
+         for (const auto &del_sec_m2: delta_sector_set_m2) {
+            for (const auto &del_sec_m3: delta_sector_set_m3) {
+               std::pair<std::vector<int>, double> del_sec_m2_m3;
+               for (std::size_t i = 0; i < del_sec_m2.first.size(); ++i) {
+                  del_sec_m2_m3.first.push_back(del_sec_m2.first[i] + del_sec_m3.first[i]);
+               }
+               del_sec_m2_m3.second = del_sec_m2.second + del_sec_m3.second;
+               const bool c1 = isValidQNumber(del_sec_m1.first, del_sec_m1.second);
+               const bool c2 = isValidQNumber(del_sec_m3.first, del_sec_m3.second);
+               if (del_sec_m1 == del_sec_m2_m3 && c1 && c2) {
+                  target_sector_set.push_back({del_sec_m1, del_sec_m3});
+               }
+            }
+         }
+      }
+      std::sort(target_sector_set.begin(), target_sector_set.end());
+      target_sector_set.erase(std::unique(target_sector_set.begin(), target_sector_set.end()), target_sector_set.end());
+      return target_sector_set;
+   }
+   
+   //! @brief Calculate the quantum numbers of excited states that appear when calculating the correlation functions.
+   //! @param m_1_bra The matrix of an onsite operator.
+   //! @param m_2_bra The matrix of an onsite operator.
+   //! @param m_3_ket The matrix of an onsite operator.
+   //! @param m_4_ket The matrix of an onsite operator.
+   //! @return The list of quantum numbers.
+   std::vector<std::tuple<std::pair<std::vector<int>, double>, std::pair<std::vector<int>, double>, std::pair<std::vector<int>, double>>>
+   GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_bra, const CRS &m_3_ket, const CRS &m_4_ket) const {
+      std::unordered_set<std::pair<std::vector<int>, double>, utility::VectorIntHash> delta_sector_set_m1;
+      std::unordered_set<std::pair<std::vector<int>, double>, utility::VectorIntHash> delta_sector_set_m2;
+      std::unordered_set<std::pair<std::vector<int>, double>, utility::VectorIntHash> delta_sector_set_m3;
+      std::unordered_set<std::pair<std::vector<int>, double>, utility::VectorIntHash> delta_sector_set_m4;
+      
+      for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
+         for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
+            if (m_1_bra.val[j] != 0.0) {
+               delta_sector_set_m1.emplace(CalculateTargetQuantumNumber(i, m_1_bra.col[j]));
+            }
+         }
+      }
+      
+      for (std::int64_t i = 0; i < m_2_bra.row_dim; ++i) {
+         for (std::int64_t j = m_2_bra.row[i]; j < m_2_bra.row[i + 1]; ++j) {
+            if (m_2_bra.val[j] != 0.0) {
+               delta_sector_set_m2.emplace(CalculateTargetQuantumNumber(i, m_2_bra.col[j]));
+            }
+         }
+      }
+      
+      for (std::int64_t i = 0; i < m_3_ket.row_dim; ++i) {
+         for (std::int64_t j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
+            if (m_3_ket.val[j] != 0.0) {
+               delta_sector_set_m3.emplace(CalculateTargetQuantumNumber(i, m_3_ket.col[j]));
+            }
+         }
+      }
+      
+      for (std::int64_t i = 0; i < m_4_ket.row_dim; ++i) {
+         for (std::int64_t j = m_4_ket.row[i]; j < m_4_ket.row[i + 1]; ++j) {
+            if (m_4_ket.val[j] != 0.0) {
+               delta_sector_set_m4.emplace(CalculateTargetQuantumNumber(i, m_4_ket.col[j]));
+            }
+         }
+      }
+      
+      std::vector<std::tuple<std::pair<std::vector<int>, double>, std::pair<std::vector<int>, double>, std::pair<std::vector<int>, double>>> target_sector_set;
+      for (const auto &del_sec_m1: delta_sector_set_m1) {
+         for (const auto &del_sec_m2: delta_sector_set_m2) {
+            for (const auto &del_sec_m3: delta_sector_set_m3) {
+               for (const auto &del_sec_m4: delta_sector_set_m4) {
+                  std::pair<std::vector<int>, double> del_sec_m1_m2;
+                  std::pair<std::vector<int>, double> del_sec_m3_m4;
+                  for (std::size_t i = 0; i < del_sec_m1.first.size(); ++i) {
+                     del_sec_m1_m2.first.push_back(del_sec_m1.first[i] + del_sec_m2.first[i]);
+                     del_sec_m3_m4.first.push_back(del_sec_m3.first[i] + del_sec_m4.first[i]);
+                  }
+                  del_sec_m1_m2.second = del_sec_m1.second + del_sec_m2.second;
+                  del_sec_m3_m4.second = del_sec_m3.second + del_sec_m4.second;
+                  const bool c1 = isValidQNumber(del_sec_m1.first   , del_sec_m1.second   );
+                  const bool c2 = isValidQNumber(del_sec_m1_m2.first, del_sec_m1_m2.second);
+                  const bool c3 = isValidQNumber(del_sec_m4.first   , del_sec_m4.second   );
+                  if (del_sec_m1_m2 == del_sec_m3_m4 && c1 && c2 && c3) {
+                     target_sector_set.push_back({del_sec_m1, del_sec_m1_m2, del_sec_m4});
+                  }
+               }
+            }
+         }
+      }
+      
+      std::sort(target_sector_set.begin(), target_sector_set.end());
+      target_sector_set.erase(std::unique(target_sector_set.begin(), target_sector_set.end()), target_sector_set.end());
+      return target_sector_set;
    }
    
    //! @brief Generate bases of the target Hilbert space specified by
@@ -482,6 +664,28 @@ public:
          }
       }
       return dim;
+   }
+      
+   //! @brief Calculate difference of the number of total electrons and the total sz
+   //! from the rows and columns in the matrix representation of an onsite operator.
+   //! @param row The row in the matrix representation of an onsite operator.
+   //! @param col The column in the matrix representation of an onsite operator.
+   //! @return The differences of the total electron and the total sz.
+   inline std::pair<std::vector<int>, double> CalculateTargetQuantumNumber(const int row, const int col) const {
+      std::vector<int> diff_electron_list;
+      int target_total_sz = 0;
+      for (int o = 0; o < num_electron_orbital_; ++o) {
+         const int row_electron   = CalculateBasisOnsiteElectron(row, o);
+         const int col_electron   = CalculateBasisOnsiteElectron(col, o);
+         const auto diff_electron = BaseU1Electron_1D<RealType>::CalculateQuntumNumberDifference(row_electron, col_electron);
+         diff_electron_list.push_back(diff_electron.first + total_electron_[o]);
+         target_total_sz += diff_electron.second;
+      }
+      const int row_lspin = CalculateBasisOnsiteLSpin(row);
+      const int col_lspin = CalculateBasisOnsiteLSpin(col);
+      target_total_sz += BaseU1Spin_1D<RealType>::CalculateQuntumNumberDifference(row_lspin, col_lspin) + 0.5*total_2sz_;
+      
+      return {diff_electron_list, target_total_sz};
    }
    
    //! @brief Generate the annihilation operator for the electrons
@@ -955,14 +1159,14 @@ protected:
    //! the number of the total electrons at each orbital \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$,
    //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! The first value of std::vector<int> stores twice the number of the total sz and remaining values correspond to the orbitals of the electrons.
-   std::unordered_map<std::pair<int, std::vector<int>>, std::vector<std::int64_t>, utility::VectorIntHash> bases_;
+   std::unordered_map<std::pair<std::vector<int>, int>, std::vector<std::int64_t>, utility::VectorIntHash> bases_;
    
    //! @brief Inverse bases of the target Hilbert space specified by
    //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
    //! the number of the total electrons at each orbital \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$,
    //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! The first value of std::vector<int> stores twice the number of the total sz and remaining values correspond to the orbitals of the electrons.
-   std::unordered_map<std::pair<int, std::vector<int>>, std::unordered_map<std::int64_t, std::int64_t>, utility::VectorIntHash> bases_inv_;
+   std::unordered_map<std::pair<std::vector<int>, int>, std::unordered_map<std::int64_t, std::int64_t>, utility::VectorIntHash> bases_inv_;
    
    //! @brief Set onsite operators.
    void SetOnsiteOperator() {
@@ -1021,7 +1225,10 @@ protected:
    //! @param orbital The electron orbital \f$ \alpha \f$.
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @return The onsite basis for the electrons.
-   inline static int CalculateBasisOnsiteElectron(const int basis_onsite, const double magnitude_lspin, const int orbital, const int num_orbital) {
+   inline static int CalculateBasisOnsiteElectron(const int basis_onsite,
+                                                  const double magnitude_lspin,
+                                                  const int orbital,
+                                                  const int num_orbital) {
       const int dim_onsite_lspin = utility::DoubleTheNumber(magnitude_lspin) + 1;
       const int num_inner_electron = num_orbital - orbital - 1;
       int dim_onsite_electron = 1;
@@ -1078,6 +1285,35 @@ protected:
          }
       }
       return ele_configurations;
+   }
+   
+   //! @brief Check if there is a subspace specified by the input quantum numbers.
+   //! @param system_size The system size \f$ N\f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @param total_electron The total electron at each orbital \f$ \alpha \f$, \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
+   //! @return ture if there exists corresponding subspace, otherwise false.
+   static bool isValidQNumber(const int system_size, const double magnitude_lspin, const std::vector<int> &total_electron, const double total_sz) {
+      const int total_2sz            = utility::DoubleTheNumber(total_sz);
+      const int magnitude_2lspin     = utility::DoubleTheNumber(magnitude_lspin);
+      const int total_total_electron = std::accumulate(total_electron.begin(), total_electron.end(), 0);
+      
+      for (const auto &electron: total_electron) {
+         if (electron < 0 || 2*system_size < electron) {
+            return false;
+         }
+      }
+      
+      const bool c1 = ((total_total_electron + system_size*magnitude_2lspin - total_2sz)%2 == 0);
+      const bool c2 = (-(total_total_electron + system_size*magnitude_2lspin) <= total_2sz);
+      const bool c3 = (total_2sz <= total_total_electron + system_size*magnitude_2lspin);
+      
+      if (!c1 && !c2 && !c3) {
+         return false;
+      }
+      
+      return true;
+      
    }
    
 };
