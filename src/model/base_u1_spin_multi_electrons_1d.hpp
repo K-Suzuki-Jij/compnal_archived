@@ -209,14 +209,23 @@ public:
       return CalculateTargetDim(system_size_, 0.5*magnitude_2lspin_, total_electron_, total_sz);
    }
    
+   //! @brief Calculate the dimension of the target Hilbert space specified by
+   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param total_electron The total electron at each orbital \f$ \alpha \f$, \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @return The dimension of the target Hilbert space.
+   std::int64_t CalculateTargetDim(const std::vector<int> &total_electron, const double total_sz) const {
+      return CalculateTargetDim(system_size_, 0.5*magnitude_2lspin_, total_electron, total_sz);
+   }
+   
    //! @brief Calculate the quantum numbers of excited states that appear when calculating the correlation functions.
    //! @param m_1 The matrix of an onsite operator.
    //! @param m_2 The matrix of an onsite operator.
    //! @return The list of quantum numbers.
    std::vector<std::pair<std::vector<int>, double>> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
       // TODO: Check input matrics
-      std::unordered_set<std::pair<std::vector<int>, double>, utility::PairHash> delta_sector_set_m1;
-      std::unordered_set<std::pair<std::vector<int>, double>, utility::PairHash> delta_sector_set_m2;
+      std::unordered_set<std::pair<std::vector<int>, double>, utility::VectorIntHash> delta_sector_set_m1;
+      std::unordered_set<std::pair<std::vector<int>, double>, utility::VectorIntHash> delta_sector_set_m2;
       for (std::int64_t i = 0; i < m_1.row_dim; ++i) {
          for (std::int64_t j = m_1.row[i]; j < m_1.row[i + 1]; ++j) {
             if (m_1.val[j] != 0.0) {
@@ -374,6 +383,23 @@ public:
       std::sort(target_sector_set.begin(), target_sector_set.end());
       target_sector_set.erase(std::unique(target_sector_set.begin(), target_sector_set.end()), target_sector_set.end());
       return target_sector_set;
+   }
+   
+   //! @brief Generate bases of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
+   //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   void GenerateBasis() {
+      GenerateBasis(total_electron_, 0.5*total_2sz_);
+   }
+   
+   //! @brief Generate bases of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
+   //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
+   void GenerateBasis(const std::pair<std::vector<int>, double> &quantum_number) {
+      GenerateBasis(quantum_number.first, quantum_number.second);
    }
    
    //! @brief Generate bases of the target Hilbert space specified by
@@ -1042,6 +1068,127 @@ public:
       return out;
    }
    
+   //---------------------------Access Private Member Functions---------------------------
+   inline const std::vector<CRS> &GetOnsiteOperatorCUp() const { return onsite_operator_c_up_; }
+   inline const std::vector<CRS> &GetOnsiteOperatorCDown() const { return onsite_operator_c_down_; }
+   inline const std::vector<CRS> &GetOnsiteOperatorCUpDagger() const { return onsite_operator_c_up_dagger_; }
+   inline const std::vector<CRS> &GetOnsiteOperatorCDownDagger() const { return onsite_operator_c_down_dagger_; }
+   inline const std::vector<CRS> &GetOnsiteOperatorNCUp() const { return onsite_operator_nc_up_; }
+   inline const std::vector<CRS> &GetOnsiteOperatorNCDown() const { return onsite_operator_nc_up_; }
+   inline const std::vector<CRS> &GetOnsiteOperatorNC() const { return onsite_operator_nc_; }
+   inline const std::vector<CRS> &GetOnsiteOperatorSxC() const { return onsite_operator_sxc_; }
+   inline const std::vector<CRS> &GetOnsiteOperatoriSyC() const { return onsite_operator_isyc_; }
+   inline const std::vector<CRS> &GetOnsiteOperatorSzC() const { return onsite_operator_szc_; }
+   inline const std::vector<CRS> &GetOnsiteOperatorSpC() const { return onsite_operator_spc_; }
+   inline const std::vector<CRS> &GetOnsiteOperatorSmC() const { return onsite_operator_smc_; }
+   inline const std::vector<CRS> &GetOnsiteOperatorSCSL() const { return onsite_operator_scsl_;}
+   inline const CRS &GetOnsiteOperatorNCTot() { return onsite_operator_nc_tot_; }
+
+   inline const CRS &GetOnsiteOperatorCUp(const int orbital) const { return onsite_operator_c_up_.at(orbital); }
+   inline const CRS &GetOnsiteOperatorCDown(const int orbital) const { return onsite_operator_c_down_.at(orbital); }
+   inline const CRS &GetOnsiteOperatorCUpDagger(const int orbital) const { return onsite_operator_c_up_dagger_.at(orbital); }
+   inline const CRS &GetOnsiteOperatorCDownDagger(const int orbital) const { return onsite_operator_c_down_dagger_.at(orbital); }
+   inline const CRS &GetOnsiteOperatorNCUp(const int orbital) const { return onsite_operator_nc_up_.at(orbital); }
+   inline const CRS &GetOnsiteOperatorNCDown(const int orbital) const { return onsite_operator_nc_up_.at(orbital); }
+   inline const CRS &GetOnsiteOperatorNC(const int orbital) const { return onsite_operator_nc_.at(orbital); }
+   inline const CRS &GetOnsiteOperatorSxC(const int orbital) const { return onsite_operator_sxc_.at(orbital); }
+   inline const CRS &GetOnsiteOperatoriSyC(const int orbital) const { return onsite_operator_isyc_.at(orbital); }
+   inline const CRS &GetOnsiteOperatorSzC(const int orbital) const { return onsite_operator_szc_.at(orbital); }
+   inline const CRS &GetOnsiteOperatorSpC(const int orbital) const { return onsite_operator_spc_.at(orbital); }
+   inline const CRS &GetOnsiteOperatorSmC(const int orbital) const { return onsite_operator_smc_.at(orbital); }
+   inline const CRS &GetOnsiteOperatorSCSL(const int orbital) const { return onsite_operator_scsl_.at(orbital);}
+   
+   //! @brief Get the spin-\f$ S\f$ operator of the local spin for the x-direction \f$ \hat{S}^{x}\f$.
+   //! @return The matrix of \f$ \hat{S}^{x}\f$.
+   inline const CRS &GetOnsiteOperatorSxL()  const { return onsite_operator_sxl_; }
+   
+   //! @brief Get the spin-\f$ S\f$ operator of the local spin for the y-direction \f$ i\hat{S}^{y}\f$ with \f$ i\f$ being the imaginary unit.
+   //! @return The matrix of \f$ i\hat{S}^{y}\f$.
+   inline const CRS &GetOnsiteOperatoriSyL() const { return onsite_operator_isyl_; }
+   
+   //! @brief Get the spin-\f$ S\f$ operator of the local spin for the z-direction \f$ \hat{S}^{z}\f$.
+   //! @return The matrix of \f$ \hat{S}^{z}\f$.
+   inline const CRS &GetOnsiteOperatorSzL()  const { return onsite_operator_szl_; }
+   
+   //! @brief Get the spin-\f$ S\f$ raising operator of the local spin \f$ \hat{S}^{+}\f$.
+   //! @return The matrix of \f$ \hat{S}^{+}\f$.
+   inline const CRS &GetOnsiteOperatorSpL()  const { return onsite_operator_spl_; }
+   
+   //! @brief Get the spin-\f$ S\f$ raising operator of the local spin \f$ \hat{S}^{-}\f$.
+   //! @return The matrix of \f$ \hat{S}^{-}\f$.
+   inline const CRS &GetOnsiteOperatorSmL()  const { return onsite_operator_sml_; }
+   
+   inline int GetDimOnsiteElectron() const { return dim_onsite_electron_; }
+   
+   inline const std::vector<int> &GetTotalElectron() const { return total_electron_; }
+   
+   inline int GetTotalElectron(const int orbital) const { return total_electron_.at(orbital); }
+
+   inline int GetNumElectronOrbital() const { num_electron_orbital_; }
+   
+   inline int GetDimOnsiteAllElectrons() const { return dim_onsite_all_electrons_; }
+   
+   //! @brief Get the system size \f$ N\f$.
+   //! @return The system size \f$ N\f$.
+   inline int GetSystemSize() const { return system_size_; }
+   
+   //! @brief Get the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
+   //! @return The total sz.
+   inline double GetTotalSz() const { return 0.5*total_2sz_; }
+   
+   //! @brief Get the magnitude of the local spin \f$ S\f$.
+   //! @return The magnitude of the spin \f$ S\f$.
+   inline double GetMagnitudeLSpin() const { return 0.5*magnitude_2lspin_; }
+   
+   inline int GetDimOnsiteLSpin() const { return magnitude_2lspin_ + 1; }
+   
+   //! @brief Get dimension of the local Hilbert space, \f$ 4^{n_{\rm o}}*(2S+1)\f$.
+   //! @return The dimension of the local Hilbert space, \f$ 4^{n_{\rm o}}*(2S+1)\f$.
+   inline int GetDimOnsite() const { return dim_onsite_; }
+   
+   //! @brief Get calculated_eigenvector_set_, which represents the calculated eigenvectors and eigenvalues.
+   //! @return calculated_eigenvector_set_.
+   inline const std::unordered_set<int> &GetCalculatedEigenvectorSet() const {
+      return calculated_eigenvector_set_;
+   }
+   
+   //! @brief Get basis of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
+   //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
+   //! @return Basis.
+   inline const std::vector<std::int64_t> &GetBasis(const std::pair<std::vector<int>, double> &quantum_number) const {
+      return bases_.at({quantum_number.first, utility::DoubleTheNumber(quantum_number.second)});
+   }
+   
+   //! @brief Get inverse basis of the target Hilbert space space specified by
+   //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
+   //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
+   //! @return Inverse basis.
+   inline const std::unordered_map<std::int64_t, std::int64_t> &GetBasisInv(const std::pair<std::vector<int>, double> &quantum_number) const {
+      return bases_inv_.at({quantum_number.first, utility::DoubleTheNumber(quantum_number.second)});
+   }
+   
+   //! @brief Get basis of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
+   //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @return Basis.
+   inline const std::vector<std::int64_t> &GetTargetBasis() const {
+      return bases_.at({total_electron_, total_2sz_});
+   }
+   
+   //! @brief Get inverse basis of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
+   //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @return Inverse basis.
+   inline const std::unordered_map<std::int64_t, std::int64_t> &GetTargetBasisInv() const {
+      return bases_inv_.at({total_electron_, total_2sz_});
+   }
    
 protected:
    //! @brief The annihilation operator for the electrons
@@ -1132,7 +1279,7 @@ protected:
    int num_electron_orbital_ = static_cast<int>(total_electron_.size());
    
    //! @brief The dimension of the local Hilbert space for the total electrons, \f$ 4^{n_{\rm o}}\f$.
-   int dim_onsite_total_electron_ = static_cast<int>(std::pow(dim_onsite_electron_, num_electron_orbital_));
+   int dim_onsite_all_electrons_ = static_cast<int>(std::pow(dim_onsite_electron_, num_electron_orbital_));
    
    //! @brief The system size.
    int system_size_ = 0;
@@ -1149,7 +1296,7 @@ protected:
    int dim_onsite_lspin_ = magnitude_2lspin_ + 1;
    
    //! @brief The dimension of the local Hilbert space, \f$ 4^{n_{\rm o}}\times (2S + 1) \f$.
-   int dim_onsite_ = dim_onsite_total_electron_*dim_onsite_lspin_;
+   int dim_onsite_ = dim_onsite_all_electrons_*dim_onsite_lspin_;
    
    //! @brief The calculated eigenvectors and eigenvalues.
    std::unordered_set<int> calculated_eigenvector_set_;
