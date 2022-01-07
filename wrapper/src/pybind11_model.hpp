@@ -247,6 +247,7 @@ void pybind11ModelBaseSpinMultiElectrons1D(py::module &m) {
    c.def_property_readonly("dim_onsite_all_electrons", &BUSME1D::GetDimOnsiteAllElectrons);
    c.def_property_readonly("dim_onsite_lspin", &BUSME1D::GetDimOnsiteLSpin);
    c.def_property_readonly("dim_onsite", &BUSME1D::GetDimOnsite);
+   c.def_property_readonly("num_electron_orbital", &BUSME1D::GetNumElectronOrbital);
    
    c.def_property_readonly("c_up"         , py::overload_cast<>(&BUSME1D::GetOnsiteOperatorCUp, py::const_));
    c.def_property_readonly("c_down"       , py::overload_cast<>(&BUSME1D::GetOnsiteOperatorCDown, py::const_));

@@ -13,8 +13,9 @@
 
 TEST(Constructor, Basis) {
    
-   compnal::model::BaseU1SpinMultiElectrons_1D<double> model;
-   
+   compnal::model::BaseU1SpinMultiElectrons_1D<double> model(4, 0.5, {2});
+   model.GetOnsiteOperatorCUp(0).PrintMatrix();
+   model.GetOnsiteOperatorCUp(0).PrintInfo();
 }
 
 

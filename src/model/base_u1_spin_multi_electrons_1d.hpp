@@ -99,6 +99,13 @@ public:
    //! @brief Set the number of total electrons.
    //! @param total_electron The total electron at each orbital \f$ \alpha \f$, \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$.
    void SetTotalElectron(const std::vector<int> &total_electron) {
+      if (num_electron_orbital_ != static_cast<int>(total_electron.size())) {
+         num_electron_orbital_ = static_cast<int>(total_electron.size());
+         dim_onsite_all_electrons_ = static_cast<int>(std::pow(dim_onsite_electron_, num_electron_orbital_));
+         dim_onsite_ = dim_onsite_lspin_*dim_onsite_all_electrons_;
+         SetOnsiteOperator();
+      }
+      
       if (total_electron_.size() < total_electron.size()) {
          for (std::size_t i = 0; i < total_electron_.size(); ++i) {
             if (total_electron_.at(i) != total_electron.at(i)) {
@@ -133,7 +140,7 @@ public:
       if (magnitude_2lspin_ != magnitude_2lspin) {
          magnitude_2lspin_ = magnitude_2lspin;
          dim_onsite_lspin_ = magnitude_2lspin + 1;
-         dim_onsite_       = dim_onsite_lspin_*dim_onsite_electron_;
+         dim_onsite_       = dim_onsite_lspin_*dim_onsite_all_electrons_;
          SetOnsiteOperator();
          bases_.clear();
          bases_inv_.clear();
@@ -157,13 +164,13 @@ public:
                b_ele.push_back("|vac>");
             }
             else if (CalculateBasisOnsiteElectron(row, o) == 1) {
-               b_ele.push_back("|↑>");
+               b_ele.push_back("| ↑ >");
             }
             else if (CalculateBasisOnsiteElectron(row, o) == 2) {
-               b_ele.push_back("|↓>");
+               b_ele.push_back("| ↓ >");
             }
             else if (CalculateBasisOnsiteElectron(row, o) == 3) {
-               b_ele.push_back("|↑↓>");
+               b_ele.push_back("|↑↓ >");
             }
             else {
                std::stringstream ss;
@@ -171,11 +178,11 @@ public:
                throw std::runtime_error(ss.str());
             }
          }
-         std::cout << "row " << row << ": ";
+         std::cout << "row " << std::setw(2) << row << ": ";
          for (const auto &it: b_ele) {
             std::cout << it;
          }
-         std::cout << "|Sz=" << magnitude_lspin - CalculateBasisOnsiteLSpin(row) << ">" << std::endl;
+         std::cout << "|Sz=" << std::showpos << magnitude_lspin - CalculateBasisOnsiteLSpin(row) << ">" << std::noshowpos << std::endl;
       }
    }
    
@@ -753,6 +760,7 @@ public:
                const int basis_2 = CalculateBasisOnsiteElectron(col, magnitude_lspin, o, num_orbital);
                if (o != orbital && basis_1 != basis_2) {
                   c_1 = false;
+                  break;
                }
             }
             
@@ -768,8 +776,9 @@ public:
             }
       
          }
-         matrix.row.push_back(matrix.col.size());
+         matrix.row[row + 1] = matrix.col.size();
       }
+      matrix.tag = sparse_matrix::CRSTag::FERMION;
       return matrix;
    }
    
@@ -812,6 +821,7 @@ public:
                const int basis_2 = CalculateBasisOnsiteElectron(col, magnitude_lspin, o, num_orbital);
                if (o != orbital && basis_1 != basis_2) {
                   c_1 = false;
+                  break;
                }
             }
             
@@ -832,8 +842,9 @@ public:
             }
       
          }
-         matrix.row.push_back(matrix.col.size());
+         matrix.row[row + 1] = matrix.col.size();
       }
+      matrix.tag = sparse_matrix::CRSTag::FERMION;
       return matrix;
    }
    
@@ -1124,7 +1135,7 @@ public:
    
    inline int GetTotalElectron(const int orbital) const { return total_electron_.at(orbital); }
 
-   inline int GetNumElectronOrbital() const { num_electron_orbital_; }
+   inline int GetNumElectronOrbital() const { return num_electron_orbital_; }
    
    inline int GetDimOnsiteAllElectrons() const { return dim_onsite_all_electrons_; }
    
@@ -1378,10 +1389,7 @@ protected:
                                                   const int num_orbital) {
       const int dim_onsite_lspin = utility::DoubleTheNumber(magnitude_lspin) + 1;
       const int num_inner_electron = num_orbital - orbital - 1;
-      int dim_onsite_electron = 1;
-      for (int i = 0; i < num_orbital; ++i) {
-         dim_onsite_electron *= 4;
-      }
+      const int dim_onsite_electron = 4;
       int basis_electron_onsite = basis_onsite/dim_onsite_lspin;
       for (int i = 0; i < num_inner_electron; ++i) {
          basis_electron_onsite /= dim_onsite_electron;
