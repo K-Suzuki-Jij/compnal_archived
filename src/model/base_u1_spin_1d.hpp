@@ -656,6 +656,18 @@ public:
       return calculated_eigenvector_set_;
    }
    
+   //! @brief Get all bases.
+   //! @return Bases.
+   inline const std::unordered_map<int, std::vector<std::int64_t>> GetBases() const {
+      return bases_;
+   }
+   
+   //! @brief Get all inverse bases.
+   //! @return Inverse bases.
+   inline const std::unordered_map<int, std::unordered_map<std::int64_t, std::int64_t>> GetBasesInv() const {
+      return bases_inv_;
+   }
+   
    //! @brief Get basis of the target Hilbert space specified by
    //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
