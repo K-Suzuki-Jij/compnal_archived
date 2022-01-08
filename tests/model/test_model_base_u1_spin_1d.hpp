@@ -75,7 +75,7 @@ void TestSpinOne(const compnal::model::BaseU1Spin_1D<RealType> &model) {
 }
 
 
-TEST(BaseU1Spin1D, ConstructorDefault) {
+TEST(ModelBaseU1Spin1D, ConstructorDefault) {
    compnal::model::BaseU1Spin_1D<double> model;
    TestSpinOneHalf(model);
    
@@ -87,7 +87,7 @@ TEST(BaseU1Spin1D, ConstructorDefault) {
    EXPECT_TRUE(compnal::test::ExpectEQ(model.GetBasesInv(), std::unordered_map<int, std::unordered_map<std::int64_t, std::int64_t>>{}));
 }
 
-TEST(BaseU1Spin1D, ConstructorSystemSize) {
+TEST(ModelBaseU1Spin1D, ConstructorSystemSize) {
    compnal::model::BaseU1Spin_1D<double> model(10);
    TestSpinOneHalf(model);
    
@@ -99,7 +99,7 @@ TEST(BaseU1Spin1D, ConstructorSystemSize) {
    EXPECT_TRUE(compnal::test::ExpectEQ(model.GetBasesInv(), std::unordered_map<int, std::unordered_map<std::int64_t, std::int64_t>>{}));
 }
 
-TEST(BaseU1Spin1D, ConstructorSystemSizeSpin) {
+TEST(ModelBaseU1Spin1D, ConstructorSystemSizeSpin) {
    compnal::model::BaseU1Spin_1D<double> model(10, 1);
    TestSpinOne(model);
    
@@ -111,7 +111,7 @@ TEST(BaseU1Spin1D, ConstructorSystemSizeSpin) {
    EXPECT_TRUE(compnal::test::ExpectEQ(model.GetBasesInv(), std::unordered_map<int, std::unordered_map<std::int64_t, std::int64_t>>{}));
 }
 
-TEST(BaseU1Spin1D, SetSystemSize) {
+TEST(ModelBaseU1Spin1D, SetSystemSize) {
    compnal::model::BaseU1Spin_1D<double> model;
    model.SetSystemSize(5);
    EXPECT_EQ(model.GetSystemSize(), 5);
@@ -124,14 +124,14 @@ TEST(BaseU1Spin1D, SetTotalSz) {
    EXPECT_THROW(model.SetTotalSz(1.9), std::runtime_error);
 }
 
-TEST(BaseU1Spin1D, SetMagnitudeSpin) {
+TEST(ModelBaseU1Spin1D, SetMagnitudeSpin) {
    compnal::model::BaseU1Spin_1D<double> model;
    model.SetMagnitudeSpin(1.5);
    EXPECT_EQ(model.GetMagnitudeSpin(), 1.5);
    EXPECT_THROW(model.SetMagnitudeSpin(1.3), std::runtime_error);
 }
 
-TEST(BaseU1Spin1D, isValidQNumber) {
+TEST(ModelBaseU1Spin1D, isValidQNumber) {
    EXPECT_TRUE(compnal::model::BaseU1Spin_1D<double>::isValidQNumber(10, 0.5, +5.0));
    EXPECT_TRUE(compnal::model::BaseU1Spin_1D<double>::isValidQNumber(10, 0.5, +0.0));
    EXPECT_TRUE(compnal::model::BaseU1Spin_1D<double>::isValidQNumber(10, 0.5, -5.0));
@@ -154,7 +154,7 @@ TEST(BaseU1Spin1D, isValidQNumber) {
    EXPECT_FALSE(compnal::model::BaseU1Spin_1D<double>::isValidQNumber(9 , 0.5, +4.0));
 }
 
-TEST(BaseU1Spin1D, CalculateTargetDim) {
+TEST(ModelBaseU1Spin1D, CalculateTargetDim) {
    //Spin-1/2
    EXPECT_EQ(compnal::model::BaseU1Spin_1D<double>::CalculateTargetDim(0, 0.5, 0.0), 0);
    EXPECT_EQ(compnal::model::BaseU1Spin_1D<double>::CalculateTargetDim(1, 0.5, 0.5), 1);

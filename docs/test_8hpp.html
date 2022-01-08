@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>COMPNAL: compnal Namespace Reference</title>
+<title>COMPNAL: tests/test.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -67,26 +67,39 @@ $(function() {
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_59425e443f801f1f2fd8bbe4959a3ccf.html">tests</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#namespaces">Namespaces</a>  </div>
-  <div class="headertitle"><div class="title">compnal Namespace Reference</div></div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">test.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><a href="test_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
-<tr class="memitem:namespacecompnal_1_1model"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1model.html">model</a></td></tr>
+<tr class="memitem:namespacecompnal"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal.html">compnal</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespacecompnal_1_1solver"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1solver.html">solver</a></td></tr>
+<tr class="memitem:namespacecompnal_1_1test"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1test.html">compnal::test</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespacecompnal_1_1sparse__matrix"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1sparse__matrix.html">sparse_matrix</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespacecompnal_1_1test"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1test.html">test</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespacecompnal_1_1utility"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1utility.html">utility</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a87d92e88d29c227204c23b5dfc0fb377"><td class="memTemplParams" colspan="2">template&lt;class MapType &gt; </td></tr>
+<tr class="memitem:a87d92e88d29c227204c23b5dfc0fb377"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1test.html#a87d92e88d29c227204c23b5dfc0fb377">compnal::test::ExpectEQ</a> (const MapType &amp;lhs, const MapType &amp;rhs)</td></tr>
+<tr class="separator:a87d92e88d29c227204c23b5dfc0fb377"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23457a440455483a495c45809b1ea95f"><td class="memTemplParams" colspan="2">template&lt;typename IndexType , typename ValueType &gt; </td></tr>
+<tr class="memitem:a23457a440455483a495c45809b1ea95f"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1test.html#a23457a440455483a495c45809b1ea95f">compnal::test::ExpectNear</a> (const std::unordered_map&lt; IndexType, ValueType &gt; &amp;lhs, const std::unordered_map&lt; IndexType, ValueType &gt; &amp;rhs, const double threshold)</td></tr>
+<tr class="separator:a23457a440455483a495c45809b1ea95f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60a774f6e1b120e3d975ebf116302258"><td class="memTemplParams" colspan="2">template&lt;typename RealType &gt; </td></tr>
+<tr class="memitem:a60a774f6e1b120e3d975ebf116302258"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1test.html#a60a774f6e1b120e3d975ebf116302258">compnal::test::ExpectNear</a> (const <a class="el" href="structcompnal_1_1sparse__matrix_1_1_c_r_s.html">compnal::sparse_matrix::CRS</a>&lt; RealType &gt; &amp;lhs, const <a class="el" href="structcompnal_1_1sparse__matrix_1_1_c_r_s.html">compnal::sparse_matrix::CRS</a>&lt; RealType &gt; &amp;rhs, const RealType threshold)</td></tr>
+<tr class="separator:a60a774f6e1b120e3d975ebf116302258"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

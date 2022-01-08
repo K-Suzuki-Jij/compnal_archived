@@ -81,14 +81,7 @@ public:
    //! @param total_sz The total sz is the expectation value of the following operator:
    //! \f[ \hat{S}^{z}_{\rm tot}=\sum^{N}_{i=1}\hat{S}^{z}_{i} \f]
    void SetTotalSz(const double total_sz) {
-      if (!isValidQNumber({total_electron_, total_sz})) {
-         std::stringstream ss;
-         ss << "Error in " << __FUNCTION__  << std::endl;
-         ss << "There is no target space specified by total_sz = " << total_sz << std::endl;
-         throw std::runtime_error(ss.str());
-      }
       const int total_2sz = utility::DoubleTheNumber(total_sz);
-      
       if (total_2sz_ != total_2sz) {
          total_2sz_ = total_2sz;
          calculated_eigenvector_set_.clear();
@@ -99,12 +92,6 @@ public:
    //! @param total_electron The number of total electrons is represented by the expectation value of the following operator:
    //! \f[ \hat{N}_{\rm e}=\sum^{N}_{i=1}\hat{n}_{i} \f]
    void SetTotalElectron(const int total_electron) {
-      if (!isValidQNumber({total_electron, 0.5*total_2sz_})) {
-         std::stringstream ss;
-         ss << "Error in " << __FUNCTION__  << std::endl;
-         ss << "There is no target space specified by total_sz = " << total_2sz_ << std::endl;
-         throw std::runtime_error(ss.str());
-      }
       if (total_electron_ != total_electron) {
          total_electron_ = total_electron;
          calculated_eigenvector_set_.clear();
@@ -811,6 +798,14 @@ public:
    //! @return calculated_eigenvector_set_.
    inline const std::unordered_set<int> &GetCalculatedEigenvectorSet() const {
       return calculated_eigenvector_set_;
+   }
+   
+   inline const std::unordered_map<std::pair<int, int>, std::vector<std::int64_t>, compnal::utility::PairHash> &GetBases() const {
+      return bases_;
+   }
+   
+   inline const std::unordered_map<std::pair<int, int>, std::unordered_map<std::int64_t, std::int64_t>, compnal::utility::PairHash> &GetBasesInv() const {
+      return bases_inv_;
    }
    
    //! @brief Get basis of the target Hilbert space specified by
