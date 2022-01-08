@@ -96,14 +96,7 @@ public:
    //! @brief Set target Hilbert space specified by the total sz to be diagonalized.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{S}^{z}_{i}\rangle \f$.
    void SetTotalSz(const double total_sz) {
-      if (isValidQNumber(total_sz) == false) {
-         std::stringstream ss;
-         ss << "Error in " << __FUNCTION__  << std::endl;
-         ss << "There is no target space specified by total_sz = " << total_sz << std::endl;
-         throw std::runtime_error(ss.str());
-      }
       const int total_2sz = utility::DoubleTheNumber(total_sz);
-      
       if (total_2sz_ != total_2sz) {
          total_2sz_ = total_2sz;
          calculated_eigenvector_set_.clear();
@@ -458,6 +451,9 @@ public:
    static std::int64_t CalculateTargetDim(const int system_size, const double magnitude_spin, const double total_sz) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       if (!isValidQNumber(system_size, magnitude_spin, total_sz)) {
+         return 0;
+      }
+      if (system_size <= 0) {
          return 0;
       }
       const int total_2sz = utility::DoubleTheNumber(total_sz);
