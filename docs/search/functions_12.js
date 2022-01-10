@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['updaterow_0',['UpdateRow',['../structcompnal_1_1sparse__matrix_1_1_c_r_s.html#ab9b4e491715df3d7826086bb3f9a2e54',1,'compnal::sparse_matrix::CRS']]]
+  ['xxz_5f1d_0',['XXZ_1D',['../classcompnal_1_1model_1_1_x_x_z__1_d.html#a57c101b518a4ecbb029c24c8104e0679',1,'compnal::model::XXZ_1D::XXZ_1D()'],['../classcompnal_1_1model_1_1_x_x_z__1_d.html#a806c46ae40094e3671d12d1c375f0a6e',1,'compnal::model::XXZ_1D::XXZ_1D(const int system_size)'],['../classcompnal_1_1model_1_1_x_x_z__1_d.html#a93713e1eadc2fd9c22fb4bcce67b2239',1,'compnal::model::XXZ_1D::XXZ_1D(const int system_size, const double magnitude_spin)'],['../classcompnal_1_1model_1_1_x_x_z__1_d.html#ae319a7a1392d995f3b81b2db871376cb',1,'compnal::model::XXZ_1D::XXZ_1D(const int system_size, const utility::BoundaryCondition boundary_condition)'],['../classcompnal_1_1model_1_1_x_x_z__1_d.html#aefde49f752c536e36550b5a0f53c1ecf',1,'compnal::model::XXZ_1D::XXZ_1D(const int system_size, const double magnitude_spin, const utility::BoundaryCondition boundary_condition)']]]
 ];

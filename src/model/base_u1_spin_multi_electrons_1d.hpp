@@ -154,6 +154,31 @@ public:
       calculated_eigenvector_set_.emplace(level);
    }
    
+   //! @brief Calculate the number of electrons from the onsite electron basis.
+   //! @param basis_electron_onsite The onsite electron basis.
+   //! @return The number of electrons
+   int CalculateNumElectron(const int basis_onsite) const {
+      int num_electron = 0;
+      for (int o = 0; o < num_electron_orbital_; ++o) {
+         const int basis_electron_onsite = CalculateBasisOnsiteElectron(basis_onsite, o);
+         if (basis_electron_onsite == 0) {
+            num_electron += 0;
+         }
+         else if (basis_electron_onsite == 1 || basis_electron_onsite == 2) {
+            num_electron += 1;
+         }
+         else if (basis_electron_onsite == 3) {
+            num_electron += 2;
+         }
+         else {
+            std::stringstream ss;
+            ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+            throw std::runtime_error(ss.str());
+         }
+      }
+      return num_electron;
+   }
+   
    //! @brief Print the onsite bases.
    void PrintBasisOnsite() const {
       const double magnitude_lspin = magnitude_2lspin_/2.0;
@@ -746,7 +771,7 @@ public:
          int num_electron = 0;
          for (int o = 0; o < orbital; ++o) {
             const int basis_electron_onsite = CalculateBasisOnsiteElectron(row, magnitude_lspin, o, num_orbital);
-            num_electron += CalculateNumElectron(basis_electron_onsite);
+            num_electron += CalculateNumElectronFromElectronBasis(basis_electron_onsite);
          }
          int sign = 1;
          if (num_electron%2 == 1) {
@@ -807,7 +832,7 @@ public:
          int num_electron = 0;
          for (int o = 0; o < orbital; ++o) {
             const int basis_electron_onsite = CalculateBasisOnsiteElectron(row, magnitude_lspin, o, num_orbital);
-            num_electron += CalculateNumElectron(basis_electron_onsite);
+            num_electron += CalculateNumElectronFromElectronBasis(basis_electron_onsite);
          }
          int sign_1 = 1;
          if (num_electron%2 == 1) {
@@ -1407,7 +1432,7 @@ protected:
    //! @brief Calculate the number of electrons from the onsite electron basis.
    //! @param basis_electron_onsite The onsite electron basis.
    //! @return The number of electrons
-   inline static int CalculateNumElectron(const int basis_electron_onsite) {
+   inline static int CalculateNumElectronFromElectronBasis(const int basis_electron_onsite) {
       if (basis_electron_onsite == 0) {
          return 0;
       }
