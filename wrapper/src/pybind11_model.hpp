@@ -92,7 +92,8 @@ void pybind11ModelBaseSpin1D(py::module &m) {
    c.def(py::init<>());
    c.def(py::init<const int>(), "system_size"_a);
    c.def(py::init<const int, const double>(), "system_size"_a, "spin"_a);
-   
+   c.def(py::init<const int, const double, const double>(), "system_size"_a, "spin"_a, "total_sz"_a);
+
    //Public Member Functions
    c.def("calculate_target_dim", py::overload_cast<>(&BUS1D::CalculateTargetDim, py::const_));
    c.def("calculate_target_dim", py::overload_cast<const double>(&BUS1D::CalculateTargetDim, py::const_), "total_sz"_a);
@@ -107,6 +108,7 @@ void pybind11ModelBaseSpin1D(py::module &m) {
    c.def_static("make_onsite_operator_sz" , &BUS1D::CreateOnsiteOperatorSz , "spin"_a);
    c.def_static("make_onsite_operator_sp" , &BUS1D::CreateOnsiteOperatorSp , "spin"_a);
    c.def_static("make_onsite_operator_sm" , &BUS1D::CreateOnsiteOperatorSm , "spin"_a);
+   c.def_static("is_valid_q_number", py::overload_cast<const int, const double, const double>(&BUS1D::isValidQNumber), "system_size"_a, "spin"_a, "total_sz"_a);
    
    //Properties
    c.def_property("system_size" , &BUS1D::GetSystemSize, &BUS1D::SetSystemSize);

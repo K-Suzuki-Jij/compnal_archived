@@ -54,6 +54,14 @@ public:
    BaseU1Spin_1D(const int system_size, const double magnitude_spin): BaseU1Spin_1D(system_size) {
       SetMagnitudeSpin(magnitude_spin);
    }
+
+   //! @brief Constructor of BaseU1Spin_1D class.
+   //! @param system_size The system size \f$ N \f$.
+   //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{S}^{z}_{i}\rangle \f$.
+   BaseU1Spin_1D(const int system_size, const double magnitude_spin, const double total_sz): BaseU1Spin_1D(system_size, magnitude_spin) {
+      SetTotalSz(total_sz);
+   }
    
    //! @brief Set system size.
    //! @param system_size The system size \f$ N \f$.

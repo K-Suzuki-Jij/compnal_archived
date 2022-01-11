@@ -27,7 +27,7 @@ else:
 
 
 ext_modules = [
-        Pybind11Extension("compnal",
+        Pybind11Extension("base_compnal",
         ["wrapper/pybind11_main.cpp"],
         # Example: passing in the version to the compiled code
         define_macros = [('VERSION_INFO', __version__)],
@@ -35,7 +35,7 @@ ext_modules = [
 ]
 
 setup(
-    name="compnal",
+    name="base_compnal",
     version=__version__,
     author="Kohei Suzuki",
     url="https://github.com/K-Suzuki-Jij/compnal",

@@ -9,7 +9,7 @@
 #include "./src/pybind11_sparse_matrix.hpp"
 #include "./src/pybind11_solver_exact_diag.hpp"
 
-PYBIND11_MODULE(compnal, m) {
+PYBIND11_MODULE(base_compnal, m) {
    
    using RealType = double;
    
