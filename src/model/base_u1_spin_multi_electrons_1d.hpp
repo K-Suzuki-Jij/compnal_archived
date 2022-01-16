@@ -63,6 +63,20 @@ public:
       SetTotalElectron(total_electron);
    }
    
+   //! @brief Constructor of BaseU1Electron_1D class.
+   //! @param system_size The system size \f$ N \f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @param total_electron The total electron at each orbital \f$ \alpha \f$, \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$.
+   //! @param total_sz The total sz
+   //! \f$ \langle\hat{S}^{z}_{\rm tot}\rangle =
+   //! \sum^{N}_{i=1}\left(\hat{S}^{z}_{i} + \sum_{\alpha}\hat{s}^{z}_{i,\alpha}\right)\f$.
+   BaseU1SpinMultiElectrons_1D(const int system_size,
+                               const double magnitude_lspin,
+                               const std::vector<int> &total_electron,
+                               const double total_sz): BaseU1SpinMultiElectrons_1D(system_size, magnitude_lspin, total_electron) {
+      SetTotalSz(total_sz);
+   }
+   
    //------------------------------------------------------------------
    //----------------------Public Member functions---------------------
    //------------------------------------------------------------------
@@ -980,7 +994,7 @@ public:
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @return The matrix of \f$ \sum_{\alpha}\hat{n}_{\alpha}\f$.
-   static CRS CreateOnsiteOperatorNC(const double magnitude_lspin, const int num_orbital) {
+   static CRS CreateOnsiteOperatorNCTot(const double magnitude_lspin, const int num_orbital) {
       const int dim = (utility::DoubleTheNumber(magnitude_lspin) + 1)*static_cast<int>(std::pow(4, num_orbital));
       CRS out(dim, dim);
       for (int o = 0; o < num_orbital; ++o) {
@@ -1090,7 +1104,7 @@ public:
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @return The matrix of \f$ \hat{\boldsymbol{s}}\cdot\hat{\boldsymbol{S}}\f$.
-   static CRS CreateOnsiteOperatorSCSL(const double magnitude_lspin, const int num_orbital) {
+   static CRS CreateOnsiteOperatorSCSLTot(const double magnitude_lspin, const int num_orbital) {
       const CRS spl = CreateOnsiteOperatorSpL(magnitude_lspin, num_orbital);
       const CRS sml = CreateOnsiteOperatorSmL(magnitude_lspin, num_orbital);
       const CRS szl = CreateOnsiteOperatorSzL(magnitude_lspin, num_orbital);
@@ -1118,8 +1132,8 @@ public:
    inline const std::vector<CRS> &GetOnsiteOperatorSpC() const { return onsite_operator_spc_; }
    inline const std::vector<CRS> &GetOnsiteOperatorSmC() const { return onsite_operator_smc_; }
    inline const std::vector<CRS> &GetOnsiteOperatorSCSL() const { return onsite_operator_scsl_;}
-   inline const CRS &GetOnsiteOperatorNCTot() { return onsite_operator_nc_tot_; }
 
+   inline const CRS &GetOnsiteOperatorNCTot() { return onsite_operator_nc_tot_; }
    inline const CRS &GetOnsiteOperatorCUp(const int orbital) const { return onsite_operator_c_up_.at(orbital); }
    inline const CRS &GetOnsiteOperatorCDown(const int orbital) const { return onsite_operator_c_down_.at(orbital); }
    inline const CRS &GetOnsiteOperatorCUpDagger(const int orbital) const { return onsite_operator_c_up_dagger_.at(orbital); }
@@ -1381,12 +1395,12 @@ protected:
          onsite_operator_smc_[o]           = CreateOnsiteOperatorSmC        (0.5*magnitude_2lspin_, o, num_electron_orbital_);
          onsite_operator_scsl_[o]          = CreateOnsiteOperatorSCSL       (0.5*magnitude_2lspin_, o, num_electron_orbital_);
       }
-      onsite_operator_nc_tot_ = CreateOnsiteOperatorNC  (0.5*magnitude_2lspin_, num_electron_orbital_);
-      onsite_operator_sxl_    = CreateOnsiteOperatorSxL (0.5*magnitude_2lspin_, num_electron_orbital_);
-      onsite_operator_isyl_   = CreateOnsiteOperatoriSyL(0.5*magnitude_2lspin_, num_electron_orbital_);
-      onsite_operator_szl_    = CreateOnsiteOperatorSzL (0.5*magnitude_2lspin_, num_electron_orbital_);
-      onsite_operator_spl_    = CreateOnsiteOperatorSpL (0.5*magnitude_2lspin_, num_electron_orbital_);
-      onsite_operator_sml_    = CreateOnsiteOperatorSmL (0.5*magnitude_2lspin_, num_electron_orbital_);
+      onsite_operator_nc_tot_ = CreateOnsiteOperatorNCTot(0.5*magnitude_2lspin_, num_electron_orbital_);
+      onsite_operator_sxl_    = CreateOnsiteOperatorSxL  (0.5*magnitude_2lspin_, num_electron_orbital_);
+      onsite_operator_isyl_   = CreateOnsiteOperatoriSyL (0.5*magnitude_2lspin_, num_electron_orbital_);
+      onsite_operator_szl_    = CreateOnsiteOperatorSzL  (0.5*magnitude_2lspin_, num_electron_orbital_);
+      onsite_operator_spl_    = CreateOnsiteOperatorSpL  (0.5*magnitude_2lspin_, num_electron_orbital_);
+      onsite_operator_sml_    = CreateOnsiteOperatorSmL  (0.5*magnitude_2lspin_, num_electron_orbital_);
    }
       
    //! @brief Calculate onsite basis for the electrons from an onsite basis.

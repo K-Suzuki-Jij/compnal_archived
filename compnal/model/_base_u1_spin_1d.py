@@ -7,11 +7,17 @@ class U1Spin1D(base_compnal.model._U1Spin_1D):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-    def add_onsite_potential(self, *args, **kwargs):
-        super()._add_onsite_potential(*args, **kwargs)
+    def add_onsite_potential(self, m, site: int, value: float=1.0):
+        super()._add_onsite_potential(m, site, value)
 
     def add_interaction(self, *args, **kwargs):
         super()._add_interaction(*args, **kwargs)
+
+    def print_basis_onsite(self) -> str:
+        magnitude_spin = super()._get_magnitude_spin()
+        dim_onsie = super()._get_dim_onsite()
+        for row in range(dim_onsie):
+            print("row ", row, ": |Sz={:+}".format(magnitude_spin - row), ">", sep='')
 
     @singledispatch
     def calculate_target_dim(self, *args, **kwargs):
@@ -111,6 +117,3 @@ class U1Spin1D(base_compnal.model._U1Spin_1D):
     @staticmethod
     def make_onsite_operator_sm(spin: float):
         return base_compnal.model._U1Spin_1D._make_onsite_operator_sm(spin)
-
-
-

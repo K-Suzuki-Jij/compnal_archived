@@ -76,6 +76,20 @@ public:
       SetTotalElectron(total_electron);
    }
    
+   //! @brief Constructor of BaseU1Electron_1D class.
+   //! @param system_size The system size \f$ N \f$.
+   //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
+   //! @param total_electron The number of the total electrons
+   //! \f$ \langle \hat{N}_{e}\rangle =\sum^{N}_{i=1}\langle\hat{n}_{i}\rangle\f$.
+   //! @param total_sz The total sz
+   //! \f$ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{s}^{z}_{i}+\hat{S}^{z}_{i}\rangle \f$
+   BaseU1SpinElectron_1D(const int system_size,
+                         const double magnitude_lspin,
+                         const int total_electron,
+                         const double total_sz): BaseU1SpinElectron_1D(system_size, magnitude_lspin, total_electron) {
+      SetTotalSz(total_sz);
+   }
+   
    //------------------------------------------------------------------
    //----------------------Public Member functions---------------------
    //------------------------------------------------------------------
