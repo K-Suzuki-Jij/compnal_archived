@@ -3,9 +3,16 @@ from functools import singledispatch
 
 
 class U1Spin1D(base_compnal.model._U1Spin_1D):
+    """One-dimensional spin systems with the U(1) symmetry.
+    
+    Args:
+        system_size (int): The system size.
+        spin (float): Magnitude of spin.
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    
+    """
+    def __init__(self, system_size: int = 0, spin: float = 0.5, total_sz = 0) -> None:
+        super().__init__(system_size, spin, total_sz)
 
     def add_onsite_potential(self, m, site: int, value: float=1.0):
         super()._add_onsite_potential(m, site, value)
