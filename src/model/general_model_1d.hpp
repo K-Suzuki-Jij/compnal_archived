@@ -31,12 +31,25 @@ public:
    using BaseClass::BaseClass;
    
    //! @brief Add an onsite potential term to the system \f$ c\times \hat{O}_{i} \f$.
-   //! @param val The coefficient of the potential term \f$ c \f$.
    //! @param m The onsite operator \f$ \hat{O}_{i} \f$.
    //! @param site The site \f$ i\f$.
-   void AddOnsitePotential(const RealType val, const CRS &m, const int site) {
+   //! @param val The coefficient of the potential term \f$ c \f$.
+   void AddOnsitePotential(const CRS &m, const int site, const RealType val = 1.0) {
       if (val == 0.0) {
          return;
+      }
+      // TODO: Check of m is valid with BaseClass operator
+      if (m.row_dim != m.col_dim) {
+         std::stringstream ss;
+         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "The input matrix is not a square matrix." << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      if (m.row_dim != this->dim_onsite_) {
+         std::stringstream ss;
+         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "The input matrix is invalid" << std::endl;
+         throw std::runtime_error(ss.str());
       }
       if (site < 0 || this->system_size_ <= site) {
          std::stringstream ss;
@@ -51,23 +64,28 @@ public:
          onsite_operator_list_.at(site) = CalculateMatrixMatrixSum(val, m, 1.0, onsite_operator_list_.at(site));
       }
    }
-   
-   //! @brief Add an onsite potential term to the system \f$ \hat{O}_{i} \f$.
-   //! @param m The onsite operator \f$ \hat{O}_{i} \f$.
-   //! @param site The site \f$ i\f$.
-   void AddOnsitePotential(const CRS &m, const int site) {
-      AddOnsitePotential(1.0, m, site);
-   }
-   
+      
    //! @brief Add an interaction term to the system \f$ c\times\hat{O}_{i}\hat{P}_{j} \f$.
-   //! @param val The coefficient of the interaction term \f$ c \f$.
    //! @param m_1 The onsite operator \f$ \hat{O}_{i} \f$.
    //! @param site_1 The site \f$ i\f$.
    //! @param m_2 The onsite operator \f$ \hat{P}_{j} \f$.
    //! @param site_2 The site \f$ j\f$.
-   void AddInteraction(const RealType val, const CRS &m_1, const int site_1, const CRS &m_2, const int site_2) {
+   //! @param val The coefficient of the interaction term \f$ c \f$.
+   void AddInteraction(const CRS &m_1, const int site_1, const CRS &m_2, const int site_2, const RealType val = 1.0) {
       if (val == 0.0) {
          return;
+      }
+      if (m_1.row_dim != m_1.col_dim || m_2.row_dim != m_2.col_dim) {
+         std::stringstream ss;
+         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "The input matrix is not a square matrix." << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      if (m_1.row_dim != this->dim_onsite_) {
+         std::stringstream ss;
+         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "The input matrix is invalid" << std::endl;
+         throw std::runtime_error(ss.str());
       }
       if (site_1 < 0 || this->system_size_ <= site_1) {
          std::stringstream ss;
@@ -82,20 +100,10 @@ public:
          throw std::runtime_error(ss.str());
       }
       if (site_1 == site_2) {
-         AddOnsitePotential(val, sparse_matrix::CalculateMatrixMatrixProduct(val, m_1, 1.0, m_2), site_1);
+         AddOnsitePotential(m_1*m_2, site_1, val);
          return;
       }
-      
       intersite_operator_list_[site_1][site_2].push_back({m_1.MultiplyByScalar(val), m_2});
-   }
-   
-   //! @brief Add an interaction term to the system \f$ \hat{O}_{i}\hat{P}_{j} \f$.
-   //! @param m_1 The onsite operator \f$ \hat{O}_{i} \f$.
-   //! @param site_1 The site \f$ i\f$.
-   //! @param m_2 The onsite operator \f$ \hat{P}_{j} \f$.
-   //! @param site_2 The site \f$ j\f$.
-   void AddInteraction(const CRS &m_1, const int site_1, const CRS &m_2, const int site_2) {
-      AddInteraction(1.0, m_1, site_1, m_2, site_2);
    }
    
    //! @brief Get onsite potential term list added to the system.

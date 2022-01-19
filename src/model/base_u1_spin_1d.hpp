@@ -54,6 +54,14 @@ public:
    BaseU1Spin_1D(const int system_size, const double magnitude_spin): BaseU1Spin_1D(system_size) {
       SetMagnitudeSpin(magnitude_spin);
    }
+
+   //! @brief Constructor of BaseU1Spin_1D class.
+   //! @param system_size The system size \f$ N \f$.
+   //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{S}^{z}_{i}\rangle \f$.
+   BaseU1Spin_1D(const int system_size, const double magnitude_spin, const double total_sz): BaseU1Spin_1D(system_size, magnitude_spin) {
+      SetTotalSz(total_sz);
+   }
    
    //! @brief Set system size.
    //! @param system_size The system size \f$ N \f$.
@@ -114,6 +122,21 @@ public:
    //! @return ture if there exists corresponding subspace, otherwise false.
    bool isValidQNumber(const double total_sz) const {
       return isValidQNumber(system_size_, 0.5*magnitude_2spin_, total_sz);
+   }
+   
+   //! @brief Calculate the number of electrons from the input onsite basis.
+   //! @param basis_onsite The onsite basis.
+   //! @return The number of electrons.
+   int CalculateNumElectron(const int basis_onsite) const {
+      if (0 <= basis_onsite && basis_onsite < dim_onsite_) {
+         return 0;
+      }
+      else {
+         std::stringstream ss;
+         ss << "Error in " << __FUNCTION__  << std::endl;
+         ss << "Invalid onsite basis" << std::endl;
+         throw std::runtime_error(ss.str());
+      }
    }
    
    //! @brief Print the onsite bases.

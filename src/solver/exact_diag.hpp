@@ -229,13 +229,36 @@ public:
             const int local_basis_m2 = CalculateLocalBasis(global_basis, site_2, dim_onsite);
             RealType temp_val_m1 = 0.0;
             RealType temp_val_m2 = 0.0;
+            
+            int fermion_sign_m1 = 1;
+            if (m_1.tag == sparse_matrix::CRSTag::FERMION) {
+               int num_electron = 0;
+               for (int site = 0; site < site_1; site++) {
+                  num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
+               }
+               if (num_electron%2 == 1) {
+                  fermion_sign_m1 = -1;
+               }
+            }
+            
             for (std::int64_t j = m1_dagger.row[local_basis_m1]; j < m1_dagger.row[local_basis_m1 + 1]; ++j){
                const std::int64_t a_basis = global_basis - (local_basis_m1 - m1_dagger.col[j])*site_constant_m1;
                if (basis_inv.count(a_basis) != 0) {
                   temp_val_m1 += eigenvector.val[basis_inv.at(a_basis)]*m1_dagger.val[j];
                }
             }
-            vector_work_m1.val[i] = temp_val_m1;
+            vector_work_m1.val[i] = temp_val_m1*fermion_sign_m1;
+            
+            int fermion_sign_m2 = 1;
+            if (m_2.tag == sparse_matrix::CRSTag::FERMION) {
+               int num_electron = 0;
+               for (int site = 0; site < site_2; site++) {
+                  num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
+               }
+               if (num_electron%2 == 1) {
+                  fermion_sign_m2 = -1;
+               }
+            }
             
             for (std::int64_t j = m_2.row[local_basis_m2]; j < m_2.row[local_basis_m2 + 1]; ++j){
                const std::int64_t a_basis = global_basis - (local_basis_m2 - m_2.col[j])*site_constant_m2;
@@ -243,7 +266,7 @@ public:
                   temp_val_m2 += eigenvector.val[basis_inv.at(a_basis)]*m_2.val[j];
                }
             }
-            vector_work_m2.val[i] = temp_val_m2;
+            vector_work_m2.val[i] = temp_val_m2*fermion_sign_m2;
          }
          val += sparse_matrix::CalculateInnerProduct(vector_work_m1, vector_work_m2);
       }
@@ -312,13 +335,25 @@ public:
             const std::int64_t global_basis = basis_m3[i];
             const int local_basis = CalculateLocalBasis(global_basis, site_3, dim_onsite);
             RealType temp_val = 0.0;
+            
+            int fermion_sign_m3 = 1;
+            if (m_3.tag == sparse_matrix::CRSTag::FERMION) {
+               int num_electron = 0;
+               for (int site = 0; site < site_1; site++) {
+                  num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
+               }
+               if (num_electron%2 == 1) {
+                  fermion_sign_m3 = -1;
+               }
+            }
+            
             for (std::int64_t j = m_3.row[local_basis]; j < m_3.row[local_basis + 1]; ++j){
                const std::int64_t a_basis = global_basis - (local_basis - m_3.col[j])*site_constant_m3;
                if (basis_gs_sector_inv.count(a_basis) != 0) {
                   temp_val += eigenvector.val[basis_gs_sector_inv.at(a_basis)]*m_3.val[j];
                }
             }
-            vector_work_a.val[i] = temp_val;
+            vector_work_a.val[i] = temp_val*fermion_sign_m3;
          }
          
          //m2 * m3|gs> and m1_dag|gs>
@@ -333,13 +368,35 @@ public:
             RealType temp_val_m1 = 0.0;
             RealType temp_val_m2 = 0.0;
             
+            int fermion_sign_m2 = 1;
+            if (m_2.tag == sparse_matrix::CRSTag::FERMION) {
+               int num_electron = 0;
+               for (int site = 0; site < site_1; site++) {
+                  num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
+               }
+               if (num_electron%2 == 1) {
+                  fermion_sign_m2 = -1;
+               }
+            }
+            
             for (std::int64_t j = m_2.row[local_basis_m2]; j < m_2.row[local_basis_m2 + 1]; ++j){
                const std::int64_t a_basis = global_basis - (local_basis_m2 - m_2.col[j])*site_constant_m2;
                if (basis_m3_sector_inv.count(a_basis) != 0) {
                   temp_val_m2 += vector_work_a.val[basis_m3_sector_inv.at(a_basis)]*m_2.val[j];
                }
             }
-            vector_work_b.val[i] = temp_val_m2;
+            vector_work_b.val[i] = temp_val_m2*fermion_sign_m2;
+            
+            int fermion_sign_m1 = 1;
+            if (m_1.tag == sparse_matrix::CRSTag::FERMION) {
+               int num_electron = 0;
+               for (int site = 0; site < site_1; site++) {
+                  num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
+               }
+               if (num_electron%2 == 1) {
+                  fermion_sign_m1 = -1;
+               }
+            }
             
             for (std::int64_t j = m_1.row[local_basis_m1]; j < m_1.row[local_basis_m1 + 1]; ++j){
                const std::int64_t a_basis = global_basis - (local_basis_m1 - m_1.col[j])*site_constant_m1;
@@ -347,7 +404,7 @@ public:
                   temp_val_m1 += eigenvector.val[basis_gs_sector_inv.at(a_basis)]*m_1.val[j];
                }
             }
-            vector_work_c.val[i] = temp_val_m1;
+            vector_work_c.val[i] = temp_val_m1*fermion_sign_m1;
          }
          val += sparse_matrix::CalculateInnerProduct(vector_work_b, vector_work_c);
       }
@@ -430,13 +487,25 @@ public:
             const std::int64_t global_basis = basis_ket_1[i];
             const int local_basis = CalculateLocalBasis(global_basis, site_4, dim_onsite);
             RealType temp_val = 0.0;
+            
+            int fermion_sign_m4 = 1;
+            if (m_4.tag == sparse_matrix::CRSTag::FERMION) {
+               int num_electron = 0;
+               for (int site = 0; site < site_1; site++) {
+                  num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
+               }
+               if (num_electron%2 == 1) {
+                  fermion_sign_m4 = -1;
+               }
+            }
+            
             for (std::int64_t j = m_4.row[local_basis]; j < m_4.row[local_basis + 1]; ++j){
                const std::int64_t a_basis = global_basis - (local_basis - m_4.col[j])*site_constant_m4;
                if (basis_gs_sector_inv.count(a_basis) != 0) {
                   temp_val += eigenvector.val[basis_gs_sector_inv.at(a_basis)]*m_4.val[j];
                }
             }
-            vector_work_m4.val[i] = temp_val;
+            vector_work_m4.val[i] = temp_val*fermion_sign_m4;
          }
          
          //m1_dag|gs>
@@ -446,13 +515,25 @@ public:
             const std::int64_t global_basis = basis_bra_1[i];
             const int local_basis = CalculateLocalBasis(global_basis, site_1, dim_onsite);
             RealType temp_val = 0.0;
+            
+            int fermion_sign_m1 = 1;
+            if (m_1.tag == sparse_matrix::CRSTag::FERMION) {
+               int num_electron = 0;
+               for (int site = 0; site < site_1; site++) {
+                  num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
+               }
+               if (num_electron%2 == 1) {
+                  fermion_sign_m1 = -1;
+               }
+            }
+            
             for (std::int64_t j = m1_dagger.row[local_basis]; j < m1_dagger.row[local_basis + 1]; ++j){
                const std::int64_t a_basis = global_basis - (local_basis - m1_dagger.col[j])*site_constant_m1;
                if (basis_gs_sector_inv.count(a_basis) != 0) {
                   temp_val += eigenvector.val[basis_gs_sector_inv.at(a_basis)]*m1_dagger.val[j];
                }
             }
-            vector_work_m1.val[i] = temp_val;
+            vector_work_m1.val[i] = temp_val*fermion_sign_m1;
          }
          
          //m3 * m4|gs> and m2_dag * m1_dag|gs>
@@ -466,22 +547,45 @@ public:
             const int local_basis_m3 = CalculateLocalBasis(global_basis, site_3, dim_onsite);
             RealType temp_val = 0.0;
             
+            int fermion_sign_m3 = 1;
+            if (m_3.tag == sparse_matrix::CRSTag::FERMION) {
+               int num_electron = 0;
+               for (int site = 0; site < site_1; site++) {
+                  num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
+               }
+               if (num_electron%2 == 1) {
+                  fermion_sign_m3 = -1;
+               }
+            }
+            
             for (std::int64_t j = m_3.row[local_basis_m3]; j < m_3.row[local_basis_m3 + 1]; ++j){
                const std::int64_t a_basis = global_basis - (local_basis_m3 - m_3.col[j])*site_constant_m3;
                if (basis_ket_1_inv.count(a_basis) != 0) {
                   temp_val += vector_work_m4.val[basis_ket_1_inv.at(a_basis)]*m_3.val[j];
                }
             }
-            vector_work_m3m4.val[i] = temp_val;
+            vector_work_m3m4.val[i] = temp_val*fermion_sign_m3;
             
             temp_val = 0.0;
+            
+            int fermion_sign_m2 = 1;
+            if (m_2.tag == sparse_matrix::CRSTag::FERMION) {
+               int num_electron = 0;
+               for (int site = 0; site < site_1; site++) {
+                  num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
+               }
+               if (num_electron%2 == 1) {
+                  fermion_sign_m2 = -1;
+               }
+            }
+            
             for (std::int64_t j = m2_dagger.row[local_basis_m2]; j < m2_dagger.row[local_basis_m2 + 1]; ++j){
                const std::int64_t a_basis = global_basis - (local_basis_m2 - m2_dagger.col[j])*site_constant_m2;
                if (basis_bra_1_inv.count(a_basis) != 0) {
                   temp_val += vector_work_m1.val[basis_bra_1_inv.at(a_basis)]*m2_dagger.val[j];
                }
             }
-            vector_work_m2m1.val[i] = temp_val;
+            vector_work_m2m1.val[i] = temp_val*fermion_sign_m2;
          }
          val += sparse_matrix::CalculateInnerProduct(vector_work_m2m1, vector_work_m3m4);
       }

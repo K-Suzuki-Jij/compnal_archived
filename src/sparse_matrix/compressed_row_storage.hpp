@@ -278,21 +278,21 @@ bool operator==(const CRS<RealType> &lhs, const CRS<RealType> &rhs) {
    if (lhs.tag != rhs.tag) {
       return false;
    }
+   if (lhs.col.size() != rhs.col.size()) {
+      return false;
+   }
+   if (lhs.val.size() != rhs.val.size()) {
+      return false;
+   }
    for (std::size_t i = 0; i < lhs.row.size(); ++i) {
       if (lhs.row[i] != rhs.row[i]) {
          return false;
       }
    }
-   if (lhs.col.size() != rhs.col.size()) {
-      return false;
-   }
    for (std::size_t i = 0; i < lhs.col.size(); ++i) {
       if (lhs.col[i] != rhs.col[i]) {
          return false;
       }
-   }
-   if (lhs.val.size() != rhs.val.size()) {
-      return false;
    }
    for (std::size_t i = 0; i < lhs.val.size(); ++i) {
       if (lhs.val[i] != rhs.val[i]) {

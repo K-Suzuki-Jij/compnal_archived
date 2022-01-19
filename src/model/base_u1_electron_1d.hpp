@@ -55,6 +55,18 @@ public:
    BaseU1Electron_1D(const int system_size, const int total_electron): BaseU1Electron_1D(system_size) {
       SetTotalElectron(total_electron);
    }
+
+   //! @brief Constructor of BaseU1Electron_1D class.
+   //! @param system_size The system size \f$ N \f$.
+   //! @param total_electron The number of the total electrons
+   //! \f$ \langle \hat{N}_{e}\rangle =\sum^{N}_{i=1}\langle\hat{n}_{i}\rangle\f$.
+   //! @param total_sz The total sz is the expectation value of the following operator:
+   //! \f[ \hat{S}^{z}_{\rm tot}=\sum^{N}_{i=1}\hat{S}^{z}_{i} \f]
+   BaseU1Electron_1D(const int system_size,
+                     const int total_electron,
+                     const double total_sz): BaseU1Electron_1D(system_size, total_electron) {
+      SetTotalSz(total_sz);
+   }
    
    //------------------------------------------------------------------
    //----------------------Public Member functions---------------------
