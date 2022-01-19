@@ -22,8 +22,7 @@ void pybind11ModelBoundaryCondition(py::module &m) {
    py::enum_<compnal::utility::BoundaryCondition>(m, "BoundaryCondition")
       .value("OBC", compnal::utility::BoundaryCondition::OBC)
       .value("PBC", compnal::utility::BoundaryCondition::PBC)
-      .value("SSD", compnal::utility::BoundaryCondition::SSD)
-   ;
+      .value("SSD", compnal::utility::BoundaryCondition::SSD);
 }
 
 template<typename RealType>
