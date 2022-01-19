@@ -121,7 +121,7 @@ class CMakeBuild(build_ext):
 # The information here can also be placed in setup.cfg - better separation of
 # logic and declaration, and simpler if you include description/version in a file.
 setup(
-    name="base_compnal",
+    name="compnal",
     version="0.0.1",
     author="Kohei Suzuki",
     url="https://github.com/K-Suzuki-Jij/compnal",
@@ -130,6 +130,10 @@ setup(
     language="c++",
     ext_modules=[CMakeExtension("base_compnal")],
     cmdclass={"build_ext": CMakeBuild},
+    packages=[  
+        'compnal', 
+        'compnal.model',
+        ],
     zip_safe=False,
     extras_require={"test": ["pytest>=6.0"]},
     python_requires=">=3.6",

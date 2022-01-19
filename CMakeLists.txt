@@ -1,14 +1,26 @@
-cmake_minimum_required(VERSION 3.4...3.18)
-project(base_compnal)
+cmake_minimum_required(VERSION 3.17)
+project(compnal)
 
 enable_language(CXX)
-set(CMAKE_MACOSX_RPATH TRUE)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-command-line-argument -llapack")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -Wno-unused-command-line-argument -llapack")
+
+set(CMAKE_VERBOSE_MAKEFILE TRUE)
+
+if (APPLE)
+    set(CMAKE_MACOSX_RPATH TRUE)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-command-line-argument -llapack")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -Wno-unused-command-line-argument -llapack")
+endif()
+
 set(CMAKE_CXX_STANDARD 17)
 set(CXX_STANDARD_REQUIRED TRUE)
 set(CMAKE_VERBOSE_MAKEFILE TRUE)
+ 
+
+##### Set default behavior #####
 set(DEFAULT_USE_OMP Yes)
+set(DEFAULT_USE_TEST No)
+option(USE_TEST "Use test code" No)
+
 
 # Use OpenMP as default behavior
 message(STATUS "FORCE_USE_OMP = ${FORCE_USE_OMP}")
@@ -18,10 +30,14 @@ if(NOT APPLE)
     set(USE_OMP ${DEFAULT_USE_OMP})
   endif() 
 else() 
-  if(FORCE_USE_OMP) 
+  if(FORCE_USE_OMP)
     set(USE_OMP ${DEFAULT_USE_OMP})
     message(STATUS "APPLE_FORCE_USE_OMP = ${FORCE_USE_OMP}")
   endif()
+endif()
+
+if(NOT DEFINED USE_TEST)
+    set(USE_TEST ${DEFAULT_USE_TEST})
 endif()
 
 if(USE_OMP)
@@ -102,19 +118,25 @@ else()
   endif()
 endif()
 
+
+
 if (APPLE)
     find_package(BLAS)
     find_package(LAPACK)
 endif()
 
 message(STATUS "USE_OMP = ${USE_OMP}")
+message(STATUS "USE_TEST = ${USE_TEST}")
 
-add_definitions("-llapack")
+list(APPEND CMAKE_MODULE_PATH external)
+if(USE_TEST)
+    include(external/googletest.cmake)
+else()
+	message(STATUS "Skip downloding googletest")
+endif()
 
-add_subdirectory(pybind11)
-pybind11_add_module(base_compnal wrapper/pybind11_main.cpp)
+include(external/pybind11.cmake)
+find_package(Python COMPONENTS Development.Module)
 
-# EXAMPLE_VERSION_INFO is defined by setup.py and passed into the C++ code as a
-# define (VERSION_INFO) here.
-target_compile_definitions(base_compnal
-                           PRIVATE VERSION_INFO=${EXAMPLE_VERSION_INFO})
+add_subdirectory(wrapper)
+
