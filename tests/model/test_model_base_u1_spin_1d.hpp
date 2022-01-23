@@ -38,6 +38,8 @@ namespace {
 template<typename RealType>
 void TestSpinOneHalf(const BaseU1Spin_1D<RealType> &model) {
    
+   const double threshold = std::pow(10, -15);
+   
    EXPECT_EQ(model.GetDimOnsite(), 2);
    EXPECT_EQ(model.GetMagnitudeSpin(), 0.5);
    
@@ -47,15 +49,17 @@ void TestSpinOneHalf(const BaseU1Spin_1D<RealType> &model) {
    const CRS<RealType> ref_isy({{+0.0, +0.5}, {-0.5, +0.0}});
    const CRS<RealType> ref_sz ({{+0.5, +0.0}, {+0.0, -0.5}});
    
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatorSp() , ref_sp , std::pow(10, -15)));
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatorSm() , ref_sm , std::pow(10, -15)));
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatorSx() , ref_sx , std::pow(10, -15)));
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatoriSy(), ref_isy, std::pow(10, -15)));
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatorSz() , ref_sz , std::pow(10, -15)));
+   ExpectNear(model.GetOnsiteOperatorSp() , ref_sp , threshold);
+   ExpectNear(model.GetOnsiteOperatorSm() , ref_sm , threshold);
+   ExpectNear(model.GetOnsiteOperatorSx() , ref_sx , threshold);
+   ExpectNear(model.GetOnsiteOperatoriSy(), ref_isy, threshold);
+   ExpectNear(model.GetOnsiteOperatorSz() , ref_sz , threshold);
 }
 
 template<typename RealType>
 void TestSpinOne(const BaseU1Spin_1D<RealType> &model) {
+   
+   const double threshold = std::pow(10, -15);
    
    EXPECT_EQ(model.GetDimOnsite(), 3);
    EXPECT_EQ(model.GetMagnitudeSpin(), 1.0);
@@ -90,11 +94,11 @@ void TestSpinOne(const BaseU1Spin_1D<RealType> &model) {
       {+0.0, +0.0, -1.0}
    });
    
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatorSp() , ref_sp , std::pow(10, -15)));
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatorSm() , ref_sm , std::pow(10, -15)));
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatorSx() , ref_sx , std::pow(10, -15)));
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatoriSy(), ref_isy, std::pow(10, -15)));
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatorSz() , ref_sz , std::pow(10, -15)));
+   ExpectNear(model.GetOnsiteOperatorSp() , ref_sp , threshold);
+   ExpectNear(model.GetOnsiteOperatorSm() , ref_sm , threshold);
+   ExpectNear(model.GetOnsiteOperatorSx() , ref_sx , threshold);
+   ExpectNear(model.GetOnsiteOperatoriSy(), ref_isy, threshold);
+   ExpectNear(model.GetOnsiteOperatorSz() , ref_sz , threshold);
 }
 
 } // namespace
@@ -107,8 +111,8 @@ TEST(ModelBaseU1Spin1D, ConstructorDefault) {
    EXPECT_EQ(model.GetTotalSz(), 0.0);
    
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   EXPECT_TRUE(ExpectEQ(model.GetBases(), Map<int, std::vector<LInt>>{}));
-   EXPECT_TRUE(ExpectEQ(model.GetBasesInv(), Map<int, Map<LInt, LInt>>{}));
+   ExpectEQ(model.GetBases(), Map<int, std::vector<LInt>>{});
+   ExpectEQ(model.GetBasesInv(), Map<int, Map<LInt, LInt>>{});
 }
 
 TEST(ModelBaseU1Spin1D, ConstructorSystemSize) {
@@ -119,8 +123,8 @@ TEST(ModelBaseU1Spin1D, ConstructorSystemSize) {
    EXPECT_EQ(model.GetTotalSz(), 0.0);
    
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   EXPECT_TRUE(ExpectEQ(model.GetBases(), Map<int, std::vector<LInt>>{}));
-   EXPECT_TRUE(ExpectEQ(model.GetBasesInv(), Map<int, Map<LInt, LInt>>{}));
+   ExpectEQ(model.GetBases(), Map<int, std::vector<LInt>>{});
+   ExpectEQ(model.GetBasesInv(), Map<int, Map<LInt, LInt>>{});
 }
 
 TEST(ModelBaseU1Spin1D, ConstructorSystemSizeSpin) {
@@ -131,8 +135,8 @@ TEST(ModelBaseU1Spin1D, ConstructorSystemSizeSpin) {
    EXPECT_EQ(model.GetTotalSz(), 0.0);
    
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   EXPECT_TRUE(ExpectEQ(model.GetBases(), Map<int, std::vector<LInt>>{}));
-   EXPECT_TRUE(ExpectEQ(model.GetBasesInv(), Map<int, Map<LInt, LInt>>{}));
+   ExpectEQ(model.GetBases(), Map<int, std::vector<LInt>>{});
+   ExpectEQ(model.GetBasesInv(), Map<int, Map<LInt, LInt>>{});
 }
 
 TEST(ModelBaseU1Spin1D, ConstructorSystemSizeSpinTotalSz) {
@@ -143,8 +147,8 @@ TEST(ModelBaseU1Spin1D, ConstructorSystemSizeSpinTotalSz) {
    EXPECT_EQ(model.GetTotalSz(), 1);
    
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   EXPECT_TRUE(ExpectEQ(model.GetBases(), Map<int, std::vector<LInt>>{}));
-   EXPECT_TRUE(ExpectEQ(model.GetBasesInv(), Map<int, Map<LInt, LInt>>{}));
+   ExpectEQ(model.GetBases(), Map<int, std::vector<LInt>>{});
+   ExpectEQ(model.GetBasesInv(), Map<int, Map<LInt, LInt>>{});
 }
 
 TEST(ModelBaseU1Spin1D, SetSystemSize) {

@@ -24,39 +24,89 @@
 
 namespace {
 
-template<typename RealType>
-void TestSpinOneHalf(const compnal::model::BaseU1SpinElectron_1D<RealType> &model) {
-   
-   EXPECT_EQ(model.GetDimOnsite(), 4*2);
-   EXPECT_EQ(model.GetMagnitudeSpin(), 0.5);
-   EXPECT_EQ(model.GetDimOnsiteELectron(), 4);
-   EXPECT_EQ(model.GetDimOnsiteLSpin(), 2);
-   
-   
-   
+using compnal::LInt;
+using compnal::IntPair;
+using compnal::Map;
+using compnal::PairHash;
+using compnal::test::ExpectEQ;
+using compnal::test::ExpectNear;
+using compnal::model::BaseU1SpinElectron_1D;
+
 }
 
-} // namespace
+template<typename RealType>
+void TestSpinOneHalf(const BaseU1SpinElectron_1D<RealType> &model) {
+   
+   const double threshold = std::pow(10, -15);
+   
+   EXPECT_EQ(model.GetDimOnsite(), 4*2);
+   EXPECT_EQ(model.GetMagnitudeLSpin(), 0.5);
+   EXPECT_EQ(model.GetDimOnsiteELectron(), 4);
+   EXPECT_EQ(model.GetDimOnsiteLSpin(), 2);
 
+   const CRS<RealType> ref_c_up ({
+      {0, 0, 1, 0, 0, 0, 0, 0},
+      {0, 0, 0, 1, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 1, 0},
+      {0, 0, 0, 0, 0, 0, 0, 1},
+      {0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0}
+   }, CRSTag::FERMION);
+   
+   const CRS<RealType> ref_c_up_d ({
+      {0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0},
+      {1, 0, 0, 0, 0, 0, 0, 0},
+      {0, 1, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 1, 0, 0, 0},
+      {0, 0, 0, 0, 0, 1, 0, 0}
+   }, CRSTag::FERMION);
+   
+   const CRS<RealType> ref_c_down ({
+      {0, 0, 0, 0, 1, 0, 0, 0},
+      {0, 0, 0, 0, 0, 1, 0, 0},
+      {0, 0, 0, 0, 0, 0, -1, 0},
+      {0, 0, 0, 0, 0, 0, 0, -1},
+      {0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0}
+   }, CRSTag::FERMION);
+   
+   const CRS<RealType> ref_c_down_d ({
+      {0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0, 0, 0},
+      {1, 0, 0, 0, 0, 0, 0, 0},
+      {0, 1, 0, 0, 0, 0, 0, 0},
+      {0, 0, -1, 0, 0, 0, 0, 0},
+      {0, 0, 0, -1, 0, 0, 0, 0}
+   }, CRSTag::FERMION);
+ 
+   ExpectNear(model.GetOnsiteOperatorCUp()        , ref_c_up    , threshold);
+   ExpectNear(model.GetOnsiteOperatorCUpDagger()  , ref_c_up_d  , threshold);
+   ExpectNear(model.GetOnsiteOperatorCDown()      , ref_c_down  , threshold);
+   ExpectNear(model.GetOnsiteOperatorCDownDagger(), ref_c_down_d, threshold);
+
+}
 
 TEST(ModelBaseU1SpinElectron1D, ConstructorDefault) {
-   compnal::model::BaseU1SpinElectron_1D<double> model;
+   BaseU1SpinElectron_1D<double> model;
+   TestSpinOneHalf(model);
+   
    EXPECT_EQ(model.GetSystemSize()    , 0  );
    EXPECT_EQ(model.GetTotalSz()       , 0.0);
    EXPECT_EQ(model.GetTotalElectron() , 0  );
    EXPECT_EQ(model.GetMagnitudeLSpin(), 0.5);
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   EXPECT_TRUE(compnal::test::ExpectEQ(model.GetBases(),
-                                       std::unordered_map<
-                                       std::pair<int, int>,
-                                       std::vector<compnal::LInt>,
-                                       compnal::PairHash>{}));
    
-   EXPECT_TRUE(compnal::test::ExpectEQ(model.GetBasesInv(),
-                                       std::unordered_map<
-                                       std::pair<int, int>,
-                                       std::unordered_map<compnal::LInt, compnal::LInt>,
-                                       compnal::PairHash>{}));
+   ExpectEQ(model.GetBases(), std::unordered_map<IntPair, std::vector<LInt>, PairHash>{});
+   ExpectEQ(model.GetBasesInv(), Map<IntPair, Map<LInt, LInt>, PairHash>{});
    
 }
 

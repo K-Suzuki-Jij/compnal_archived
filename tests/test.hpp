@@ -20,102 +20,103 @@
 
 #include "../src/sparse_matrix/all.hpp"
 #include <unordered_map>
+#include <gtest/gtest.h>
 
 namespace compnal {
 namespace test {
 
 template<class MapType>
-bool ExpectEQ(const MapType &lhs, const MapType &rhs) {
+void ExpectEQ(const MapType &lhs, const MapType &rhs) {
    if (lhs.size() != rhs.size()) {
-      return false;
+      FAIL();
    }
    for (const auto &it: lhs) {
       if (rhs.count(it.first) == 1) {
          if (rhs.at(it.first) != it.second) {
-            return false;
+            FAIL();
          }
       }
       else {
-         return false;
+         FAIL();
       }
    }
    for (const auto &it: rhs) {
       if (lhs.count(it.first) == 1) {
          if (lhs.at(it.first) != it.second) {
-            return false;
+            FAIL();
          }
       }
       else {
-         return false;
+         FAIL();
       }
    }
-   return true;
+   SUCCEED();
 }
 
 template<typename IndexType, typename ValueType>
-bool ExpectNear(const std::unordered_map<IndexType, ValueType> &lhs, const std::unordered_map<IndexType, ValueType> &rhs, const double threshold) {
+void ExpectNear(const std::unordered_map<IndexType, ValueType> &lhs, const std::unordered_map<IndexType, ValueType> &rhs, const double threshold) {
    if (lhs.size() != rhs.size()) {
-      return false;
+      FAIL();
    }
    for (const auto &it: lhs) {
       if (rhs.count(it.first) == 1) {
          if (std::abs(rhs.at(it.first) - it.second) > threshold) {
-            return false;
+            FAIL();
          }
       }
       else {
-         return false;
+         FAIL();
       }
    }
    for (const auto &it: rhs) {
       if (lhs.count(it.first) == 1) {
          if (std::abs(lhs.at(it.first) - it.second) > threshold) {
-            return false;
+            FAIL();
          }
       }
       else {
-         return false;
+         FAIL();
       }
    }
-   return true;
+   SUCCEED();
 }
 
 template<typename RealType>
-bool ExpectNear(const compnal::sparse_matrix::CRS<RealType> &lhs, const compnal::sparse_matrix::CRS<RealType> &rhs, const RealType threshold) {
+void ExpectNear(const compnal::sparse_matrix::CRS<RealType> &lhs, const compnal::sparse_matrix::CRS<RealType> &rhs, const RealType threshold) {
    if (lhs.row_dim != rhs.row_dim) {
-      return false;
+      FAIL();
    }
    if (lhs.col_dim != rhs.col_dim) {
-      return false;
+      FAIL();
    }
    if (lhs.row.size() != rhs.row.size()) {
-      return false;
+      FAIL();
    }
    if (lhs.tag != rhs.tag) {
-      return false;
+      FAIL();
    }
    for (std::size_t i = 0; i < lhs.row.size(); ++i) {
       if (lhs.row[i] != rhs.row[i]) {
-         return false;
+         FAIL();
       }
    }
    if (lhs.col.size() != rhs.col.size()) {
-      return false;
+      FAIL();
    }
    for (std::size_t i = 0; i < lhs.col.size(); ++i) {
       if (lhs.col[i] != rhs.col[i]) {
-         return false;
+         FAIL();
       }
    }
    if (lhs.val.size() != rhs.val.size()) {
-      return false;
+      FAIL();
    }
    for (std::size_t i = 0; i < lhs.val.size(); ++i) {
       if (std::abs(lhs.val[i] - rhs.val[i]) > threshold) {
-         return false;
+         FAIL();
       }
    }
-   return true;
+   SUCCEED();
 }
 
 }

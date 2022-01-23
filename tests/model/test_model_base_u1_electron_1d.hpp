@@ -41,6 +41,7 @@ namespace {
 template<typename RealType>
 void TestElectron(const BaseU1Electron_1D<RealType> &model) {
    
+   const double threshold = std::pow(10, -15);
    EXPECT_EQ(model.GetDimOnsite(), 4);
    
    const CRS<RealType> ref_c_up ({
@@ -127,19 +128,19 @@ void TestElectron(const BaseU1Electron_1D<RealType> &model) {
       {0.0, 0.0, 0.0, 0.0}
    });
    
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatorCUp()        , ref_c_up    , std::pow(10, -15)));
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatorCUpDagger()  , ref_c_up_d  , std::pow(10, -15)));
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatorCDown()      , ref_c_down  , std::pow(10, -15)));
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatorCDownDagger(), ref_c_down_d, std::pow(10, -15)));
+   ExpectNear(model.GetOnsiteOperatorCUp()        , ref_c_up    , threshold);
+   ExpectNear(model.GetOnsiteOperatorCUpDagger()  , ref_c_up_d  , threshold);
+   ExpectNear(model.GetOnsiteOperatorCDown()      , ref_c_down  , threshold);
+   ExpectNear(model.GetOnsiteOperatorCDownDagger(), ref_c_down_d, threshold);
    
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatorNCUp()  , ref_nc_up  , std::pow(10, -15)));
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatorNCDown(), ref_nc_down, std::pow(10, -15)));
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatorNC()    , ref_nc     , std::pow(10, -15)));
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatorSz()    , ref_sz     , std::pow(10, -15)));
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatorSx()    , ref_sx     , std::pow(10, -15)));
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatoriSy()   , ref_isy    , std::pow(10, -15)));
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatorSp()    , ref_sp     , std::pow(10, -15)));
-   EXPECT_TRUE(ExpectNear(model.GetOnsiteOperatorSm()    , ref_sm     , std::pow(10, -15)));
+   ExpectNear(model.GetOnsiteOperatorNCUp()  , ref_nc_up  , threshold);
+   ExpectNear(model.GetOnsiteOperatorNCDown(), ref_nc_down, threshold);
+   ExpectNear(model.GetOnsiteOperatorNC()    , ref_nc     , threshold);
+   ExpectNear(model.GetOnsiteOperatorSz()    , ref_sz     , threshold);
+   ExpectNear(model.GetOnsiteOperatorSx()    , ref_sx     , threshold);
+   ExpectNear(model.GetOnsiteOperatoriSy()   , ref_isy    , threshold);
+   ExpectNear(model.GetOnsiteOperatorSp()    , ref_sp     , threshold);
+   ExpectNear(model.GetOnsiteOperatorSm()    , ref_sm     , threshold);
    
 }
 
@@ -154,8 +155,8 @@ TEST(ModelBaseU1Electron1D, ConstructorDefault) {
    EXPECT_EQ(model.GetTotalElectron(), 0);
    
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   EXPECT_TRUE(ExpectEQ(model.GetBases(), Map<IntPair, std::vector<LInt>, PairHash>{}));
-   EXPECT_TRUE(ExpectEQ(model.GetBasesInv(), Map<IntPair, Map<LInt, LInt>, PairHash>{}));
+   ExpectEQ(model.GetBases(), Map<IntPair, std::vector<LInt>, PairHash>{});
+   ExpectEQ(model.GetBasesInv(), Map<IntPair, Map<LInt, LInt>, PairHash>{});
 }
 
 TEST(ModelBaseU1Electron1D, ConstructorSystemSize) {
@@ -167,8 +168,8 @@ TEST(ModelBaseU1Electron1D, ConstructorSystemSize) {
    EXPECT_EQ(model.GetTotalElectron(), 0);
    
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   EXPECT_TRUE(ExpectEQ(model.GetBases(), Map<IntPair, std::vector<LInt>, PairHash>{}));
-   EXPECT_TRUE(ExpectEQ(model.GetBasesInv(), Map<IntPair, Map<LInt, LInt>, PairHash>{}));
+   ExpectEQ(model.GetBases(), Map<IntPair, std::vector<LInt>, PairHash>{});
+   ExpectEQ(model.GetBasesInv(), Map<IntPair, Map<LInt, LInt>, PairHash>{});
 }
 
 TEST(ModelBaseU1Electron1D, ConstructorSystemSizeElectron) {
@@ -180,8 +181,8 @@ TEST(ModelBaseU1Electron1D, ConstructorSystemSizeElectron) {
    EXPECT_EQ(model.GetTotalElectron(), 2);
    
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   EXPECT_TRUE(ExpectEQ(model.GetBases(), Map<IntPair, std::vector<LInt>, PairHash>{}));
-   EXPECT_TRUE(ExpectEQ(model.GetBasesInv(), Map<IntPair, Map<LInt, LInt>, PairHash>{}));
+   ExpectEQ(model.GetBases(), Map<IntPair, std::vector<LInt>, PairHash>{});
+   ExpectEQ(model.GetBasesInv(), Map<IntPair, Map<LInt, LInt>, PairHash>{});
 }
 
 TEST(ModelBaseU1Electron1D, SetSystemSize) {

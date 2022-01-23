@@ -752,7 +752,7 @@ public:
          matrix.row[element + 1 + 2*dim_onsite_lspin] = matrix.col.size();
       }
       for (int element = 0; element < dim_onsite_lspin; ++element) {
-         matrix.row[element + 1 + 2*dim_onsite_lspin] = matrix.col.size();
+         matrix.row[element + 1 + 3*dim_onsite_lspin] = matrix.col.size();
       }
       matrix.tag = sparse_matrix::CRSTag::FERMION;
       return matrix;
