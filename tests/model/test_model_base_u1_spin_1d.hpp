@@ -15,8 +15,8 @@
 //  Created by Kohei Suzuki on 2022/01/08.
 //
 
-#ifndef TEST_MODEL_BASE_U1_SPIN_1D_HPP_
-#define TEST_MODEL_BASE_U1_SPIN_1D_HPP_
+#ifndef COMPNAL_TEST_MODEL_BASE_U1_SPIN_1D_HPP_
+#define COMPNAL_TEST_MODEL_BASE_U1_SPIN_1D_HPP_
 
 #include "../../src/model/base_u1_spin_1d.hpp"
 #include "../test.hpp"
@@ -175,4 +175,4 @@ TEST(ModelBaseU1Spin1D, CalculateTargetDim) {
    EXPECT_EQ(compnal::model::BaseU1Spin_1D<double>::CalculateTargetDim(4, 0.5, -2.0), 1);
 }
 
-#endif /* TEST_MODEL_BASE_U1_SPIN_1D_HPP_ */
+#endif /* COMPNAL_TEST_MODEL_BASE_U1_SPIN_1D_HPP_ */

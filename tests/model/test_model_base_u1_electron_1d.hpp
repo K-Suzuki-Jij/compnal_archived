@@ -15,8 +15,8 @@
 //  Created by Kohei Suzuki on 2022/01/08.
 //
 
-#ifndef TEST_MODEL_BASE_U1_ELECTRON_1D_HPP_
-#define TEST_MODEL_BASE_U1_ELECTRON_1D_HPP_
+#ifndef COMPNAL_TEST_MODEL_BASE_U1_ELECTRON_1D_HPP_
+#define COMPNAL_TEST_MODEL_BASE_U1_ELECTRON_1D_HPP_
 
 #include "../../src/model/base_u1_electron_1d.hpp"
 #include "../test.hpp"
@@ -199,4 +199,4 @@ TEST(ModelBaseU1Electron1D, CalculateNumElectron) {
    EXPECT_THROW(model.CalculateNumElectron(4), std::runtime_error);
 }
 
-#endif /* TEST_MODEL_BASE_U1_ELECTRON_1D_HPP_ */
+#endif /* COMPNAL_TEST_MODEL_BASE_U1_ELECTRON_1D_HPP_ */
