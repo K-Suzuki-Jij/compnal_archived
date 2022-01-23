@@ -45,16 +45,16 @@ class ExactDiag {
       std::vector<RealType> val;
       
       //! @brief Column number of the matrix elements.
-      std::vector<std::int64_t>  basis_affected;
+      std::vector<LInt>  basis_affected;
       
       //! @brief The onsite basis.
       std::vector<int> basis_onsite;
       
       //! @brief Constants for calculating matrix elements.
-      std::vector<std::int64_t> site_constant;
+      std::vector<LInt> site_constant;
       
       //! @brief Inverse basis.
-      std::unordered_map<std::int64_t, std::int64_t> inv_basis_affected;
+      std::unordered_map<LInt, LInt> inv_basis_affected;
       
       //! @brief Calculation accuracy of the matrix elements.
       double zero_precision = std::pow(10, -15);
@@ -166,8 +166,8 @@ public:
       const auto &basis     = model.GetTargetBasis();
       const auto &basis_inv = model.GetTargetBasisInv();
       
-      const std::int64_t dim = eigenvectors_.at(level).val.size();
-      if (static_cast<std::int64_t>(basis.size()) != dim || static_cast<std::int64_t>(basis_inv.size()) != dim) {
+      const LInt dim = eigenvectors_.at(level).val.size();
+      if (static_cast<LInt>(basis.size()) != dim || static_cast<LInt>(basis_inv.size()) != dim) {
          std::stringstream ss;
          ss << "Error in " << __func__ << std::endl;
          ss << "Unknown error detected" << std::endl;
@@ -175,17 +175,17 @@ public:
       }
       
       const int dim_onsite = static_cast<int>(m.row_dim);
-      const std::int64_t site_constant = static_cast<std::int64_t>(std::pow(dim_onsite, site));
+      const LInt site_constant = static_cast<LInt>(std::pow(dim_onsite, site));
       const BraketVector &eigenvector = eigenvectors_.at(level);
       RealType val = 0.0;
       
 #pragma omp parallel for reduction (+: val)
-      for (std::int64_t i = 0; i < dim; ++i) {
-         const std::int64_t global_basis = basis[i];
+      for (LInt i = 0; i < dim; ++i) {
+         const LInt global_basis = basis[i];
          const int          local_basis = CalculateLocalBasis(global_basis, site, dim_onsite);
          RealType temp_val = 0.0;
-         for (std::int64_t j = m.row[local_basis]; j < m.row[local_basis + 1]; ++j){
-            const std::int64_t a_basis = global_basis - (local_basis - m.col[j])*site_constant;
+         for (LInt j = m.row[local_basis]; j < m.row[local_basis + 1]; ++j){
+            const LInt a_basis = global_basis - (local_basis - m.col[j])*site_constant;
             if (basis_inv.count(a_basis) != 0) {
                temp_val += eigenvector.val[basis_inv.at(a_basis)]*m.val[j];
             }
@@ -219,8 +219,8 @@ public:
       const auto target_sectors  = model.GenerateTargetSector(m1_dagger, m_2);
       const auto &basis_inv = model.GetTargetBasisInv();
       const int dim_onsite = static_cast<int>(m1_dagger.row_dim);
-      const std::int64_t site_constant_m1 = static_cast<std::int64_t>(std::pow(dim_onsite, site_1));
-      const std::int64_t site_constant_m2 = static_cast<std::int64_t>(std::pow(dim_onsite, site_2));
+      const LInt site_constant_m1 = static_cast<LInt>(std::pow(dim_onsite, site_1));
+      const LInt site_constant_m2 = static_cast<LInt>(std::pow(dim_onsite, site_2));
       const BraketVector &eigenvector = eigenvectors_.at(target_level);
       BraketVector vector_work_m1;
       BraketVector vector_work_m2;
@@ -229,12 +229,12 @@ public:
       for (const auto &sector: target_sectors) {
          model.GenerateBasis(sector);
          const auto &basis = model.GetBasis(sector);
-         const std::int64_t dim_target = static_cast<std::int64_t>(basis.size());
+         const LInt dim_target = static_cast<LInt>(basis.size());
          vector_work_m1.val.resize(dim_target);
          vector_work_m2.val.resize(dim_target);
 #pragma omp parallel for
-         for (std::int64_t i = 0; i < dim_target; ++i) {
-            const std::int64_t global_basis = basis[i];
+         for (LInt i = 0; i < dim_target; ++i) {
+            const LInt global_basis = basis[i];
             const int local_basis_m1 = CalculateLocalBasis(global_basis, site_1, dim_onsite);
             const int local_basis_m2 = CalculateLocalBasis(global_basis, site_2, dim_onsite);
             RealType temp_val_m1 = 0.0;
@@ -251,8 +251,8 @@ public:
                }
             }
             
-            for (std::int64_t j = m1_dagger.row[local_basis_m1]; j < m1_dagger.row[local_basis_m1 + 1]; ++j){
-               const std::int64_t a_basis = global_basis - (local_basis_m1 - m1_dagger.col[j])*site_constant_m1;
+            for (LInt j = m1_dagger.row[local_basis_m1]; j < m1_dagger.row[local_basis_m1 + 1]; ++j){
+               const LInt a_basis = global_basis - (local_basis_m1 - m1_dagger.col[j])*site_constant_m1;
                if (basis_inv.count(a_basis) != 0) {
                   temp_val_m1 += eigenvector.val[basis_inv.at(a_basis)]*m1_dagger.val[j];
                }
@@ -270,8 +270,8 @@ public:
                }
             }
             
-            for (std::int64_t j = m_2.row[local_basis_m2]; j < m_2.row[local_basis_m2 + 1]; ++j){
-               const std::int64_t a_basis = global_basis - (local_basis_m2 - m_2.col[j])*site_constant_m2;
+            for (LInt j = m_2.row[local_basis_m2]; j < m_2.row[local_basis_m2 + 1]; ++j){
+               const LInt a_basis = global_basis - (local_basis_m2 - m_2.col[j])*site_constant_m2;
                if (basis_inv.count(a_basis) != 0) {
                   temp_val_m2 += eigenvector.val[basis_inv.at(a_basis)]*m_2.val[j];
                }
@@ -319,9 +319,9 @@ public:
       
       const auto &basis_gs_sector_inv = model.GetTargetBasisInv();
       const int dim_onsite = static_cast<int>(m1_dagger.row_dim);
-      const std::int64_t site_constant_m1 = static_cast<std::int64_t>(std::pow(dim_onsite, site_1));
-      const std::int64_t site_constant_m2 = static_cast<std::int64_t>(std::pow(dim_onsite, site_2));
-      const std::int64_t site_constant_m3 = static_cast<std::int64_t>(std::pow(dim_onsite, site_3));
+      const LInt site_constant_m1 = static_cast<LInt>(std::pow(dim_onsite, site_1));
+      const LInt site_constant_m2 = static_cast<LInt>(std::pow(dim_onsite, site_2));
+      const LInt site_constant_m3 = static_cast<LInt>(std::pow(dim_onsite, site_3));
       const BraketVector &eigenvector = eigenvectors_.at(target_level);
       BraketVector vector_work_a;
       BraketVector vector_work_b;
@@ -335,14 +335,14 @@ public:
          model.GenerateBasis(sector_m3);
          const auto &basis_m1 = model.GetBasis(sector_m1);
          const auto &basis_m3 = model.GetBasis(sector_m3);
-         const std::int64_t dim_target_m1 = static_cast<std::int64_t>(basis_m1.size());
-         const std::int64_t dim_target_m3 = static_cast<std::int64_t>(basis_m3.size());
+         const LInt dim_target_m1 = static_cast<LInt>(basis_m1.size());
+         const LInt dim_target_m3 = static_cast<LInt>(basis_m3.size());
          
          //m3|gs>
          vector_work_a.val.resize(dim_target_m3);
 #pragma omp parallel for
-         for (std::int64_t i = 0; i < dim_target_m3; ++i) {
-            const std::int64_t global_basis = basis_m3[i];
+         for (LInt i = 0; i < dim_target_m3; ++i) {
+            const LInt global_basis = basis_m3[i];
             const int local_basis = CalculateLocalBasis(global_basis, site_3, dim_onsite);
             RealType temp_val = 0.0;
             
@@ -357,8 +357,8 @@ public:
                }
             }
             
-            for (std::int64_t j = m_3.row[local_basis]; j < m_3.row[local_basis + 1]; ++j){
-               const std::int64_t a_basis = global_basis - (local_basis - m_3.col[j])*site_constant_m3;
+            for (LInt j = m_3.row[local_basis]; j < m_3.row[local_basis + 1]; ++j){
+               const LInt a_basis = global_basis - (local_basis - m_3.col[j])*site_constant_m3;
                if (basis_gs_sector_inv.count(a_basis) != 0) {
                   temp_val += eigenvector.val[basis_gs_sector_inv.at(a_basis)]*m_3.val[j];
                }
@@ -371,8 +371,8 @@ public:
          vector_work_c.val.resize(dim_target_m1);
          const auto &basis_m3_sector_inv = model.GetBasisInv(sector_m3);
 #pragma omp parallel for
-         for (std::int64_t i = 0; i < dim_target_m1; ++i) {
-            const std::int64_t global_basis = basis_m1[i];
+         for (LInt i = 0; i < dim_target_m1; ++i) {
+            const LInt global_basis = basis_m1[i];
             const int local_basis_m1 = CalculateLocalBasis(global_basis, site_1, dim_onsite);
             const int local_basis_m2 = CalculateLocalBasis(global_basis, site_2, dim_onsite);
             RealType temp_val_m1 = 0.0;
@@ -389,8 +389,8 @@ public:
                }
             }
             
-            for (std::int64_t j = m_2.row[local_basis_m2]; j < m_2.row[local_basis_m2 + 1]; ++j){
-               const std::int64_t a_basis = global_basis - (local_basis_m2 - m_2.col[j])*site_constant_m2;
+            for (LInt j = m_2.row[local_basis_m2]; j < m_2.row[local_basis_m2 + 1]; ++j){
+               const LInt a_basis = global_basis - (local_basis_m2 - m_2.col[j])*site_constant_m2;
                if (basis_m3_sector_inv.count(a_basis) != 0) {
                   temp_val_m2 += vector_work_a.val[basis_m3_sector_inv.at(a_basis)]*m_2.val[j];
                }
@@ -408,8 +408,8 @@ public:
                }
             }
             
-            for (std::int64_t j = m_1.row[local_basis_m1]; j < m_1.row[local_basis_m1 + 1]; ++j){
-               const std::int64_t a_basis = global_basis - (local_basis_m1 - m_1.col[j])*site_constant_m1;
+            for (LInt j = m_1.row[local_basis_m1]; j < m_1.row[local_basis_m1 + 1]; ++j){
+               const LInt a_basis = global_basis - (local_basis_m1 - m_1.col[j])*site_constant_m1;
                if (basis_gs_sector_inv.count(a_basis) != 0) {
                   temp_val_m1 += eigenvector.val[basis_gs_sector_inv.at(a_basis)]*m_1.val[j];
                }
@@ -463,10 +463,10 @@ public:
       
       const auto &basis_gs_sector_inv = model.GetTargetBasisInv();
       const int dim_onsite = static_cast<int>(m1_dagger.row_dim);
-      const std::int64_t site_constant_m1 = static_cast<std::int64_t>(std::pow(dim_onsite, site_1));
-      const std::int64_t site_constant_m2 = static_cast<std::int64_t>(std::pow(dim_onsite, site_2));
-      const std::int64_t site_constant_m3 = static_cast<std::int64_t>(std::pow(dim_onsite, site_3));
-      const std::int64_t site_constant_m4 = static_cast<std::int64_t>(std::pow(dim_onsite, site_4));
+      const LInt site_constant_m1 = static_cast<LInt>(std::pow(dim_onsite, site_1));
+      const LInt site_constant_m2 = static_cast<LInt>(std::pow(dim_onsite, site_2));
+      const LInt site_constant_m3 = static_cast<LInt>(std::pow(dim_onsite, site_3));
+      const LInt site_constant_m4 = static_cast<LInt>(std::pow(dim_onsite, site_4));
       const BraketVector &eigenvector = eigenvectors_.at(target_level);
       BraketVector vector_work_m1;
       BraketVector vector_work_m2m1;
@@ -486,15 +486,15 @@ public:
          const auto &basis_ket_1 = model.GetBasis(sector_ket_change_1);
          const auto &basis_ket_1_inv = model.GetBasisInv(sector_ket_change_1);
          const auto &basis_bra_1_inv = model.GetBasisInv(sector_bra_change_1);
-         const std::int64_t dim_target_bra_1 = static_cast<std::int64_t>(basis_bra_1.size());
-         const std::int64_t dim_target_bra_2 = static_cast<std::int64_t>(basis_bra_2.size());
-         const std::int64_t dim_target_ket_1 = static_cast<std::int64_t>(basis_ket_1.size());
+         const LInt dim_target_bra_1 = static_cast<LInt>(basis_bra_1.size());
+         const LInt dim_target_bra_2 = static_cast<LInt>(basis_bra_2.size());
+         const LInt dim_target_ket_1 = static_cast<LInt>(basis_ket_1.size());
          
          //m4|gs>
          vector_work_m4.val.resize(dim_target_ket_1);
 #pragma omp parallel for
-         for (std::int64_t i = 0; i < dim_target_ket_1; ++i) {
-            const std::int64_t global_basis = basis_ket_1[i];
+         for (LInt i = 0; i < dim_target_ket_1; ++i) {
+            const LInt global_basis = basis_ket_1[i];
             const int local_basis = CalculateLocalBasis(global_basis, site_4, dim_onsite);
             RealType temp_val = 0.0;
             
@@ -509,8 +509,8 @@ public:
                }
             }
             
-            for (std::int64_t j = m_4.row[local_basis]; j < m_4.row[local_basis + 1]; ++j){
-               const std::int64_t a_basis = global_basis - (local_basis - m_4.col[j])*site_constant_m4;
+            for (LInt j = m_4.row[local_basis]; j < m_4.row[local_basis + 1]; ++j){
+               const LInt a_basis = global_basis - (local_basis - m_4.col[j])*site_constant_m4;
                if (basis_gs_sector_inv.count(a_basis) != 0) {
                   temp_val += eigenvector.val[basis_gs_sector_inv.at(a_basis)]*m_4.val[j];
                }
@@ -521,8 +521,8 @@ public:
          //m1_dag|gs>
          vector_work_m1.val.resize(dim_target_bra_1);
 #pragma omp parallel for
-         for (std::int64_t i = 0; i < dim_target_bra_1; ++i) {
-            const std::int64_t global_basis = basis_bra_1[i];
+         for (LInt i = 0; i < dim_target_bra_1; ++i) {
+            const LInt global_basis = basis_bra_1[i];
             const int local_basis = CalculateLocalBasis(global_basis, site_1, dim_onsite);
             RealType temp_val = 0.0;
             
@@ -537,8 +537,8 @@ public:
                }
             }
             
-            for (std::int64_t j = m1_dagger.row[local_basis]; j < m1_dagger.row[local_basis + 1]; ++j){
-               const std::int64_t a_basis = global_basis - (local_basis - m1_dagger.col[j])*site_constant_m1;
+            for (LInt j = m1_dagger.row[local_basis]; j < m1_dagger.row[local_basis + 1]; ++j){
+               const LInt a_basis = global_basis - (local_basis - m1_dagger.col[j])*site_constant_m1;
                if (basis_gs_sector_inv.count(a_basis) != 0) {
                   temp_val += eigenvector.val[basis_gs_sector_inv.at(a_basis)]*m1_dagger.val[j];
                }
@@ -551,8 +551,8 @@ public:
          vector_work_m2m1.val.resize(dim_target_bra_2);
          
 #pragma omp parallel for
-         for (std::int64_t i = 0; i < dim_target_bra_2; ++i) {
-            const std::int64_t global_basis = basis_bra_2[i];
+         for (LInt i = 0; i < dim_target_bra_2; ++i) {
+            const LInt global_basis = basis_bra_2[i];
             const int local_basis_m2 = CalculateLocalBasis(global_basis, site_2, dim_onsite);
             const int local_basis_m3 = CalculateLocalBasis(global_basis, site_3, dim_onsite);
             RealType temp_val = 0.0;
@@ -568,8 +568,8 @@ public:
                }
             }
             
-            for (std::int64_t j = m_3.row[local_basis_m3]; j < m_3.row[local_basis_m3 + 1]; ++j){
-               const std::int64_t a_basis = global_basis - (local_basis_m3 - m_3.col[j])*site_constant_m3;
+            for (LInt j = m_3.row[local_basis_m3]; j < m_3.row[local_basis_m3 + 1]; ++j){
+               const LInt a_basis = global_basis - (local_basis_m3 - m_3.col[j])*site_constant_m3;
                if (basis_ket_1_inv.count(a_basis) != 0) {
                   temp_val += vector_work_m4.val[basis_ket_1_inv.at(a_basis)]*m_3.val[j];
                }
@@ -589,8 +589,8 @@ public:
                }
             }
             
-            for (std::int64_t j = m2_dagger.row[local_basis_m2]; j < m2_dagger.row[local_basis_m2 + 1]; ++j){
-               const std::int64_t a_basis = global_basis - (local_basis_m2 - m2_dagger.col[j])*site_constant_m2;
+            for (LInt j = m2_dagger.row[local_basis_m2]; j < m2_dagger.row[local_basis_m2 + 1]; ++j){
+               const LInt a_basis = global_basis - (local_basis_m2 - m2_dagger.col[j])*site_constant_m2;
                if (basis_bra_1_inv.count(a_basis) != 0) {
                   temp_val += vector_work_m1.val[basis_bra_1_inv.at(a_basis)]*m2_dagger.val[j];
                }
@@ -609,7 +609,7 @@ private:
    std::vector<BraketVector> eigenvectors_;
    std::vector<RealType>     eigenvalues_;
    
-   int CalculateLocalBasis(std::int64_t global_basis, const int site, const int dim_onsite) const {
+   int CalculateLocalBasis(LInt global_basis, const int site, const int dim_onsite) const {
       for (int i = 0; i < site; ++i) {
          global_basis = global_basis/dim_onsite;
       }
@@ -617,7 +617,7 @@ private:
    }
    
    void GenerateMatrixComponentsOnsite(ExactDiagMatrixComponents *edmc,
-                                       const std::int64_t basis,
+                                       const LInt basis,
                                        const int site,
                                        const CRS &matrix_onsite,
                                        const RealType coeef) const {
@@ -627,10 +627,10 @@ private:
       }
       
       const int          basis_onsite  = edmc->basis_onsite[site];
-      const std::int64_t site_constant = edmc->site_constant[site];
+      const LInt site_constant = edmc->site_constant[site];
       
-      for (std::int64_t i = matrix_onsite.row[basis_onsite]; i < matrix_onsite.row[basis_onsite + 1]; ++i) {
-         const std::int64_t a_basis = basis + (matrix_onsite.col[i] - basis_onsite)*site_constant;
+      for (LInt i = matrix_onsite.row[basis_onsite]; i < matrix_onsite.row[basis_onsite + 1]; ++i) {
+         const LInt a_basis = basis + (matrix_onsite.col[i] - basis_onsite)*site_constant;
          if (edmc->inv_basis_affected.count(a_basis) == 0) {
             edmc->inv_basis_affected[a_basis] = edmc->basis_affected.size();
             edmc->val.push_back(coeef*matrix_onsite.val[i]);
@@ -643,7 +643,7 @@ private:
    }
    
    void GenerateMatrixComponentsIntersite(ExactDiagMatrixComponents *edmc,
-                                          const std::int64_t basis,
+                                          const LInt basis,
                                           const int site_1,
                                           const CRS &matrix_onsite_1,
                                           const int site_2,
@@ -657,14 +657,14 @@ private:
       
       const int          basis_onsite_1  = edmc->basis_onsite[site_1];
       const int          basis_onsite_2  = edmc->basis_onsite[site_2];
-      const std::int64_t site_constant_1 = edmc->site_constant[site_1];
-      const std::int64_t site_constant_2 = edmc->site_constant[site_2];
+      const LInt site_constant_1 = edmc->site_constant[site_1];
+      const LInt site_constant_2 = edmc->site_constant[site_2];
       
-      for (std::int64_t i1 = matrix_onsite_1.row[basis_onsite_1]; i1 < matrix_onsite_1.row[basis_onsite_1 + 1]; ++i1) {
+      for (LInt i1 = matrix_onsite_1.row[basis_onsite_1]; i1 < matrix_onsite_1.row[basis_onsite_1 + 1]; ++i1) {
          const RealType     val_1 = matrix_onsite_1.val[i1];
-         const std::int64_t col_1 = matrix_onsite_1.col[i1];
-         for (std::int64_t i2 = matrix_onsite_2.row[basis_onsite_2]; i2 < matrix_onsite_2.row[basis_onsite_2 + 1]; ++i2) {
-            const std::int64_t a_basis = basis + (col_1 - basis_onsite_1)*site_constant_1 + (matrix_onsite_2.col[i2] - basis_onsite_2)*site_constant_2;
+         const LInt col_1 = matrix_onsite_1.col[i1];
+         for (LInt i2 = matrix_onsite_2.row[basis_onsite_2]; i2 < matrix_onsite_2.row[basis_onsite_2 + 1]; ++i2) {
+            const LInt a_basis = basis + (col_1 - basis_onsite_1)*site_constant_1 + (matrix_onsite_2.col[i2] - basis_onsite_2)*site_constant_2;
             if (edmc->inv_basis_affected.count(a_basis) == 0) {
                edmc->inv_basis_affected[a_basis] = edmc->basis_affected.size();
                edmc->val.push_back(fermion_sign*coeef*val_1*matrix_onsite_2.val[i2]);
@@ -684,8 +684,8 @@ private:
       const auto &basis     = model.GetTargetBasis();
       const auto &basis_inv = model.GetTargetBasisInv();
       
-      const std::int64_t dim_target = basis.size();
-      std::int64_t num_total_elements = 0;
+      const LInt dim_target = basis.size();
+      LInt num_total_elements = 0;
       
 #ifdef _OPENMP
       const int num_threads = omp_get_max_threads();
@@ -694,23 +694,23 @@ private:
       for (int thread_num = 0; thread_num < num_threads; ++thread_num) {
          components[thread_num].site_constant.resize(model.GetSystemSize());
          for (int site = 0; site < model.GetSystemSize(); ++site) {
-            components[thread_num].site_constant[site] = static_cast<std::int64_t>(std::pow(model.GetDimOnsite(), site));
+            components[thread_num].site_constant[site] = static_cast<LInt>(std::pow(model.GetDimOnsite(), site));
          }
          components[thread_num].basis_onsite.resize(model.GetSystemSize());
       }
       
-      std::vector<std::int64_t> num_row_element(dim_target + 1);
+      std::vector<LInt> num_row_element(dim_target + 1);
       
 #pragma omp parallel for
-      for (std::int64_t row = 0; row < dim_target; ++row) {
+      for (LInt row = 0; row < dim_target; ++row) {
          const int thread_num = omp_get_thread_num();
          GenerateMatrixComponents(&components[thread_num], basis[row], model);
          const std::size_t size = components[thread_num].basis_affected.size();
          for (std::size_t i = 0; i < size; ++i) {
-            const std::int64_t a_basis = components[thread_num].basis_affected[i];
+            const LInt a_basis = components[thread_num].basis_affected[i];
             const RealType     val     = components[thread_num].val[i];
             if (basis_inv.count(a_basis) > 0) {
-               const std::int64_t inv = basis_inv.at(a_basis);
+               const LInt inv = basis_inv.at(a_basis);
                if ((inv < row && std::abs(val) > components[thread_num].zero_precision) || inv == row) {
                   num_row_element[row + 1]++;
                }
@@ -725,12 +725,12 @@ private:
       }
       
 #pragma omp parallel for reduction(+:num_total_elements)
-      for (std::int64_t row = 0; row <= dim_target; ++row) {
+      for (LInt row = 0; row <= dim_target; ++row) {
          num_total_elements += num_row_element[row];
       }
       
       //Do not use openmp here
-      for (std::int64_t row = 0; row < dim_target; ++row) {
+      for (LInt row = 0; row < dim_target; ++row) {
          num_row_element[row + 1] += num_row_element[row];
       }
       
@@ -739,15 +739,15 @@ private:
       ham->val.resize(num_total_elements);
       
 #pragma omp parallel for
-      for (std::int64_t row = 0; row < dim_target; ++row) {
+      for (LInt row = 0; row < dim_target; ++row) {
          const int thread_num = omp_get_thread_num();
          GenerateMatrixComponents(&components[thread_num], basis[row], model);
          const std::size_t size = components[thread_num].basis_affected.size();
          for (std::size_t i = 0; i < size; ++i) {
-            const std::int64_t a_basis = components[thread_num].basis_affected[i];
+            const LInt a_basis = components[thread_num].basis_affected[i];
             const RealType     val     = components[thread_num].val[i];
             if (basis_inv.count(a_basis) > 0) {
-               const std::int64_t inv = basis_inv.at(a_basis);
+               const LInt inv = basis_inv.at(a_basis);
                if ((inv < row && std::abs(val) > components[thread_num].zero_precision) || inv == row) {
                   ham->col[num_row_element[row]] = inv;
                   ham->val[num_row_element[row]] = val;
@@ -764,20 +764,20 @@ private:
       ExactDiagMatrixComponents components;
       components.site_constant.resize(model.GetSystemSize());
       for (int site = 0; site < model.GetSystemSize(); ++site) {
-         components.site_constant[site] = static_cast<std::int64_t>(std::pow(model.GetDimOnsite(), site));
+         components.site_constant[site] = static_cast<LInt>(std::pow(model.GetDimOnsite(), site));
       }
       components.basis_onsite.resize(model.GetSystemSize());
       
-      std::vector<std::int64_t> num_row_element(dim_target + 1);
+      std::vector<LInt> num_row_element(dim_target + 1);
       
-      for (std::int64_t row = 0; row < dim_target; ++row) {
+      for (LInt row = 0; row < dim_target; ++row) {
          GenerateMatrixComponents(&components, basis[row], model);
          const std::size_t size = components.basis_affected.size();
          for (std::size_t i = 0; i < size; ++i) {
-            const std::int64_t a_basis = components.basis_affected[i];
+            const LInt a_basis = components.basis_affected[i];
             const RealType     val     = components.val[i];
             if (basis_inv.count(a_basis) > 0) {
-               const std::int64_t inv = basis_inv.at(a_basis);
+               const LInt inv = basis_inv.at(a_basis);
                if ((inv <= row && std::abs(val) > components.zero_precision) || inv == row) {
                   num_row_element[row + 1]++;
                }
@@ -791,11 +791,11 @@ private:
          components.inv_basis_affected.clear();
       }
       
-      for (std::int64_t row = 0; row <= dim_target; ++row) {
+      for (LInt row = 0; row <= dim_target; ++row) {
          num_total_elements += num_row_element[row];
       }
       
-      for (std::int64_t row = 0; row < dim_target; ++row) {
+      for (LInt row = 0; row < dim_target; ++row) {
          num_row_element[row + 1] += num_row_element[row];
       }
       
@@ -807,10 +807,10 @@ private:
          GenerateMatrixComponents(&components, basis[row], model);
          const std::size_t size = components.basis_affected.size();
          for (std::size_t i = 0; i < size; ++i) {
-            const std::int64_t a_basis = components.basis_affected[i];
+            const LInt a_basis = components.basis_affected[i];
             const RealType     val     = components.val[i];
             if (basis_inv.count(a_basis) > 0) {
-               const std::int64_t inv = basis_inv.at(a_basis);
+               const LInt inv = basis_inv.at(a_basis);
                if ((inv <= row && std::abs(val) > components.zero_precision) || inv == row) {
                   ham->col[num_row_element[row]] = inv;
                   ham->val[num_row_element[row]] = val;
@@ -829,8 +829,8 @@ private:
       ham->col_dim = dim_target;
       
       const bool flag_check_1 = (ham->row[dim_target] != num_total_elements);
-      const bool flag_check_2 = (static_cast<std::int64_t>(ham->col.size()) != num_total_elements);
-      const bool flag_check_3 = (static_cast<std::int64_t>(ham->val.size()) != num_total_elements);
+      const bool flag_check_2 = (static_cast<LInt>(ham->col.size()) != num_total_elements);
+      const bool flag_check_3 = (static_cast<LInt>(ham->val.size()) != num_total_elements);
       
       if (flag_check_1 || flag_check_2 || flag_check_3) {
          std::stringstream ss;
@@ -845,7 +845,7 @@ private:
       
    }
    
-   void GenerateMatrixComponents(ExactDiagMatrixComponents *edmc, const std::int64_t basis, const model::XXZ_1D<RealType> &model_input) const {
+   void GenerateMatrixComponents(ExactDiagMatrixComponents *edmc, const LInt basis, const model::XXZ_1D<RealType> &model_input) const {
       
       for (int site = 0; site < model_input.GetSystemSize(); ++site) {
          edmc->basis_onsite[site] = CalculateLocalBasis(basis, site, model_input.GetDimOnsite());
@@ -901,7 +901,7 @@ private:
       
    }
    
-   void GenerateMatrixComponents(ExactDiagMatrixComponents *edmc, const std::int64_t basis, const model::Hubbard_1D<RealType> &model_input) const {
+   void GenerateMatrixComponents(ExactDiagMatrixComponents *edmc, const LInt basis, const model::Hubbard_1D<RealType> &model_input) const {
       
       const auto &nc            = model_input.GetOnsiteOperatorNC();
       const auto &c_up          = model_input.GetOnsiteOperatorCUp();
@@ -977,7 +977,7 @@ private:
       
    }
    
-   void GenerateMatrixComponents(ExactDiagMatrixComponents *edmc, const std::int64_t basis, const model::KondoLattice_1D<RealType> &model_input) const {
+   void GenerateMatrixComponents(ExactDiagMatrixComponents *edmc, const LInt basis, const model::KondoLattice_1D<RealType> &model_input) const {
       
       const auto &c_up          = model_input.GetOnsiteOperatorCUp();
       const auto &c_up_dagger   = model_input.GetOnsiteOperatorCUpDagger();
@@ -1011,7 +1011,7 @@ private:
    }
    
    template<class BaseClass>
-   void GenerateMatrixComponents(ExactDiagMatrixComponents *edmc, const std::int64_t basis, const model::GeneralModel_1D<BaseClass> &model_input) const {
+   void GenerateMatrixComponents(ExactDiagMatrixComponents *edmc, const LInt basis, const model::GeneralModel_1D<BaseClass> &model_input) const {
       
       for (int site = 0; site < model_input.GetSystemSize(); ++site) {
          edmc->basis_onsite[site] = CalculateLocalBasis(basis, site, model_input.GetDimOnsite());

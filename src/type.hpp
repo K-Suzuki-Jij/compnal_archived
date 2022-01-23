@@ -12,15 +12,41 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Created by Kohei Suzuki on 2021/12/02.
+//  Created by Kohei Suzuki on 2022/01/23.
 //
 
-#ifndef COMPNAL_UTILITY_HASH_HPP_
-#define COMPNAL_UTILITY_HASH_HPP_
+#ifndef COMPNAL_TYPE_HPP_
+#define COMPNAL_TYPE_HPP_
+
+#include <cstdint>
+#include <utility>
+#include <unordered_map>
 
 namespace compnal {
-namespace utility {
 
+//! @brief Half integer type.
+using HalfInt = double;
+
+//! @brief Long integer type.
+using LInt = std::int64_t;
+
+//! @brief Integer pair.
+using IntPair = std::pair<int, int>;
+
+//! @brief Long integer pair.
+using LIntPair = std::pair<LInt, LInt>;
+
+//! @brief std::vector<int> and int pair.
+using VecIntPair = std::pair<std::vector<int>, int>;
+
+//! @brief Alias of std::unordered_map.
+//! @tparam Key Type of key.
+//! @tparam T Type of value.
+//! @tparam Hash Type of hash function.
+template<class Key, class T, class Hash = std::hash<Key>>
+using Map = std::unordered_map<Key, T, Hash>;
+
+//! @brief Alias of hash class for std::pair.
 struct PairHash {
    template<class T1, class T2>
    std::size_t operator() (const std::pair<T1, T2>& p) const {
@@ -29,7 +55,8 @@ struct PairHash {
    }
 };
 
-struct VectorHash {
+//! @brief Alias of hash class for std::vector.
+struct VecHash {
    template<class T>
    std::size_t operator() (const std::vector<T> &V) const {
       std::size_t hash = V.size();
@@ -40,7 +67,8 @@ struct VectorHash {
    }
 };
 
-struct VectorIntHash {
+//! @brief Alias of hash class for std::pair including std::vector.
+struct VecIntHash {
    template<class T1, class T2>
    std::size_t operator() (const std::pair<std::vector<T1>, T2>& p) const {
       std::size_t hash = p.first.size();
@@ -54,7 +82,7 @@ struct VectorIntHash {
 };
 
 
-}
-}
+} //namespace compnal
 
-#endif /* COMPNAL_UTILITY_HASH_HPP_ */
+
+#endif /* COMPNAL_TYPE_HPP_ */

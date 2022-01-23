@@ -20,6 +20,7 @@
 
 #include "../sparse_matrix/all.hpp"
 #include "../utility/all.hpp"
+#include "../type.hpp"
 #include "base_u1_spin_1d.hpp"
 #include "base_u1_electron_1d.hpp"
 
@@ -37,18 +38,12 @@ namespace model {
 //! @tparam RealType The type of real values.
 template<typename RealType>
 class BaseU1SpinElectron_1D {
-   
+      
    //! @brief Alias of compressed row strage (CRS) with RealType.
    using CRS = sparse_matrix::CRS<RealType>;
    
-   using LInt     = std::int64_t;
-   using QPair    = std::pair<int, double>;
-   using IntPair  = std::pair<int, int>;
-   using LIntPair = std::pair<LInt, LInt>;
-   using PairHash = utility::PairHash;
-   
-   template<class Key, class T, class Hash = std::hash<Key>>
-   using Map = std::unordered_map<Key, T, Hash>;
+   //! @brief Alias of quantum number (total electron, total sz) pair.
+   using QType = std::pair<int, HalfInt>;
    
 public:
    
@@ -181,7 +176,7 @@ public:
    //! @brief Check if there is a subspace specified by the input quantum numbers.
    //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
    //! @return ture if there exists corresponding subspace, otherwise false.
-   bool isValidQNumber(const QPair &quantum_number) const {
+   bool isValidQNumber(const QType &quantum_number) const {
       return isValidQNumber(system_size_, 0.5*magnitude_2lspin_, quantum_number.first, quantum_number.second);
    }
    
@@ -272,7 +267,7 @@ public:
    //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
    //! @return The dimension of the target Hilbert space.
-   LInt CalculateTargetDim(const QPair &quantum_number) const {
+   LInt CalculateTargetDim(const QType &quantum_number) const {
       return CalculateTargetDim(system_size_, 0.5*magnitude_2lspin_, quantum_number.first, quantum_number.second);
    }
    
@@ -289,7 +284,7 @@ public:
    //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
    //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
-   void GenerateBasis(const QPair &quantum_number) {
+   void GenerateBasis(const QType &quantum_number) {
       GenerateBasis(quantum_number.first, quantum_number.second);
    }
    
@@ -525,10 +520,10 @@ public:
    //! @param m_1 The matrix of an onsite operator.
    //! @param m_2 The matrix of an onsite operator.
    //! @return The list of quantum numbers.
-   std::vector<QPair> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
+   std::vector<QType> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
       // TODO: Check input matrics
-      std::unordered_set<QPair, PairHash> delta_sector_set_m1;
-      std::unordered_set<QPair, PairHash> delta_sector_set_m2;
+      std::unordered_set<QType, PairHash> delta_sector_set_m1;
+      std::unordered_set<QType, PairHash> delta_sector_set_m2;
       for (LInt i = 0; i < m_1.row_dim; ++i) {
          for (LInt j = m_1.row[i]; j < m_1.row[i + 1]; ++j) {
             if (m_1.val[j] != 0.0) {
@@ -543,7 +538,7 @@ public:
             }
          }
       }
-      std::vector<QPair> target_sector_set;
+      std::vector<QType> target_sector_set;
       for (const auto &del_sec_m1: delta_sector_set_m1) {
          for (const auto &del_sec_m2: delta_sector_set_m2) {
             const bool c1 = isValidQNumber(del_sec_m1.first + total_electron_, del_sec_m1.second + 0.5*total_2sz_);
@@ -562,10 +557,10 @@ public:
    //! @param m_2_ket The matrix of an onsite operator.
    //! @param m_3_ket The matrix of an onsite operator.
    //! @return The list of quantum numbers.
-   std::vector<std::pair<QPair, QPair>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_ket, const CRS &m_3_ket) const {
-      std::unordered_set<QPair, PairHash> delta_sector_set_m1;
-      std::unordered_set<QPair, PairHash> delta_sector_set_m2;
-      std::unordered_set<QPair, PairHash> delta_sector_set_m3;
+   std::vector<std::pair<QType, QType>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_ket, const CRS &m_3_ket) const {
+      std::unordered_set<QType, PairHash> delta_sector_set_m1;
+      std::unordered_set<QType, PairHash> delta_sector_set_m2;
+      std::unordered_set<QType, PairHash> delta_sector_set_m3;
       
       for (LInt i = 0; i < m_1_bra.row_dim; ++i) {
          for (LInt j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
@@ -591,12 +586,12 @@ public:
          }
       }
       
-      std::vector<std::pair<QPair, QPair>> target_sector_set;
+      std::vector<std::pair<QType, QType>> target_sector_set;
       
       for (const auto &del_sec_m1: delta_sector_set_m1) {
          for (const auto &del_sec_m2: delta_sector_set_m2) {
             for (const auto &del_sec_m3: delta_sector_set_m3) {
-               const QPair del_sec_m2_m3 = {del_sec_m2.first + del_sec_m3.first, del_sec_m2.second + del_sec_m3.second};
+               const QType del_sec_m2_m3 = {del_sec_m2.first + del_sec_m3.first, del_sec_m2.second + del_sec_m3.second};
                const bool c1 = isValidQNumber(del_sec_m1.first + total_electron_, del_sec_m1.second + 0.5*total_2sz_);
                const bool c2 = isValidQNumber(del_sec_m3.first + total_electron_, del_sec_m3.second + 0.5*total_2sz_);
                if (del_sec_m1 == del_sec_m2_m3 && c1 && c2) {
@@ -619,12 +614,12 @@ public:
    //! @param m_3_ket The matrix of an onsite operator.
    //! @param m_4_ket The matrix of an onsite operator.
    //! @return The list of quantum numbers.
-   std::vector<std::tuple<QPair, QPair, QPair>>
+   std::vector<std::tuple<QType, QType, QType>>
    GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_bra, const CRS &m_3_ket, const CRS &m_4_ket) const {
-      std::unordered_set<QPair, PairHash> delta_sector_set_m1;
-      std::unordered_set<QPair, PairHash> delta_sector_set_m2;
-      std::unordered_set<QPair, PairHash> delta_sector_set_m3;
-      std::unordered_set<QPair, PairHash> delta_sector_set_m4;
+      std::unordered_set<QType, PairHash> delta_sector_set_m1;
+      std::unordered_set<QType, PairHash> delta_sector_set_m2;
+      std::unordered_set<QType, PairHash> delta_sector_set_m3;
+      std::unordered_set<QType, PairHash> delta_sector_set_m4;
       
       for (LInt i = 0; i < m_1_bra.row_dim; ++i) {
          for (LInt j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
@@ -658,13 +653,13 @@ public:
          }
       }
       
-      std::vector<std::tuple<QPair, QPair, QPair>> target_sector_set;
+      std::vector<std::tuple<QType, QType, QType>> target_sector_set;
       for (const auto &del_sec_m1: delta_sector_set_m1) {
          for (const auto &del_sec_m2: delta_sector_set_m2) {
             for (const auto &del_sec_m3: delta_sector_set_m3) {
                for (const auto &del_sec_m4: delta_sector_set_m4) {
-                  const QPair del_sec_m1_m2 = {del_sec_m1.first + del_sec_m2.first, del_sec_m1.second + del_sec_m2.second};
-                  const QPair del_sec_m3_m4 = {del_sec_m3.first + del_sec_m4.first, del_sec_m3.second + del_sec_m4.second};
+                  const QType del_sec_m1_m2 = {del_sec_m1.first + del_sec_m2.first, del_sec_m1.second + del_sec_m2.second};
+                  const QType del_sec_m3_m4 = {del_sec_m3.first + del_sec_m4.first, del_sec_m3.second + del_sec_m4.second};
                   const bool c1 = isValidQNumber(del_sec_m1.first    + total_electron_, del_sec_m1.second    + 0.5*total_2sz_);
                   const bool c2 = isValidQNumber(del_sec_m1_m2.first + total_electron_, del_sec_m1_m2.second + 0.5*total_2sz_);
                   const bool c3 = isValidQNumber(del_sec_m4.first    + total_electron_, del_sec_m4.second    + 0.5*total_2sz_);
@@ -1016,7 +1011,7 @@ public:
    //! @param row The row in the matrix representation of an onsite operator.
    //! @param col The column in the matrix representation of an onsite operator.
    //! @return The differences of the total electron and the total sz.
-   inline QPair CalculateQuntumNumberDifference(const int row, const int col) const {
+   inline QType CalculateQuntumNumberDifference(const int row, const int col) const {
       const int row_electron = CalculateBasisOnsiteElectron(row);
       const int col_electron = CalculateBasisOnsiteElectron(col);
       const int row_lspin    = CalculateBasisOnsiteLSpin(row);
@@ -1159,7 +1154,7 @@ public:
    //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
    //! @return Basis.
-   inline const std::vector<LInt> &GetBasis(const QPair &quantum_number) const {
+   inline const std::vector<LInt> &GetBasis(const QType &quantum_number) const {
       return bases_.at({quantum_number.first, utility::DoubleTheNumber(quantum_number.second)});
    }
    
@@ -1169,7 +1164,7 @@ public:
    //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
    //! @return Inverse basis.
-   inline const Map<LInt, LInt> &GetBasisInv(const QPair &quantum_number) const {
+   inline const Map<LInt, LInt> &GetBasisInv(const QType &quantum_number) const {
       return bases_inv_.at({quantum_number.first, utility::DoubleTheNumber(quantum_number.second)});
    }
    

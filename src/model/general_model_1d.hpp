@@ -19,6 +19,7 @@
 #define COMPNAL_MODEL_U1_ELECTRON_1D_HPP_
 
 #include "../sparse_matrix/all.hpp"
+#include "../type.hpp"
 
 #include <unordered_map>
 #include <vector>
@@ -118,7 +119,7 @@ public:
    
    //! @brief Get onsite potential term list added to the system.
    //! @return Onsite potential term list added to the system.
-   inline const std::unordered_map<int, CRS> &GetOnsiteOperatorList() const { return onsite_operator_list_; }
+   inline const Map<int, CRS> &GetOnsiteOperatorList() const { return onsite_operator_list_; }
    
    //! @brief Get an onsite potential term added to the system \f$ \hat{O}_{i}\f$.
    //! @param site The site \f$ i\f$.
@@ -127,7 +128,7 @@ public:
    
    //! @brief Get interaction term list added to the system.
    //! @return Interaction term list added to the system.
-   inline const std::unordered_map<int, std::unordered_map<int, std::vector<std::pair<CRS, CRS>>>> &GetIntersiteOperatorList() const { return intersite_operator_list_; }
+   inline const Map<int, Map<int, std::vector<std::pair<CRS, CRS>>>> &GetIntersiteOperatorList() const { return intersite_operator_list_; }
    
    //! @brief Get an interaction term added to the system \f$ \hat{O}_{i}\hat{P}_{j}\f$.
    //! @param site_1 The site \f$ i\f$.
@@ -137,10 +138,10 @@ public:
    
 private:
    //! @brief Onsite potential term list added to the system.
-   std::unordered_map<int, CRS> onsite_operator_list_;
+   Map<int, CRS> onsite_operator_list_;
    
    //! @brief Interaction term list added to the system.
-   std::unordered_map<int, std::unordered_map<int, std::vector<std::pair<CRS, CRS>>>> intersite_operator_list_;
+   Map<int, Map<int, std::vector<std::pair<CRS, CRS>>>> intersite_operator_list_;
    
 };
 

@@ -30,7 +30,7 @@ void CalculateMatrixVectorProduct(BraketVector<RealType> *vector_out,
                                   const CRS<RealType> &matrix_in,
                                   const BraketVector<RealType> &vector_in) {
    
-   if (matrix_in.col_dim != static_cast<std::int64_t>(vector_in.val.size())) {
+   if (matrix_in.col_dim != static_cast<LInt>(vector_in.val.size())) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "The column of the input matrix is " << matrix_in.col_dim  << std::endl;
@@ -40,9 +40,9 @@ void CalculateMatrixVectorProduct(BraketVector<RealType> *vector_out,
    }
    vector_out->val.resize(matrix_in.row_dim);
 #pragma omp parallel for
-   for (std::int64_t i = 0; i < matrix_in.row_dim; ++i) {
+   for (LInt i = 0; i < matrix_in.row_dim; ++i) {
       RealType temp = 0.0;
-      for (std::int64_t j = matrix_in.row[i]; j < matrix_in.row[i+1]; ++j) {
+      for (LInt j = matrix_in.row[i]; j < matrix_in.row[i+1]; ++j) {
          temp += matrix_in.val[j]*vector_in.val[matrix_in.col[j]];
       }
       vector_out->val[i] = temp*coeef;
@@ -63,7 +63,7 @@ void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
       throw std::runtime_error(ss.str());
    }
    
-   if (matrix_in.col_dim != static_cast<std::int64_t>(vector_in.val.size())) {
+   if (matrix_in.col_dim != static_cast<LInt>(vector_in.val.size())) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "The column of the input matrix is " << matrix_in.col_dim  << std::endl;
@@ -83,11 +83,11 @@ void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
    }
    
 #pragma omp parallel for schedule (guided)
-   for (std::int64_t i = 0; i < matrix_in.row_dim; ++i) {
+   for (LInt i = 0; i < matrix_in.row_dim; ++i) {
       const int      thread_num  = omp_get_thread_num();
       const RealType temp_vec_in = vector_in.val[i];
       RealType       temp_val    = matrix_in.val[matrix_in.row[i + 1] - 1]*temp_vec_in;
-      for (std::int64_t j = matrix_in.row[i]; j < matrix_in.row[i + 1] - 1; ++j) {
+      for (LInt j = matrix_in.row[i]; j < matrix_in.row[i + 1] - 1; ++j) {
          temp_val += matrix_in.val[j]*vector_in.val[matrix_in.col[j]];
          (*vectors_work)[thread_num][matrix_in.col[j]] += matrix_in.val[j]*temp_vec_in;
       }
@@ -95,7 +95,7 @@ void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
    }
    
 #pragma omp parallel for
-   for (std::int64_t i = 0; i < matrix_in.row_dim; ++i) {
+   for (LInt i = 0; i < matrix_in.row_dim; ++i) {
       RealType temp_val = 0.0;
       for (int thread_num = 0; thread_num < num_threads; ++thread_num) {
          temp_val += (*vectors_work)[thread_num][i];
@@ -106,10 +106,10 @@ void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
    
 #else
    vector_out->Fill(0.0);
-   for (std::int64_t i = 0; i < matrix_in.row_dim; ++i) {
+   for (LInt i = 0; i < matrix_in.row_dim; ++i) {
       const RealType temp_vec_in = vector_in.val[i];
       RealType       temp_val    = matrix_in.val[matrix_in.row[i + 1] - 1]*temp_vec_in;
-      for (std::int64_t j = matrix_in.row[i]; j < matrix_in.row[i + 1] - 1; ++j) {
+      for (LInt j = matrix_in.row[i]; j < matrix_in.row[i + 1] - 1; ++j) {
          temp_val += matrix_in.val[j]*vector_in.val[matrix_in.col[j]];
          vector_out->val[matrix_in.col[j]] += matrix_in.val[j]*temp_vec_in;
       }
@@ -132,7 +132,7 @@ void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
       throw std::runtime_error(ss.str());
    }
    
-   if (matrix_in.col_dim != static_cast<std::int64_t>(vector_in.val.size())) {
+   if (matrix_in.col_dim != static_cast<LInt>(vector_in.val.size())) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "The column of the input matrix is " << matrix_in.col_dim  << std::endl;
@@ -143,10 +143,10 @@ void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
    vector_out->val.resize(matrix_in.row_dim);
    
    vector_out->Fill(0.0);
-   for (std::int64_t i = 0; i < matrix_in.row_dim; ++i) {
+   for (LInt i = 0; i < matrix_in.row_dim; ++i) {
       const RealType temp_vec_in = vector_in.val[i];
       RealType       temp_val    = matrix_in.val[matrix_in.row[i + 1] - 1]*temp_vec_in;
-      for (std::int64_t j = matrix_in.row[i]; j < matrix_in.row[i + 1] - 1; ++j) {
+      for (LInt j = matrix_in.row[i]; j < matrix_in.row[i + 1] - 1; ++j) {
          temp_val += matrix_in.val[j]*vector_in.val[matrix_in.col[j]];
          vector_out->val[matrix_in.col[j]] += matrix_in.val[j]*temp_vec_in;
       }

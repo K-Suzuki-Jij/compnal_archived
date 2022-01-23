@@ -12,17 +12,21 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Created by Kohei Suzuki on 2021/06/14.
+//  Created by Kohei Suzuki on 2022/01/23.
 //
 
-#include "model/test_model_base_u1_spin_1d.hpp"
-#include "model/test_model_base_u1_electron_1d.hpp"
-#include "model/test_model_base_u1_spin_electron_1d.hpp"
-#include "model/test_model_base_u1_spin_multi_electrons_1d.hpp"
+#ifndef COMPNAL_TEST_MODEL_BASE_U1_SPIN_MULTI_ELECTRONS_1D_HPP_
+#define COMPNAL_TEST_MODEL_BASE_U1_SPIN_MULTI_ELECTRONS_1D_HPP_
 
-#include "gtest/gtest.h"
+#include "../../src/model/base_u1_spin_multi_electrons_1d.hpp"
+#include "../test.hpp"
+#include <gtest/gtest.h>
 
-int main(int argc, char **argv) {
-    testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+
+TEST(ModelBaseU1SpinMultiElectrons1D, ConstructorDefault) {
+   compnal::model::BaseU1SpinMultiElectrons_1D<double> model;
 }
+
+
+#endif /* COMPNAL_TEST_MODEL_BASE_U1_SPIN_MULTI_ELECTRONS_1D_HPP_ */
+   

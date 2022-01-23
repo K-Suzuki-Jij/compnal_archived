@@ -47,7 +47,7 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
       throw std::runtime_error(ss.str());
    }
    
-   if (static_cast<std::int64_t>(vec_in.val.size()) != matrix_in.row_dim) {
+   if (static_cast<LInt>(vec_in.val.size()) != matrix_in.row_dim) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "Matrix vector product (Ax=b) cannot be defined." << std::endl;
@@ -55,7 +55,7 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
    }
    
    const auto start = std::chrono::system_clock::now();
-   const std::int64_t dim = matrix_in.row_dim;
+   const LInt dim = matrix_in.row_dim;
    BraketVector<RealType> rrr(dim);
    BraketVector<RealType> ppp(dim);
    BraketVector<RealType> yyy(dim);
@@ -68,7 +68,7 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
    }
    
    if (params.flag_use_initial_vec) {
-      if (static_cast<std::int64_t>(vec_out->val.size()) != dim) {
+      if (static_cast<LInt>(vec_out->val.size()) != dim) {
          std::stringstream ss;
          ss << "Error in " << __func__ << std::endl;
          ss << "The dimension of the initial vector is not equal to that of the input matrix." << std::endl;
@@ -80,7 +80,7 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
       std::mt19937 random_number_engine;
       random_number_engine.seed(std::random_device()());
       vec_out->val.resize(dim);
-      for (std::int64_t i = 0; i < dim; ++i) {
+      for (LInt i = 0; i < dim; ++i) {
          vec_out->val[i] = uniform_rand(random_number_engine);
       }
    }
@@ -94,7 +94,7 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
    }
    
 #pragma omp parallel for
-   for (std::int64_t i = 0; i < dim; ++i) {
+   for (LInt i = 0; i < dim; ++i) {
       rrr.val[i] = vec_in.val[i] - rrr.val[i];
       ppp.val[i] = rrr.val[i];
    }
@@ -116,7 +116,7 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
       const RealType alpha      = inner_prod/CalculateInnerProduct(ppp, yyy);
       
 #pragma omp parallel for
-      for (std::int64_t i = 0; i < dim; ++i) {
+      for (LInt i = 0; i < dim; ++i) {
          vec_out->val[i] += alpha*ppp.val[i];
          rrr.val[i]      -= alpha*yyy.val[i];
       }
@@ -143,7 +143,7 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
       const RealType beta = residual_error/inner_prod;
       
 #pragma omp parallel for
-      for (std::int64_t i = 0; i < dim; ++i) {
+      for (LInt i = 0; i < dim; ++i) {
          ppp.val[i] = rrr.val[i] + beta*ppp.val[i];
       }
       Orthonormalize(&ppp, subspace_vectors);

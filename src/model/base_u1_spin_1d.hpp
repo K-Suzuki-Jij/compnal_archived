@@ -20,6 +20,7 @@
 
 #include "../sparse_matrix/all.hpp"
 #include "../utility/all.hpp"
+#include "../type.hpp"
 
 #include <unordered_map>
 #include <unordered_set>
@@ -38,6 +39,9 @@ class BaseU1Spin_1D {
    
    //! @brief Alias of compressed row strage (CRS) with RealType.
    using CRS = sparse_matrix::CRS<RealType>;
+   
+   //! @brief Alias of quantum number (total sz) type.
+   using QType = HalfInt;
    
 public:
    
@@ -61,7 +65,7 @@ public:
    //! @brief Constructor of BaseU1Spin_1D class.
    //! @param system_size The system size \f$ N \f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
-   BaseU1Spin_1D(const int system_size, const double magnitude_spin): BaseU1Spin_1D(system_size) {
+   BaseU1Spin_1D(const int system_size, const HalfInt magnitude_spin): BaseU1Spin_1D(system_size) {
       SetMagnitudeSpin(magnitude_spin);
    }
 
@@ -69,7 +73,7 @@ public:
    //! @param system_size The system size \f$ N \f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{S}^{z}_{i}\rangle \f$.
-   BaseU1Spin_1D(const int system_size, const double magnitude_spin, const double total_sz): BaseU1Spin_1D(system_size, magnitude_spin) {
+   BaseU1Spin_1D(const int system_size, const HalfInt magnitude_spin, const HalfInt total_sz): BaseU1Spin_1D(system_size, magnitude_spin) {
       SetTotalSz(total_sz);
    }
    
@@ -93,7 +97,7 @@ public:
    
    //! @brief Set the magnitude of the spin \f$ S \f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
-   void SetMagnitudeSpin(const double magnitude_spin) {
+   void SetMagnitudeSpin(const HalfInt magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       if (magnitude_2spin <= 0) {
          std::stringstream ss;
@@ -113,7 +117,7 @@ public:
    
    //! @brief Set target Hilbert space specified by the total sz to be diagonalized.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{S}^{z}_{i}\rangle \f$.
-   void SetTotalSz(const double total_sz) {
+   void SetTotalSz(const HalfInt total_sz) {
       const int total_2sz = utility::DoubleTheNumber(total_sz);
       if (total_2sz_ != total_2sz) {
          total_2sz_ = total_2sz;
@@ -123,14 +127,14 @@ public:
    
    //! @brief Set calculated_eigenvector_set_, which represents the calculated eigenvectors and eigenvalues.
    //! @param level Energy level.
-   void SetCalculatedEigenvectorSet(const std::int64_t level) {
+   void SetCalculatedEigenvectorSet(const LInt level) {
       calculated_eigenvector_set_.emplace(level);
    }
       
    //! @brief Check if there is a subspace specified by the input total sz.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{S}^{z}_{i}\rangle \f$
    //! @return ture if there exists corresponding subspace, otherwise false.
-   bool isValidQNumber(const double total_sz) const {
+   bool isValidQNumber(const HalfInt total_sz) const {
       return isValidQNumber(system_size_, 0.5*magnitude_2spin_, total_sz);
    }
    
@@ -151,7 +155,7 @@ public:
    
    //! @brief Print the onsite bases.
    void PrintBasisOnsite() const {
-      const double magnitude_spin = magnitude_2spin_/2.0;
+      const HalfInt magnitude_spin = magnitude_2spin_/2.0;
       for (int row = 0; row < dim_onsite_; ++row) {
          std::cout << "row " << row << ": |Sz=" << magnitude_spin - row << ">" << std::endl;
       }
@@ -160,7 +164,7 @@ public:
    //! @brief Calculate the dimension of the target Hilbert space specified by
    //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @return The dimension of the target Hilbert space.
-   std::int64_t CalculateTargetDim() const {
+   LInt CalculateTargetDim() const {
       return CalculateTargetDim(0.5*total_2sz_);
    }
    
@@ -168,7 +172,7 @@ public:
    //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @return The dimension of the target Hilbert space.
-   std::int64_t CalculateTargetDim(const double total_sz) const {
+   LInt CalculateTargetDim(const HalfInt total_sz) const {
       return CalculateTargetDim(system_size_, 0.5*magnitude_2spin_, total_sz);
    }
    
@@ -181,7 +185,7 @@ public:
    //! @brief Generate bases of the target Hilbert space specified by
    //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
-   void GenerateBasis(const double total_sz) {
+   void GenerateBasis(const HalfInt total_sz) {
       if (!isValidQNumber(total_sz)) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__ << std::endl;
@@ -199,24 +203,24 @@ public:
       std::cout << "Generating Basis..." << std::flush;
       
       const int shifted_2sz = (system_size_*magnitude_2spin_ - total_2sz)/2;
-      const std::int64_t dim_target = CalculateTargetDim(total_sz);
+      const LInt dim_target = CalculateTargetDim(total_sz);
       std::vector<std::vector<int>> partition_integers;
       utility::GenerateIntegerPartition(&partition_integers, shifted_2sz, magnitude_2spin_);
       
-      std::vector<std::int64_t> site_constant(system_size_);
+      std::vector<LInt> site_constant(system_size_);
       for (int site = 0; site < system_size_; ++site) {
-         site_constant[site] = static_cast<std::int64_t>(std::pow(dim_onsite_, site));
+         site_constant[site] = static_cast<LInt>(std::pow(dim_onsite_, site));
       }
       
       if (bases_.count(total_2sz) == 0) {
-         bases_[total_2sz] = std::vector<std::int64_t>();
+         bases_[total_2sz] = std::vector<LInt>();
       }
       
-      std::vector<std::int64_t>().swap(bases_.at(total_2sz));
+      std::vector<LInt>().swap(bases_.at(total_2sz));
       
 #ifdef _OPENMP
       const int num_threads = omp_get_max_threads();
-      std::vector<std::vector<std::int64_t>> temp_basis(num_threads);
+      std::vector<std::vector<LInt>> temp_basis(num_threads);
       for (auto &&integer_list: partition_integers) {
          const bool condition1 = (0 < integer_list.size()) && (static_cast<int>(integer_list.size()) <= system_size_);
          const bool condition2 = (integer_list.size() == 0) && (shifted_2sz  == 0);
@@ -225,19 +229,19 @@ public:
                integer_list.push_back(0);
             }
             
-            const std::int64_t size = utility::CalculateNumCombination(integer_list);
+            const LInt size = utility::CalculateNumCombination(integer_list);
             std::vector<std::vector<int>> temp_partition_integer(num_threads);
             
 #pragma omp parallel num_threads (num_threads)
             {
                const int thread_num = omp_get_thread_num();
-               const std::int64_t loop_begin = thread_num*size/num_threads;
-               const std::int64_t loop_end   = (thread_num + 1)*size/num_threads;
+               const LInt loop_begin = thread_num*size/num_threads;
+               const LInt loop_end   = (thread_num + 1)*size/num_threads;
                temp_partition_integer[thread_num] = integer_list;
                utility::CalculateNthPermutation(&temp_partition_integer[thread_num], loop_begin);
                
-               for (std::int64_t j = loop_begin; j < loop_end; ++j) {
-                  std::int64_t basis_global = 0;
+               for (LInt j = loop_begin; j < loop_end; ++j) {
+                  LInt basis_global = 0;
                   const auto iter_begin = temp_partition_integer[thread_num].begin();
                   const auto iter_end   = temp_partition_integer[thread_num].end();
                   for (auto itr = iter_begin; itr != iter_end; ++itr) {
@@ -251,7 +255,7 @@ public:
       }
       for (auto &&basis: temp_basis) {
          bases_.at(total_2sz).insert(bases_.at(total_2sz).end(), basis.begin(), basis.end());
-         std::vector<std::int64_t>().swap(basis);
+         std::vector<LInt>().swap(basis);
       }
       
 #else
@@ -262,14 +266,14 @@ public:
          const bool condition2 = (integer_list.size() == 0) && (shifted_2sz  == 0);
          if (condition1 || condition2) {
             
-            for (std::int64_t j = integer_list.size(); j < system_size_; ++j) {
+            for (LInt j = integer_list.size(); j < system_size_; ++j) {
                integer_list.push_back(0);
             }
             
             std::sort(integer_list.begin(), integer_list.end());
             
             do {
-               std::int64_t basis_global = 0;
+               LInt basis_global = 0;
                for (std::size_t j = 0; j < integer_list.size(); ++j) {
                   basis_global += integer_list[j]*site_constant[j];
                }
@@ -280,7 +284,7 @@ public:
       
 #endif
       
-      if (static_cast<std::int64_t>(bases_.at(total_2sz).size()) != dim_target) {
+      if (static_cast<LInt>(bases_.at(total_2sz).size()) != dim_target) {
          std::stringstream ss;
          ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
          throw std::runtime_error(ss.str());
@@ -289,11 +293,11 @@ public:
       std::sort(bases_.at(total_2sz).begin(), bases_.at(total_2sz).end());
       
       if (bases_inv_.count(total_2sz) == 0) {
-         bases_inv_[total_2sz] = std::unordered_map<std::int64_t, std::int64_t>();
+         bases_inv_[total_2sz] = Map<LInt, LInt>();
       }
       bases_inv_.at(total_2sz).clear();
       
-      for (std::int64_t i = 0; i < dim_target; ++i) {
+      for (LInt i = 0; i < dim_target; ++i) {
          bases_inv_.at(total_2sz)[bases_.at(total_2sz)[i]] = i;
       }
       
@@ -306,25 +310,25 @@ public:
    //! @param m_1 The matrix of an onsite operator.
    //! @param m_2 The matrix of an onsite operator.
    //! @return The list of quantum numbers.
-   std::vector<double> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
+   std::vector<QType> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
       
-      std::unordered_set<double> delta_sector_set_m1;
-      std::unordered_set<double> delta_sector_set_m2;
-      for (std::int64_t i = 0; i < m_1.row_dim; ++i) {
-         for (std::int64_t j = m_1.row[i]; j < m_1.row[i + 1]; ++j) {
+      std::unordered_set<QType> delta_sector_set_m1;
+      std::unordered_set<QType> delta_sector_set_m2;
+      for (LInt i = 0; i < m_1.row_dim; ++i) {
+         for (LInt j = m_1.row[i]; j < m_1.row[i + 1]; ++j) {
             if (m_1.val[j] != 0.0) {
                delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_1.col[j])));
             }
          }
       }
-      for (std::int64_t i = 0; i < m_2.row_dim; ++i) {
-         for (std::int64_t j = m_2.row[i]; j < m_2.row[i + 1]; ++j) {
+      for (LInt i = 0; i < m_2.row_dim; ++i) {
+         for (LInt j = m_2.row[i]; j < m_2.row[i + 1]; ++j) {
             if (m_2.val[j] != 0.0) {
                delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_2.col[j])));
             }
          }
       }
-      std::vector<double> target_sector_set;
+      std::vector<QType> target_sector_set;
       for (const auto &del_sec_m1: delta_sector_set_m1) {
          for (const auto &del_sec_m2: delta_sector_set_m2) {
             const bool c1 = isValidQNumber(del_sec_m1 + 0.5*total_2sz_);
@@ -343,36 +347,36 @@ public:
    //! @param m_2_ket The matrix of an onsite operator.
    //! @param m_3_ket The matrix of an onsite operator.
    //! @return The list of quantum numbers.
-   std::vector<std::pair<double, double>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_ket, const CRS &m_3_ket) const {
-      std::unordered_set<double> delta_sector_set_m1;
-      std::unordered_set<double> delta_sector_set_m2;
-      std::unordered_set<double> delta_sector_set_m3;
+   std::vector<std::pair<QType, QType>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_ket, const CRS &m_3_ket) const {
+      std::unordered_set<QType> delta_sector_set_m1;
+      std::unordered_set<QType> delta_sector_set_m2;
+      std::unordered_set<QType> delta_sector_set_m3;
       
-      for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
-         for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
+      for (LInt i = 0; i < m_1_bra.row_dim; ++i) {
+         for (LInt j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
             if (m_1_bra.val[j] != 0.0) {
                delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_1_bra.col[j])));
             }
          }
       }
       
-      for (std::int64_t i = 0; i < m_2_ket.row_dim; ++i) {
-         for (std::int64_t j = m_2_ket.row[i]; j < m_2_ket.row[i + 1]; ++j) {
+      for (LInt i = 0; i < m_2_ket.row_dim; ++i) {
+         for (LInt j = m_2_ket.row[i]; j < m_2_ket.row[i + 1]; ++j) {
             if (m_2_ket.val[j] != 0.0) {
                delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_2_ket.col[j])));
             }
          }
       }
       
-      for (std::int64_t i = 0; i < m_3_ket.row_dim; ++i) {
-         for (std::int64_t j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
+      for (LInt i = 0; i < m_3_ket.row_dim; ++i) {
+         for (LInt j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
             if (m_3_ket.val[j] != 0.0) {
                delta_sector_set_m3.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_3_ket.col[j])));
             }
          }
       }
       
-      std::vector<std::pair<double, double>> target_sector_set;
+      std::vector<std::pair<QType, QType>> target_sector_set;
       
       for (const auto &del_sec_m1: delta_sector_set_m1) {
          for (const auto &del_sec_m2: delta_sector_set_m2) {
@@ -397,45 +401,45 @@ public:
    //! @param m_3_ket The matrix of an onsite operator.
    //! @param m_4_ket The matrix of an onsite operator.
    //! @return The list of quantum numbers.
-   std::vector<std::tuple<double, double, double>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_bra, const CRS &m_3_ket, const CRS &m_4_ket) const {
-      std::unordered_set<double> delta_sector_set_m1;
-      std::unordered_set<double> delta_sector_set_m2;
-      std::unordered_set<double> delta_sector_set_m3;
-      std::unordered_set<double> delta_sector_set_m4;
+   std::vector<std::tuple<QType, QType, QType>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_bra, const CRS &m_3_ket, const CRS &m_4_ket) const {
+      std::unordered_set<QType> delta_sector_set_m1;
+      std::unordered_set<QType> delta_sector_set_m2;
+      std::unordered_set<QType> delta_sector_set_m3;
+      std::unordered_set<QType> delta_sector_set_m4;
       
-      for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
-         for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
+      for (LInt i = 0; i < m_1_bra.row_dim; ++i) {
+         for (LInt j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
             if (m_1_bra.val[j] != 0.0) {
                delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_1_bra.col[j])));
             }
          }
       }
       
-      for (std::int64_t i = 0; i < m_2_bra.row_dim; ++i) {
-         for (std::int64_t j = m_2_bra.row[i]; j < m_2_bra.row[i + 1]; ++j) {
+      for (LInt i = 0; i < m_2_bra.row_dim; ++i) {
+         for (LInt j = m_2_bra.row[i]; j < m_2_bra.row[i + 1]; ++j) {
             if (m_2_bra.val[j] != 0.0) {
                delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_2_bra.col[j])));
             }
          }
       }
       
-      for (std::int64_t i = 0; i < m_3_ket.row_dim; ++i) {
-         for (std::int64_t j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
+      for (LInt i = 0; i < m_3_ket.row_dim; ++i) {
+         for (LInt j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
             if (m_3_ket.val[j] != 0.0) {
                delta_sector_set_m3.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_3_ket.col[j])));
             }
          }
       }
       
-      for (std::int64_t i = 0; i < m_4_ket.row_dim; ++i) {
-         for (std::int64_t j = m_4_ket.row[i]; j < m_4_ket.row[i + 1]; ++j) {
+      for (LInt i = 0; i < m_4_ket.row_dim; ++i) {
+         for (LInt j = m_4_ket.row[i]; j < m_4_ket.row[i + 1]; ++j) {
             if (m_4_ket.val[j] != 0.0) {
                delta_sector_set_m4.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_4_ket.col[j])));
             }
          }
       }
       
-      std::vector<std::tuple<double, double, double>> target_sector_set;
+      std::vector<std::tuple<QType, QType, QType>> target_sector_set;
       for (const auto &del_sec_m1: delta_sector_set_m1) {
          for (const auto &del_sec_m2: delta_sector_set_m2) {
             for (const auto &del_sec_m3: delta_sector_set_m3) {
@@ -462,7 +466,7 @@ public:
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    //! @return ture if there exists corresponding subspace, otherwise false.
-   static bool isValidQNumber(const int system_size, const double magnitude_spin, const double total_sz) {
+   static bool isValidQNumber(const int system_size, const HalfInt magnitude_spin, const HalfInt total_sz) {
       const int total_2sz = utility::DoubleTheNumber(total_sz);
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       const bool c1 = ((system_size*magnitude_2spin - total_2sz)%2 == 0);
@@ -481,7 +485,7 @@ public:
    //! @param system_size The system size \f$ N\f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
-   static std::int64_t CalculateTargetDim(const int system_size, const double magnitude_spin, const double total_sz) {
+   static LInt CalculateTargetDim(const int system_size, const HalfInt magnitude_spin, const HalfInt total_sz) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       if (!isValidQNumber(system_size, magnitude_spin, total_sz)) {
          return 0;
@@ -491,15 +495,15 @@ public:
       }
       const int total_2sz = utility::DoubleTheNumber(total_sz);
       const int max_total_2sz = system_size*magnitude_2spin;
-      std::vector<std::vector<std::int64_t>> dim(system_size, std::vector<std::int64_t>(max_total_2sz + 1));
+      std::vector<std::vector<LInt>> dim(system_size, std::vector<LInt>(max_total_2sz + 1));
       for (int s = -magnitude_2spin; s <= magnitude_2spin; s += 2) {
          dim[0][(s + magnitude_2spin)/2] = 1;
       }
       for (int site = 1; site < system_size; site++) {
          for (int s = -magnitude_2spin; s <= magnitude_2spin; s += 2) {
             for (int s_prev = -magnitude_2spin*site; s_prev <= magnitude_2spin*site; s_prev += 2) {
-               const std::int64_t a = dim[site    ][(s + s_prev + magnitude_2spin*(site + 1))/2];
-               const std::int64_t b = dim[site - 1][(s_prev + magnitude_2spin*site)/2];
+               const LInt a = dim[site    ][(s + s_prev + magnitude_2spin*(site + 1))/2];
+               const LInt b = dim[site - 1][(s_prev + magnitude_2spin*site)/2];
                if (a >= INT64_MAX - b) {
                   throw std::runtime_error("Overflow detected for sumation using uint64_t");
                }
@@ -513,7 +517,7 @@ public:
    //! @brief Generate the spin-\f$ S\f$ operator for the x-direction \f$ \hat{s}^{x}\f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{s}^{x}\f$.
-   static CRS CreateOnsiteOperatorSx(const double magnitude_spin) {
+   static CRS CreateOnsiteOperatorSx(const HalfInt magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       const int dim_onsite      = magnitude_2spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
@@ -550,7 +554,7 @@ public:
    //! @brief Generate the spin-\f$ S\f$ operator for the y-direction \f$ i\hat{s}^{y}\f$ with \f$ i\f$ being the imaginary unit.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ i\hat{s}^{y}\f$.
-   static CRS CreateOnsiteOperatoriSy(const double magnitude_spin) {
+   static CRS CreateOnsiteOperatoriSy(const HalfInt magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       const int dim_onsite      = magnitude_2spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
@@ -588,7 +592,7 @@ public:
    //! @brief Generate the spin-\f$ S\f$ operator for the z-direction \f$ \hat{s}^{z}\f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{s}^{z}\f$.
-   static CRS CreateOnsiteOperatorSz(const double magnitude_spin) {
+   static CRS CreateOnsiteOperatorSz(const HalfInt magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       const int dim_onsite      = magnitude_2spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
@@ -607,7 +611,7 @@ public:
    //! @brief Generate the spin-\f$ S\f$ raising operator \f$ \hat{s}^{+}\f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{s}^{+}\f$.
-   static CRS CreateOnsiteOperatorSp(const double magnitude_spin) {
+   static CRS CreateOnsiteOperatorSp(const HalfInt magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       const int dim_onsite      = magnitude_2spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
@@ -623,7 +627,7 @@ public:
    //! @brief Generate the spin-\f$ S\f$ raising operator \f$ \hat{s}^{-}\f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{s}^{-}\f$.
-   static CRS CreateOnsiteOperatorSm(const double magnitude_spin) {
+   static CRS CreateOnsiteOperatorSm(const HalfInt magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       const int dim_onsite      = magnitude_2spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
@@ -687,13 +691,13 @@ public:
    
    //! @brief Get all bases.
    //! @return Bases.
-   inline const std::unordered_map<int, std::vector<std::int64_t>> GetBases() const {
+   inline const Map<int, std::vector<LInt>> GetBases() const {
       return bases_;
    }
    
    //! @brief Get all inverse bases.
    //! @return Inverse bases.
-   inline const std::unordered_map<int, std::unordered_map<std::int64_t, std::int64_t>> GetBasesInv() const {
+   inline const Map<int, Map<LInt, LInt>> GetBasesInv() const {
       return bases_inv_;
    }
    
@@ -701,7 +705,7 @@ public:
    //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @return Basis.
-   inline const std::vector<std::int64_t> &GetBasis(const double total_sz) const {
+   inline const std::vector<LInt> &GetBasis(const HalfInt total_sz) const {
       return bases_.at(utility::DoubleTheNumber(total_sz));
    }
    
@@ -709,21 +713,21 @@ public:
    //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @return Inverse basis.
-   inline const std::unordered_map<std::int64_t, std::int64_t> &GetBasisInv(const double total_sz) const {
+   inline const Map<LInt, LInt> &GetBasisInv(const HalfInt total_sz) const {
       return bases_inv_.at(utility::DoubleTheNumber(total_sz));
    }
    
    //! @brief Get basis of the target Hilbert space specified by
    //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @return Basis.
-   inline const std::vector<std::int64_t> &GetTargetBasis() const {
+   inline const std::vector<LInt> &GetTargetBasis() const {
       return bases_.at(total_2sz_);
    }
    
    //! @brief Get inverse basis of the target Hilbert space specified by
    //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @return Inverse basis.
-   inline const std::unordered_map<std::int64_t, std::int64_t> &GetTargetBasisInv() const {
+   inline const Map<LInt, LInt> &GetTargetBasisInv() const {
       return bases_inv_.at(total_2sz_);
    }
    
@@ -761,11 +765,11 @@ protected:
    
    //! @brief Bases of the target Hilbert space specified by
    //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
-   std::unordered_map<int, std::vector<std::int64_t>> bases_;
+   Map<int, std::vector<LInt>> bases_;
    
    //! @brief Inverse bases of the target Hilbert space specified by
    //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
-   std::unordered_map<int, std::unordered_map<std::int64_t, std::int64_t>> bases_inv_;
+   Map<int, Map<LInt, LInt>> bases_inv_;
    
    //! @brief Set onsite operators.
    void SetOnsiteOperator() {

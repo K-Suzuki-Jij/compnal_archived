@@ -225,11 +225,11 @@ public:
    //! @brief Get hopping energy \f$ t_{d} \f$ at the distance \f$ d \f$.
    //! @param index The distance \f$ d \f$.
    //! @return The hopping energy \f$ t_{d} \f$ at the distance \f$ d \f$.
-   inline RealType GetHopping(const std::int64_t index) const { return t_.at(index); }
+   inline RealType GetHopping(const LInt index) const { return t_.at(index); }
    
    //! @brief Get intersite density-density interactions. \f$ V_{d} \f$ at the distance \f$ d \f$.
    //! @return The intersite density-density interactions. \f$ V_{d} \f$ at the distance \f$ d \f$.
-   inline RealType GetIntersiteCoulomb(const std::int64_t index) const { return V_.at(index); }
+   inline RealType GetIntersiteCoulomb(const LInt index) const { return V_.at(index); }
    
    //! @brief Get onsite density interactions. \f$ U \f$.
    //! @return The onsite density interactions. \f$ U \f$.

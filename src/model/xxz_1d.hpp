@@ -54,7 +54,7 @@ public:
    //! @brief Constructor of XXZ_1D class.
    //! @param system_size The system size \f$ N \f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
-   XXZ_1D(const int system_size, const double magnitude_spin): BaseU1Spin_1D<RealType>(system_size, magnitude_spin) {
+   XXZ_1D(const int system_size, const HalfInt magnitude_spin): BaseU1Spin_1D<RealType>(system_size, magnitude_spin) {
       onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2spin_, h_z_, D_z_);
    }
    
@@ -70,7 +70,7 @@ public:
    //! @param system_size The system size \f$ N \f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @param boundary_condition Boundary condition.
-   XXZ_1D(const int system_size, const double magnitude_spin, const utility::BoundaryCondition boundary_condition): BaseU1Spin_1D<RealType>(system_size, magnitude_spin) {
+   XXZ_1D(const int system_size, const HalfInt magnitude_spin, const utility::BoundaryCondition boundary_condition): BaseU1Spin_1D<RealType>(system_size, magnitude_spin) {
       SetBoundaryCondition(boundary_condition);
       onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2spin_, h_z_, D_z_);
    }
@@ -185,7 +185,7 @@ public:
    //! @brief Create the onsite Hamiltonian.
    //! \f[ \hat{H}_{\rm onsite}=h_z\hat{S}^{z}+D_z\left(\hat{S}^{z}\right)^{2}\f]
    //! @return The matrix of \f$ \hat{H}_{\rm onsite}\f$.
-   static CRS CreateOnsiteOperatorHam(const double magnitude_spin, const RealType h_z = 0.0, const RealType D_z = 0.0) {
+   static CRS CreateOnsiteOperatorHam(const HalfInt magnitude_spin, const RealType h_z = 0.0, const RealType D_z = 0.0) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       const int dim_onsite      = magnitude_2spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
@@ -217,12 +217,12 @@ public:
    //! @brief Get the spin-spin interaction along the z-direction \f$ J^{z}_{d} \f$.
    //! @param index The distance \f$ d\f$.
    //! @return J_z The spin-spin interaction along the z-direction \f$ J^{z}_{d} \f$.
-   inline RealType GetJz (const std::int64_t index) const { return J_z_.at(index); }
+   inline RealType GetJz (const LInt index) const { return J_z_.at(index); }
    
    //! @brief Get the spin-spin interaction along the x, y-direction \f$ J^{xy}_{d} \f$.
    //! @param index The distance \f$ d\f$.
    //! @return J_xy The spin-spin interaction along the x, y-direction \f$ J^{xy}_{d} \f$.
-   inline RealType GetJxy(const std::int64_t index) const { return J_xy_.at(index); }
+   inline RealType GetJxy(const LInt index) const { return J_xy_.at(index); }
    
    //! @brief Get the magnetic field for the z-direction \f$ h_z\f$.
    //! @return h_z The magnetic field for the z-direction \f$ h_z\f$.

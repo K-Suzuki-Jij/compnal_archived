@@ -18,6 +18,15 @@
 #ifndef COMPNAL_MODEL_BASE_U1_SPIN_MULTI_ELECTRONS_1D_HPP_
 #define COMPNAL_MODEL_BASE_U1_SPIN_MULTI_ELECTRONS_1D_HPP_
 
+#include "../sparse_matrix/all.hpp"
+#include "../utility/all.hpp"
+#include "../type.hpp"
+#include "base_u1_spin_1d.hpp"
+#include "base_u1_electron_1d.hpp"
+
+#include <unordered_map>
+#include <unordered_set>
+
 namespace compnal {
 namespace model {
 
@@ -28,6 +37,9 @@ class BaseU1SpinMultiElectrons_1D {
    
    //! @brief Alias of compressed row strage (CRS) with RealType.
    using CRS = sparse_matrix::CRS<RealType>;
+   
+   //! @brief Alias of quantum number (total electron list, total sz) pair.
+   using QType = std::pair<std::vector<int>, HalfInt>;
    
 public:
    
@@ -51,7 +63,7 @@ public:
    //! @brief Constructor of BaseU1SpinMultiElectrons_1D class.
    //! @param system_size The system size \f$ N \f$.
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
-   BaseU1SpinMultiElectrons_1D(const int system_size, const double magnitude_lspin): BaseU1SpinMultiElectrons_1D(system_size) {
+   BaseU1SpinMultiElectrons_1D(const int system_size, const HalfInt magnitude_lspin): BaseU1SpinMultiElectrons_1D(system_size) {
       SetMagnitudeLSpin(magnitude_lspin);
    }
    
@@ -68,7 +80,7 @@ public:
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @param total_electron The total electron at each orbital \f$ \alpha \f$, \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$.
    BaseU1SpinMultiElectrons_1D(const int system_size,
-                               const double magnitude_lspin,
+                               const HalfInt magnitude_lspin,
                                const std::vector<int> &total_electron): BaseU1SpinMultiElectrons_1D(system_size, magnitude_lspin) {
       SetTotalElectron(total_electron);
    }
@@ -81,9 +93,9 @@ public:
    //! \f$ \langle\hat{S}^{z}_{\rm tot}\rangle =
    //! \sum^{N}_{i=1}\left(\hat{S}^{z}_{i} + \sum_{\alpha}\hat{s}^{z}_{i,\alpha}\right)\f$.
    BaseU1SpinMultiElectrons_1D(const int system_size,
-                               const double magnitude_lspin,
+                               const HalfInt magnitude_lspin,
                                const std::vector<int> &total_electron,
-                               const double total_sz): BaseU1SpinMultiElectrons_1D(system_size, magnitude_lspin, total_electron) {
+                               const HalfInt total_sz): BaseU1SpinMultiElectrons_1D(system_size, magnitude_lspin, total_electron) {
       SetTotalSz(total_sz);
    }
    
@@ -112,7 +124,7 @@ public:
    //! @param total_sz The total sz
    //! \f$ \langle\hat{S}^{z}_{\rm tot}\rangle =
    //! \sum^{N}_{i=1}\left(\hat{S}^{z}_{i} + \sum_{\alpha}\hat{s}^{z}_{i,\alpha}\right)\f$.
-   void SetTotalSz(const double total_sz) {
+   void SetTotalSz(const HalfInt total_sz) {
       const int total_2sz = utility::DoubleTheNumber(total_sz);
       if (total_2sz_ != total_2sz) {
          total_2sz_ = total_2sz;
@@ -153,7 +165,7 @@ public:
    
    //! @brief Set the magnitude of the spin \f$ S \f$.
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
-   void SetMagnitudeLSpin(const double magnitude_lspin) {
+   void SetMagnitudeLSpin(const HalfInt magnitude_lspin) {
       const int magnitude_2lspin = utility::DoubleTheNumber(magnitude_lspin);
       if (magnitude_2lspin <= 0) {
          std::stringstream ss;
@@ -179,7 +191,7 @@ public:
    }
    
    //! @brief Calculate the number of electrons from the onsite electron basis.
-   //! @param basis_electron_onsite The onsite electron basis.
+   //! @param basis_onsite The onsite basis.
    //! @return The number of electrons
    int CalculateNumElectron(const int basis_onsite) const {
       int num_electron = 0;
@@ -205,7 +217,7 @@ public:
    
    //! @brief Print the onsite bases.
    void PrintBasisOnsite() const {
-      const double magnitude_lspin = magnitude_2lspin_/2.0;
+      const HalfInt magnitude_lspin = magnitude_2lspin_/2.0;
       for (int row = 0; row < dim_onsite_; ++row) {
          std::vector<std::string> b_ele;
          for (int o = 0; o < num_electron_orbital_; ++o) {
@@ -238,7 +250,7 @@ public:
    //! @brief Check if there is a subspace specified by the input quantum numbers.
    //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
    //! @return ture if there exists corresponding subspace, otherwise false.
-   bool isValidQNumber(const std::pair<std::vector<int>, double> &quantum_number) const {
+   bool isValidQNumber(const QType &quantum_number) const {
       return isValidQNumber(system_size_, 0.5*magnitude_2lspin_, quantum_number.first, quantum_number.second);
    }
    
@@ -246,14 +258,14 @@ public:
    //! @param total_electron The total electron at each orbital \f$ \alpha \f$, \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    //! @return ture if there exists corresponding subspace, otherwise false.
-   bool isValidQNumber(const std::vector<int> &total_electron, const double total_sz) const {
+   bool isValidQNumber(const std::vector<int> &total_electron, const HalfInt total_sz) const {
       return isValidQNumber(system_size_, 0.5*magnitude_2lspin_, total_electron, total_sz);
    }
    
    //! @brief Calculate the dimension of the target Hilbert space specified by
    //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @return The dimension of the target Hilbert space.
-   std::int64_t CalculateTargetDim() const {
+   LInt CalculateTargetDim() const {
       return CalculateTargetDim(0.5*total_2sz_);
    }
    
@@ -261,7 +273,7 @@ public:
    //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @return The dimension of the target Hilbert space.
-   std::int64_t CalculateTargetDim(const double total_sz) const {
+   LInt CalculateTargetDim(const HalfInt total_sz) const {
       return CalculateTargetDim(system_size_, 0.5*magnitude_2lspin_, total_electron_, total_sz);
    }
    
@@ -270,7 +282,7 @@ public:
    //! @param total_electron The total electron at each orbital \f$ \alpha \f$, \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @return The dimension of the target Hilbert space.
-   std::int64_t CalculateTargetDim(const std::vector<int> &total_electron, const double total_sz) const {
+   LInt CalculateTargetDim(const std::vector<int> &total_electron, const HalfInt total_sz) const {
       return CalculateTargetDim(system_size_, 0.5*magnitude_2lspin_, total_electron, total_sz);
    }
    
@@ -278,25 +290,25 @@ public:
    //! @param m_1 The matrix of an onsite operator.
    //! @param m_2 The matrix of an onsite operator.
    //! @return The list of quantum numbers.
-   std::vector<std::pair<std::vector<int>, double>> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
+   std::vector<QType> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
       // TODO: Check input matrics
-      std::unordered_set<std::pair<std::vector<int>, double>, utility::VectorIntHash> delta_sector_set_m1;
-      std::unordered_set<std::pair<std::vector<int>, double>, utility::VectorIntHash> delta_sector_set_m2;
-      for (std::int64_t i = 0; i < m_1.row_dim; ++i) {
-         for (std::int64_t j = m_1.row[i]; j < m_1.row[i + 1]; ++j) {
+      std::unordered_set<QType, VecIntHash> delta_sector_set_m1;
+      std::unordered_set<QType, VecIntHash> delta_sector_set_m2;
+      for (LInt i = 0; i < m_1.row_dim; ++i) {
+         for (LInt j = m_1.row[i]; j < m_1.row[i + 1]; ++j) {
             if (m_1.val[j] != 0.0) {
                delta_sector_set_m1.emplace(CalculateTargetQuantumNumber(i, m_1.col[j]));
             }
          }
       }
-      for (std::int64_t i = 0; i < m_2.row_dim; ++i) {
-         for (std::int64_t j = m_2.row[i]; j < m_2.row[i + 1]; ++j) {
+      for (LInt i = 0; i < m_2.row_dim; ++i) {
+         for (LInt j = m_2.row[i]; j < m_2.row[i + 1]; ++j) {
             if (m_2.val[j] != 0.0) {
                delta_sector_set_m2.emplace(CalculateTargetQuantumNumber(i, m_2.col[j]));
             }
          }
       }
-      std::vector<std::pair<std::vector<int>, double>> target_sector_set;
+      std::vector<QType> target_sector_set;
       for (const auto &del_sec_m1: delta_sector_set_m1) {
          for (const auto &del_sec_m2: delta_sector_set_m2) {
             const bool c1 = isValidQNumber(del_sec_m1.first, del_sec_m1.second);
@@ -315,41 +327,41 @@ public:
    //! @param m_2_ket The matrix of an onsite operator.
    //! @param m_3_ket The matrix of an onsite operator.
    //! @return The list of quantum numbers.
-   std::vector<std::pair<std::pair<std::vector<int>, double>, std::pair<std::vector<int>, double>>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_ket, const CRS &m_3_ket) const {
-      std::unordered_set<std::pair<std::vector<int>, double>, utility::VectorIntHash> delta_sector_set_m1;
-      std::unordered_set<std::pair<std::vector<int>, double>, utility::VectorIntHash> delta_sector_set_m2;
-      std::unordered_set<std::pair<std::vector<int>, double>, utility::VectorIntHash> delta_sector_set_m3;
+   std::vector<std::pair<QType, QType>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_ket, const CRS &m_3_ket) const {
+      std::unordered_set<QType, VecIntHash> delta_sector_set_m1;
+      std::unordered_set<QType, VecIntHash> delta_sector_set_m2;
+      std::unordered_set<QType, VecIntHash> delta_sector_set_m3;
       
-      for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
-         for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
+      for (LInt i = 0; i < m_1_bra.row_dim; ++i) {
+         for (LInt j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
             if (m_1_bra.val[j] != 0.0) {
                delta_sector_set_m1.emplace(CalculateTargetQuantumNumber(i, m_1_bra.col[j]));
             }
          }
       }
       
-      for (std::int64_t i = 0; i < m_2_ket.row_dim; ++i) {
-         for (std::int64_t j = m_2_ket.row[i]; j < m_2_ket.row[i + 1]; ++j) {
+      for (LInt i = 0; i < m_2_ket.row_dim; ++i) {
+         for (LInt j = m_2_ket.row[i]; j < m_2_ket.row[i + 1]; ++j) {
             if (m_2_ket.val[j] != 0.0) {
                delta_sector_set_m2.emplace(CalculateTargetQuantumNumber(i, m_2_ket.col[j]));
             }
          }
       }
       
-      for (std::int64_t i = 0; i < m_3_ket.row_dim; ++i) {
-         for (std::int64_t j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
+      for (LInt i = 0; i < m_3_ket.row_dim; ++i) {
+         for (LInt j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
             if (m_3_ket.val[j] != 0.0) {
                delta_sector_set_m3.emplace(CalculateTargetQuantumNumber(i, m_3_ket.col[j]));
             }
          }
       }
       
-      std::vector<std::pair<std::pair<std::vector<int>, double>, std::pair<std::vector<int>, double>>> target_sector_set;
+      std::vector<std::pair<QType, QType>> target_sector_set;
       
       for (const auto &del_sec_m1: delta_sector_set_m1) {
          for (const auto &del_sec_m2: delta_sector_set_m2) {
             for (const auto &del_sec_m3: delta_sector_set_m3) {
-               std::pair<std::vector<int>, double> del_sec_m2_m3;
+               QType del_sec_m2_m3;
                for (std::size_t i = 0; i < del_sec_m2.first.size(); ++i) {
                   del_sec_m2_m3.first.push_back(del_sec_m2.first[i] + del_sec_m3.first[i]);
                }
@@ -373,52 +385,52 @@ public:
    //! @param m_3_ket The matrix of an onsite operator.
    //! @param m_4_ket The matrix of an onsite operator.
    //! @return The list of quantum numbers.
-   std::vector<std::tuple<std::pair<std::vector<int>, double>, std::pair<std::vector<int>, double>, std::pair<std::vector<int>, double>>>
+   std::vector<std::tuple<QType, QType, QType>>
    GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_bra, const CRS &m_3_ket, const CRS &m_4_ket) const {
-      std::unordered_set<std::pair<std::vector<int>, double>, utility::VectorIntHash> delta_sector_set_m1;
-      std::unordered_set<std::pair<std::vector<int>, double>, utility::VectorIntHash> delta_sector_set_m2;
-      std::unordered_set<std::pair<std::vector<int>, double>, utility::VectorIntHash> delta_sector_set_m3;
-      std::unordered_set<std::pair<std::vector<int>, double>, utility::VectorIntHash> delta_sector_set_m4;
+      std::unordered_set<QType, VecIntHash> delta_sector_set_m1;
+      std::unordered_set<QType, VecIntHash> delta_sector_set_m2;
+      std::unordered_set<QType, VecIntHash> delta_sector_set_m3;
+      std::unordered_set<QType, VecIntHash> delta_sector_set_m4;
       
-      for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
-         for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
+      for (LInt i = 0; i < m_1_bra.row_dim; ++i) {
+         for (LInt j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
             if (m_1_bra.val[j] != 0.0) {
                delta_sector_set_m1.emplace(CalculateTargetQuantumNumber(i, m_1_bra.col[j]));
             }
          }
       }
       
-      for (std::int64_t i = 0; i < m_2_bra.row_dim; ++i) {
-         for (std::int64_t j = m_2_bra.row[i]; j < m_2_bra.row[i + 1]; ++j) {
+      for (LInt i = 0; i < m_2_bra.row_dim; ++i) {
+         for (LInt j = m_2_bra.row[i]; j < m_2_bra.row[i + 1]; ++j) {
             if (m_2_bra.val[j] != 0.0) {
                delta_sector_set_m2.emplace(CalculateTargetQuantumNumber(i, m_2_bra.col[j]));
             }
          }
       }
       
-      for (std::int64_t i = 0; i < m_3_ket.row_dim; ++i) {
-         for (std::int64_t j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
+      for (LInt i = 0; i < m_3_ket.row_dim; ++i) {
+         for (LInt j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
             if (m_3_ket.val[j] != 0.0) {
                delta_sector_set_m3.emplace(CalculateTargetQuantumNumber(i, m_3_ket.col[j]));
             }
          }
       }
       
-      for (std::int64_t i = 0; i < m_4_ket.row_dim; ++i) {
-         for (std::int64_t j = m_4_ket.row[i]; j < m_4_ket.row[i + 1]; ++j) {
+      for (LInt i = 0; i < m_4_ket.row_dim; ++i) {
+         for (LInt j = m_4_ket.row[i]; j < m_4_ket.row[i + 1]; ++j) {
             if (m_4_ket.val[j] != 0.0) {
                delta_sector_set_m4.emplace(CalculateTargetQuantumNumber(i, m_4_ket.col[j]));
             }
          }
       }
       
-      std::vector<std::tuple<std::pair<std::vector<int>, double>, std::pair<std::vector<int>, double>, std::pair<std::vector<int>, double>>> target_sector_set;
+      std::vector<std::tuple<QType, QType, QType>> target_sector_set;
       for (const auto &del_sec_m1: delta_sector_set_m1) {
          for (const auto &del_sec_m2: delta_sector_set_m2) {
             for (const auto &del_sec_m3: delta_sector_set_m3) {
                for (const auto &del_sec_m4: delta_sector_set_m4) {
-                  std::pair<std::vector<int>, double> del_sec_m1_m2;
-                  std::pair<std::vector<int>, double> del_sec_m3_m4;
+                  QType del_sec_m1_m2;
+                  QType del_sec_m3_m4;
                   for (std::size_t i = 0; i < del_sec_m1.first.size(); ++i) {
                      del_sec_m1_m2.first.push_back(del_sec_m1.first[i] + del_sec_m2.first[i]);
                      del_sec_m3_m4.first.push_back(del_sec_m3.first[i] + del_sec_m4.first[i]);
@@ -454,7 +466,7 @@ public:
    //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
    //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
-   void GenerateBasis(const std::pair<std::vector<int>, double> &quantum_number) {
+   void GenerateBasis(const QType &quantum_number) {
       GenerateBasis(quantum_number.first, quantum_number.second);
    }
    
@@ -464,7 +476,7 @@ public:
    //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param total_electron The total electron at each orbital \f$ \alpha \f$, \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
-   void GenerateBasis(const std::vector<int> &total_electron, const double total_sz) {
+   void GenerateBasis(const std::vector<int> &total_electron, const HalfInt total_sz) {
       const auto start     = std::chrono::system_clock::now();
       const int  total_2sz = utility::DoubleTheNumber(total_sz);
       if (bases_.count({total_electron, total_2sz}) != 0) {
@@ -474,15 +486,15 @@ public:
             
       std::vector<std::vector<std::vector<int>>> electron_configuration_list;
       std::vector<int> length_list;
-      std::int64_t length = 1;
+      LInt length = 1;
       for (const auto num_electron: total_electron) {
          const auto electron_configuration = GenerateElectronConfigurations(system_size_, num_electron);
          electron_configuration_list.push_back(electron_configuration);
          length_list.push_back(electron_configuration[0].size());
          length *= electron_configuration[0].size();
       }
-      const std::vector<std::vector<std::int64_t>> binom = utility::CalculateBinomialTable(system_size_);
-      const std::int64_t dim_target_global = CalculateTargetDim(total_electron, total_sz);
+      const std::vector<std::vector<LInt>> binom = utility::CalculateBinomialTable(system_size_);
+      const LInt dim_target_global = CalculateTargetDim(total_electron, total_sz);
 
       std::vector<std::vector<int>> q_number_n_up_down;
       std::vector<std::vector<int>> q_number_n_up;
@@ -490,21 +502,21 @@ public:
       std::vector<std::vector<int>> q_number_n_vac;
       std::vector<std::vector<int>> q_number_ele_list;
       std::vector<int> q_number_spin_vec;
-      std::vector<std::int64_t> total_electron_dim_list;
-      std::vector<std::vector<std::int64_t>> each_electron_basis_dim_prod;
-      std::vector<std::vector<std::int64_t>> each_electron_basis_dim;
-      std::vector<std::int64_t> bias_basis;
+      std::vector<LInt> total_electron_dim_list;
+      std::vector<std::vector<LInt>> each_electron_basis_dim_prod;
+      std::vector<std::vector<LInt>> each_electron_basis_dim;
+      std::vector<LInt> bias_basis;
       bias_basis.push_back(0);
       
-      for (std::int64_t i = 0; i < length; ++i) {
+      for (LInt i = 0; i < length; ++i) {
          int electron_2sz = 0;
          std::vector<int> temp_n_up_down;
          std::vector<int> temp_n_up;
          std::vector<int> temp_n_down;
          std::vector<int> temp_n_vac;
-         std::int64_t electron_dim = 1;
+         LInt electron_dim = 1;
          for (std::size_t j = 0; j < length_list.size(); ++j) {
-            std::int64_t prod = 1;
+            LInt prod = 1;
             for (std::size_t k = j + 1; k < length_list.size(); ++k) {
                prod *= length_list[k];
             }
@@ -544,7 +556,7 @@ public:
       for (std::size_t i = 0; i < each_electron_basis_dim_prod.size(); ++i) {
          each_electron_basis_dim_prod[i].resize(total_electron.size());
          for (std::size_t j = 0; j < total_electron.size(); ++j) {
-            std::int64_t prod = 1;
+            LInt prod = 1;
             for (std::size_t k = j + 1; k < total_electron.size(); ++k) {
                prod *= each_electron_basis_dim[i][k];
             }
@@ -556,33 +568,33 @@ public:
          bias_basis[i+1] += bias_basis[i];
       }
       
-      if (static_cast<std::int64_t>(bias_basis[bias_basis.size()]) != dim_target_global) {
+      if (static_cast<LInt>(bias_basis[bias_basis.size()]) != dim_target_global) {
          std::stringstream ss;
          ss << "Unknown error in " << __FUNCTION__ << std::endl;
          throw std::runtime_error(ss.str());
       }
       
-      std::vector<std::int64_t> site_constant_global(system_size_);
-      std::vector<std::int64_t> ele_constant_global(system_size_);
+      std::vector<LInt> site_constant_global(system_size_);
+      std::vector<LInt> ele_constant_global(system_size_);
 
       for (int site = 0; site < system_size_; ++site) {
-         site_constant_global[site] = static_cast<std::int64_t>(std::pow(dim_onsite_, site));
+         site_constant_global[site] = static_cast<LInt>(std::pow(dim_onsite_, site));
       }
       
       for (int o = 0; o < static_cast<int>(total_electron.size()); ++o) {
-         ele_constant_global[o] = static_cast<std::int64_t>(std::pow(dim_onsite_electron_, o));
+         ele_constant_global[o] = static_cast<LInt>(std::pow(dim_onsite_electron_, o));
       }
       
       //Generate spin bases
       std::vector<int> temp_q_number_spin_vec = q_number_spin_vec;
       std::sort(temp_q_number_spin_vec.begin(), temp_q_number_spin_vec.end());
       temp_q_number_spin_vec.erase(std::unique(temp_q_number_spin_vec.begin(), temp_q_number_spin_vec.end()), temp_q_number_spin_vec.end());
-      std::unordered_map<int, std::vector<std::int64_t>> spin_bases;
+      Map<int, std::vector<LInt>> spin_bases;
 #pragma omp parallel for
-      for (std::int64_t i = 0; i < static_cast<std::int64_t>(temp_q_number_spin_vec.size()); ++i) {
+      for (LInt i = 0; i < static_cast<LInt>(temp_q_number_spin_vec.size()); ++i) {
          const int total_2_sz_lspin = temp_q_number_spin_vec[i];
          const int shifted_2sz      = (system_size_*magnitude_2lspin_ - total_2_sz_lspin)/2;
-         const std::int64_t dim_target_lspin = BaseU1Spin_1D<RealType>::CalculateTargetDim(system_size_, 0.5*magnitude_2lspin_, 0.5*total_2_sz_lspin);
+         const LInt dim_target_lspin = BaseU1Spin_1D<RealType>::CalculateTargetDim(system_size_, 0.5*magnitude_2lspin_, 0.5*total_2_sz_lspin);
          std::vector<std::vector<int>> partition_integers;
          utility::GenerateIntegerPartition(&partition_integers, shifted_2sz, magnitude_2lspin_);
          auto &spin_basis = spin_bases[total_2_sz_lspin];
@@ -596,7 +608,7 @@ public:
                }
                std::sort(integer_list.begin(), integer_list.end());
                do {
-                  std::int64_t basis_global = 0;
+                  LInt basis_global = 0;
                   for (std::size_t j = 0; j < integer_list.size(); ++j) {
                      basis_global += integer_list[j]*site_constant_global[j];
                   }
@@ -604,7 +616,7 @@ public:
                } while (std::next_permutation(integer_list.begin(), integer_list.end()));
             }
          }
-         if (static_cast<std::int64_t>(spin_basis.size()) != dim_target_lspin) {
+         if (static_cast<LInt>(spin_basis.size()) != dim_target_lspin) {
             std::stringstream ss;
             ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
             throw std::runtime_error(ss.str());
@@ -613,8 +625,8 @@ public:
       }
       
       //Generate electron bases
-      const std::int64_t loop_size = static_cast<std::int64_t>(q_number_spin_vec.size());
-      std::unordered_map<std::vector<int>, std::vector<std::int64_t>, utility::VectorHash> electron_bases;
+      const LInt loop_size = static_cast<LInt>(q_number_spin_vec.size());
+      Map<std::vector<int>, std::vector<LInt>, VecHash> electron_bases;
       std::vector<std::vector<int>> temp_q_number_ele_list = q_number_ele_list;
       std::sort(temp_q_number_ele_list.begin(), temp_q_number_ele_list.end());
       temp_q_number_ele_list.erase(std::unique(temp_q_number_ele_list.begin(), temp_q_number_ele_list.end()), temp_q_number_ele_list.end());
@@ -639,7 +651,7 @@ public:
             basis_list_electron[s + n_vac + n_up + n_down] = 3;
          }
          do {
-            std::int64_t basis_global_electron = 0;
+            LInt basis_global_electron = 0;
             for (std::size_t j = 0; j < basis_list_electron.size(); ++j) {
                basis_global_electron += basis_list_electron[j]*site_constant_global[j]*dim_onsite_lspin_;
             }
@@ -647,19 +659,19 @@ public:
       }
       
       //Generate global bases
-      std::vector<std::int64_t>().swap(bases_[{total_electron, total_2sz}]);
+      std::vector<LInt>().swap(bases_[{total_electron, total_2sz}]);
       auto &global_basis_ref = bases_.at({total_electron, total_2sz});
       global_basis_ref.resize(dim_target_global);
       
 #pragma omp parallel for
-      for (std::int64_t i = 0; i < loop_size; ++i) {
-         std::int64_t count = bias_basis[i];
+      for (LInt i = 0; i < loop_size; ++i) {
+         LInt count = bias_basis[i];
          const int total_2sz_lspin = q_number_spin_vec[i];
-         const std::int64_t total_electron_dim = total_electron_dim_list[i];
+         const LInt total_electron_dim = total_electron_dim_list[i];
          for (const auto &spin_basis: spin_bases.at(total_2sz_lspin)) {
             
-            for (std::int64_t j = 0; j < total_electron_dim; ++j) {
-               std::int64_t global_basis = spin_basis;
+            for (LInt j = 0; j < total_electron_dim; ++j) {
+               LInt global_basis = spin_basis;
                for (std::size_t k = 0; k < total_electron.size(); ++k) {
                   const int n_up_down = q_number_n_up_down[i][k];
                   const int n_up      = q_number_n_up     [i][k];
@@ -673,7 +685,7 @@ public:
          }
       }
       
-      if (static_cast<std::int64_t>(bases_.at({total_electron, total_2sz}).size()) != dim_target_global) {
+      if (static_cast<LInt>(bases_.at({total_electron, total_2sz}).size()) != dim_target_global) {
          std::stringstream ss;
          ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
          throw std::runtime_error(ss.str());
@@ -684,7 +696,7 @@ public:
       bases_inv_[{total_electron, total_2sz}].clear();
       
       auto &basis_inv_ref = bases_inv_.at({total_electron, total_2sz});
-      for (std::int64_t i = 0; i < dim_target_global; ++i) {
+      for (LInt i = 0; i < dim_target_global; ++i) {
          basis_inv_ref[global_basis_ref[i]] = i;
       }
       
@@ -709,13 +721,13 @@ public:
    //! @param total_electron The total electron at each orbital \f$ \alpha \f$, \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    //! @return The dimension of the target Hilbert space.
-   static std::int64_t CalculateTargetDim(const int system_size,
-                                          const double magnitude_lspin,
+   static LInt CalculateTargetDim(const int system_size,
+                                          const HalfInt magnitude_lspin,
                                           const std::vector<int> &total_electron,
-                                          const double total_sz) {
+                                          const HalfInt total_sz) {
       std::vector<std::vector<std::vector<int>>> electron_configuration_list;
       std::vector<int> length_list;
-      std::int64_t length = 1;
+      LInt length = 1;
       for (const auto num_electron: total_electron) {
          const auto electron_configuration = GenerateElectronConfigurations(system_size, num_electron);
          electron_configuration_list.push_back(electron_configuration);
@@ -723,13 +735,13 @@ public:
          length *= electron_configuration[0].size();
       }
       const int total_2sz = utility::DoubleTheNumber(total_sz);
-      const std::vector<std::vector<std::int64_t>> binom = utility::CalculateBinomialTable(system_size);
-      std::int64_t dim = 0;
-      for (std::int64_t i = 0; i < length; ++i) {
+      const std::vector<std::vector<LInt>> binom = utility::CalculateBinomialTable(system_size);
+      LInt dim = 0;
+      for (LInt i = 0; i < length; ++i) {
          int electron_2sz = 0;
-         std::int64_t electron_dim = 1;
+         LInt electron_dim = 1;
          for (std::size_t j = 0; j < length_list.size(); ++j) {
-            std::int64_t prod = 1;
+            LInt prod = 1;
             for (std::size_t k = j + 1; k < length_list.size(); ++k) {
                prod *= length_list[k];
             }
@@ -753,7 +765,7 @@ public:
    //! @param row The row in the matrix representation of an onsite operator.
    //! @param col The column in the matrix representation of an onsite operator.
    //! @return The differences of the total electron and the total sz.
-   inline std::pair<std::vector<int>, double> CalculateTargetQuantumNumber(const int row, const int col) const {
+   inline QType CalculateTargetQuantumNumber(const int row, const int col) const {
       std::vector<int> diff_electron_list;
       int target_total_sz = 0;
       for (int o = 0; o < num_electron_orbital_; ++o) {
@@ -776,7 +788,7 @@ public:
    //! @param orbital The electron orbital \f$ \alpha \f$.
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$
    //! @return The matrix of \f$ \hat{c}_{\alpha, \uparrow}\f$.
-   static CRS CreateOnsiteOperatorCUp(const double magnitude_lspin, const int orbital, const int num_orbital) {
+   static CRS CreateOnsiteOperatorCUp(const HalfInt magnitude_lspin, const int orbital, const int num_orbital) {
       const int magnitude_2lspin = utility::DoubleTheNumber(magnitude_lspin);
       const int dim_onsite_lspin = magnitude_2lspin + 1;
       const int dim_onsite = dim_onsite_lspin*static_cast<int>(std::pow(4, num_orbital));
@@ -837,7 +849,7 @@ public:
    //! @param orbital The electron orbital \f$ \alpha \f$.
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$
    //! @return The matrix of \f$ \hat{c}_{\alpha, \downarrow}\f$.
-   static CRS CreateOnsiteOperatorCDown(const double magnitude_lspin, const int orbital, const int num_orbital) {
+   static CRS CreateOnsiteOperatorCDown(const HalfInt magnitude_lspin, const int orbital, const int num_orbital) {
       const int magnitude_2lspin = utility::DoubleTheNumber(magnitude_lspin);
       const int dim_onsite_lspin = magnitude_2lspin + 1;
       const int dim_onsite = dim_onsite_lspin*static_cast<int>(std::pow(4, num_orbital));
@@ -901,7 +913,7 @@ public:
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$
    //! @return The matrix of \f$ \hat{S}^{z}\f$.
-   static CRS CreateOnsiteOperatorSzL(const double magnitude_lspin, const int num_orbital) {
+   static CRS CreateOnsiteOperatorSzL(const HalfInt magnitude_lspin, const int num_orbital) {
       const int magnitude_2lspin = utility::DoubleTheNumber(magnitude_lspin);
       const int dim_onsite_lspin = magnitude_2lspin + 1;
       const int dim_onsite = dim_onsite_lspin*static_cast<int>(std::pow(4, num_orbital));
@@ -926,7 +938,7 @@ public:
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$
    //! @return The matrix of \f$ \hat{S}^{+}\f$.
-   static CRS CreateOnsiteOperatorSpL(const double magnitude_lspin, const int num_orbital) {
+   static CRS CreateOnsiteOperatorSpL(const HalfInt magnitude_lspin, const int num_orbital) {
       const int magnitude_2lspin = utility::DoubleTheNumber(magnitude_lspin);
       const int dim_onsite_lspin = magnitude_2lspin + 1;
       const int dim_onsite = dim_onsite_lspin*static_cast<int>(std::pow(4, num_orbital));
@@ -953,7 +965,7 @@ public:
    //! @param orbital The electron orbital \f$ \alpha \f$.
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @return The matrix of \f$ \hat{c}^{\dagger}_{\alpha, \uparrow}\f$.
-   static CRS CreateOnsiteOperatorCUpDagger(const double magnitude_lspin, const int orbital, const int num_orbital) {
+   static CRS CreateOnsiteOperatorCUpDagger(const HalfInt magnitude_lspin, const int orbital, const int num_orbital) {
       return sparse_matrix::CalculateTransposedMatrix(CreateOnsiteOperatorCUp(magnitude_lspin, orbital, num_orbital));
    }
    
@@ -963,7 +975,7 @@ public:
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{c}^{\dagger}_{\alpha, \downarrow}\f$.
-   static CRS CreateOnsiteOperatorCDownDagger(const double magnitude_lspin, const int orbital, const int num_orbital) {
+   static CRS CreateOnsiteOperatorCDownDagger(const HalfInt magnitude_lspin, const int orbital, const int num_orbital) {
       return sparse_matrix::CalculateTransposedMatrix(CreateOnsiteOperatorCDown(magnitude_lspin, orbital, num_orbital));
    }
    
@@ -974,7 +986,7 @@ public:
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{n}_{\alpha, \uparrow}\f$.
-   static CRS CreateOnsiteOperatorNCUp(const double magnitude_lspin, const int orbital, const int num_orbital) {
+   static CRS CreateOnsiteOperatorNCUp(const HalfInt magnitude_lspin, const int orbital, const int num_orbital) {
       return CreateOnsiteOperatorCUpDagger(magnitude_lspin, orbital, num_orbital)*CreateOnsiteOperatorCUp(magnitude_lspin, orbital, num_orbital);
    }
    
@@ -985,7 +997,7 @@ public:
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{n}_{\alpha, \downarrow}\f$.
-   static CRS CreateOnsiteOperatorNCDown(const double magnitude_lspin, const int orbital, const int num_orbital) {
+   static CRS CreateOnsiteOperatorNCDown(const HalfInt magnitude_lspin, const int orbital, const int num_orbital) {
       return CreateOnsiteOperatorCDownDagger(magnitude_lspin, orbital, num_orbital)*CreateOnsiteOperatorCDown(magnitude_lspin, orbital, num_orbital);
    }
    
@@ -995,7 +1007,7 @@ public:
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{n}_{\alpha}\f$.
-   static CRS CreateOnsiteOperatorNC(const double magnitude_lspin, const int orbital, const int num_orbital) {
+   static CRS CreateOnsiteOperatorNC(const HalfInt magnitude_lspin, const int orbital, const int num_orbital) {
       return CreateOnsiteOperatorNCUp(magnitude_lspin, orbital, num_orbital) + CreateOnsiteOperatorNCDown(magnitude_lspin, orbital, num_orbital);
    }
    
@@ -1004,7 +1016,7 @@ public:
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @return The matrix of \f$ \sum_{\alpha}\hat{n}_{\alpha}\f$.
-   static CRS CreateOnsiteOperatorNCTot(const double magnitude_lspin, const int num_orbital) {
+   static CRS CreateOnsiteOperatorNCTot(const HalfInt magnitude_lspin, const int num_orbital) {
       const int dim = (utility::DoubleTheNumber(magnitude_lspin) + 1)*static_cast<int>(std::pow(4, num_orbital));
       CRS out(dim, dim);
       for (int o = 0; o < num_orbital; ++o) {
@@ -1020,7 +1032,7 @@ public:
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{s}^{x}_{\alpha}\f$.
-   static CRS CreateOnsiteOperatorSxC(const double magnitude_lspin, const int orbital, const int num_orbital) {
+   static CRS CreateOnsiteOperatorSxC(const HalfInt magnitude_lspin, const int orbital, const int num_orbital) {
       return 0.5*(CreateOnsiteOperatorSpC(magnitude_lspin, orbital, num_orbital) + CreateOnsiteOperatorSmC(magnitude_lspin, orbital, num_orbital));
    }
    
@@ -1032,7 +1044,7 @@ public:
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ i\hat{s}^{y}_{\alpha}\f$.
-   static CRS CreateOnsiteOperatoriSyC(const double magnitude_lspin, const int orbital, const int num_orbital) {
+   static CRS CreateOnsiteOperatoriSyC(const HalfInt magnitude_lspin, const int orbital, const int num_orbital) {
       return 0.5*(CreateOnsiteOperatorSpC(magnitude_lspin, orbital, num_orbital) - CreateOnsiteOperatorSmC(magnitude_lspin, orbital, num_orbital));
    }
    
@@ -1043,7 +1055,7 @@ public:
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{s}^{z}_{\alpha}\f$.
-   static CRS CreateOnsiteOperatorSzC(const double magnitude_lspin, const int orbital, const int num_orbital) {
+   static CRS CreateOnsiteOperatorSzC(const HalfInt magnitude_lspin, const int orbital, const int num_orbital) {
       return 0.5*(CreateOnsiteOperatorNCUp(magnitude_lspin, orbital, num_orbital) - CreateOnsiteOperatorNCDown(magnitude_lspin, orbital, num_orbital));
    }
    
@@ -1053,7 +1065,7 @@ public:
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{s}^{+}_{\alpha}\f$.
-   static CRS CreateOnsiteOperatorSpC(const double magnitude_lspin, const int orbital, const int num_orbital) {
+   static CRS CreateOnsiteOperatorSpC(const HalfInt magnitude_lspin, const int orbital, const int num_orbital) {
       return CreateOnsiteOperatorCUpDagger(magnitude_lspin, orbital, num_orbital)*CreateOnsiteOperatorCDown(magnitude_lspin, orbital, num_orbital);
    }
    
@@ -1063,7 +1075,7 @@ public:
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{s}^{-}_{\alpha}\f$.
-   static CRS CreateOnsiteOperatorSmC(const double magnitude_lspin, const int orbital, const int num_orbital) {
+   static CRS CreateOnsiteOperatorSmC(const HalfInt magnitude_lspin, const int orbital, const int num_orbital) {
       return CreateOnsiteOperatorCDownDagger(magnitude_lspin, orbital, num_orbital)*CreateOnsiteOperatorCUp(magnitude_lspin, orbital, num_orbital);
    }
    
@@ -1071,7 +1083,7 @@ public:
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$
    //! @return The matrix of \f$ \hat{S}^{-}\f$.
-   static CRS CreateOnsiteOperatorSmL(const double magnitude_lspin, const int num_orbital) {
+   static CRS CreateOnsiteOperatorSmL(const HalfInt magnitude_lspin, const int num_orbital) {
       return sparse_matrix::CalculateTransposedMatrix(CreateOnsiteOperatorSpL(magnitude_lspin, num_orbital));
    }
    
@@ -1079,7 +1091,7 @@ public:
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{S}^{x}\f$.
-   static CRS CreateOnsiteOperatorSxL(const double magnitude_lspin, const int num_orbital) {
+   static CRS CreateOnsiteOperatorSxL(const HalfInt magnitude_lspin, const int num_orbital) {
       return 0.5*(CreateOnsiteOperatorSpL(magnitude_lspin, num_orbital) + CreateOnsiteOperatorSmL(magnitude_lspin, num_orbital));
    }
    
@@ -1088,7 +1100,7 @@ public:
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ i\hat{S}^{y}\f$.
-   static CRS CreateOnsiteOperatoriSyL(const double magnitude_lspin, const int num_orbital) {
+   static CRS CreateOnsiteOperatoriSyL(const HalfInt magnitude_lspin, const int num_orbital) {
       return 0.5*(CreateOnsiteOperatorSpL(magnitude_lspin, num_orbital) - CreateOnsiteOperatorSmL(magnitude_lspin, num_orbital));
    }
    
@@ -1098,7 +1110,7 @@ public:
    //! @param orbital The electron orbital \f$ \alpha \f$.
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @return The matrix of \f$ \hat{\boldsymbol{s}}_{\alpha}\cdot\hat{\boldsymbol{S}}\f$.
-   static CRS CreateOnsiteOperatorSCSL(const double magnitude_lspin, const int orbital, const int num_orbital) {
+   static CRS CreateOnsiteOperatorSCSL(const HalfInt magnitude_lspin, const int orbital, const int num_orbital) {
       const CRS spc = CreateOnsiteOperatorSpC(magnitude_lspin, orbital, num_orbital);
       const CRS smc = CreateOnsiteOperatorSmC(magnitude_lspin, orbital, num_orbital);
       const CRS szc = CreateOnsiteOperatorSzC(magnitude_lspin, orbital, num_orbital);
@@ -1114,7 +1126,7 @@ public:
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @return The matrix of \f$ \hat{\boldsymbol{s}}\cdot\hat{\boldsymbol{S}}\f$.
-   static CRS CreateOnsiteOperatorSCSLTot(const double magnitude_lspin, const int num_orbital) {
+   static CRS CreateOnsiteOperatorSCSLTot(const HalfInt magnitude_lspin, const int num_orbital) {
       const CRS spl = CreateOnsiteOperatorSpL(magnitude_lspin, num_orbital);
       const CRS sml = CreateOnsiteOperatorSmL(magnitude_lspin, num_orbital);
       const CRS szl = CreateOnsiteOperatorSzL(magnitude_lspin, num_orbital);
@@ -1218,7 +1230,7 @@ public:
    //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
    //! @return Basis.
-   inline const std::vector<std::int64_t> &GetBasis(const std::pair<std::vector<int>, double> &quantum_number) const {
+   inline const std::vector<LInt> &GetBasis(const QType &quantum_number) const {
       return bases_.at({quantum_number.first, utility::DoubleTheNumber(quantum_number.second)});
    }
    
@@ -1228,7 +1240,7 @@ public:
    //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
    //! @return Inverse basis.
-   inline const std::unordered_map<std::int64_t, std::int64_t> &GetBasisInv(const std::pair<std::vector<int>, double> &quantum_number) const {
+   inline const Map<LInt, LInt> &GetBasisInv(const QType &quantum_number) const {
       return bases_inv_.at({quantum_number.first, utility::DoubleTheNumber(quantum_number.second)});
    }
    
@@ -1237,7 +1249,7 @@ public:
    //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
    //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @return Basis.
-   inline const std::vector<std::int64_t> &GetTargetBasis() const {
+   inline const std::vector<LInt> &GetTargetBasis() const {
       return bases_.at({total_electron_, total_2sz_});
    }
    
@@ -1246,7 +1258,7 @@ public:
    //! the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$,
    //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @return Inverse basis.
-   inline const std::unordered_map<std::int64_t, std::int64_t> &GetTargetBasisInv() const {
+   inline const Map<LInt, LInt> &GetTargetBasisInv() const {
       return bases_inv_.at({total_electron_, total_2sz_});
    }
    
@@ -1366,14 +1378,14 @@ protected:
    //! the number of the total electrons at each orbital \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$,
    //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! The first value of std::vector<int> stores twice the number of the total sz and remaining values correspond to the orbitals of the electrons.
-   std::unordered_map<std::pair<std::vector<int>, int>, std::vector<std::int64_t>, utility::VectorIntHash> bases_;
+   Map<VecIntPair, std::vector<LInt>, VecIntHash> bases_;
    
    //! @brief Inverse bases of the target Hilbert space specified by
    //! the system size \f$ N\f$, the magnitude of the local spin \f$ S\f$,
    //! the number of the total electrons at each orbital \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$,
    //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! The first value of std::vector<int> stores twice the number of the total sz and remaining values correspond to the orbitals of the electrons.
-   std::unordered_map<std::pair<std::vector<int>, int>, std::unordered_map<std::int64_t, std::int64_t>, utility::VectorIntHash> bases_inv_;
+   Map<VecIntPair, Map<LInt, LInt>, VecIntHash> bases_inv_;
    
    //! @brief Set onsite operators.
    void SetOnsiteOperator() {
@@ -1433,7 +1445,7 @@ protected:
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @return The onsite basis for the electrons.
    inline static int CalculateBasisOnsiteElectron(const int basis_onsite,
-                                                  const double magnitude_lspin,
+                                                  const HalfInt magnitude_lspin,
                                                   const int orbital,
                                                   const int num_orbital) {
       const int dim_onsite_lspin = utility::DoubleTheNumber(magnitude_lspin) + 1;
@@ -1497,7 +1509,7 @@ protected:
    //! @param total_electron The total electron at each orbital \f$ \alpha \f$, \f$ \langle\hat{N}_{{\rm e}, \alpha}\rangle\f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    //! @return ture if there exists corresponding subspace, otherwise false.
-   static bool isValidQNumber(const int system_size, const double magnitude_lspin, const std::vector<int> &total_electron, const double total_sz) {
+   static bool isValidQNumber(const int system_size, const HalfInt magnitude_lspin, const std::vector<int> &total_electron, const HalfInt total_sz) {
       const int total_2sz            = utility::DoubleTheNumber(total_sz);
       const int magnitude_2lspin     = utility::DoubleTheNumber(magnitude_lspin);
       const int total_total_electron = std::accumulate(total_electron.begin(), total_electron.end(), 0);
