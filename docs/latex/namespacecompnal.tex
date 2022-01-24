@@ -1,0 +1,112 @@
+\hypertarget{namespacecompnal}{}\doxysection{compnal Namespace Reference}
+\label{namespacecompnal}\index{compnal@{compnal}}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecompnal_1_1model}{model}}
+\item 
+namespace \mbox{\hyperlink{namespacecompnal_1_1solver}{solver}}
+\item 
+namespace \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix}{sparse\+\_\+matrix}}
+\item 
+namespace \mbox{\hyperlink{namespacecompnal_1_1test}{test}}
+\item 
+namespace \mbox{\hyperlink{namespacecompnal_1_1utility}{utility}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcompnal_1_1_pair_hash}{Pair\+Hash}}
+\begin{DoxyCompactList}\small\item\em Alias of hash class for std\+::pair. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structcompnal_1_1_vec_hash}{Vec\+Hash}}
+\begin{DoxyCompactList}\small\item\em Alias of hash class for std\+::vector. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structcompnal_1_1_vec_int_hash}{Vec\+Int\+Hash}}
+\begin{DoxyCompactList}\small\item\em Alias of hash class for std\+::pair including std\+::vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{Half\+Int}} = double
+\begin{DoxyCompactList}\small\item\em Half integer type. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} = std\+::int64\+\_\+t
+\begin{DoxyCompactList}\small\item\em Long integer type. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{Int\+Pair}} = std\+::pair$<$ int, int $>$
+\begin{DoxyCompactList}\small\item\em Integer pair. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespacecompnal_aaf1620c2d868fb10382876490e9c6147}{LInt\+Pair}} = std\+::pair$<$ \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}, \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} $>$
+\begin{DoxyCompactList}\small\item\em Long integer pair. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{namespacecompnal_a79aaace56ee99c030c6feafd025fd651}{Vec\+Int\+Pair}} = std\+::pair$<$ std\+::vector$<$ int $>$, int $>$
+\begin{DoxyCompactList}\small\item\em std\+::vector$<$int$>$ and int pair. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$$>$ }\\using \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}} = std\+::unordered\+\_\+map$<$ Key, T, Hash $>$
+\begin{DoxyCompactList}\small\item\em Alias of std\+::unordered\+\_\+map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}\label{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}} 
+\index{compnal@{compnal}!HalfInt@{HalfInt}}
+\index{HalfInt@{HalfInt}!compnal@{compnal}}
+\doxysubsubsection{\texorpdfstring{HalfInt}{HalfInt}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{compnal\+::\+Half\+Int}} = typedef double}
+
+
+
+Half integer type. 
+
+\mbox{\Hypertarget{namespacecompnal_a67ff673804e4993ca115420797175ae8}\label{namespacecompnal_a67ff673804e4993ca115420797175ae8}} 
+\index{compnal@{compnal}!IntPair@{IntPair}}
+\index{IntPair@{IntPair}!compnal@{compnal}}
+\doxysubsubsection{\texorpdfstring{IntPair}{IntPair}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{compnal\+::\+Int\+Pair}} = typedef std\+::pair$<$int, int$>$}
+
+
+
+Integer pair. 
+
+\mbox{\Hypertarget{namespacecompnal_a5c65468895022d33488c22744a8c46fc}\label{namespacecompnal_a5c65468895022d33488c22744a8c46fc}} 
+\index{compnal@{compnal}!LInt@{LInt}}
+\index{LInt@{LInt}!compnal@{compnal}}
+\doxysubsubsection{\texorpdfstring{LInt}{LInt}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{compnal\+::\+LInt}} = typedef std\+::int64\+\_\+t}
+
+
+
+Long integer type. 
+
+\mbox{\Hypertarget{namespacecompnal_aaf1620c2d868fb10382876490e9c6147}\label{namespacecompnal_aaf1620c2d868fb10382876490e9c6147}} 
+\index{compnal@{compnal}!LIntPair@{LIntPair}}
+\index{LIntPair@{LIntPair}!compnal@{compnal}}
+\doxysubsubsection{\texorpdfstring{LIntPair}{LIntPair}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespacecompnal_aaf1620c2d868fb10382876490e9c6147}{compnal\+::\+LInt\+Pair}} = typedef std\+::pair$<$\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}, \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}$>$}
+
+
+
+Long integer pair. 
+
+\mbox{\Hypertarget{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}\label{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}} 
+\index{compnal@{compnal}!Map@{Map}}
+\index{Map@{Map}!compnal@{compnal}}
+\doxysubsubsection{\texorpdfstring{Map}{Map}}
+{\footnotesize\ttfamily template$<$class Key , class T , class Hash  = std\+::hash$<$\+Key$>$$>$ \\
+using \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{compnal\+::\+Map}} = typedef std\+::unordered\+\_\+map$<$Key, T, Hash$>$}
+
+
+
+Alias of std\+::unordered\+\_\+map. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Key} & Type of key. \\
+\hline
+{\em T} & Type of value. \\
+\hline
+{\em Hash} & Type of hash function. \\
+\hline
+\end{DoxyTemplParams}
+\mbox{\Hypertarget{namespacecompnal_a79aaace56ee99c030c6feafd025fd651}\label{namespacecompnal_a79aaace56ee99c030c6feafd025fd651}} 
+\index{compnal@{compnal}!VecIntPair@{VecIntPair}}
+\index{VecIntPair@{VecIntPair}!compnal@{compnal}}
+\doxysubsubsection{\texorpdfstring{VecIntPair}{VecIntPair}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespacecompnal_a79aaace56ee99c030c6feafd025fd651}{compnal\+::\+Vec\+Int\+Pair}} = typedef std\+::pair$<$std\+::vector$<$int$>$, int$>$}
+
+
+
+std\+::vector$<$int$>$ and int pair. 
+

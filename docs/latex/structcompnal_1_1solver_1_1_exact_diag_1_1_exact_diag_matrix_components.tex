@@ -1,0 +1,101 @@
+\hypertarget{structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components}{}\doxysection{compnal\+::solver\+::Exact\+Diag\texorpdfstring{$<$}{<} Model\+Class \texorpdfstring{$>$}{>}\+::Exact\+Diag\+Matrix\+Components Struct Reference}
+\label{structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components}\index{compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents@{compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents}}
+
+
+Information for calculating the matrix elements of the Hamiltonian.  
+
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} $>$ \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components_a3963d8c56d40d8e574e8e19f4be25a4f}{val}}
+\begin{DoxyCompactList}\small\item\em Values of the matrix elements. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} $>$ \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components_a2afc81e50cadb189a233ffb61046495c}{basis\+\_\+affected}}
+\begin{DoxyCompactList}\small\item\em Column number of the matrix elements. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components_aab1fdd812e21f80ec19c59449d44d3f4}{basis\+\_\+onsite}}
+\begin{DoxyCompactList}\small\item\em The onsite basis. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} $>$ \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components_a820bc268130604440e5951d7d7adebf2}{site\+\_\+constant}}
+\begin{DoxyCompactList}\small\item\em Constants for calculating matrix elements. \end{DoxyCompactList}\item 
+std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}, \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} $>$ \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components_a13bd0cb5c8d24b9b2bfc9712f7a6899b}{inv\+\_\+basis\+\_\+affected}}
+\begin{DoxyCompactList}\small\item\em Inverse basis. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components_a318fc7257796f0900c15e0b4fcfcd2da}{zero\+\_\+precision}} = std\+::pow(10, -\/15)
+\begin{DoxyCompactList}\small\item\em Calculation accuracy of the matrix elements. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Model\+Class$>$\newline
+struct compnal\+::solver\+::\+Exact\+Diag$<$ Model\+Class $>$\+::\+Exact\+Diag\+Matrix\+Components}
+Information for calculating the matrix elements of the Hamiltonian. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components_a2afc81e50cadb189a233ffb61046495c}\label{structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components_a2afc81e50cadb189a233ffb61046495c}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents@{compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents}!basis\_affected@{basis\_affected}}
+\index{basis\_affected@{basis\_affected}!compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents@{compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents}}
+\doxysubsubsection{\texorpdfstring{basis\_affected}{basis\_affected}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+std\+::vector$<$\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}$>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Exact\+Diag\+Matrix\+Components\+::basis\+\_\+affected}
+
+
+
+Column number of the matrix elements. 
+
+\mbox{\Hypertarget{structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components_aab1fdd812e21f80ec19c59449d44d3f4}\label{structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components_aab1fdd812e21f80ec19c59449d44d3f4}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents@{compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents}!basis\_onsite@{basis\_onsite}}
+\index{basis\_onsite@{basis\_onsite}!compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents@{compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents}}
+\doxysubsubsection{\texorpdfstring{basis\_onsite}{basis\_onsite}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+std\+::vector$<$int$>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Exact\+Diag\+Matrix\+Components\+::basis\+\_\+onsite}
+
+
+
+The onsite basis. 
+
+\mbox{\Hypertarget{structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components_a13bd0cb5c8d24b9b2bfc9712f7a6899b}\label{structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components_a13bd0cb5c8d24b9b2bfc9712f7a6899b}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents@{compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents}!inv\_basis\_affected@{inv\_basis\_affected}}
+\index{inv\_basis\_affected@{inv\_basis\_affected}!compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents@{compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents}}
+\doxysubsubsection{\texorpdfstring{inv\_basis\_affected}{inv\_basis\_affected}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+std\+::unordered\+\_\+map$<$\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}, \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}$>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Exact\+Diag\+Matrix\+Components\+::inv\+\_\+basis\+\_\+affected}
+
+
+
+Inverse basis. 
+
+\mbox{\Hypertarget{structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components_a820bc268130604440e5951d7d7adebf2}\label{structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components_a820bc268130604440e5951d7d7adebf2}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents@{compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents}!site\_constant@{site\_constant}}
+\index{site\_constant@{site\_constant}!compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents@{compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents}}
+\doxysubsubsection{\texorpdfstring{site\_constant}{site\_constant}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+std\+::vector$<$\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}$>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Exact\+Diag\+Matrix\+Components\+::site\+\_\+constant}
+
+
+
+Constants for calculating matrix elements. 
+
+\mbox{\Hypertarget{structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components_a3963d8c56d40d8e574e8e19f4be25a4f}\label{structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components_a3963d8c56d40d8e574e8e19f4be25a4f}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents@{compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents}!val@{val}}
+\index{val@{val}!compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents@{compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents}}
+\doxysubsubsection{\texorpdfstring{val}{val}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}}$>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Exact\+Diag\+Matrix\+Components\+::val}
+
+
+
+Values of the matrix elements. 
+
+\mbox{\Hypertarget{structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components_a318fc7257796f0900c15e0b4fcfcd2da}\label{structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components_a318fc7257796f0900c15e0b4fcfcd2da}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents@{compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents}!zero\_precision@{zero\_precision}}
+\index{zero\_precision@{zero\_precision}!compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents@{compnal::solver::ExactDiag$<$ ModelClass $>$::ExactDiagMatrixComponents}}
+\doxysubsubsection{\texorpdfstring{zero\_precision}{zero\_precision}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+double \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Exact\+Diag\+Matrix\+Components\+::zero\+\_\+precision = std\+::pow(10, -\/15)}
+
+
+
+Calculation accuracy of the matrix elements. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/solver/\mbox{\hyperlink{exact__diag_8hpp}{exact\+\_\+diag.\+hpp}}\end{DoxyCompactItemize}

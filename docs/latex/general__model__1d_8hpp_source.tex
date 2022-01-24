@@ -1,0 +1,134 @@
+\hypertarget{general__model__1d_8hpp_source}{}\doxysection{general\+\_\+model\+\_\+1d.\+hpp}
+\label{general__model__1d_8hpp_source}\index{src/model/general\_model\_1d.hpp@{src/model/general\_model\_1d.hpp}}
+\mbox{\hyperlink{general__model__1d_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{//  Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{4 \textcolor{comment}{//  you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{5 \textcolor{comment}{//  You may obtain a copy of the License at}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{//      http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{comment}{//  Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{10 \textcolor{comment}{//  distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{11 \textcolor{comment}{//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{12 \textcolor{comment}{//  See the License for the specific language governing permissions and}}
+\DoxyCodeLine{13 \textcolor{comment}{//  limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{//}}
+\DoxyCodeLine{15 \textcolor{comment}{//  Created by Kohei Suzuki on 2021/11/27.}}
+\DoxyCodeLine{16 \textcolor{comment}{//}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_MODEL\_U1\_ELECTRON\_1D\_HPP\_}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_MODEL\_U1\_ELECTRON\_1D\_HPP\_}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}../sparse\_matrix/all.hpp"{}}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}../type.hpp"{}}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <unordered\_map>}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
+\DoxyCodeLine{28 \textcolor{keyword}{namespace }model \{}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{32 \textcolor{keyword}{template}<\textcolor{keyword}{class} BaseClass>}
+\DoxyCodeLine{33 \textcolor{keyword}{class }\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d}{GeneralModel\_1D}}: \textcolor{keyword}{public} BaseClass \{}
+\DoxyCodeLine{34    }
+\DoxyCodeLine{36    \textcolor{keyword}{using} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a530e9f1a7e798931102c91eeeab65337}{RealType}} = \textcolor{keyword}{typename} BaseClass::ValueType;}
+\DoxyCodeLine{37    }
+\DoxyCodeLine{39    \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} = \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{sparse\_matrix::CRS<RealType>}};}
+\DoxyCodeLine{40    }
+\DoxyCodeLine{41 \textcolor{keyword}{public}:}
+\DoxyCodeLine{42    \textcolor{keyword}{using} BaseClass::BaseClass;}
+\DoxyCodeLine{43    }
+\DoxyCodeLine{48    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a031c24a841579d0ef00514b72b66053a}{AddOnsitePotential}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a530e9f1a7e798931102c91eeeab65337}{RealType}} val = 1.0) \{}
+\DoxyCodeLine{49       \textcolor{keywordflow}{if} (val == 0.0) \{}
+\DoxyCodeLine{50          \textcolor{keywordflow}{return};}
+\DoxyCodeLine{51       \}}
+\DoxyCodeLine{52       \textcolor{comment}{// TODO: Check of m is valid with BaseClass operator}}
+\DoxyCodeLine{53       \textcolor{keywordflow}{if} (m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad0729e9e6d307d317752691580e02343}{row\_dim}} != m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad85231132bd7a45bbc447fa02c10f0be}{col\_dim}}) \{}
+\DoxyCodeLine{54          std::stringstream ss;}
+\DoxyCodeLine{55          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{56          ss << \textcolor{stringliteral}{"{}The input matrix is not a square matrix."{}} << std::endl;}
+\DoxyCodeLine{57          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{58       \}}
+\DoxyCodeLine{59       \textcolor{keywordflow}{if} (m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad0729e9e6d307d317752691580e02343}{row\_dim}} != this-\/>dim\_onsite\_) \{}
+\DoxyCodeLine{60          std::stringstream ss;}
+\DoxyCodeLine{61          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{62          ss << \textcolor{stringliteral}{"{}The input matrix is invalid"{}} << std::endl;}
+\DoxyCodeLine{63          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{64       \}}
+\DoxyCodeLine{65       \textcolor{keywordflow}{if} (site < 0 || this-\/>system\_size\_ <= site) \{}
+\DoxyCodeLine{66          std::stringstream ss;}
+\DoxyCodeLine{67          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{68          ss << \textcolor{stringliteral}{"{}Invalid site: "{}} << site << std::endl;}
+\DoxyCodeLine{69          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{70       \}}
+\DoxyCodeLine{71       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_acb5352daf1b947f638efde5034288770}{onsite\_operator\_list\_}}.count(site) == 0) \{}
+\DoxyCodeLine{72          \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_acb5352daf1b947f638efde5034288770}{onsite\_operator\_list\_}}[site] = m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a818173aa562d5c541552627b1570244f}{MultiplyByScalar}}(val);}
+\DoxyCodeLine{73       \}}
+\DoxyCodeLine{74       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{75          \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_acb5352daf1b947f638efde5034288770}{onsite\_operator\_list\_}}.at(site) = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ac96ccd3b32760093ebb9dbc2481053b2}{CalculateMatrixMatrixSum}}(val, m, 1.0, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_acb5352daf1b947f638efde5034288770}{onsite\_operator\_list\_}}.at(site));}
+\DoxyCodeLine{76       \}}
+\DoxyCodeLine{77    \}}
+\DoxyCodeLine{78       }
+\DoxyCodeLine{85    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a3445c03ff640e1932280ba97d85c8e99}{AddInteraction}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_1, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_1, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_2, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_2, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a530e9f1a7e798931102c91eeeab65337}{RealType}} val = 1.0) \{}
+\DoxyCodeLine{86       \textcolor{keywordflow}{if} (val == 0.0) \{}
+\DoxyCodeLine{87          \textcolor{keywordflow}{return};}
+\DoxyCodeLine{88       \}}
+\DoxyCodeLine{89       \textcolor{keywordflow}{if} (m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad0729e9e6d307d317752691580e02343}{row\_dim}} != m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad85231132bd7a45bbc447fa02c10f0be}{col\_dim}} || m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad0729e9e6d307d317752691580e02343}{row\_dim}} != m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad85231132bd7a45bbc447fa02c10f0be}{col\_dim}}) \{}
+\DoxyCodeLine{90          std::stringstream ss;}
+\DoxyCodeLine{91          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{92          ss << \textcolor{stringliteral}{"{}The input matrix is not a square matrix."{}} << std::endl;}
+\DoxyCodeLine{93          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{94       \}}
+\DoxyCodeLine{95       \textcolor{keywordflow}{if} (m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad0729e9e6d307d317752691580e02343}{row\_dim}} != this-\/>dim\_onsite\_) \{}
+\DoxyCodeLine{96          std::stringstream ss;}
+\DoxyCodeLine{97          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{98          ss << \textcolor{stringliteral}{"{}The input matrix is invalid"{}} << std::endl;}
+\DoxyCodeLine{99          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{100       \}}
+\DoxyCodeLine{101       \textcolor{keywordflow}{if} (site\_1 < 0 || this-\/>system\_size\_ <= site\_1) \{}
+\DoxyCodeLine{102          std::stringstream ss;}
+\DoxyCodeLine{103          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{104          ss << \textcolor{stringliteral}{"{}Invalid site: "{}} << site\_1 << std::endl;}
+\DoxyCodeLine{105          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{106       \}}
+\DoxyCodeLine{107       \textcolor{keywordflow}{if} (site\_2 < 0 || this-\/>system\_size\_ <= site\_2) \{}
+\DoxyCodeLine{108          std::stringstream ss;}
+\DoxyCodeLine{109          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{110          ss << \textcolor{stringliteral}{"{}Invalid site: "{}} << site\_2 << std::endl;}
+\DoxyCodeLine{111          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{112       \}}
+\DoxyCodeLine{113       \textcolor{keywordflow}{if} (site\_1 == site\_2) \{}
+\DoxyCodeLine{114          \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a031c24a841579d0ef00514b72b66053a}{AddOnsitePotential}}(m\_1*m\_2, site\_1, val);}
+\DoxyCodeLine{115          \textcolor{keywordflow}{return};}
+\DoxyCodeLine{116       \}}
+\DoxyCodeLine{117       \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a63297202bd264ce5cc9fe06f41b2bad4}{intersite\_operator\_list\_}}[site\_1][site\_2].push\_back(\{m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a818173aa562d5c541552627b1570244f}{MultiplyByScalar}}(val), m\_2\});}
+\DoxyCodeLine{118    \}}
+\DoxyCodeLine{119    }
+\DoxyCodeLine{122    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map<int, CRS>}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_af2a2f2d546d514e927b347e5c02973ba}{GetOnsiteOperatorList}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_acb5352daf1b947f638efde5034288770}{onsite\_operator\_list\_}}; \}}
+\DoxyCodeLine{123    }
+\DoxyCodeLine{127    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a7313b90fc9dc9c1da3cf17062a632f20}{GetOnsiteOperator}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} site)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_acb5352daf1b947f638efde5034288770}{onsite\_operator\_list\_}}.at(site); \}}
+\DoxyCodeLine{128    }
+\DoxyCodeLine{131    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map<int, Map<int, std::vector<std::pair<CRS, CRS>}}>>> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a3d7b31ee40d03c824ed1c021d929fda6}{GetIntersiteOperatorList}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a63297202bd264ce5cc9fe06f41b2bad4}{intersite\_operator\_list\_}}; \}}
+\DoxyCodeLine{132    }
+\DoxyCodeLine{137    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<std::pair<CRS, CRS>> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_aef282dab7ad34ff8a3fafd050b49785b}{GetIntersiteOperator}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_1, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_2)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a63297202bd264ce5cc9fe06f41b2bad4}{intersite\_operator\_list\_}}.at(site\_1).at(site\_2); \}}
+\DoxyCodeLine{138    }
+\DoxyCodeLine{139 \textcolor{keyword}{private}:}
+\DoxyCodeLine{141    \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map<int, CRS>}} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_acb5352daf1b947f638efde5034288770}{onsite\_operator\_list\_}};}
+\DoxyCodeLine{142    }
+\DoxyCodeLine{144    \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map<int, Map<int, std::vector<std::pair<CRS, CRS>}}>>> \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a63297202bd264ce5cc9fe06f41b2bad4}{intersite\_operator\_list\_}};}
+\DoxyCodeLine{145    }
+\DoxyCodeLine{146 \};}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148 \}}
+\DoxyCodeLine{149 \}}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153 }
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_MODEL\_U1\_ELECTRON\_1D\_HPP\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

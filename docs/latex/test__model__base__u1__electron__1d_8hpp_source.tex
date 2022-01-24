@@ -1,0 +1,222 @@
+\hypertarget{test__model__base__u1__electron__1d_8hpp_source}{}\doxysection{test\+\_\+model\+\_\+base\+\_\+u1\+\_\+electron\+\_\+1d.\+hpp}
+\label{test__model__base__u1__electron__1d_8hpp_source}\index{tests/model/test\_model\_base\_u1\_electron\_1d.hpp@{tests/model/test\_model\_base\_u1\_electron\_1d.hpp}}
+\mbox{\hyperlink{test__model__base__u1__electron__1d_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{//  Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{4 \textcolor{comment}{//  you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{5 \textcolor{comment}{//  You may obtain a copy of the License at}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{//      http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{comment}{//  Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{10 \textcolor{comment}{//  distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{11 \textcolor{comment}{//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{12 \textcolor{comment}{//  See the License for the specific language governing permissions and}}
+\DoxyCodeLine{13 \textcolor{comment}{//  limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{//}}
+\DoxyCodeLine{15 \textcolor{comment}{//  Created by Kohei Suzuki on 2022/01/08.}}
+\DoxyCodeLine{16 \textcolor{comment}{//}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_TEST\_MODEL\_BASE\_U1\_ELECTRON\_1D\_HPP\_}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_TEST\_MODEL\_BASE\_U1\_ELECTRON\_1D\_HPP\_}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}../../src/model/base\_u1\_electron\_1d.hpp"{}}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}../test.hpp"{}}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <gtest/gtest.h>}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{keyword}{namespace }\{}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{keyword}{using} \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{compnal::LInt}};}
+\DoxyCodeLine{28 \textcolor{keyword}{using} \mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{compnal::IntPair}};}
+\DoxyCodeLine{29 \textcolor{keyword}{using} \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{compnal::Map}};}
+\DoxyCodeLine{30 \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1_pair_hash}{compnal::PairHash}};}
+\DoxyCodeLine{31 \textcolor{keyword}{using} \mbox{\hyperlink{namespacecompnal_1_1test_ac10a748d750a721db72cc022511fc7e0}{compnal::test::ExpectEQ}};}
+\DoxyCodeLine{32 \textcolor{keyword}{using} \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{compnal::test::ExpectNear}};}
+\DoxyCodeLine{33 \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{compnal::sparse\_matrix::CRS}};}
+\DoxyCodeLine{34 \textcolor{keyword}{using} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dc}{compnal::sparse\_matrix::CRSTag}};}
+\DoxyCodeLine{35 \textcolor{keyword}{using} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal::model::BaseU1Electron\_1D}};}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \} \textcolor{comment}{// namespace}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{keyword}{namespace }\{}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
+\DoxyCodeLine{42 \textcolor{keywordtype}{void} TestElectron(\textcolor{keyword}{const} BaseU1Electron\_1D<RealType> \&model) \{}
+\DoxyCodeLine{43    }
+\DoxyCodeLine{44    \textcolor{keyword}{const} \textcolor{keywordtype}{double} threshold = std::pow(10, -\/15);}
+\DoxyCodeLine{45    EXPECT\_EQ(model.GetDimOnsite(), 4);}
+\DoxyCodeLine{46    }
+\DoxyCodeLine{47    \textcolor{keyword}{const} CRS<RealType> ref\_c\_up (\{}
+\DoxyCodeLine{48       \{0.0, 1.0, 0.0, 0.0\},}
+\DoxyCodeLine{49       \{0.0, 0.0, 0.0, 0.0\},}
+\DoxyCodeLine{50       \{0.0, 0.0, 0.0, 1.0\},}
+\DoxyCodeLine{51       \{0.0, 0.0, 0.0, 0.0\}}
+\DoxyCodeLine{52    \}, \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{CRSTag::FERMION}});}
+\DoxyCodeLine{53    }
+\DoxyCodeLine{54    \textcolor{keyword}{const} CRS<RealType> ref\_c\_up\_d (\{}
+\DoxyCodeLine{55       \{0.0, 0.0, 0.0, 0.0\},}
+\DoxyCodeLine{56       \{1.0, 0.0, 0.0, 0.0\},}
+\DoxyCodeLine{57       \{0.0, 0.0, 0.0, 0.0\},}
+\DoxyCodeLine{58       \{0.0, 0.0, 1.0, 0.0\}}
+\DoxyCodeLine{59    \}, \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{CRSTag::FERMION}});}
+\DoxyCodeLine{60    }
+\DoxyCodeLine{61    \textcolor{keyword}{const} CRS<RealType> ref\_c\_down (\{}
+\DoxyCodeLine{62       \{0.0, 0.0, 1.0, 0.0\},}
+\DoxyCodeLine{63       \{0.0, 0.0, 0.0, -\/1.0\},}
+\DoxyCodeLine{64       \{0.0, 0.0, 0.0, 0.0\},}
+\DoxyCodeLine{65       \{0.0, 0.0, 0.0, 0.0\}}
+\DoxyCodeLine{66    \}, \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{CRSTag::FERMION}});}
+\DoxyCodeLine{67    }
+\DoxyCodeLine{68    \textcolor{keyword}{const} CRS<RealType> ref\_c\_down\_d (\{}
+\DoxyCodeLine{69       \{0.0, 0.0, 0.0, 0.0\},}
+\DoxyCodeLine{70       \{0.0, 0.0, 0.0, 0.0\},}
+\DoxyCodeLine{71       \{1.0, 0.0, 0.0, 0.0\},}
+\DoxyCodeLine{72       \{0.0, -\/1.0, 0.0, 0.0\}}
+\DoxyCodeLine{73    \}, \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{CRSTag::FERMION}});}
+\DoxyCodeLine{74    }
+\DoxyCodeLine{75    \textcolor{keyword}{const} CRS<RealType> ref\_nc\_up (\{}
+\DoxyCodeLine{76       \{0.0, 0.0, 0.0, 0.0\},}
+\DoxyCodeLine{77       \{0.0, 1.0, 0.0, 0.0\},}
+\DoxyCodeLine{78       \{0.0, 0.0, 0.0, 0.0\},}
+\DoxyCodeLine{79       \{0.0, 0.0, 0.0, 1.0\}}
+\DoxyCodeLine{80    \});}
+\DoxyCodeLine{81    }
+\DoxyCodeLine{82    \textcolor{keyword}{const} CRS<RealType> ref\_nc\_down (\{}
+\DoxyCodeLine{83       \{0.0, 0.0, 0.0, 0.0\},}
+\DoxyCodeLine{84       \{0.0, 0.0, 0.0, 0.0\},}
+\DoxyCodeLine{85       \{0.0, 0.0, 1.0, 0.0\},}
+\DoxyCodeLine{86       \{0.0, 0.0, 0.0, 1.0\}}
+\DoxyCodeLine{87    \});}
+\DoxyCodeLine{88    }
+\DoxyCodeLine{89    \textcolor{keyword}{const} CRS<RealType> ref\_nc (\{}
+\DoxyCodeLine{90       \{0.0, 0.0, 0.0, 0.0\},}
+\DoxyCodeLine{91       \{0.0, 1.0, 0.0, 0.0\},}
+\DoxyCodeLine{92       \{0.0, 0.0, 1.0, 0.0\},}
+\DoxyCodeLine{93       \{0.0, 0.0, 0.0, 2.0\}}
+\DoxyCodeLine{94    \});}
+\DoxyCodeLine{95    }
+\DoxyCodeLine{96    \textcolor{keyword}{const} CRS<RealType> ref\_sz (\{}
+\DoxyCodeLine{97       \{0.0, 0.0, 0.0, 0.0\},}
+\DoxyCodeLine{98       \{0.0, 0.5, 0.0, 0.0\},}
+\DoxyCodeLine{99       \{0.0, 0.0, -\/0.5, 0.0\},}
+\DoxyCodeLine{100       \{0.0, 0.0, 0.0, 0.0\}}
+\DoxyCodeLine{101    \});}
+\DoxyCodeLine{102    }
+\DoxyCodeLine{103    \textcolor{keyword}{const} CRS<RealType> ref\_sx (\{}
+\DoxyCodeLine{104       \{0.0, 0.0, 0.0, 0.0\},}
+\DoxyCodeLine{105       \{0.0, 0.0, 0.5, 0.0\},}
+\DoxyCodeLine{106       \{0.0, 0.5, 0.0, 0.0\},}
+\DoxyCodeLine{107       \{0.0, 0.0, 0.0, 0.0\}}
+\DoxyCodeLine{108    \});}
+\DoxyCodeLine{109    }
+\DoxyCodeLine{110    \textcolor{keyword}{const} CRS<RealType> ref\_isy (\{}
+\DoxyCodeLine{111       \{0.0, 0.0, 0.0, 0.0\},}
+\DoxyCodeLine{112       \{0.0, 0.0, 0.5, 0.0\},}
+\DoxyCodeLine{113       \{0.0, -\/0.5, 0.0, 0.0\},}
+\DoxyCodeLine{114       \{0.0, 0.0, 0.0, 0.0\}}
+\DoxyCodeLine{115    \});}
+\DoxyCodeLine{116    }
+\DoxyCodeLine{117    \textcolor{keyword}{const} CRS<RealType> ref\_sp (\{}
+\DoxyCodeLine{118       \{0.0, 0.0, 0.0, 0.0\},}
+\DoxyCodeLine{119       \{0.0, 0.0, 1.0, 0.0\},}
+\DoxyCodeLine{120       \{0.0, 0.0, 0.0, 0.0\},}
+\DoxyCodeLine{121       \{0.0, 0.0, 0.0, 0.0\}}
+\DoxyCodeLine{122    \});}
+\DoxyCodeLine{123    }
+\DoxyCodeLine{124    \textcolor{keyword}{const} CRS<RealType> ref\_sm (\{}
+\DoxyCodeLine{125       \{0.0, 0.0, 0.0, 0.0\},}
+\DoxyCodeLine{126       \{0.0, 0.0, 0.0, 0.0\},}
+\DoxyCodeLine{127       \{0.0, 1.0, 0.0, 0.0\},}
+\DoxyCodeLine{128       \{0.0, 0.0, 0.0, 0.0\}}
+\DoxyCodeLine{129    \});}
+\DoxyCodeLine{130    }
+\DoxyCodeLine{131    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.GetOnsiteOperatorCUp()        , ref\_c\_up    , threshold);}
+\DoxyCodeLine{132    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.GetOnsiteOperatorCUpDagger()  , ref\_c\_up\_d  , threshold);}
+\DoxyCodeLine{133    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.GetOnsiteOperatorCDown()      , ref\_c\_down  , threshold);}
+\DoxyCodeLine{134    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.GetOnsiteOperatorCDownDagger(), ref\_c\_down\_d, threshold);}
+\DoxyCodeLine{135    }
+\DoxyCodeLine{136    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.GetOnsiteOperatorNCUp()  , ref\_nc\_up  , threshold);}
+\DoxyCodeLine{137    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.GetOnsiteOperatorNCDown(), ref\_nc\_down, threshold);}
+\DoxyCodeLine{138    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.GetOnsiteOperatorNC()    , ref\_nc     , threshold);}
+\DoxyCodeLine{139    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.GetOnsiteOperatorSz()    , ref\_sz     , threshold);}
+\DoxyCodeLine{140    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.GetOnsiteOperatorSx()    , ref\_sx     , threshold);}
+\DoxyCodeLine{141    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.GetOnsiteOperatoriSy()   , ref\_isy    , threshold);}
+\DoxyCodeLine{142    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.GetOnsiteOperatorSp()    , ref\_sp     , threshold);}
+\DoxyCodeLine{143    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.GetOnsiteOperatorSm()    , ref\_sm     , threshold);}
+\DoxyCodeLine{144    }
+\DoxyCodeLine{145 \}}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147 \} \textcolor{comment}{// namespace}}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149 \mbox{\hyperlink{test__model__base__u1__electron__1d_8hpp_ac5ee721d0f2179f314df93d4787f690a}{TEST}}(ModelBaseU1Electron1D, ConstructorDefault) \{}
+\DoxyCodeLine{150    BaseU1Electron\_1D<double> model;}
+\DoxyCodeLine{151    TestElectron(model);}
+\DoxyCodeLine{152    }
+\DoxyCodeLine{153    EXPECT\_EQ(model.GetSystemSize(), 0);}
+\DoxyCodeLine{154    EXPECT\_EQ(model.GetTotalSz(), 0.0);}
+\DoxyCodeLine{155    EXPECT\_EQ(model.GetTotalElectron(), 0);}
+\DoxyCodeLine{156    }
+\DoxyCodeLine{157    EXPECT\_EQ(model.GetCalculatedEigenvectorSet(), std::unordered\_set<int>());}
+\DoxyCodeLine{158    \mbox{\hyperlink{namespacecompnal_1_1test_ac10a748d750a721db72cc022511fc7e0}{ExpectEQ}}(model.GetBases(), \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}<\mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{IntPair}}, std::vector<LInt>, PairHash>\{\});}
+\DoxyCodeLine{159    \mbox{\hyperlink{namespacecompnal_1_1test_ac10a748d750a721db72cc022511fc7e0}{ExpectEQ}}(model.GetBasesInv(), \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}<\mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{IntPair}}, Map<LInt, LInt>, PairHash>\{\});}
+\DoxyCodeLine{160 \}}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162 \mbox{\hyperlink{test__model__base__u1__electron__1d_8hpp_ac5ee721d0f2179f314df93d4787f690a}{TEST}}(ModelBaseU1Electron1D, ConstructorSystemSize) \{}
+\DoxyCodeLine{163    BaseU1Electron\_1D<double> model(8);}
+\DoxyCodeLine{164    TestElectron(model);}
+\DoxyCodeLine{165    }
+\DoxyCodeLine{166    EXPECT\_EQ(model.GetSystemSize(), 8);}
+\DoxyCodeLine{167    EXPECT\_EQ(model.GetTotalSz(), 0.0);}
+\DoxyCodeLine{168    EXPECT\_EQ(model.GetTotalElectron(), 0);}
+\DoxyCodeLine{169    }
+\DoxyCodeLine{170    EXPECT\_EQ(model.GetCalculatedEigenvectorSet(), std::unordered\_set<int>());}
+\DoxyCodeLine{171    \mbox{\hyperlink{namespacecompnal_1_1test_ac10a748d750a721db72cc022511fc7e0}{ExpectEQ}}(model.GetBases(), \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}<\mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{IntPair}}, std::vector<LInt>, PairHash>\{\});}
+\DoxyCodeLine{172    \mbox{\hyperlink{namespacecompnal_1_1test_ac10a748d750a721db72cc022511fc7e0}{ExpectEQ}}(model.GetBasesInv(), \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}<\mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{IntPair}}, Map<LInt, LInt>, PairHash>\{\});}
+\DoxyCodeLine{173 \}}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175 \mbox{\hyperlink{test__model__base__u1__electron__1d_8hpp_ac5ee721d0f2179f314df93d4787f690a}{TEST}}(ModelBaseU1Electron1D, ConstructorSystemSizeElectron) \{}
+\DoxyCodeLine{176    BaseU1Electron\_1D<double> model(8, 2);}
+\DoxyCodeLine{177    TestElectron(model);}
+\DoxyCodeLine{178    }
+\DoxyCodeLine{179    EXPECT\_EQ(model.GetSystemSize(), 8);}
+\DoxyCodeLine{180    EXPECT\_EQ(model.GetTotalSz(), 0.0);}
+\DoxyCodeLine{181    EXPECT\_EQ(model.GetTotalElectron(), 2);}
+\DoxyCodeLine{182    }
+\DoxyCodeLine{183    EXPECT\_EQ(model.GetCalculatedEigenvectorSet(), std::unordered\_set<int>());}
+\DoxyCodeLine{184    \mbox{\hyperlink{namespacecompnal_1_1test_ac10a748d750a721db72cc022511fc7e0}{ExpectEQ}}(model.GetBases(), \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}<\mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{IntPair}}, std::vector<LInt>, PairHash>\{\});}
+\DoxyCodeLine{185    \mbox{\hyperlink{namespacecompnal_1_1test_ac10a748d750a721db72cc022511fc7e0}{ExpectEQ}}(model.GetBasesInv(), \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}<\mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{IntPair}}, Map<LInt, LInt>, PairHash>\{\});}
+\DoxyCodeLine{186 \}}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{188 \mbox{\hyperlink{test__model__base__u1__electron__1d_8hpp_ac5ee721d0f2179f314df93d4787f690a}{TEST}}(ModelBaseU1Electron1D, SetSystemSize) \{}
+\DoxyCodeLine{189    BaseU1Electron\_1D<double> model;}
+\DoxyCodeLine{190    model.SetSystemSize(3);}
+\DoxyCodeLine{191    EXPECT\_EQ(model.GetSystemSize(), 3);}
+\DoxyCodeLine{192 \}}
+\DoxyCodeLine{193 }
+\DoxyCodeLine{194 \mbox{\hyperlink{test__model__base__u1__electron__1d_8hpp_ac5ee721d0f2179f314df93d4787f690a}{TEST}}(ModelBaseU1Electron1D, SetTotalSz) \{}
+\DoxyCodeLine{195    BaseU1Electron\_1D<double> model;}
+\DoxyCodeLine{196    model.SetTotalSz(2.5);}
+\DoxyCodeLine{197    EXPECT\_EQ(model.GetTotalSz(), 2.5);}
+\DoxyCodeLine{198 \}}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200 \mbox{\hyperlink{test__model__base__u1__electron__1d_8hpp_ac5ee721d0f2179f314df93d4787f690a}{TEST}}(ModelBaseU1Electron1D, SetTotalElectron) \{}
+\DoxyCodeLine{201    BaseU1Electron\_1D<double> model;}
+\DoxyCodeLine{202    model.SetTotalElectron(100);}
+\DoxyCodeLine{203    EXPECT\_EQ(model.GetTotalElectron(), 100);}
+\DoxyCodeLine{204 \}}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{206 \mbox{\hyperlink{test__model__base__u1__electron__1d_8hpp_ac5ee721d0f2179f314df93d4787f690a}{TEST}}(ModelBaseU1Electron1D, CalculateNumElectron) \{}
+\DoxyCodeLine{207    BaseU1Electron\_1D<double> model;}
+\DoxyCodeLine{208    EXPECT\_EQ(model.CalculateNumElectron(0), 0);}
+\DoxyCodeLine{209    EXPECT\_EQ(model.CalculateNumElectron(1), 1);}
+\DoxyCodeLine{210    EXPECT\_EQ(model.CalculateNumElectron(2), 1);}
+\DoxyCodeLine{211    EXPECT\_EQ(model.CalculateNumElectron(3), 2);}
+\DoxyCodeLine{212    EXPECT\_THROW(model.CalculateNumElectron(4), std::runtime\_error);}
+\DoxyCodeLine{213 \}}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{215 }
+\DoxyCodeLine{216 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_TEST\_MODEL\_BASE\_U1\_ELECTRON\_1D\_HPP\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

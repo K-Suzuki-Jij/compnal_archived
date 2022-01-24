@@ -1,0 +1,151 @@
+\hypertarget{namespacecompnal_1_1utility}{}\doxysection{compnal\+::utility Namespace Reference}
+\label{namespacecompnal_1_1utility}\index{compnal::utility@{compnal::utility}}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0}{Electron\+State}} \{ \newline
+\mbox{\hyperlink{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0af859de8b12ae36fa30a8e5280f7508ee}{VACUUM}} = 0
+, \mbox{\hyperlink{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0a54a2f5730de1676c3fc6f2ec2d45e4e0}{UP}} = 1
+, \mbox{\hyperlink{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0a8d5ecb38982f5dfc7321f74a292fb266}{DOWN}} = 2
+, \mbox{\hyperlink{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0af515cc351f0b1f342ca273378dca8ea1}{UP\+\_\+\+DOWN}} = 3
+, \newline
+\mbox{\hyperlink{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0a058228007dab2c89e4a6ce62713973f9}{EVEN}} = 1
+, \mbox{\hyperlink{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0aa0a953d0be28965509404d1c838cd80e}{ODD}} = 2
+, \mbox{\hyperlink{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0a53bd3e09e07da56d3e05dfc58610e7a7}{EVEN\+\_\+\+ODD}} = 3
+ \}
+\item 
+enum \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}{Boundary\+Condition}} \{ \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712ac18b965543663a1ec9a4836656f07d86}{OBC}} = 0
+, \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712a37907335b66872484f695a3d2d6116b2}{PBC}} = 1
+, \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712a855ae200ce7bb41425769e9981a4d02e}{SSD}} = 2
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacecompnal_1_1utility_a2580357fcc88b1c7bac5627e5b47925f}{Generate\+Integer\+Partition}} (std\+::vector$<$ std\+::vector$<$ int $>$ $>$ $\ast$results, int n, int max\+\_\+partition\+\_\+num)
+\item 
+\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} \mbox{\hyperlink{namespacecompnal_1_1utility_a11fe827a2e8d4c8794e29be3e130560c}{Calculate\+Binomial\+Coefficient}} (int n, const int k)
+\item 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} $>$ $>$ \mbox{\hyperlink{namespacecompnal_1_1utility_ab4bbef4ed33eaa05489524e9f226e901}{Calculate\+Binomial\+Table}} (int N)
+\item 
+\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} \mbox{\hyperlink{namespacecompnal_1_1utility_a994046cacd6facdee7cfde9aa3b9626c}{Calculate\+Num\+Combination}} (const std\+::vector$<$ int $>$ \&list)
+\item 
+void \mbox{\hyperlink{namespacecompnal_1_1utility_ad87f45a3383a5b141b1804d8e8ec558d}{Calculate\+Nth\+Permutation}} (std\+::vector$<$ int $>$ $\ast$vec, \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} target\+\_\+num)
+\item 
+void \mbox{\hyperlink{namespacecompnal_1_1utility_abf9e7e67bef6223906e6269589428337}{Check\+Half\+Integer}} (double s)
+\item 
+int \mbox{\hyperlink{namespacecompnal_1_1utility_abe920cc5242e3538cc6b4007331e516e}{Double\+The\+Number}} (double s)
+\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1utility_ac8b8e09f5f73337b0626ee828c8ecbd7}{Quick\+Sort}} (std\+::vector$<$ T1 $>$ $\ast$array\+\_\+comp, std\+::vector$<$ T2 $>$ $\ast$array2, const \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} left, const \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} right)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}\label{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}} 
+\index{compnal::utility@{compnal::utility}!BoundaryCondition@{BoundaryCondition}}
+\index{BoundaryCondition@{BoundaryCondition}!compnal::utility@{compnal::utility}}
+\doxysubsubsection{\texorpdfstring{BoundaryCondition}{BoundaryCondition}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}{compnal\+::utility\+::\+Boundary\+Condition}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBC@{OBC}!compnal::utility@{compnal::utility}}\index{compnal::utility@{compnal::utility}!OBC@{OBC}}}\mbox{\Hypertarget{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712ac18b965543663a1ec9a4836656f07d86}\label{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712ac18b965543663a1ec9a4836656f07d86}} 
+OBC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PBC@{PBC}!compnal::utility@{compnal::utility}}\index{compnal::utility@{compnal::utility}!PBC@{PBC}}}\mbox{\Hypertarget{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712a37907335b66872484f695a3d2d6116b2}\label{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712a37907335b66872484f695a3d2d6116b2}} 
+PBC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SSD@{SSD}!compnal::utility@{compnal::utility}}\index{compnal::utility@{compnal::utility}!SSD@{SSD}}}\mbox{\Hypertarget{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712a855ae200ce7bb41425769e9981a4d02e}\label{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712a855ae200ce7bb41425769e9981a4d02e}} 
+SSD&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0}\label{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0}} 
+\index{compnal::utility@{compnal::utility}!ElectronState@{ElectronState}}
+\index{ElectronState@{ElectronState}!compnal::utility@{compnal::utility}}
+\doxysubsubsection{\texorpdfstring{ElectronState}{ElectronState}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0}{compnal\+::utility\+::\+Electron\+State}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VACUUM@{VACUUM}!compnal::utility@{compnal::utility}}\index{compnal::utility@{compnal::utility}!VACUUM@{VACUUM}}}\mbox{\Hypertarget{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0af859de8b12ae36fa30a8e5280f7508ee}\label{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0af859de8b12ae36fa30a8e5280f7508ee}} 
+VACUUM&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UP@{UP}!compnal::utility@{compnal::utility}}\index{compnal::utility@{compnal::utility}!UP@{UP}}}\mbox{\Hypertarget{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0a54a2f5730de1676c3fc6f2ec2d45e4e0}\label{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0a54a2f5730de1676c3fc6f2ec2d45e4e0}} 
+UP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DOWN@{DOWN}!compnal::utility@{compnal::utility}}\index{compnal::utility@{compnal::utility}!DOWN@{DOWN}}}\mbox{\Hypertarget{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0a8d5ecb38982f5dfc7321f74a292fb266}\label{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0a8d5ecb38982f5dfc7321f74a292fb266}} 
+DOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UP\_DOWN@{UP\_DOWN}!compnal::utility@{compnal::utility}}\index{compnal::utility@{compnal::utility}!UP\_DOWN@{UP\_DOWN}}}\mbox{\Hypertarget{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0af515cc351f0b1f342ca273378dca8ea1}\label{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0af515cc351f0b1f342ca273378dca8ea1}} 
+UP\+\_\+\+DOWN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EVEN@{EVEN}!compnal::utility@{compnal::utility}}\index{compnal::utility@{compnal::utility}!EVEN@{EVEN}}}\mbox{\Hypertarget{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0a058228007dab2c89e4a6ce62713973f9}\label{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0a058228007dab2c89e4a6ce62713973f9}} 
+EVEN&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ODD@{ODD}!compnal::utility@{compnal::utility}}\index{compnal::utility@{compnal::utility}!ODD@{ODD}}}\mbox{\Hypertarget{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0aa0a953d0be28965509404d1c838cd80e}\label{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0aa0a953d0be28965509404d1c838cd80e}} 
+ODD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EVEN\_ODD@{EVEN\_ODD}!compnal::utility@{compnal::utility}}\index{compnal::utility@{compnal::utility}!EVEN\_ODD@{EVEN\_ODD}}}\mbox{\Hypertarget{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0a53bd3e09e07da56d3e05dfc58610e7a7}\label{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0a53bd3e09e07da56d3e05dfc58610e7a7}} 
+EVEN\+\_\+\+ODD&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacecompnal_1_1utility_a11fe827a2e8d4c8794e29be3e130560c}\label{namespacecompnal_1_1utility_a11fe827a2e8d4c8794e29be3e130560c}} 
+\index{compnal::utility@{compnal::utility}!CalculateBinomialCoefficient@{CalculateBinomialCoefficient}}
+\index{CalculateBinomialCoefficient@{CalculateBinomialCoefficient}!compnal::utility@{compnal::utility}}
+\doxysubsubsection{\texorpdfstring{CalculateBinomialCoefficient()}{CalculateBinomialCoefficient()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} compnal\+::utility\+::\+Calculate\+Binomial\+Coefficient (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{const int}]{k }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacecompnal_1_1utility_ab4bbef4ed33eaa05489524e9f226e901}\label{namespacecompnal_1_1utility_ab4bbef4ed33eaa05489524e9f226e901}} 
+\index{compnal::utility@{compnal::utility}!CalculateBinomialTable@{CalculateBinomialTable}}
+\index{CalculateBinomialTable@{CalculateBinomialTable}!compnal::utility@{compnal::utility}}
+\doxysubsubsection{\texorpdfstring{CalculateBinomialTable()}{CalculateBinomialTable()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} $>$ $>$ compnal\+::utility\+::\+Calculate\+Binomial\+Table (\begin{DoxyParamCaption}\item[{int}]{N }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacecompnal_1_1utility_ad87f45a3383a5b141b1804d8e8ec558d}\label{namespacecompnal_1_1utility_ad87f45a3383a5b141b1804d8e8ec558d}} 
+\index{compnal::utility@{compnal::utility}!CalculateNthPermutation@{CalculateNthPermutation}}
+\index{CalculateNthPermutation@{CalculateNthPermutation}!compnal::utility@{compnal::utility}}
+\doxysubsubsection{\texorpdfstring{CalculateNthPermutation()}{CalculateNthPermutation()}}
+{\footnotesize\ttfamily void compnal\+::utility\+::\+Calculate\+Nth\+Permutation (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$ $\ast$}]{vec,  }\item[{\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}}]{target\+\_\+num }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacecompnal_1_1utility_a994046cacd6facdee7cfde9aa3b9626c}\label{namespacecompnal_1_1utility_a994046cacd6facdee7cfde9aa3b9626c}} 
+\index{compnal::utility@{compnal::utility}!CalculateNumCombination@{CalculateNumCombination}}
+\index{CalculateNumCombination@{CalculateNumCombination}!compnal::utility@{compnal::utility}}
+\doxysubsubsection{\texorpdfstring{CalculateNumCombination()}{CalculateNumCombination()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} compnal\+::utility\+::\+Calculate\+Num\+Combination (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{list }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacecompnal_1_1utility_abf9e7e67bef6223906e6269589428337}\label{namespacecompnal_1_1utility_abf9e7e67bef6223906e6269589428337}} 
+\index{compnal::utility@{compnal::utility}!CheckHalfInteger@{CheckHalfInteger}}
+\index{CheckHalfInteger@{CheckHalfInteger}!compnal::utility@{compnal::utility}}
+\doxysubsubsection{\texorpdfstring{CheckHalfInteger()}{CheckHalfInteger()}}
+{\footnotesize\ttfamily void compnal\+::utility\+::\+Check\+Half\+Integer (\begin{DoxyParamCaption}\item[{double}]{s }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacecompnal_1_1utility_abe920cc5242e3538cc6b4007331e516e}\label{namespacecompnal_1_1utility_abe920cc5242e3538cc6b4007331e516e}} 
+\index{compnal::utility@{compnal::utility}!DoubleTheNumber@{DoubleTheNumber}}
+\index{DoubleTheNumber@{DoubleTheNumber}!compnal::utility@{compnal::utility}}
+\doxysubsubsection{\texorpdfstring{DoubleTheNumber()}{DoubleTheNumber()}}
+{\footnotesize\ttfamily int compnal\+::utility\+::\+Double\+The\+Number (\begin{DoxyParamCaption}\item[{double}]{s }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacecompnal_1_1utility_a2580357fcc88b1c7bac5627e5b47925f}\label{namespacecompnal_1_1utility_a2580357fcc88b1c7bac5627e5b47925f}} 
+\index{compnal::utility@{compnal::utility}!GenerateIntegerPartition@{GenerateIntegerPartition}}
+\index{GenerateIntegerPartition@{GenerateIntegerPartition}!compnal::utility@{compnal::utility}}
+\doxysubsubsection{\texorpdfstring{GenerateIntegerPartition()}{GenerateIntegerPartition()}}
+{\footnotesize\ttfamily void compnal\+::utility\+::\+Generate\+Integer\+Partition (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::vector$<$ int $>$ $>$ $\ast$}]{results,  }\item[{int}]{n,  }\item[{int}]{max\+\_\+partition\+\_\+num }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacecompnal_1_1utility_ac8b8e09f5f73337b0626ee828c8ecbd7}\label{namespacecompnal_1_1utility_ac8b8e09f5f73337b0626ee828c8ecbd7}} 
+\index{compnal::utility@{compnal::utility}!QuickSort@{QuickSort}}
+\index{QuickSort@{QuickSort}!compnal::utility@{compnal::utility}}
+\doxysubsubsection{\texorpdfstring{QuickSort()}{QuickSort()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+void compnal\+::utility\+::\+Quick\+Sort (\begin{DoxyParamCaption}\item[{std\+::vector$<$ T1 $>$ $\ast$}]{array\+\_\+comp,  }\item[{std\+::vector$<$ T2 $>$ $\ast$}]{array2,  }\item[{const \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}}]{left,  }\item[{const \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}}]{right }\end{DoxyParamCaption})}
+

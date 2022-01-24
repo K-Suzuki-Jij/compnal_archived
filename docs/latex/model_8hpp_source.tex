@@ -1,0 +1,70 @@
+\hypertarget{model_8hpp_source}{}\doxysection{model.\+hpp}
+\label{model_8hpp_source}\index{src/utility/model.hpp@{src/utility/model.hpp}}
+\mbox{\hyperlink{model_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{//  Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{4 \textcolor{comment}{//  you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{5 \textcolor{comment}{//  You may obtain a copy of the License at}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{//      http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{comment}{//  Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{10 \textcolor{comment}{//  distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{11 \textcolor{comment}{//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{12 \textcolor{comment}{//  See the License for the specific language governing permissions and}}
+\DoxyCodeLine{13 \textcolor{comment}{//  limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{//}}
+\DoxyCodeLine{15 \textcolor{comment}{//  Created by Kohei Suzuki on 2021/11/06.}}
+\DoxyCodeLine{16 \textcolor{comment}{//}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_UTILITY\_MODEL\_HPP\_}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_UTILITY\_MODEL\_HPP\_}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <cmath>}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
+\DoxyCodeLine{24 \textcolor{keyword}{namespace }utility \{}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{keyword}{enum} \mbox{\hyperlink{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0}{ElectronState}} \{}
+\DoxyCodeLine{27    }
+\DoxyCodeLine{28    \mbox{\hyperlink{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0af859de8b12ae36fa30a8e5280f7508ee}{VACUUM}}  = 0,}
+\DoxyCodeLine{29    \mbox{\hyperlink{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0a54a2f5730de1676c3fc6f2ec2d45e4e0}{UP}}      = 1,}
+\DoxyCodeLine{30    \mbox{\hyperlink{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0a8d5ecb38982f5dfc7321f74a292fb266}{DOWN}}    = 2,}
+\DoxyCodeLine{31    \mbox{\hyperlink{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0af515cc351f0b1f342ca273378dca8ea1}{UP\_DOWN}} = 3,}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{33    \mbox{\hyperlink{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0a058228007dab2c89e4a6ce62713973f9}{EVEN}}     = 1,}
+\DoxyCodeLine{34    \mbox{\hyperlink{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0aa0a953d0be28965509404d1c838cd80e}{ODD}}      = 2,}
+\DoxyCodeLine{35    \mbox{\hyperlink{namespacecompnal_1_1utility_a7276a99232fbbca2396b81d8619f1cf0a53bd3e09e07da56d3e05dfc58610e7a7}{EVEN\_ODD}} = 3}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{keyword}{enum} \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}{BoundaryCondition}} \{}
+\DoxyCodeLine{40   }
+\DoxyCodeLine{41    \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712ac18b965543663a1ec9a4836656f07d86}{OBC}} = 0,}
+\DoxyCodeLine{42    \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712a37907335b66872484f695a3d2d6116b2}{PBC}} = 1,}
+\DoxyCodeLine{43    \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712a855ae200ce7bb41425769e9981a4d02e}{SSD}} = 2}
+\DoxyCodeLine{44    }
+\DoxyCodeLine{45 \};}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1utility_abf9e7e67bef6223906e6269589428337}{CheckHalfInteger}}(\textcolor{keywordtype}{double} s) \{}
+\DoxyCodeLine{49    s = 2*s;}
+\DoxyCodeLine{50    \textcolor{keywordflow}{if} (std::floor(s) != s) \{}
+\DoxyCodeLine{51       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}The input number is not half-\/integer"{}});}
+\DoxyCodeLine{52    \}}
+\DoxyCodeLine{53 \}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 \textcolor{keywordtype}{int} \mbox{\hyperlink{namespacecompnal_1_1utility_abe920cc5242e3538cc6b4007331e516e}{DoubleTheNumber}}(\textcolor{keywordtype}{double} s) \{}
+\DoxyCodeLine{56    \mbox{\hyperlink{namespacecompnal_1_1utility_abf9e7e67bef6223906e6269589428337}{CheckHalfInteger}}(s);}
+\DoxyCodeLine{57    \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(2*s);}
+\DoxyCodeLine{58 \};}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60 \}}
+\DoxyCodeLine{61 \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_UTILITY\_MODEL\_HPP\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

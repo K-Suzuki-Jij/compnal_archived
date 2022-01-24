@@ -1,0 +1,121 @@
+\hypertarget{test__model__base__u1__spin__electron__1d_8hpp_source}{}\doxysection{test\+\_\+model\+\_\+base\+\_\+u1\+\_\+spin\+\_\+electron\+\_\+1d.\+hpp}
+\label{test__model__base__u1__spin__electron__1d_8hpp_source}\index{tests/model/test\_model\_base\_u1\_spin\_electron\_1d.hpp@{tests/model/test\_model\_base\_u1\_spin\_electron\_1d.hpp}}
+\mbox{\hyperlink{test__model__base__u1__spin__electron__1d_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{//  Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{4 \textcolor{comment}{//  you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{5 \textcolor{comment}{//  You may obtain a copy of the License at}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{//      http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{comment}{//  Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{10 \textcolor{comment}{//  distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{11 \textcolor{comment}{//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{12 \textcolor{comment}{//  See the License for the specific language governing permissions and}}
+\DoxyCodeLine{13 \textcolor{comment}{//  limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{//}}
+\DoxyCodeLine{15 \textcolor{comment}{//  Created by Kohei Suzuki on 2022/01/23.}}
+\DoxyCodeLine{16 \textcolor{comment}{//}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_TEST\_MODEL\_BASE\_U1\_SPIN\_ELECTRON\_1D\_HPP\_}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_TEST\_MODEL\_BASE\_U1\_SPIN\_ELECTRON\_1D\_HPP\_}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}../../src/model/base\_u1\_spin\_electron\_1d.hpp"{}}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}../test.hpp"{}}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <gtest/gtest.h>}}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{keyword}{namespace }\{}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{keyword}{using} \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{compnal::LInt}};}
+\DoxyCodeLine{28 \textcolor{keyword}{using} \mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{compnal::IntPair}};}
+\DoxyCodeLine{29 \textcolor{keyword}{using} \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{compnal::Map}};}
+\DoxyCodeLine{30 \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1_pair_hash}{compnal::PairHash}};}
+\DoxyCodeLine{31 \textcolor{keyword}{using} \mbox{\hyperlink{namespacecompnal_1_1test_ac10a748d750a721db72cc022511fc7e0}{compnal::test::ExpectEQ}};}
+\DoxyCodeLine{32 \textcolor{keyword}{using} \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{compnal::test::ExpectNear}};}
+\DoxyCodeLine{33 \textcolor{keyword}{using} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal::model::BaseU1SpinElectron\_1D}};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
+\DoxyCodeLine{38 \textcolor{keywordtype}{void} \mbox{\hyperlink{test__model__base__u1__spin__electron__1d_8hpp_a10484d807b0da734f37f62a6b228c1eb}{TestSpinOneHalf}}(\textcolor{keyword}{const} BaseU1SpinElectron\_1D<RealType> \&model) \{}
+\DoxyCodeLine{39    }
+\DoxyCodeLine{40    \textcolor{keyword}{const} \textcolor{keywordtype}{double} threshold = std::pow(10, -\/15);}
+\DoxyCodeLine{41    }
+\DoxyCodeLine{42    EXPECT\_EQ(model.GetDimOnsite(), 4*2);}
+\DoxyCodeLine{43    EXPECT\_EQ(model.GetMagnitudeLSpin(), 0.5);}
+\DoxyCodeLine{44    EXPECT\_EQ(model.GetDimOnsiteELectron(), 4);}
+\DoxyCodeLine{45    EXPECT\_EQ(model.GetDimOnsiteLSpin(), 2);}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47    \textcolor{keyword}{const} CRS<RealType> ref\_c\_up (\{}
+\DoxyCodeLine{48       \{0, 0, 1, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{49       \{0, 0, 0, 1, 0, 0, 0, 0\},}
+\DoxyCodeLine{50       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{51       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{52       \{0, 0, 0, 0, 0, 0, 1, 0\},}
+\DoxyCodeLine{53       \{0, 0, 0, 0, 0, 0, 0, 1\},}
+\DoxyCodeLine{54       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{55       \{0, 0, 0, 0, 0, 0, 0, 0\}}
+\DoxyCodeLine{56    \}, \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{CRSTag::FERMION}});}
+\DoxyCodeLine{57    }
+\DoxyCodeLine{58    \textcolor{keyword}{const} CRS<RealType> ref\_c\_up\_d (\{}
+\DoxyCodeLine{59       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{60       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{61       \{1, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{62       \{0, 1, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{63       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{64       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{65       \{0, 0, 0, 0, 1, 0, 0, 0\},}
+\DoxyCodeLine{66       \{0, 0, 0, 0, 0, 1, 0, 0\}}
+\DoxyCodeLine{67    \}, \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{CRSTag::FERMION}});}
+\DoxyCodeLine{68    }
+\DoxyCodeLine{69    \textcolor{keyword}{const} CRS<RealType> ref\_c\_down (\{}
+\DoxyCodeLine{70       \{0, 0, 0, 0, 1, 0, 0, 0\},}
+\DoxyCodeLine{71       \{0, 0, 0, 0, 0, 1, 0, 0\},}
+\DoxyCodeLine{72       \{0, 0, 0, 0, 0, 0, -\/1, 0\},}
+\DoxyCodeLine{73       \{0, 0, 0, 0, 0, 0, 0, -\/1\},}
+\DoxyCodeLine{74       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{75       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{76       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{77       \{0, 0, 0, 0, 0, 0, 0, 0\}}
+\DoxyCodeLine{78    \}, \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{CRSTag::FERMION}});}
+\DoxyCodeLine{79    }
+\DoxyCodeLine{80    \textcolor{keyword}{const} CRS<RealType> ref\_c\_down\_d (\{}
+\DoxyCodeLine{81       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{82       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{83       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{84       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{85       \{1, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{86       \{0, 1, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{87       \{0, 0, -\/1, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{88       \{0, 0, 0, -\/1, 0, 0, 0, 0\}}
+\DoxyCodeLine{89    \}, \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{CRSTag::FERMION}});}
+\DoxyCodeLine{90  }
+\DoxyCodeLine{91    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.GetOnsiteOperatorCUp()        , ref\_c\_up    , threshold);}
+\DoxyCodeLine{92    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.GetOnsiteOperatorCUpDagger()  , ref\_c\_up\_d  , threshold);}
+\DoxyCodeLine{93    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.GetOnsiteOperatorCDown()      , ref\_c\_down  , threshold);}
+\DoxyCodeLine{94    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.GetOnsiteOperatorCDownDagger(), ref\_c\_down\_d, threshold);}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96 \}}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 \mbox{\hyperlink{test__model__base__u1__spin__electron__1d_8hpp_a9a259df82bc444be94b848ed897bd51a}{TEST}}(ModelBaseU1SpinElectron1D, ConstructorDefault) \{}
+\DoxyCodeLine{99    BaseU1SpinElectron\_1D<double> model;}
+\DoxyCodeLine{100    \mbox{\hyperlink{test__model__base__u1__spin__electron__1d_8hpp_a10484d807b0da734f37f62a6b228c1eb}{TestSpinOneHalf}}(model);}
+\DoxyCodeLine{101    }
+\DoxyCodeLine{102    EXPECT\_EQ(model.GetSystemSize()    , 0  );}
+\DoxyCodeLine{103    EXPECT\_EQ(model.GetTotalSz()       , 0.0);}
+\DoxyCodeLine{104    EXPECT\_EQ(model.GetTotalElectron() , 0  );}
+\DoxyCodeLine{105    EXPECT\_EQ(model.GetMagnitudeLSpin(), 0.5);}
+\DoxyCodeLine{106    EXPECT\_EQ(model.GetCalculatedEigenvectorSet(), std::unordered\_set<int>());}
+\DoxyCodeLine{107    }
+\DoxyCodeLine{108    \mbox{\hyperlink{namespacecompnal_1_1test_ac10a748d750a721db72cc022511fc7e0}{ExpectEQ}}(model.GetBases(), std::unordered\_map<\mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{IntPair}}, std::vector<LInt>, PairHash>\{\});}
+\DoxyCodeLine{109    \mbox{\hyperlink{namespacecompnal_1_1test_ac10a748d750a721db72cc022511fc7e0}{ExpectEQ}}(model.GetBasesInv(), \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}<\mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{IntPair}}, Map<LInt, LInt>, PairHash>\{\});}
+\DoxyCodeLine{110    }
+\DoxyCodeLine{111 \}}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_TEST\_MODEL\_BASE\_U1\_SPIN\_1D\_HPP\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{115    }
+
+\end{DoxyCode}
