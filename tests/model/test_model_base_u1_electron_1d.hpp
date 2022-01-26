@@ -19,20 +19,11 @@
 #define COMPNAL_TEST_MODEL_BASE_U1_ELECTRON_1D_HPP_
 
 #include "../../src/model/base_u1_electron_1d.hpp"
-#include "../test.hpp"
+#include "../utility/all.hpp"
 #include <gtest/gtest.h>
 
-namespace {
-
-using compnal::test::ExpectEQ;
-using compnal::test::ExpectNear;
-using compnal::sparse_matrix::CRS;
-using compnal::sparse_matrix::CRSTag;
-using compnal::model::BaseU1Electron_1D;
-
-} // namespace
-
-namespace {
+namespace compnal {
+namespace test {
 
 template<typename RealType>
 void TestElectron(const BaseU1Electron_1D<RealType> &model) {
@@ -140,8 +131,6 @@ void TestElectron(const BaseU1Electron_1D<RealType> &model) {
    
 }
 
-} // namespace
-
 TEST(ModelBaseU1Electron1D, ConstructorDefault) {
    BaseU1Electron_1D<double> model;
    TestElectron(model);
@@ -207,6 +196,10 @@ TEST(ModelBaseU1Electron1D, CalculateNumElectron) {
    EXPECT_EQ(model.CalculateNumElectron(3), 2);
    EXPECT_THROW(model.CalculateNumElectron(4), std::runtime_error);
 }
+
+
+}
+} //Test
 
 
 #endif /* COMPNAL_TEST_MODEL_BASE_U1_ELECTRON_1D_HPP_ */

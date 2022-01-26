@@ -15,10 +15,10 @@
 //  Created by Kohei Suzuki on 2022/01/08.
 //
 
-#ifndef COMPNAL_TEST_TEST_HPP_
-#define COMPNAL_TEST_TEST_HPP_
+#ifndef COMPNAL_TEST_UTILITY_TEST_HPP_
+#define COMPNAL_TEST_UTILITY_TEST_HPP_
 
-#include "../src/sparse_matrix/all.hpp"
+#include "../../src/sparse_matrix/all.hpp"
 #include <unordered_map>
 #include <gtest/gtest.h>
 
@@ -124,4 +124,4 @@ void ExpectNear(const compnal::sparse_matrix::CRS<RealType> &lhs, const compnal:
 
 
 
-#endif /* COMPNAL_TEST_TEST_HPP_ */
+#endif /* COMPNAL_TEST_UTILITY_TEST_HPP_ */

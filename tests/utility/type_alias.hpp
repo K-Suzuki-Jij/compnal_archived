@@ -12,26 +12,29 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Created by Kohei Suzuki on 2022/01/23.
+//  Created by Kohei Suzuki on 2022/01/26.
 //
 
-#ifndef COMPNAL_TEST_MODEL_BASE_U1_SPIN_MULTI_ELECTRONS_1D_HPP_
-#define COMPNAL_TEST_MODEL_BASE_U1_SPIN_MULTI_ELECTRONS_1D_HPP_
+#ifndef COMPNAL_TEST_UTILITY_TYPE_ALIAS_HPP_
+#define COMPNAL_TEST_UTILITY_TYPE_ALIAS_HPP_
 
-#include "../../src/model/base_u1_spin_multi_electrons_1d.hpp"
-#include "../utility/all.hpp"
-#include <gtest/gtest.h>
+#include "../../src/model/all.hpp"
 
 namespace compnal {
 namespace test {
 
-TEST(ModelBaseU1SpinMultiElectrons1D, ConstructorDefault) {
-   BaseU1SpinMultiElectrons_1D<double> model;
-}
+using compnal::test::ExpectEQ;
+using compnal::test::ExpectNear;
+using compnal::sparse_matrix::CRS;
+using compnal::sparse_matrix::CRSTag;
+using compnal::model::BaseU1Electron_1D;
+using compnal::model::BaseU1Spin_1D;
+using compnal::model::BaseU1SpinElectron_1D;
+using compnal::model::BaseU1SpinMultiElectrons_1D;
+using compnal::sparse_matrix::CRS;
 
 }
 }
 
 
-#endif /* COMPNAL_TEST_MODEL_BASE_U1_SPIN_MULTI_ELECTRONS_1D_HPP_ */
-   
+#endif /* COMPNAL_TEST_UTILITY_TYPE_ALIAS_HPP_ */

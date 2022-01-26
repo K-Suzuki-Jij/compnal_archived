@@ -12,26 +12,13 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Created by Kohei Suzuki on 2022/01/23.
+//  Created by Kohei Suzuki on 2022/01/26.
 //
 
-#ifndef COMPNAL_TEST_MODEL_BASE_U1_SPIN_MULTI_ELECTRONS_1D_HPP_
-#define COMPNAL_TEST_MODEL_BASE_U1_SPIN_MULTI_ELECTRONS_1D_HPP_
+#ifndef COMPNAL_TEST_UTILITY_ALL_HPP_
+#define COMPNAL_TEST_UTILITY_ALL_HPP_
 
-#include "../../src/model/base_u1_spin_multi_electrons_1d.hpp"
-#include "../utility/all.hpp"
-#include <gtest/gtest.h>
+#include "./test.hpp"
+#include "./type_alias.hpp"
 
-namespace compnal {
-namespace test {
-
-TEST(ModelBaseU1SpinMultiElectrons1D, ConstructorDefault) {
-   BaseU1SpinMultiElectrons_1D<double> model;
-}
-
-}
-}
-
-
-#endif /* COMPNAL_TEST_MODEL_BASE_U1_SPIN_MULTI_ELECTRONS_1D_HPP_ */
-   
+#endif /* COMPNAL_TEST_UTILITY_ALL_HPP_ */

@@ -19,19 +19,11 @@
 #define COMPNAL_TEST_MODEL_BASE_U1_SPIN_1D_HPP_
 
 #include "../../src/model/base_u1_spin_1d.hpp"
-#include "../test.hpp"
+#include "../utility/all.hpp"
 #include <gtest/gtest.h>
 
-namespace {
-
-using compnal::test::ExpectEQ;
-using compnal::test::ExpectNear;
-using compnal::model::BaseU1Spin_1D;
-using compnal::sparse_matrix::CRS;
-
-}
-
-namespace {
+namespace compnal {
+namespace test {
 
 template<typename RealType>
 void TestSpinOneHalf(const BaseU1Spin_1D<RealType> &model) {
@@ -99,7 +91,6 @@ void TestSpinOne(const BaseU1Spin_1D<RealType> &model) {
    ExpectNear(model.GetOnsiteOperatorSz() , ref_sz , threshold);
 }
 
-} // namespace
 
 TEST(ModelBaseU1Spin1D, ConstructorDefault) {
    BaseU1Spin_1D<double> model;
@@ -201,6 +192,9 @@ TEST(ModelBaseU1Spin1D, CalculateTargetDim) {
    EXPECT_EQ(BaseU1Spin_1D<double>::CalculateTargetDim(4, 0.5, +0.0), 6);
    EXPECT_EQ(BaseU1Spin_1D<double>::CalculateTargetDim(4, 0.5, +2.0), 1);
    EXPECT_EQ(BaseU1Spin_1D<double>::CalculateTargetDim(4, 0.5, -2.0), 1);
+}
+
+}
 }
 
 #endif /* COMPNAL_TEST_MODEL_BASE_U1_SPIN_1D_HPP_ */

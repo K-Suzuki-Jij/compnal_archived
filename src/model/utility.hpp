@@ -21,7 +21,7 @@
 #include <cmath>
 
 namespace compnal {
-namespace utility {
+namespace model {
 
 enum BoundaryCondition {
   

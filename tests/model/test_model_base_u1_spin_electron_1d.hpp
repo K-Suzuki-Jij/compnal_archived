@@ -19,16 +19,11 @@
 #define COMPNAL_TEST_MODEL_BASE_U1_SPIN_ELECTRON_1D_HPP_
 
 #include "../../src/model/base_u1_spin_electron_1d.hpp"
-#include "../test.hpp"
+#include "../utility/all.hpp"
 #include <gtest/gtest.h>
 
-namespace {
-
-using compnal::test::ExpectEQ;
-using compnal::test::ExpectNear;
-using compnal::model::BaseU1SpinElectron_1D;
-
-}
+namespace compnal {
+namespace test {
 
 template<typename RealType>
 void TestSpinOneHalf(const BaseU1SpinElectron_1D<RealType> &model) {
@@ -106,6 +101,8 @@ TEST(ModelBaseU1SpinElectron1D, ConstructorDefault) {
    
 }
 
+}
+}
 
 #endif /* COMPNAL_TEST_MODEL_BASE_U1_SPIN_1D_HPP_ */
    
