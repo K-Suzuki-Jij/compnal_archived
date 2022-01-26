@@ -18,6 +18,7 @@
 #ifndef COMPNAL_MODEL_KONDO_LATTICE_1D_HPP_
 #define COMPNAL_MODEL_KONDO_LATTICE_1D_HPP_
 
+#include "./utility.hpp"
 #include "./base_u1_spin_electron_1d.hpp"
 
 namespace compnal {
@@ -85,7 +86,7 @@ public:
    //! @param system_size The system size \f$ N \f$.
    //! @param boundary_condition Boundary condition.
    KondoLattice_1D(const int system_size,
-                   const utility::BoundaryCondition boundary_condition):
+                   const BoundaryCondition boundary_condition):
    BaseU1SpinElectron_1D<RealType>(system_size) {
       onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2lspin_, J_z_, J_xy_, h_z_, D_z_);
       SetBoundaryCondition(boundary_condition);
@@ -97,7 +98,7 @@ public:
    //! @param boundary_condition Boundary condition.
    KondoLattice_1D(const int system_size,
                    const double magnitude_lspin,
-                   const utility::BoundaryCondition boundary_condition):
+                   const BoundaryCondition boundary_condition):
    BaseU1SpinElectron_1D<RealType>(system_size, magnitude_lspin) {
       onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2lspin_, J_z_, J_xy_, h_z_, D_z_);
       SetBoundaryCondition(boundary_condition);
@@ -110,7 +111,7 @@ public:
    //! @param boundary_condition Boundary condition.
    KondoLattice_1D(const int system_size,
                    const int total_electron,
-                   const utility::BoundaryCondition boundary_condition):
+                   const BoundaryCondition boundary_condition):
    BaseU1SpinElectron_1D<RealType>(system_size, total_electron) {
       onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2lspin_, J_z_, J_xy_, h_z_, D_z_);
       SetBoundaryCondition(boundary_condition);
@@ -125,7 +126,7 @@ public:
    KondoLattice_1D(const int system_size,
                    const double magnitude_lspin,
                    const int total_electron,
-                   const utility::BoundaryCondition boundary_condition):
+                   const BoundaryCondition boundary_condition):
    BaseU1SpinElectron_1D<RealType>(system_size, magnitude_lspin, total_electron) {
       onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2lspin_, J_z_, J_xy_, h_z_, D_z_);
       SetBoundaryCondition(boundary_condition);
@@ -137,7 +138,7 @@ public:
    //! @brief Set the boundary condition.
    //! @param boundary_condition Boundary condition.
    //! Open boundary condition (OBC), periodic boundary condition (PBC), or sine square deformation (SSD).
-   void SetBoundaryCondition(const utility::BoundaryCondition boundary_condition) {
+   void SetBoundaryCondition(const BoundaryCondition boundary_condition) {
       boundary_condition_ = boundary_condition;
    }
    
@@ -213,13 +214,13 @@ public:
    //! @brief Print information about this class.
    void PrintInfo() const {
       std::string bc_string = "None";
-      if (boundary_condition_ == utility::BoundaryCondition::OBC) {
+      if (boundary_condition_ == BoundaryCondition::OBC) {
          bc_string = "OBC";
       }
-      else if (boundary_condition_ == utility::BoundaryCondition::PBC) {
+      else if (boundary_condition_ == BoundaryCondition::PBC) {
          bc_string = "PBC";
       }
-      else if (boundary_condition_ == utility::BoundaryCondition::SSD) {
+      else if (boundary_condition_ == BoundaryCondition::SSD) {
          bc_string = "SSD";
       }
       std::cout << "Print Kondo Lattice Model Infomation:" << std::endl;
@@ -314,7 +315,7 @@ public:
    
    //! @brief Get the boundary condition.
    //! @return The boundary condition.
-   inline utility::BoundaryCondition GetBoundaryCondition() const { return boundary_condition_; }
+   inline BoundaryCondition GetBoundaryCondition() const { return boundary_condition_; }
    
 private:
    //! @brief The onsite Hamiltonian.
@@ -327,7 +328,7 @@ private:
    
    //! @brief Boundary condition.
    //! Open boundary condition (OBC), periodic boundary condition (PBC), or sine square deformation (SSD).
-   utility::BoundaryCondition boundary_condition_ = utility::BoundaryCondition::OBC;
+   BoundaryCondition boundary_condition_ = BoundaryCondition::OBC;
    
    //! @brief Hopping energy \f$ t \f$.
    std::vector<RealType> t_ = {1.0};

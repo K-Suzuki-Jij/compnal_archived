@@ -163,6 +163,17 @@ void CalculateNthPermutation(std::vector<int> *vec, std::int64_t target_num) {
    
 }
 
+void CheckHalfInteger(double s) {
+   s = 2*s;
+   if (std::floor(s) != s) {
+      throw std::runtime_error("The input number is not half-integer");
+   }
+}
+
+int DoubleHalfInteger(double s) {
+   CheckHalfInteger(s);
+   return static_cast<int>(2*s);
+}
 
 }
 }
