@@ -54,7 +54,7 @@ public:
    //! @param system_size The system size \f$ N \f$.
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    KondoLattice_1D(const int system_size,
-                   const HalfInt magnitude_lspin):
+                   const utility::HalfInt magnitude_lspin):
    BaseU1SpinElectron_1D<RealType>(system_size, magnitude_lspin) {
       onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2lspin_, J_z_, J_xy_, h_z_, D_z_);
    }
@@ -75,7 +75,7 @@ public:
    //! @param total_electron The number of the total electrons
    //! \f$ \langle \hat{N}_{e}\rangle =\sum^{N}_{i=1}\langle\hat{n}_{i}\rangle\f$.
    KondoLattice_1D(const int system_size,
-                   const HalfInt magnitude_lspin,
+                   const utility::HalfInt magnitude_lspin,
                    const int total_electron):
    BaseU1SpinElectron_1D<RealType>(system_size, magnitude_lspin, total_electron) {
       onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2lspin_, J_z_, J_xy_, h_z_, D_z_);
@@ -96,7 +96,7 @@ public:
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @param boundary_condition Boundary condition.
    KondoLattice_1D(const int system_size,
-                   const HalfInt magnitude_lspin,
+                   const utility::HalfInt magnitude_lspin,
                    const utility::BoundaryCondition boundary_condition):
    BaseU1SpinElectron_1D<RealType>(system_size, magnitude_lspin) {
       onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2lspin_, J_z_, J_xy_, h_z_, D_z_);
@@ -123,7 +123,7 @@ public:
    //! \f$ \langle \hat{N}_{e}\rangle =\sum^{N}_{i=1}\langle\hat{n}_{i}\rangle\f$.
    //! @param boundary_condition Boundary condition.
    KondoLattice_1D(const int system_size,
-                   const HalfInt magnitude_lspin,
+                   const utility::HalfInt magnitude_lspin,
                    const int total_electron,
                    const utility::BoundaryCondition boundary_condition):
    BaseU1SpinElectron_1D<RealType>(system_size, magnitude_lspin, total_electron) {
@@ -253,7 +253,7 @@ public:
    //! @param h_z The magnetic fields along the z-direction \f$ h_z \f$.
    //! @param D_z The uniaxial anisotropy to the z-direction \f$ D_z\f$.
    //! @return The matrix of \f$ \hat{H}_{\rm onsite}\f$.
-   static CRS CreateOnsiteOperatorHam(const HalfInt magnitude_lspin, const RealType J_z, const RealType J_xy, const RealType h_z, const RealType D_z) {
+   static CRS CreateOnsiteOperatorHam(const utility::HalfInt magnitude_lspin, const RealType J_z, const RealType J_xy, const RealType h_z, const RealType D_z) {
       const CRS spc = BaseU1SpinElectron_1D<RealType>::CreateOnsiteOperatorSpC(magnitude_lspin);
       const CRS smc = BaseU1SpinElectron_1D<RealType>::CreateOnsiteOperatorSmC(magnitude_lspin);
       const CRS szc = BaseU1SpinElectron_1D<RealType>::CreateOnsiteOperatorSzC(magnitude_lspin);
@@ -274,7 +274,7 @@ public:
    //! @param h_z The magnetic fields along the z-direction \f$ h_z \f$.
    //! @param D_z The uniaxial anisotropy to the z-direction \f$ D_z\f$.
    //! @return The matrix of \f$ \hat{H}_{\rm onsite}\f$.
-   static CRS CreateOnsiteOperatorHam(const HalfInt magnitude_lspin, const RealType J, const RealType h_z, const RealType D_z) {
+   static CRS CreateOnsiteOperatorHam(const utility::HalfInt magnitude_lspin, const RealType J, const RealType h_z, const RealType D_z) {
       return CreateOnsiteOperatorHam(magnitude_lspin, J, J, h_z, D_z);
    }
 
@@ -294,7 +294,7 @@ public:
    //! @brief Get hopping energy \f$ t_{d} \f$ at the distance \f$ d \f$.
    //! @param index The distance \f$ d \f$.
    //! @return The hopping energy \f$ t_{d} \f$ at the distance \f$ d \f$.
-   inline RealType GetHopping(const LInt index) const { return t_.at(index); }
+   inline RealType GetHopping(const std::int64_t index) const { return t_.at(index); }
    
    //! @brief Get the spin-spin interaction along the z-direction \f$ J_{z} \f$.
    //! @return J_z The spin-spin interaction along the z-direction \f$ J_{z} \f$.

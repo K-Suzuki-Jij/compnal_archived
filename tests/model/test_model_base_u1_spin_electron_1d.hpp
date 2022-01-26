@@ -24,10 +24,6 @@
 
 namespace {
 
-using compnal::LInt;
-using compnal::IntPair;
-using compnal::Map;
-using compnal::PairHash;
 using compnal::test::ExpectEQ;
 using compnal::test::ExpectNear;
 using compnal::model::BaseU1SpinElectron_1D;
@@ -105,8 +101,8 @@ TEST(ModelBaseU1SpinElectron1D, ConstructorDefault) {
    EXPECT_EQ(model.GetMagnitudeLSpin(), 0.5);
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
    
-   ExpectEQ(model.GetBases(), std::unordered_map<IntPair, std::vector<LInt>, PairHash>{});
-   ExpectEQ(model.GetBasesInv(), Map<IntPair, Map<LInt, LInt>, PairHash>{});
+   ExpectEQ(model.GetBases(), std::unordered_map<std::pair<int, int>, std::vector<std::int64_t>, compnal::utility::PairHash>{});
+   ExpectEQ(model.GetBasesInv(), std::unordered_map<std::pair<int, int>, std::unordered_map<std::int64_t, std::int64_t>, compnal::utility::PairHash>{});
    
 }
 

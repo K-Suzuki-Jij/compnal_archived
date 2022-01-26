@@ -126,7 +126,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *t
    }
    
    int converge_step_number = 0;
-   const LInt dim = matrix_in.row_dim;
+   const std::int64_t dim = matrix_in.row_dim;
    RealType residual_error_final = 0.0;
    BraketVector<RealType> vector_0(dim);
    BraketVector<RealType> vector_1(dim);
@@ -154,7 +154,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *t
    }
    else {
       random_number_engine.seed(seed);
-      for (LInt i = 0; i < dim; ++i) {
+      for (std::int64_t i = 0; i < dim; ++i) {
          vector_0.val[i] = uniform_rand(random_number_engine);
       }
    }
@@ -211,7 +211,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *t
          }
       }
 #pragma omp parallel for
-      for (LInt i = 0; i < dim; ++i) {
+      for (std::int64_t i = 0; i < dim; ++i) {
          vector_1.val[i] -= diagonal_value[step + 1]*vector_2.val[i] + off_diagonal_value[step]*vector_0.val[i];
          vector_0.val[i]  = vector_2.val[i];
       }
@@ -228,7 +228,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *t
    
    if (params.flag_store_vec) {
 #pragma omp parallel for
-      for (LInt i = 0; i < dim; ++i) {
+      for (std::int64_t i = 0; i < dim; ++i) {
          RealType temp_val = 0.0;
          for (int j = 0; j <= converge_step_number; ++j) {
             temp_val += krylov_eigen_vector[j]*rits_vector[j][i];
@@ -240,14 +240,14 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *t
    else {
       if (params.flag_use_initial_vec) {
 #pragma omp parallel for
-         for (LInt i = 0; i < dim; ++i) {
+         for (std::int64_t i = 0; i < dim; ++i) {
             vector_0.val[i] = target_vector_out->val[i];
             target_vector_out->val[i] = 0.0;
          }
       }
       else {
          random_number_engine.seed(seed);
-         for (LInt i = 0; i < dim; ++i) {
+         for (std::int64_t i = 0; i < dim; ++i) {
             vector_0.val[i] = uniform_rand(random_number_engine);
          }
       }
@@ -279,7 +279,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *t
          }
          
 #pragma omp parallel for
-         for (LInt i = 0; i < dim; ++i) {
+         for (std::int64_t i = 0; i < dim; ++i) {
             vector_1.val[i] -= diagonal_value[step]*vector_2.val[i] + off_diagonal_value[step - 1]*vector_0.val[i];
             vector_0.val[i]  = vector_2.val[i];
          }
@@ -343,7 +343,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
    }
    
    int converge_step_number = 0;
-   const LInt dim = matrix_in.row_dim;
+   const std::int64_t dim = matrix_in.row_dim;
    RealType residual_error_final = 0.0;
    BraketVector<RealType> vector_0(dim);
    BraketVector<RealType> vector_1(dim);
@@ -372,7 +372,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
    }
    else {
       random_number_engine.seed(seed);
-      for (LInt i = 0; i < dim; ++i) {
+      for (std::int64_t i = 0; i < dim; ++i) {
          vector_0.val[i] = uniform_rand(random_number_engine);
       }
    }
@@ -428,7 +428,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
          }
       }
 #pragma omp parallel for
-      for (LInt i = 0; i < dim; ++i) {
+      for (std::int64_t i = 0; i < dim; ++i) {
          vector_1.val[i] -= diagonal_value[step + 1]*vector_2.val[i] + off_diagonal_value[step]*vector_0.val[i];
          vector_0.val[i]  = vector_2.val[i];
       }
@@ -445,7 +445,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
    
    if (params.flag_store_vec) {
 #pragma omp parallel for
-      for (LInt i = 0; i < dim; ++i) {
+      for (std::int64_t i = 0; i < dim; ++i) {
          RealType temp_val = 0.0;
          for (int j = 0; j <= converge_step_number; ++j) {
             temp_val += krylov_eigen_vector[j]*rits_vector[j][i];
@@ -457,14 +457,14 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
    else {
       if (params.flag_use_initial_vec) {
 #pragma omp parallel for
-         for (LInt i = 0; i < dim; ++i) {
+         for (std::int64_t i = 0; i < dim; ++i) {
             vector_0.val[i] = gs_vector_out->val[i];
             gs_vector_out->val[i] = 0.0;
          }
       }
       else {
          random_number_engine.seed(seed);
-         for (LInt i = 0; i < dim; ++i) {
+         for (std::int64_t i = 0; i < dim; ++i) {
             vector_0.val[i] = uniform_rand(random_number_engine);
          }
       }
@@ -493,7 +493,7 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
          }
          
 #pragma omp parallel for
-         for (LInt i = 0; i < dim; ++i) {
+         for (std::int64_t i = 0; i < dim; ++i) {
             vector_1.val[i] -= diagonal_value[step]*vector_2.val[i] + off_diagonal_value[step - 1]*vector_0.val[i];
             vector_0.val[i]  = vector_2.val[i];
          }
@@ -554,7 +554,7 @@ std::pair<int, double> EigenvalueDecompositionLOBPCG(RealType                *gs
       return {0, time_sec};
    }
    
-   const LInt dim = matrix_in.row_dim;
+   const std::int64_t dim = matrix_in.row_dim;
    BraketVector<RealType> v0(dim);
    BraketVector<RealType> v1(dim);
    BraketVector<RealType> v2(dim);
@@ -578,7 +578,7 @@ std::pair<int, double> EigenvalueDecompositionLOBPCG(RealType                *gs
       std::uniform_real_distribution<RealType> uniform_rand(-1, 1);
       std::mt19937 random_number_engine;
       random_number_engine.seed(std::random_device()());
-      for (LInt i = 0; i < dim; ++i) {
+      for (std::int64_t i = 0; i < dim; ++i) {
          v0.val[i] = uniform_rand(random_number_engine);
       }
    }
@@ -608,7 +608,7 @@ std::pair<int, double> EigenvalueDecompositionLOBPCG(RealType                *gs
       RealType b5 = 1.0;
 
 #pragma omp parallel for reduction (+: a0, a1, a2, a3, a4, a5, b1, b3, b4)
-      for (LInt i = 0; i < dim; ++i) {
+      for (std::int64_t i = 0; i < dim; ++i) {
          a0 += v0.val[i]*w0.val[i];
          a1 += v0.val[i]*w1.val[i];
          a2 += v1.val[i]*w1.val[i];
@@ -637,7 +637,7 @@ std::pair<int, double> EigenvalueDecompositionLOBPCG(RealType                *gs
       RealType residual_error = 0.0;
       
 #pragma omp parallel for reduction (+: residual_error)
-      for (LInt i = 0; i < dim; ++i) {
+      for (std::int64_t i = 0; i < dim; ++i) {
          r.val[i] = k_e_vec[0]*w0.val[i] + k_e_vec[1]*w1.val[i] + k_e_vec[2]*w2.val[i]
                   - k_e_val[0]*(k_e_vec[0]*v0.val[i] + k_e_vec[1]*v1.val[i] + k_e_vec[2]*v2.val[i]);
          residual_error += r.val[i]*r.val[i];
@@ -653,7 +653,7 @@ std::pair<int, double> EigenvalueDecompositionLOBPCG(RealType                *gs
          gs_vector_out->val.resize(dim);
          
 #pragma omp parallel for
-         for (LInt i = 0; i < dim; ++i) {
+         for (std::int64_t i = 0; i < dim; ++i) {
             gs_vector_out->val[i] = k_e_vec[0]*w0.val[i] + k_e_vec[1]*w1.val[i] + k_e_vec[2]*w2.val[i];
          }
          gs_vector_out->Normalize();
@@ -666,7 +666,7 @@ std::pair<int, double> EigenvalueDecompositionLOBPCG(RealType                *gs
       }
 
 #pragma omp parallel for
-      for (LInt i = 0; i < dim; ++i) {
+      for (std::int64_t i = 0; i < dim; ++i) {
          v0.val[i] = k_e_vec[0]*v0.val[i] + k_e_vec[1]*v1.val[i] + k_e_vec[2]*v2.val[i];
          v2.val[i] = k_e_vec[1]*v1.val[i] + k_e_vec[2]*v2.val[i];
          v1.val[i] = r.val[i];
@@ -687,7 +687,7 @@ std::pair<int, double> EigenvalueDecompositionLOBPCG(RealType                *gs
       }
       
 #pragma omp parallel for
-      for (LInt i = 0; i < dim; ++i) {
+      for (std::int64_t i = 0; i < dim; ++i) {
          w0.val[i] = alpha*(k_e_vec[0]*w0.val[i] + k_e_vec[1]*w1.val[i] + k_e_vec[2]*w2.val[i]);
          w2.val[i] = beta*(k_e_vec[1]*w1.val[i] + k_e_vec[2]*w2.val[i]);
       }

@@ -24,20 +24,20 @@ namespace compnal {
 namespace utility {
 
 template<typename T1, typename T2>
-void QuickSort(std::vector<T1> *array_comp, std::vector<T2> *array2, const LInt left, const LInt right) {
+void QuickSort(std::vector<T1> *array_comp, std::vector<T2> *array2, const std::int64_t left, const std::int64_t right) {
    
    if (right - left <= 1) {
       return;
    }
    
-   const LInt index_pivot = (left + right)/2;
+   const std::int64_t index_pivot = (left + right)/2;
    const T1          val_pivot   = (*array_comp)[index_pivot];
    
    std::swap((*array_comp)[index_pivot], (*array_comp)[right - 1]);
    std::swap((*array2)    [index_pivot], (*array2)    [right - 1]);
    
-   LInt index = left;
-   for (LInt i = left; i < right - 1; ++i) {
+   std::int64_t index = left;
+   for (std::int64_t i = left; i < right - 1; ++i) {
       if ((*array_comp)[i] < val_pivot) {
          std::swap((*array_comp)[index], (*array_comp)[i]);
          std::swap((*array2)    [index], (*array2)    [i]);

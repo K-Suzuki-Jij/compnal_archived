@@ -12,16 +12,22 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Created by Kohei Suzuki on 2021/11/06.
+//  Created by Kohei Suzuki on 2022/01/25.
 //
 
-#ifndef COMPNAL_UTILITY_ALL_HPP_
-#define COMPNAL_UTILITY_ALL_HPP_
+#ifndef COMPNAL_UTILITY_TYPE_HPP_
+#define COMPNAL_UTILITY_TYPE_HPP_
 
-#include "model.hpp"
-#include "sort.hpp"
-#include "integer.hpp"
-#include "hash.hpp"
-#include "type.hpp"
+#include <cstdint>
 
-#endif /* COMPNAL_UTILITY_ALL_HPP_ */
+namespace compnal {
+namespace utility {
+
+//! @brief Half integer type.
+using HalfInt = double;
+
+
+}
+}
+
+#endif /* COMPNAL_UTILITY_TYPE_HPP_ */

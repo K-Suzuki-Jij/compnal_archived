@@ -24,10 +24,6 @@
 
 namespace {
 
-using compnal::LInt;
-using compnal::IntPair;
-using compnal::Map;
-using compnal::PairHash;
 using compnal::test::ExpectEQ;
 using compnal::test::ExpectNear;
 using compnal::sparse_matrix::CRS;
@@ -155,8 +151,8 @@ TEST(ModelBaseU1Electron1D, ConstructorDefault) {
    EXPECT_EQ(model.GetTotalElectron(), 0);
    
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   ExpectEQ(model.GetBases(), Map<IntPair, std::vector<LInt>, PairHash>{});
-   ExpectEQ(model.GetBasesInv(), Map<IntPair, Map<LInt, LInt>, PairHash>{});
+   ExpectEQ(model.GetBases(), std::unordered_map<std::pair<int, int>, std::vector<std::int64_t>, compnal::utility::PairHash>{});
+   ExpectEQ(model.GetBasesInv(), std::unordered_map<std::pair<int, int>, std::unordered_map<std::int64_t, std::int64_t>, compnal::utility::PairHash>{});
 }
 
 TEST(ModelBaseU1Electron1D, ConstructorSystemSize) {
@@ -168,8 +164,8 @@ TEST(ModelBaseU1Electron1D, ConstructorSystemSize) {
    EXPECT_EQ(model.GetTotalElectron(), 0);
    
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   ExpectEQ(model.GetBases(), Map<IntPair, std::vector<LInt>, PairHash>{});
-   ExpectEQ(model.GetBasesInv(), Map<IntPair, Map<LInt, LInt>, PairHash>{});
+   ExpectEQ(model.GetBases(), std::unordered_map<std::pair<int, int>, std::vector<std::int64_t>, compnal::utility::PairHash>{});
+   ExpectEQ(model.GetBasesInv(), std::unordered_map<std::pair<int, int>, std::unordered_map<std::int64_t, std::int64_t>, compnal::utility::PairHash>{});
 }
 
 TEST(ModelBaseU1Electron1D, ConstructorSystemSizeElectron) {
@@ -181,8 +177,8 @@ TEST(ModelBaseU1Electron1D, ConstructorSystemSizeElectron) {
    EXPECT_EQ(model.GetTotalElectron(), 2);
    
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   ExpectEQ(model.GetBases(), Map<IntPair, std::vector<LInt>, PairHash>{});
-   ExpectEQ(model.GetBasesInv(), Map<IntPair, Map<LInt, LInt>, PairHash>{});
+   ExpectEQ(model.GetBases(), std::unordered_map<std::pair<int, int>, std::vector<std::int64_t>, compnal::utility::PairHash>{});
+   ExpectEQ(model.GetBasesInv(), std::unordered_map<std::pair<int, int>, std::unordered_map<std::int64_t, std::int64_t>, compnal::utility::PairHash>{});
 }
 
 TEST(ModelBaseU1Electron1D, SetSystemSize) {

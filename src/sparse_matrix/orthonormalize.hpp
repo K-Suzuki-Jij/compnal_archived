@@ -27,11 +27,11 @@ namespace sparse_matrix {
 template<typename RealType>
 void Orthonormalize(std::vector<BraketVector<RealType>> *vectors) {
    for (std::size_t i = 0; i < vectors->size(); ++i) {
-      const LInt dim = static_cast<LInt>(vectors[i]->size());
+      const std::int64_t dim = static_cast<std::int64_t>(vectors[i]->size());
       for (std::size_t j = 0; j < i; ++j) {
          const RealType inner_product = -1.0*CalculateInnerProduct(*vectors[i], (*vectors)[j]);
 #pragma omp parallel for
-         for (LInt k = 0; k < dim; ++k) {
+         for (std::int64_t k = 0; k < dim; ++k) {
             vectors[i]->val[k] += inner_product*vectors[j]->val[k];
          }
       }
@@ -40,11 +40,11 @@ void Orthonormalize(std::vector<BraketVector<RealType>> *vectors) {
 
 template<typename RealType>
 void Orthonormalize(BraketVector<RealType> *target_vector, const std::vector<BraketVector<RealType>> &vectors) {
-   const LInt dim = static_cast<LInt>(target_vector->val.size());
+   const std::int64_t dim = static_cast<std::int64_t>(target_vector->val.size());
    for (std::size_t i = 0; i < vectors.size(); ++i) {
       const RealType inner_product = -1.0*CalculateInnerProduct(*target_vector, vectors[i]);
 #pragma omp parallel for
-      for (LInt j = 0; j < dim; ++j) {
+      for (std::int64_t j = 0; j < dim; ++j) {
          target_vector->val[j] += inner_product*vectors[i].val[j];
       }
    }

@@ -24,8 +24,6 @@
 
 namespace {
 
-using compnal::LInt;
-using compnal::Map;
 using compnal::test::ExpectEQ;
 using compnal::test::ExpectNear;
 using compnal::model::BaseU1Spin_1D;
@@ -111,8 +109,8 @@ TEST(ModelBaseU1Spin1D, ConstructorDefault) {
    EXPECT_EQ(model.GetTotalSz(), 0.0);
    
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   ExpectEQ(model.GetBases(), Map<int, std::vector<LInt>>{});
-   ExpectEQ(model.GetBasesInv(), Map<int, Map<LInt, LInt>>{});
+   ExpectEQ(model.GetBases(), std::unordered_map<int, std::vector<std::int64_t>>{});
+   ExpectEQ(model.GetBasesInv(), std::unordered_map<int, std::unordered_map<std::int64_t, std::int64_t>>{});
 }
 
 TEST(ModelBaseU1Spin1D, ConstructorSystemSize) {
@@ -123,8 +121,8 @@ TEST(ModelBaseU1Spin1D, ConstructorSystemSize) {
    EXPECT_EQ(model.GetTotalSz(), 0.0);
    
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   ExpectEQ(model.GetBases(), Map<int, std::vector<LInt>>{});
-   ExpectEQ(model.GetBasesInv(), Map<int, Map<LInt, LInt>>{});
+   ExpectEQ(model.GetBases(), std::unordered_map<int, std::vector<std::int64_t>>{});
+   ExpectEQ(model.GetBasesInv(), std::unordered_map<int, std::unordered_map<std::int64_t, std::int64_t>>{});
 }
 
 TEST(ModelBaseU1Spin1D, ConstructorSystemSizeSpin) {
@@ -135,8 +133,8 @@ TEST(ModelBaseU1Spin1D, ConstructorSystemSizeSpin) {
    EXPECT_EQ(model.GetTotalSz(), 0.0);
    
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   ExpectEQ(model.GetBases(), Map<int, std::vector<LInt>>{});
-   ExpectEQ(model.GetBasesInv(), Map<int, Map<LInt, LInt>>{});
+   ExpectEQ(model.GetBases(), std::unordered_map<int, std::vector<std::int64_t>>{});
+   ExpectEQ(model.GetBasesInv(), std::unordered_map<int, std::unordered_map<std::int64_t, std::int64_t>>{});
 }
 
 TEST(ModelBaseU1Spin1D, ConstructorSystemSizeSpinTotalSz) {
@@ -147,8 +145,8 @@ TEST(ModelBaseU1Spin1D, ConstructorSystemSizeSpinTotalSz) {
    EXPECT_EQ(model.GetTotalSz(), 1);
    
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   ExpectEQ(model.GetBases(), Map<int, std::vector<LInt>>{});
-   ExpectEQ(model.GetBasesInv(), Map<int, Map<LInt, LInt>>{});
+   ExpectEQ(model.GetBases(), std::unordered_map<int, std::vector<std::int64_t>>{});
+   ExpectEQ(model.GetBasesInv(), std::unordered_map<int, std::unordered_map<std::int64_t, std::int64_t>>{});
 }
 
 TEST(ModelBaseU1Spin1D, SetSystemSize) {

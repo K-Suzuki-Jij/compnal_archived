@@ -46,7 +46,7 @@ std::pair<int, double> InverseIteration(CRS<RealType>          *matrix_in,
    BraketVector<RealType> vectors_work(matrix_in->row_dim);
    
    if (params.cg.flag_use_initial_vec) {
-      if (static_cast<LInt>(eigenvector->val.size()) != matrix_in->row_dim) {
+      if (static_cast<std::int64_t>(eigenvector->val.size()) != matrix_in->row_dim) {
          std::stringstream ss;
          ss << "Error in " << __func__ << std::endl;
          ss << "The dimension of the initial vector is not equal to that of the input matrix." << std::endl;

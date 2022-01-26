@@ -18,7 +18,7 @@
 #ifndef COMPNAL_SPARSE_MATRIX_BRAKET_VECTOR_HPP_
 #define COMPNAL_SPARSE_MATRIX_BRAKET_VECTOR_HPP_
 
-#include "../type.hpp"
+#include "../utility/type.hpp"
 
 #include <iostream>
 #include <sstream>
@@ -37,10 +37,10 @@ struct BraketVector {
    
    std::vector<RealType> val;
    
-   explicit BraketVector(const LInt dim = 0) {
+   explicit BraketVector(const std::int64_t dim = 0) {
       this->val.resize(dim);
 #pragma omp parallel for
-      for (LInt i = 0; i < dim; ++i) {
+      for (std::int64_t i = 0; i < dim; ++i) {
          this->val[i] = 0.0;
       }
    }
@@ -110,7 +110,7 @@ struct BraketVector {
    RealType L1Norm() const {
       RealType norm = 0.0;
 #pragma omp parallel for reduction (+:norm)
-      for (LInt i = 0; i < this->val.size(); ++i) {
+      for (std::int64_t i = 0; i < this->val.size(); ++i) {
          norm += std::abs(val[i]);
       }
       return norm;

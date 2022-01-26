@@ -12,39 +12,14 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Created by Kohei Suzuki on 2022/01/23.
+//  Created by Kohei Suzuki on 2022/01/25.
 //
 
-#ifndef COMPNAL_TYPE_HPP_
-#define COMPNAL_TYPE_HPP_
-
-#include <cstdint>
-#include <utility>
-#include <unordered_map>
+#ifndef COMPNAL_UTILITY_HASH_HPP_
+#define COMPNAL_UTILITY_HASH_HPP_
 
 namespace compnal {
-
-//! @brief Half integer type.
-using HalfInt = double;
-
-//! @brief Long integer type.
-using LInt = std::int64_t;
-
-//! @brief Integer pair.
-using IntPair = std::pair<int, int>;
-
-//! @brief Long integer pair.
-using LIntPair = std::pair<LInt, LInt>;
-
-//! @brief std::vector<int> and int pair.
-using VecIntPair = std::pair<std::vector<int>, int>;
-
-//! @brief Alias of std::unordered_map.
-//! @tparam Key Type of key.
-//! @tparam T Type of value.
-//! @tparam Hash Type of hash function.
-template<class Key, class T, class Hash = std::hash<Key>>
-using Map = std::unordered_map<Key, T, Hash>;
+namespace utility {
 
 //! @brief Alias of hash class for std::pair.
 struct PairHash {
@@ -82,7 +57,8 @@ struct VecIntHash {
 };
 
 
-} //namespace compnal
+}
+}
 
 
-#endif /* COMPNAL_TYPE_HPP_ */
+#endif /* COMPNAL_UTILITY_HASH_HPP_ */
