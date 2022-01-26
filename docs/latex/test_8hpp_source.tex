@@ -1,5 +1,5 @@
 \hypertarget{test_8hpp_source}{}\doxysection{test.\+hpp}
-\label{test_8hpp_source}\index{tests/test.hpp@{tests/test.hpp}}
+\label{test_8hpp_source}\index{tests/utility/test.hpp@{tests/utility/test.hpp}}
 \mbox{\hyperlink{test_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
@@ -19,10 +19,10 @@
 \DoxyCodeLine{15 \textcolor{comment}{//  Created by Kohei Suzuki on 2022/01/08.}}
 \DoxyCodeLine{16 \textcolor{comment}{//}}
 \DoxyCodeLine{17 }
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_TEST\_TEST\_HPP\_}}
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_TEST\_TEST\_HPP\_}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_TEST\_UTILITY\_TEST\_HPP\_}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_TEST\_UTILITY\_TEST\_HPP\_}}
 \DoxyCodeLine{20 }
-\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}../src/sparse\_matrix/all.hpp"{}}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}../../src/sparse\_matrix/all.hpp"{}}}
 \DoxyCodeLine{22 \textcolor{preprocessor}{\#include <unordered\_map>}}
 \DoxyCodeLine{23 \textcolor{preprocessor}{\#include <gtest/gtest.h>}}
 \DoxyCodeLine{24 }
@@ -87,28 +87,28 @@
 \DoxyCodeLine{83 }
 \DoxyCodeLine{84 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
 \DoxyCodeLine{85 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{compnal::sparse\_matrix::CRS<RealType>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{compnal::sparse\_matrix::CRS<RealType>}} \&rhs, \textcolor{keyword}{const} RealType threshold) \{}
-\DoxyCodeLine{86    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad0729e9e6d307d317752691580e02343}{row\_dim}} != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad0729e9e6d307d317752691580e02343}{row\_dim}}) \{}
+\DoxyCodeLine{86    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}) \{}
 \DoxyCodeLine{87       FAIL();}
 \DoxyCodeLine{88    \}}
-\DoxyCodeLine{89    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad85231132bd7a45bbc447fa02c10f0be}{col\_dim}} != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad85231132bd7a45bbc447fa02c10f0be}{col\_dim}}) \{}
+\DoxyCodeLine{89    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}} != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}}) \{}
 \DoxyCodeLine{90       FAIL();}
 \DoxyCodeLine{91    \}}
-\DoxyCodeLine{92    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a9d168c9d0e3e508f151d1ab7ee411037}{row}}.size() != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a9d168c9d0e3e508f151d1ab7ee411037}{row}}.size()) \{}
+\DoxyCodeLine{92    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}.size() != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}.size()) \{}
 \DoxyCodeLine{93       FAIL();}
 \DoxyCodeLine{94    \}}
 \DoxyCodeLine{95    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a6e745b9eae6656c2210783e1e9d1d2b7}{tag}} != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a6e745b9eae6656c2210783e1e9d1d2b7}{tag}}) \{}
 \DoxyCodeLine{96       FAIL();}
 \DoxyCodeLine{97    \}}
-\DoxyCodeLine{98    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a9d168c9d0e3e508f151d1ab7ee411037}{row}}.size(); ++i) \{}
-\DoxyCodeLine{99       \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a9d168c9d0e3e508f151d1ab7ee411037}{row}}[i] != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a9d168c9d0e3e508f151d1ab7ee411037}{row}}[i]) \{}
+\DoxyCodeLine{98    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}.size(); ++i) \{}
+\DoxyCodeLine{99       \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i] != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i]) \{}
 \DoxyCodeLine{100          FAIL();}
 \DoxyCodeLine{101       \}}
 \DoxyCodeLine{102    \}}
-\DoxyCodeLine{103    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a79a056edc2d34eb11aa3cae611aa5e0b}{col}}.size() != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a79a056edc2d34eb11aa3cae611aa5e0b}{col}}.size()) \{}
+\DoxyCodeLine{103    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.size() != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.size()) \{}
 \DoxyCodeLine{104       FAIL();}
 \DoxyCodeLine{105    \}}
-\DoxyCodeLine{106    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a79a056edc2d34eb11aa3cae611aa5e0b}{col}}.size(); ++i) \{}
-\DoxyCodeLine{107       \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a79a056edc2d34eb11aa3cae611aa5e0b}{col}}[i] != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a79a056edc2d34eb11aa3cae611aa5e0b}{col}}[i]) \{}
+\DoxyCodeLine{106    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.size(); ++i) \{}
+\DoxyCodeLine{107       \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[i] != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[i]) \{}
 \DoxyCodeLine{108          FAIL();}
 \DoxyCodeLine{109       \}}
 \DoxyCodeLine{110    \}}
@@ -128,6 +128,6 @@
 \DoxyCodeLine{124 }
 \DoxyCodeLine{125 }
 \DoxyCodeLine{126 }
-\DoxyCodeLine{127 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_TEST\_TEST\_HPP\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{127 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_TEST\_UTILITY\_TEST\_HPP\_ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

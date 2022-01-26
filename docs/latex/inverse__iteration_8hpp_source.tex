@@ -36,21 +36,21 @@
 \DoxyCodeLine{32                                         \textcolor{keyword}{const} std::vector<\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector<RealType>}}> \&subspace\_vectors = \{\}}
 \DoxyCodeLine{33                                         ) \{}
 \DoxyCodeLine{34    }
-\DoxyCodeLine{35    \textcolor{keywordflow}{if} (matrix\_in-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad0729e9e6d307d317752691580e02343}{row\_dim}} != matrix\_in-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad85231132bd7a45bbc447fa02c10f0be}{col\_dim}}) \{}
+\DoxyCodeLine{35    \textcolor{keywordflow}{if} (matrix\_in-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} != matrix\_in-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}}) \{}
 \DoxyCodeLine{36       std::stringstream ss;}
 \DoxyCodeLine{37       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
 \DoxyCodeLine{38       ss << \textcolor{stringliteral}{"{}The input matrix is not a square one"{}} << std::endl;}
-\DoxyCodeLine{39       ss << \textcolor{stringliteral}{"{}row="{}} << matrix\_in-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad0729e9e6d307d317752691580e02343}{row\_dim}} << \textcolor{stringliteral}{"{}, col="{}} << matrix\_in-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad85231132bd7a45bbc447fa02c10f0be}{col\_dim}} << std::endl;}
+\DoxyCodeLine{39       ss << \textcolor{stringliteral}{"{}row="{}} << matrix\_in-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} << \textcolor{stringliteral}{"{}, col="{}} << matrix\_in-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}} << std::endl;}
 \DoxyCodeLine{40       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{41    \}}
 \DoxyCodeLine{42    }
 \DoxyCodeLine{43    \textcolor{keyword}{const} \textcolor{keyword}{auto} start = std::chrono::system\_clock::now();}
 \DoxyCodeLine{44    }
 \DoxyCodeLine{45    BraketVector<RealType> improved\_eigenvector;}
-\DoxyCodeLine{46    BraketVector<RealType> vectors\_work(matrix\_in-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad0729e9e6d307d317752691580e02343}{row\_dim}});}
+\DoxyCodeLine{46    BraketVector<RealType> vectors\_work(matrix\_in-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}});}
 \DoxyCodeLine{47    }
 \DoxyCodeLine{48    \textcolor{keywordflow}{if} (params.cg.flag\_use\_initial\_vec) \{}
-\DoxyCodeLine{49       \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}\textcolor{keyword}{>}(eigenvector-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size()) != matrix\_in-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad0729e9e6d307d317752691580e02343}{row\_dim}}) \{}
+\DoxyCodeLine{49       \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(eigenvector-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size()) != matrix\_in-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}) \{}
 \DoxyCodeLine{50          std::stringstream ss;}
 \DoxyCodeLine{51          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
 \DoxyCodeLine{52          ss << \textcolor{stringliteral}{"{}The dimension of the initial vector is not equal to that of the input matrix."{}} << std::endl;}

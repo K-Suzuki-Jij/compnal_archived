@@ -31,11 +31,11 @@
 \DoxyCodeLine{27 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
 \DoxyCodeLine{28 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ae8cf0493ba9137c8bfe9d1d192402440}{Orthonormalize}}(std::vector<\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector<RealType>}}> *vectors) \{}
 \DoxyCodeLine{29    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < vectors-\/>size(); ++i) \{}
-\DoxyCodeLine{30       \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} dim = \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}\textcolor{keyword}{>}(vectors[i]-\/>size());}
+\DoxyCodeLine{30       \textcolor{keyword}{const} std::int64\_t dim = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(vectors[i]-\/>size());}
 \DoxyCodeLine{31       \textcolor{keywordflow}{for} (std::size\_t j = 0; j < i; ++j) \{}
 \DoxyCodeLine{32          \textcolor{keyword}{const} RealType inner\_product = -\/1.0*\mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ac72eb2d652259d294644b3b00745a9df}{CalculateInnerProduct}}(*vectors[i], (*vectors)[j]);}
 \DoxyCodeLine{33 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{34          \textcolor{keywordflow}{for} (\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} k = 0; k < dim; ++k) \{}
+\DoxyCodeLine{34          \textcolor{keywordflow}{for} (std::int64\_t k = 0; k < dim; ++k) \{}
 \DoxyCodeLine{35             vectors[i]-\/>val[k] += inner\_product*vectors[j]-\/>val[k];}
 \DoxyCodeLine{36          \}}
 \DoxyCodeLine{37       \}}
@@ -44,11 +44,11 @@
 \DoxyCodeLine{40 }
 \DoxyCodeLine{41 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
 \DoxyCodeLine{42 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ae8cf0493ba9137c8bfe9d1d192402440}{Orthonormalize}}(\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector<RealType>}} *target\_vector, \textcolor{keyword}{const} std::vector<\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector<RealType>}}> \&vectors) \{}
-\DoxyCodeLine{43    \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} dim = \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}\textcolor{keyword}{>}(target\_vector-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size());}
+\DoxyCodeLine{43    \textcolor{keyword}{const} std::int64\_t dim = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(target\_vector-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size());}
 \DoxyCodeLine{44    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < vectors.size(); ++i) \{}
 \DoxyCodeLine{45       \textcolor{keyword}{const} RealType inner\_product = -\/1.0*\mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ac72eb2d652259d294644b3b00745a9df}{CalculateInnerProduct}}(*target\_vector, vectors[i]);}
 \DoxyCodeLine{46 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{47       \textcolor{keywordflow}{for} (\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} j = 0; j < dim; ++j) \{}
+\DoxyCodeLine{47       \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < dim; ++j) \{}
 \DoxyCodeLine{48          target\_vector-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[j] += inner\_product*vectors[i].val[j];}
 \DoxyCodeLine{49       \}}
 \DoxyCodeLine{50    \}}

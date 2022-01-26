@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['lint_0',['LInt',['../namespacecompnal.html#a5c65468895022d33488c22744a8c46fc',1,'compnal']]],
-  ['lintpair_1',['LIntPair',['../namespacecompnal.html#aaf1620c2d868fb10382876490e9c6147',1,'compnal']]]
+  ['valuetype_0',['ValueType',['../classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a6536848ae3bab6c5492ed59a5f6c6317',1,'compnal::model::BaseU1Electron_1D::ValueType()'],['../classcompnal_1_1model_1_1_base_u1_spin__1_d.html#a44c9489af0b9d886187ffa94b7cbecad',1,'compnal::model::BaseU1Spin_1D::ValueType()'],['../classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a8dc01cc9a5a716dcba48934cd34fc47e',1,'compnal::model::BaseU1SpinElectron_1D::ValueType()'],['../classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a07fbb9d33fc515f51fa240a05575c255',1,'compnal::model::BaseU1SpinMultiElectrons_1D::ValueType()']]]
 ];

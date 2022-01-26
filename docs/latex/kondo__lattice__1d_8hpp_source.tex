@@ -22,222 +22,223 @@
 \DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_MODEL\_KONDO\_LATTICE\_1D\_HPP\_}}
 \DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_MODEL\_KONDO\_LATTICE\_1D\_HPP\_}}
 \DoxyCodeLine{20 }
-\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{base__u1__spin__electron__1d_8hpp}{./base\_u1\_spin\_electron\_1d.hpp}}"{}}}
-\DoxyCodeLine{22 }
-\DoxyCodeLine{23 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
-\DoxyCodeLine{24 \textcolor{keyword}{namespace }model \{}
-\DoxyCodeLine{25 }
-\DoxyCodeLine{32 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
-\DoxyCodeLine{33 \textcolor{keyword}{class }\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d}{KondoLattice\_1D}}: \textcolor{keyword}{public} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D}}<RealType> \{}
-\DoxyCodeLine{34 }
-\DoxyCodeLine{36    \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} = \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{sparse\_matrix::CRS<RealType>}};}
-\DoxyCodeLine{37    }
-\DoxyCodeLine{38 \textcolor{keyword}{public}:}
-\DoxyCodeLine{39    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{40    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Constructors-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{41    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{43 \textcolor{comment}{}   \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a438af116c62d9acf3cb85ecdb3cb597a}{KondoLattice\_1D}}(): \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D}}<RealType>() \{}
-\DoxyCodeLine{44       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_afbadea92cf61c1346bafcd37fd8774d3}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
-\DoxyCodeLine{45    \}}
-\DoxyCodeLine{46    }
-\DoxyCodeLine{49    \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_abca29fec6f9353124fcc36700e02d207}{KondoLattice\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size): \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D}}<RealType>(system\_size) \{}
-\DoxyCodeLine{50       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_afbadea92cf61c1346bafcd37fd8774d3}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
-\DoxyCodeLine{51    \}}
-\DoxyCodeLine{52    }
-\DoxyCodeLine{56    \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a5001824f2d4a3feb8da5dcfb59227757}{KondoLattice\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size,}
-\DoxyCodeLine{57                    \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{HalfInt}} magnitude\_lspin):}
-\DoxyCodeLine{58    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D}}<RealType>(system\_size, magnitude\_lspin) \{}
-\DoxyCodeLine{59       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_afbadea92cf61c1346bafcd37fd8774d3}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
-\DoxyCodeLine{60    \}}
-\DoxyCodeLine{61    }
-\DoxyCodeLine{66    \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a49e66b773a1fdc2c8b1ad259e251a4fc}{KondoLattice\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size,}
-\DoxyCodeLine{67                    \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_electron):}
-\DoxyCodeLine{68    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D}}<RealType>(system\_size, total\_electron) \{}
-\DoxyCodeLine{69       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_afbadea92cf61c1346bafcd37fd8774d3}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
-\DoxyCodeLine{70    \}}
-\DoxyCodeLine{71    }
-\DoxyCodeLine{77    \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a13bf45356a8529def604de8228dd8f83}{KondoLattice\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size,}
-\DoxyCodeLine{78                    \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{HalfInt}} magnitude\_lspin,}
-\DoxyCodeLine{79                    \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_electron):}
-\DoxyCodeLine{80    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D}}<RealType>(system\_size, magnitude\_lspin, total\_electron) \{}
-\DoxyCodeLine{81       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_afbadea92cf61c1346bafcd37fd8774d3}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
-\DoxyCodeLine{82    \}}
-\DoxyCodeLine{83    }
-\DoxyCodeLine{87    \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0a9ae859a39c281b3b1737f8c5a223a2}{KondoLattice\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size,}
-\DoxyCodeLine{88                    \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}{utility::BoundaryCondition}} boundary\_condition):}
-\DoxyCodeLine{89    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D}}<RealType>(system\_size) \{}
-\DoxyCodeLine{90       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_afbadea92cf61c1346bafcd37fd8774d3}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
-\DoxyCodeLine{91       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a5ebaba0a8ee67c92c329e1d6b6322e34}{SetBoundaryCondition}}(boundary\_condition);}
-\DoxyCodeLine{92    \}}
-\DoxyCodeLine{93    }
-\DoxyCodeLine{98    \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a781864e54921c11518ad96e39ac10bc0}{KondoLattice\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size,}
-\DoxyCodeLine{99                    \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{HalfInt}} magnitude\_lspin,}
-\DoxyCodeLine{100                    \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}{utility::BoundaryCondition}} boundary\_condition):}
-\DoxyCodeLine{101    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D}}<RealType>(system\_size, magnitude\_lspin) \{}
-\DoxyCodeLine{102       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_afbadea92cf61c1346bafcd37fd8774d3}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
-\DoxyCodeLine{103       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a5ebaba0a8ee67c92c329e1d6b6322e34}{SetBoundaryCondition}}(boundary\_condition);}
-\DoxyCodeLine{104    \}}
-\DoxyCodeLine{105    }
-\DoxyCodeLine{111    \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a5eb9198f284e281d4d4fefebc5eb0011}{KondoLattice\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size,}
-\DoxyCodeLine{112                    \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_electron,}
-\DoxyCodeLine{113                    \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}{utility::BoundaryCondition}} boundary\_condition):}
-\DoxyCodeLine{114    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D}}<RealType>(system\_size, total\_electron) \{}
-\DoxyCodeLine{115       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_afbadea92cf61c1346bafcd37fd8774d3}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
-\DoxyCodeLine{116       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a5ebaba0a8ee67c92c329e1d6b6322e34}{SetBoundaryCondition}}(boundary\_condition);}
-\DoxyCodeLine{117    \}}
-\DoxyCodeLine{118    }
-\DoxyCodeLine{125    \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aed5534104343e72560e5ae0d3cf3f0fd}{KondoLattice\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size,}
-\DoxyCodeLine{126                    \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{HalfInt}} magnitude\_lspin,}
-\DoxyCodeLine{127                    \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_electron,}
-\DoxyCodeLine{128                    \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}{utility::BoundaryCondition}} boundary\_condition):}
-\DoxyCodeLine{129    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D}}<RealType>(system\_size, magnitude\_lspin, total\_electron) \{}
-\DoxyCodeLine{130       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_afbadea92cf61c1346bafcd37fd8774d3}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
-\DoxyCodeLine{131       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a5ebaba0a8ee67c92c329e1d6b6322e34}{SetBoundaryCondition}}(boundary\_condition);}
-\DoxyCodeLine{132    \}}
-\DoxyCodeLine{133    }
-\DoxyCodeLine{134    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{135    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Public Member functions-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{136    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{140 \textcolor{comment}{}   \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a5ebaba0a8ee67c92c329e1d6b6322e34}{SetBoundaryCondition}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}{utility::BoundaryCondition}} boundary\_condition) \{}
-\DoxyCodeLine{141       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_abb68c85412196dedcda11d2b4ce19a8f}{boundary\_condition\_}} = boundary\_condition;}
-\DoxyCodeLine{142    \}}
-\DoxyCodeLine{143    }
-\DoxyCodeLine{146    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a65f4ef1426c41dfb4c84840aa057ab06}{SetHopping}}(\textcolor{keyword}{const} std::vector<RealType> \&t) \{}
-\DoxyCodeLine{147       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}} != t) \{}
-\DoxyCodeLine{148          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}} = t;}
-\DoxyCodeLine{149          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a628d056b97a6ed45be589c8be2694d08}{calculated\_eigenvector\_set\_}}.clear();}
-\DoxyCodeLine{150       \}}
-\DoxyCodeLine{151    \}}
-\DoxyCodeLine{152    }
-\DoxyCodeLine{155    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a3beed4801ed42db65a1fc51e0d194c96}{SetHopping}}(\textcolor{keyword}{const} RealType t) \{}
-\DoxyCodeLine{156       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}}.size() == 0) \{}
-\DoxyCodeLine{157          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}}.push\_back(t);}
-\DoxyCodeLine{158          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a628d056b97a6ed45be589c8be2694d08}{calculated\_eigenvector\_set\_}}.clear();}
-\DoxyCodeLine{159       \}}
-\DoxyCodeLine{160       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}}[0] != t) \{}
-\DoxyCodeLine{161          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}}[0] = t;}
-\DoxyCodeLine{162          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a628d056b97a6ed45be589c8be2694d08}{calculated\_eigenvector\_set\_}}.clear();}
-\DoxyCodeLine{163       \}}
-\DoxyCodeLine{164    \}}
-\DoxyCodeLine{165    }
-\DoxyCodeLine{168    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a6e57deed8aa7c2aab00e760d4ea353f3}{SetHz}}(\textcolor{keyword}{const} RealType h\_z) \{}
-\DoxyCodeLine{169       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}} != h\_z) \{}
-\DoxyCodeLine{170          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}} = h\_z;}
-\DoxyCodeLine{171          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_afbadea92cf61c1346bafcd37fd8774d3}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
-\DoxyCodeLine{172          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a628d056b97a6ed45be589c8be2694d08}{calculated\_eigenvector\_set\_}}.clear();}
-\DoxyCodeLine{173       \}}
-\DoxyCodeLine{174    \}}
-\DoxyCodeLine{175    }
-\DoxyCodeLine{178    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a78e66c74774aa14500200df9328cb99e}{SetDz}}(\textcolor{keyword}{const} RealType D\_z) \{}
-\DoxyCodeLine{179       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}} != D\_z) \{}
-\DoxyCodeLine{180          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}} = D\_z;}
-\DoxyCodeLine{181          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_afbadea92cf61c1346bafcd37fd8774d3}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
-\DoxyCodeLine{182          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a628d056b97a6ed45be589c8be2694d08}{calculated\_eigenvector\_set\_}}.clear();}
-\DoxyCodeLine{183       \}}
-\DoxyCodeLine{184    \}}
-\DoxyCodeLine{185    }
-\DoxyCodeLine{188    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a32def5292209d1afc774b7d26808cb21}{SetJz}}(\textcolor{keyword}{const} RealType J\_z) \{}
-\DoxyCodeLine{189       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}} != J\_z) \{}
-\DoxyCodeLine{190          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}} = J\_z;}
-\DoxyCodeLine{191          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_afbadea92cf61c1346bafcd37fd8774d3}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
-\DoxyCodeLine{192          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a628d056b97a6ed45be589c8be2694d08}{calculated\_eigenvector\_set\_}}.clear();}
-\DoxyCodeLine{193       \}}
-\DoxyCodeLine{194    \}}
-\DoxyCodeLine{195    }
-\DoxyCodeLine{198    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_ad7fcb6d909257d2eaaa76f5a35b42d5e}{SetJxy}}(\textcolor{keyword}{const} RealType J\_xy) \{}
-\DoxyCodeLine{199       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}} != J\_xy) \{}
-\DoxyCodeLine{200          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}} = J\_xy;}
-\DoxyCodeLine{201          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_afbadea92cf61c1346bafcd37fd8774d3}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
-\DoxyCodeLine{202          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a628d056b97a6ed45be589c8be2694d08}{calculated\_eigenvector\_set\_}}.clear();}
-\DoxyCodeLine{203       \}}
-\DoxyCodeLine{204    \}}
-\DoxyCodeLine{205    }
-\DoxyCodeLine{208    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_ac230631d37c5ce264ba86d5787e622dc}{SetJ}}(\textcolor{keyword}{const} RealType J) \{}
-\DoxyCodeLine{209       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_ad7fcb6d909257d2eaaa76f5a35b42d5e}{SetJxy}}(J);}
-\DoxyCodeLine{210       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a32def5292209d1afc774b7d26808cb21}{SetJz}}(J);}
-\DoxyCodeLine{211    \}}
-\DoxyCodeLine{212    }
-\DoxyCodeLine{214    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa800a6c89a40b7f52fd0e68177410fd7}{PrintInfo}}()\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{215       std::string bc\_string = \textcolor{stringliteral}{"{}None"{}};}
-\DoxyCodeLine{216       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_abb68c85412196dedcda11d2b4ce19a8f}{boundary\_condition\_}} == \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712ac18b965543663a1ec9a4836656f07d86}{utility::BoundaryCondition::OBC}}) \{}
-\DoxyCodeLine{217          bc\_string = \textcolor{stringliteral}{"{}OBC"{}};}
-\DoxyCodeLine{218       \}}
-\DoxyCodeLine{219       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_abb68c85412196dedcda11d2b4ce19a8f}{boundary\_condition\_}} == \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712a37907335b66872484f695a3d2d6116b2}{utility::BoundaryCondition::PBC}}) \{}
-\DoxyCodeLine{220          bc\_string = \textcolor{stringliteral}{"{}PBC"{}};}
-\DoxyCodeLine{221       \}}
-\DoxyCodeLine{222       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_abb68c85412196dedcda11d2b4ce19a8f}{boundary\_condition\_}} == \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712a855ae200ce7bb41425769e9981a4d02e}{utility::BoundaryCondition::SSD}}) \{}
-\DoxyCodeLine{223          bc\_string = \textcolor{stringliteral}{"{}SSD"{}};}
-\DoxyCodeLine{224       \}}
-\DoxyCodeLine{225       std::cout << \textcolor{stringliteral}{"{}Print Kondo Lattice Model Infomation:"{}} << std::endl;}
-\DoxyCodeLine{226       std::cout << \textcolor{stringliteral}{"{}boundary\_condition     = "{}} << bc\_string << std::endl;}
-\DoxyCodeLine{227       std::cout << \textcolor{stringliteral}{"{}system\_size            = "{}} << this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a7e254cfc3251d5aa58dcb4ce7f47f6cb}{system\_size\_}}            << std::endl;}
-\DoxyCodeLine{228       std::cout << \textcolor{stringliteral}{"{}magnitute\_2lspin       = "{}} << this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}       << std::endl;}
-\DoxyCodeLine{229       std::cout << \textcolor{stringliteral}{"{}total\_2sz              = "{}} << this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_acc57b3a69df57dfbbc7795223a43290d}{total\_2sz\_}}              << std::endl;}
-\DoxyCodeLine{230       std::cout << \textcolor{stringliteral}{"{}dim\_target             = "{}} << this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aa616fb221c6a93dda597490a102c12ea}{CalculateTargetDim}}()    << std::endl;}
-\DoxyCodeLine{231       std::cout << \textcolor{stringliteral}{"{}dim\_onsite             = "{}} << this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a297a8ff80c53ce114d7901ebe3a457b9}{dim\_onsite\_}}             << std::endl;}
-\DoxyCodeLine{232       }
-\DoxyCodeLine{233       std::cout << \textcolor{stringliteral}{"{}Print Interactions"{}} << std::endl;}
-\DoxyCodeLine{234       std::cout << \textcolor{stringliteral}{"{}Electron Hopping: t ="{}} << std::endl;}
-\DoxyCodeLine{235       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}}.size(); ++i) \{}
-\DoxyCodeLine{236          std::cout << i + 1 << \textcolor{stringliteral}{"{}-\/th neighber: "{}} << \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}}.at(i) << std::endl;}
-\DoxyCodeLine{237       \}}
-\DoxyCodeLine{238       std::cout << \textcolor{stringliteral}{"{}Sz-\/Sz Interaction: J\_z ="{}} << \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}} << std::endl;}
-\DoxyCodeLine{239       std::cout << \textcolor{stringliteral}{"{}Sx-\/Sx, Sy-\/Sy Interactions: J\_xy ="{}} << \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}} << std::endl;}
-\DoxyCodeLine{240       std::cout << \textcolor{stringliteral}{"{}External Magnetic Fields for the z-\/direction: h\_z ="{}} << \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}} << std::endl;}
-\DoxyCodeLine{241       std::cout << \textcolor{stringliteral}{"{}Uniaxial Anisotropy for the z-\/direction: D\_z ="{}} << \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}} << std::endl;}
-\DoxyCodeLine{242    \}}
-\DoxyCodeLine{243    }
-\DoxyCodeLine{256    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_afbadea92cf61c1346bafcd37fd8774d3}{CreateOnsiteOperatorHam}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{HalfInt}} magnitude\_lspin, \textcolor{keyword}{const} RealType J\_z, \textcolor{keyword}{const} RealType J\_xy, \textcolor{keyword}{const} RealType h\_z, \textcolor{keyword}{const} RealType D\_z) \{}
-\DoxyCodeLine{257       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} spc = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a036f27edb884a50731e99aac5ad5b363}{BaseU1SpinElectron\_1D<RealType>::CreateOnsiteOperatorSpC}}(magnitude\_lspin);}
-\DoxyCodeLine{258       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} smc = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aec74f4719f814ef470b506cc28947df4}{BaseU1SpinElectron\_1D<RealType>::CreateOnsiteOperatorSmC}}(magnitude\_lspin);}
-\DoxyCodeLine{259       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} szc = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aca985efae20c351bc9342621b791d53e}{BaseU1SpinElectron\_1D<RealType>::CreateOnsiteOperatorSzC}}(magnitude\_lspin);}
-\DoxyCodeLine{260       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} spl = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a3ab4dae108027aa369609123a46d610a}{BaseU1SpinElectron\_1D<RealType>::CreateOnsiteOperatorSpL}}(magnitude\_lspin);}
-\DoxyCodeLine{261       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} sml = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1926cd00080a8012174244e7f1ee9086}{BaseU1SpinElectron\_1D<RealType>::CreateOnsiteOperatorSmL}}(magnitude\_lspin);}
-\DoxyCodeLine{262       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} szl = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_acb2cb8c341e4124e3e5278a3e19c7fc5}{BaseU1SpinElectron\_1D<RealType>::CreateOnsiteOperatorSzL}}(magnitude\_lspin);}
-\DoxyCodeLine{263       \textcolor{keywordflow}{return} J\_z*szc*szl + J\_xy*0.5*(spc*sml + smc*spl) + h\_z*(szc + szl) * D\_z*szl*szl;}
-\DoxyCodeLine{264    \}}
-\DoxyCodeLine{265    }
-\DoxyCodeLine{277    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a100e65443ff59e21bb087d639c0596d6}{CreateOnsiteOperatorHam}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{HalfInt}} magnitude\_lspin, \textcolor{keyword}{const} RealType J, \textcolor{keyword}{const} RealType h\_z, \textcolor{keyword}{const} RealType D\_z) \{}
-\DoxyCodeLine{278       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_afbadea92cf61c1346bafcd37fd8774d3}{CreateOnsiteOperatorHam}}(magnitude\_lspin, J, J, h\_z, D\_z);}
-\DoxyCodeLine{279    \}}
-\DoxyCodeLine{280 }
-\DoxyCodeLine{288    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef91160bc62bb058ea4dbb943bb60b0c}{GetOnsiteOperatorHam}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}}; \}}
-\DoxyCodeLine{289    }
-\DoxyCodeLine{292    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<RealType> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa896770fcaa6a044e9083b8fbb8db3b3}{GetHopping}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}} ; \}}
-\DoxyCodeLine{293    }
-\DoxyCodeLine{297    \textcolor{keyword}{inline} RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0c6ad981d71de820140f5d2006d1fa1c}{GetHopping}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} index)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}}.at(index); \}}
-\DoxyCodeLine{298    }
-\DoxyCodeLine{301    \textcolor{keyword}{inline} RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_ae20d410e240c70c2615a55547dfa3991}{GetJz}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}} ; \}}
-\DoxyCodeLine{302    }
-\DoxyCodeLine{305    \textcolor{keyword}{inline} RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_af6d327948c9d44bba9c9a91d1754bc69}{GetJxy}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}; \}}
-\DoxyCodeLine{306          }
-\DoxyCodeLine{309    \textcolor{keyword}{inline} RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a2bfdd873dce8336dd73f0354f7bdbb46}{GetHz}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}; \}}
-\DoxyCodeLine{310    }
-\DoxyCodeLine{313    \textcolor{keyword}{inline} RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a1d069b283927cfc26332ffc1cf986c87}{GetDz}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}}; \}}
-\DoxyCodeLine{314    }
-\DoxyCodeLine{317    \textcolor{keyword}{inline} \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}{utility::BoundaryCondition}} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a4ba03abedac16df114d1c77710c25464}{GetBoundaryCondition}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_abb68c85412196dedcda11d2b4ce19a8f}{boundary\_condition\_}}; \}}
-\DoxyCodeLine{318    }
-\DoxyCodeLine{319 \textcolor{keyword}{private}:}
-\DoxyCodeLine{326    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}};}
-\DoxyCodeLine{327    }
-\DoxyCodeLine{330    \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712}{utility::BoundaryCondition}} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_abb68c85412196dedcda11d2b4ce19a8f}{boundary\_condition\_}} = \mbox{\hyperlink{namespacecompnal_1_1utility_a07e19f2ac12ba88d081a0ebe838a9712ac18b965543663a1ec9a4836656f07d86}{utility::BoundaryCondition::OBC}};}
-\DoxyCodeLine{331    }
-\DoxyCodeLine{333    std::vector<RealType> \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}} = \{1.0\};}
-\DoxyCodeLine{334    }
-\DoxyCodeLine{336    RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}} = 1.0;}
-\DoxyCodeLine{337    }
-\DoxyCodeLine{339    RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}} = 1.0;}
-\DoxyCodeLine{340    }
-\DoxyCodeLine{342    RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}} = 0.0;}
-\DoxyCodeLine{343    }
-\DoxyCodeLine{345    RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}} = 0.0;}
-\DoxyCodeLine{346    }
-\DoxyCodeLine{347 \};}
-\DoxyCodeLine{348 }
-\DoxyCodeLine{349 \}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{utility_8hpp}{./utility.hpp}}"{}}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{base__u1__spin__electron__1d_8hpp}{./base\_u1\_spin\_electron\_1d.hpp}}"{}}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
+\DoxyCodeLine{25 \textcolor{keyword}{namespace }model \{}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{33 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
+\DoxyCodeLine{34 \textcolor{keyword}{class }\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d}{KondoLattice\_1D}}: \textcolor{keyword}{public} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D}}<RealType> \{}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{37    \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} = \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{sparse\_matrix::CRS<RealType>}};}
+\DoxyCodeLine{38    }
+\DoxyCodeLine{39 \textcolor{keyword}{public}:}
+\DoxyCodeLine{40    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{41    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Constructors-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{42    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{44 \textcolor{comment}{}   \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a438af116c62d9acf3cb85ecdb3cb597a}{KondoLattice\_1D}}(): \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D}}<RealType>() \{}
+\DoxyCodeLine{45       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a8aa204ed680f83dc5b019d753c279b74}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
+\DoxyCodeLine{46    \}}
+\DoxyCodeLine{47    }
+\DoxyCodeLine{50    \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_abca29fec6f9353124fcc36700e02d207}{KondoLattice\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size): \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D}}<RealType>(system\_size) \{}
+\DoxyCodeLine{51       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a8aa204ed680f83dc5b019d753c279b74}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
+\DoxyCodeLine{52    \}}
+\DoxyCodeLine{53    }
+\DoxyCodeLine{57    \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a5a9724a3719c1097194c9650762cb444}{KondoLattice\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size,}
+\DoxyCodeLine{58                    \textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin):}
+\DoxyCodeLine{59    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D}}<RealType>(system\_size, magnitude\_lspin) \{}
+\DoxyCodeLine{60       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a8aa204ed680f83dc5b019d753c279b74}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
+\DoxyCodeLine{61    \}}
+\DoxyCodeLine{62    }
+\DoxyCodeLine{67    \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a49e66b773a1fdc2c8b1ad259e251a4fc}{KondoLattice\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size,}
+\DoxyCodeLine{68                    \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_electron):}
+\DoxyCodeLine{69    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D}}<RealType>(system\_size, total\_electron) \{}
+\DoxyCodeLine{70       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a8aa204ed680f83dc5b019d753c279b74}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
+\DoxyCodeLine{71    \}}
+\DoxyCodeLine{72    }
+\DoxyCodeLine{78    \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a2a8cfd2ea396666a753d92ce57a67961}{KondoLattice\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size,}
+\DoxyCodeLine{79                    \textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin,}
+\DoxyCodeLine{80                    \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_electron):}
+\DoxyCodeLine{81    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D}}<RealType>(system\_size, magnitude\_lspin, total\_electron) \{}
+\DoxyCodeLine{82       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a8aa204ed680f83dc5b019d753c279b74}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
+\DoxyCodeLine{83    \}}
+\DoxyCodeLine{84    }
+\DoxyCodeLine{88    \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_ab5a8df04cb1ef94b630c5eb76f136be3}{KondoLattice\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size,}
+\DoxyCodeLine{89                    \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49b}{BoundaryCondition}} boundary\_condition):}
+\DoxyCodeLine{90    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D}}<RealType>(system\_size) \{}
+\DoxyCodeLine{91       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a8aa204ed680f83dc5b019d753c279b74}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
+\DoxyCodeLine{92       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a6b5513c2c277bec0e5f2dee51317c0d0}{SetBoundaryCondition}}(boundary\_condition);}
+\DoxyCodeLine{93    \}}
+\DoxyCodeLine{94    }
+\DoxyCodeLine{99    \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_af52da4a94c9693f54b0ab774b01600ee}{KondoLattice\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size,}
+\DoxyCodeLine{100                    \textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin,}
+\DoxyCodeLine{101                    \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49b}{BoundaryCondition}} boundary\_condition):}
+\DoxyCodeLine{102    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D}}<RealType>(system\_size, magnitude\_lspin) \{}
+\DoxyCodeLine{103       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a8aa204ed680f83dc5b019d753c279b74}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
+\DoxyCodeLine{104       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a6b5513c2c277bec0e5f2dee51317c0d0}{SetBoundaryCondition}}(boundary\_condition);}
+\DoxyCodeLine{105    \}}
+\DoxyCodeLine{106    }
+\DoxyCodeLine{112    \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a839812fd4ab36c1c48f651c0f4b52512}{KondoLattice\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size,}
+\DoxyCodeLine{113                    \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_electron,}
+\DoxyCodeLine{114                    \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49b}{BoundaryCondition}} boundary\_condition):}
+\DoxyCodeLine{115    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D}}<RealType>(system\_size, total\_electron) \{}
+\DoxyCodeLine{116       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a8aa204ed680f83dc5b019d753c279b74}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
+\DoxyCodeLine{117       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a6b5513c2c277bec0e5f2dee51317c0d0}{SetBoundaryCondition}}(boundary\_condition);}
+\DoxyCodeLine{118    \}}
+\DoxyCodeLine{119    }
+\DoxyCodeLine{126    \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_accb4315bfc0d302b41bc45816768b319}{KondoLattice\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size,}
+\DoxyCodeLine{127                    \textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin,}
+\DoxyCodeLine{128                    \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_electron,}
+\DoxyCodeLine{129                    \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49b}{BoundaryCondition}} boundary\_condition):}
+\DoxyCodeLine{130    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D}}<RealType>(system\_size, magnitude\_lspin, total\_electron) \{}
+\DoxyCodeLine{131       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a8aa204ed680f83dc5b019d753c279b74}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
+\DoxyCodeLine{132       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a6b5513c2c277bec0e5f2dee51317c0d0}{SetBoundaryCondition}}(boundary\_condition);}
+\DoxyCodeLine{133    \}}
+\DoxyCodeLine{134    }
+\DoxyCodeLine{135    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{136    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Public Member functions-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{137    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{141 \textcolor{comment}{}   \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a6b5513c2c277bec0e5f2dee51317c0d0}{SetBoundaryCondition}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49b}{BoundaryCondition}} boundary\_condition) \{}
+\DoxyCodeLine{142       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a50e2d74191c74cf48816618e1f4c6e1e}{boundary\_condition\_}} = boundary\_condition;}
+\DoxyCodeLine{143    \}}
+\DoxyCodeLine{144    }
+\DoxyCodeLine{147    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a65f4ef1426c41dfb4c84840aa057ab06}{SetHopping}}(\textcolor{keyword}{const} std::vector<RealType> \&t) \{}
+\DoxyCodeLine{148       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}} != t) \{}
+\DoxyCodeLine{149          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}} = t;}
+\DoxyCodeLine{150          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a628d056b97a6ed45be589c8be2694d08}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{151       \}}
+\DoxyCodeLine{152    \}}
+\DoxyCodeLine{153    }
+\DoxyCodeLine{156    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a3beed4801ed42db65a1fc51e0d194c96}{SetHopping}}(\textcolor{keyword}{const} RealType t) \{}
+\DoxyCodeLine{157       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}}.size() == 0) \{}
+\DoxyCodeLine{158          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}}.push\_back(t);}
+\DoxyCodeLine{159          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a628d056b97a6ed45be589c8be2694d08}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{160       \}}
+\DoxyCodeLine{161       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}}[0] != t) \{}
+\DoxyCodeLine{162          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}}[0] = t;}
+\DoxyCodeLine{163          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a628d056b97a6ed45be589c8be2694d08}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{164       \}}
+\DoxyCodeLine{165    \}}
+\DoxyCodeLine{166    }
+\DoxyCodeLine{169    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a6e57deed8aa7c2aab00e760d4ea353f3}{SetHz}}(\textcolor{keyword}{const} RealType h\_z) \{}
+\DoxyCodeLine{170       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}} != h\_z) \{}
+\DoxyCodeLine{171          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}} = h\_z;}
+\DoxyCodeLine{172          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a8aa204ed680f83dc5b019d753c279b74}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
+\DoxyCodeLine{173          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a628d056b97a6ed45be589c8be2694d08}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{174       \}}
+\DoxyCodeLine{175    \}}
+\DoxyCodeLine{176    }
+\DoxyCodeLine{179    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a78e66c74774aa14500200df9328cb99e}{SetDz}}(\textcolor{keyword}{const} RealType D\_z) \{}
+\DoxyCodeLine{180       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}} != D\_z) \{}
+\DoxyCodeLine{181          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}} = D\_z;}
+\DoxyCodeLine{182          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a8aa204ed680f83dc5b019d753c279b74}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
+\DoxyCodeLine{183          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a628d056b97a6ed45be589c8be2694d08}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{184       \}}
+\DoxyCodeLine{185    \}}
+\DoxyCodeLine{186    }
+\DoxyCodeLine{189    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a32def5292209d1afc774b7d26808cb21}{SetJz}}(\textcolor{keyword}{const} RealType J\_z) \{}
+\DoxyCodeLine{190       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}} != J\_z) \{}
+\DoxyCodeLine{191          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}} = J\_z;}
+\DoxyCodeLine{192          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a8aa204ed680f83dc5b019d753c279b74}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
+\DoxyCodeLine{193          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a628d056b97a6ed45be589c8be2694d08}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{194       \}}
+\DoxyCodeLine{195    \}}
+\DoxyCodeLine{196    }
+\DoxyCodeLine{199    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_ad7fcb6d909257d2eaaa76f5a35b42d5e}{SetJxy}}(\textcolor{keyword}{const} RealType J\_xy) \{}
+\DoxyCodeLine{200       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}} != J\_xy) \{}
+\DoxyCodeLine{201          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}} = J\_xy;}
+\DoxyCodeLine{202          \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a8aa204ed680f83dc5b019d753c279b74}{CreateOnsiteOperatorHam}}(0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}});}
+\DoxyCodeLine{203          this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a628d056b97a6ed45be589c8be2694d08}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{204       \}}
+\DoxyCodeLine{205    \}}
+\DoxyCodeLine{206    }
+\DoxyCodeLine{209    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_ac230631d37c5ce264ba86d5787e622dc}{SetJ}}(\textcolor{keyword}{const} RealType J) \{}
+\DoxyCodeLine{210       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_ad7fcb6d909257d2eaaa76f5a35b42d5e}{SetJxy}}(J);}
+\DoxyCodeLine{211       \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a32def5292209d1afc774b7d26808cb21}{SetJz}}(J);}
+\DoxyCodeLine{212    \}}
+\DoxyCodeLine{213    }
+\DoxyCodeLine{215    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa800a6c89a40b7f52fd0e68177410fd7}{PrintInfo}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{216       std::string bc\_string = \textcolor{stringliteral}{"{}None"{}};}
+\DoxyCodeLine{217       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a50e2d74191c74cf48816618e1f4c6e1e}{boundary\_condition\_}} == \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49bac7561e5003ce27517940dd2391775b12}{BoundaryCondition::OBC}}) \{}
+\DoxyCodeLine{218          bc\_string = \textcolor{stringliteral}{"{}OBC"{}};}
+\DoxyCodeLine{219       \}}
+\DoxyCodeLine{220       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a50e2d74191c74cf48816618e1f4c6e1e}{boundary\_condition\_}} == \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49ba971a9be4942bbf28af21cd78bd5e6c15}{BoundaryCondition::PBC}}) \{}
+\DoxyCodeLine{221          bc\_string = \textcolor{stringliteral}{"{}PBC"{}};}
+\DoxyCodeLine{222       \}}
+\DoxyCodeLine{223       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a50e2d74191c74cf48816618e1f4c6e1e}{boundary\_condition\_}} == \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49ba53f82f2e3270e115187896a7ae628069}{BoundaryCondition::SSD}}) \{}
+\DoxyCodeLine{224          bc\_string = \textcolor{stringliteral}{"{}SSD"{}};}
+\DoxyCodeLine{225       \}}
+\DoxyCodeLine{226       std::cout << \textcolor{stringliteral}{"{}Print Kondo Lattice Model Infomation:"{}} << std::endl;}
+\DoxyCodeLine{227       std::cout << \textcolor{stringliteral}{"{}boundary\_condition     = "{}} << bc\_string << std::endl;}
+\DoxyCodeLine{228       std::cout << \textcolor{stringliteral}{"{}system\_size            = "{}} << this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a7e254cfc3251d5aa58dcb4ce7f47f6cb}{system\_size\_}}            << std::endl;}
+\DoxyCodeLine{229       std::cout << \textcolor{stringliteral}{"{}magnitute\_2lspin       = "{}} << this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}       << std::endl;}
+\DoxyCodeLine{230       std::cout << \textcolor{stringliteral}{"{}total\_2sz              = "{}} << this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_acc57b3a69df57dfbbc7795223a43290d}{total\_2sz\_}}              << std::endl;}
+\DoxyCodeLine{231       std::cout << \textcolor{stringliteral}{"{}dim\_target             = "{}} << this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a6c76df83eeef7e4f373b5f13ef708224}{CalculateTargetDim}}()    << std::endl;}
+\DoxyCodeLine{232       std::cout << \textcolor{stringliteral}{"{}dim\_onsite             = "{}} << this-\/>\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a297a8ff80c53ce114d7901ebe3a457b9}{dim\_onsite\_}}             << std::endl;}
+\DoxyCodeLine{233       }
+\DoxyCodeLine{234       std::cout << \textcolor{stringliteral}{"{}Print Interactions"{}} << std::endl;}
+\DoxyCodeLine{235       std::cout << \textcolor{stringliteral}{"{}Electron Hopping: t ="{}} << std::endl;}
+\DoxyCodeLine{236       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}}.size(); ++i) \{}
+\DoxyCodeLine{237          std::cout << i + 1 << \textcolor{stringliteral}{"{}-\/th neighber: "{}} << \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}}.at(i) << std::endl;}
+\DoxyCodeLine{238       \}}
+\DoxyCodeLine{239       std::cout << \textcolor{stringliteral}{"{}Sz-\/Sz Interaction: J\_z ="{}} << \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}} << std::endl;}
+\DoxyCodeLine{240       std::cout << \textcolor{stringliteral}{"{}Sx-\/Sx, Sy-\/Sy Interactions: J\_xy ="{}} << \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}} << std::endl;}
+\DoxyCodeLine{241       std::cout << \textcolor{stringliteral}{"{}External Magnetic Fields for the z-\/direction: h\_z ="{}} << \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}} << std::endl;}
+\DoxyCodeLine{242       std::cout << \textcolor{stringliteral}{"{}Uniaxial Anisotropy for the z-\/direction: D\_z ="{}} << \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}} << std::endl;}
+\DoxyCodeLine{243    \}}
+\DoxyCodeLine{244    }
+\DoxyCodeLine{257    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a8aa204ed680f83dc5b019d753c279b74}{CreateOnsiteOperatorHam}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} RealType J\_z, \textcolor{keyword}{const} RealType J\_xy, \textcolor{keyword}{const} RealType h\_z, \textcolor{keyword}{const} RealType D\_z) \{}
+\DoxyCodeLine{258       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} spc = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a036f27edb884a50731e99aac5ad5b363}{BaseU1SpinElectron\_1D<RealType>::CreateOnsiteOperatorSpC}}(magnitude\_lspin);}
+\DoxyCodeLine{259       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} smc = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aec74f4719f814ef470b506cc28947df4}{BaseU1SpinElectron\_1D<RealType>::CreateOnsiteOperatorSmC}}(magnitude\_lspin);}
+\DoxyCodeLine{260       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} szc = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aca985efae20c351bc9342621b791d53e}{BaseU1SpinElectron\_1D<RealType>::CreateOnsiteOperatorSzC}}(magnitude\_lspin);}
+\DoxyCodeLine{261       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} spl = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a3ab4dae108027aa369609123a46d610a}{BaseU1SpinElectron\_1D<RealType>::CreateOnsiteOperatorSpL}}(magnitude\_lspin);}
+\DoxyCodeLine{262       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} sml = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1926cd00080a8012174244e7f1ee9086}{BaseU1SpinElectron\_1D<RealType>::CreateOnsiteOperatorSmL}}(magnitude\_lspin);}
+\DoxyCodeLine{263       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} szl = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_acb2cb8c341e4124e3e5278a3e19c7fc5}{BaseU1SpinElectron\_1D<RealType>::CreateOnsiteOperatorSzL}}(magnitude\_lspin);}
+\DoxyCodeLine{264       \textcolor{keywordflow}{return} J\_z*szc*szl + J\_xy*0.5*(spc*sml + smc*spl) + h\_z*(szc + szl) * D\_z*szl*szl;}
+\DoxyCodeLine{265    \}}
+\DoxyCodeLine{266    }
+\DoxyCodeLine{278    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_ae555464e673a16e4845b7ebd2b039d7a}{CreateOnsiteOperatorHam}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} RealType J, \textcolor{keyword}{const} RealType h\_z, \textcolor{keyword}{const} RealType D\_z) \{}
+\DoxyCodeLine{279       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a8aa204ed680f83dc5b019d753c279b74}{CreateOnsiteOperatorHam}}(magnitude\_lspin, J, J, h\_z, D\_z);}
+\DoxyCodeLine{280    \}}
+\DoxyCodeLine{281 }
+\DoxyCodeLine{289    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef91160bc62bb058ea4dbb943bb60b0c}{GetOnsiteOperatorHam}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}}; \}}
+\DoxyCodeLine{290    }
+\DoxyCodeLine{293    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<RealType> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa896770fcaa6a044e9083b8fbb8db3b3}{GetHopping}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}} ; \}}
+\DoxyCodeLine{294    }
+\DoxyCodeLine{298    \textcolor{keyword}{inline} RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a4a0d37b89d2306a7059495613776b472}{GetHopping}}(\textcolor{keyword}{const} std::int64\_t index)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}}.at(index); \}}
+\DoxyCodeLine{299    }
+\DoxyCodeLine{302    \textcolor{keyword}{inline} RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_ae20d410e240c70c2615a55547dfa3991}{GetJz}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}} ; \}}
+\DoxyCodeLine{303    }
+\DoxyCodeLine{306    \textcolor{keyword}{inline} RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_af6d327948c9d44bba9c9a91d1754bc69}{GetJxy}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}}; \}}
+\DoxyCodeLine{307          }
+\DoxyCodeLine{310    \textcolor{keyword}{inline} RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a2bfdd873dce8336dd73f0354f7bdbb46}{GetHz}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}}; \}}
+\DoxyCodeLine{311    }
+\DoxyCodeLine{314    \textcolor{keyword}{inline} RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a1d069b283927cfc26332ffc1cf986c87}{GetDz}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}}; \}}
+\DoxyCodeLine{315    }
+\DoxyCodeLine{318    \textcolor{keyword}{inline} \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49b}{BoundaryCondition}} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a4a15dbe67a7a9169ec55259de82af9d3}{GetBoundaryCondition}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a50e2d74191c74cf48816618e1f4c6e1e}{boundary\_condition\_}}; \}}
+\DoxyCodeLine{319    }
+\DoxyCodeLine{320 \textcolor{keyword}{private}:}
+\DoxyCodeLine{327    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a18245b08d6d787acba9373abf337bd14}{onsite\_operator\_ham\_}};}
+\DoxyCodeLine{328    }
+\DoxyCodeLine{331    \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49b}{BoundaryCondition}} \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a50e2d74191c74cf48816618e1f4c6e1e}{boundary\_condition\_}} = \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49bac7561e5003ce27517940dd2391775b12}{BoundaryCondition::OBC}};}
+\DoxyCodeLine{332    }
+\DoxyCodeLine{334    std::vector<RealType> \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aef084db4010386d98c3bb384431881cb}{t\_}} = \{1.0\};}
+\DoxyCodeLine{335    }
+\DoxyCodeLine{337    RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a081c904c68dfeb981cc8e4da07fac081}{J\_z\_}} = 1.0;}
+\DoxyCodeLine{338    }
+\DoxyCodeLine{340    RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a0558ba0005dde8f1c336576791742aae}{J\_xy\_}} = 1.0;}
+\DoxyCodeLine{341    }
+\DoxyCodeLine{343    RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_aa4e4b9b6bcdd6d58c419c545ea146dd6}{h\_z\_}} = 0.0;}
+\DoxyCodeLine{344    }
+\DoxyCodeLine{346    RealType \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d_a7daebfc9b677ff0e1ea95cf79e922770}{D\_z\_}} = 0.0;}
+\DoxyCodeLine{347    }
+\DoxyCodeLine{348 \};}
+\DoxyCodeLine{349 }
 \DoxyCodeLine{350 \}}
-\DoxyCodeLine{351 }
+\DoxyCodeLine{351 \}}
 \DoxyCodeLine{352 }
-\DoxyCodeLine{353 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_MODEL\_KONDO\_LATTICE\_1D\_HPP\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{353 }
+\DoxyCodeLine{354 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_MODEL\_KONDO\_LATTICE\_1D\_HPP\_ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

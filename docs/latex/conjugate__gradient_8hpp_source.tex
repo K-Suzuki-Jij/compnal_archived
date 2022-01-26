@@ -43,15 +43,15 @@
 \DoxyCodeLine{39                                          \textcolor{keyword}{const} std::vector<\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector<RealType>}}> \&subspace\_vectors = \{\}}
 \DoxyCodeLine{40                                          ) \{}
 \DoxyCodeLine{41    }
-\DoxyCodeLine{42    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad0729e9e6d307d317752691580e02343}{row\_dim}} != matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad85231132bd7a45bbc447fa02c10f0be}{col\_dim}}) \{}
+\DoxyCodeLine{42    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} != matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}}) \{}
 \DoxyCodeLine{43       std::stringstream ss;}
 \DoxyCodeLine{44       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
 \DoxyCodeLine{45       ss << \textcolor{stringliteral}{"{}The input matrix is not a square one"{}} << std::endl;}
-\DoxyCodeLine{46       ss << \textcolor{stringliteral}{"{}row="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad0729e9e6d307d317752691580e02343}{row\_dim}} << \textcolor{stringliteral}{"{}, col="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad85231132bd7a45bbc447fa02c10f0be}{col\_dim}} << std::endl;}
+\DoxyCodeLine{46       ss << \textcolor{stringliteral}{"{}row="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} << \textcolor{stringliteral}{"{}, col="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}} << std::endl;}
 \DoxyCodeLine{47       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{48    \}}
 \DoxyCodeLine{49    }
-\DoxyCodeLine{50    \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}\textcolor{keyword}{>}(vec\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size()) != matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad0729e9e6d307d317752691580e02343}{row\_dim}}) \{}
+\DoxyCodeLine{50    \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(vec\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size()) != matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}) \{}
 \DoxyCodeLine{51       std::stringstream ss;}
 \DoxyCodeLine{52       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
 \DoxyCodeLine{53       ss << \textcolor{stringliteral}{"{}Matrix vector product (Ax=b) cannot be defined."{}} << std::endl;}
@@ -59,7 +59,7 @@
 \DoxyCodeLine{55    \}}
 \DoxyCodeLine{56    }
 \DoxyCodeLine{57    \textcolor{keyword}{const} \textcolor{keyword}{auto} start = std::chrono::system\_clock::now();}
-\DoxyCodeLine{58    \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} dim = matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad0729e9e6d307d317752691580e02343}{row\_dim}};}
+\DoxyCodeLine{58    \textcolor{keyword}{const} std::int64\_t dim = matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}};}
 \DoxyCodeLine{59    BraketVector<RealType> rrr(dim);}
 \DoxyCodeLine{60    BraketVector<RealType> ppp(dim);}
 \DoxyCodeLine{61    BraketVector<RealType> yyy(dim);}
@@ -72,7 +72,7 @@
 \DoxyCodeLine{68    \}}
 \DoxyCodeLine{69    }
 \DoxyCodeLine{70    \textcolor{keywordflow}{if} (params.flag\_use\_initial\_vec) \{}
-\DoxyCodeLine{71       \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}\textcolor{keyword}{>}(vec\_out-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size()) != dim) \{}
+\DoxyCodeLine{71       \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(vec\_out-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size()) != dim) \{}
 \DoxyCodeLine{72          std::stringstream ss;}
 \DoxyCodeLine{73          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
 \DoxyCodeLine{74          ss << \textcolor{stringliteral}{"{}The dimension of the initial vector is not equal to that of the input matrix."{}} << std::endl;}
@@ -84,7 +84,7 @@
 \DoxyCodeLine{80       std::mt19937 random\_number\_engine;}
 \DoxyCodeLine{81       random\_number\_engine.seed(std::random\_device()());}
 \DoxyCodeLine{82       vec\_out-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.resize(dim);}
-\DoxyCodeLine{83       \textcolor{keywordflow}{for} (\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} i = 0; i < dim; ++i) \{}
+\DoxyCodeLine{83       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < dim; ++i) \{}
 \DoxyCodeLine{84          vec\_out-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] = uniform\_rand(random\_number\_engine);}
 \DoxyCodeLine{85       \}}
 \DoxyCodeLine{86    \}}
@@ -98,7 +98,7 @@
 \DoxyCodeLine{94    \}}
 \DoxyCodeLine{95    }
 \DoxyCodeLine{96 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{97    \textcolor{keywordflow}{for} (\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} i = 0; i < dim; ++i) \{}
+\DoxyCodeLine{97    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < dim; ++i) \{}
 \DoxyCodeLine{98       rrr.val[i] = vec\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] -\/ rrr.val[i];}
 \DoxyCodeLine{99       ppp.val[i] = rrr.val[i];}
 \DoxyCodeLine{100    \}}
@@ -120,7 +120,7 @@
 \DoxyCodeLine{116       \textcolor{keyword}{const} RealType alpha      = inner\_prod/\mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ac72eb2d652259d294644b3b00745a9df}{CalculateInnerProduct}}(ppp, yyy);}
 \DoxyCodeLine{117       }
 \DoxyCodeLine{118 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{119       \textcolor{keywordflow}{for} (\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} i = 0; i < dim; ++i) \{}
+\DoxyCodeLine{119       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < dim; ++i) \{}
 \DoxyCodeLine{120          vec\_out-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] += alpha*ppp.val[i];}
 \DoxyCodeLine{121          rrr.val[i]      -\/= alpha*yyy.val[i];}
 \DoxyCodeLine{122       \}}
@@ -147,7 +147,7 @@
 \DoxyCodeLine{143       \textcolor{keyword}{const} RealType beta = residual\_error/inner\_prod;}
 \DoxyCodeLine{144       }
 \DoxyCodeLine{145 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{146       \textcolor{keywordflow}{for} (\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} i = 0; i < dim; ++i) \{}
+\DoxyCodeLine{146       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < dim; ++i) \{}
 \DoxyCodeLine{147          ppp.val[i] = rrr.val[i] + beta*ppp.val[i];}
 \DoxyCodeLine{148       \}}
 \DoxyCodeLine{149       \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ae8cf0493ba9137c8bfe9d1d192402440}{Orthonormalize}}(\&ppp, subspace\_vectors);}

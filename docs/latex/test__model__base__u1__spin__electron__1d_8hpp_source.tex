@@ -23,99 +23,92 @@
 \DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_TEST\_MODEL\_BASE\_U1\_SPIN\_ELECTRON\_1D\_HPP\_}}
 \DoxyCodeLine{20 }
 \DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}../../src/model/base\_u1\_spin\_electron\_1d.hpp"{}}}
-\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}../test.hpp"{}}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}../utility/all.hpp"{}}}
 \DoxyCodeLine{23 \textcolor{preprocessor}{\#include <gtest/gtest.h>}}
 \DoxyCodeLine{24 }
-\DoxyCodeLine{25 \textcolor{keyword}{namespace }\{}
-\DoxyCodeLine{26 }
-\DoxyCodeLine{27 \textcolor{keyword}{using} \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{compnal::LInt}};}
-\DoxyCodeLine{28 \textcolor{keyword}{using} \mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{compnal::IntPair}};}
-\DoxyCodeLine{29 \textcolor{keyword}{using} \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{compnal::Map}};}
-\DoxyCodeLine{30 \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1_pair_hash}{compnal::PairHash}};}
-\DoxyCodeLine{31 \textcolor{keyword}{using} \mbox{\hyperlink{namespacecompnal_1_1test_ac10a748d750a721db72cc022511fc7e0}{compnal::test::ExpectEQ}};}
-\DoxyCodeLine{32 \textcolor{keyword}{using} \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{compnal::test::ExpectNear}};}
-\DoxyCodeLine{33 \textcolor{keyword}{using} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal::model::BaseU1SpinElectron\_1D}};}
-\DoxyCodeLine{34 }
-\DoxyCodeLine{35 \}}
-\DoxyCodeLine{36 }
-\DoxyCodeLine{37 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
-\DoxyCodeLine{38 \textcolor{keywordtype}{void} \mbox{\hyperlink{test__model__base__u1__spin__electron__1d_8hpp_a10484d807b0da734f37f62a6b228c1eb}{TestSpinOneHalf}}(\textcolor{keyword}{const} BaseU1SpinElectron\_1D<RealType> \&model) \{}
-\DoxyCodeLine{39    }
-\DoxyCodeLine{40    \textcolor{keyword}{const} \textcolor{keywordtype}{double} threshold = std::pow(10, -\/15);}
-\DoxyCodeLine{41    }
-\DoxyCodeLine{42    EXPECT\_EQ(model.GetDimOnsite(), 4*2);}
-\DoxyCodeLine{43    EXPECT\_EQ(model.GetMagnitudeLSpin(), 0.5);}
-\DoxyCodeLine{44    EXPECT\_EQ(model.GetDimOnsiteELectron(), 4);}
-\DoxyCodeLine{45    EXPECT\_EQ(model.GetDimOnsiteLSpin(), 2);}
-\DoxyCodeLine{46 }
-\DoxyCodeLine{47    \textcolor{keyword}{const} CRS<RealType> ref\_c\_up (\{}
-\DoxyCodeLine{48       \{0, 0, 1, 0, 0, 0, 0, 0\},}
-\DoxyCodeLine{49       \{0, 0, 0, 1, 0, 0, 0, 0\},}
+\DoxyCodeLine{25 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
+\DoxyCodeLine{26 \textcolor{keyword}{namespace }test \{}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
+\DoxyCodeLine{29 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1test_a509bbadfc5694354e3dea10aae9f8aa1}{TestSpinOneHalf}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D<RealType>}} \&model) \{}
+\DoxyCodeLine{30    }
+\DoxyCodeLine{31    \textcolor{keyword}{const} \textcolor{keywordtype}{double} threshold = std::pow(10, -\/15);}
+\DoxyCodeLine{32    }
+\DoxyCodeLine{33    EXPECT\_EQ(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_af509aa69f9a132afbfafd86974317f3a}{GetDimOnsite}}(), 4*2);}
+\DoxyCodeLine{34    EXPECT\_EQ(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aa2be4c9a16a9bdf108c81d1d8a5b0b5d}{GetMagnitudeLSpin}}(), 0.5);}
+\DoxyCodeLine{35    EXPECT\_EQ(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a68f81fec3ed5602021fd778ee5a6b58e}{GetDimOnsiteELectron}}(), 4);}
+\DoxyCodeLine{36    EXPECT\_EQ(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a553ad65a9860714f3a582516f68e942c}{GetDimOnsiteLSpin}}(), 2);}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38    \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS<RealType>}} ref\_c\_up (\{}
+\DoxyCodeLine{39       \{0, 0, 1, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{40       \{0, 0, 0, 1, 0, 0, 0, 0\},}
+\DoxyCodeLine{41       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{42       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{43       \{0, 0, 0, 0, 0, 0, 1, 0\},}
+\DoxyCodeLine{44       \{0, 0, 0, 0, 0, 0, 0, 1\},}
+\DoxyCodeLine{45       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{46       \{0, 0, 0, 0, 0, 0, 0, 0\}}
+\DoxyCodeLine{47    \}, \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{CRSTag::FERMION}});}
+\DoxyCodeLine{48    }
+\DoxyCodeLine{49    \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS<RealType>}} ref\_c\_up\_d (\{}
 \DoxyCodeLine{50       \{0, 0, 0, 0, 0, 0, 0, 0\},}
 \DoxyCodeLine{51       \{0, 0, 0, 0, 0, 0, 0, 0\},}
-\DoxyCodeLine{52       \{0, 0, 0, 0, 0, 0, 1, 0\},}
-\DoxyCodeLine{53       \{0, 0, 0, 0, 0, 0, 0, 1\},}
+\DoxyCodeLine{52       \{1, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{53       \{0, 1, 0, 0, 0, 0, 0, 0\},}
 \DoxyCodeLine{54       \{0, 0, 0, 0, 0, 0, 0, 0\},}
-\DoxyCodeLine{55       \{0, 0, 0, 0, 0, 0, 0, 0\}}
-\DoxyCodeLine{56    \}, \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{CRSTag::FERMION}});}
-\DoxyCodeLine{57    }
-\DoxyCodeLine{58    \textcolor{keyword}{const} CRS<RealType> ref\_c\_up\_d (\{}
-\DoxyCodeLine{59       \{0, 0, 0, 0, 0, 0, 0, 0\},}
-\DoxyCodeLine{60       \{0, 0, 0, 0, 0, 0, 0, 0\},}
-\DoxyCodeLine{61       \{1, 0, 0, 0, 0, 0, 0, 0\},}
-\DoxyCodeLine{62       \{0, 1, 0, 0, 0, 0, 0, 0\},}
-\DoxyCodeLine{63       \{0, 0, 0, 0, 0, 0, 0, 0\},}
-\DoxyCodeLine{64       \{0, 0, 0, 0, 0, 0, 0, 0\},}
-\DoxyCodeLine{65       \{0, 0, 0, 0, 1, 0, 0, 0\},}
-\DoxyCodeLine{66       \{0, 0, 0, 0, 0, 1, 0, 0\}}
-\DoxyCodeLine{67    \}, \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{CRSTag::FERMION}});}
-\DoxyCodeLine{68    }
-\DoxyCodeLine{69    \textcolor{keyword}{const} CRS<RealType> ref\_c\_down (\{}
-\DoxyCodeLine{70       \{0, 0, 0, 0, 1, 0, 0, 0\},}
-\DoxyCodeLine{71       \{0, 0, 0, 0, 0, 1, 0, 0\},}
-\DoxyCodeLine{72       \{0, 0, 0, 0, 0, 0, -\/1, 0\},}
-\DoxyCodeLine{73       \{0, 0, 0, 0, 0, 0, 0, -\/1\},}
+\DoxyCodeLine{55       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{56       \{0, 0, 0, 0, 1, 0, 0, 0\},}
+\DoxyCodeLine{57       \{0, 0, 0, 0, 0, 1, 0, 0\}}
+\DoxyCodeLine{58    \}, \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{CRSTag::FERMION}});}
+\DoxyCodeLine{59    }
+\DoxyCodeLine{60    \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS<RealType>}} ref\_c\_down (\{}
+\DoxyCodeLine{61       \{0, 0, 0, 0, 1, 0, 0, 0\},}
+\DoxyCodeLine{62       \{0, 0, 0, 0, 0, 1, 0, 0\},}
+\DoxyCodeLine{63       \{0, 0, 0, 0, 0, 0, -\/1, 0\},}
+\DoxyCodeLine{64       \{0, 0, 0, 0, 0, 0, 0, -\/1\},}
+\DoxyCodeLine{65       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{66       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{67       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{68       \{0, 0, 0, 0, 0, 0, 0, 0\}}
+\DoxyCodeLine{69    \}, \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{CRSTag::FERMION}});}
+\DoxyCodeLine{70    }
+\DoxyCodeLine{71    \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS<RealType>}} ref\_c\_down\_d (\{}
+\DoxyCodeLine{72       \{0, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{73       \{0, 0, 0, 0, 0, 0, 0, 0\},}
 \DoxyCodeLine{74       \{0, 0, 0, 0, 0, 0, 0, 0\},}
 \DoxyCodeLine{75       \{0, 0, 0, 0, 0, 0, 0, 0\},}
-\DoxyCodeLine{76       \{0, 0, 0, 0, 0, 0, 0, 0\},}
-\DoxyCodeLine{77       \{0, 0, 0, 0, 0, 0, 0, 0\}}
-\DoxyCodeLine{78    \}, \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{CRSTag::FERMION}});}
-\DoxyCodeLine{79    }
-\DoxyCodeLine{80    \textcolor{keyword}{const} CRS<RealType> ref\_c\_down\_d (\{}
-\DoxyCodeLine{81       \{0, 0, 0, 0, 0, 0, 0, 0\},}
-\DoxyCodeLine{82       \{0, 0, 0, 0, 0, 0, 0, 0\},}
-\DoxyCodeLine{83       \{0, 0, 0, 0, 0, 0, 0, 0\},}
-\DoxyCodeLine{84       \{0, 0, 0, 0, 0, 0, 0, 0\},}
-\DoxyCodeLine{85       \{1, 0, 0, 0, 0, 0, 0, 0\},}
-\DoxyCodeLine{86       \{0, 1, 0, 0, 0, 0, 0, 0\},}
-\DoxyCodeLine{87       \{0, 0, -\/1, 0, 0, 0, 0, 0\},}
-\DoxyCodeLine{88       \{0, 0, 0, -\/1, 0, 0, 0, 0\}}
-\DoxyCodeLine{89    \}, \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{CRSTag::FERMION}});}
-\DoxyCodeLine{90  }
-\DoxyCodeLine{91    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.GetOnsiteOperatorCUp()        , ref\_c\_up    , threshold);}
-\DoxyCodeLine{92    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.GetOnsiteOperatorCUpDagger()  , ref\_c\_up\_d  , threshold);}
-\DoxyCodeLine{93    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.GetOnsiteOperatorCDown()      , ref\_c\_down  , threshold);}
-\DoxyCodeLine{94    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.GetOnsiteOperatorCDownDagger(), ref\_c\_down\_d, threshold);}
-\DoxyCodeLine{95 }
-\DoxyCodeLine{96 \}}
-\DoxyCodeLine{97 }
-\DoxyCodeLine{98 \mbox{\hyperlink{test__model__base__u1__spin__electron__1d_8hpp_a9a259df82bc444be94b848ed897bd51a}{TEST}}(ModelBaseU1SpinElectron1D, ConstructorDefault) \{}
-\DoxyCodeLine{99    BaseU1SpinElectron\_1D<double> model;}
-\DoxyCodeLine{100    \mbox{\hyperlink{test__model__base__u1__spin__electron__1d_8hpp_a10484d807b0da734f37f62a6b228c1eb}{TestSpinOneHalf}}(model);}
+\DoxyCodeLine{76       \{1, 0, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{77       \{0, 1, 0, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{78       \{0, 0, -\/1, 0, 0, 0, 0, 0\},}
+\DoxyCodeLine{79       \{0, 0, 0, -\/1, 0, 0, 0, 0\}}
+\DoxyCodeLine{80    \}, \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{CRSTag::FERMION}});}
+\DoxyCodeLine{81  }
+\DoxyCodeLine{82    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a65f4321d5d41b8898b4dcf17dd83329d}{GetOnsiteOperatorCUp}}()        , ref\_c\_up    , threshold);}
+\DoxyCodeLine{83    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a3686b4987cd45b9524faa073e1834cbb}{GetOnsiteOperatorCUpDagger}}()  , ref\_c\_up\_d  , threshold);}
+\DoxyCodeLine{84    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a114ca4b0dec996f77b7f85c7f846f1b4}{GetOnsiteOperatorCDown}}()      , ref\_c\_down  , threshold);}
+\DoxyCodeLine{85    \mbox{\hyperlink{namespacecompnal_1_1test_ae1279c7fc79a6110087f16a3fbe9258f}{ExpectNear}}(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a4698ebcfbb9c957bb2edef2eccfdcd24}{GetOnsiteOperatorCDownDagger}}(), ref\_c\_down\_d, threshold);}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 \}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 \mbox{\hyperlink{namespacecompnal_1_1test_a82eafcd38e9b0aa92d1a93d917ce3936}{TEST}}(ModelBaseU1SpinElectron1D, ConstructorDefault) \{}
+\DoxyCodeLine{90    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{BaseU1SpinElectron\_1D<double>}} model;}
+\DoxyCodeLine{91    \mbox{\hyperlink{namespacecompnal_1_1test_a509bbadfc5694354e3dea10aae9f8aa1}{TestSpinOneHalf}}(model);}
+\DoxyCodeLine{92    }
+\DoxyCodeLine{93    EXPECT\_EQ(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ac5aca3c2e80d606a71879e5103a5fb39}{GetSystemSize}}()    , 0  );}
+\DoxyCodeLine{94    EXPECT\_EQ(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_af7a37dd26cb6d71c393ee4233fdaf538}{GetTotalSz}}()       , 0.0);}
+\DoxyCodeLine{95    EXPECT\_EQ(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8c872bc8a2fec3e5a0ea25438d5146a3}{GetTotalElectron}}() , 0  );}
+\DoxyCodeLine{96    EXPECT\_EQ(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aa2be4c9a16a9bdf108c81d1d8a5b0b5d}{GetMagnitudeLSpin}}(), 0.5);}
+\DoxyCodeLine{97    EXPECT\_EQ(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a270bfe077404d46a09f77c4c41284c08}{GetCalculatedEigenvectorSet}}(), std::unordered\_set<int>());}
+\DoxyCodeLine{98    }
+\DoxyCodeLine{99    \mbox{\hyperlink{namespacecompnal_1_1test_ac10a748d750a721db72cc022511fc7e0}{ExpectEQ}}(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_adafb772a2c848f5686ec9b6802e9c9dc}{GetBases}}(), std::unordered\_map<std::pair<int, int>, std::vector<std::int64\_t>, \mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash}{compnal::utility::PairHash}}>\{\});}
+\DoxyCodeLine{100    \mbox{\hyperlink{namespacecompnal_1_1test_ac10a748d750a721db72cc022511fc7e0}{ExpectEQ}}(model.\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a2c50c4b17a99ef75c381eb13da0d2fd2}{GetBasesInv}}(), std::unordered\_map<std::pair<int, int>, std::unordered\_map<std::int64\_t, std::int64\_t>, \mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash}{compnal::utility::PairHash}}>\{\});}
 \DoxyCodeLine{101    }
-\DoxyCodeLine{102    EXPECT\_EQ(model.GetSystemSize()    , 0  );}
-\DoxyCodeLine{103    EXPECT\_EQ(model.GetTotalSz()       , 0.0);}
-\DoxyCodeLine{104    EXPECT\_EQ(model.GetTotalElectron() , 0  );}
-\DoxyCodeLine{105    EXPECT\_EQ(model.GetMagnitudeLSpin(), 0.5);}
-\DoxyCodeLine{106    EXPECT\_EQ(model.GetCalculatedEigenvectorSet(), std::unordered\_set<int>());}
-\DoxyCodeLine{107    }
-\DoxyCodeLine{108    \mbox{\hyperlink{namespacecompnal_1_1test_ac10a748d750a721db72cc022511fc7e0}{ExpectEQ}}(model.GetBases(), std::unordered\_map<\mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{IntPair}}, std::vector<LInt>, PairHash>\{\});}
-\DoxyCodeLine{109    \mbox{\hyperlink{namespacecompnal_1_1test_ac10a748d750a721db72cc022511fc7e0}{ExpectEQ}}(model.GetBasesInv(), \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}<\mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{IntPair}}, Map<LInt, LInt>, PairHash>\{\});}
-\DoxyCodeLine{110    }
-\DoxyCodeLine{111 \}}
-\DoxyCodeLine{112 }
-\DoxyCodeLine{113 }
-\DoxyCodeLine{114 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_TEST\_MODEL\_BASE\_U1\_SPIN\_1D\_HPP\_ */}\textcolor{preprocessor}{}}
-\DoxyCodeLine{115    }
+\DoxyCodeLine{102 \}}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104 \}}
+\DoxyCodeLine{105 \}}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{107 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_TEST\_MODEL\_BASE\_U1\_SPIN\_1D\_HPP\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{108    }
 
 \end{DoxyCode}

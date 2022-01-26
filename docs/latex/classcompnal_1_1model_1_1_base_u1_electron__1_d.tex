@@ -11,8 +11,7 @@ The base class for one-\/dimensional electron systems with the U(1) symmetry.
 
 
 
-Inheritance diagram for compnal\+::model\+::Base\+U1\+Electron\+\_\+1D\texorpdfstring{$<$}{<} Real\+Type \texorpdfstring{$>$}{>}\+:
-\nopagebreak
+Inheritance diagram for compnal\+::model\+::Base\+U1\+Electron\+\_\+1D\texorpdfstring{$<$}{<} Real\+Type \texorpdfstring{$>$}{>}\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -33,39 +32,39 @@ using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a6536848a
 \begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{Base\+U1\+Electron\+\_\+1D}} class. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a9963373216d5fc6c02081cfd788bc517}{Base\+U1\+Electron\+\_\+1D}} (const int system\+\_\+size, const int total\+\_\+electron)
 \begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{Base\+U1\+Electron\+\_\+1D}} class. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a58c679b3b0ddd5070e22f6e966a0315a}{Base\+U1\+Electron\+\_\+1D}} (const int system\+\_\+size, const int total\+\_\+electron, const \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{Half\+Int}} total\+\_\+sz)
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a9b081d41fe745aa93360ddefac19376d}{Base\+U1\+Electron\+\_\+1D}} (const int system\+\_\+size, const int total\+\_\+electron, const double total\+\_\+sz)
 \begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{Base\+U1\+Electron\+\_\+1D}} class. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a4d218a9889fb9fac1f10d592e9c6524b}{Set\+System\+Size}} (const int system\+\_\+size)
 \begin{DoxyCompactList}\small\item\em Set system size. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a2060e4bd7c3065f3d9983491004ae6d9}{Set\+Total\+Sz}} (const \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{Half\+Int}} total\+\_\+sz)
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa1b973c2fc19f93b869304baea8de4ba}{Set\+Total\+Sz}} (const double total\+\_\+sz)
 \begin{DoxyCompactList}\small\item\em Set target Hilbert space specified by the total sz to be diagonalized. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a1c3eb6bf3ebf8e161f3f5c3e6d96d549}{Set\+Total\+Electron}} (const int total\+\_\+electron)
 \begin{DoxyCompactList}\small\item\em Set the number of total electrons. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_af997f4af02dd10014cc4f1f263471540}{Set\+Calculated\+Eigenvector\+Set}} (const \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} level)
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_af0bf4076c6d37899df7a84c9c92a7ce5}{Set\+Calculated\+Eigenvector\+Set}} (const std\+::int64\+\_\+t level)
 \begin{DoxyCompactList}\small\item\em Set calculated\+\_\+eigenvector\+\_\+set\+\_\+, which represents the calculated eigenvectors and eigenvalues. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ab98d36fb64012bf4029274e8ecb9fa51}{is\+Valid\+QNumber}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}} \&quantum\+\_\+number) const
+bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ab98d36fb64012bf4029274e8ecb9fa51}{is\+Valid\+QNumber}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} \&quantum\+\_\+number) const
 \begin{DoxyCompactList}\small\item\em Check if there is a subspace specified by the input quantum numbers. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_add9a1444802c4aa0a92053d14f37a9e6}{is\+Valid\+QNumber}} (const int total\+\_\+electron, const \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{Half\+Int}} total\+\_\+sz) const
+bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ac0430da0873d39165b73d77bed146369}{is\+Valid\+QNumber}} (const int total\+\_\+electron, const double total\+\_\+sz) const
 \begin{DoxyCompactList}\small\item\em Check if there is a subspace specified by the input quantum numbers. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a465e32e606632a760db7e21c8c1c3e72}{Calculate\+Num\+Electron}} (const int basis\+\_\+onsite) const
 \begin{DoxyCompactList}\small\item\em Calculate the number of electrons from the input onsite basis. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ab5fd9f537769641895c16dab8da8318d}{Print\+Basis\+Onsite}} () const
 \begin{DoxyCompactList}\small\item\em Print the onsite bases. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a30f38305515ad8b378e4a60ff0c0aa09}{Calculate\+Target\+Dim}} () const
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ac274d1305642a32127c47e7bbcf3e325}{Calculate\+Target\+Dim}} () const
 \begin{DoxyCompactList}\small\item\em Calculate the dimension of the target Hilbert space specified by the system size $ N$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a673a55746beda1d62950963bc0fa9c22}{Calculate\+Target\+Dim}} (const int total\+\_\+electron, const \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{Half\+Int}} total\+\_\+sz) const
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ab1689df03b4be95637c11630a50c791f}{Calculate\+Target\+Dim}} (const int total\+\_\+electron, const double total\+\_\+sz) const
 \begin{DoxyCompactList}\small\item\em Calculate the dimension of the target Hilbert space specified by the system size $ N$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aaf8eab1fb0e107c4213eb3f7af339c13}{Calculate\+Target\+Dim}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}} \&quantum\+\_\+number) const
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_abd8cd0cdf337cecb5937c6060ec49476}{Calculate\+Target\+Dim}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} \&quantum\+\_\+number) const
 \begin{DoxyCompactList}\small\item\em Calculate the dimension of the target Hilbert space specified by the system size $ N$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_abf7199869785477d6749367be2b547f0}{Generate\+Basis}} ()
 \begin{DoxyCompactList}\small\item\em Generate bases of the target Hilbert space specified by the system size $ N$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a46f744447cc2482b88f1d5978d6e4b32}{Generate\+Basis}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}} \&quantum\+\_\+number)
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a46f744447cc2482b88f1d5978d6e4b32}{Generate\+Basis}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} \&quantum\+\_\+number)
 \begin{DoxyCompactList}\small\item\em Generate bases of the target Hilbert space specified by the system size $ N$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a4b4774a67ebb600f15fd49976a1b8df7}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&m\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&m\+\_\+2) const
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a4b4774a67ebb600f15fd49976a1b8df7}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&m\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&m\+\_\+2) const
 \begin{DoxyCompactList}\small\item\em Calculate the quantum numbers of excited states that appear when calculating the correlation functions. \end{DoxyCompactList}\item 
-std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a3481d7f1ed4b6b1a07f363851a7704cd}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&m\+\_\+1\+\_\+bra, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&m\+\_\+2\+\_\+ket, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&m\+\_\+3\+\_\+ket) const
+std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a3481d7f1ed4b6b1a07f363851a7704cd}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&m\+\_\+1\+\_\+bra, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&m\+\_\+2\+\_\+ket, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&m\+\_\+3\+\_\+ket) const
 \begin{DoxyCompactList}\small\item\em Calculate the quantum numbers of excited states that appear when calculating the correlation functions. \end{DoxyCompactList}\item 
-std\+::vector$<$ std\+::tuple$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a06b84fcba1019019aefac574ff4a4423}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&m\+\_\+1\+\_\+bra, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&m\+\_\+2\+\_\+bra, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&m\+\_\+3\+\_\+ket, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&m\+\_\+4\+\_\+ket) const
+std\+::vector$<$ std\+::tuple$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a06b84fcba1019019aefac574ff4a4423}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&m\+\_\+1\+\_\+bra, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&m\+\_\+2\+\_\+bra, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&m\+\_\+3\+\_\+ket, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&m\+\_\+4\+\_\+ket) const
 \begin{DoxyCompactList}\small\item\em Calculate the quantum numbers of excited states that appear when calculating the correlation functions. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a6519589bb67f63f761d4b90a6b7fd51b}{Get\+System\+Size}} () const
 \begin{DoxyCompactList}\small\item\em Get the system size $ N$. \end{DoxyCompactList}\item 
@@ -101,24 +100,24 @@ const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641
 \begin{DoxyCompactList}\small\item\em Get the lowering operator for spin of the electrons $ \hat{s}^{-}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow}$. \end{DoxyCompactList}\item 
 const std\+::unordered\+\_\+set$<$ int $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_acf692080230871d5262686508a87620d}{Get\+Calculated\+Eigenvector\+Set}} () const
 \begin{DoxyCompactList}\small\item\em Get calculated\+\_\+eigenvector\+\_\+set\+\_\+, which represents the calculated eigenvectors and eigenvalues. \end{DoxyCompactList}\item 
-const \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ \mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{Int\+Pair}}, std\+::vector$<$ \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} $>$, \mbox{\hyperlink{structcompnal_1_1_pair_hash}{compnal\+::\+Pair\+Hash}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ae2992ac7d9d1bdf70c9ce5d2fae6ec43}{Get\+Bases}} () const
+const std\+::unordered\+\_\+map$<$ std\+::pair$<$ int, int $>$, std\+::vector$<$ std\+::int64\+\_\+t $>$, \mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash}{utility\+::\+Pair\+Hash}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a1d242ab78d4a4af85f642cc8d837ea8d}{Get\+Bases}} () const
 \item 
-const \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ \mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{Int\+Pair}}, \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}, \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} $>$, \mbox{\hyperlink{structcompnal_1_1_pair_hash}{compnal\+::\+Pair\+Hash}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a7a57d1bcc7e153a0649096d9c84f938f}{Get\+Bases\+Inv}} () const
+const std\+::unordered\+\_\+map$<$ std\+::pair$<$ int, int $>$, std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$, \mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash}{utility\+::\+Pair\+Hash}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a0c26fc8ed640fec495cd78a6e740cf79}{Get\+Bases\+Inv}} () const
 \item 
-const std\+::vector$<$ \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a15b9d98651490b24ce6dbfa63ae5108e}{Get\+Basis}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}} \&quantum\+\_\+number) const
+const std\+::vector$<$ std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a21ecf217e365b76ffd1968da0453c6df}{Get\+Basis}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} \&quantum\+\_\+number) const
 \begin{DoxyCompactList}\small\item\em Get basis of the target Hilbert space specified by the system size $ N$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
-const \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}, \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a4ef9b610ac7308ec8ac7e4a0f51baa24}{Get\+Basis\+Inv}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}} \&quantum\+\_\+number) const
+const std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a549ebf12d4a87d6d30c0fe405a6c3770}{Get\+Basis\+Inv}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} \&quantum\+\_\+number) const
 \begin{DoxyCompactList}\small\item\em Get inverse basis of the target Hilbert space specified by the system size $ N$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
-const std\+::vector$<$ \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ac1f58384914fe9b1b936a4c0df2d533c}{Get\+Target\+Basis}} () const
+const std\+::vector$<$ std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a194405e7ddf3ac34b19cf3720f85ffec}{Get\+Target\+Basis}} () const
 \begin{DoxyCompactList}\small\item\em Get basis of the target Hilbert space specified by the system size $ N$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
-const \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}, \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ad15e7cd218befdca5e88b130a6869621}{Get\+Target\+Basis\+Inv}} () const
+const std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_add2da8e17e9aef282ca6761a3c4d7acd}{Get\+Target\+Basis\+Inv}} () const
 \begin{DoxyCompactList}\small\item\em Get inverse basis of the target Hilbert space specified by the system size $ N$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a3fcafd736e10f6c4a752f6f237b3bc97}{is\+Valid\+QNumber}} (const int system\+\_\+size, const int total\+\_\+electron, const \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{Half\+Int}} total\+\_\+sz)
+static bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ab9b2211fa92094ca8a9da65de0f32688}{is\+Valid\+QNumber}} (const int system\+\_\+size, const int total\+\_\+electron, const double total\+\_\+sz)
 \begin{DoxyCompactList}\small\item\em Check if there is a subspace specified by the input quantum numbers. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a59b2970d4cf4e1e6f918e6a07e111e24}{Calculate\+Target\+Dim}} (const int system\+\_\+size, const int total\+\_\+electron, const \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{Half\+Int}} total\+\_\+sz)
+static std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a06e56d262688f1c1f7652c596b3322ee}{Calculate\+Target\+Dim}} (const int system\+\_\+size, const int total\+\_\+electron, const double total\+\_\+sz)
 \begin{DoxyCompactList}\small\item\em Generate bases of the target Hilbert space specified by the system size $ N$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
 static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a51b7f7b843cf925e4fd86c768e6abd90}{Create\+Onsite\+Operator\+CUp}} ()
 \begin{DoxyCompactList}\small\item\em Generate the annihilation operator for the electrons with the up spin $ \hat{c}_{\uparrow}$. \end{DoxyCompactList}\item 
@@ -144,7 +143,7 @@ static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd064
 \begin{DoxyCompactList}\small\item\em Generate the raising operator for spin of the electrons $ \hat{s}^{+}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow}$. \end{DoxyCompactList}\item 
 static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa22882e9e45d96221f3a9ca2dcfc6dfd}{Create\+Onsite\+Operator\+Sm}} ()
 \begin{DoxyCompactList}\small\item\em Generate the lowering operator for spin of the electrons $ \hat{s}^{-}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow}$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a7eeaeb64c183a9be7d49d2dea7ade5ef}{Calculate\+Quntum\+Number\+Difference}} (const int row, const int col)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a7eeaeb64c183a9be7d49d2dea7ade5ef}{Calculate\+Quntum\+Number\+Difference}} (const int row, const int col)
 \begin{DoxyCompactList}\small\item\em Calculate difference of the number of total electrons and the total sz from the rows and columns in the matrix representation of an onsite operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
@@ -188,16 +187,16 @@ const int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a55ca
 \begin{DoxyCompactList}\small\item\em The dimension of the local Hilbert space, 4. \end{DoxyCompactList}\item 
 std\+::unordered\+\_\+set$<$ int $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aee93327a0e55a00bb8d759247c17fb3d}{calculated\+\_\+eigenvector\+\_\+set\+\_\+}}
 \begin{DoxyCompactList}\small\item\em The calculated eigenvectors and eigenvalues. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ \mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{Int\+Pair}}, std\+::vector$<$ \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} $>$, \mbox{\hyperlink{structcompnal_1_1_pair_hash}{Pair\+Hash}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a7380eebbb20026bc614a68e3b9864a78}{bases\+\_\+}}
+std\+::unordered\+\_\+map$<$ std\+::pair$<$ int, int $>$, std\+::vector$<$ std\+::int64\+\_\+t $>$, \mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash}{utility\+::\+Pair\+Hash}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a62cd383b7a05eb9a8b751bdfb7380557}{bases\+\_\+}}
 \begin{DoxyCompactList}\small\item\em Bases of the target Hilbert space specified by the system size $ N$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ \mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{Int\+Pair}}, \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}, \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} $>$, \mbox{\hyperlink{structcompnal_1_1_pair_hash}{Pair\+Hash}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a054baaaadc160d1fce099f2fa707f067}{bases\+\_\+inv\+\_\+}}
+std\+::unordered\+\_\+map$<$ std\+::pair$<$ int, int $>$, std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$, \mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash}{utility\+::\+Pair\+Hash}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a7943bbf48afea8677e5ead0e354c7b76}{bases\+\_\+inv\+\_\+}}
 \begin{DoxyCompactList}\small\item\em Inverse bases of the target Hilbert space specified by the system size $ N$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Types}
 \begin{DoxyCompactItemize}
 \item 
 using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} = \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{sparse\+\_\+matrix\+::\+CRS}}$<$ Real\+Type $>$
 \begin{DoxyCompactList}\small\item\em Alias of compressed row strage (CRS) with Real\+Type. \end{DoxyCompactList}\item 
-using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}} = std\+::pair$<$ int, \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{Half\+Int}} $>$
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} = std\+::pair$<$ int, double $>$
 \begin{DoxyCompactList}\small\item\em Alias of quantum number (total electron, total sz) pair. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -225,12 +224,12 @@ using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\
 
 Alias of compressed row strage (CRS) with Real\+Type. 
 
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}} 
 \index{compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}!QType@{QType}}
 \index{QType@{QType}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{QType}{QType}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+QType =  std\+::pair$<$int, \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{Half\+Int}}$>$\hspace{0.3cm}{\ttfamily [private]}}
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+QType =  std\+::pair$<$int, double$>$\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
@@ -295,12 +294,12 @@ Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}
 {\em total\+\_\+electron} & The number of the total electrons $ \langle \hat{N}_{e}\rangle =\sum^{N}_{i=1}\langle\hat{n}_{i}\rangle$. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a58c679b3b0ddd5070e22f6e966a0315a}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a58c679b3b0ddd5070e22f6e966a0315a}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a9b081d41fe745aa93360ddefac19376d}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a9b081d41fe745aa93360ddefac19376d}} 
 \index{compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}!BaseU1Electron\_1D@{BaseU1Electron\_1D}}
 \index{BaseU1Electron\_1D@{BaseU1Electron\_1D}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{BaseU1Electron\_1D()}{BaseU1Electron\_1D()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Base\+U1\+Electron\+\_\+1D (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const int}]{total\+\_\+electron,  }\item[{const \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{Half\+Int}}}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Base\+U1\+Electron\+\_\+1D (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const int}]{total\+\_\+electron,  }\item[{const double}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -342,7 +341,7 @@ The number of electrons.
 \index{CalculateQuntumNumberDifference@{CalculateQuntumNumberDifference}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CalculateQuntumNumberDifference()}{CalculateQuntumNumberDifference()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Quntum\+Number\+Difference (\begin{DoxyParamCaption}\item[{const int}]{row,  }\item[{const int}]{col }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Quntum\+Number\+Difference (\begin{DoxyParamCaption}\item[{const int}]{row,  }\item[{const int}]{col }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -358,12 +357,12 @@ Calculate difference of the number of total electrons and the total sz from the 
 \begin{DoxyReturn}{Returns}
 The differences of the total electron and the total sz. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a30f38305515ad8b378e4a60ff0c0aa09}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a30f38305515ad8b378e4a60ff0c0aa09}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_ac274d1305642a32127c47e7bbcf3e325}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_ac274d1305642a32127c47e7bbcf3e325}} 
 \index{compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}!CalculateTargetDim@{CalculateTargetDim}}
 \index{CalculateTargetDim@{CalculateTargetDim}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CalculateTargetDim()}{CalculateTargetDim()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Target\+Dim (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Target\+Dim (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -372,12 +371,12 @@ Calculate the dimension of the target Hilbert space specified by the system size
 \begin{DoxyReturn}{Returns}
 The dimension of the target Hilbert space. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a59b2970d4cf4e1e6f918e6a07e111e24}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a59b2970d4cf4e1e6f918e6a07e111e24}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a06e56d262688f1c1f7652c596b3322ee}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a06e56d262688f1c1f7652c596b3322ee}} 
 \index{compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}!CalculateTargetDim@{CalculateTargetDim}}
 \index{CalculateTargetDim@{CalculateTargetDim}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CalculateTargetDim()}{CalculateTargetDim()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Target\+Dim (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const int}]{total\+\_\+electron,  }\item[{const \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{Half\+Int}}}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Target\+Dim (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const int}]{total\+\_\+electron,  }\item[{const double}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -392,12 +391,12 @@ Generate bases of the target Hilbert space specified by the system size $ N$, th
 {\em total\+\_\+sz} & The total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle$. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a673a55746beda1d62950963bc0fa9c22}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a673a55746beda1d62950963bc0fa9c22}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_ab1689df03b4be95637c11630a50c791f}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_ab1689df03b4be95637c11630a50c791f}} 
 \index{compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}!CalculateTargetDim@{CalculateTargetDim}}
 \index{CalculateTargetDim@{CalculateTargetDim}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CalculateTargetDim()}{CalculateTargetDim()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Target\+Dim (\begin{DoxyParamCaption}\item[{const int}]{total\+\_\+electron,  }\item[{const \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{Half\+Int}}}]{total\+\_\+sz }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Target\+Dim (\begin{DoxyParamCaption}\item[{const int}]{total\+\_\+electron,  }\item[{const double}]{total\+\_\+sz }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -413,12 +412,12 @@ Calculate the dimension of the target Hilbert space specified by the system size
 \begin{DoxyReturn}{Returns}
 The dimension of the target Hilbert space. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_aaf8eab1fb0e107c4213eb3f7af339c13}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_aaf8eab1fb0e107c4213eb3f7af339c13}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_abd8cd0cdf337cecb5937c6060ec49476}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_abd8cd0cdf337cecb5937c6060ec49476}} 
 \index{compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}!CalculateTargetDim@{CalculateTargetDim}}
 \index{CalculateTargetDim@{CalculateTargetDim}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CalculateTargetDim()}{CalculateTargetDim()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Target\+Dim (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}} \&}]{quantum\+\_\+number }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Target\+Dim (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} \&}]{quantum\+\_\+number }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -616,7 +615,7 @@ Generate bases of the target Hilbert space specified by the system size $ N$, th
 \index{GenerateBasis@{GenerateBasis}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GenerateBasis()}{GenerateBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Basis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}} \&}]{quantum\+\_\+number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Basis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} \&}]{quantum\+\_\+number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -632,7 +631,7 @@ Generate bases of the target Hilbert space specified by the system size $ N$, th
 \index{GenerateTargetSector@{GenerateTargetSector}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GenerateTargetSector()}{GenerateTargetSector()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&}]{m\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&}]{m\+\_\+2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&}]{m\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&}]{m\+\_\+2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -653,7 +652,7 @@ The list of quantum numbers.
 \index{GenerateTargetSector@{GenerateTargetSector}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GenerateTargetSector()}{GenerateTargetSector()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$ std\+::tuple$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&}]{m\+\_\+1\+\_\+bra,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&}]{m\+\_\+2\+\_\+bra,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&}]{m\+\_\+3\+\_\+ket,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&}]{m\+\_\+4\+\_\+ket }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+std\+::vector$<$ std\+::tuple$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&}]{m\+\_\+1\+\_\+bra,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&}]{m\+\_\+2\+\_\+bra,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&}]{m\+\_\+3\+\_\+ket,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&}]{m\+\_\+4\+\_\+ket }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -678,7 +677,7 @@ The list of quantum numbers.
 \index{GenerateTargetSector@{GenerateTargetSector}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GenerateTargetSector()}{GenerateTargetSector()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&}]{m\+\_\+1\+\_\+bra,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&}]{m\+\_\+2\+\_\+ket,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&}]{m\+\_\+3\+\_\+ket }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&}]{m\+\_\+1\+\_\+bra,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&}]{m\+\_\+2\+\_\+ket,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa3fd0641ff28ad0b411cd6829de8d68e}{CRS}} \&}]{m\+\_\+3\+\_\+ket }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -696,26 +695,26 @@ Calculate the quantum numbers of excited states that appear when calculating the
 \begin{DoxyReturn}{Returns}
 The list of quantum numbers. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_ae2992ac7d9d1bdf70c9ce5d2fae6ec43}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_ae2992ac7d9d1bdf70c9ce5d2fae6ec43}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a1d242ab78d4a4af85f642cc8d837ea8d}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a1d242ab78d4a4af85f642cc8d837ea8d}} 
 \index{compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}!GetBases@{GetBases}}
 \index{GetBases@{GetBases}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetBases()}{GetBases()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ \mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{Int\+Pair}}, std\+::vector$<$ \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} $>$, \mbox{\hyperlink{structcompnal_1_1_pair_hash}{compnal\+::\+Pair\+Hash}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Bases (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::unordered\+\_\+map$<$ std\+::pair$<$ int, int $>$, std\+::vector$<$ std\+::int64\+\_\+t $>$, \mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash}{utility\+::\+Pair\+Hash}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Bases (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a7a57d1bcc7e153a0649096d9c84f938f}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a7a57d1bcc7e153a0649096d9c84f938f}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a0c26fc8ed640fec495cd78a6e740cf79}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a0c26fc8ed640fec495cd78a6e740cf79}} 
 \index{compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}!GetBasesInv@{GetBasesInv}}
 \index{GetBasesInv@{GetBasesInv}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetBasesInv()}{GetBasesInv()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ \mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{Int\+Pair}}, \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}, \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} $>$, \mbox{\hyperlink{structcompnal_1_1_pair_hash}{compnal\+::\+Pair\+Hash}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Bases\+Inv (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::unordered\+\_\+map$<$ std\+::pair$<$ int, int $>$, std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$, \mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash}{utility\+::\+Pair\+Hash}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Bases\+Inv (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a15b9d98651490b24ce6dbfa63ae5108e}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a15b9d98651490b24ce6dbfa63ae5108e}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a21ecf217e365b76ffd1968da0453c6df}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a21ecf217e365b76ffd1968da0453c6df}} 
 \index{compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}!GetBasis@{GetBasis}}
 \index{GetBasis@{GetBasis}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetBasis()}{GetBasis()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const std\+::vector$<$ \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Basis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}} \&}]{quantum\+\_\+number }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::vector$<$ std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Basis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} \&}]{quantum\+\_\+number }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -729,12 +728,12 @@ Get basis of the target Hilbert space specified by the system size $ N$, the num
 \begin{DoxyReturn}{Returns}
 Basis. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a4ef9b610ac7308ec8ac7e4a0f51baa24}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a4ef9b610ac7308ec8ac7e4a0f51baa24}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a549ebf12d4a87d6d30c0fe405a6c3770}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a549ebf12d4a87d6d30c0fe405a6c3770}} 
 \index{compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}!GetBasisInv@{GetBasisInv}}
 \index{GetBasisInv@{GetBasisInv}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetBasisInv()}{GetBasisInv()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}, \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Basis\+Inv (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}} \&}]{quantum\+\_\+number }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Basis\+Inv (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} \&}]{quantum\+\_\+number }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -958,12 +957,12 @@ Get the system size $ N$.
 \begin{DoxyReturn}{Returns}
 The system size $ N$. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_ac1f58384914fe9b1b936a4c0df2d533c}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_ac1f58384914fe9b1b936a4c0df2d533c}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a194405e7ddf3ac34b19cf3720f85ffec}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a194405e7ddf3ac34b19cf3720f85ffec}} 
 \index{compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}!GetTargetBasis@{GetTargetBasis}}
 \index{GetTargetBasis@{GetTargetBasis}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetTargetBasis()}{GetTargetBasis()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const std\+::vector$<$ \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Target\+Basis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::vector$<$ std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Target\+Basis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -972,12 +971,12 @@ Get basis of the target Hilbert space specified by the system size $ N$, the num
 \begin{DoxyReturn}{Returns}
 Basis. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_ad15e7cd218befdca5e88b130a6869621}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_ad15e7cd218befdca5e88b130a6869621}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_add2da8e17e9aef282ca6761a3c4d7acd}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_add2da8e17e9aef282ca6761a3c4d7acd}} 
 \index{compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}!GetTargetBasisInv@{GetTargetBasisInv}}
 \index{GetTargetBasisInv@{GetTargetBasisInv}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetTargetBasisInv()}{GetTargetBasisInv()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}, \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Target\+Basis\+Inv (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Target\+Basis\+Inv (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -1014,12 +1013,12 @@ Get the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle$.
 \begin{DoxyReturn}{Returns}
 The total sz. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a3fcafd736e10f6c4a752f6f237b3bc97}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a3fcafd736e10f6c4a752f6f237b3bc97}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_ab9b2211fa92094ca8a9da65de0f32688}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_ab9b2211fa92094ca8a9da65de0f32688}} 
 \index{compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}!isValidQNumber@{isValidQNumber}}
 \index{isValidQNumber@{isValidQNumber}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{isValidQNumber()}{isValidQNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::is\+Valid\+QNumber (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const int}]{total\+\_\+electron,  }\item[{const \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{Half\+Int}}}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::is\+Valid\+QNumber (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const int}]{total\+\_\+electron,  }\item[{const double}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -1037,12 +1036,12 @@ Check if there is a subspace specified by the input quantum numbers.
 \begin{DoxyReturn}{Returns}
 ture if there exists corresponding subspace, otherwise false. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_add9a1444802c4aa0a92053d14f37a9e6}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_add9a1444802c4aa0a92053d14f37a9e6}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_ac0430da0873d39165b73d77bed146369}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_ac0430da0873d39165b73d77bed146369}} 
 \index{compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}!isValidQNumber@{isValidQNumber}}
 \index{isValidQNumber@{isValidQNumber}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{isValidQNumber()}{isValidQNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::is\+Valid\+QNumber (\begin{DoxyParamCaption}\item[{const int}]{total\+\_\+electron,  }\item[{const \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{Half\+Int}}}]{total\+\_\+sz }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::is\+Valid\+QNumber (\begin{DoxyParamCaption}\item[{const int}]{total\+\_\+electron,  }\item[{const double}]{total\+\_\+sz }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -1063,7 +1062,7 @@ ture if there exists corresponding subspace, otherwise false.
 \index{isValidQNumber@{isValidQNumber}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{isValidQNumber()}{isValidQNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::is\+Valid\+QNumber (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a515aa16826650adf775c87fc77584959}{QType}} \&}]{quantum\+\_\+number }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::is\+Valid\+QNumber (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} \&}]{quantum\+\_\+number }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -1088,12 +1087,12 @@ void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+
 
 Print the onsite bases. 
 
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_af997f4af02dd10014cc4f1f263471540}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_af997f4af02dd10014cc4f1f263471540}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_af0bf4076c6d37899df7a84c9c92a7ce5}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_af0bf4076c6d37899df7a84c9c92a7ce5}} 
 \index{compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}!SetCalculatedEigenvectorSet@{SetCalculatedEigenvectorSet}}
 \index{SetCalculatedEigenvectorSet@{SetCalculatedEigenvectorSet}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{SetCalculatedEigenvectorSet()}{SetCalculatedEigenvectorSet()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Set\+Calculated\+Eigenvector\+Set (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}}]{level }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Set\+Calculated\+Eigenvector\+Set (\begin{DoxyParamCaption}\item[{const std\+::int64\+\_\+t}]{level }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -1147,12 +1146,12 @@ Set the number of total electrons.
 {\em total\+\_\+electron} & The number of total electrons is represented by the expectation value of the following operator\+: \[ \hat{N}_{\rm e}=\sum^{N}_{i=1}\hat{n}_{i} \] \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a2060e4bd7c3065f3d9983491004ae6d9}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a2060e4bd7c3065f3d9983491004ae6d9}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa1b973c2fc19f93b869304baea8de4ba}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa1b973c2fc19f93b869304baea8de4ba}} 
 \index{compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}!SetTotalSz@{SetTotalSz}}
 \index{SetTotalSz@{SetTotalSz}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{SetTotalSz()}{SetTotalSz()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Set\+Total\+Sz (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacecompnal_a7acc1f64e3855db32099e5ad7c798e4a}{Half\+Int}}}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Set\+Total\+Sz (\begin{DoxyParamCaption}\item[{const double}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -1166,23 +1165,23 @@ Set target Hilbert space specified by the total sz to be diagonalized.
 
 
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a7380eebbb20026bc614a68e3b9864a78}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a7380eebbb20026bc614a68e3b9864a78}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a62cd383b7a05eb9a8b751bdfb7380557}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a62cd383b7a05eb9a8b751bdfb7380557}} 
 \index{compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}!bases\_@{bases\_}}
 \index{bases\_@{bases\_}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{bases\_}{bases\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$\mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{Int\+Pair}}, std\+::vector$<$\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}$>$, \mbox{\hyperlink{structcompnal_1_1_pair_hash}{Pair\+Hash}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::bases\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+std\+::unordered\+\_\+map$<$std\+::pair$<$int, int$>$, std\+::vector$<$std\+::int64\+\_\+t$>$, \mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash}{utility\+::\+Pair\+Hash}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::bases\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
 Bases of the target Hilbert space specified by the system size $ N$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
 
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a054baaaadc160d1fce099f2fa707f067}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a054baaaadc160d1fce099f2fa707f067}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_electron__1_d_a7943bbf48afea8677e5ead0e354c7b76}\label{classcompnal_1_1model_1_1_base_u1_electron__1_d_a7943bbf48afea8677e5ead0e354c7b76}} 
 \index{compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}!bases\_inv\_@{bases\_inv\_}}
 \index{bases\_inv\_@{bases\_inv\_}!compnal::model::BaseU1Electron\_1D$<$ RealType $>$@{compnal::model::BaseU1Electron\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{bases\_inv\_}{bases\_inv\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$\mbox{\hyperlink{namespacecompnal_a67ff673804e4993ca115420797175ae8}{Int\+Pair}}, \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$\mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}, \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}}$>$, \mbox{\hyperlink{structcompnal_1_1_pair_hash}{Pair\+Hash}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::bases\+\_\+inv\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+std\+::unordered\+\_\+map$<$std\+::pair$<$int, int$>$, std\+::unordered\+\_\+map$<$std\+::int64\+\_\+t, std\+::int64\+\_\+t$>$, \mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash}{utility\+::\+Pair\+Hash}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::bases\+\_\+inv\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 

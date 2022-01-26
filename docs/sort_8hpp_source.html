@@ -102,20 +102,20 @@ $(function() {
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">namespace </span>utility {</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="namespacecompnal_1_1utility.html#ac8b8e09f5f73337b0626ee828c8ecbd7">   27</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacecompnal_1_1utility.html#ac8b8e09f5f73337b0626ee828c8ecbd7">QuickSort</a>(std::vector&lt;T1&gt; *array_comp, std::vector&lt;T2&gt; *array2, <span class="keyword">const</span> <a class="code hl_typedef" href="namespacecompnal.html#a5c65468895022d33488c22744a8c46fc">LInt</a> left, <span class="keyword">const</span> <a class="code hl_typedef" href="namespacecompnal.html#a5c65468895022d33488c22744a8c46fc">LInt</a> right) {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="namespacecompnal_1_1utility.html#a0dd6adce4c848f9ea13250f5434390f3">   27</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacecompnal_1_1utility.html#a0dd6adce4c848f9ea13250f5434390f3">QuickSort</a>(std::vector&lt;T1&gt; *array_comp, std::vector&lt;T2&gt; *array2, <span class="keyword">const</span> std::int64_t left, <span class="keyword">const</span> std::int64_t right) {</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>   </div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>   <span class="keywordflow">if</span> (right - left &lt;= 1) {</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>      <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>   }</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>   </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>   <span class="keyword">const</span> <a class="code hl_typedef" href="namespacecompnal.html#a5c65468895022d33488c22744a8c46fc">LInt</a> index_pivot = (left + right)/2;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>   <span class="keyword">const</span> std::int64_t index_pivot = (left + right)/2;</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>   <span class="keyword">const</span> T1          val_pivot   = (*array_comp)[index_pivot];</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>   </div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>   std::swap((*array_comp)[index_pivot], (*array_comp)[right - 1]);</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>   std::swap((*array2)    [index_pivot], (*array2)    [right - 1]);</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>   </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>   <a class="code hl_typedef" href="namespacecompnal.html#a5c65468895022d33488c22744a8c46fc">LInt</a> index = left;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>   <span class="keywordflow">for</span> (<a class="code hl_typedef" href="namespacecompnal.html#a5c65468895022d33488c22744a8c46fc">LInt</a> i = left; i &lt; right - 1; ++i) {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>   std::int64_t index = left;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>   <span class="keywordflow">for</span> (std::int64_t i = left; i &lt; right - 1; ++i) {</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>      <span class="keywordflow">if</span> ((*array_comp)[i] &lt; val_pivot) {</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>         std::swap((*array_comp)[index], (*array_comp)[i]);</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>         std::swap((*array2)    [index], (*array2)    [i]);</div>
@@ -126,8 +126,8 @@ $(function() {
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>   std::swap((*array_comp)[index], (*array_comp)[right - 1]);</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>   std::swap((*array2)    [index], (*array2)    [right - 1]);</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>   </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>   <a class="code hl_function" href="namespacecompnal_1_1utility.html#ac8b8e09f5f73337b0626ee828c8ecbd7">QuickSort</a>(array_comp, array2, left     , index);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>   <a class="code hl_function" href="namespacecompnal_1_1utility.html#ac8b8e09f5f73337b0626ee828c8ecbd7">QuickSort</a>(array_comp, array2, index + 1, right);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>   <a class="code hl_function" href="namespacecompnal_1_1utility.html#a0dd6adce4c848f9ea13250f5434390f3">QuickSort</a>(array_comp, array2, left     , index);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>   <a class="code hl_function" href="namespacecompnal_1_1utility.html#a0dd6adce4c848f9ea13250f5434390f3">QuickSort</a>(array_comp, array2, index + 1, right);</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>   </div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
@@ -137,9 +137,8 @@ $(function() {
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#endif </span><span class="comment">/* COMPNAL_UTILITY_SORT_HPP_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="anamespacecompnal_1_1utility_html_ac8b8e09f5f73337b0626ee828c8ecbd7"><div class="ttname"><a href="namespacecompnal_1_1utility.html#ac8b8e09f5f73337b0626ee828c8ecbd7">compnal::utility::QuickSort</a></div><div class="ttdeci">void QuickSort(std::vector&lt; T1 &gt; *array_comp, std::vector&lt; T2 &gt; *array2, const LInt left, const LInt right)</div><div class="ttdef"><b>Definition:</b> sort.hpp:27</div></div>
-<div class="ttc" id="anamespacecompnal_html"><div class="ttname"><a href="namespacecompnal.html">compnal</a></div><div class="ttdef"><b>Definition:</b> base_u1_electron_1d.hpp:32</div></div>
-<div class="ttc" id="anamespacecompnal_html_a5c65468895022d33488c22744a8c46fc"><div class="ttname"><a href="namespacecompnal.html#a5c65468895022d33488c22744a8c46fc">compnal::LInt</a></div><div class="ttdeci">std::int64_t LInt</div><div class="ttdoc">Long integer type.</div><div class="ttdef"><b>Definition:</b> type.hpp:31</div></div>
+<div class="ttc" id="anamespacecompnal_1_1utility_html_a0dd6adce4c848f9ea13250f5434390f3"><div class="ttname"><a href="namespacecompnal_1_1utility.html#a0dd6adce4c848f9ea13250f5434390f3">compnal::utility::QuickSort</a></div><div class="ttdeci">void QuickSort(std::vector&lt; T1 &gt; *array_comp, std::vector&lt; T2 &gt; *array2, const std::int64_t left, const std::int64_t right)</div><div class="ttdef"><b>Definition:</b> sort.hpp:27</div></div>
+<div class="ttc" id="anamespacecompnal_html"><div class="ttname"><a href="namespacecompnal.html">compnal</a></div><div class="ttdef"><b>Definition:</b> base_u1_electron_1d.hpp:31</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

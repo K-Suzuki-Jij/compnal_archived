@@ -72,14 +72,14 @@
 \DoxyCodeLine{68 \}}
 \DoxyCodeLine{69 }
 \DoxyCodeLine{70 }
-\DoxyCodeLine{71 \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} \mbox{\hyperlink{namespacecompnal_1_1utility_a11fe827a2e8d4c8794e29be3e130560c}{CalculateBinomialCoefficient}}(\textcolor{keywordtype}{int} n, \textcolor{keyword}{const} \textcolor{keywordtype}{int} k) \{}
+\DoxyCodeLine{71 std::int64\_t \mbox{\hyperlink{namespacecompnal_1_1utility_ae746f2f70fd507d6b7a7f6ffabdcdee3}{CalculateBinomialCoefficient}}(\textcolor{keywordtype}{int} n, \textcolor{keyword}{const} \textcolor{keywordtype}{int} k) \{}
 \DoxyCodeLine{72    \textcolor{keywordflow}{if} (n < 0 || k < 0) \{}
 \DoxyCodeLine{73       std::stringstream ss;}
 \DoxyCodeLine{74       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
 \DoxyCodeLine{75       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{76    \}}
 \DoxyCodeLine{77    }
-\DoxyCodeLine{78    \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} r = 1;}
+\DoxyCodeLine{78    std::int64\_t r = 1;}
 \DoxyCodeLine{79    }
 \DoxyCodeLine{80    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} d = 1; d <= k; d++) \{}
 \DoxyCodeLine{81        r *= n-\/-\/;}
@@ -90,8 +90,8 @@
 \DoxyCodeLine{86    }
 \DoxyCodeLine{87 \}}
 \DoxyCodeLine{88 }
-\DoxyCodeLine{89 std::vector<std::vector<LInt>> \mbox{\hyperlink{namespacecompnal_1_1utility_ab4bbef4ed33eaa05489524e9f226e901}{CalculateBinomialTable}}(\textcolor{keywordtype}{int} N) \{}
-\DoxyCodeLine{90    std::vector<std::vector<LInt>> vec(N + 1, std::vector<LInt>(N + 1));}
+\DoxyCodeLine{89 std::vector<std::vector<std::int64\_t>> \mbox{\hyperlink{namespacecompnal_1_1utility_a4cce9c29a3548fefaf4814bc1bfd0345}{CalculateBinomialTable}}(\textcolor{keywordtype}{int} N) \{}
+\DoxyCodeLine{90    std::vector<std::vector<std::int64\_t>> vec(N + 1, std::vector<std::int64\_t>(N + 1));}
 \DoxyCodeLine{91    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i <= N; ++i) \{}
 \DoxyCodeLine{92       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j <= i; j++) \{}
 \DoxyCodeLine{93          \textcolor{keywordflow}{if} (j == 0 || j == i) \{}
@@ -105,7 +105,7 @@
 \DoxyCodeLine{101    \textcolor{keywordflow}{return} vec;}
 \DoxyCodeLine{102 \}}
 \DoxyCodeLine{103 }
-\DoxyCodeLine{104 \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} \mbox{\hyperlink{namespacecompnal_1_1utility_a994046cacd6facdee7cfde9aa3b9626c}{CalculateNumCombination}}(\textcolor{keyword}{const} std::vector<int> \&list) \{}
+\DoxyCodeLine{104 std::int64\_t \mbox{\hyperlink{namespacecompnal_1_1utility_a31be084029ddf129959d1682fd54cdf5}{CalculateNumCombination}}(\textcolor{keyword}{const} std::vector<int> \&list) \{}
 \DoxyCodeLine{105    }
 \DoxyCodeLine{106    std::unordered\_map<int, int> u\_map;}
 \DoxyCodeLine{107    }
@@ -113,11 +113,11 @@
 \DoxyCodeLine{109       u\_map[it]++;}
 \DoxyCodeLine{110    \}}
 \DoxyCodeLine{111    }
-\DoxyCodeLine{112    \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} result = 1;}
+\DoxyCodeLine{112    std::int64\_t result = 1;}
 \DoxyCodeLine{113    \textcolor{keywordtype}{int} size\_list = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(list.size());}
 \DoxyCodeLine{114    }
 \DoxyCodeLine{115    \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&it: u\_map) \{}
-\DoxyCodeLine{116       result *= \mbox{\hyperlink{namespacecompnal_1_1utility_a11fe827a2e8d4c8794e29be3e130560c}{CalculateBinomialCoefficient}}(size\_list, it.second);}
+\DoxyCodeLine{116       result *= \mbox{\hyperlink{namespacecompnal_1_1utility_ae746f2f70fd507d6b7a7f6ffabdcdee3}{CalculateBinomialCoefficient}}(size\_list, it.second);}
 \DoxyCodeLine{117       size\_list -\/= it.second;}
 \DoxyCodeLine{118    \}}
 \DoxyCodeLine{119    }
@@ -125,7 +125,7 @@
 \DoxyCodeLine{121    }
 \DoxyCodeLine{122 \}}
 \DoxyCodeLine{123 }
-\DoxyCodeLine{124 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1utility_ad87f45a3383a5b141b1804d8e8ec558d}{CalculateNthPermutation}}(std::vector<int> *vec, \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} target\_num) \{}
+\DoxyCodeLine{124 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1utility_a6d7737688a03ef322d62fc96017af67a}{CalculateNthPermutation}}(std::vector<int> *vec, std::int64\_t target\_num) \{}
 \DoxyCodeLine{125    }
 \DoxyCodeLine{126    std::map<int, int> u\_map;}
 \DoxyCodeLine{127    }
@@ -136,14 +136,14 @@
 \DoxyCodeLine{132    \textcolor{keywordtype}{int} size\_vec = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(vec-\/>size());}
 \DoxyCodeLine{133    }
 \DoxyCodeLine{134    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < size\_vec; ++i) \{}
-\DoxyCodeLine{135       \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} temp1 = 0;}
+\DoxyCodeLine{135       std::int64\_t temp1 = 0;}
 \DoxyCodeLine{136       \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} \&\&it: u\_map) \{}
 \DoxyCodeLine{137          \textcolor{keywordflow}{if} (it.second > 0) \{}
 \DoxyCodeLine{138             it.second -\/= 1;}
-\DoxyCodeLine{139             \mbox{\hyperlink{namespacecompnal_a5c65468895022d33488c22744a8c46fc}{LInt}} temp2 = 1;}
+\DoxyCodeLine{139             std::int64\_t temp2 = 1;}
 \DoxyCodeLine{140             \textcolor{keywordtype}{int} size = size\_vec -\/ (i + 1);}
 \DoxyCodeLine{141             \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} it2: u\_map) \{}
-\DoxyCodeLine{142                temp2 *= \mbox{\hyperlink{namespacecompnal_1_1utility_a11fe827a2e8d4c8794e29be3e130560c}{CalculateBinomialCoefficient}}(size, it2.second);}
+\DoxyCodeLine{142                temp2 *= \mbox{\hyperlink{namespacecompnal_1_1utility_ae746f2f70fd507d6b7a7f6ffabdcdee3}{CalculateBinomialCoefficient}}(size, it2.second);}
 \DoxyCodeLine{143                size  -\/= it2.second;}
 \DoxyCodeLine{144             \}}
 \DoxyCodeLine{145             temp1 += temp2;}
@@ -167,10 +167,21 @@
 \DoxyCodeLine{163    }
 \DoxyCodeLine{164 \}}
 \DoxyCodeLine{165 }
-\DoxyCodeLine{166 }
-\DoxyCodeLine{167 \}}
-\DoxyCodeLine{168 \}}
-\DoxyCodeLine{169 }
-\DoxyCodeLine{170 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_UTILITY\_INTEGER\_HPP\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{166 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1utility_abf9e7e67bef6223906e6269589428337}{CheckHalfInteger}}(\textcolor{keywordtype}{double} s) \{}
+\DoxyCodeLine{167    s = 2*s;}
+\DoxyCodeLine{168    \textcolor{keywordflow}{if} (std::floor(s) != s) \{}
+\DoxyCodeLine{169       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}The input number is not half-\/integer"{}});}
+\DoxyCodeLine{170    \}}
+\DoxyCodeLine{171 \}}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173 \textcolor{keywordtype}{int} \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{DoubleHalfInteger}}(\textcolor{keywordtype}{double} s) \{}
+\DoxyCodeLine{174    \mbox{\hyperlink{namespacecompnal_1_1utility_abf9e7e67bef6223906e6269589428337}{CheckHalfInteger}}(s);}
+\DoxyCodeLine{175    \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(2*s);}
+\DoxyCodeLine{176 \}}
+\DoxyCodeLine{177 }
+\DoxyCodeLine{178 \}}
+\DoxyCodeLine{179 \}}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_UTILITY\_INTEGER\_HPP\_ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

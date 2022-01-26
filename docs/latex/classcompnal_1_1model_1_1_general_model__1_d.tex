@@ -11,8 +11,7 @@ The general model class for one-\/dimensional systems.
 
 
 
-Inheritance diagram for compnal\+::model\+::General\+Model\+\_\+1D\texorpdfstring{$<$}{<} Base\+Class \texorpdfstring{$>$}{>}\+:
-\nopagebreak
+Inheritance diagram for compnal\+::model\+::General\+Model\+\_\+1D\texorpdfstring{$<$}{<} Base\+Class \texorpdfstring{$>$}{>}\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,8 +20,7 @@ Inheritance diagram for compnal\+::model\+::General\+Model\+\_\+1D\texorpdfstrin
 \end{figure}
 
 
-Collaboration diagram for compnal\+::model\+::General\+Model\+\_\+1D\texorpdfstring{$<$}{<} Base\+Class \texorpdfstring{$>$}{>}\+:
-\nopagebreak
+Collaboration diagram for compnal\+::model\+::General\+Model\+\_\+1D\texorpdfstring{$<$}{<} Base\+Class \texorpdfstring{$>$}{>}\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -36,11 +34,11 @@ void \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a031c24a84157
 \begin{DoxyCompactList}\small\item\em Add an onsite potential term to the system $ c\times \hat{O}_{i} $. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a3445c03ff640e1932280ba97d85c8e99}{Add\+Interaction}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}} \&m\+\_\+1, const int site\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}} \&m\+\_\+2, const int site\+\_\+2, const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a530e9f1a7e798931102c91eeeab65337}{Real\+Type}} val=1.\+0)
 \begin{DoxyCompactList}\small\item\em Add an interaction term to the system $ c\times\hat{O}_{i}\hat{P}_{j} $. \end{DoxyCompactList}\item 
-const \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ int, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_af2a2f2d546d514e927b347e5c02973ba}{Get\+Onsite\+Operator\+List}} () const
+const std\+::unordered\+\_\+map$<$ int, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a06a053ae83790d126cb115b5559682f5}{Get\+Onsite\+Operator\+List}} () const
 \begin{DoxyCompactList}\small\item\em Get onsite potential term list added to the system. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a7313b90fc9dc9c1da3cf17062a632f20}{Get\+Onsite\+Operator}} (const int site) const
 \begin{DoxyCompactList}\small\item\em Get an onsite potential term added to the system $ \hat{O}_{i}$. \end{DoxyCompactList}\item 
-const \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ int, \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ int, std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}} $>$ $>$ $>$ $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a3d7b31ee40d03c824ed1c021d929fda6}{Get\+Intersite\+Operator\+List}} () const
+const std\+::unordered\+\_\+map$<$ int, std\+::unordered\+\_\+map$<$ int, std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}} $>$ $>$ $>$ $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a7f9817acdb9c4112f648cc5515065e93}{Get\+Intersite\+Operator\+List}} () const
 \begin{DoxyCompactList}\small\item\em Get interaction term list added to the system. \end{DoxyCompactList}\item 
 const std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}} $>$ $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_aef282dab7ad34ff8a3fafd050b49785b}{Get\+Intersite\+Operator}} (const int site\+\_\+1, const int site\+\_\+2) const
 \begin{DoxyCompactList}\small\item\em Get an interaction term added to the system $ \hat{O}_{i}\hat{P}_{j}$. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -54,9 +52,9 @@ using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca8
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ int, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_acb5352daf1b947f638efde5034288770}{onsite\+\_\+operator\+\_\+list\+\_\+}}
+std\+::unordered\+\_\+map$<$ int, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a85936d1c3308aea6746eac1c6cc97f8f}{onsite\+\_\+operator\+\_\+list\+\_\+}}
 \begin{DoxyCompactList}\small\item\em Onsite potential term list added to the system. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ int, \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ int, std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}} $>$ $>$ $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a63297202bd264ce5cc9fe06f41b2bad4}{intersite\+\_\+operator\+\_\+list\+\_\+}}
+std\+::unordered\+\_\+map$<$ int, std\+::unordered\+\_\+map$<$ int, std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}} $>$ $>$ $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae0210d87867a43654eea74b9a892cce1}{intersite\+\_\+operator\+\_\+list\+\_\+}}
 \begin{DoxyCompactList}\small\item\em Interaction term list added to the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -163,12 +161,12 @@ Get an interaction term added to the system $ \hat{O}_{i}\hat{P}_{j}$.
 \begin{DoxyReturn}{Returns}
 The interaction term added to the system $ \hat{O}_{i}$ and $ \hat{P}_{j}$. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_general_model__1_d_a3d7b31ee40d03c824ed1c021d929fda6}\label{classcompnal_1_1model_1_1_general_model__1_d_a3d7b31ee40d03c824ed1c021d929fda6}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_general_model__1_d_a7f9817acdb9c4112f648cc5515065e93}\label{classcompnal_1_1model_1_1_general_model__1_d_a7f9817acdb9c4112f648cc5515065e93}} 
 \index{compnal::model::GeneralModel\_1D$<$ BaseClass $>$@{compnal::model::GeneralModel\_1D$<$ BaseClass $>$}!GetIntersiteOperatorList@{GetIntersiteOperatorList}}
 \index{GetIntersiteOperatorList@{GetIntersiteOperatorList}!compnal::model::GeneralModel\_1D$<$ BaseClass $>$@{compnal::model::GeneralModel\_1D$<$ BaseClass $>$}}
 \doxysubsubsection{\texorpdfstring{GetIntersiteOperatorList()}{GetIntersiteOperatorList()}}
 {\footnotesize\ttfamily template$<$class Base\+Class $>$ \\
-const \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ int, \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ int, std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}} $>$ $>$ $>$ $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d}{compnal\+::model\+::\+General\+Model\+\_\+1D}}$<$ Base\+Class $>$\+::\+Get\+Intersite\+Operator\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::unordered\+\_\+map$<$ int, std\+::unordered\+\_\+map$<$ int, std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}} $>$ $>$ $>$ $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d}{compnal\+::model\+::\+General\+Model\+\_\+1D}}$<$ Base\+Class $>$\+::\+Get\+Intersite\+Operator\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -196,12 +194,12 @@ Get an onsite potential term added to the system $ \hat{O}_{i}$.
 \begin{DoxyReturn}{Returns}
 The onsite potential term added to the system $ \hat{O}_{i}$. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_general_model__1_d_af2a2f2d546d514e927b347e5c02973ba}\label{classcompnal_1_1model_1_1_general_model__1_d_af2a2f2d546d514e927b347e5c02973ba}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_general_model__1_d_a06a053ae83790d126cb115b5559682f5}\label{classcompnal_1_1model_1_1_general_model__1_d_a06a053ae83790d126cb115b5559682f5}} 
 \index{compnal::model::GeneralModel\_1D$<$ BaseClass $>$@{compnal::model::GeneralModel\_1D$<$ BaseClass $>$}!GetOnsiteOperatorList@{GetOnsiteOperatorList}}
 \index{GetOnsiteOperatorList@{GetOnsiteOperatorList}!compnal::model::GeneralModel\_1D$<$ BaseClass $>$@{compnal::model::GeneralModel\_1D$<$ BaseClass $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorList()}{GetOnsiteOperatorList()}}
 {\footnotesize\ttfamily template$<$class Base\+Class $>$ \\
-const \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$ int, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d}{compnal\+::model\+::\+General\+Model\+\_\+1D}}$<$ Base\+Class $>$\+::\+Get\+Onsite\+Operator\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::unordered\+\_\+map$<$ int, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d}{compnal\+::model\+::\+General\+Model\+\_\+1D}}$<$ Base\+Class $>$\+::\+Get\+Onsite\+Operator\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -213,23 +211,23 @@ Onsite potential term list added to the system.
 
 
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_general_model__1_d_a63297202bd264ce5cc9fe06f41b2bad4}\label{classcompnal_1_1model_1_1_general_model__1_d_a63297202bd264ce5cc9fe06f41b2bad4}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_general_model__1_d_ae0210d87867a43654eea74b9a892cce1}\label{classcompnal_1_1model_1_1_general_model__1_d_ae0210d87867a43654eea74b9a892cce1}} 
 \index{compnal::model::GeneralModel\_1D$<$ BaseClass $>$@{compnal::model::GeneralModel\_1D$<$ BaseClass $>$}!intersite\_operator\_list\_@{intersite\_operator\_list\_}}
 \index{intersite\_operator\_list\_@{intersite\_operator\_list\_}!compnal::model::GeneralModel\_1D$<$ BaseClass $>$@{compnal::model::GeneralModel\_1D$<$ BaseClass $>$}}
 \doxysubsubsection{\texorpdfstring{intersite\_operator\_list\_}{intersite\_operator\_list\_}}
 {\footnotesize\ttfamily template$<$class Base\+Class $>$ \\
-\mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$int, \mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$int, std\+::vector$<$std\+::pair$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}}$>$ $>$ $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d}{compnal\+::model\+::\+General\+Model\+\_\+1D}}$<$ Base\+Class $>$\+::intersite\+\_\+operator\+\_\+list\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+std\+::unordered\+\_\+map$<$int, std\+::unordered\+\_\+map$<$int, std\+::vector$<$std\+::pair$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}}$>$ $>$ $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d}{compnal\+::model\+::\+General\+Model\+\_\+1D}}$<$ Base\+Class $>$\+::intersite\+\_\+operator\+\_\+list\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
 Interaction term list added to the system. 
 
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_general_model__1_d_acb5352daf1b947f638efde5034288770}\label{classcompnal_1_1model_1_1_general_model__1_d_acb5352daf1b947f638efde5034288770}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_general_model__1_d_a85936d1c3308aea6746eac1c6cc97f8f}\label{classcompnal_1_1model_1_1_general_model__1_d_a85936d1c3308aea6746eac1c6cc97f8f}} 
 \index{compnal::model::GeneralModel\_1D$<$ BaseClass $>$@{compnal::model::GeneralModel\_1D$<$ BaseClass $>$}!onsite\_operator\_list\_@{onsite\_operator\_list\_}}
 \index{onsite\_operator\_list\_@{onsite\_operator\_list\_}!compnal::model::GeneralModel\_1D$<$ BaseClass $>$@{compnal::model::GeneralModel\_1D$<$ BaseClass $>$}}
 \doxysubsubsection{\texorpdfstring{onsite\_operator\_list\_}{onsite\_operator\_list\_}}
 {\footnotesize\ttfamily template$<$class Base\+Class $>$ \\
-\mbox{\hyperlink{namespacecompnal_a7d6082c366cc92ba48d14a1f91c7e223}{Map}}$<$int, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d}{compnal\+::model\+::\+General\+Model\+\_\+1D}}$<$ Base\+Class $>$\+::onsite\+\_\+operator\+\_\+list\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+std\+::unordered\+\_\+map$<$int, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_ae77f72e0ca80789f30a0cf31701ac594}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d}{compnal\+::model\+::\+General\+Model\+\_\+1D}}$<$ Base\+Class $>$\+::onsite\+\_\+operator\+\_\+list\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
