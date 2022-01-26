@@ -124,7 +124,7 @@ public:
    //! \f$ \langle\hat{S}^{z}_{\rm tot}\rangle =
    //! \sum^{N}_{i=1}\left(\hat{S}^{z}_{i} + \sum_{\alpha}\hat{s}^{z}_{i,\alpha}\right)\f$.
    void SetTotalSz(const double total_sz) {
-      const int total_2sz = utility::DoubleTheNumber(total_sz);
+      const int total_2sz = utility::DoubleHalfInteger(total_sz);
       if (total_2sz_ != total_2sz) {
          total_2sz_ = total_2sz;
          calculated_eigenvector_set_.clear();
@@ -165,7 +165,7 @@ public:
    //! @brief Set the magnitude of the spin \f$ S \f$.
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    void SetMagnitudeLSpin(const double magnitude_lspin) {
-      const int magnitude_2lspin = utility::DoubleTheNumber(magnitude_lspin);
+      const int magnitude_2lspin = utility::DoubleHalfInteger(magnitude_lspin);
       if (magnitude_2lspin <= 0) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__ << std::endl;
@@ -477,7 +477,7 @@ public:
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    void GenerateBasis(const std::vector<int> &total_electron, const double total_sz) {
       const auto start     = std::chrono::system_clock::now();
-      const int  total_2sz = utility::DoubleTheNumber(total_sz);
+      const int  total_2sz = utility::DoubleHalfInteger(total_sz);
       if (bases_.count({total_electron, total_2sz}) != 0) {
          return;
       }
@@ -733,7 +733,7 @@ public:
          length_list.push_back(electron_configuration[0].size());
          length *= electron_configuration[0].size();
       }
-      const int total_2sz = utility::DoubleTheNumber(total_sz);
+      const int total_2sz = utility::DoubleHalfInteger(total_sz);
       const std::vector<std::vector<std::int64_t>> binom = utility::CalculateBinomialTable(system_size);
       std::int64_t dim = 0;
       for (std::int64_t i = 0; i < length; ++i) {
@@ -788,7 +788,7 @@ public:
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$
    //! @return The matrix of \f$ \hat{c}_{\alpha, \uparrow}\f$.
    static CRS CreateOnsiteOperatorCUp(const double magnitude_lspin, const int orbital, const int num_orbital) {
-      const int magnitude_2lspin = utility::DoubleTheNumber(magnitude_lspin);
+      const int magnitude_2lspin = utility::DoubleHalfInteger(magnitude_lspin);
       const int dim_onsite_lspin = magnitude_2lspin + 1;
       const int dim_onsite = dim_onsite_lspin*static_cast<int>(std::pow(4, num_orbital));
       
@@ -849,7 +849,7 @@ public:
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$
    //! @return The matrix of \f$ \hat{c}_{\alpha, \downarrow}\f$.
    static CRS CreateOnsiteOperatorCDown(const double magnitude_lspin, const int orbital, const int num_orbital) {
-      const int magnitude_2lspin = utility::DoubleTheNumber(magnitude_lspin);
+      const int magnitude_2lspin = utility::DoubleHalfInteger(magnitude_lspin);
       const int dim_onsite_lspin = magnitude_2lspin + 1;
       const int dim_onsite = dim_onsite_lspin*static_cast<int>(std::pow(4, num_orbital));
       
@@ -913,7 +913,7 @@ public:
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$
    //! @return The matrix of \f$ \hat{S}^{z}\f$.
    static CRS CreateOnsiteOperatorSzL(const double magnitude_lspin, const int num_orbital) {
-      const int magnitude_2lspin = utility::DoubleTheNumber(magnitude_lspin);
+      const int magnitude_2lspin = utility::DoubleHalfInteger(magnitude_lspin);
       const int dim_onsite_lspin = magnitude_2lspin + 1;
       const int dim_onsite = dim_onsite_lspin*static_cast<int>(std::pow(4, num_orbital));
       CRS matrix(dim_onsite, dim_onsite);
@@ -938,7 +938,7 @@ public:
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$
    //! @return The matrix of \f$ \hat{S}^{+}\f$.
    static CRS CreateOnsiteOperatorSpL(const double magnitude_lspin, const int num_orbital) {
-      const int magnitude_2lspin = utility::DoubleTheNumber(magnitude_lspin);
+      const int magnitude_2lspin = utility::DoubleHalfInteger(magnitude_lspin);
       const int dim_onsite_lspin = magnitude_2lspin + 1;
       const int dim_onsite = dim_onsite_lspin*static_cast<int>(std::pow(4, num_orbital));
       CRS matrix(dim_onsite, dim_onsite);
@@ -1016,7 +1016,7 @@ public:
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @return The matrix of \f$ \sum_{\alpha}\hat{n}_{\alpha}\f$.
    static CRS CreateOnsiteOperatorNCTot(const double magnitude_lspin, const int num_orbital) {
-      const int dim = (utility::DoubleTheNumber(magnitude_lspin) + 1)*static_cast<int>(std::pow(4, num_orbital));
+      const int dim = (utility::DoubleHalfInteger(magnitude_lspin) + 1)*static_cast<int>(std::pow(4, num_orbital));
       CRS out(dim, dim);
       for (int o = 0; o < num_orbital; ++o) {
          out = out + CreateOnsiteOperatorNC(magnitude_lspin, o, num_orbital);
@@ -1230,7 +1230,7 @@ public:
    //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
    //! @return Basis.
    inline const std::vector<std::int64_t> &GetBasis(const QType &quantum_number) const {
-      return bases_.at({quantum_number.first, utility::DoubleTheNumber(quantum_number.second)});
+      return bases_.at({quantum_number.first, utility::DoubleHalfInteger(quantum_number.second)});
    }
    
    //! @brief Get inverse basis of the target Hilbert space space specified by
@@ -1240,7 +1240,7 @@ public:
    //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
    //! @return Inverse basis.
    inline const std::unordered_map<std::int64_t, std::int64_t> &GetBasisInv(const QType &quantum_number) const {
-      return bases_inv_.at({quantum_number.first, utility::DoubleTheNumber(quantum_number.second)});
+      return bases_inv_.at({quantum_number.first, utility::DoubleHalfInteger(quantum_number.second)});
    }
    
    //! @brief Get basis of the target Hilbert space specified by
@@ -1447,7 +1447,7 @@ protected:
                                                   const double magnitude_lspin,
                                                   const int orbital,
                                                   const int num_orbital) {
-      const int dim_onsite_lspin = utility::DoubleTheNumber(magnitude_lspin) + 1;
+      const int dim_onsite_lspin = utility::DoubleHalfInteger(magnitude_lspin) + 1;
       const int num_inner_electron = num_orbital - orbital - 1;
       const int dim_onsite_electron = 4;
       int basis_electron_onsite = basis_onsite/dim_onsite_lspin;
@@ -1509,8 +1509,8 @@ protected:
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    //! @return ture if there exists corresponding subspace, otherwise false.
    static bool isValidQNumber(const int system_size, const double magnitude_lspin, const std::vector<int> &total_electron, const double total_sz) {
-      const int total_2sz            = utility::DoubleTheNumber(total_sz);
-      const int magnitude_2lspin     = utility::DoubleTheNumber(magnitude_lspin);
+      const int total_2sz            = utility::DoubleHalfInteger(total_sz);
+      const int magnitude_2lspin     = utility::DoubleHalfInteger(magnitude_lspin);
       const int total_total_electron = std::accumulate(total_electron.begin(), total_electron.end(), 0);
       
       for (const auto &electron: total_electron) {

@@ -128,7 +128,7 @@ public:
    //! @param total_sz The total sz
    //! \f$ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{s}^{z}_{i}+\hat{S}^{z}_{i}\rangle \f$
    void SetTotalSz(const double total_sz) {
-      const int total_2sz = utility::DoubleTheNumber(total_sz);
+      const int total_2sz = utility::DoubleHalfInteger(total_sz);
       if (total_2sz_ != total_2sz) {
          total_2sz_ = total_2sz;
          calculated_eigenvector_set_.clear();
@@ -148,7 +148,7 @@ public:
    //! @brief Set the magnitude of the spin \f$ S \f$.
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    void SetMagnitudeLSpin(const double magnitude_lspin) {
-      const int magnitude_2lspin = utility::DoubleTheNumber(magnitude_lspin);
+      const int magnitude_2lspin = utility::DoubleHalfInteger(magnitude_lspin);
       if (magnitude_2lspin <= 0) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__ << std::endl;
@@ -301,7 +301,7 @@ public:
          throw std::runtime_error(ss.str());
       }
       const auto start     = std::chrono::system_clock::now();
-      const int  total_2sz = utility::DoubleTheNumber(total_sz);
+      const int  total_2sz = utility::DoubleHalfInteger(total_sz);
       
       if (bases_.count({total_electron, total_2sz}) != 0) {
          return;
@@ -470,8 +470,8 @@ public:
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    //! @return ture if there exists corresponding subspace, otherwise false.
    static bool isValidQNumber(const int system_size, const double magnitude_lspin, const int total_electron, const double total_sz) {
-      const int total_2sz        = utility::DoubleTheNumber(total_sz);
-      const int magnitude_2lspin = utility::DoubleTheNumber(magnitude_lspin);
+      const int total_2sz        = utility::DoubleHalfInteger(total_sz);
+      const int magnitude_2lspin = utility::DoubleHalfInteger(magnitude_lspin);
       const bool c1 = (0 <= total_electron && total_electron <= 2*system_size);
       const bool c2 = ((total_electron + system_size*magnitude_2lspin - total_2sz)%2 == 0);
       const bool c3 = (-(total_electron + system_size*magnitude_2lspin) <= total_2sz);
@@ -684,7 +684,7 @@ public:
    //! @return The matrix of \f$ \hat{c}_{\uparrow}\f$.
    static CRS CreateOnsiteOperatorCUp(const double magnitude_lspin) {
       
-      const int magnitude_2lspin = utility::DoubleTheNumber(magnitude_lspin);
+      const int magnitude_2lspin = utility::DoubleHalfInteger(magnitude_lspin);
       const int dim_onsite_lspin = magnitude_2lspin + 1;
       const int dim_onsite = dim_onsite_lspin*4;
       
@@ -723,7 +723,7 @@ public:
    //! @return The matrix of \f$ \hat{c}_{\downarrow}\f$.
    static CRS CreateOnsiteOperatorCDown(const double magnitude_lspin) {
       
-      const int magnitude_2lspin = utility::DoubleTheNumber(magnitude_lspin);
+      const int magnitude_2lspin = utility::DoubleHalfInteger(magnitude_lspin);
       const int dim_onsite_lspin = magnitude_2lspin + 1;
       const int dim_onsite = dim_onsite_lspin*4;
       
@@ -761,7 +761,7 @@ public:
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{S}^{z}\f$.
    static CRS CreateOnsiteOperatorSzL(const double magnitude_lspin) {
-      const int magnitude_2lspin    = utility::DoubleTheNumber(magnitude_lspin);
+      const int magnitude_2lspin    = utility::DoubleHalfInteger(magnitude_lspin);
       const int dim_onsite_lspin    = magnitude_2lspin + 1;
       const int dim_onsite_electron = 4;
       const int dim_onsite          = dim_onsite_lspin*dim_onsite_electron;
@@ -785,7 +785,7 @@ public:
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{S}^{+}\f$.
    static CRS CreateOnsiteOperatorSpL(const double magnitude_lspin) {
-      const int magnitude_2lspin    = utility::DoubleTheNumber(magnitude_lspin);
+      const int magnitude_2lspin    = utility::DoubleHalfInteger(magnitude_lspin);
       const int dim_onsite_lspin    = magnitude_2lspin + 1;
       const int dim_onsite_electron = 4;
       const int dim_onsite          = dim_onsite_lspin*dim_onsite_electron;
@@ -807,7 +807,7 @@ public:
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{S}^{-}\f$.
    static CRS CreateOnsiteOperatorSmL(const double magnitude_lspin) {
-      const int magnitude_2lspin    = utility::DoubleTheNumber(magnitude_lspin);
+      const int magnitude_2lspin    = utility::DoubleHalfInteger(magnitude_lspin);
       const int dim_onsite_lspin    = magnitude_2lspin + 1;
       const int dim_onsite_electron = 4;
       const int dim_onsite          = dim_onsite_lspin*dim_onsite_electron;
@@ -829,7 +829,7 @@ public:
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{S}^{x}\f$.
    static CRS CreateOnsiteOperatorSxL(const double magnitude_lspin) {
-      const int magnitude_2lspin    = utility::DoubleTheNumber(magnitude_lspin);
+      const int magnitude_2lspin    = utility::DoubleHalfInteger(magnitude_lspin);
       const int dim_onsite_lspin    = magnitude_2lspin + 1;
       const int dim_onsite_electron = 4;
       const int dim_onsite          = dim_onsite_lspin*dim_onsite_electron;
@@ -871,7 +871,7 @@ public:
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ i\hat{S}^{y}\f$.
    static CRS CreateOnsiteOperatoriSyL(const double magnitude_lspin) {
-      const int magnitude_2lspin    = utility::DoubleTheNumber(magnitude_lspin);
+      const int magnitude_2lspin    = utility::DoubleHalfInteger(magnitude_lspin);
       const int dim_onsite_lspin    = magnitude_2lspin + 1;
       const int dim_onsite_electron = 4;
       const int dim_onsite          = dim_onsite_lspin*dim_onsite_electron;
@@ -1154,7 +1154,7 @@ public:
    //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
    //! @return Basis.
    inline const std::vector<std::int64_t> &GetBasis(const QType &quantum_number) const {
-      return bases_.at({quantum_number.first, utility::DoubleTheNumber(quantum_number.second)});
+      return bases_.at({quantum_number.first, utility::DoubleHalfInteger(quantum_number.second)});
    }
    
    //! @brief Get inverse basis of the target Hilbert space space specified by
@@ -1164,7 +1164,7 @@ public:
    //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
    //! @return Inverse basis.
    inline const std::unordered_map<std::int64_t, std::int64_t> &GetBasisInv(const QType &quantum_number) const {
-      return bases_inv_.at({quantum_number.first, utility::DoubleTheNumber(quantum_number.second)});
+      return bases_inv_.at({quantum_number.first, utility::DoubleHalfInteger(quantum_number.second)});
    }
    
    //! @brief Get basis of the target Hilbert space specified by

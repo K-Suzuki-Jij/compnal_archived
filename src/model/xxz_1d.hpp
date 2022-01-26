@@ -186,7 +186,7 @@ public:
    //! \f[ \hat{H}_{\rm onsite}=h_z\hat{S}^{z}+D_z\left(\hat{S}^{z}\right)^{2}\f]
    //! @return The matrix of \f$ \hat{H}_{\rm onsite}\f$.
    static CRS CreateOnsiteOperatorHam(const double magnitude_spin, const RealType h_z = 0.0, const RealType D_z = 0.0) {
-      const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
+      const int magnitude_2spin = utility::DoubleHalfInteger(magnitude_spin);
       const int dim_onsite      = magnitude_2spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
       

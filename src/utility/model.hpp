@@ -52,7 +52,7 @@ void CheckHalfInteger(double s) {
    }
 }
 
-int DoubleTheNumber(double s) {
+int DoubleHalfInteger(double s) {
    CheckHalfInteger(s);
    return static_cast<int>(2*s);
 };

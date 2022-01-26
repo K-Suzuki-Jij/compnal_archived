@@ -106,7 +106,7 @@ public:
    //! @param total_sz The total sz is the expectation value of the following operator:
    //! \f[ \hat{S}^{z}_{\rm tot}=\sum^{N}_{i=1}\hat{S}^{z}_{i} \f]
    void SetTotalSz(const double total_sz) {
-      const int total_2sz = utility::DoubleTheNumber(total_sz);
+      const int total_2sz = utility::DoubleHalfInteger(total_sz);
       if (total_2sz_ != total_2sz) {
          total_2sz_ = total_2sz;
          calculated_eigenvector_set_.clear();
@@ -226,7 +226,7 @@ public:
       const auto start         = std::chrono::system_clock::now();
       const int total_electron = quantum_number.first;
       const double total_sz    = quantum_number.second;
-      const int total_2sz      = utility::DoubleTheNumber(total_sz);
+      const int total_2sz      = utility::DoubleHalfInteger(total_sz);
       
       if (bases_.count({total_electron, total_2sz}) != 0) {
          return;
@@ -521,7 +521,7 @@ public:
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    //! @return ture if there exists corresponding subspace, otherwise false.
    static bool isValidQNumber(const int system_size, const int total_electron, const double total_sz) {
-      const int total_2sz = utility::DoubleTheNumber(total_sz);
+      const int total_2sz = utility::DoubleHalfInteger(total_sz);
       const bool c1 = (0 <= total_electron && total_electron <= 2*system_size);
       const bool c2 = ((total_electron - total_2sz)%2 == 0);
       const bool c3 = (-total_electron <= total_2sz && total_2sz <= total_electron);
@@ -542,7 +542,7 @@ public:
       if (!isValidQNumber(system_size, total_electron, total_sz)) {
          return 0;
       }
-      const int total_2sz = utility::DoubleTheNumber(total_sz);
+      const int total_2sz = utility::DoubleHalfInteger(total_sz);
       const std::vector<std::vector<std::int64_t>> binom = utility::CalculateBinomialTable(system_size);
       const int max_n_up_down = static_cast<int>(total_electron/2);
       std::int64_t dim = 0;
@@ -839,7 +839,7 @@ public:
    //! \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
    //! @return Basis.
    inline const std::vector<std::int64_t> &GetBasis(const QType &quantum_number) const {
-      return bases_.at({quantum_number.first, utility::DoubleTheNumber(quantum_number.second)});
+      return bases_.at({quantum_number.first, utility::DoubleHalfInteger(quantum_number.second)});
    }
    
    //! @brief Get inverse basis of the target Hilbert space specified by
@@ -848,7 +848,7 @@ public:
    //! \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
    //! @return Basis.
    inline const std::unordered_map<std::int64_t, std::int64_t> &GetBasisInv(const QType &quantum_number) const {
-      return bases_inv_.at({quantum_number.first, utility::DoubleTheNumber(quantum_number.second)});
+      return bases_inv_.at({quantum_number.first, utility::DoubleHalfInteger(quantum_number.second)});
    }
    
    //! @brief Get basis of the target Hilbert space specified by
