@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['down_0',['DOWN',['../namespacecompnal_1_1utility.html#a7276a99232fbbca2396b81d8619f1cf0a8d5ecb38982f5dfc7321f74a292fb266',1,'compnal::utility']]]
+  ['fermion_0',['FERMION',['../namespacecompnal_1_1sparse__matrix.html#ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c',1,'compnal::sparse_matrix']]]
 ];

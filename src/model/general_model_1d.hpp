@@ -19,6 +19,7 @@
 #define COMPNAL_MODEL_U1_ELECTRON_1D_HPP_
 
 #include "../sparse_matrix/all.hpp"
+#include "../utility/all.hpp"
 
 #include <unordered_map>
 #include <vector>

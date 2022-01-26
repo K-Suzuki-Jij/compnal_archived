@@ -18,6 +18,7 @@
 #ifndef COMPNAL_MODEL_XXZ_1D_HPP_
 #define COMPNAL_MODEL_XXZ_1D_HPP_
 
+#include "./utility.hpp"
 #include "./base_u1_spin_1d.hpp"
 
 namespace compnal {
@@ -61,7 +62,7 @@ public:
    //! @brief Constructor of XXZ_1D class.
    //! @param system_size The system size \f$ N \f$.
    //! @param boundary_condition Boundary condition.
-   XXZ_1D(const int system_size, const utility::BoundaryCondition boundary_condition): BaseU1Spin_1D<RealType>(system_size) {
+   XXZ_1D(const int system_size, const BoundaryCondition boundary_condition): BaseU1Spin_1D<RealType>(system_size) {
       SetBoundaryCondition(boundary_condition);
       onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2spin_, h_z_, D_z_);
    }
@@ -70,7 +71,7 @@ public:
    //! @param system_size The system size \f$ N \f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @param boundary_condition Boundary condition.
-   XXZ_1D(const int system_size, const double magnitude_spin, const utility::BoundaryCondition boundary_condition): BaseU1Spin_1D<RealType>(system_size, magnitude_spin) {
+   XXZ_1D(const int system_size, const double magnitude_spin, const BoundaryCondition boundary_condition): BaseU1Spin_1D<RealType>(system_size, magnitude_spin) {
       SetBoundaryCondition(boundary_condition);
       onsite_operator_ham_ = CreateOnsiteOperatorHam(0.5*this->magnitude_2spin_, h_z_, D_z_);
    }
@@ -81,7 +82,7 @@ public:
    //! @brief Set the boundary condition.
    //! @param boundary_condition Boundary condition.
    //! Open boundary condition (OBC), periodic boundary condition (PBC), or sine square deformation (SSD).
-   void SetBoundaryCondition(const utility::BoundaryCondition boundary_condition) {
+   void SetBoundaryCondition(const BoundaryCondition boundary_condition) {
       boundary_condition_ = boundary_condition;
    }
    
@@ -152,13 +153,13 @@ public:
    //! @brief Print information about this class.
    void PrintInfo() const {
       std::string bc = "None";
-      if (boundary_condition_ == utility::BoundaryCondition::OBC) {
+      if (boundary_condition_ == BoundaryCondition::OBC) {
          bc = "OBC";
       }
-      else if (boundary_condition_ == utility::BoundaryCondition::PBC) {
+      else if (boundary_condition_ == BoundaryCondition::PBC) {
          bc = "PBC";
       }
-      else if (boundary_condition_ == utility::BoundaryCondition::SSD) {
+      else if (boundary_condition_ == BoundaryCondition::SSD) {
          bc = "SSD";
       }
       std::cout << "Print Heisenberg Model Infomation:" << std::endl;
@@ -186,7 +187,7 @@ public:
    //! \f[ \hat{H}_{\rm onsite}=h_z\hat{S}^{z}+D_z\left(\hat{S}^{z}\right)^{2}\f]
    //! @return The matrix of \f$ \hat{H}_{\rm onsite}\f$.
    static CRS CreateOnsiteOperatorHam(const double magnitude_spin, const RealType h_z = 0.0, const RealType D_z = 0.0) {
-      const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
+      const int magnitude_2spin = utility::DoubleHalfInteger(magnitude_spin);
       const int dim_onsite      = magnitude_2spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
       
@@ -234,7 +235,7 @@ public:
    
    //! @brief Get the boundary condition.
    //! @return The boundary condition.
-   inline utility::BoundaryCondition GetBoundaryCondition() const { return boundary_condition_; }
+   inline BoundaryCondition GetBoundaryCondition() const { return boundary_condition_; }
    
 private:
    //! @brief The onsite Hamiltonian.
@@ -243,7 +244,7 @@ private:
    
    //! @brief Boundary condition.
    //! Open boundary condition (OBC), periodic boundary condition (PBC), or sine square deformation (SSD).
-   utility::BoundaryCondition boundary_condition_ = utility::BoundaryCondition::OBC;
+   BoundaryCondition boundary_condition_ = BoundaryCondition::OBC;
    
    //! @brief The spin-spin interaction along the z-direction \f$ J^{z} \f$.
    std::vector<RealType> J_z_ = {1.0};

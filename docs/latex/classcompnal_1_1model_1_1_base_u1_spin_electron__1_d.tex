@@ -1,0 +1,1960 @@
+\hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{}\doxysection{compnal\+::model\+::Base\+U1\+Spin\+Electron\+\_\+1D\texorpdfstring{$<$}{<} Real\+Type \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+
+
+The base class for one-\/dimensional spin-\/electron systems with the U(1) symmetry.  
+
+
+
+
+{\ttfamily \#include $<$base\+\_\+u1\+\_\+spin\+\_\+electron\+\_\+1d.\+hpp$>$}
+
+
+
+Inheritance diagram for compnal\+::model\+::Base\+U1\+Spin\+Electron\+\_\+1D\texorpdfstring{$<$}{<} Real\+Type \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8dc01cc9a5a716dcba48934cd34fc47e}{Value\+Type}} = Real\+Type
+\begin{DoxyCompactList}\small\item\em The type of real values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ace952a54f1c61f82eab2c93be8254409}{Base\+U1\+Spin\+Electron\+\_\+1D}} ()
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{Base\+U1\+Spin\+Electron\+\_\+1D}} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8c13f033b4335c3c50bfadc01fb3af41}{Base\+U1\+Spin\+Electron\+\_\+1D}} (const int system\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{Base\+U1\+Spin\+Electron\+\_\+1D}} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a679ded7b05555a3a8ac29859bb172b99}{Base\+U1\+Spin\+Electron\+\_\+1D}} (const int system\+\_\+size, const double magnitude\+\_\+lspin)
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{Base\+U1\+Spin\+Electron\+\_\+1D}} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1389313456dd0e0e859d3bd1157e7859}{Base\+U1\+Spin\+Electron\+\_\+1D}} (const int system\+\_\+size, const int total\+\_\+electron)
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{Base\+U1\+Electron\+\_\+1D}} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aead3fe2597cb449add0c251021728c2a}{Base\+U1\+Spin\+Electron\+\_\+1D}} (const int system\+\_\+size, const double magnitude\+\_\+lspin, const int total\+\_\+electron)
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{Base\+U1\+Electron\+\_\+1D}} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1e1525c0ecd7bf928ea57b9087516538}{Base\+U1\+Spin\+Electron\+\_\+1D}} (const int system\+\_\+size, const double magnitude\+\_\+lspin, const int total\+\_\+electron, const double total\+\_\+sz)
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{Base\+U1\+Electron\+\_\+1D}} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ab9884d700d7ec30f306d8c6d2bd726b3}{Set\+System\+Size}} (const int system\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Set system size. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1f7412951e3db38915913478c83e7848}{Set\+Total\+Sz}} (const double total\+\_\+sz)
+\begin{DoxyCompactList}\small\item\em Set target Hilbert space specified by the total sz to be diagonalized. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a0ec9b82638cfd3881427702bb6725240}{Set\+Total\+Electron}} (const int total\+\_\+electron)
+\begin{DoxyCompactList}\small\item\em Set the number of total electrons. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ada273807b072a3a3a12062de109413aa}{Set\+Magnitude\+LSpin}} (const double magnitude\+\_\+lspin)
+\begin{DoxyCompactList}\small\item\em Set the magnitude of the spin $ S $. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a5d21bcf936f2a2aa879ceb9050db8dfe}{Set\+Calculated\+Eigenvector\+Set}} (const int level)
+\begin{DoxyCompactList}\small\item\em Set calculated\+\_\+eigenvector\+\_\+set\+\_\+, which represents the calculated eigenvectors and eigenvalues. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a7a6bc26a9343fa46fad1455869d78da3}{is\+Valid\+QNumber}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}} \&quantum\+\_\+number) const
+\begin{DoxyCompactList}\small\item\em Check if there is a subspace specified by the input quantum numbers. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a015e180a7a1af56f1e0b80d38338569c}{is\+Valid\+QNumber}} (const int total\+\_\+electron, const double total\+\_\+sz) const
+\begin{DoxyCompactList}\small\item\em Check if there is a subspace specified by the input quantum numbers. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a66a72d066c290e214f6407b0eb746c42}{Calculate\+Num\+Electron}} (const int basis\+\_\+onsite) const
+\begin{DoxyCompactList}\small\item\em Calculate the number of electrons from the input onsite basis. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a4b43e632140f7ccde732bc91eb6d50b1}{Print\+Basis\+Onsite}} () const
+\begin{DoxyCompactList}\small\item\em Print the onsite bases. \end{DoxyCompactList}\item 
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a6c76df83eeef7e4f373b5f13ef708224}{Calculate\+Target\+Dim}} () const
+\begin{DoxyCompactList}\small\item\em Calculate the dimension of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_abe4a2cd0dfd3cdf559b25bc38dbb2541}{Calculate\+Target\+Dim}} (const int total\+\_\+electron, const double total\+\_\+sz) const
+\begin{DoxyCompactList}\small\item\em Calculate the dimension of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a41afbeb773f9e69fa6c7b772fd830dfd}{Calculate\+Target\+Dim}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}} \&quantum\+\_\+number) const
+\begin{DoxyCompactList}\small\item\em Calculate the dimension of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_af313024f52e31794864d1d9b0d66f683}{Generate\+Basis}} ()
+\begin{DoxyCompactList}\small\item\em Generate bases of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a7a2eac414ea8f016e84540a49193802e}{Generate\+Basis}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}} \&quantum\+\_\+number)
+\begin{DoxyCompactList}\small\item\em Generate bases of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a4584edb50a1940eeda09d1ce654c9bc0}{Generate\+Basis}} (const int total\+\_\+electron, const double total\+\_\+sz)
+\begin{DoxyCompactList}\small\item\em Generate bases of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a62dd65b1c316662158ac2cd40f1b4efc}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \&m\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \&m\+\_\+2) const
+\begin{DoxyCompactList}\small\item\em Calculate the quantum numbers of excited states that appear when calculating the correlation functions. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a876ef425d210ae5967fc28da747e5bc8}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \&m\+\_\+1\+\_\+bra, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \&m\+\_\+2\+\_\+ket, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \&m\+\_\+3\+\_\+ket) const
+\begin{DoxyCompactList}\small\item\em Calculate the quantum numbers of excited states that appear when calculating the correlation functions. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::tuple$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1e34494c3a97ecc11d3bb18fcd6d52eb}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \&m\+\_\+1\+\_\+bra, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \&m\+\_\+2\+\_\+bra, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \&m\+\_\+3\+\_\+ket, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \&m\+\_\+4\+\_\+ket) const
+\begin{DoxyCompactList}\small\item\em Calculate the quantum numbers of excited states that appear when calculating the correlation functions. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ac2e1e7eac345e6de6d8927a702d53173}{Calculate\+Quntum\+Number\+Difference}} (const int row, const int col) const
+\begin{DoxyCompactList}\small\item\em Calculate difference of the number of total electrons and the total sz from the rows and columns in the matrix representation of an onsite operator. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ac5aca3c2e80d606a71879e5103a5fb39}{Get\+System\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Get the system size $ N$. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_af509aa69f9a132afbfafd86974317f3a}{Get\+Dim\+Onsite}} () const
+\begin{DoxyCompactList}\small\item\em Get dimension of the local Hilbert space, $ 4*(2S+1)$. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a68f81fec3ed5602021fd778ee5a6b58e}{Get\+Dim\+Onsite\+ELectron}} () const
+\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a553ad65a9860714f3a582516f68e942c}{Get\+Dim\+Onsite\+LSpin}} () const
+\item 
+double \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_af7a37dd26cb6d71c393ee4233fdaf538}{Get\+Total\+Sz}} () const
+\begin{DoxyCompactList}\small\item\em Get the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle$. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aa2be4c9a16a9bdf108c81d1d8a5b0b5d}{Get\+Magnitude\+LSpin}} () const
+\begin{DoxyCompactList}\small\item\em Get the magnitude of the local spin $ S$. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8c872bc8a2fec3e5a0ea25438d5146a3}{Get\+Total\+Electron}} () const
+\begin{DoxyCompactList}\small\item\em Get the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a65f4321d5d41b8898b4dcf17dd83329d}{Get\+Onsite\+Operator\+CUp}} () const
+\begin{DoxyCompactList}\small\item\em Get the annihilation operator for the electrons with the up spin $ \hat{c}_{\uparrow}$. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a114ca4b0dec996f77b7f85c7f846f1b4}{Get\+Onsite\+Operator\+CDown}} () const
+\begin{DoxyCompactList}\small\item\em Get the annihilation operator for the electrons with the down spin $ \hat{c}_{\downarrow}$. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a3686b4987cd45b9524faa073e1834cbb}{Get\+Onsite\+Operator\+CUp\+Dagger}} () const
+\begin{DoxyCompactList}\small\item\em Get the creation operator for the electrons with the up spin $ \hat{c}^{\dagger}_{\uparrow}$. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a4698ebcfbb9c957bb2edef2eccfdcd24}{Get\+Onsite\+Operator\+CDown\+Dagger}} () const
+\begin{DoxyCompactList}\small\item\em Get the creation operator for the electrons with the down spin $ \hat{c}^{\dagger}_{\downarrow}$. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a78c9e58de9f2c3847dc19b43fe03b042}{Get\+Onsite\+Operator\+NCUp}} () const
+\begin{DoxyCompactList}\small\item\em Get the number operator for the electrons with the up spin $ \hat{n}_{\uparrow}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow}$. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ad3d48cce3aedefd3e84ae7dbe8a434da}{Get\+Onsite\+Operator\+NCDown}} () const
+\begin{DoxyCompactList}\small\item\em Get the number operator for the electrons with the down spin $ \hat{n}_{\downarrow}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow}$. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a5dfdc60ddc171cbd2db1c8a39c7ec747}{Get\+Onsite\+Operator\+NC}} () const
+\begin{DoxyCompactList}\small\item\em Get the number operator for the electrons $ \hat{n}=\hat{n}_{\uparrow} + \hat{n}_{\downarrow}$. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a7029e45fdf509a12df51e0805ef33e9e}{Get\+Onsite\+Operator\+SxC}} () const
+\begin{DoxyCompactList}\small\item\em Get the spin operator for the x-\/direction for the electrons $ \hat{s}^{x}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} + \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})$. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_af4389ed6d06d077e51155fe67b7022d1}{Get\+Onsite\+Operatori\+SyC}} () const
+\begin{DoxyCompactList}\small\item\em Get the spin operator for the y-\/direction for the electrons $ i\hat{s}^{y}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})$. Here $ i=\sqrt{-1}$ is the the imaginary unit. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a3a1223bcacd97a5387c8716ff4b2e092}{Get\+Onsite\+Operator\+SzC}} () const
+\begin{DoxyCompactList}\small\item\em Get the spin operator for the z-\/direction for the electrons $ \hat{s}^{z}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow})$. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aedc2fb9a70c9e12750ab008def7c56c1}{Get\+Onsite\+Operator\+SpC}} () const
+\begin{DoxyCompactList}\small\item\em Get the raising operator for spin of the electrons $ \hat{s}^{+}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow}$. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a34087179242aa220926e3fbf20dcb530}{Get\+Onsite\+Operator\+SmC}} () const
+\begin{DoxyCompactList}\small\item\em Get the lowering operator for spin of the electrons $ \hat{s}^{-}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow}$. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a5b22d77b8f346b0feaf68267e76d2601}{Get\+Onsite\+Operator\+SxL}} () const
+\begin{DoxyCompactList}\small\item\em Get the spin-\/ $ S$ operator of the local spin for the x-\/direction $ \hat{S}^{x}$. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a73453ea34ae9e654724eee839c2baf5f}{Get\+Onsite\+Operatori\+SyL}} () const
+\begin{DoxyCompactList}\small\item\em Get the spin-\/ $ S$ operator of the local spin for the y-\/direction $ i\hat{S}^{y}$ with $ i$ being the imaginary unit. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a630579ee91e52c299351ac3d5b011302}{Get\+Onsite\+Operator\+SzL}} () const
+\begin{DoxyCompactList}\small\item\em Get the spin-\/ $ S$ operator of the local spin for the z-\/direction $ \hat{S}^{z}$. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a0f728de04a2f7c0a3aa2554db2c67c77}{Get\+Onsite\+Operator\+SpL}} () const
+\begin{DoxyCompactList}\small\item\em Get the spin-\/ $ S$ raising operator of the local spin $ \hat{S}^{+}$. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a5b5e49374c2c3395077cf29b0bfe6e41}{Get\+Onsite\+Operator\+SmL}} () const
+\begin{DoxyCompactList}\small\item\em Get the spin-\/ $ S$ raising operator of the local spin $ \hat{S}^{-}$. \end{DoxyCompactList}\item 
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a40884d226b5558b9faa0a91cc98b9e9d}{Get\+Onsite\+Operator\+SCSL}} () const
+\begin{DoxyCompactList}\small\item\em Get $ \hat{\boldsymbol{s}}\cdot\hat{\boldsymbol{S}}=\hat{s}^{x}\hat{S}^{x}+\hat{s}^{y}\hat{S}^{y}+\hat{s}^{z}\hat{S}^{z}$. \end{DoxyCompactList}\item 
+const std\+::unordered\+\_\+set$<$ int $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a270bfe077404d46a09f77c4c41284c08}{Get\+Calculated\+Eigenvector\+Set}} () const
+\begin{DoxyCompactList}\small\item\em Get calculated\+\_\+eigenvector\+\_\+set\+\_\+, which represents the calculated eigenvectors and eigenvalues. \end{DoxyCompactList}\item 
+const std\+::unordered\+\_\+map$<$ std\+::pair$<$ int, int $>$, std\+::vector$<$ std\+::int64\+\_\+t $>$, \mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash}{utility\+::\+Pair\+Hash}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_adafb772a2c848f5686ec9b6802e9c9dc}{Get\+Bases}} () const
+\begin{DoxyCompactList}\small\item\em Get all bases. \end{DoxyCompactList}\item 
+const std\+::unordered\+\_\+map$<$ std\+::pair$<$ int, int $>$, std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$, \mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash}{utility\+::\+Pair\+Hash}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a2c50c4b17a99ef75c381eb13da0d2fd2}{Get\+Bases\+Inv}} () const
+\begin{DoxyCompactList}\small\item\em Get all inverse bases. \end{DoxyCompactList}\item 
+const std\+::vector$<$ std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a2f20f0cf2e93a1de16d545f63e6b7842}{Get\+Basis}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}} \&quantum\+\_\+number) const
+\begin{DoxyCompactList}\small\item\em Get basis of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
+const std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_adb745c029033ac96aeeb8ab4dead331e}{Get\+Basis\+Inv}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}} \&quantum\+\_\+number) const
+\begin{DoxyCompactList}\small\item\em Get inverse basis of the target Hilbert space space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
+const std\+::vector$<$ std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aaff89aee53bb68035bc41b9bc206fe2c}{Get\+Target\+Basis}} () const
+\begin{DoxyCompactList}\small\item\em Get basis of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
+const std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a09c1c7af91dff905fd7a3b36a6be3191}{Get\+Target\+Basis\+Inv}} () const
+\begin{DoxyCompactList}\small\item\em Get inverse basis of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a0fb55de1baebd1f15dc86ec3ebe503e5}{is\+Valid\+QNumber}} (const int system\+\_\+size, const double magnitude\+\_\+lspin, const int total\+\_\+electron, const double total\+\_\+sz)
+\begin{DoxyCompactList}\small\item\em Check if there is a subspace specified by the input quantum numbers. \end{DoxyCompactList}\item 
+static std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ac34dd619368f7ff515c72c409fd0661e}{Calculate\+Target\+Dim}} (const int system\+\_\+size, const double magnitude\+\_\+lspin, const int total\+\_\+electron, const double total\+\_\+sz)
+\begin{DoxyCompactList}\small\item\em Calculate the dimension of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ade86fc6f45f9c3460415569d658febeb}{Create\+Onsite\+Operator\+CUp}} (const double magnitude\+\_\+lspin)
+\begin{DoxyCompactList}\small\item\em Generate the annihilation operator for the electrons with the up spin $ \hat{c}_{\uparrow}$. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a6edeca65995e955d42e166d9c058314d}{Create\+Onsite\+Operator\+CDown}} (const double magnitude\+\_\+lspin)
+\begin{DoxyCompactList}\small\item\em Generate the annihilation operator for the electrons with the down spin $ \hat{c}_{\downarrow}$. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_acb2cb8c341e4124e3e5278a3e19c7fc5}{Create\+Onsite\+Operator\+SzL}} (const double magnitude\+\_\+lspin)
+\begin{DoxyCompactList}\small\item\em Generate the spin-\/ $ S$ operator of the local spin for the z-\/direction $ \hat{S}^{z}$. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a3ab4dae108027aa369609123a46d610a}{Create\+Onsite\+Operator\+SpL}} (const double magnitude\+\_\+lspin)
+\begin{DoxyCompactList}\small\item\em Generate the spin-\/ $ S$ raising operator of the local spin $ \hat{S}^{+}$. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1926cd00080a8012174244e7f1ee9086}{Create\+Onsite\+Operator\+SmL}} (const double magnitude\+\_\+lspin)
+\begin{DoxyCompactList}\small\item\em Generate the spin-\/ $ S$ raising operator of the local spin $ \hat{S}^{-}$. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aa37ff16eb7ededcb83354092c9ac6d2c}{Create\+Onsite\+Operator\+SxL}} (const double magnitude\+\_\+lspin)
+\begin{DoxyCompactList}\small\item\em Generate the spin-\/ $ S$ operator of the local spin for the x-\/direction $ \hat{S}^{x}$. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aa697f969a2881966f9700878a80d4791}{Create\+Onsite\+Operatori\+SyL}} (const double magnitude\+\_\+lspin)
+\begin{DoxyCompactList}\small\item\em Generate the spin-\/ $ S$ operator of the local spin for the y-\/direction $ i\hat{S}^{y}$ with $ i$ being the imaginary unit. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aeaa930775a1d36058732b7967c465388}{Create\+Onsite\+Operator\+CUp\+Dagger}} (const double magnitude\+\_\+lspin)
+\begin{DoxyCompactList}\small\item\em Generate the creation operator for the electrons with the up spin $ \hat{c}^{\dagger}_{\uparrow}$. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aa52478d83568239ad051ab7bc53a7dc1}{Create\+Onsite\+Operator\+CDown\+Dagger}} (const double magnitude\+\_\+lspin)
+\begin{DoxyCompactList}\small\item\em Generate the creation operator for the electrons with the down spin $ \hat{c}^{\dagger}_{\downarrow}$. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ade60afdae6afc7d2832a836b186e878b}{Create\+Onsite\+Operator\+NCUp}} (const double magnitude\+\_\+lspin)
+\begin{DoxyCompactList}\small\item\em Generate the number operator for the electrons with the up spin $ \hat{n}_{\uparrow}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow}$. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a67e087762b868a541cc9e6682aeb092a}{Create\+Onsite\+Operator\+NCDown}} (const double magnitude\+\_\+lspin)
+\begin{DoxyCompactList}\small\item\em Generate the number operator for the electrons with the down spin $ \hat{n}_{\downarrow}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow}$. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a102a10a52ece5265767c565da96195b3}{Create\+Onsite\+Operator\+NC}} (const double magnitude\+\_\+lspin)
+\begin{DoxyCompactList}\small\item\em Generate the number operator for the electrons $ \hat{n}=\hat{n}_{\uparrow} + \hat{n}_{\downarrow}$. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_abab0b145dc1e793803578d48b9a66bd0}{Create\+Onsite\+Operator\+SxC}} (const double magnitude\+\_\+lspin)
+\begin{DoxyCompactList}\small\item\em Generate the spin operator for the x-\/direction for the electrons $ \hat{s}^{x}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} + \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})$. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a2655d8d78f7eaf41ace9ce5a9c8ac90d}{Create\+Onsite\+Operatori\+SyC}} (const double magnitude\+\_\+lspin)
+\begin{DoxyCompactList}\small\item\em Generate the spin operator for the y-\/direction for the electrons $ i\hat{s}^{y}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})$. Here $ i=\sqrt{-1}$ is the the imaginary unit. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aca985efae20c351bc9342621b791d53e}{Create\+Onsite\+Operator\+SzC}} (const double magnitude\+\_\+lspin)
+\begin{DoxyCompactList}\small\item\em Generate the spin operator for the z-\/direction for the electrons $ \hat{s}^{z}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow})$. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a036f27edb884a50731e99aac5ad5b363}{Create\+Onsite\+Operator\+SpC}} (const double magnitude\+\_\+lspin)
+\begin{DoxyCompactList}\small\item\em Generate the raising operator for spin of the electrons $ \hat{s}^{+}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow}$. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aec74f4719f814ef470b506cc28947df4}{Create\+Onsite\+Operator\+SmC}} (const double magnitude\+\_\+lspin)
+\begin{DoxyCompactList}\small\item\em Generate the lowering operator for spin of the electrons $ \hat{s}^{-}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow}$. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a2c054874201636966a39102673b8a452}{Create\+Onsite\+Operator\+SCSL}} (const double magnitude\+\_\+lspin)
+\begin{DoxyCompactList}\small\item\em Generate $ \hat{\boldsymbol{s}}\cdot\hat{\boldsymbol{S}}=\hat{s}^{x}\hat{S}^{x}+\hat{s}^{y}\hat{S}^{y}+\hat{s}^{z}\hat{S}^{z}$. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a3b7543af8237ac54917e92bd20811f23}{Set\+Onsite\+Operator}} ()
+\begin{DoxyCompactList}\small\item\em Set onsite operators. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a24cd17110e9bf7bfb6426f8673adb861}{Calculate\+Basis\+Onsite\+Electron}} (const int basis\+\_\+onsite) const
+\begin{DoxyCompactList}\small\item\em Calculate onsite basis for the electrons from an onsite basis. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ab394e032a5a04a56113089945f9f1573}{Calculate\+Basis\+Onsite\+LSpin}} (const int basis\+\_\+onsite) const
+\begin{DoxyCompactList}\small\item\em Calculate onsite basis for the loca spins from an onsite basis. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a4f4b44337e2e4b45c75f9bbcc3257cc2}{onsite\+\_\+operator\+\_\+c\+\_\+up\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The annihilation operator for the electrons with the up spin $ \hat{c}_{\uparrow}$. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a2253edacec12831f51468127653035f2}{onsite\+\_\+operator\+\_\+c\+\_\+down\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The annihilation operator for the electrons with the down spin $ \hat{c}_{\downarrow}$. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a5e500721cdcc0e73d3b572631e65cb87}{onsite\+\_\+operator\+\_\+c\+\_\+up\+\_\+dagger\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The creation operator for the electrons with the up spin $ \hat{c}^{\dagger}_{\uparrow}$. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aa023e8e0e363652be18a35e335e67eff}{onsite\+\_\+operator\+\_\+c\+\_\+down\+\_\+dagger\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The the creation operator for the electrons with the down spin $ \hat{c}^{\dagger}_{\downarrow}$. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aa0bbb2132cfe81e999fb854523447ac1}{onsite\+\_\+operator\+\_\+nc\+\_\+up\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The number operator for the electrons with the up spin $ \hat{n}_{\uparrow}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow}$. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a56691845e86a007fddfa1c60e1583903}{onsite\+\_\+operator\+\_\+nc\+\_\+down\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The number operator for the electrons with the down spin $ \hat{n}_{\downarrow}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow}$. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8da46d41a7a2c3e25c9c1f53dec353cc}{onsite\+\_\+operator\+\_\+nc\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The number operator for the electrons $ \hat{n}=\hat{n}_{\uparrow} + \hat{n}_{\downarrow}$. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ae6514f4c5a49e4e389f318b707d90450}{onsite\+\_\+operator\+\_\+sxc\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The spin operator for the x-\/direction for the electrons $ \hat{s}^{x}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} + \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})$. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a96478f08b354373c3dec567b7590bccf}{onsite\+\_\+operator\+\_\+isyc\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The spin operator for the y-\/direction for the electrons $ i\hat{s}^{y}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})$. Here $ i=\sqrt{-1}$ is the the imaginary unit. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1767d4960b6e7c33c565764b1d0ba678}{onsite\+\_\+operator\+\_\+szc\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The spin operator for the z-\/direction for the electrons $ \hat{s}^{z}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow})$. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a3f24803c5650bf6e0e9d7c95c6947b03}{onsite\+\_\+operator\+\_\+spc\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The raising operator for spin of the electrons $ \hat{s}^{+}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow}$. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_af8852febc33a6bffef4ecb3d2ee7ee86}{onsite\+\_\+operator\+\_\+smc\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The lowering operator for spin of the electrons $ \hat{s}^{-}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow}$. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ac649bee1adadb16665f391ea5b7006d6}{onsite\+\_\+operator\+\_\+sxl\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The spin-\/ $ S$ operator of the local spin for the x-\/direction $ \hat{S}^{x}$. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a78c2ceb6db085371d2cd60e605ef7ff4}{onsite\+\_\+operator\+\_\+isyl\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The spin-\/ $ S$ operator of the local spin for the y-\/direction $ i\hat{S}^{y}$ with $ i$ being the imaginary unit. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a29562a4399a873d61fa984f996d77512}{onsite\+\_\+operator\+\_\+szl\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The spin-\/ $ S$ operator of the local spin for the z-\/direction $ \hat{S}^{z}$. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ae452a7033480d37d851c4a7cac7fcd56}{onsite\+\_\+operator\+\_\+spl\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The spin-\/ $ S$ raising operator of the local spin $ \hat{S}^{+}$. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_abf7f7e8964bc660c86d2aee535a9c150}{onsite\+\_\+operator\+\_\+sml\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The spin-\/ $ S$ raising operator of the local spin $ \hat{S}^{-}$. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a78911ac1de6b93124e9a38bf156dbadd}{onsite\+\_\+operator\+\_\+scsl\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The correlation between the electron spin and local spin $ \hat{\boldsymbol{s}}\cdot\hat{\boldsymbol{S}}=\hat{s}^{x}\hat{S}^{x}+\hat{s}^{y}\hat{S}^{y}+\hat{s}^{z}\hat{S}^{z}$. \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aba02ab8543186f7a1eb82ba4e4cd8093}{dim\+\_\+onsite\+\_\+electron\+\_\+}} = 4
+\begin{DoxyCompactList}\small\item\em The dimension of the local Hilbert space for the electrons, 4. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a7e254cfc3251d5aa58dcb4ce7f47f6cb}{system\+\_\+size\+\_\+}} = 0
+\begin{DoxyCompactList}\small\item\em The system size. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_acc57b3a69df57dfbbc7795223a43290d}{total\+\_\+2sz\+\_\+}} = 0
+\begin{DoxyCompactList}\small\item\em Twice the number of the total sz $ 2\langle\hat{S}^{z}_{\rm tot}\rangle$. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a441bd504ba6be4decd9cf69d615b4b32}{total\+\_\+electron\+\_\+}} = 0
+\begin{DoxyCompactList}\small\item\em The total electron $ \langle\hat{N}_{\rm e}\rangle$. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\+\_\+2lspin\+\_\+}} = 1
+\begin{DoxyCompactList}\small\item\em The magnitude of the local spin $ S$. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a88e6fb30eb30c28620dae59f67181249}{dim\+\_\+onsite\+\_\+lspin\+\_\+}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\+\_\+2lspin\+\_\+}} + 1
+\begin{DoxyCompactList}\small\item\em The dimension of the local Hilbert space, $ 2S + 1$. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a297a8ff80c53ce114d7901ebe3a457b9}{dim\+\_\+onsite\+\_\+}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aba02ab8543186f7a1eb82ba4e4cd8093}{dim\+\_\+onsite\+\_\+electron\+\_\+}}$\ast$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a88e6fb30eb30c28620dae59f67181249}{dim\+\_\+onsite\+\_\+lspin\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The dimension of the local Hilbert space, $ 4\times (2S + 1) $. \end{DoxyCompactList}\item 
+std\+::unordered\+\_\+set$<$ int $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a628d056b97a6ed45be589c8be2694d08}{calculated\+\_\+eigenvector\+\_\+set\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The calculated eigenvectors and eigenvalues. \end{DoxyCompactList}\item 
+std\+::unordered\+\_\+map$<$ std\+::pair$<$ int, int $>$, std\+::vector$<$ std\+::int64\+\_\+t $>$, \mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash}{utility\+::\+Pair\+Hash}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_abde159e228b5818c1a3c1b35d5390a76}{bases\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Bases of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
+std\+::unordered\+\_\+map$<$ std\+::pair$<$ int, int $>$, std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$, \mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash}{utility\+::\+Pair\+Hash}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aef6cb848bd1f0596814f4657e102b1f2}{bases\+\_\+inv\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Inverse bases of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} = \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{sparse\+\_\+matrix\+::\+CRS}}$<$ Real\+Type $>$
+\begin{DoxyCompactList}\small\item\em Alias of compressed row strage (CRS) with Real\+Type. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}} = std\+::pair$<$ int, double $>$
+\begin{DoxyCompactList}\small\item\em Alias of quantum number (total electron, total sz) pair. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Real\+Type$>$\newline
+class compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1\+D$<$ Real\+Type $>$}
+The base class for one-\/dimensional spin-\/electron systems with the U(1) symmetry. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Real\+Type} & The type of real values. \\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CRS@{CRS}}
+\index{CRS@{CRS}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CRS}{CRS}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+CRS =  \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{sparse\+\_\+matrix\+::\+CRS}}$<$Real\+Type$>$\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Alias of compressed row strage (CRS) with Real\+Type. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!QType@{QType}}
+\index{QType@{QType}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{QType}{QType}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+QType =  std\+::pair$<$int, double$>$\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Alias of quantum number (total electron, total sz) pair. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8dc01cc9a5a716dcba48934cd34fc47e}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8dc01cc9a5a716dcba48934cd34fc47e}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!ValueType@{ValueType}}
+\index{ValueType@{ValueType}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{ValueType}{ValueType}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Value\+Type =  Real\+Type}
+
+
+
+The type of real values. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ace952a54f1c61f82eab2c93be8254409}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ace952a54f1c61f82eab2c93be8254409}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!BaseU1SpinElectron\_1D@{BaseU1SpinElectron\_1D}}
+\index{BaseU1SpinElectron\_1D@{BaseU1SpinElectron\_1D}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{BaseU1SpinElectron\_1D()}{BaseU1SpinElectron\_1D()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Base\+U1\+Spin\+Electron\+\_\+1D (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{Base\+U1\+Spin\+Electron\+\_\+1D}} class. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8c13f033b4335c3c50bfadc01fb3af41}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8c13f033b4335c3c50bfadc01fb3af41}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!BaseU1SpinElectron\_1D@{BaseU1SpinElectron\_1D}}
+\index{BaseU1SpinElectron\_1D@{BaseU1SpinElectron\_1D}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{BaseU1SpinElectron\_1D()}{BaseU1SpinElectron\_1D()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Base\+U1\+Spin\+Electron\+\_\+1D (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{Base\+U1\+Spin\+Electron\+\_\+1D}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em system\+\_\+size} & The system size $ N $. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a679ded7b05555a3a8ac29859bb172b99}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a679ded7b05555a3a8ac29859bb172b99}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!BaseU1SpinElectron\_1D@{BaseU1SpinElectron\_1D}}
+\index{BaseU1SpinElectron\_1D@{BaseU1SpinElectron\_1D}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{BaseU1SpinElectron\_1D()}{BaseU1SpinElectron\_1D()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Base\+U1\+Spin\+Electron\+\_\+1D (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const double}]{magnitude\+\_\+lspin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{Base\+U1\+Spin\+Electron\+\_\+1D}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em system\+\_\+size} & The system size $ N $. \\
+\hline
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1389313456dd0e0e859d3bd1157e7859}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1389313456dd0e0e859d3bd1157e7859}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!BaseU1SpinElectron\_1D@{BaseU1SpinElectron\_1D}}
+\index{BaseU1SpinElectron\_1D@{BaseU1SpinElectron\_1D}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{BaseU1SpinElectron\_1D()}{BaseU1SpinElectron\_1D()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Base\+U1\+Spin\+Electron\+\_\+1D (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const int}]{total\+\_\+electron }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{Base\+U1\+Electron\+\_\+1D}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em system\+\_\+size} & The system size $ N $. \\
+\hline
+{\em total\+\_\+electron} & The number of the total electrons $ \langle \hat{N}_{e}\rangle =\sum^{N}_{i=1}\langle\hat{n}_{i}\rangle$. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aead3fe2597cb449add0c251021728c2a}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aead3fe2597cb449add0c251021728c2a}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!BaseU1SpinElectron\_1D@{BaseU1SpinElectron\_1D}}
+\index{BaseU1SpinElectron\_1D@{BaseU1SpinElectron\_1D}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{BaseU1SpinElectron\_1D()}{BaseU1SpinElectron\_1D()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Base\+U1\+Spin\+Electron\+\_\+1D (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{total\+\_\+electron }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{Base\+U1\+Electron\+\_\+1D}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em system\+\_\+size} & The system size $ N $. \\
+\hline
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+{\em total\+\_\+electron} & The number of the total electrons $ \langle \hat{N}_{e}\rangle =\sum^{N}_{i=1}\langle\hat{n}_{i}\rangle$. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1e1525c0ecd7bf928ea57b9087516538}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1e1525c0ecd7bf928ea57b9087516538}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!BaseU1SpinElectron\_1D@{BaseU1SpinElectron\_1D}}
+\index{BaseU1SpinElectron\_1D@{BaseU1SpinElectron\_1D}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{BaseU1SpinElectron\_1D()}{BaseU1SpinElectron\_1D()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Base\+U1\+Spin\+Electron\+\_\+1D (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{total\+\_\+electron,  }\item[{const double}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{Base\+U1\+Electron\+\_\+1D}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em system\+\_\+size} & The system size $ N $. \\
+\hline
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+{\em total\+\_\+electron} & The number of the total electrons $ \langle \hat{N}_{e}\rangle =\sum^{N}_{i=1}\langle\hat{n}_{i}\rangle$. \\
+\hline
+{\em total\+\_\+sz} & The total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{s}^{z}_{i}+\hat{S}^{z}_{i}\rangle $ \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a24cd17110e9bf7bfb6426f8673adb861}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a24cd17110e9bf7bfb6426f8673adb861}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CalculateBasisOnsiteElectron@{CalculateBasisOnsiteElectron}}
+\index{CalculateBasisOnsiteElectron@{CalculateBasisOnsiteElectron}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateBasisOnsiteElectron()}{CalculateBasisOnsiteElectron()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Basis\+Onsite\+Electron (\begin{DoxyParamCaption}\item[{const int}]{basis\+\_\+onsite }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Calculate onsite basis for the electrons from an onsite basis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em basis\+\_\+onsite} & The onsite basis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The onsite basis for the electrons. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ab394e032a5a04a56113089945f9f1573}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ab394e032a5a04a56113089945f9f1573}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CalculateBasisOnsiteLSpin@{CalculateBasisOnsiteLSpin}}
+\index{CalculateBasisOnsiteLSpin@{CalculateBasisOnsiteLSpin}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateBasisOnsiteLSpin()}{CalculateBasisOnsiteLSpin()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Basis\+Onsite\+LSpin (\begin{DoxyParamCaption}\item[{const int}]{basis\+\_\+onsite }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Calculate onsite basis for the loca spins from an onsite basis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em basis\+\_\+onsite} & The onsite basis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The onsite basis for the local spins. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a66a72d066c290e214f6407b0eb746c42}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a66a72d066c290e214f6407b0eb746c42}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CalculateNumElectron@{CalculateNumElectron}}
+\index{CalculateNumElectron@{CalculateNumElectron}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateNumElectron()}{CalculateNumElectron()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Num\+Electron (\begin{DoxyParamCaption}\item[{const int}]{basis\+\_\+onsite }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculate the number of electrons from the input onsite basis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em basis\+\_\+onsite} & The onsite basis. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of electrons. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ac2e1e7eac345e6de6d8927a702d53173}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ac2e1e7eac345e6de6d8927a702d53173}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CalculateQuntumNumberDifference@{CalculateQuntumNumberDifference}}
+\index{CalculateQuntumNumberDifference@{CalculateQuntumNumberDifference}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateQuntumNumberDifference()}{CalculateQuntumNumberDifference()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Quntum\+Number\+Difference (\begin{DoxyParamCaption}\item[{const int}]{row,  }\item[{const int}]{col }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculate difference of the number of total electrons and the total sz from the rows and columns in the matrix representation of an onsite operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & The row in the matrix representation of an onsite operator. \\
+\hline
+{\em col} & The column in the matrix representation of an onsite operator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The differences of the total electron and the total sz. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a6c76df83eeef7e4f373b5f13ef708224}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a6c76df83eeef7e4f373b5f13ef708224}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CalculateTargetDim@{CalculateTargetDim}}
+\index{CalculateTargetDim@{CalculateTargetDim}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateTargetDim()}{CalculateTargetDim()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Target\+Dim (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculate the dimension of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
+
+\begin{DoxyReturn}{Returns}
+The dimension of the target Hilbert space. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ac34dd619368f7ff515c72c409fd0661e}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ac34dd619368f7ff515c72c409fd0661e}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CalculateTargetDim@{CalculateTargetDim}}
+\index{CalculateTargetDim@{CalculateTargetDim}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateTargetDim()}{CalculateTargetDim()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Target\+Dim (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{total\+\_\+electron,  }\item[{const double}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Calculate the dimension of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em system\+\_\+size} & The system size $ N$. \\
+\hline
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+{\em total\+\_\+electron} & The total electron $ \langle\hat{N}_{\rm e}\rangle$. \\
+\hline
+{\em total\+\_\+sz} & The total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle$. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The dimension of the target Hilbert space. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_abe4a2cd0dfd3cdf559b25bc38dbb2541}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_abe4a2cd0dfd3cdf559b25bc38dbb2541}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CalculateTargetDim@{CalculateTargetDim}}
+\index{CalculateTargetDim@{CalculateTargetDim}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateTargetDim()}{CalculateTargetDim()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Target\+Dim (\begin{DoxyParamCaption}\item[{const int}]{total\+\_\+electron,  }\item[{const double}]{total\+\_\+sz }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculate the dimension of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em total\+\_\+electron} & The total electron $ \langle\hat{N}_{\rm e}\rangle$. \\
+\hline
+{\em total\+\_\+sz} & The total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle$. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The dimension of the target Hilbert space. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a41afbeb773f9e69fa6c7b772fd830dfd}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a41afbeb773f9e69fa6c7b772fd830dfd}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CalculateTargetDim@{CalculateTargetDim}}
+\index{CalculateTargetDim@{CalculateTargetDim}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateTargetDim()}{CalculateTargetDim()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Target\+Dim (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}} \&}]{quantum\+\_\+number }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculate the dimension of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em quantum\+\_\+number} & The pair of the total electron $ \langle\hat{N}_{\rm e}\rangle $ and total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The dimension of the target Hilbert space. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a6edeca65995e955d42e166d9c058314d}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a6edeca65995e955d42e166d9c058314d}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CreateOnsiteOperatorCDown@{CreateOnsiteOperatorCDown}}
+\index{CreateOnsiteOperatorCDown@{CreateOnsiteOperatorCDown}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorCDown()}{CreateOnsiteOperatorCDown()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+CDown (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Generate the annihilation operator for the electrons with the down spin $ \hat{c}_{\downarrow}$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{c}_{\downarrow}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aa52478d83568239ad051ab7bc53a7dc1}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aa52478d83568239ad051ab7bc53a7dc1}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CreateOnsiteOperatorCDownDagger@{CreateOnsiteOperatorCDownDagger}}
+\index{CreateOnsiteOperatorCDownDagger@{CreateOnsiteOperatorCDownDagger}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorCDownDagger()}{CreateOnsiteOperatorCDownDagger()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+CDown\+Dagger (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Generate the creation operator for the electrons with the down spin $ \hat{c}^{\dagger}_{\downarrow}$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{c}^{\dagger}_{\downarrow}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ade86fc6f45f9c3460415569d658febeb}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ade86fc6f45f9c3460415569d658febeb}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CreateOnsiteOperatorCUp@{CreateOnsiteOperatorCUp}}
+\index{CreateOnsiteOperatorCUp@{CreateOnsiteOperatorCUp}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorCUp()}{CreateOnsiteOperatorCUp()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+CUp (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Generate the annihilation operator for the electrons with the up spin $ \hat{c}_{\uparrow}$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{c}_{\uparrow}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aeaa930775a1d36058732b7967c465388}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aeaa930775a1d36058732b7967c465388}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CreateOnsiteOperatorCUpDagger@{CreateOnsiteOperatorCUpDagger}}
+\index{CreateOnsiteOperatorCUpDagger@{CreateOnsiteOperatorCUpDagger}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorCUpDagger()}{CreateOnsiteOperatorCUpDagger()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+CUp\+Dagger (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Generate the creation operator for the electrons with the up spin $ \hat{c}^{\dagger}_{\uparrow}$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{c}^{\dagger}_{\uparrow}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a2655d8d78f7eaf41ace9ce5a9c8ac90d}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a2655d8d78f7eaf41ace9ce5a9c8ac90d}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CreateOnsiteOperatoriSyC@{CreateOnsiteOperatoriSyC}}
+\index{CreateOnsiteOperatoriSyC@{CreateOnsiteOperatoriSyC}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatoriSyC()}{CreateOnsiteOperatoriSyC()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operatori\+SyC (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Generate the spin operator for the y-\/direction for the electrons $ i\hat{s}^{y}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})$. Here $ i=\sqrt{-1}$ is the the imaginary unit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The matrix of $ i\hat{s}^{y}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aa697f969a2881966f9700878a80d4791}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aa697f969a2881966f9700878a80d4791}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CreateOnsiteOperatoriSyL@{CreateOnsiteOperatoriSyL}}
+\index{CreateOnsiteOperatoriSyL@{CreateOnsiteOperatoriSyL}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatoriSyL()}{CreateOnsiteOperatoriSyL()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operatori\+SyL (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Generate the spin-\/ $ S$ operator of the local spin for the y-\/direction $ i\hat{S}^{y}$ with $ i$ being the imaginary unit. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The matrix of $ i\hat{S}^{y}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a102a10a52ece5265767c565da96195b3}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a102a10a52ece5265767c565da96195b3}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CreateOnsiteOperatorNC@{CreateOnsiteOperatorNC}}
+\index{CreateOnsiteOperatorNC@{CreateOnsiteOperatorNC}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorNC()}{CreateOnsiteOperatorNC()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+NC (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Generate the number operator for the electrons $ \hat{n}=\hat{n}_{\uparrow} + \hat{n}_{\downarrow}$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{n}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a67e087762b868a541cc9e6682aeb092a}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a67e087762b868a541cc9e6682aeb092a}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CreateOnsiteOperatorNCDown@{CreateOnsiteOperatorNCDown}}
+\index{CreateOnsiteOperatorNCDown@{CreateOnsiteOperatorNCDown}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorNCDown()}{CreateOnsiteOperatorNCDown()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+NCDown (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Generate the number operator for the electrons with the down spin $ \hat{n}_{\downarrow}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow}$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{n}_{\downarrow}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ade60afdae6afc7d2832a836b186e878b}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ade60afdae6afc7d2832a836b186e878b}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CreateOnsiteOperatorNCUp@{CreateOnsiteOperatorNCUp}}
+\index{CreateOnsiteOperatorNCUp@{CreateOnsiteOperatorNCUp}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorNCUp()}{CreateOnsiteOperatorNCUp()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+NCUp (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Generate the number operator for the electrons with the up spin $ \hat{n}_{\uparrow}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow}$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{n}_{\uparrow}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a2c054874201636966a39102673b8a452}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a2c054874201636966a39102673b8a452}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CreateOnsiteOperatorSCSL@{CreateOnsiteOperatorSCSL}}
+\index{CreateOnsiteOperatorSCSL@{CreateOnsiteOperatorSCSL}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSCSL()}{CreateOnsiteOperatorSCSL()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SCSL (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Generate $ \hat{\boldsymbol{s}}\cdot\hat{\boldsymbol{S}}=\hat{s}^{x}\hat{S}^{x}+\hat{s}^{y}\hat{S}^{y}+\hat{s}^{z}\hat{S}^{z}$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{\boldsymbol{s}}\cdot\hat{\boldsymbol{S}}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aec74f4719f814ef470b506cc28947df4}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aec74f4719f814ef470b506cc28947df4}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CreateOnsiteOperatorSmC@{CreateOnsiteOperatorSmC}}
+\index{CreateOnsiteOperatorSmC@{CreateOnsiteOperatorSmC}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSmC()}{CreateOnsiteOperatorSmC()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SmC (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Generate the lowering operator for spin of the electrons $ \hat{s}^{-}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow}$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{s}^{-}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1926cd00080a8012174244e7f1ee9086}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1926cd00080a8012174244e7f1ee9086}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CreateOnsiteOperatorSmL@{CreateOnsiteOperatorSmL}}
+\index{CreateOnsiteOperatorSmL@{CreateOnsiteOperatorSmL}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSmL()}{CreateOnsiteOperatorSmL()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SmL (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Generate the spin-\/ $ S$ raising operator of the local spin $ \hat{S}^{-}$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{S}^{-}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a036f27edb884a50731e99aac5ad5b363}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a036f27edb884a50731e99aac5ad5b363}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CreateOnsiteOperatorSpC@{CreateOnsiteOperatorSpC}}
+\index{CreateOnsiteOperatorSpC@{CreateOnsiteOperatorSpC}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSpC()}{CreateOnsiteOperatorSpC()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SpC (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Generate the raising operator for spin of the electrons $ \hat{s}^{+}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow}$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{s}^{+}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a3ab4dae108027aa369609123a46d610a}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a3ab4dae108027aa369609123a46d610a}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CreateOnsiteOperatorSpL@{CreateOnsiteOperatorSpL}}
+\index{CreateOnsiteOperatorSpL@{CreateOnsiteOperatorSpL}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSpL()}{CreateOnsiteOperatorSpL()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SpL (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Generate the spin-\/ $ S$ raising operator of the local spin $ \hat{S}^{+}$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{S}^{+}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_abab0b145dc1e793803578d48b9a66bd0}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_abab0b145dc1e793803578d48b9a66bd0}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CreateOnsiteOperatorSxC@{CreateOnsiteOperatorSxC}}
+\index{CreateOnsiteOperatorSxC@{CreateOnsiteOperatorSxC}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSxC()}{CreateOnsiteOperatorSxC()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SxC (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Generate the spin operator for the x-\/direction for the electrons $ \hat{s}^{x}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} + \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{s}^{x}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aa37ff16eb7ededcb83354092c9ac6d2c}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aa37ff16eb7ededcb83354092c9ac6d2c}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CreateOnsiteOperatorSxL@{CreateOnsiteOperatorSxL}}
+\index{CreateOnsiteOperatorSxL@{CreateOnsiteOperatorSxL}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSxL()}{CreateOnsiteOperatorSxL()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SxL (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Generate the spin-\/ $ S$ operator of the local spin for the x-\/direction $ \hat{S}^{x}$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{S}^{x}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aca985efae20c351bc9342621b791d53e}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aca985efae20c351bc9342621b791d53e}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CreateOnsiteOperatorSzC@{CreateOnsiteOperatorSzC}}
+\index{CreateOnsiteOperatorSzC@{CreateOnsiteOperatorSzC}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSzC()}{CreateOnsiteOperatorSzC()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SzC (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Generate the spin operator for the z-\/direction for the electrons $ \hat{s}^{z}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow})$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{s}^{z}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_acb2cb8c341e4124e3e5278a3e19c7fc5}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_acb2cb8c341e4124e3e5278a3e19c7fc5}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!CreateOnsiteOperatorSzL@{CreateOnsiteOperatorSzL}}
+\index{CreateOnsiteOperatorSzL@{CreateOnsiteOperatorSzL}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSzL()}{CreateOnsiteOperatorSzL()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SzL (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Generate the spin-\/ $ S$ operator of the local spin for the z-\/direction $ \hat{S}^{z}$. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{S}^{z}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_af313024f52e31794864d1d9b0d66f683}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_af313024f52e31794864d1d9b0d66f683}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GenerateBasis@{GenerateBasis}}
+\index{GenerateBasis@{GenerateBasis}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateBasis()}{GenerateBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Basis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Generate bases of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a4584edb50a1940eeda09d1ce654c9bc0}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a4584edb50a1940eeda09d1ce654c9bc0}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GenerateBasis@{GenerateBasis}}
+\index{GenerateBasis@{GenerateBasis}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateBasis()}{GenerateBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Basis (\begin{DoxyParamCaption}\item[{const int}]{total\+\_\+electron,  }\item[{const double}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Generate bases of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em total\+\_\+electron} & The total electron $ \langle\hat{N}_{\rm e}\rangle$. \\
+\hline
+{\em total\+\_\+sz} & The total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle$. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a7a2eac414ea8f016e84540a49193802e}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a7a2eac414ea8f016e84540a49193802e}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GenerateBasis@{GenerateBasis}}
+\index{GenerateBasis@{GenerateBasis}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateBasis()}{GenerateBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Basis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}} \&}]{quantum\+\_\+number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Generate bases of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em quantum\+\_\+number} & The pair of the total electron $ \langle\hat{N}_{\rm e}\rangle $ and total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle$ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a62dd65b1c316662158ac2cd40f1b4efc}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a62dd65b1c316662158ac2cd40f1b4efc}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GenerateTargetSector@{GenerateTargetSector}}
+\index{GenerateTargetSector@{GenerateTargetSector}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateTargetSector()}{GenerateTargetSector()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \&}]{m\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \&}]{m\+\_\+2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculate the quantum numbers of excited states that appear when calculating the correlation functions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m\+\_\+1} & The matrix of an onsite operator. \\
+\hline
+{\em m\+\_\+2} & The matrix of an onsite operator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The list of quantum numbers. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1e34494c3a97ecc11d3bb18fcd6d52eb}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1e34494c3a97ecc11d3bb18fcd6d52eb}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GenerateTargetSector@{GenerateTargetSector}}
+\index{GenerateTargetSector@{GenerateTargetSector}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateTargetSector()}{GenerateTargetSector()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::vector$<$ std\+::tuple$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \&}]{m\+\_\+1\+\_\+bra,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \&}]{m\+\_\+2\+\_\+bra,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \&}]{m\+\_\+3\+\_\+ket,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \&}]{m\+\_\+4\+\_\+ket }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculate the quantum numbers of excited states that appear when calculating the correlation functions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m\+\_\+1\+\_\+bra} & The matrix of an onsite operator. \\
+\hline
+{\em m\+\_\+2\+\_\+bra} & The matrix of an onsite operator. \\
+\hline
+{\em m\+\_\+3\+\_\+ket} & The matrix of an onsite operator. \\
+\hline
+{\em m\+\_\+4\+\_\+ket} & The matrix of an onsite operator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The list of quantum numbers. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a876ef425d210ae5967fc28da747e5bc8}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a876ef425d210ae5967fc28da747e5bc8}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GenerateTargetSector@{GenerateTargetSector}}
+\index{GenerateTargetSector@{GenerateTargetSector}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateTargetSector()}{GenerateTargetSector()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \&}]{m\+\_\+1\+\_\+bra,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \&}]{m\+\_\+2\+\_\+ket,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \&}]{m\+\_\+3\+\_\+ket }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculate the quantum numbers of excited states that appear when calculating the correlation functions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m\+\_\+1\+\_\+bra} & The matrix of an onsite operator. \\
+\hline
+{\em m\+\_\+2\+\_\+ket} & The matrix of an onsite operator. \\
+\hline
+{\em m\+\_\+3\+\_\+ket} & The matrix of an onsite operator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The list of quantum numbers. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_adafb772a2c848f5686ec9b6802e9c9dc}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_adafb772a2c848f5686ec9b6802e9c9dc}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetBases@{GetBases}}
+\index{GetBases@{GetBases}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetBases()}{GetBases()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const std\+::unordered\+\_\+map$<$ std\+::pair$<$ int, int $>$, std\+::vector$<$ std\+::int64\+\_\+t $>$, \mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash}{utility\+::\+Pair\+Hash}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Bases (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get all bases. 
+
+\begin{DoxyReturn}{Returns}
+Bases. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a2c50c4b17a99ef75c381eb13da0d2fd2}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a2c50c4b17a99ef75c381eb13da0d2fd2}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetBasesInv@{GetBasesInv}}
+\index{GetBasesInv@{GetBasesInv}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetBasesInv()}{GetBasesInv()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const std\+::unordered\+\_\+map$<$ std\+::pair$<$ int, int $>$, std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$, \mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash}{utility\+::\+Pair\+Hash}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Bases\+Inv (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get all inverse bases. 
+
+\begin{DoxyReturn}{Returns}
+Inverse bases. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a2f20f0cf2e93a1de16d545f63e6b7842}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a2f20f0cf2e93a1de16d545f63e6b7842}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetBasis@{GetBasis}}
+\index{GetBasis@{GetBasis}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetBasis()}{GetBasis()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const std\+::vector$<$ std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Basis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}} \&}]{quantum\+\_\+number }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get basis of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em quantum\+\_\+number} & The pair of the total electron $ \langle\hat{N}_{\rm e}\rangle $ and total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Basis. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_adb745c029033ac96aeeb8ab4dead331e}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_adb745c029033ac96aeeb8ab4dead331e}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetBasisInv@{GetBasisInv}}
+\index{GetBasisInv@{GetBasisInv}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetBasisInv()}{GetBasisInv()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Basis\+Inv (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}} \&}]{quantum\+\_\+number }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get inverse basis of the target Hilbert space space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em quantum\+\_\+number} & The pair of the total electron $ \langle\hat{N}_{\rm e}\rangle $ and total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Inverse basis. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a270bfe077404d46a09f77c4c41284c08}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a270bfe077404d46a09f77c4c41284c08}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetCalculatedEigenvectorSet@{GetCalculatedEigenvectorSet}}
+\index{GetCalculatedEigenvectorSet@{GetCalculatedEigenvectorSet}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetCalculatedEigenvectorSet()}{GetCalculatedEigenvectorSet()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const std\+::unordered\+\_\+set$<$ int $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Calculated\+Eigenvector\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get calculated\+\_\+eigenvector\+\_\+set\+\_\+, which represents the calculated eigenvectors and eigenvalues. 
+
+\begin{DoxyReturn}{Returns}
+calculated\+\_\+eigenvector\+\_\+set\+\_\+. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_af509aa69f9a132afbfafd86974317f3a}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_af509aa69f9a132afbfafd86974317f3a}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetDimOnsite@{GetDimOnsite}}
+\index{GetDimOnsite@{GetDimOnsite}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetDimOnsite()}{GetDimOnsite()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Dim\+Onsite (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get dimension of the local Hilbert space, $ 4*(2S+1)$. 
+
+\begin{DoxyReturn}{Returns}
+The dimension of the local Hilbert space, $ 4*(2S+1)$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a68f81fec3ed5602021fd778ee5a6b58e}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a68f81fec3ed5602021fd778ee5a6b58e}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetDimOnsiteELectron@{GetDimOnsiteELectron}}
+\index{GetDimOnsiteELectron@{GetDimOnsiteELectron}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetDimOnsiteELectron()}{GetDimOnsiteELectron()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Dim\+Onsite\+ELectron (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a553ad65a9860714f3a582516f68e942c}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a553ad65a9860714f3a582516f68e942c}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetDimOnsiteLSpin@{GetDimOnsiteLSpin}}
+\index{GetDimOnsiteLSpin@{GetDimOnsiteLSpin}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetDimOnsiteLSpin()}{GetDimOnsiteLSpin()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Dim\+Onsite\+LSpin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aa2be4c9a16a9bdf108c81d1d8a5b0b5d}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aa2be4c9a16a9bdf108c81d1d8a5b0b5d}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetMagnitudeLSpin@{GetMagnitudeLSpin}}
+\index{GetMagnitudeLSpin@{GetMagnitudeLSpin}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetMagnitudeLSpin()}{GetMagnitudeLSpin()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+double \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Magnitude\+LSpin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the magnitude of the local spin $ S$. 
+
+\begin{DoxyReturn}{Returns}
+The magnitude of the spin $ S$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a114ca4b0dec996f77b7f85c7f846f1b4}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a114ca4b0dec996f77b7f85c7f846f1b4}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetOnsiteOperatorCDown@{GetOnsiteOperatorCDown}}
+\index{GetOnsiteOperatorCDown@{GetOnsiteOperatorCDown}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatorCDown()}{GetOnsiteOperatorCDown()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+CDown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the annihilation operator for the electrons with the down spin $ \hat{c}_{\downarrow}$. 
+
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{c}_{\downarrow}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a4698ebcfbb9c957bb2edef2eccfdcd24}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a4698ebcfbb9c957bb2edef2eccfdcd24}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetOnsiteOperatorCDownDagger@{GetOnsiteOperatorCDownDagger}}
+\index{GetOnsiteOperatorCDownDagger@{GetOnsiteOperatorCDownDagger}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatorCDownDagger()}{GetOnsiteOperatorCDownDagger()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+CDown\+Dagger (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the creation operator for the electrons with the down spin $ \hat{c}^{\dagger}_{\downarrow}$. 
+
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{c}^{\dagger}_{\downarrow}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a65f4321d5d41b8898b4dcf17dd83329d}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a65f4321d5d41b8898b4dcf17dd83329d}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetOnsiteOperatorCUp@{GetOnsiteOperatorCUp}}
+\index{GetOnsiteOperatorCUp@{GetOnsiteOperatorCUp}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatorCUp()}{GetOnsiteOperatorCUp()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+CUp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the annihilation operator for the electrons with the up spin $ \hat{c}_{\uparrow}$. 
+
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{c}_{\uparrow}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a3686b4987cd45b9524faa073e1834cbb}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a3686b4987cd45b9524faa073e1834cbb}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetOnsiteOperatorCUpDagger@{GetOnsiteOperatorCUpDagger}}
+\index{GetOnsiteOperatorCUpDagger@{GetOnsiteOperatorCUpDagger}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatorCUpDagger()}{GetOnsiteOperatorCUpDagger()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+CUp\+Dagger (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the creation operator for the electrons with the up spin $ \hat{c}^{\dagger}_{\uparrow}$. 
+
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{c}^{\dagger}_{\uparrow}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_af4389ed6d06d077e51155fe67b7022d1}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_af4389ed6d06d077e51155fe67b7022d1}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetOnsiteOperatoriSyC@{GetOnsiteOperatoriSyC}}
+\index{GetOnsiteOperatoriSyC@{GetOnsiteOperatoriSyC}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatoriSyC()}{GetOnsiteOperatoriSyC()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operatori\+SyC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the spin operator for the y-\/direction for the electrons $ i\hat{s}^{y}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})$. Here $ i=\sqrt{-1}$ is the the imaginary unit. 
+
+\begin{DoxyReturn}{Returns}
+The matrix of $ i\hat{s}^{y}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a73453ea34ae9e654724eee839c2baf5f}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a73453ea34ae9e654724eee839c2baf5f}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetOnsiteOperatoriSyL@{GetOnsiteOperatoriSyL}}
+\index{GetOnsiteOperatoriSyL@{GetOnsiteOperatoriSyL}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatoriSyL()}{GetOnsiteOperatoriSyL()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operatori\+SyL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the spin-\/ $ S$ operator of the local spin for the y-\/direction $ i\hat{S}^{y}$ with $ i$ being the imaginary unit. 
+
+\begin{DoxyReturn}{Returns}
+The matrix of $ i\hat{S}^{y}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a5dfdc60ddc171cbd2db1c8a39c7ec747}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a5dfdc60ddc171cbd2db1c8a39c7ec747}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetOnsiteOperatorNC@{GetOnsiteOperatorNC}}
+\index{GetOnsiteOperatorNC@{GetOnsiteOperatorNC}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatorNC()}{GetOnsiteOperatorNC()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+NC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the number operator for the electrons $ \hat{n}=\hat{n}_{\uparrow} + \hat{n}_{\downarrow}$. 
+
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{n}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ad3d48cce3aedefd3e84ae7dbe8a434da}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ad3d48cce3aedefd3e84ae7dbe8a434da}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetOnsiteOperatorNCDown@{GetOnsiteOperatorNCDown}}
+\index{GetOnsiteOperatorNCDown@{GetOnsiteOperatorNCDown}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatorNCDown()}{GetOnsiteOperatorNCDown()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+NCDown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the number operator for the electrons with the down spin $ \hat{n}_{\downarrow}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow}$. 
+
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{n}_{\downarrow}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a78c9e58de9f2c3847dc19b43fe03b042}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a78c9e58de9f2c3847dc19b43fe03b042}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetOnsiteOperatorNCUp@{GetOnsiteOperatorNCUp}}
+\index{GetOnsiteOperatorNCUp@{GetOnsiteOperatorNCUp}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatorNCUp()}{GetOnsiteOperatorNCUp()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+NCUp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the number operator for the electrons with the up spin $ \hat{n}_{\uparrow}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow}$. 
+
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{n}_{\uparrow}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a40884d226b5558b9faa0a91cc98b9e9d}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a40884d226b5558b9faa0a91cc98b9e9d}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetOnsiteOperatorSCSL@{GetOnsiteOperatorSCSL}}
+\index{GetOnsiteOperatorSCSL@{GetOnsiteOperatorSCSL}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSCSL()}{GetOnsiteOperatorSCSL()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SCSL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get $ \hat{\boldsymbol{s}}\cdot\hat{\boldsymbol{S}}=\hat{s}^{x}\hat{S}^{x}+\hat{s}^{y}\hat{S}^{y}+\hat{s}^{z}\hat{S}^{z}$. 
+
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{\boldsymbol{s}}\cdot\hat{\boldsymbol{S}}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a34087179242aa220926e3fbf20dcb530}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a34087179242aa220926e3fbf20dcb530}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetOnsiteOperatorSmC@{GetOnsiteOperatorSmC}}
+\index{GetOnsiteOperatorSmC@{GetOnsiteOperatorSmC}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSmC()}{GetOnsiteOperatorSmC()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SmC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the lowering operator for spin of the electrons $ \hat{s}^{-}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow}$. 
+
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{s}^{-}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a5b5e49374c2c3395077cf29b0bfe6e41}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a5b5e49374c2c3395077cf29b0bfe6e41}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetOnsiteOperatorSmL@{GetOnsiteOperatorSmL}}
+\index{GetOnsiteOperatorSmL@{GetOnsiteOperatorSmL}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSmL()}{GetOnsiteOperatorSmL()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SmL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the spin-\/ $ S$ raising operator of the local spin $ \hat{S}^{-}$. 
+
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{S}^{-}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aedc2fb9a70c9e12750ab008def7c56c1}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aedc2fb9a70c9e12750ab008def7c56c1}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetOnsiteOperatorSpC@{GetOnsiteOperatorSpC}}
+\index{GetOnsiteOperatorSpC@{GetOnsiteOperatorSpC}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSpC()}{GetOnsiteOperatorSpC()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SpC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the raising operator for spin of the electrons $ \hat{s}^{+}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow}$. 
+
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{s}^{+}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a0f728de04a2f7c0a3aa2554db2c67c77}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a0f728de04a2f7c0a3aa2554db2c67c77}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetOnsiteOperatorSpL@{GetOnsiteOperatorSpL}}
+\index{GetOnsiteOperatorSpL@{GetOnsiteOperatorSpL}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSpL()}{GetOnsiteOperatorSpL()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SpL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the spin-\/ $ S$ raising operator of the local spin $ \hat{S}^{+}$. 
+
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{S}^{+}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a7029e45fdf509a12df51e0805ef33e9e}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a7029e45fdf509a12df51e0805ef33e9e}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetOnsiteOperatorSxC@{GetOnsiteOperatorSxC}}
+\index{GetOnsiteOperatorSxC@{GetOnsiteOperatorSxC}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSxC()}{GetOnsiteOperatorSxC()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SxC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the spin operator for the x-\/direction for the electrons $ \hat{s}^{x}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} + \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})$. 
+
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{s}^{x}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a5b22d77b8f346b0feaf68267e76d2601}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a5b22d77b8f346b0feaf68267e76d2601}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetOnsiteOperatorSxL@{GetOnsiteOperatorSxL}}
+\index{GetOnsiteOperatorSxL@{GetOnsiteOperatorSxL}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSxL()}{GetOnsiteOperatorSxL()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SxL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the spin-\/ $ S$ operator of the local spin for the x-\/direction $ \hat{S}^{x}$. 
+
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{S}^{x}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a3a1223bcacd97a5387c8716ff4b2e092}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a3a1223bcacd97a5387c8716ff4b2e092}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetOnsiteOperatorSzC@{GetOnsiteOperatorSzC}}
+\index{GetOnsiteOperatorSzC@{GetOnsiteOperatorSzC}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSzC()}{GetOnsiteOperatorSzC()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SzC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the spin operator for the z-\/direction for the electrons $ \hat{s}^{z}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow})$. 
+
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{s}^{z}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a630579ee91e52c299351ac3d5b011302}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a630579ee91e52c299351ac3d5b011302}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetOnsiteOperatorSzL@{GetOnsiteOperatorSzL}}
+\index{GetOnsiteOperatorSzL@{GetOnsiteOperatorSzL}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSzL()}{GetOnsiteOperatorSzL()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SzL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the spin-\/ $ S$ operator of the local spin for the z-\/direction $ \hat{S}^{z}$. 
+
+\begin{DoxyReturn}{Returns}
+The matrix of $ \hat{S}^{z}$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ac5aca3c2e80d606a71879e5103a5fb39}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ac5aca3c2e80d606a71879e5103a5fb39}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetSystemSize@{GetSystemSize}}
+\index{GetSystemSize@{GetSystemSize}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetSystemSize()}{GetSystemSize()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+System\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the system size $ N$. 
+
+\begin{DoxyReturn}{Returns}
+The system size $ N$. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aaff89aee53bb68035bc41b9bc206fe2c}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aaff89aee53bb68035bc41b9bc206fe2c}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetTargetBasis@{GetTargetBasis}}
+\index{GetTargetBasis@{GetTargetBasis}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetTargetBasis()}{GetTargetBasis()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const std\+::vector$<$ std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Target\+Basis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get basis of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
+
+\begin{DoxyReturn}{Returns}
+Basis. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a09c1c7af91dff905fd7a3b36a6be3191}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a09c1c7af91dff905fd7a3b36a6be3191}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetTargetBasisInv@{GetTargetBasisInv}}
+\index{GetTargetBasisInv@{GetTargetBasisInv}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetTargetBasisInv()}{GetTargetBasisInv()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Target\+Basis\+Inv (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get inverse basis of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
+
+\begin{DoxyReturn}{Returns}
+Inverse basis. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8c872bc8a2fec3e5a0ea25438d5146a3}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8c872bc8a2fec3e5a0ea25438d5146a3}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetTotalElectron@{GetTotalElectron}}
+\index{GetTotalElectron@{GetTotalElectron}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetTotalElectron()}{GetTotalElectron()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Total\+Electron (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$. 
+
+\begin{DoxyReturn}{Returns}
+The total electrons. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_af7a37dd26cb6d71c393ee4233fdaf538}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_af7a37dd26cb6d71c393ee4233fdaf538}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!GetTotalSz@{GetTotalSz}}
+\index{GetTotalSz@{GetTotalSz}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetTotalSz()}{GetTotalSz()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+double \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Total\+Sz (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle$. 
+
+\begin{DoxyReturn}{Returns}
+The total sz. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a0fb55de1baebd1f15dc86ec3ebe503e5}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a0fb55de1baebd1f15dc86ec3ebe503e5}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!isValidQNumber@{isValidQNumber}}
+\index{isValidQNumber@{isValidQNumber}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{isValidQNumber()}{isValidQNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+static bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::is\+Valid\+QNumber (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{total\+\_\+electron,  }\item[{const double}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Check if there is a subspace specified by the input quantum numbers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em system\+\_\+size} & The system size $ N$. \\
+\hline
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+{\em total\+\_\+electron} & The total electron $ \langle\hat{N}_{\rm e}\rangle$. \\
+\hline
+{\em total\+\_\+sz} & The total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle$. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ture if there exists corresponding subspace, otherwise false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a015e180a7a1af56f1e0b80d38338569c}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a015e180a7a1af56f1e0b80d38338569c}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!isValidQNumber@{isValidQNumber}}
+\index{isValidQNumber@{isValidQNumber}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{isValidQNumber()}{isValidQNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::is\+Valid\+QNumber (\begin{DoxyParamCaption}\item[{const int}]{total\+\_\+electron,  }\item[{const double}]{total\+\_\+sz }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if there is a subspace specified by the input quantum numbers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em total\+\_\+electron} & The total electron $ \langle\hat{N}_{\rm e}\rangle$. \\
+\hline
+{\em total\+\_\+sz} & The total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle$. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ture if there exists corresponding subspace, otherwise false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a7a6bc26a9343fa46fad1455869d78da3}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a7a6bc26a9343fa46fad1455869d78da3}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!isValidQNumber@{isValidQNumber}}
+\index{isValidQNumber@{isValidQNumber}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{isValidQNumber()}{isValidQNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::is\+Valid\+QNumber (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8526e8fe332e5204f75bca6d2f671446}{QType}} \&}]{quantum\+\_\+number }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if there is a subspace specified by the input quantum numbers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em quantum\+\_\+number} & The pair of the total electron $ \langle\hat{N}_{\rm e}\rangle $ and total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ture if there exists corresponding subspace, otherwise false. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a4b43e632140f7ccde732bc91eb6d50b1}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a4b43e632140f7ccde732bc91eb6d50b1}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!PrintBasisOnsite@{PrintBasisOnsite}}
+\index{PrintBasisOnsite@{PrintBasisOnsite}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{PrintBasisOnsite()}{PrintBasisOnsite()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Print\+Basis\+Onsite (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Print the onsite bases. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a5d21bcf936f2a2aa879ceb9050db8dfe}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a5d21bcf936f2a2aa879ceb9050db8dfe}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!SetCalculatedEigenvectorSet@{SetCalculatedEigenvectorSet}}
+\index{SetCalculatedEigenvectorSet@{SetCalculatedEigenvectorSet}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{SetCalculatedEigenvectorSet()}{SetCalculatedEigenvectorSet()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Set\+Calculated\+Eigenvector\+Set (\begin{DoxyParamCaption}\item[{const int}]{level }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set calculated\+\_\+eigenvector\+\_\+set\+\_\+, which represents the calculated eigenvectors and eigenvalues. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & Energy level. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ada273807b072a3a3a12062de109413aa}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ada273807b072a3a3a12062de109413aa}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!SetMagnitudeLSpin@{SetMagnitudeLSpin}}
+\index{SetMagnitudeLSpin@{SetMagnitudeLSpin}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{SetMagnitudeLSpin()}{SetMagnitudeLSpin()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Set\+Magnitude\+LSpin (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the magnitude of the spin $ S $. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em magnitude\+\_\+lspin} & The magnitude of the local spin $ S $. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a3b7543af8237ac54917e92bd20811f23}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a3b7543af8237ac54917e92bd20811f23}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!SetOnsiteOperator@{SetOnsiteOperator}}
+\index{SetOnsiteOperator@{SetOnsiteOperator}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{SetOnsiteOperator()}{SetOnsiteOperator()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Set\+Onsite\+Operator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Set onsite operators. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ab9884d700d7ec30f306d8c6d2bd726b3}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ab9884d700d7ec30f306d8c6d2bd726b3}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!SetSystemSize@{SetSystemSize}}
+\index{SetSystemSize@{SetSystemSize}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{SetSystemSize()}{SetSystemSize()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Set\+System\+Size (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set system size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em system\+\_\+size} & The system size $ N $. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a0ec9b82638cfd3881427702bb6725240}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a0ec9b82638cfd3881427702bb6725240}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!SetTotalElectron@{SetTotalElectron}}
+\index{SetTotalElectron@{SetTotalElectron}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{SetTotalElectron()}{SetTotalElectron()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Set\+Total\+Electron (\begin{DoxyParamCaption}\item[{const int}]{total\+\_\+electron }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set the number of total electrons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em total\+\_\+electron} & The number of total electrons $ \hat{N}_{\rm e}=\sum^{N}_{i=1}\hat{n}_{i} $ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1f7412951e3db38915913478c83e7848}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1f7412951e3db38915913478c83e7848}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!SetTotalSz@{SetTotalSz}}
+\index{SetTotalSz@{SetTotalSz}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{SetTotalSz()}{SetTotalSz()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::\+Set\+Total\+Sz (\begin{DoxyParamCaption}\item[{const double}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set target Hilbert space specified by the total sz to be diagonalized. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em total\+\_\+sz} & The total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{s}^{z}_{i}+\hat{S}^{z}_{i}\rangle $ \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_abde159e228b5818c1a3c1b35d5390a76}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_abde159e228b5818c1a3c1b35d5390a76}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!bases\_@{bases\_}}
+\index{bases\_@{bases\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{bases\_}{bases\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::unordered\+\_\+map$<$std\+::pair$<$int, int$>$, std\+::vector$<$std\+::int64\+\_\+t$>$, \mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash}{utility\+::\+Pair\+Hash}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::bases\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Bases of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aef6cb848bd1f0596814f4657e102b1f2}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aef6cb848bd1f0596814f4657e102b1f2}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!bases\_inv\_@{bases\_inv\_}}
+\index{bases\_inv\_@{bases\_inv\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{bases\_inv\_}{bases\_inv\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::unordered\+\_\+map$<$std\+::pair$<$int, int$>$, std\+::unordered\+\_\+map$<$std\+::int64\+\_\+t, std\+::int64\+\_\+t$>$, \mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash}{utility\+::\+Pair\+Hash}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::bases\+\_\+inv\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Inverse bases of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a628d056b97a6ed45be589c8be2694d08}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a628d056b97a6ed45be589c8be2694d08}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!calculated\_eigenvector\_set\_@{calculated\_eigenvector\_set\_}}
+\index{calculated\_eigenvector\_set\_@{calculated\_eigenvector\_set\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{calculated\_eigenvector\_set\_}{calculated\_eigenvector\_set\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::unordered\+\_\+set$<$int$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::calculated\+\_\+eigenvector\+\_\+set\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The calculated eigenvectors and eigenvalues. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a297a8ff80c53ce114d7901ebe3a457b9}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a297a8ff80c53ce114d7901ebe3a457b9}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!dim\_onsite\_@{dim\_onsite\_}}
+\index{dim\_onsite\_@{dim\_onsite\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{dim\_onsite\_}{dim\_onsite\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::dim\+\_\+onsite\+\_\+ = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aba02ab8543186f7a1eb82ba4e4cd8093}{dim\+\_\+onsite\+\_\+electron\+\_\+}}$\ast$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a88e6fb30eb30c28620dae59f67181249}{dim\+\_\+onsite\+\_\+lspin\+\_\+}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The dimension of the local Hilbert space, $ 4\times (2S + 1) $. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aba02ab8543186f7a1eb82ba4e4cd8093}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aba02ab8543186f7a1eb82ba4e4cd8093}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!dim\_onsite\_electron\_@{dim\_onsite\_electron\_}}
+\index{dim\_onsite\_electron\_@{dim\_onsite\_electron\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{dim\_onsite\_electron\_}{dim\_onsite\_electron\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::dim\+\_\+onsite\+\_\+electron\+\_\+ = 4\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The dimension of the local Hilbert space for the electrons, 4. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a88e6fb30eb30c28620dae59f67181249}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a88e6fb30eb30c28620dae59f67181249}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!dim\_onsite\_lspin\_@{dim\_onsite\_lspin\_}}
+\index{dim\_onsite\_lspin\_@{dim\_onsite\_lspin\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{dim\_onsite\_lspin\_}{dim\_onsite\_lspin\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::dim\+\_\+onsite\+\_\+lspin\+\_\+ = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\+\_\+2lspin\+\_\+}} + 1\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The dimension of the local Hilbert space, $ 2S + 1$. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!magnitude\_2lspin\_@{magnitude\_2lspin\_}}
+\index{magnitude\_2lspin\_@{magnitude\_2lspin\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{magnitude\_2lspin\_}{magnitude\_2lspin\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::magnitude\+\_\+2lspin\+\_\+ = 1\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The magnitude of the local spin $ S$. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a2253edacec12831f51468127653035f2}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a2253edacec12831f51468127653035f2}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!onsite\_operator\_c\_down\_@{onsite\_operator\_c\_down\_}}
+\index{onsite\_operator\_c\_down\_@{onsite\_operator\_c\_down\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_c\_down\_}{onsite\_operator\_c\_down\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+c\+\_\+down\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The annihilation operator for the electrons with the down spin $ \hat{c}_{\downarrow}$. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aa023e8e0e363652be18a35e335e67eff}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aa023e8e0e363652be18a35e335e67eff}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!onsite\_operator\_c\_down\_dagger\_@{onsite\_operator\_c\_down\_dagger\_}}
+\index{onsite\_operator\_c\_down\_dagger\_@{onsite\_operator\_c\_down\_dagger\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_c\_down\_dagger\_}{onsite\_operator\_c\_down\_dagger\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+c\+\_\+down\+\_\+dagger\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The the creation operator for the electrons with the down spin $ \hat{c}^{\dagger}_{\downarrow}$. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a4f4b44337e2e4b45c75f9bbcc3257cc2}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a4f4b44337e2e4b45c75f9bbcc3257cc2}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!onsite\_operator\_c\_up\_@{onsite\_operator\_c\_up\_}}
+\index{onsite\_operator\_c\_up\_@{onsite\_operator\_c\_up\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_c\_up\_}{onsite\_operator\_c\_up\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+c\+\_\+up\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The annihilation operator for the electrons with the up spin $ \hat{c}_{\uparrow}$. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a5e500721cdcc0e73d3b572631e65cb87}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a5e500721cdcc0e73d3b572631e65cb87}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!onsite\_operator\_c\_up\_dagger\_@{onsite\_operator\_c\_up\_dagger\_}}
+\index{onsite\_operator\_c\_up\_dagger\_@{onsite\_operator\_c\_up\_dagger\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_c\_up\_dagger\_}{onsite\_operator\_c\_up\_dagger\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+c\+\_\+up\+\_\+dagger\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The creation operator for the electrons with the up spin $ \hat{c}^{\dagger}_{\uparrow}$. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a96478f08b354373c3dec567b7590bccf}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a96478f08b354373c3dec567b7590bccf}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!onsite\_operator\_isyc\_@{onsite\_operator\_isyc\_}}
+\index{onsite\_operator\_isyc\_@{onsite\_operator\_isyc\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_isyc\_}{onsite\_operator\_isyc\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+isyc\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The spin operator for the y-\/direction for the electrons $ i\hat{s}^{y}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})$. Here $ i=\sqrt{-1}$ is the the imaginary unit. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a78c2ceb6db085371d2cd60e605ef7ff4}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a78c2ceb6db085371d2cd60e605ef7ff4}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!onsite\_operator\_isyl\_@{onsite\_operator\_isyl\_}}
+\index{onsite\_operator\_isyl\_@{onsite\_operator\_isyl\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_isyl\_}{onsite\_operator\_isyl\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+isyl\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The spin-\/ $ S$ operator of the local spin for the y-\/direction $ i\hat{S}^{y}$ with $ i$ being the imaginary unit. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8da46d41a7a2c3e25c9c1f53dec353cc}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a8da46d41a7a2c3e25c9c1f53dec353cc}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!onsite\_operator\_nc\_@{onsite\_operator\_nc\_}}
+\index{onsite\_operator\_nc\_@{onsite\_operator\_nc\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_nc\_}{onsite\_operator\_nc\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+nc\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The number operator for the electrons $ \hat{n}=\hat{n}_{\uparrow} + \hat{n}_{\downarrow}$. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a56691845e86a007fddfa1c60e1583903}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a56691845e86a007fddfa1c60e1583903}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!onsite\_operator\_nc\_down\_@{onsite\_operator\_nc\_down\_}}
+\index{onsite\_operator\_nc\_down\_@{onsite\_operator\_nc\_down\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_nc\_down\_}{onsite\_operator\_nc\_down\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+nc\+\_\+down\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The number operator for the electrons with the down spin $ \hat{n}_{\downarrow}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow}$. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aa0bbb2132cfe81e999fb854523447ac1}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aa0bbb2132cfe81e999fb854523447ac1}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!onsite\_operator\_nc\_up\_@{onsite\_operator\_nc\_up\_}}
+\index{onsite\_operator\_nc\_up\_@{onsite\_operator\_nc\_up\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_nc\_up\_}{onsite\_operator\_nc\_up\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+nc\+\_\+up\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The number operator for the electrons with the up spin $ \hat{n}_{\uparrow}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow}$. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a78911ac1de6b93124e9a38bf156dbadd}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a78911ac1de6b93124e9a38bf156dbadd}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!onsite\_operator\_scsl\_@{onsite\_operator\_scsl\_}}
+\index{onsite\_operator\_scsl\_@{onsite\_operator\_scsl\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_scsl\_}{onsite\_operator\_scsl\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+scsl\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The correlation between the electron spin and local spin $ \hat{\boldsymbol{s}}\cdot\hat{\boldsymbol{S}}=\hat{s}^{x}\hat{S}^{x}+\hat{s}^{y}\hat{S}^{y}+\hat{s}^{z}\hat{S}^{z}$. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_af8852febc33a6bffef4ecb3d2ee7ee86}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_af8852febc33a6bffef4ecb3d2ee7ee86}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!onsite\_operator\_smc\_@{onsite\_operator\_smc\_}}
+\index{onsite\_operator\_smc\_@{onsite\_operator\_smc\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_smc\_}{onsite\_operator\_smc\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+smc\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The lowering operator for spin of the electrons $ \hat{s}^{-}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow}$. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_abf7f7e8964bc660c86d2aee535a9c150}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_abf7f7e8964bc660c86d2aee535a9c150}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!onsite\_operator\_sml\_@{onsite\_operator\_sml\_}}
+\index{onsite\_operator\_sml\_@{onsite\_operator\_sml\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_sml\_}{onsite\_operator\_sml\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+sml\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The spin-\/ $ S$ raising operator of the local spin $ \hat{S}^{-}$. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a3f24803c5650bf6e0e9d7c95c6947b03}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a3f24803c5650bf6e0e9d7c95c6947b03}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!onsite\_operator\_spc\_@{onsite\_operator\_spc\_}}
+\index{onsite\_operator\_spc\_@{onsite\_operator\_spc\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_spc\_}{onsite\_operator\_spc\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+spc\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The raising operator for spin of the electrons $ \hat{s}^{+}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow}$. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ae452a7033480d37d851c4a7cac7fcd56}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ae452a7033480d37d851c4a7cac7fcd56}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!onsite\_operator\_spl\_@{onsite\_operator\_spl\_}}
+\index{onsite\_operator\_spl\_@{onsite\_operator\_spl\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_spl\_}{onsite\_operator\_spl\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+spl\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The spin-\/ $ S$ raising operator of the local spin $ \hat{S}^{+}$. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ae6514f4c5a49e4e389f318b707d90450}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ae6514f4c5a49e4e389f318b707d90450}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!onsite\_operator\_sxc\_@{onsite\_operator\_sxc\_}}
+\index{onsite\_operator\_sxc\_@{onsite\_operator\_sxc\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_sxc\_}{onsite\_operator\_sxc\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+sxc\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The spin operator for the x-\/direction for the electrons $ \hat{s}^{x}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} + \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})$. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ac649bee1adadb16665f391ea5b7006d6}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_ac649bee1adadb16665f391ea5b7006d6}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!onsite\_operator\_sxl\_@{onsite\_operator\_sxl\_}}
+\index{onsite\_operator\_sxl\_@{onsite\_operator\_sxl\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_sxl\_}{onsite\_operator\_sxl\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+sxl\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The spin-\/ $ S$ operator of the local spin for the x-\/direction $ \hat{S}^{x}$. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1767d4960b6e7c33c565764b1d0ba678}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1767d4960b6e7c33c565764b1d0ba678}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!onsite\_operator\_szc\_@{onsite\_operator\_szc\_}}
+\index{onsite\_operator\_szc\_@{onsite\_operator\_szc\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_szc\_}{onsite\_operator\_szc\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+szc\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The spin operator for the z-\/direction for the electrons $ \hat{s}^{z}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow})$. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a29562a4399a873d61fa984f996d77512}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a29562a4399a873d61fa984f996d77512}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!onsite\_operator\_szl\_@{onsite\_operator\_szl\_}}
+\index{onsite\_operator\_szl\_@{onsite\_operator\_szl\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{onsite\_operator\_szl\_}{onsite\_operator\_szl\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_aac7f29d45d2b979179fe2e41cd03bcf5}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+szl\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The spin-\/ $ S$ operator of the local spin for the z-\/direction $ \hat{S}^{z}$. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a7e254cfc3251d5aa58dcb4ce7f47f6cb}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a7e254cfc3251d5aa58dcb4ce7f47f6cb}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!system\_size\_@{system\_size\_}}
+\index{system\_size\_@{system\_size\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{system\_size\_}{system\_size\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::system\+\_\+size\+\_\+ = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The system size. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_acc57b3a69df57dfbbc7795223a43290d}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_acc57b3a69df57dfbbc7795223a43290d}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!total\_2sz\_@{total\_2sz\_}}
+\index{total\_2sz\_@{total\_2sz\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{total\_2sz\_}{total\_2sz\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::total\+\_\+2sz\+\_\+ = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Twice the number of the total sz $ 2\langle\hat{S}^{z}_{\rm tot}\rangle$. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a441bd504ba6be4decd9cf69d615b4b32}\label{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a441bd504ba6be4decd9cf69d615b4b32}} 
+\index{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}!total\_electron\_@{total\_electron\_}}
+\index{total\_electron\_@{total\_electron\_}!compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinElectron\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{total\_electron\_}{total\_electron\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Electron\+\_\+1D}}$<$ Real\+Type $>$\+::total\+\_\+electron\+\_\+ = 0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The total electron $ \langle\hat{N}_{\rm e}\rangle$. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/model/\mbox{\hyperlink{base__u1__spin__electron__1d_8hpp}{base\+\_\+u1\+\_\+spin\+\_\+electron\+\_\+1d.\+hpp}}\end{DoxyCompactItemize}

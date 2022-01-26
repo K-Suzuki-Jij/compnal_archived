@@ -19,6 +19,7 @@
 #define COMPNAL_SPARSE_MATRIX_COMPRESSED_ROW_STORAGE_HPP_
 
 #include "../utility/all.hpp"
+
 #include <iostream>
 #include <cstdint>
 #include <vector>
@@ -40,7 +41,7 @@ struct CRS {
    std::int64_t col_dim = 0;
    std::vector<std::int64_t> row;
    std::vector<std::int64_t> col;
-   std::vector<RealType>     val;
+   std::vector<RealType> val;
    CRSTag tag = CRSTag::NONE;
    
    CRS(const std::int64_t row_dim_in = 0, const std::int64_t col_dim_in = 0, const CRSTag tag_in = CRSTag::NONE) {

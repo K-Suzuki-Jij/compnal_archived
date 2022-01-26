@@ -15,120 +15,124 @@
 //  Created by Kohei Suzuki on 2022/01/08.
 //
 
-#ifndef TEST_MODEL_BASE_U1_ELECTRON_1D_HPP_
-#define TEST_MODEL_BASE_U1_ELECTRON_1D_HPP_
+#ifndef COMPNAL_TEST_MODEL_BASE_U1_ELECTRON_1D_HPP_
+#define COMPNAL_TEST_MODEL_BASE_U1_ELECTRON_1D_HPP_
 
 #include "../../src/model/base_u1_electron_1d.hpp"
-#include "../test.hpp"
+#include "../utility/all.hpp"
 #include <gtest/gtest.h>
 
+namespace compnal {
+namespace test {
+
 template<typename RealType>
-void TestElectron(const compnal::model::BaseU1Electron_1D<RealType> &model) {
+void TestElectron(const BaseU1Electron_1D<RealType> &model) {
    
+   const double threshold = std::pow(10, -15);
    EXPECT_EQ(model.GetDimOnsite(), 4);
    
-   const compnal::sparse_matrix::CRS<RealType> ref_c_up ({
+   const CRS<RealType> ref_c_up ({
       {0.0, 1.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 1.0},
       {0.0, 0.0, 0.0, 0.0}
-   }, compnal::sparse_matrix::CRSTag::FERMION);
+   }, CRSTag::FERMION);
    
-   const compnal::sparse_matrix::CRS<RealType> ref_c_up_d ({
+   const CRS<RealType> ref_c_up_d ({
       {0.0, 0.0, 0.0, 0.0},
       {1.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 1.0, 0.0}
-   }, compnal::sparse_matrix::CRSTag::FERMION);
+   }, CRSTag::FERMION);
    
-   const compnal::sparse_matrix::CRS<RealType> ref_c_down ({
+   const CRS<RealType> ref_c_down ({
       {0.0, 0.0, 1.0, 0.0},
       {0.0, 0.0, 0.0, -1.0},
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0}
-   }, compnal::sparse_matrix::CRSTag::FERMION);
+   }, CRSTag::FERMION);
    
-   const compnal::sparse_matrix::CRS<RealType> ref_c_down_d ({
+   const CRS<RealType> ref_c_down_d ({
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0},
       {1.0, 0.0, 0.0, 0.0},
       {0.0, -1.0, 0.0, 0.0}
-   }, compnal::sparse_matrix::CRSTag::FERMION);
+   }, CRSTag::FERMION);
    
-   const compnal::sparse_matrix::CRS<RealType> ref_nc_up ({
+   const CRS<RealType> ref_nc_up ({
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 1.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 1.0}
    });
    
-   const compnal::sparse_matrix::CRS<RealType> ref_nc_down ({
+   const CRS<RealType> ref_nc_down ({
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 1.0, 0.0},
       {0.0, 0.0, 0.0, 1.0}
    });
    
-   const compnal::sparse_matrix::CRS<RealType> ref_nc ({
+   const CRS<RealType> ref_nc ({
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 1.0, 0.0, 0.0},
       {0.0, 0.0, 1.0, 0.0},
       {0.0, 0.0, 0.0, 2.0}
    });
    
-   const compnal::sparse_matrix::CRS<RealType> ref_sz ({
+   const CRS<RealType> ref_sz ({
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.5, 0.0, 0.0},
       {0.0, 0.0, -0.5, 0.0},
       {0.0, 0.0, 0.0, 0.0}
    });
    
-   const compnal::sparse_matrix::CRS<RealType> ref_sx ({
+   const CRS<RealType> ref_sx ({
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.5, 0.0},
       {0.0, 0.5, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0}
    });
    
-   const compnal::sparse_matrix::CRS<RealType> ref_isy ({
+   const CRS<RealType> ref_isy ({
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.5, 0.0},
       {0.0, -0.5, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0}
    });
    
-   const compnal::sparse_matrix::CRS<RealType> ref_sp ({
+   const CRS<RealType> ref_sp ({
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 1.0, 0.0},
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0}
    });
    
-   const compnal::sparse_matrix::CRS<RealType> ref_sm ({
+   const CRS<RealType> ref_sm ({
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 1.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0}
    });
-      
-   EXPECT_TRUE(compnal::test::ExpectNear(model.GetOnsiteOperatorCUp()        , ref_c_up    , std::pow(10, -15)));
-   EXPECT_TRUE(compnal::test::ExpectNear(model.GetOnsiteOperatorCUpDagger()  , ref_c_up_d  , std::pow(10, -15)));
-   EXPECT_TRUE(compnal::test::ExpectNear(model.GetOnsiteOperatorCDown()      , ref_c_down  , std::pow(10, -15)));
-   EXPECT_TRUE(compnal::test::ExpectNear(model.GetOnsiteOperatorCDownDagger(), ref_c_down_d, std::pow(10, -15)));
    
-   EXPECT_TRUE(compnal::test::ExpectNear(model.GetOnsiteOperatorNCUp()  , ref_nc_up  , std::pow(10, -15)));
-   EXPECT_TRUE(compnal::test::ExpectNear(model.GetOnsiteOperatorNCDown(), ref_nc_down, std::pow(10, -15)));
-   EXPECT_TRUE(compnal::test::ExpectNear(model.GetOnsiteOperatorNC()    , ref_nc     , std::pow(10, -15)));
-   EXPECT_TRUE(compnal::test::ExpectNear(model.GetOnsiteOperatorSz()    , ref_sz     , std::pow(10, -15)));
-   EXPECT_TRUE(compnal::test::ExpectNear(model.GetOnsiteOperatorSx()    , ref_sx     , std::pow(10, -15)));
-   EXPECT_TRUE(compnal::test::ExpectNear(model.GetOnsiteOperatoriSy()   , ref_isy    , std::pow(10, -15)));
-   EXPECT_TRUE(compnal::test::ExpectNear(model.GetOnsiteOperatorSp()    , ref_sp     , std::pow(10, -15)));
-   EXPECT_TRUE(compnal::test::ExpectNear(model.GetOnsiteOperatorSm()    , ref_sm     , std::pow(10, -15)));
-
+   ExpectNear(model.GetOnsiteOperatorCUp()        , ref_c_up    , threshold);
+   ExpectNear(model.GetOnsiteOperatorCUpDagger()  , ref_c_up_d  , threshold);
+   ExpectNear(model.GetOnsiteOperatorCDown()      , ref_c_down  , threshold);
+   ExpectNear(model.GetOnsiteOperatorCDownDagger(), ref_c_down_d, threshold);
+   
+   ExpectNear(model.GetOnsiteOperatorNCUp()  , ref_nc_up  , threshold);
+   ExpectNear(model.GetOnsiteOperatorNCDown(), ref_nc_down, threshold);
+   ExpectNear(model.GetOnsiteOperatorNC()    , ref_nc     , threshold);
+   ExpectNear(model.GetOnsiteOperatorSz()    , ref_sz     , threshold);
+   ExpectNear(model.GetOnsiteOperatorSx()    , ref_sx     , threshold);
+   ExpectNear(model.GetOnsiteOperatoriSy()   , ref_isy    , threshold);
+   ExpectNear(model.GetOnsiteOperatorSp()    , ref_sp     , threshold);
+   ExpectNear(model.GetOnsiteOperatorSm()    , ref_sm     , threshold);
+   
 }
 
 TEST(ModelBaseU1Electron1D, ConstructorDefault) {
-   compnal::model::BaseU1Electron_1D<double> model;
+   BaseU1Electron_1D<double> model;
    TestElectron(model);
    
    EXPECT_EQ(model.GetSystemSize(), 0);
@@ -136,14 +140,12 @@ TEST(ModelBaseU1Electron1D, ConstructorDefault) {
    EXPECT_EQ(model.GetTotalElectron(), 0);
    
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   EXPECT_TRUE(compnal::test::ExpectEQ(model.GetBases(),
-                                       std::unordered_map<std::pair<int, int>, std::vector<std::int64_t>, compnal::utility::PairHash>{}));
-   EXPECT_TRUE(compnal::test::ExpectEQ(model.GetBasesInv(),
-                                       std::unordered_map<std::pair<int, int>, std::unordered_map<std::int64_t, std::int64_t>, compnal::utility::PairHash>{}));
+   ExpectEQ(model.GetBases(), std::unordered_map<std::pair<int, int>, std::vector<std::int64_t>, compnal::utility::PairHash>{});
+   ExpectEQ(model.GetBasesInv(), std::unordered_map<std::pair<int, int>, std::unordered_map<std::int64_t, std::int64_t>, compnal::utility::PairHash>{});
 }
 
 TEST(ModelBaseU1Electron1D, ConstructorSystemSize) {
-   compnal::model::BaseU1Electron_1D<double> model(8);
+   BaseU1Electron_1D<double> model(8);
    TestElectron(model);
    
    EXPECT_EQ(model.GetSystemSize(), 8);
@@ -151,14 +153,12 @@ TEST(ModelBaseU1Electron1D, ConstructorSystemSize) {
    EXPECT_EQ(model.GetTotalElectron(), 0);
    
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   EXPECT_TRUE(compnal::test::ExpectEQ(model.GetBases(),
-                                       std::unordered_map<std::pair<int, int>, std::vector<std::int64_t>, compnal::utility::PairHash>{}));
-   EXPECT_TRUE(compnal::test::ExpectEQ(model.GetBasesInv(),
-                                       std::unordered_map<std::pair<int, int>, std::unordered_map<std::int64_t, std::int64_t>, compnal::utility::PairHash>{}));
+   ExpectEQ(model.GetBases(), std::unordered_map<std::pair<int, int>, std::vector<std::int64_t>, compnal::utility::PairHash>{});
+   ExpectEQ(model.GetBasesInv(), std::unordered_map<std::pair<int, int>, std::unordered_map<std::int64_t, std::int64_t>, compnal::utility::PairHash>{});
 }
 
 TEST(ModelBaseU1Electron1D, ConstructorSystemSizeElectron) {
-   compnal::model::BaseU1Electron_1D<double> model(8, 2);
+   BaseU1Electron_1D<double> model(8, 2);
    TestElectron(model);
    
    EXPECT_EQ(model.GetSystemSize(), 8);
@@ -166,32 +166,30 @@ TEST(ModelBaseU1Electron1D, ConstructorSystemSizeElectron) {
    EXPECT_EQ(model.GetTotalElectron(), 2);
    
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   EXPECT_TRUE(compnal::test::ExpectEQ(model.GetBases(),
-                                       std::unordered_map<std::pair<int, int>, std::vector<std::int64_t>, compnal::utility::PairHash>{}));
-   EXPECT_TRUE(compnal::test::ExpectEQ(model.GetBasesInv(),
-                                       std::unordered_map<std::pair<int, int>, std::unordered_map<std::int64_t, std::int64_t>, compnal::utility::PairHash>{}));
+   ExpectEQ(model.GetBases(), std::unordered_map<std::pair<int, int>, std::vector<std::int64_t>, compnal::utility::PairHash>{});
+   ExpectEQ(model.GetBasesInv(), std::unordered_map<std::pair<int, int>, std::unordered_map<std::int64_t, std::int64_t>, compnal::utility::PairHash>{});
 }
 
 TEST(ModelBaseU1Electron1D, SetSystemSize) {
-   compnal::model::BaseU1Electron_1D<double> model;
+   BaseU1Electron_1D<double> model;
    model.SetSystemSize(3);
    EXPECT_EQ(model.GetSystemSize(), 3);
 }
 
 TEST(ModelBaseU1Electron1D, SetTotalSz) {
-   compnal::model::BaseU1Electron_1D<double> model;
+   BaseU1Electron_1D<double> model;
    model.SetTotalSz(2.5);
    EXPECT_EQ(model.GetTotalSz(), 2.5);
 }
 
 TEST(ModelBaseU1Electron1D, SetTotalElectron) {
-   compnal::model::BaseU1Electron_1D<double> model;
+   BaseU1Electron_1D<double> model;
    model.SetTotalElectron(100);
    EXPECT_EQ(model.GetTotalElectron(), 100);
 }
 
 TEST(ModelBaseU1Electron1D, CalculateNumElectron) {
-   compnal::model::BaseU1Electron_1D<double> model;
+   BaseU1Electron_1D<double> model;
    EXPECT_EQ(model.CalculateNumElectron(0), 0);
    EXPECT_EQ(model.CalculateNumElectron(1), 1);
    EXPECT_EQ(model.CalculateNumElectron(2), 1);
@@ -199,4 +197,9 @@ TEST(ModelBaseU1Electron1D, CalculateNumElectron) {
    EXPECT_THROW(model.CalculateNumElectron(4), std::runtime_error);
 }
 
-#endif /* TEST_MODEL_BASE_U1_ELECTRON_1D_HPP_ */
+
+}
+} //Test
+
+
+#endif /* COMPNAL_TEST_MODEL_BASE_U1_ELECTRON_1D_HPP_ */

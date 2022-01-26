@@ -1,0 +1,24 @@
+\hypertarget{lapack_8hpp}{}\doxysection{src/sparse\+\_\+matrix/lapack.hpp File Reference}
+\label{lapack_8hpp}\index{src/sparse\_matrix/lapack.hpp@{src/sparse\_matrix/lapack.hpp}}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecompnal}{compnal}}
+\item 
+namespace \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix}{compnal\+::sparse\+\_\+matrix}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_aa98cff75f30d8d55bba0810a75d6ee9e}{compnal\+::sparse\+\_\+matrix\+::dsyev\+\_\+}} (const char \&JOBZ, const char \&UPLO, const int \&N, double $\ast$$\ast$A, const int \&LDA, double $\ast$W, double $\ast$work, const int \&Lwork, int \&INFO)
+\item 
+void \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab84831e2c300392944998bd0b1839af6}{compnal\+::sparse\+\_\+matrix\+::dstev\+\_\+}} (const char \&JOBZ, const int \&N, double $\ast$D, double $\ast$E, double $\ast$$\ast$Z, const int \&LDZ, double $\ast$WORK, int \&INFO)
+\item 
+void \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_af18011fe44d52340366af2428a8d9d80}{compnal\+::sparse\+\_\+matrix\+::dspgv\+\_\+}} (const int \&ITYPE, const char \&JOBZ, const char \&UPLO, const int \&N, double $\ast$AP, double $\ast$BP, double $\ast$W, double $\ast$$\ast$Z, const int \&LDZ, double $\ast$WORK, int \&INFO)
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a7b228b82df60b48a8e1b225bf3ec3bf7}{compnal\+::sparse\+\_\+matrix\+::\+Lapack\+Dsyev}} (Real\+Type $\ast$gs\+\_\+value, std\+::vector$<$ Real\+Type $>$ $\ast$gs\+\_\+vector, const CRS$<$ Real\+Type $>$ \&matrix\+\_\+in, const int target\+\_\+level=0)
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ae2d62a5674340dcaccc874b8a1acbc26}{compnal\+::sparse\+\_\+matrix\+::\+Lapack\+Dstev}} (Real\+Type $\ast$gs\+\_\+value, std\+::vector$<$ Real\+Type $>$ $\ast$gs\+\_\+vector, const std\+::vector$<$ Real\+Type $>$ \&diag, const std\+::vector$<$ Real\+Type $>$ \&off\+\_\+diag)
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a027e3543114e86368649fd738a2f9f78}{compnal\+::sparse\+\_\+matrix\+::\+Lapack\+Dspgv}} (std\+::vector$<$ Real\+Type $>$ $\ast$eigenvalues, std\+::vector$<$ Real\+Type $>$ $\ast$eigenvectors, const int i\+\_\+type, const int dim, const std\+::vector$<$ Real\+Type $>$ \&mat\+\_\+a, const std\+::vector$<$ Real\+Type $>$ \&mat\+\_\+b)
+\end{DoxyCompactItemize}

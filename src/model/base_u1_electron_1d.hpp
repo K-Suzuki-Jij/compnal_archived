@@ -39,6 +39,9 @@ class BaseU1Electron_1D {
    //! @brief Alias of compressed row strage (CRS) with RealType.
    using CRS = sparse_matrix::CRS<RealType>;
    
+   //! @brief Alias of quantum number (total electron, total sz) pair.
+   using QType = std::pair<int, double>;
+   
 public:
    
    //! @brief The type of real values.
@@ -103,7 +106,7 @@ public:
    //! @param total_sz The total sz is the expectation value of the following operator:
    //! \f[ \hat{S}^{z}_{\rm tot}=\sum^{N}_{i=1}\hat{S}^{z}_{i} \f]
    void SetTotalSz(const double total_sz) {
-      const int total_2sz = utility::DoubleTheNumber(total_sz);
+      const int total_2sz = utility::DoubleHalfInteger(total_sz);
       if (total_2sz_ != total_2sz) {
          total_2sz_ = total_2sz;
          calculated_eigenvector_set_.clear();
@@ -129,7 +132,7 @@ public:
    //! @brief Check if there is a subspace specified by the input quantum numbers.
    //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
    //! @return ture if there exists corresponding subspace, otherwise false.
-   bool isValidQNumber(const std::pair<int, double> &quantum_number) const {
+   bool isValidQNumber(const QType &quantum_number) const {
       return isValidQNumber(system_size_, quantum_number.first, quantum_number.second);
    }
    
@@ -199,7 +202,7 @@ public:
    //! the system size \f$ N\f$, the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$, and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
    //! @return The dimension of the target Hilbert space.
-   std::int64_t CalculateTargetDim(const std::pair<int, double> &quantum_number) const {
+   std::int64_t CalculateTargetDim(const QType &quantum_number) const {
       return CalculateTargetDim(system_size_, quantum_number.first, quantum_number.second);
    }
    
@@ -212,7 +215,7 @@ public:
    //! @brief Generate bases of the target Hilbert space specified by
    //! the system size \f$ N\f$, the number of the total electrons \f$ \langle\hat{N}_{\rm e}\rangle\f$, and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param quantum_number The pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
-   void GenerateBasis(const std::pair<int, double> &quantum_number) {
+   void GenerateBasis(const QType &quantum_number) {
       if (!isValidQNumber(quantum_number)) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__ << std::endl;
@@ -223,7 +226,7 @@ public:
       const auto start         = std::chrono::system_clock::now();
       const int total_electron = quantum_number.first;
       const double total_sz    = quantum_number.second;
-      const int total_2sz      = utility::DoubleTheNumber(total_sz);
+      const int total_2sz      = utility::DoubleHalfInteger(total_sz);
       
       if (bases_.count({total_electron, total_2sz}) != 0) {
          return;
@@ -353,9 +356,9 @@ public:
    //! @param m_1 The matrix of an onsite operator.
    //! @param m_2 The matrix of an onsite operator.
    //! @return The list of quantum numbers.
-   std::vector<std::pair<int, double>> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
-      std::unordered_set<std::pair<int, double>, utility::PairHash> delta_sector_set_m1;
-      std::unordered_set<std::pair<int, double>, utility::PairHash> delta_sector_set_m2;
+   std::vector<QType> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
+      std::unordered_set<QType, utility::PairHash> delta_sector_set_m1;
+      std::unordered_set<QType, utility::PairHash> delta_sector_set_m2;
       for (std::int64_t i = 0; i < m_1.row_dim; ++i) {
          for (std::int64_t j = m_1.row[i]; j < m_1.row[i + 1]; ++j) {
             if (m_1.val[j] != 0.0) {
@@ -370,7 +373,7 @@ public:
             }
          }
       }
-      std::vector<std::pair<int, double>> target_sector_set;
+      std::vector<QType> target_sector_set;
       for (const auto &del_sec_m1: delta_sector_set_m1) {
          for (const auto &del_sec_m2: delta_sector_set_m2) {
             const bool c1 = isValidQNumber(del_sec_m1.first + total_electron_, del_sec_m1.second + 0.5*total_2sz_);
@@ -389,10 +392,10 @@ public:
    //! @param m_2_ket The matrix of an onsite operator.
    //! @param m_3_ket The matrix of an onsite operator.
    //! @return The list of quantum numbers.
-   std::vector<std::pair<std::pair<int, double>, std::pair<int, double>>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_ket, const CRS &m_3_ket) const {
-      std::unordered_set<std::pair<int, double>, utility::PairHash> delta_sector_set_m1;
-      std::unordered_set<std::pair<int, double>, utility::PairHash> delta_sector_set_m2;
-      std::unordered_set<std::pair<int, double>, utility::PairHash> delta_sector_set_m3;
+   std::vector<std::pair<QType, QType>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_ket, const CRS &m_3_ket) const {
+      std::unordered_set<QType, utility::PairHash> delta_sector_set_m1;
+      std::unordered_set<QType, utility::PairHash> delta_sector_set_m2;
+      std::unordered_set<QType, utility::PairHash> delta_sector_set_m3;
       
       for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
          for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
@@ -418,12 +421,12 @@ public:
          }
       }
       
-      std::vector<std::pair<std::pair<int, double>, std::pair<int, double>>> target_sector_set;
+      std::vector<std::pair<QType, QType>> target_sector_set;
       
       for (const auto &del_sec_m1: delta_sector_set_m1) {
          for (const auto &del_sec_m2: delta_sector_set_m2) {
             for (const auto &del_sec_m3: delta_sector_set_m3) {
-               const std::pair<int, double> del_sec_m2_m3 = {del_sec_m2.first + del_sec_m3.first, del_sec_m2.second + del_sec_m3.second};
+               const QType del_sec_m2_m3 = {del_sec_m2.first + del_sec_m3.first, del_sec_m2.second + del_sec_m3.second};
                const bool c1 = isValidQNumber(del_sec_m1.first + total_electron_, del_sec_m1.second + 0.5*total_2sz_);
                const bool c2 = isValidQNumber(del_sec_m3.first + total_electron_, del_sec_m3.second + 0.5*total_2sz_);
                if (del_sec_m1 == del_sec_m2_m3 && c1 && c2) {
@@ -446,12 +449,12 @@ public:
    //! @param m_3_ket The matrix of an onsite operator.
    //! @param m_4_ket The matrix of an onsite operator.
    //! @return The list of quantum numbers.
-   std::vector<std::tuple<std::pair<int, double>, std::pair<int, double>, std::pair<int, double>>>
+   std::vector<std::tuple<QType, QType, QType>>
    GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_bra, const CRS &m_3_ket, const CRS &m_4_ket) const {
-      std::unordered_set<std::pair<int, double>, utility::PairHash> delta_sector_set_m1;
-      std::unordered_set<std::pair<int, double>, utility::PairHash> delta_sector_set_m2;
-      std::unordered_set<std::pair<int, double>, utility::PairHash> delta_sector_set_m3;
-      std::unordered_set<std::pair<int, double>, utility::PairHash> delta_sector_set_m4;
+      std::unordered_set<QType, utility::PairHash> delta_sector_set_m1;
+      std::unordered_set<QType, utility::PairHash> delta_sector_set_m2;
+      std::unordered_set<QType, utility::PairHash> delta_sector_set_m3;
+      std::unordered_set<QType, utility::PairHash> delta_sector_set_m4;
       
       for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
          for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
@@ -485,13 +488,13 @@ public:
          }
       }
       
-      std::vector<std::tuple<std::pair<int, double>, std::pair<int, double>, std::pair<int, double>>> target_sector_set;
+      std::vector<std::tuple<QType, QType, QType>> target_sector_set;
       for (const auto &del_sec_m1: delta_sector_set_m1) {
          for (const auto &del_sec_m2: delta_sector_set_m2) {
             for (const auto &del_sec_m3: delta_sector_set_m3) {
                for (const auto &del_sec_m4: delta_sector_set_m4) {
-                  const std::pair<int, double> del_sec_m1_m2 = {del_sec_m1.first + del_sec_m2.first, del_sec_m1.second + del_sec_m2.second};
-                  const std::pair<int, double> del_sec_m3_m4 = {del_sec_m3.first + del_sec_m4.first, del_sec_m3.second + del_sec_m4.second};
+                  const QType del_sec_m1_m2 = {del_sec_m1.first + del_sec_m2.first, del_sec_m1.second + del_sec_m2.second};
+                  const QType del_sec_m3_m4 = {del_sec_m3.first + del_sec_m4.first, del_sec_m3.second + del_sec_m4.second};
                   const bool c1 = isValidQNumber(del_sec_m1.first    + total_electron_, del_sec_m1.second    + 0.5*total_2sz_);
                   const bool c2 = isValidQNumber(del_sec_m1_m2.first + total_electron_, del_sec_m1_m2.second + 0.5*total_2sz_);
                   const bool c3 = isValidQNumber(del_sec_m4.first    + total_electron_, del_sec_m4.second    + 0.5*total_2sz_);
@@ -518,7 +521,7 @@ public:
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    //! @return ture if there exists corresponding subspace, otherwise false.
    static bool isValidQNumber(const int system_size, const int total_electron, const double total_sz) {
-      const int total_2sz = utility::DoubleTheNumber(total_sz);
+      const int total_2sz = utility::DoubleHalfInteger(total_sz);
       const bool c1 = (0 <= total_electron && total_electron <= 2*system_size);
       const bool c2 = ((total_electron - total_2sz)%2 == 0);
       const bool c3 = (-total_electron <= total_2sz && total_2sz <= total_electron);
@@ -539,7 +542,7 @@ public:
       if (!isValidQNumber(system_size, total_electron, total_sz)) {
          return 0;
       }
-      const int total_2sz = utility::DoubleTheNumber(total_sz);
+      const int total_2sz = utility::DoubleHalfInteger(total_sz);
       const std::vector<std::vector<std::int64_t>> binom = utility::CalculateBinomialTable(system_size);
       const int max_n_up_down = static_cast<int>(total_electron/2);
       std::int64_t dim = 0;
@@ -693,7 +696,7 @@ public:
    //! @param row The row in the matrix representation of an onsite operator.
    //! @param col The column in the matrix representation of an onsite operator.
    //! @return The differences of the total electron and the total sz.
-   static std::pair<int, double> CalculateQuntumNumberDifference(const int row, const int col) {
+   static QType CalculateQuntumNumberDifference(const int row, const int col) {
       if (row == col && 0 <= row && row < 4 && 0 <= col && col < 4) {
          return {+0, +0.0};
       }
@@ -822,11 +825,11 @@ public:
       return calculated_eigenvector_set_;
    }
    
-   inline const std::unordered_map<std::pair<int, int>, std::vector<std::int64_t>, compnal::utility::PairHash> &GetBases() const {
+   inline const std::unordered_map<std::pair<int, int>, std::vector<std::int64_t>, utility::PairHash> &GetBases() const {
       return bases_;
    }
    
-   inline const std::unordered_map<std::pair<int, int>, std::unordered_map<std::int64_t, std::int64_t>, compnal::utility::PairHash> &GetBasesInv() const {
+   inline const std::unordered_map<std::pair<int, int>, std::unordered_map<std::int64_t, std::int64_t>, utility::PairHash> &GetBasesInv() const {
       return bases_inv_;
    }
    
@@ -835,8 +838,8 @@ public:
    //! @param quantum_number The pair of the total electron
    //! \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
    //! @return Basis.
-   inline const std::vector<std::int64_t> &GetBasis(const std::pair<int, double> &quantum_number) const {
-      return bases_.at({quantum_number.first, utility::DoubleTheNumber(quantum_number.second)});
+   inline const std::vector<std::int64_t> &GetBasis(const QType &quantum_number) const {
+      return bases_.at({quantum_number.first, utility::DoubleHalfInteger(quantum_number.second)});
    }
    
    //! @brief Get inverse basis of the target Hilbert space specified by
@@ -844,8 +847,8 @@ public:
    //! @param quantum_number The pair of the total electron
    //! \f$ \langle\hat{N}_{\rm e}\rangle \f$ and total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$
    //! @return Basis.
-   inline const std::unordered_map<std::int64_t, std::int64_t> &GetBasisInv(const std::pair<int, double> &quantum_number) const {
-      return bases_inv_.at({quantum_number.first, utility::DoubleTheNumber(quantum_number.second)});
+   inline const std::unordered_map<std::int64_t, std::int64_t> &GetBasisInv(const QType &quantum_number) const {
+      return bases_inv_.at({quantum_number.first, utility::DoubleHalfInteger(quantum_number.second)});
    }
    
    //! @brief Get basis of the target Hilbert space specified by

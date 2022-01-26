@@ -17,6 +17,8 @@
 
 #include "model/test_model_base_u1_spin_1d.hpp"
 #include "model/test_model_base_u1_electron_1d.hpp"
+#include "model/test_model_base_u1_spin_electron_1d.hpp"
+#include "model/test_model_base_u1_spin_multi_electrons_1d.hpp"
 
 #include "gtest/gtest.h"
 

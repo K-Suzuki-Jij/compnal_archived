@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['even_0',['EVEN',['../namespacecompnal_1_1utility.html#a7276a99232fbbca2396b81d8619f1cf0a058228007dab2c89e4a6ce62713973f9',1,'compnal::utility']]],
-  ['even_5fodd_1',['EVEN_ODD',['../namespacecompnal_1_1utility.html#a7276a99232fbbca2396b81d8619f1cf0a53bd3e09e07da56d3e05dfc58610e7a7',1,'compnal::utility']]]
+  ['none_0',['NONE',['../namespacecompnal_1_1sparse__matrix.html#ab956f5ab317ec175be8c3b3d709880dcae05bdf4bb6404aff5e00fb5c3b5eaca0',1,'compnal::sparse_matrix']]]
 ];

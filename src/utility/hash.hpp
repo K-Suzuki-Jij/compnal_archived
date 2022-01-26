@@ -12,7 +12,7 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Created by Kohei Suzuki on 2021/12/02.
+//  Created by Kohei Suzuki on 2022/01/25.
 //
 
 #ifndef COMPNAL_UTILITY_HASH_HPP_
@@ -21,6 +21,7 @@
 namespace compnal {
 namespace utility {
 
+//! @brief Alias of hash class for std::pair.
 struct PairHash {
    template<class T1, class T2>
    std::size_t operator() (const std::pair<T1, T2>& p) const {
@@ -29,7 +30,8 @@ struct PairHash {
    }
 };
 
-struct VectorHash {
+//! @brief Alias of hash class for std::vector.
+struct VecHash {
    template<class T>
    std::size_t operator() (const std::vector<T> &V) const {
       std::size_t hash = V.size();
@@ -40,7 +42,8 @@ struct VectorHash {
    }
 };
 
-struct VectorIntHash {
+//! @brief Alias of hash class for std::pair including std::vector.
+struct VecIntHash {
    template<class T1, class T2>
    std::size_t operator() (const std::pair<std::vector<T1>, T2>& p) const {
       std::size_t hash = p.first.size();
@@ -56,5 +59,6 @@ struct VectorIntHash {
 
 }
 }
+
 
 #endif /* COMPNAL_UTILITY_HASH_HPP_ */

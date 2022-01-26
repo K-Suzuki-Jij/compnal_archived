@@ -15,8 +15,8 @@
 //  Created by Kohei Suzuki on 2021/11/06.
 //
 
-#ifndef COMPNAL_MODEL_HPP_
-#define COMPNAL_MODEL_HPP_
+#ifndef COMPNAL_MODEL_ALL_HPP_
+#define COMPNAL_MODEL_ALL_HPP_
 
 #include "xxz_1d.hpp"
 #include "hubbard_1d.hpp"
@@ -28,4 +28,4 @@
 #include "base_u1_spin_multi_electrons_1d.hpp"
 
 
-#endif /* COMPNAL_MODEL_HPP_ */
+#endif /* COMPNAL_MODEL_ALL_HPP_ */

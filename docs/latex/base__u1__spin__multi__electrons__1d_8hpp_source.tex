@@ -1,0 +1,1199 @@
+\hypertarget{base__u1__spin__multi__electrons__1d_8hpp_source}{}\doxysection{base\+\_\+u1\+\_\+spin\+\_\+multi\+\_\+electrons\+\_\+1d.\+hpp}
+\label{base__u1__spin__multi__electrons__1d_8hpp_source}\index{src/model/base\_u1\_spin\_multi\_electrons\_1d.hpp@{src/model/base\_u1\_spin\_multi\_electrons\_1d.hpp}}
+\mbox{\hyperlink{base__u1__spin__multi__electrons__1d_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{//  Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{4 \textcolor{comment}{//  you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{5 \textcolor{comment}{//  You may obtain a copy of the License at}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{//      http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{comment}{//  Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{10 \textcolor{comment}{//  distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{11 \textcolor{comment}{//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{12 \textcolor{comment}{//  See the License for the specific language governing permissions and}}
+\DoxyCodeLine{13 \textcolor{comment}{//  limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{//}}
+\DoxyCodeLine{15 \textcolor{comment}{//  Created by Kohei Suzuki on 2021/12/20.}}
+\DoxyCodeLine{16 \textcolor{comment}{//}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_MODEL\_BASE\_U1\_SPIN\_MULTI\_ELECTRONS\_1D\_HPP\_}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_MODEL\_BASE\_U1\_SPIN\_MULTI\_ELECTRONS\_1D\_HPP\_}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}../sparse\_matrix/all.hpp"{}}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}../utility/all.hpp"{}}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{base__u1__spin__1d_8hpp}{base\_u1\_spin\_1d.hpp}}"{}}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{base__u1__electron__1d_8hpp}{base\_u1\_electron\_1d.hpp}}"{}}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include <unordered\_map>}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include <unordered\_set>}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
+\DoxyCodeLine{30 \textcolor{keyword}{namespace }model \{}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{34 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
+\DoxyCodeLine{35 \textcolor{keyword}{class }\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{BaseU1SpinMultiElectrons\_1D}} \{}
+\DoxyCodeLine{36    }
+\DoxyCodeLine{38    \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} = \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{sparse\_matrix::CRS<RealType>}};}
+\DoxyCodeLine{39    }
+\DoxyCodeLine{41    \textcolor{keyword}{using} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} = std::pair<std::vector<int>, \textcolor{keywordtype}{double}>;}
+\DoxyCodeLine{42    }
+\DoxyCodeLine{43 \textcolor{keyword}{public}:}
+\DoxyCodeLine{44    }
+\DoxyCodeLine{46    \textcolor{keyword}{using} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a07fbb9d33fc515f51fa240a05575c255}{ValueType}} = RealType;}
+\DoxyCodeLine{47    }
+\DoxyCodeLine{48    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{49    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Constructors-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{50    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{52 \textcolor{comment}{}   \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4359dad8dd513b330165945751b9661e}{BaseU1SpinMultiElectrons\_1D}}() \{}
+\DoxyCodeLine{53       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4e56bb2b6493a742b5b06b3bfd8986a1}{SetOnsiteOperator}}();}
+\DoxyCodeLine{54    \}}
+\DoxyCodeLine{55    }
+\DoxyCodeLine{58    \textcolor{keyword}{explicit} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae027c08fe8c89c546c6aaa1f0c81d2d8}{BaseU1SpinMultiElectrons\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size): \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{BaseU1SpinMultiElectrons\_1D}}() \{}
+\DoxyCodeLine{59       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4df21863fbc3dd8967fc91f6da50be7f}{SetSystemSize}}(system\_size);}
+\DoxyCodeLine{60    \}}
+\DoxyCodeLine{61    }
+\DoxyCodeLine{65    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af5146e35331f0720223a7c00ae011ede}{BaseU1SpinMultiElectrons\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size, \textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin): \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{BaseU1SpinMultiElectrons\_1D}}(system\_size) \{}
+\DoxyCodeLine{66       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae0fee27b35940b27fa0b26ddf23c3f1a}{SetMagnitudeLSpin}}(magnitude\_lspin);}
+\DoxyCodeLine{67    \}}
+\DoxyCodeLine{68    }
+\DoxyCodeLine{72    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a0e733e395381b4ef97ca3ec9eb26105a}{BaseU1SpinMultiElectrons\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size,}
+\DoxyCodeLine{73                                \textcolor{keyword}{const} std::vector<int> \&total\_electron): \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{BaseU1SpinMultiElectrons\_1D}}(system\_size) \{}
+\DoxyCodeLine{74       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa8de474777ff3fd902d18820dad5ff12}{SetTotalElectron}}(total\_electron);}
+\DoxyCodeLine{75    \}}
+\DoxyCodeLine{76    }
+\DoxyCodeLine{81    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67ca72f50b7c1748844e81602981eb40}{BaseU1SpinMultiElectrons\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size,}
+\DoxyCodeLine{82                                \textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin,}
+\DoxyCodeLine{83                                \textcolor{keyword}{const} std::vector<int> \&total\_electron): \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{BaseU1SpinMultiElectrons\_1D}}(system\_size, magnitude\_lspin) \{}
+\DoxyCodeLine{84       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa8de474777ff3fd902d18820dad5ff12}{SetTotalElectron}}(total\_electron);}
+\DoxyCodeLine{85    \}}
+\DoxyCodeLine{86    }
+\DoxyCodeLine{94    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a297d14043ea4185d95552203c4a1db1d}{BaseU1SpinMultiElectrons\_1D}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size,}
+\DoxyCodeLine{95                                \textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin,}
+\DoxyCodeLine{96                                \textcolor{keyword}{const} std::vector<int> \&total\_electron,}
+\DoxyCodeLine{97                                \textcolor{keyword}{const} \textcolor{keywordtype}{double} total\_sz): \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{BaseU1SpinMultiElectrons\_1D}}(system\_size, magnitude\_lspin, total\_electron) \{}
+\DoxyCodeLine{98       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aec496e23ad07aecf03219a9d266dc13d}{SetTotalSz}}(total\_sz);}
+\DoxyCodeLine{99    \}}
+\DoxyCodeLine{100    }
+\DoxyCodeLine{101    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{102    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Public Member functions-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{103    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{106 \textcolor{comment}{}   \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4df21863fbc3dd8967fc91f6da50be7f}{SetSystemSize}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size) \{}
+\DoxyCodeLine{107       \textcolor{keywordflow}{if} (system\_size <= 0) \{}
+\DoxyCodeLine{108          std::stringstream ss;}
+\DoxyCodeLine{109          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{110          ss << \textcolor{stringliteral}{"{}system\_size must be a non-\/negative integer"{}} << std::endl;}
+\DoxyCodeLine{111          ss << \textcolor{stringliteral}{"{}system\_size="{}} << system\_size << \textcolor{stringliteral}{"{}is not allowed"{}} << std::endl;}
+\DoxyCodeLine{112          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{113       \}}
+\DoxyCodeLine{114       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}} != system\_size) \{}
+\DoxyCodeLine{115          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}} = system\_size;}
+\DoxyCodeLine{116          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a0a376f3b07d2dec599b8a65e06da3e4b}{bases\_}}.clear();}
+\DoxyCodeLine{117          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a69c1d80025844d01c52eecff5d5f449d}{bases\_inv\_}}.clear();}
+\DoxyCodeLine{118          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad6ae6b65e82fe64291bc54a2437dbf4b}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{119       \}}
+\DoxyCodeLine{120    \}}
+\DoxyCodeLine{121    }
+\DoxyCodeLine{126    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aec496e23ad07aecf03219a9d266dc13d}{SetTotalSz}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} total\_sz) \{}
+\DoxyCodeLine{127       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(total\_sz);}
+\DoxyCodeLine{128       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a70d04f95b8f51b13f866ae7d388127a6}{total\_2sz\_}} != total\_2sz) \{}
+\DoxyCodeLine{129          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a70d04f95b8f51b13f866ae7d388127a6}{total\_2sz\_}} = total\_2sz;}
+\DoxyCodeLine{130          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad6ae6b65e82fe64291bc54a2437dbf4b}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{131       \}}
+\DoxyCodeLine{132    \}}
+\DoxyCodeLine{133    }
+\DoxyCodeLine{136    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa8de474777ff3fd902d18820dad5ff12}{SetTotalElectron}}(\textcolor{keyword}{const} std::vector<int> \&total\_electron) \{}
+\DoxyCodeLine{137       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}} != \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(total\_electron.size())) \{}
+\DoxyCodeLine{138          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}} = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(total\_electron.size());}
+\DoxyCodeLine{139          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a1a6de3078e6c329c68e8ef821bdedafe}{dim\_onsite\_all\_electrons\_}} = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(std::pow(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa0c1648165b632ae0ca7f7da5a967f8e}{dim\_onsite\_electron\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}}));}
+\DoxyCodeLine{140          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a9b72902b16e25d9a0e9d4eb3520596ee}{dim\_onsite\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a48fa20a398bf67c557a07f2b1b837b1c}{dim\_onsite\_lspin\_}}*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a1a6de3078e6c329c68e8ef821bdedafe}{dim\_onsite\_all\_electrons\_}};}
+\DoxyCodeLine{141          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4e56bb2b6493a742b5b06b3bfd8986a1}{SetOnsiteOperator}}();}
+\DoxyCodeLine{142       \}}
+\DoxyCodeLine{143       }
+\DoxyCodeLine{144       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abe176d44790bbf9b3ad7aa530ff8852b}{total\_electron\_}}.size() < total\_electron.size()) \{}
+\DoxyCodeLine{145          \textcolor{keywordflow}{for} (std::size\_t i = 0; i < \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abe176d44790bbf9b3ad7aa530ff8852b}{total\_electron\_}}.size(); ++i) \{}
+\DoxyCodeLine{146             \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abe176d44790bbf9b3ad7aa530ff8852b}{total\_electron\_}}.at(i) != total\_electron.at(i)) \{}
+\DoxyCodeLine{147                \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abe176d44790bbf9b3ad7aa530ff8852b}{total\_electron\_}}.at(i) = total\_electron.at(i);}
+\DoxyCodeLine{148             \}}
+\DoxyCodeLine{149          \}}
+\DoxyCodeLine{150          \textcolor{keywordflow}{for} (std::size\_t i = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abe176d44790bbf9b3ad7aa530ff8852b}{total\_electron\_}}.size(); i < total\_electron.size(); ++i) \{}
+\DoxyCodeLine{151             \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abe176d44790bbf9b3ad7aa530ff8852b}{total\_electron\_}}.push\_back(total\_electron.at(i));}
+\DoxyCodeLine{152          \}}
+\DoxyCodeLine{153          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad6ae6b65e82fe64291bc54a2437dbf4b}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{154       \}}
+\DoxyCodeLine{155       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{156          \textcolor{keywordflow}{for} (std::size\_t i = 0; i < total\_electron.size(); ++i) \{}
+\DoxyCodeLine{157             \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abe176d44790bbf9b3ad7aa530ff8852b}{total\_electron\_}}.at(i) != total\_electron.at(i)) \{}
+\DoxyCodeLine{158                \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abe176d44790bbf9b3ad7aa530ff8852b}{total\_electron\_}}.at(i) = total\_electron.at(i);}
+\DoxyCodeLine{159                \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad6ae6b65e82fe64291bc54a2437dbf4b}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{160             \}}
+\DoxyCodeLine{161          \}}
+\DoxyCodeLine{162       \}}
+\DoxyCodeLine{163    \}}
+\DoxyCodeLine{164    }
+\DoxyCodeLine{167    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae0fee27b35940b27fa0b26ddf23c3f1a}{SetMagnitudeLSpin}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin) \{}
+\DoxyCodeLine{168       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2lspin = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(magnitude\_lspin);}
+\DoxyCodeLine{169       \textcolor{keywordflow}{if} (magnitude\_2lspin <= 0) \{}
+\DoxyCodeLine{170          std::stringstream ss;}
+\DoxyCodeLine{171          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{172          ss << \textcolor{stringliteral}{"{}Please set magnitude\_2lspin > 0"{}} << std::endl;}
+\DoxyCodeLine{173          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{174       \}}
+\DoxyCodeLine{175       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}} != magnitude\_2lspin) \{}
+\DoxyCodeLine{176          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}} = magnitude\_2lspin;}
+\DoxyCodeLine{177          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a48fa20a398bf67c557a07f2b1b837b1c}{dim\_onsite\_lspin\_}} = magnitude\_2lspin + 1;}
+\DoxyCodeLine{178          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a9b72902b16e25d9a0e9d4eb3520596ee}{dim\_onsite\_}}       = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a48fa20a398bf67c557a07f2b1b837b1c}{dim\_onsite\_lspin\_}}*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a1a6de3078e6c329c68e8ef821bdedafe}{dim\_onsite\_all\_electrons\_}};}
+\DoxyCodeLine{179          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4e56bb2b6493a742b5b06b3bfd8986a1}{SetOnsiteOperator}}();}
+\DoxyCodeLine{180          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a0a376f3b07d2dec599b8a65e06da3e4b}{bases\_}}.clear();}
+\DoxyCodeLine{181          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a69c1d80025844d01c52eecff5d5f449d}{bases\_inv\_}}.clear();}
+\DoxyCodeLine{182          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad6ae6b65e82fe64291bc54a2437dbf4b}{calculated\_eigenvector\_set\_}}.clear();}
+\DoxyCodeLine{183       \}}
+\DoxyCodeLine{184    \}}
+\DoxyCodeLine{185    }
+\DoxyCodeLine{188    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a9f2ce1110f21411fd86e2b4f9de8ec54}{SetCalculatedEigenvectorSet}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} level) \{}
+\DoxyCodeLine{189       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad6ae6b65e82fe64291bc54a2437dbf4b}{calculated\_eigenvector\_set\_}}.emplace(level);}
+\DoxyCodeLine{190    \}}
+\DoxyCodeLine{191    }
+\DoxyCodeLine{195    \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aab431a42c4dcffac38a9ab8bad24de87}{CalculateNumElectron}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} basis\_onsite)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{196       \textcolor{keywordtype}{int} num\_electron = 0;}
+\DoxyCodeLine{197       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} o = 0; o < \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}}; ++o) \{}
+\DoxyCodeLine{198          \textcolor{keyword}{const} \textcolor{keywordtype}{int} basis\_electron\_onsite = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a3d5150384f28ce59aa15473581322e96}{CalculateBasisOnsiteElectron}}(basis\_onsite, o);}
+\DoxyCodeLine{199          \textcolor{keywordflow}{if} (basis\_electron\_onsite == 0) \{}
+\DoxyCodeLine{200             num\_electron += 0;}
+\DoxyCodeLine{201          \}}
+\DoxyCodeLine{202          \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (basis\_electron\_onsite == 1 || basis\_electron\_onsite == 2) \{}
+\DoxyCodeLine{203             num\_electron += 1;}
+\DoxyCodeLine{204          \}}
+\DoxyCodeLine{205          \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (basis\_electron\_onsite == 3) \{}
+\DoxyCodeLine{206             num\_electron += 2;}
+\DoxyCodeLine{207          \}}
+\DoxyCodeLine{208          \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{209             std::stringstream ss;}
+\DoxyCodeLine{210             ss << \textcolor{stringliteral}{"{}Unknown error detected in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{211             \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{212          \}}
+\DoxyCodeLine{213       \}}
+\DoxyCodeLine{214       \textcolor{keywordflow}{return} num\_electron;}
+\DoxyCodeLine{215    \}}
+\DoxyCodeLine{216    }
+\DoxyCodeLine{218    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a88ed76b9d7bc9696bbb28ba1a522ba9b}{PrintBasisOnsite}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{219       \textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}/2.0;}
+\DoxyCodeLine{220       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 0; row < \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a9b72902b16e25d9a0e9d4eb3520596ee}{dim\_onsite\_}}; ++row) \{}
+\DoxyCodeLine{221          std::vector<std::string> b\_ele;}
+\DoxyCodeLine{222          \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} o = 0; o < \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}}; ++o) \{}
+\DoxyCodeLine{223             \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a3d5150384f28ce59aa15473581322e96}{CalculateBasisOnsiteElectron}}(row, o) == 0) \{}
+\DoxyCodeLine{224                b\_ele.push\_back(\textcolor{stringliteral}{"{}|vac>"{}});}
+\DoxyCodeLine{225             \}}
+\DoxyCodeLine{226             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a3d5150384f28ce59aa15473581322e96}{CalculateBasisOnsiteElectron}}(row, o) == 1) \{}
+\DoxyCodeLine{227                b\_ele.push\_back(\textcolor{stringliteral}{"{}| ↑ >"{}});}
+\DoxyCodeLine{228             \}}
+\DoxyCodeLine{229             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a3d5150384f28ce59aa15473581322e96}{CalculateBasisOnsiteElectron}}(row, o) == 2) \{}
+\DoxyCodeLine{230                b\_ele.push\_back(\textcolor{stringliteral}{"{}| ↓ >"{}});}
+\DoxyCodeLine{231             \}}
+\DoxyCodeLine{232             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a3d5150384f28ce59aa15473581322e96}{CalculateBasisOnsiteElectron}}(row, o) == 3) \{}
+\DoxyCodeLine{233                b\_ele.push\_back(\textcolor{stringliteral}{"{}|↑↓ >"{}});}
+\DoxyCodeLine{234             \}}
+\DoxyCodeLine{235             \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{236                std::stringstream ss;}
+\DoxyCodeLine{237                ss << \textcolor{stringliteral}{"{}Unknown error detected in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{238                \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{239             \}}
+\DoxyCodeLine{240          \}}
+\DoxyCodeLine{241          std::cout << \textcolor{stringliteral}{"{}row "{}} << std::setw(2) << row << \textcolor{stringliteral}{"{}: "{}};}
+\DoxyCodeLine{242          \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&it: b\_ele) \{}
+\DoxyCodeLine{243             std::cout << it;}
+\DoxyCodeLine{244          \}}
+\DoxyCodeLine{245          std::cout << \textcolor{stringliteral}{"{}|Sz="{}} << std::showpos << magnitude\_lspin -\/ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4ff7b328710f62f5351dd482950ac5db}{CalculateBasisOnsiteLSpin}}(row) << \textcolor{stringliteral}{"{}>"{}} << std::noshowpos << std::endl;}
+\DoxyCodeLine{246       \}}
+\DoxyCodeLine{247    \}}
+\DoxyCodeLine{248    }
+\DoxyCodeLine{252    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4d952c07e25f4eef01ef9d2a9530a3da}{isValidQNumber}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} \&quantum\_number)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{253       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4d952c07e25f4eef01ef9d2a9530a3da}{isValidQNumber}}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}}, 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, quantum\_number.first, quantum\_number.second);}
+\DoxyCodeLine{254    \}}
+\DoxyCodeLine{255    }
+\DoxyCodeLine{260    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ab9ef2a067a1e41356760407a1ca87cc5}{isValidQNumber}}(\textcolor{keyword}{const} std::vector<int> \&total\_electron, \textcolor{keyword}{const} \textcolor{keywordtype}{double} total\_sz)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{261       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4d952c07e25f4eef01ef9d2a9530a3da}{isValidQNumber}}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}}, 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, total\_electron, total\_sz);}
+\DoxyCodeLine{262    \}}
+\DoxyCodeLine{263    }
+\DoxyCodeLine{267    std::int64\_t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af65466dc461d26785c648f15b2f6f1c7}{CalculateTargetDim}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{268       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af65466dc461d26785c648f15b2f6f1c7}{CalculateTargetDim}}(0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a70d04f95b8f51b13f866ae7d388127a6}{total\_2sz\_}});}
+\DoxyCodeLine{269    \}}
+\DoxyCodeLine{270    }
+\DoxyCodeLine{275    std::int64\_t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8fbb1d211f600131c98f274dfea2ee13}{CalculateTargetDim}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} total\_sz)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{276       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af65466dc461d26785c648f15b2f6f1c7}{CalculateTargetDim}}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}}, 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abe176d44790bbf9b3ad7aa530ff8852b}{total\_electron\_}}, total\_sz);}
+\DoxyCodeLine{277    \}}
+\DoxyCodeLine{278    }
+\DoxyCodeLine{284    std::int64\_t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a95ab6332c30d0c99fe1d08fe22c9d1a8}{CalculateTargetDim}}(\textcolor{keyword}{const} std::vector<int> \&total\_electron, \textcolor{keyword}{const} \textcolor{keywordtype}{double} total\_sz)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{285       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af65466dc461d26785c648f15b2f6f1c7}{CalculateTargetDim}}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}}, 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, total\_electron, total\_sz);}
+\DoxyCodeLine{286    \}}
+\DoxyCodeLine{287    }
+\DoxyCodeLine{292    std::vector<QType> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a814f38dd5ba9890697f536042c56a9e9}{GenerateTargetSector}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_1, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_2)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{293       \textcolor{comment}{// TODO: Check input matrics}}
+\DoxyCodeLine{294       std::unordered\_set<QType, utility::VecIntHash> delta\_sector\_set\_m1;}
+\DoxyCodeLine{295       std::unordered\_set<QType, utility::VecIntHash> delta\_sector\_set\_m2;}
+\DoxyCodeLine{296       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{297          \textcolor{keywordflow}{for} (std::int64\_t j = m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i]; j < m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{298             \textcolor{keywordflow}{if} (m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j] != 0.0) \{}
+\DoxyCodeLine{299                delta\_sector\_set\_m1.emplace(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a37055055afea88867025e7287eb048d7}{CalculateTargetQuantumNumber}}(i, m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j]));}
+\DoxyCodeLine{300             \}}
+\DoxyCodeLine{301          \}}
+\DoxyCodeLine{302       \}}
+\DoxyCodeLine{303       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{304          \textcolor{keywordflow}{for} (std::int64\_t j = m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i]; j < m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{305             \textcolor{keywordflow}{if} (m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j] != 0.0) \{}
+\DoxyCodeLine{306                delta\_sector\_set\_m2.emplace(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a37055055afea88867025e7287eb048d7}{CalculateTargetQuantumNumber}}(i, m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j]));}
+\DoxyCodeLine{307             \}}
+\DoxyCodeLine{308          \}}
+\DoxyCodeLine{309       \}}
+\DoxyCodeLine{310       std::vector<QType> target\_sector\_set;}
+\DoxyCodeLine{311       \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&del\_sec\_m1: delta\_sector\_set\_m1) \{}
+\DoxyCodeLine{312          \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&del\_sec\_m2: delta\_sector\_set\_m2) \{}
+\DoxyCodeLine{313             \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c1 = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4d952c07e25f4eef01ef9d2a9530a3da}{isValidQNumber}}(del\_sec\_m1.first, del\_sec\_m1.second);}
+\DoxyCodeLine{314             \textcolor{keywordflow}{if} (del\_sec\_m1 == del\_sec\_m2 \&\& c1) \{}
+\DoxyCodeLine{315                target\_sector\_set.push\_back(del\_sec\_m1);}
+\DoxyCodeLine{316             \}}
+\DoxyCodeLine{317          \}}
+\DoxyCodeLine{318       \}}
+\DoxyCodeLine{319       std::sort(target\_sector\_set.begin(), target\_sector\_set.end());}
+\DoxyCodeLine{320       target\_sector\_set.erase(std::unique(target\_sector\_set.begin(), target\_sector\_set.end()), target\_sector\_set.end());}
+\DoxyCodeLine{321       \textcolor{keywordflow}{return} target\_sector\_set;}
+\DoxyCodeLine{322    \}}
+\DoxyCodeLine{323    }
+\DoxyCodeLine{329    std::vector<std::pair<QType, QType>> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a430bb6b23e43d1cff8c60a8a2dcc2b76}{GenerateTargetSector}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_1\_bra, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_2\_ket, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_3\_ket)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{330       std::unordered\_set<QType, utility::VecIntHash> delta\_sector\_set\_m1;}
+\DoxyCodeLine{331       std::unordered\_set<QType, utility::VecIntHash> delta\_sector\_set\_m2;}
+\DoxyCodeLine{332       std::unordered\_set<QType, utility::VecIntHash> delta\_sector\_set\_m3;}
+\DoxyCodeLine{333       }
+\DoxyCodeLine{334       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_1\_bra.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{335          \textcolor{keywordflow}{for} (std::int64\_t j = m\_1\_bra.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i]; j < m\_1\_bra.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{336             \textcolor{keywordflow}{if} (m\_1\_bra.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j] != 0.0) \{}
+\DoxyCodeLine{337                delta\_sector\_set\_m1.emplace(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a37055055afea88867025e7287eb048d7}{CalculateTargetQuantumNumber}}(i, m\_1\_bra.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j]));}
+\DoxyCodeLine{338             \}}
+\DoxyCodeLine{339          \}}
+\DoxyCodeLine{340       \}}
+\DoxyCodeLine{341       }
+\DoxyCodeLine{342       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_2\_ket.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{343          \textcolor{keywordflow}{for} (std::int64\_t j = m\_2\_ket.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i]; j < m\_2\_ket.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{344             \textcolor{keywordflow}{if} (m\_2\_ket.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j] != 0.0) \{}
+\DoxyCodeLine{345                delta\_sector\_set\_m2.emplace(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a37055055afea88867025e7287eb048d7}{CalculateTargetQuantumNumber}}(i, m\_2\_ket.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j]));}
+\DoxyCodeLine{346             \}}
+\DoxyCodeLine{347          \}}
+\DoxyCodeLine{348       \}}
+\DoxyCodeLine{349       }
+\DoxyCodeLine{350       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_3\_ket.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{351          \textcolor{keywordflow}{for} (std::int64\_t j = m\_3\_ket.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i]; j < m\_3\_ket.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{352             \textcolor{keywordflow}{if} (m\_3\_ket.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j] != 0.0) \{}
+\DoxyCodeLine{353                delta\_sector\_set\_m3.emplace(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a37055055afea88867025e7287eb048d7}{CalculateTargetQuantumNumber}}(i, m\_3\_ket.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j]));}
+\DoxyCodeLine{354             \}}
+\DoxyCodeLine{355          \}}
+\DoxyCodeLine{356       \}}
+\DoxyCodeLine{357       }
+\DoxyCodeLine{358       std::vector<std::pair<QType, QType>> target\_sector\_set;}
+\DoxyCodeLine{359       }
+\DoxyCodeLine{360       \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&del\_sec\_m1: delta\_sector\_set\_m1) \{}
+\DoxyCodeLine{361          \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&del\_sec\_m2: delta\_sector\_set\_m2) \{}
+\DoxyCodeLine{362             \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&del\_sec\_m3: delta\_sector\_set\_m3) \{}
+\DoxyCodeLine{363                \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} del\_sec\_m2\_m3;}
+\DoxyCodeLine{364                \textcolor{keywordflow}{for} (std::size\_t i = 0; i < del\_sec\_m2.first.size(); ++i) \{}
+\DoxyCodeLine{365                   del\_sec\_m2\_m3.first.push\_back(del\_sec\_m2.first[i] + del\_sec\_m3.first[i]);}
+\DoxyCodeLine{366                \}}
+\DoxyCodeLine{367                del\_sec\_m2\_m3.second = del\_sec\_m2.second + del\_sec\_m3.second;}
+\DoxyCodeLine{368                \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c1 = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4d952c07e25f4eef01ef9d2a9530a3da}{isValidQNumber}}(del\_sec\_m1.first, del\_sec\_m1.second);}
+\DoxyCodeLine{369                \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c2 = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4d952c07e25f4eef01ef9d2a9530a3da}{isValidQNumber}}(del\_sec\_m3.first, del\_sec\_m3.second);}
+\DoxyCodeLine{370                \textcolor{keywordflow}{if} (del\_sec\_m1 == del\_sec\_m2\_m3 \&\& c1 \&\& c2) \{}
+\DoxyCodeLine{371                   target\_sector\_set.push\_back(\{del\_sec\_m1, del\_sec\_m3\});}
+\DoxyCodeLine{372                \}}
+\DoxyCodeLine{373             \}}
+\DoxyCodeLine{374          \}}
+\DoxyCodeLine{375       \}}
+\DoxyCodeLine{376       std::sort(target\_sector\_set.begin(), target\_sector\_set.end());}
+\DoxyCodeLine{377       target\_sector\_set.erase(std::unique(target\_sector\_set.begin(), target\_sector\_set.end()), target\_sector\_set.end());}
+\DoxyCodeLine{378       \textcolor{keywordflow}{return} target\_sector\_set;}
+\DoxyCodeLine{379    \}}
+\DoxyCodeLine{380    }
+\DoxyCodeLine{387    std::vector<std::tuple<QType, QType, QType>>}
+\DoxyCodeLine{388    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a830ca44fe856aad2dd33980af32ab695}{GenerateTargetSector}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_1\_bra, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_2\_bra, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_3\_ket, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_4\_ket)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{389       std::unordered\_set<QType, utility::VecIntHash> delta\_sector\_set\_m1;}
+\DoxyCodeLine{390       std::unordered\_set<QType, utility::VecIntHash> delta\_sector\_set\_m2;}
+\DoxyCodeLine{391       std::unordered\_set<QType, utility::VecIntHash> delta\_sector\_set\_m3;}
+\DoxyCodeLine{392       std::unordered\_set<QType, utility::VecIntHash> delta\_sector\_set\_m4;}
+\DoxyCodeLine{393       }
+\DoxyCodeLine{394       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_1\_bra.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{395          \textcolor{keywordflow}{for} (std::int64\_t j = m\_1\_bra.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i]; j < m\_1\_bra.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{396             \textcolor{keywordflow}{if} (m\_1\_bra.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j] != 0.0) \{}
+\DoxyCodeLine{397                delta\_sector\_set\_m1.emplace(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a37055055afea88867025e7287eb048d7}{CalculateTargetQuantumNumber}}(i, m\_1\_bra.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j]));}
+\DoxyCodeLine{398             \}}
+\DoxyCodeLine{399          \}}
+\DoxyCodeLine{400       \}}
+\DoxyCodeLine{401       }
+\DoxyCodeLine{402       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_2\_bra.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{403          \textcolor{keywordflow}{for} (std::int64\_t j = m\_2\_bra.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i]; j < m\_2\_bra.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{404             \textcolor{keywordflow}{if} (m\_2\_bra.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j] != 0.0) \{}
+\DoxyCodeLine{405                delta\_sector\_set\_m2.emplace(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a37055055afea88867025e7287eb048d7}{CalculateTargetQuantumNumber}}(i, m\_2\_bra.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j]));}
+\DoxyCodeLine{406             \}}
+\DoxyCodeLine{407          \}}
+\DoxyCodeLine{408       \}}
+\DoxyCodeLine{409       }
+\DoxyCodeLine{410       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_3\_ket.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{411          \textcolor{keywordflow}{for} (std::int64\_t j = m\_3\_ket.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i]; j < m\_3\_ket.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{412             \textcolor{keywordflow}{if} (m\_3\_ket.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j] != 0.0) \{}
+\DoxyCodeLine{413                delta\_sector\_set\_m3.emplace(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a37055055afea88867025e7287eb048d7}{CalculateTargetQuantumNumber}}(i, m\_3\_ket.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j]));}
+\DoxyCodeLine{414             \}}
+\DoxyCodeLine{415          \}}
+\DoxyCodeLine{416       \}}
+\DoxyCodeLine{417       }
+\DoxyCodeLine{418       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_4\_ket.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{419          \textcolor{keywordflow}{for} (std::int64\_t j = m\_4\_ket.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i]; j < m\_4\_ket.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{420             \textcolor{keywordflow}{if} (m\_4\_ket.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j] != 0.0) \{}
+\DoxyCodeLine{421                delta\_sector\_set\_m4.emplace(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a37055055afea88867025e7287eb048d7}{CalculateTargetQuantumNumber}}(i, m\_4\_ket.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j]));}
+\DoxyCodeLine{422             \}}
+\DoxyCodeLine{423          \}}
+\DoxyCodeLine{424       \}}
+\DoxyCodeLine{425       }
+\DoxyCodeLine{426       std::vector<std::tuple<QType, QType, QType>> target\_sector\_set;}
+\DoxyCodeLine{427       \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&del\_sec\_m1: delta\_sector\_set\_m1) \{}
+\DoxyCodeLine{428          \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&del\_sec\_m2: delta\_sector\_set\_m2) \{}
+\DoxyCodeLine{429             \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&del\_sec\_m3: delta\_sector\_set\_m3) \{}
+\DoxyCodeLine{430                \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&del\_sec\_m4: delta\_sector\_set\_m4) \{}
+\DoxyCodeLine{431                   \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} del\_sec\_m1\_m2;}
+\DoxyCodeLine{432                   \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} del\_sec\_m3\_m4;}
+\DoxyCodeLine{433                   \textcolor{keywordflow}{for} (std::size\_t i = 0; i < del\_sec\_m1.first.size(); ++i) \{}
+\DoxyCodeLine{434                      del\_sec\_m1\_m2.first.push\_back(del\_sec\_m1.first[i] + del\_sec\_m2.first[i]);}
+\DoxyCodeLine{435                      del\_sec\_m3\_m4.first.push\_back(del\_sec\_m3.first[i] + del\_sec\_m4.first[i]);}
+\DoxyCodeLine{436                   \}}
+\DoxyCodeLine{437                   del\_sec\_m1\_m2.second = del\_sec\_m1.second + del\_sec\_m2.second;}
+\DoxyCodeLine{438                   del\_sec\_m3\_m4.second = del\_sec\_m3.second + del\_sec\_m4.second;}
+\DoxyCodeLine{439                   \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c1 = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4d952c07e25f4eef01ef9d2a9530a3da}{isValidQNumber}}(del\_sec\_m1.first   , del\_sec\_m1.second   );}
+\DoxyCodeLine{440                   \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c2 = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4d952c07e25f4eef01ef9d2a9530a3da}{isValidQNumber}}(del\_sec\_m1\_m2.first, del\_sec\_m1\_m2.second);}
+\DoxyCodeLine{441                   \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c3 = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4d952c07e25f4eef01ef9d2a9530a3da}{isValidQNumber}}(del\_sec\_m4.first   , del\_sec\_m4.second   );}
+\DoxyCodeLine{442                   \textcolor{keywordflow}{if} (del\_sec\_m1\_m2 == del\_sec\_m3\_m4 \&\& c1 \&\& c2 \&\& c3) \{}
+\DoxyCodeLine{443                      target\_sector\_set.push\_back(\{del\_sec\_m1, del\_sec\_m1\_m2, del\_sec\_m4\});}
+\DoxyCodeLine{444                   \}}
+\DoxyCodeLine{445                \}}
+\DoxyCodeLine{446             \}}
+\DoxyCodeLine{447          \}}
+\DoxyCodeLine{448       \}}
+\DoxyCodeLine{449       }
+\DoxyCodeLine{450       std::sort(target\_sector\_set.begin(), target\_sector\_set.end());}
+\DoxyCodeLine{451       target\_sector\_set.erase(std::unique(target\_sector\_set.begin(), target\_sector\_set.end()), target\_sector\_set.end());}
+\DoxyCodeLine{452       \textcolor{keywordflow}{return} target\_sector\_set;}
+\DoxyCodeLine{453    \}}
+\DoxyCodeLine{454    }
+\DoxyCodeLine{459    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a484aaf1153f9a0c2cef801eeb9543439}{GenerateBasis}}() \{}
+\DoxyCodeLine{460       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a484aaf1153f9a0c2cef801eeb9543439}{GenerateBasis}}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abe176d44790bbf9b3ad7aa530ff8852b}{total\_electron\_}}, 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a70d04f95b8f51b13f866ae7d388127a6}{total\_2sz\_}});}
+\DoxyCodeLine{461    \}}
+\DoxyCodeLine{462    }
+\DoxyCodeLine{468    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a1aabd19a93def8d0f31c4254334d9108}{GenerateBasis}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} \&quantum\_number) \{}
+\DoxyCodeLine{469       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a484aaf1153f9a0c2cef801eeb9543439}{GenerateBasis}}(quantum\_number.first, quantum\_number.second);}
+\DoxyCodeLine{470    \}}
+\DoxyCodeLine{471    }
+\DoxyCodeLine{478    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a40da77f19e743492241a8d8dcd0d2ea0}{GenerateBasis}}(\textcolor{keyword}{const} std::vector<int> \&total\_electron, \textcolor{keyword}{const} \textcolor{keywordtype}{double} total\_sz) \{}
+\DoxyCodeLine{479       \textcolor{keyword}{const} \textcolor{keyword}{auto} start     = std::chrono::system\_clock::now();}
+\DoxyCodeLine{480       \textcolor{keyword}{const} \textcolor{keywordtype}{int}  total\_2sz = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(total\_sz);}
+\DoxyCodeLine{481       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a0a376f3b07d2dec599b8a65e06da3e4b}{bases\_}}.count(\{total\_electron, total\_2sz\}) != 0) \{}
+\DoxyCodeLine{482          \textcolor{keywordflow}{return};}
+\DoxyCodeLine{483       \}}
+\DoxyCodeLine{484       std::cout << \textcolor{stringliteral}{"{}Generating Basis..."{}} << std::flush;}
+\DoxyCodeLine{485             }
+\DoxyCodeLine{486       std::vector<std::vector<std::vector<int>>> electron\_configuration\_list;}
+\DoxyCodeLine{487       std::vector<int> length\_list;}
+\DoxyCodeLine{488       std::int64\_t length = 1;}
+\DoxyCodeLine{489       \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} num\_electron: total\_electron) \{}
+\DoxyCodeLine{490          \textcolor{keyword}{const} \textcolor{keyword}{auto} electron\_configuration = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a9ea3a542efc8659172ea383f9e5b6b5d}{GenerateElectronConfigurations}}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}}, num\_electron);}
+\DoxyCodeLine{491          electron\_configuration\_list.push\_back(electron\_configuration);}
+\DoxyCodeLine{492          length\_list.push\_back(electron\_configuration[0].size());}
+\DoxyCodeLine{493          length *= electron\_configuration[0].size();}
+\DoxyCodeLine{494       \}}
+\DoxyCodeLine{495       \textcolor{keyword}{const} std::vector<std::vector<std::int64\_t>> binom = \mbox{\hyperlink{namespacecompnal_1_1utility_a4cce9c29a3548fefaf4814bc1bfd0345}{utility::CalculateBinomialTable}}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}});}
+\DoxyCodeLine{496       \textcolor{keyword}{const} std::int64\_t dim\_target\_global = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af65466dc461d26785c648f15b2f6f1c7}{CalculateTargetDim}}(total\_electron, total\_sz);}
+\DoxyCodeLine{497 }
+\DoxyCodeLine{498       std::vector<std::vector<int>> q\_number\_n\_up\_down;}
+\DoxyCodeLine{499       std::vector<std::vector<int>> q\_number\_n\_up;}
+\DoxyCodeLine{500       std::vector<std::vector<int>> q\_number\_n\_down;}
+\DoxyCodeLine{501       std::vector<std::vector<int>> q\_number\_n\_vac;}
+\DoxyCodeLine{502       std::vector<std::vector<int>> q\_number\_ele\_list;}
+\DoxyCodeLine{503       std::vector<int> q\_number\_spin\_vec;}
+\DoxyCodeLine{504       std::vector<std::int64\_t> total\_electron\_dim\_list;}
+\DoxyCodeLine{505       std::vector<std::vector<std::int64\_t>> each\_electron\_basis\_dim\_prod;}
+\DoxyCodeLine{506       std::vector<std::vector<std::int64\_t>> each\_electron\_basis\_dim;}
+\DoxyCodeLine{507       std::vector<std::int64\_t> bias\_basis;}
+\DoxyCodeLine{508       bias\_basis.push\_back(0);}
+\DoxyCodeLine{509       }
+\DoxyCodeLine{510       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < length; ++i) \{}
+\DoxyCodeLine{511          \textcolor{keywordtype}{int} electron\_2sz = 0;}
+\DoxyCodeLine{512          std::vector<int> temp\_n\_up\_down;}
+\DoxyCodeLine{513          std::vector<int> temp\_n\_up;}
+\DoxyCodeLine{514          std::vector<int> temp\_n\_down;}
+\DoxyCodeLine{515          std::vector<int> temp\_n\_vac;}
+\DoxyCodeLine{516          std::int64\_t electron\_dim = 1;}
+\DoxyCodeLine{517          \textcolor{keywordflow}{for} (std::size\_t j = 0; j < length\_list.size(); ++j) \{}
+\DoxyCodeLine{518             std::int64\_t prod = 1;}
+\DoxyCodeLine{519             \textcolor{keywordflow}{for} (std::size\_t k = j + 1; k < length\_list.size(); ++k) \{}
+\DoxyCodeLine{520                prod *= length\_list[k];}
+\DoxyCodeLine{521             \}}
+\DoxyCodeLine{522             \textcolor{keyword}{const} std::size\_t index = (i/prod)\%length\_list[j];}
+\DoxyCodeLine{523             \textcolor{keyword}{const} \textcolor{keywordtype}{int} n\_up\_down = electron\_configuration\_list[j][0][index];}
+\DoxyCodeLine{524             \textcolor{keyword}{const} \textcolor{keywordtype}{int} n\_up      = electron\_configuration\_list[j][1][index];}
+\DoxyCodeLine{525             \textcolor{keyword}{const} \textcolor{keywordtype}{int} n\_down    = electron\_configuration\_list[j][2][index];}
+\DoxyCodeLine{526             \textcolor{keyword}{const} \textcolor{keywordtype}{int} n\_vac     = electron\_configuration\_list[j][3][index];}
+\DoxyCodeLine{527             electron\_2sz += n\_up -\/ n\_down;}
+\DoxyCodeLine{528             temp\_n\_up\_down.push\_back(n\_up\_down);}
+\DoxyCodeLine{529             temp\_n\_up     .push\_back(n\_up     );}
+\DoxyCodeLine{530             temp\_n\_down   .push\_back(n\_down   );}
+\DoxyCodeLine{531             temp\_n\_vac    .push\_back(n\_vac    );}
+\DoxyCodeLine{532             electron\_dim *= binom[\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}}][n\_up]*binom[\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}} -\/ n\_up][n\_down]*binom[\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}} -\/ n\_up -\/ n\_down][n\_up\_down];}
+\DoxyCodeLine{533          \}}
+\DoxyCodeLine{534          \textcolor{keyword}{const} \textcolor{keywordtype}{int} spin\_2sz = total\_2sz -\/ electron\_2sz;}
+\DoxyCodeLine{535          \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{BaseU1Spin\_1D<RealType>::isValidQNumber}}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}}, 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, 0.5*spin\_2sz)) \{}
+\DoxyCodeLine{536             q\_number\_n\_up\_down.push\_back(temp\_n\_up\_down);}
+\DoxyCodeLine{537             q\_number\_n\_up     .push\_back(temp\_n\_up     );}
+\DoxyCodeLine{538             q\_number\_n\_down   .push\_back(temp\_n\_down   );}
+\DoxyCodeLine{539             q\_number\_n\_vac    .push\_back(temp\_n\_vac    );}
+\DoxyCodeLine{540             q\_number\_spin\_vec .push\_back(spin\_2sz);}
+\DoxyCodeLine{541             total\_electron\_dim\_list.push\_back(electron\_dim);}
+\DoxyCodeLine{542             each\_electron\_basis\_dim.emplace\_back();}
+\DoxyCodeLine{543             bias\_basis.push\_back(electron\_dim*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{BaseU1Spin\_1D<RealType>::CalculateTargetDim}}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}}, 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, 0.5*spin\_2sz));}
+\DoxyCodeLine{544             \textcolor{keywordflow}{for} (std::size\_t j = 0; j < length\_list.size(); ++j) \{}
+\DoxyCodeLine{545                q\_number\_ele\_list.push\_back(\{temp\_n\_up\_down[j], temp\_n\_up[j], temp\_n\_down[j], temp\_n\_vac[j]\});}
+\DoxyCodeLine{546                each\_electron\_basis\_dim.back().push\_back(binom[\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}}][temp\_n\_up[j]]*}
+\DoxyCodeLine{547                                                         binom[\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}} -\/ temp\_n\_up[j]][temp\_n\_down[j]]*}
+\DoxyCodeLine{548                                                         binom[\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}} -\/ temp\_n\_up[j] -\/ temp\_n\_down[j]][temp\_n\_up\_down[j]]);}
+\DoxyCodeLine{549                }
+\DoxyCodeLine{550             \}}
+\DoxyCodeLine{551          \}}
+\DoxyCodeLine{552       \}}
+\DoxyCodeLine{553       }
+\DoxyCodeLine{554       each\_electron\_basis\_dim\_prod.resize(each\_electron\_basis\_dim.size());}
+\DoxyCodeLine{555       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < each\_electron\_basis\_dim\_prod.size(); ++i) \{}
+\DoxyCodeLine{556          each\_electron\_basis\_dim\_prod[i].resize(total\_electron.size());}
+\DoxyCodeLine{557          \textcolor{keywordflow}{for} (std::size\_t j = 0; j < total\_electron.size(); ++j) \{}
+\DoxyCodeLine{558             std::int64\_t prod = 1;}
+\DoxyCodeLine{559             \textcolor{keywordflow}{for} (std::size\_t k = j + 1; k < total\_electron.size(); ++k) \{}
+\DoxyCodeLine{560                prod *= each\_electron\_basis\_dim[i][k];}
+\DoxyCodeLine{561             \}}
+\DoxyCodeLine{562             each\_electron\_basis\_dim\_prod[i][j] = prod;}
+\DoxyCodeLine{563          \}}
+\DoxyCodeLine{564       \}}
+\DoxyCodeLine{565       }
+\DoxyCodeLine{566       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < bias\_basis.size(); ++i) \{}
+\DoxyCodeLine{567          bias\_basis[i+1] += bias\_basis[i];}
+\DoxyCodeLine{568       \}}
+\DoxyCodeLine{569       }
+\DoxyCodeLine{570       \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(bias\_basis[bias\_basis.size()]) != dim\_target\_global) \{}
+\DoxyCodeLine{571          std::stringstream ss;}
+\DoxyCodeLine{572          ss << \textcolor{stringliteral}{"{}Unknown error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{573          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{574       \}}
+\DoxyCodeLine{575       }
+\DoxyCodeLine{576       std::vector<std::int64\_t> site\_constant\_global(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}});}
+\DoxyCodeLine{577       std::vector<std::int64\_t> ele\_constant\_global(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}});}
+\DoxyCodeLine{578 }
+\DoxyCodeLine{579       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} site = 0; site < \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}}; ++site) \{}
+\DoxyCodeLine{580          site\_constant\_global[site] = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(std::pow(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a9b72902b16e25d9a0e9d4eb3520596ee}{dim\_onsite\_}}, site));}
+\DoxyCodeLine{581       \}}
+\DoxyCodeLine{582       }
+\DoxyCodeLine{583       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} o = 0; o < static\_cast<int>(total\_electron.size()); ++o) \{}
+\DoxyCodeLine{584          ele\_constant\_global[o] = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(std::pow(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa0c1648165b632ae0ca7f7da5a967f8e}{dim\_onsite\_electron\_}}, o));}
+\DoxyCodeLine{585       \}}
+\DoxyCodeLine{586       }
+\DoxyCodeLine{587       \textcolor{comment}{//Generate spin bases}}
+\DoxyCodeLine{588       std::vector<int> temp\_q\_number\_spin\_vec = q\_number\_spin\_vec;}
+\DoxyCodeLine{589       std::sort(temp\_q\_number\_spin\_vec.begin(), temp\_q\_number\_spin\_vec.end());}
+\DoxyCodeLine{590       temp\_q\_number\_spin\_vec.erase(std::unique(temp\_q\_number\_spin\_vec.begin(), temp\_q\_number\_spin\_vec.end()), temp\_q\_number\_spin\_vec.end());}
+\DoxyCodeLine{591       std::unordered\_map<int, std::vector<std::int64\_t>> spin\_bases;}
+\DoxyCodeLine{592 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{593       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < static\_cast<std::int64\_t>(temp\_q\_number\_spin\_vec.size()); ++i) \{}
+\DoxyCodeLine{594          \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2\_sz\_lspin = temp\_q\_number\_spin\_vec[i];}
+\DoxyCodeLine{595          \textcolor{keyword}{const} \textcolor{keywordtype}{int} shifted\_2sz      = (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}}*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}} -\/ total\_2\_sz\_lspin)/2;}
+\DoxyCodeLine{596          \textcolor{keyword}{const} std::int64\_t dim\_target\_lspin = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a2457e64fe751736bc3e533aebe3db1d3}{BaseU1Spin\_1D<RealType>::CalculateTargetDim}}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}}, 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, 0.5*total\_2\_sz\_lspin);}
+\DoxyCodeLine{597          std::vector<std::vector<int>> partition\_integers;}
+\DoxyCodeLine{598          \mbox{\hyperlink{namespacecompnal_1_1utility_a2580357fcc88b1c7bac5627e5b47925f}{utility::GenerateIntegerPartition}}(\&partition\_integers, shifted\_2sz, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}});}
+\DoxyCodeLine{599          \textcolor{keyword}{auto} \&spin\_basis = spin\_bases[total\_2\_sz\_lspin];}
+\DoxyCodeLine{600          spin\_basis.reserve(dim\_target\_lspin);}
+\DoxyCodeLine{601          \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} \&\&integer\_list: partition\_integers) \{}
+\DoxyCodeLine{602             \textcolor{keyword}{const} \textcolor{keywordtype}{bool} condition1 = (0 < integer\_list.size()) \&\& (\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(integer\_list.size()) <= \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}});}
+\DoxyCodeLine{603             \textcolor{keyword}{const} \textcolor{keywordtype}{bool} condition2 = (integer\_list.size() == 0) \&\& (shifted\_2sz  == 0);}
+\DoxyCodeLine{604             \textcolor{keywordflow}{if} (condition1 || condition2) \{}
+\DoxyCodeLine{605                \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(integer\_list.size()); j < \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}}; ++j) \{}
+\DoxyCodeLine{606                   integer\_list.push\_back(0);}
+\DoxyCodeLine{607                \}}
+\DoxyCodeLine{608                std::sort(integer\_list.begin(), integer\_list.end());}
+\DoxyCodeLine{609                \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{610                   std::int64\_t basis\_global = 0;}
+\DoxyCodeLine{611                   \textcolor{keywordflow}{for} (std::size\_t j = 0; j < integer\_list.size(); ++j) \{}
+\DoxyCodeLine{612                      basis\_global += integer\_list[j]*site\_constant\_global[j];}
+\DoxyCodeLine{613                   \}}
+\DoxyCodeLine{614                   spin\_basis.push\_back(basis\_global);}
+\DoxyCodeLine{615                \} \textcolor{keywordflow}{while} (std::next\_permutation(integer\_list.begin(), integer\_list.end()));}
+\DoxyCodeLine{616             \}}
+\DoxyCodeLine{617          \}}
+\DoxyCodeLine{618          \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(spin\_basis.size()) != dim\_target\_lspin) \{}
+\DoxyCodeLine{619             std::stringstream ss;}
+\DoxyCodeLine{620             ss << \textcolor{stringliteral}{"{}Unknown error detected in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{621             \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{622          \}}
+\DoxyCodeLine{623          std::sort(spin\_basis.begin(), spin\_basis.end());}
+\DoxyCodeLine{624       \}}
+\DoxyCodeLine{625       }
+\DoxyCodeLine{626       \textcolor{comment}{//Generate electron bases}}
+\DoxyCodeLine{627       \textcolor{keyword}{const} std::int64\_t loop\_size = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(q\_number\_spin\_vec.size());}
+\DoxyCodeLine{628       std::unordered\_map<std::vector<int>, std::vector<std::int64\_t>, \mbox{\hyperlink{structcompnal_1_1utility_1_1_vec_hash}{utility::VecHash}}> electron\_bases;}
+\DoxyCodeLine{629       std::vector<std::vector<int>> temp\_q\_number\_ele\_list = q\_number\_ele\_list;}
+\DoxyCodeLine{630       std::sort(temp\_q\_number\_ele\_list.begin(), temp\_q\_number\_ele\_list.end());}
+\DoxyCodeLine{631       temp\_q\_number\_ele\_list.erase(std::unique(temp\_q\_number\_ele\_list.begin(), temp\_q\_number\_ele\_list.end()), temp\_q\_number\_ele\_list.end());}
+\DoxyCodeLine{632       }
+\DoxyCodeLine{633 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{634       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < temp\_q\_number\_ele\_list.size(); ++i) \{}
+\DoxyCodeLine{635          \textcolor{keyword}{const} \textcolor{keywordtype}{int} n\_up\_down = temp\_q\_number\_ele\_list[i][0];}
+\DoxyCodeLine{636          \textcolor{keyword}{const} \textcolor{keywordtype}{int} n\_down    = temp\_q\_number\_ele\_list[i][1];}
+\DoxyCodeLine{637          \textcolor{keyword}{const} \textcolor{keywordtype}{int} n\_up      = temp\_q\_number\_ele\_list[i][2];}
+\DoxyCodeLine{638          \textcolor{keyword}{const} \textcolor{keywordtype}{int} n\_vac     = temp\_q\_number\_ele\_list[i][3];}
+\DoxyCodeLine{639          std::vector<int> basis\_list\_electron(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}});}
+\DoxyCodeLine{640          \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} s = 0; s < n\_vac; ++s) \{}
+\DoxyCodeLine{641             basis\_list\_electron[s] = 0;}
+\DoxyCodeLine{642          \}}
+\DoxyCodeLine{643          \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} s = 0; s < n\_up; ++s) \{}
+\DoxyCodeLine{644             basis\_list\_electron[s + n\_vac] = 1;}
+\DoxyCodeLine{645          \}}
+\DoxyCodeLine{646          \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} s = 0; s < n\_down; ++s) \{}
+\DoxyCodeLine{647             basis\_list\_electron[s + n\_vac + n\_up] = 2;}
+\DoxyCodeLine{648          \}}
+\DoxyCodeLine{649          \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} s = 0; s < n\_up\_down; ++s) \{}
+\DoxyCodeLine{650             basis\_list\_electron[s + n\_vac + n\_up + n\_down] = 3;}
+\DoxyCodeLine{651          \}}
+\DoxyCodeLine{652          \textcolor{keywordflow}{do} \{}
+\DoxyCodeLine{653             std::int64\_t basis\_global\_electron = 0;}
+\DoxyCodeLine{654             \textcolor{keywordflow}{for} (std::size\_t j = 0; j < basis\_list\_electron.size(); ++j) \{}
+\DoxyCodeLine{655                basis\_global\_electron += basis\_list\_electron[j]*site\_constant\_global[j]*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a48fa20a398bf67c557a07f2b1b837b1c}{dim\_onsite\_lspin\_}};}
+\DoxyCodeLine{656             \}}
+\DoxyCodeLine{657          \} \textcolor{keywordflow}{while} (std::next\_permutation(basis\_list\_electron.begin(), basis\_list\_electron.end()));}
+\DoxyCodeLine{658       \}}
+\DoxyCodeLine{659       }
+\DoxyCodeLine{660       \textcolor{comment}{//Generate global bases}}
+\DoxyCodeLine{661       std::vector<std::int64\_t>().swap(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a0a376f3b07d2dec599b8a65e06da3e4b}{bases\_}}[\{total\_electron, total\_2sz\}]);}
+\DoxyCodeLine{662       \textcolor{keyword}{auto} \&global\_basis\_ref = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a0a376f3b07d2dec599b8a65e06da3e4b}{bases\_}}.at(\{total\_electron, total\_2sz\});}
+\DoxyCodeLine{663       global\_basis\_ref.resize(dim\_target\_global);}
+\DoxyCodeLine{664       }
+\DoxyCodeLine{665 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{666       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < loop\_size; ++i) \{}
+\DoxyCodeLine{667          std::int64\_t count = bias\_basis[i];}
+\DoxyCodeLine{668          \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz\_lspin = q\_number\_spin\_vec[i];}
+\DoxyCodeLine{669          \textcolor{keyword}{const} std::int64\_t total\_electron\_dim = total\_electron\_dim\_list[i];}
+\DoxyCodeLine{670          \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&spin\_basis: spin\_bases.at(total\_2sz\_lspin)) \{}
+\DoxyCodeLine{671             }
+\DoxyCodeLine{672             \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < total\_electron\_dim; ++j) \{}
+\DoxyCodeLine{673                std::int64\_t global\_basis = spin\_basis;}
+\DoxyCodeLine{674                \textcolor{keywordflow}{for} (std::size\_t k = 0; k < total\_electron.size(); ++k) \{}
+\DoxyCodeLine{675                   \textcolor{keyword}{const} \textcolor{keywordtype}{int} n\_up\_down = q\_number\_n\_up\_down[i][k];}
+\DoxyCodeLine{676                   \textcolor{keyword}{const} \textcolor{keywordtype}{int} n\_up      = q\_number\_n\_up     [i][k];}
+\DoxyCodeLine{677                   \textcolor{keyword}{const} \textcolor{keywordtype}{int} n\_down    = q\_number\_n\_down   [i][k];}
+\DoxyCodeLine{678                   \textcolor{keyword}{const} \textcolor{keywordtype}{int} n\_vac     = q\_number\_n\_vac    [i][k];}
+\DoxyCodeLine{679                   std::size\_t index = (j/each\_electron\_basis\_dim\_prod[i][k])\%each\_electron\_basis\_dim[i][k];}
+\DoxyCodeLine{680                   global\_basis += electron\_bases.at(\{n\_up\_down, n\_up, n\_down, n\_vac\})[index];}
+\DoxyCodeLine{681                \}}
+\DoxyCodeLine{682                global\_basis\_ref[count++] = global\_basis;}
+\DoxyCodeLine{683             \}}
+\DoxyCodeLine{684          \}}
+\DoxyCodeLine{685       \}}
+\DoxyCodeLine{686       }
+\DoxyCodeLine{687       \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a0a376f3b07d2dec599b8a65e06da3e4b}{bases\_}}.at(\{total\_electron, total\_2sz\}).size()) != dim\_target\_global) \{}
+\DoxyCodeLine{688          std::stringstream ss;}
+\DoxyCodeLine{689          ss << \textcolor{stringliteral}{"{}Unknown error detected in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{690          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{691       \}}
+\DoxyCodeLine{692       }
+\DoxyCodeLine{693       std::sort(global\_basis\_ref.begin(), global\_basis\_ref.end());}
+\DoxyCodeLine{694       }
+\DoxyCodeLine{695       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a69c1d80025844d01c52eecff5d5f449d}{bases\_inv\_}}[\{total\_electron, total\_2sz\}].clear();}
+\DoxyCodeLine{696       }
+\DoxyCodeLine{697       \textcolor{keyword}{auto} \&basis\_inv\_ref = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a69c1d80025844d01c52eecff5d5f449d}{bases\_inv\_}}.at(\{total\_electron, total\_2sz\});}
+\DoxyCodeLine{698       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < dim\_target\_global; ++i) \{}
+\DoxyCodeLine{699          basis\_inv\_ref[global\_basis\_ref[i]] = i;}
+\DoxyCodeLine{700       \}}
+\DoxyCodeLine{701       }
+\DoxyCodeLine{702       \textcolor{keywordflow}{if} (basis\_inv\_ref.size() != global\_basis\_ref.size()) \{}
+\DoxyCodeLine{703          std::stringstream ss;}
+\DoxyCodeLine{704          ss << \textcolor{stringliteral}{"{}Unknown error detected in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{705          ss << \textcolor{stringliteral}{"{}The same basis has been detected"{}} << std::endl;}
+\DoxyCodeLine{706          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{707       \}}
+\DoxyCodeLine{708       \textcolor{keyword}{const} \textcolor{keyword}{auto}   time\_count = std::chrono::duration\_cast<std::chrono::microseconds>(std::chrono::system\_clock::now() -\/ start).count();}
+\DoxyCodeLine{709       \textcolor{keyword}{const} \textcolor{keywordtype}{double} time\_sec   = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(time\_count)/\mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_abc3cda835ae580805bef02651b4a7fbd}{sparse\_matrix::TIME\_UNIT\_CONSTANT}};}
+\DoxyCodeLine{710       std::cout << \textcolor{stringliteral}{"{}\(\backslash\)rElapsed time of generating basis:"{}} << time\_sec << \textcolor{stringliteral}{"{}[sec]"{}} << std::endl;}
+\DoxyCodeLine{711       }
+\DoxyCodeLine{712    \}}
+\DoxyCodeLine{713    }
+\DoxyCodeLine{723    \textcolor{keyword}{static} std::int64\_t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a77b358e0381c6658d61fd2cc78448a03}{CalculateTargetDim}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size,}
+\DoxyCodeLine{724                                           \textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin,}
+\DoxyCodeLine{725                                           \textcolor{keyword}{const} std::vector<int> \&total\_electron,}
+\DoxyCodeLine{726                                           \textcolor{keyword}{const} \textcolor{keywordtype}{double} total\_sz) \{}
+\DoxyCodeLine{727       std::vector<std::vector<std::vector<int>>> electron\_configuration\_list;}
+\DoxyCodeLine{728       std::vector<int> length\_list;}
+\DoxyCodeLine{729       std::int64\_t length = 1;}
+\DoxyCodeLine{730       \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} num\_electron: total\_electron) \{}
+\DoxyCodeLine{731          \textcolor{keyword}{const} \textcolor{keyword}{auto} electron\_configuration = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a9ea3a542efc8659172ea383f9e5b6b5d}{GenerateElectronConfigurations}}(system\_size, num\_electron);}
+\DoxyCodeLine{732          electron\_configuration\_list.push\_back(electron\_configuration);}
+\DoxyCodeLine{733          length\_list.push\_back(electron\_configuration[0].size());}
+\DoxyCodeLine{734          length *= electron\_configuration[0].size();}
+\DoxyCodeLine{735       \}}
+\DoxyCodeLine{736       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(total\_sz);}
+\DoxyCodeLine{737       \textcolor{keyword}{const} std::vector<std::vector<std::int64\_t>> binom = \mbox{\hyperlink{namespacecompnal_1_1utility_a4cce9c29a3548fefaf4814bc1bfd0345}{utility::CalculateBinomialTable}}(system\_size);}
+\DoxyCodeLine{738       std::int64\_t dim = 0;}
+\DoxyCodeLine{739       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < length; ++i) \{}
+\DoxyCodeLine{740          \textcolor{keywordtype}{int} electron\_2sz = 0;}
+\DoxyCodeLine{741          std::int64\_t electron\_dim = 1;}
+\DoxyCodeLine{742          \textcolor{keywordflow}{for} (std::size\_t j = 0; j < length\_list.size(); ++j) \{}
+\DoxyCodeLine{743             std::int64\_t prod = 1;}
+\DoxyCodeLine{744             \textcolor{keywordflow}{for} (std::size\_t k = j + 1; k < length\_list.size(); ++k) \{}
+\DoxyCodeLine{745                prod *= length\_list[k];}
+\DoxyCodeLine{746             \}}
+\DoxyCodeLine{747             \textcolor{keyword}{const} std::size\_t index = (i/prod)\%length\_list[j];}
+\DoxyCodeLine{748             \textcolor{keyword}{const} \textcolor{keywordtype}{int} n\_up\_down = electron\_configuration\_list[j][0][index];}
+\DoxyCodeLine{749             \textcolor{keyword}{const} \textcolor{keywordtype}{int} n\_up      = electron\_configuration\_list[j][1][index];}
+\DoxyCodeLine{750             \textcolor{keyword}{const} \textcolor{keywordtype}{int} n\_down    = electron\_configuration\_list[j][2][index];}
+\DoxyCodeLine{751             electron\_2sz += n\_up -\/ n\_down;}
+\DoxyCodeLine{752             electron\_dim *= binom[system\_size][n\_up]*binom[system\_size -\/ n\_up][n\_down]*binom[system\_size -\/ n\_up -\/ n\_down][n\_up\_down];}
+\DoxyCodeLine{753          \}}
+\DoxyCodeLine{754          \textcolor{keyword}{const} \textcolor{keywordtype}{int} spin\_2sz = total\_2sz -\/ electron\_2sz;}
+\DoxyCodeLine{755          \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{BaseU1Spin\_1D<RealType>::isValidQNumber}}(system\_size, magnitude\_lspin, 0.5*spin\_2sz)) \{}
+\DoxyCodeLine{756             dim += electron\_dim*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a2457e64fe751736bc3e533aebe3db1d3}{BaseU1Spin\_1D<RealType>::CalculateTargetDim}}(system\_size, magnitude\_lspin, 0.5*spin\_2sz);}
+\DoxyCodeLine{757          \}}
+\DoxyCodeLine{758       \}}
+\DoxyCodeLine{759       \textcolor{keywordflow}{return} dim;}
+\DoxyCodeLine{760    \}}
+\DoxyCodeLine{761       }
+\DoxyCodeLine{767    \textcolor{keyword}{inline} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a37055055afea88867025e7287eb048d7}{CalculateTargetQuantumNumber}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} row, \textcolor{keyword}{const} \textcolor{keywordtype}{int} col)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{768       std::vector<int> diff\_electron\_list;}
+\DoxyCodeLine{769       \textcolor{keywordtype}{int} target\_total\_sz = 0;}
+\DoxyCodeLine{770       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} o = 0; o < \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}}; ++o) \{}
+\DoxyCodeLine{771          \textcolor{keyword}{const} \textcolor{keywordtype}{int} row\_electron   = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a3d5150384f28ce59aa15473581322e96}{CalculateBasisOnsiteElectron}}(row, o);}
+\DoxyCodeLine{772          \textcolor{keyword}{const} \textcolor{keywordtype}{int} col\_electron   = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a3d5150384f28ce59aa15473581322e96}{CalculateBasisOnsiteElectron}}(col, o);}
+\DoxyCodeLine{773          \textcolor{keyword}{const} \textcolor{keyword}{auto} diff\_electron = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a7eeaeb64c183a9be7d49d2dea7ade5ef}{BaseU1Electron\_1D<RealType>::CalculateQuntumNumberDifference}}(row\_electron, col\_electron);}
+\DoxyCodeLine{774          diff\_electron\_list.push\_back(diff\_electron.first + \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abe176d44790bbf9b3ad7aa530ff8852b}{total\_electron\_}}[o]);}
+\DoxyCodeLine{775          target\_total\_sz += diff\_electron.second;}
+\DoxyCodeLine{776       \}}
+\DoxyCodeLine{777       \textcolor{keyword}{const} \textcolor{keywordtype}{int} row\_lspin = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4ff7b328710f62f5351dd482950ac5db}{CalculateBasisOnsiteLSpin}}(row);}
+\DoxyCodeLine{778       \textcolor{keyword}{const} \textcolor{keywordtype}{int} col\_lspin = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4ff7b328710f62f5351dd482950ac5db}{CalculateBasisOnsiteLSpin}}(col);}
+\DoxyCodeLine{779       target\_total\_sz += \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ad03c53376583b17781b280f5613ab1e4}{BaseU1Spin\_1D<RealType>::CalculateQuntumNumberDifference}}(row\_lspin, col\_lspin) + 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a70d04f95b8f51b13f866ae7d388127a6}{total\_2sz\_}};}
+\DoxyCodeLine{780       }
+\DoxyCodeLine{781       \textcolor{keywordflow}{return} \{diff\_electron\_list, target\_total\_sz\};}
+\DoxyCodeLine{782    \}}
+\DoxyCodeLine{783    }
+\DoxyCodeLine{790    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a64eb887ad8446e6fbf72ed8f3bf0f449}{CreateOnsiteOperatorCUp}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_orbital) \{}
+\DoxyCodeLine{791       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2lspin = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(magnitude\_lspin);}
+\DoxyCodeLine{792       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite\_lspin = magnitude\_2lspin + 1;}
+\DoxyCodeLine{793       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite = dim\_onsite\_lspin*\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(std::pow(4, num\_orbital));}
+\DoxyCodeLine{794       }
+\DoxyCodeLine{795       \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{796       \textcolor{comment}{// \# <-\/>  [Cherge  ] -\/-\/ (N,  2*sz)}}
+\DoxyCodeLine{797       \textcolor{comment}{// 0 <-\/>  [        ] -\/-\/ (0,  0   )}}
+\DoxyCodeLine{798       \textcolor{comment}{// 1 <-\/>  [up      ] -\/-\/ (1,  1   )}}
+\DoxyCodeLine{799       \textcolor{comment}{// 2 <-\/>  [down    ] -\/-\/ (1, -\/1   )}}
+\DoxyCodeLine{800       \textcolor{comment}{// 3 <-\/>  [up\&down ] -\/-\/ (2,  0   )}}
+\DoxyCodeLine{801       \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{802       }
+\DoxyCodeLine{803       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
+\DoxyCodeLine{804       }
+\DoxyCodeLine{805       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 0; row < dim\_onsite; ++row) \{}
+\DoxyCodeLine{806          \textcolor{keywordtype}{int} num\_electron = 0;}
+\DoxyCodeLine{807          \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} o = 0; o < orbital; ++o) \{}
+\DoxyCodeLine{808             \textcolor{keyword}{const} \textcolor{keywordtype}{int} basis\_electron\_onsite = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a3d5150384f28ce59aa15473581322e96}{CalculateBasisOnsiteElectron}}(row, magnitude\_lspin, o, num\_orbital);}
+\DoxyCodeLine{809             num\_electron += \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad94f55ffb42f8e61248a2e611366b124}{CalculateNumElectronFromElectronBasis}}(basis\_electron\_onsite);}
+\DoxyCodeLine{810          \}}
+\DoxyCodeLine{811          \textcolor{keywordtype}{int} sign = 1;}
+\DoxyCodeLine{812          \textcolor{keywordflow}{if} (num\_electron\%2 == 1) \{}
+\DoxyCodeLine{813             sign = -\/1;}
+\DoxyCodeLine{814          \}}
+\DoxyCodeLine{815          }
+\DoxyCodeLine{816          \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} col = 0; col < dim\_onsite; col++) \{}
+\DoxyCodeLine{817             \textcolor{keywordtype}{bool} c\_1 = \textcolor{keyword}{true};}
+\DoxyCodeLine{818             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} o = 0; o < num\_orbital; ++o) \{}
+\DoxyCodeLine{819                \textcolor{keyword}{const} \textcolor{keywordtype}{int} basis\_1 = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a3d5150384f28ce59aa15473581322e96}{CalculateBasisOnsiteElectron}}(row, magnitude\_lspin, o, num\_orbital);}
+\DoxyCodeLine{820                \textcolor{keyword}{const} \textcolor{keywordtype}{int} basis\_2 = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a3d5150384f28ce59aa15473581322e96}{CalculateBasisOnsiteElectron}}(col, magnitude\_lspin, o, num\_orbital);}
+\DoxyCodeLine{821                \textcolor{keywordflow}{if} (o != orbital \&\& basis\_1 != basis\_2) \{}
+\DoxyCodeLine{822                   c\_1 = \textcolor{keyword}{false};}
+\DoxyCodeLine{823                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{824                \}}
+\DoxyCodeLine{825             \}}
+\DoxyCodeLine{826             }
+\DoxyCodeLine{827             \textcolor{keywordtype}{int} basis\_row\_electron = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a3d5150384f28ce59aa15473581322e96}{CalculateBasisOnsiteElectron}}(row, magnitude\_lspin, orbital, num\_orbital);}
+\DoxyCodeLine{828             \textcolor{keywordtype}{int} basis\_col\_electron = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a3d5150384f28ce59aa15473581322e96}{CalculateBasisOnsiteElectron}}(col, magnitude\_lspin, orbital, num\_orbital);}
+\DoxyCodeLine{829             }
+\DoxyCodeLine{830             \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c\_2 = (basis\_row\_electron == 0 \&\& basis\_col\_electron == 1);}
+\DoxyCodeLine{831             \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c\_3 = (basis\_row\_electron == 2 \&\& basis\_col\_electron == 3);}
+\DoxyCodeLine{832             }
+\DoxyCodeLine{833             \textcolor{keywordflow}{if} (c\_1 \&\& row\%dim\_onsite\_lspin == col\%dim\_onsite\_lspin \&\& (c\_2 || c\_3)) \{}
+\DoxyCodeLine{834                matrix.val.push\_back(sign);}
+\DoxyCodeLine{835                matrix.col.push\_back(col);}
+\DoxyCodeLine{836             \}}
+\DoxyCodeLine{837       }
+\DoxyCodeLine{838          \}}
+\DoxyCodeLine{839          matrix.row[row + 1] = matrix.col.size();}
+\DoxyCodeLine{840       \}}
+\DoxyCodeLine{841       matrix.tag = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{sparse\_matrix::CRSTag::FERMION}};}
+\DoxyCodeLine{842       \textcolor{keywordflow}{return} matrix;}
+\DoxyCodeLine{843    \}}
+\DoxyCodeLine{844    }
+\DoxyCodeLine{851    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5c22091962c1ce50aa1d975e7f891d3f}{CreateOnsiteOperatorCDown}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_orbital) \{}
+\DoxyCodeLine{852       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2lspin = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(magnitude\_lspin);}
+\DoxyCodeLine{853       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite\_lspin = magnitude\_2lspin + 1;}
+\DoxyCodeLine{854       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite = dim\_onsite\_lspin*\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(std::pow(4, num\_orbital));}
+\DoxyCodeLine{855       }
+\DoxyCodeLine{856       \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{857       \textcolor{comment}{// \# <-\/>  [Cherge  ] -\/-\/ (N,  2*sz)}}
+\DoxyCodeLine{858       \textcolor{comment}{// 0 <-\/>  [        ] -\/-\/ (0,  0   )}}
+\DoxyCodeLine{859       \textcolor{comment}{// 1 <-\/>  [up      ] -\/-\/ (1,  1   )}}
+\DoxyCodeLine{860       \textcolor{comment}{// 2 <-\/>  [down    ] -\/-\/ (1, -\/1   )}}
+\DoxyCodeLine{861       \textcolor{comment}{// 3 <-\/>  [up\&down ] -\/-\/ (2,  0   )}}
+\DoxyCodeLine{862       \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{863       }
+\DoxyCodeLine{864       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
+\DoxyCodeLine{865       }
+\DoxyCodeLine{866       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 0; row < dim\_onsite; ++row) \{}
+\DoxyCodeLine{867          \textcolor{keywordtype}{int} num\_electron = 0;}
+\DoxyCodeLine{868          \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} o = 0; o < orbital; ++o) \{}
+\DoxyCodeLine{869             \textcolor{keyword}{const} \textcolor{keywordtype}{int} basis\_electron\_onsite = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a3d5150384f28ce59aa15473581322e96}{CalculateBasisOnsiteElectron}}(row, magnitude\_lspin, o, num\_orbital);}
+\DoxyCodeLine{870             num\_electron += \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad94f55ffb42f8e61248a2e611366b124}{CalculateNumElectronFromElectronBasis}}(basis\_electron\_onsite);}
+\DoxyCodeLine{871          \}}
+\DoxyCodeLine{872          \textcolor{keywordtype}{int} sign\_1 = 1;}
+\DoxyCodeLine{873          \textcolor{keywordflow}{if} (num\_electron\%2 == 1) \{}
+\DoxyCodeLine{874             sign\_1 = -\/1;}
+\DoxyCodeLine{875          \}}
+\DoxyCodeLine{876          }
+\DoxyCodeLine{877          \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} col = 0; col < dim\_onsite; col++) \{}
+\DoxyCodeLine{878             \textcolor{keywordtype}{bool} c\_1 = \textcolor{keyword}{true};}
+\DoxyCodeLine{879             \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} o = 0; o < num\_orbital; ++o) \{}
+\DoxyCodeLine{880                \textcolor{keyword}{const} \textcolor{keywordtype}{int} basis\_1 = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a3d5150384f28ce59aa15473581322e96}{CalculateBasisOnsiteElectron}}(row, magnitude\_lspin, o, num\_orbital);}
+\DoxyCodeLine{881                \textcolor{keyword}{const} \textcolor{keywordtype}{int} basis\_2 = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a3d5150384f28ce59aa15473581322e96}{CalculateBasisOnsiteElectron}}(col, magnitude\_lspin, o, num\_orbital);}
+\DoxyCodeLine{882                \textcolor{keywordflow}{if} (o != orbital \&\& basis\_1 != basis\_2) \{}
+\DoxyCodeLine{883                   c\_1 = \textcolor{keyword}{false};}
+\DoxyCodeLine{884                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{885                \}}
+\DoxyCodeLine{886             \}}
+\DoxyCodeLine{887             }
+\DoxyCodeLine{888             \textcolor{keywordtype}{int} basis\_row\_electron = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a3d5150384f28ce59aa15473581322e96}{CalculateBasisOnsiteElectron}}(row, magnitude\_lspin, orbital, num\_orbital);}
+\DoxyCodeLine{889             \textcolor{keywordtype}{int} basis\_col\_electron = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a3d5150384f28ce59aa15473581322e96}{CalculateBasisOnsiteElectron}}(col, magnitude\_lspin, orbital, num\_orbital);}
+\DoxyCodeLine{890             }
+\DoxyCodeLine{891             \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c\_2 = (basis\_row\_electron == 0 \&\& basis\_col\_electron == 2);}
+\DoxyCodeLine{892             \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c\_3 = (basis\_row\_electron == 1 \&\& basis\_col\_electron == 3);}
+\DoxyCodeLine{893             }
+\DoxyCodeLine{894             \textcolor{keywordtype}{int} sign\_2 = 1;}
+\DoxyCodeLine{895             \textcolor{keywordflow}{if} (c\_3) \{}
+\DoxyCodeLine{896                sign\_2 = -\/1;}
+\DoxyCodeLine{897             \}}
+\DoxyCodeLine{898             }
+\DoxyCodeLine{899             \textcolor{keywordflow}{if} (c\_1 \&\& row\%dim\_onsite\_lspin == col\%dim\_onsite\_lspin \&\& (c\_2 || c\_3)) \{}
+\DoxyCodeLine{900                matrix.val.push\_back(sign\_1*sign\_2);}
+\DoxyCodeLine{901                matrix.col.push\_back(col);}
+\DoxyCodeLine{902             \}}
+\DoxyCodeLine{903       }
+\DoxyCodeLine{904          \}}
+\DoxyCodeLine{905          matrix.row[row + 1] = matrix.col.size();}
+\DoxyCodeLine{906       \}}
+\DoxyCodeLine{907       matrix.tag = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{sparse\_matrix::CRSTag::FERMION}};}
+\DoxyCodeLine{908       \textcolor{keywordflow}{return} matrix;}
+\DoxyCodeLine{909    \}}
+\DoxyCodeLine{910    }
+\DoxyCodeLine{915    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a042fa97ae7f2fd77b6b91a84ce6e287c}{CreateOnsiteOperatorSzL}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_orbital) \{}
+\DoxyCodeLine{916       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2lspin = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(magnitude\_lspin);}
+\DoxyCodeLine{917       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite\_lspin = magnitude\_2lspin + 1;}
+\DoxyCodeLine{918       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite = dim\_onsite\_lspin*\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(std::pow(4, num\_orbital));}
+\DoxyCodeLine{919       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
+\DoxyCodeLine{920       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 0; row < dim\_onsite; ++row) \{}
+\DoxyCodeLine{921          \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} col = 0; col < dim\_onsite; ++col) \{}
+\DoxyCodeLine{922             \textcolor{keyword}{const} \textcolor{keywordtype}{int} basis\_row\_lspin = row\%dim\_onsite\_lspin;}
+\DoxyCodeLine{923             \textcolor{keyword}{const} \textcolor{keywordtype}{int} basis\_col\_lspin = col\%dim\_onsite\_lspin;}
+\DoxyCodeLine{924             \textcolor{keyword}{const} \textcolor{keywordtype}{int} basis\_row\_total\_electron = row/dim\_onsite\_lspin;}
+\DoxyCodeLine{925             \textcolor{keyword}{const} \textcolor{keywordtype}{int} basis\_col\_total\_electron = col/dim\_onsite\_lspin;}
+\DoxyCodeLine{926             \textcolor{keywordflow}{if} (basis\_row\_total\_electron == basis\_col\_total\_electron \&\& basis\_row\_lspin == basis\_col\_lspin) \{}
+\DoxyCodeLine{927                matrix.val.push\_back(magnitude\_lspin -\/ basis\_row\_lspin);}
+\DoxyCodeLine{928                matrix.col.push\_back(col);}
+\DoxyCodeLine{929             \}}
+\DoxyCodeLine{930          \}}
+\DoxyCodeLine{931          matrix.row.push\_back(matrix.col.size());}
+\DoxyCodeLine{932       \}}
+\DoxyCodeLine{933       \textcolor{keywordflow}{return} matrix;}
+\DoxyCodeLine{934    \}}
+\DoxyCodeLine{935    }
+\DoxyCodeLine{940    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8cabf7b2fa9505845905e30cfbbfa5fe}{CreateOnsiteOperatorSpL}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_orbital) \{}
+\DoxyCodeLine{941       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2lspin = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(magnitude\_lspin);}
+\DoxyCodeLine{942       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite\_lspin = magnitude\_2lspin + 1;}
+\DoxyCodeLine{943       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite = dim\_onsite\_lspin*\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(std::pow(4, num\_orbital));}
+\DoxyCodeLine{944       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
+\DoxyCodeLine{945       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 0; row < dim\_onsite; ++row) \{}
+\DoxyCodeLine{946          \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} col = 0; col < dim\_onsite; ++col) \{}
+\DoxyCodeLine{947             \textcolor{keyword}{const} \textcolor{keywordtype}{int} a = row\%dim\_onsite\_lspin + 1;}
+\DoxyCodeLine{948             \textcolor{keyword}{const} \textcolor{keywordtype}{int} b = col\%dim\_onsite\_lspin + 1;}
+\DoxyCodeLine{949             \textcolor{keyword}{const} \textcolor{keywordtype}{int} basis\_row\_total\_electron = row/dim\_onsite\_lspin;}
+\DoxyCodeLine{950             \textcolor{keyword}{const} \textcolor{keywordtype}{int} basis\_col\_total\_electron = col/dim\_onsite\_lspin;}
+\DoxyCodeLine{951             \textcolor{keywordflow}{if} (basis\_row\_total\_electron == basis\_col\_total\_electron \&\& a + 1 == b) \{}
+\DoxyCodeLine{952                matrix.val.push\_back(std::sqrt( (magnitude\_lspin + 1.0)*(a + b -\/ 1) -\/ a*b ) );}
+\DoxyCodeLine{953                matrix.col.push\_back(col);}
+\DoxyCodeLine{954             \}}
+\DoxyCodeLine{955          \}}
+\DoxyCodeLine{956          matrix.row.push\_back(matrix.col.size());}
+\DoxyCodeLine{957       \}}
+\DoxyCodeLine{958       \textcolor{keywordflow}{return} matrix;}
+\DoxyCodeLine{959    \}}
+\DoxyCodeLine{960    }
+\DoxyCodeLine{967    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a19bbf84cb3c37496eaa0ee7afec4331f}{CreateOnsiteOperatorCUpDagger}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_orbital) \{}
+\DoxyCodeLine{968       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a55b77bf4b52994ffde7829a8b1ad8637}{sparse\_matrix::CalculateTransposedMatrix}}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a64eb887ad8446e6fbf72ed8f3bf0f449}{CreateOnsiteOperatorCUp}}(magnitude\_lspin, orbital, num\_orbital));}
+\DoxyCodeLine{969    \}}
+\DoxyCodeLine{970    }
+\DoxyCodeLine{977    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a607eb0a02dd1dc5bb0289b60468bb647}{CreateOnsiteOperatorCDownDagger}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_orbital) \{}
+\DoxyCodeLine{978       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a55b77bf4b52994ffde7829a8b1ad8637}{sparse\_matrix::CalculateTransposedMatrix}}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5c22091962c1ce50aa1d975e7f891d3f}{CreateOnsiteOperatorCDown}}(magnitude\_lspin, orbital, num\_orbital));}
+\DoxyCodeLine{979    \}}
+\DoxyCodeLine{980    }
+\DoxyCodeLine{988    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af690f18f7e70aaf37f3d00b1da0fb8a2}{CreateOnsiteOperatorNCUp}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_orbital) \{}
+\DoxyCodeLine{989       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a19bbf84cb3c37496eaa0ee7afec4331f}{CreateOnsiteOperatorCUpDagger}}(magnitude\_lspin, orbital, num\_orbital)*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a64eb887ad8446e6fbf72ed8f3bf0f449}{CreateOnsiteOperatorCUp}}(magnitude\_lspin, orbital, num\_orbital);}
+\DoxyCodeLine{990    \}}
+\DoxyCodeLine{991    }
+\DoxyCodeLine{999    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8a30f80bde37ed238e2574bf7301b84e}{CreateOnsiteOperatorNCDown}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_orbital) \{}
+\DoxyCodeLine{1000       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a607eb0a02dd1dc5bb0289b60468bb647}{CreateOnsiteOperatorCDownDagger}}(magnitude\_lspin, orbital, num\_orbital)*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5c22091962c1ce50aa1d975e7f891d3f}{CreateOnsiteOperatorCDown}}(magnitude\_lspin, orbital, num\_orbital);}
+\DoxyCodeLine{1001    \}}
+\DoxyCodeLine{1002    }
+\DoxyCodeLine{1009    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a84248fbd8412972f4ff51e6ff7a320d8}{CreateOnsiteOperatorNC}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_orbital) \{}
+\DoxyCodeLine{1010       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af690f18f7e70aaf37f3d00b1da0fb8a2}{CreateOnsiteOperatorNCUp}}(magnitude\_lspin, orbital, num\_orbital) + \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8a30f80bde37ed238e2574bf7301b84e}{CreateOnsiteOperatorNCDown}}(magnitude\_lspin, orbital, num\_orbital);}
+\DoxyCodeLine{1011    \}}
+\DoxyCodeLine{1012    }
+\DoxyCodeLine{1018    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad2ad35117dd5878ef6debfa0e459502e}{CreateOnsiteOperatorNCTot}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_orbital) \{}
+\DoxyCodeLine{1019       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim = (\mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(magnitude\_lspin) + 1)*\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(std::pow(4, num\_orbital));}
+\DoxyCodeLine{1020       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} out(dim, dim);}
+\DoxyCodeLine{1021       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} o = 0; o < num\_orbital; ++o) \{}
+\DoxyCodeLine{1022          out = out + \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a84248fbd8412972f4ff51e6ff7a320d8}{CreateOnsiteOperatorNC}}(magnitude\_lspin, o, num\_orbital);}
+\DoxyCodeLine{1023       \}}
+\DoxyCodeLine{1024       \textcolor{keywordflow}{return} out;}
+\DoxyCodeLine{1025    \}}
+\DoxyCodeLine{1026    }
+\DoxyCodeLine{1034    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aafc17ceaa853846b2335569319d04e77}{CreateOnsiteOperatorSxC}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_orbital) \{}
+\DoxyCodeLine{1035       \textcolor{keywordflow}{return} 0.5*(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8197c2df1595d2342a4632b18e0512ff}{CreateOnsiteOperatorSpC}}(magnitude\_lspin, orbital, num\_orbital) + \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae8882522614548811d1008a71b3b612d}{CreateOnsiteOperatorSmC}}(magnitude\_lspin, orbital, num\_orbital));}
+\DoxyCodeLine{1036    \}}
+\DoxyCodeLine{1037    }
+\DoxyCodeLine{1046    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ab4b05b21529cffc2263d7423d9daf79a}{CreateOnsiteOperatoriSyC}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_orbital) \{}
+\DoxyCodeLine{1047       \textcolor{keywordflow}{return} 0.5*(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8197c2df1595d2342a4632b18e0512ff}{CreateOnsiteOperatorSpC}}(magnitude\_lspin, orbital, num\_orbital) -\/ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae8882522614548811d1008a71b3b612d}{CreateOnsiteOperatorSmC}}(magnitude\_lspin, orbital, num\_orbital));}
+\DoxyCodeLine{1048    \}}
+\DoxyCodeLine{1049    }
+\DoxyCodeLine{1057    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5ae746eed7f08c1b115b720a4b6b480f}{CreateOnsiteOperatorSzC}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_orbital) \{}
+\DoxyCodeLine{1058       \textcolor{keywordflow}{return} 0.5*(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af690f18f7e70aaf37f3d00b1da0fb8a2}{CreateOnsiteOperatorNCUp}}(magnitude\_lspin, orbital, num\_orbital) -\/ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8a30f80bde37ed238e2574bf7301b84e}{CreateOnsiteOperatorNCDown}}(magnitude\_lspin, orbital, num\_orbital));}
+\DoxyCodeLine{1059    \}}
+\DoxyCodeLine{1060    }
+\DoxyCodeLine{1067    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8197c2df1595d2342a4632b18e0512ff}{CreateOnsiteOperatorSpC}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_orbital) \{}
+\DoxyCodeLine{1068       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a19bbf84cb3c37496eaa0ee7afec4331f}{CreateOnsiteOperatorCUpDagger}}(magnitude\_lspin, orbital, num\_orbital)*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5c22091962c1ce50aa1d975e7f891d3f}{CreateOnsiteOperatorCDown}}(magnitude\_lspin, orbital, num\_orbital);}
+\DoxyCodeLine{1069    \}}
+\DoxyCodeLine{1070    }
+\DoxyCodeLine{1077    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae8882522614548811d1008a71b3b612d}{CreateOnsiteOperatorSmC}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_orbital) \{}
+\DoxyCodeLine{1078       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a607eb0a02dd1dc5bb0289b60468bb647}{CreateOnsiteOperatorCDownDagger}}(magnitude\_lspin, orbital, num\_orbital)*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a64eb887ad8446e6fbf72ed8f3bf0f449}{CreateOnsiteOperatorCUp}}(magnitude\_lspin, orbital, num\_orbital);}
+\DoxyCodeLine{1079    \}}
+\DoxyCodeLine{1080    }
+\DoxyCodeLine{1085    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aefe5f033b8b1c8be8f688b04e2b1a24d}{CreateOnsiteOperatorSmL}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_orbital) \{}
+\DoxyCodeLine{1086       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a55b77bf4b52994ffde7829a8b1ad8637}{sparse\_matrix::CalculateTransposedMatrix}}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8cabf7b2fa9505845905e30cfbbfa5fe}{CreateOnsiteOperatorSpL}}(magnitude\_lspin, num\_orbital));}
+\DoxyCodeLine{1087    \}}
+\DoxyCodeLine{1088    }
+\DoxyCodeLine{1093    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ab0547e2406c5a37c96a49ee2228ead15}{CreateOnsiteOperatorSxL}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_orbital) \{}
+\DoxyCodeLine{1094       \textcolor{keywordflow}{return} 0.5*(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8cabf7b2fa9505845905e30cfbbfa5fe}{CreateOnsiteOperatorSpL}}(magnitude\_lspin, num\_orbital) + \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aefe5f033b8b1c8be8f688b04e2b1a24d}{CreateOnsiteOperatorSmL}}(magnitude\_lspin, num\_orbital));}
+\DoxyCodeLine{1095    \}}
+\DoxyCodeLine{1096    }
+\DoxyCodeLine{1102    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a00dbf75844e4206da7aa4b447cf0e083}{CreateOnsiteOperatoriSyL}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_orbital) \{}
+\DoxyCodeLine{1103       \textcolor{keywordflow}{return} 0.5*(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8cabf7b2fa9505845905e30cfbbfa5fe}{CreateOnsiteOperatorSpL}}(magnitude\_lspin, num\_orbital) -\/ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aefe5f033b8b1c8be8f688b04e2b1a24d}{CreateOnsiteOperatorSmL}}(magnitude\_lspin, num\_orbital));}
+\DoxyCodeLine{1104    \}}
+\DoxyCodeLine{1105    }
+\DoxyCodeLine{1112    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a0b80406ed5e4830bf7e2fd48f0622335}{CreateOnsiteOperatorSCSL}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_orbital) \{}
+\DoxyCodeLine{1113       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} spc = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8197c2df1595d2342a4632b18e0512ff}{CreateOnsiteOperatorSpC}}(magnitude\_lspin, orbital, num\_orbital);}
+\DoxyCodeLine{1114       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} smc = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae8882522614548811d1008a71b3b612d}{CreateOnsiteOperatorSmC}}(magnitude\_lspin, orbital, num\_orbital);}
+\DoxyCodeLine{1115       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} szc = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5ae746eed7f08c1b115b720a4b6b480f}{CreateOnsiteOperatorSzC}}(magnitude\_lspin, orbital, num\_orbital);}
+\DoxyCodeLine{1116       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} spl = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8cabf7b2fa9505845905e30cfbbfa5fe}{CreateOnsiteOperatorSpL}}(magnitude\_lspin, num\_orbital);}
+\DoxyCodeLine{1117       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} sml = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aefe5f033b8b1c8be8f688b04e2b1a24d}{CreateOnsiteOperatorSmL}}(magnitude\_lspin, num\_orbital);}
+\DoxyCodeLine{1118       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} szl = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a042fa97ae7f2fd77b6b91a84ce6e287c}{CreateOnsiteOperatorSzL}}(magnitude\_lspin, num\_orbital);}
+\DoxyCodeLine{1119       \textcolor{keywordflow}{return} szc*szl + 0.5*(spc*sml + smc*spl);}
+\DoxyCodeLine{1120    \}}
+\DoxyCodeLine{1121    }
+\DoxyCodeLine{1128    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ab96b15b44c109f691bbc7ec7b93d4ba6}{CreateOnsiteOperatorSCSLTot}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_orbital) \{}
+\DoxyCodeLine{1129       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} spl = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8cabf7b2fa9505845905e30cfbbfa5fe}{CreateOnsiteOperatorSpL}}(magnitude\_lspin, num\_orbital);}
+\DoxyCodeLine{1130       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} sml = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aefe5f033b8b1c8be8f688b04e2b1a24d}{CreateOnsiteOperatorSmL}}(magnitude\_lspin, num\_orbital);}
+\DoxyCodeLine{1131       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} szl = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a042fa97ae7f2fd77b6b91a84ce6e287c}{CreateOnsiteOperatorSzL}}(magnitude\_lspin, num\_orbital);}
+\DoxyCodeLine{1132       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} out(szl.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}, szl.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}});}
+\DoxyCodeLine{1133       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} o = 0; o < num\_orbital; ++o) \{}
+\DoxyCodeLine{1134          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} spc = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8197c2df1595d2342a4632b18e0512ff}{CreateOnsiteOperatorSpC}}(magnitude\_lspin, o, num\_orbital);}
+\DoxyCodeLine{1135          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} smc = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae8882522614548811d1008a71b3b612d}{CreateOnsiteOperatorSmC}}(magnitude\_lspin, o, num\_orbital);}
+\DoxyCodeLine{1136          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} szc = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5ae746eed7f08c1b115b720a4b6b480f}{CreateOnsiteOperatorSzC}}(magnitude\_lspin, o, num\_orbital);}
+\DoxyCodeLine{1137          out = out + szc*szl + 0.5*(spc*sml + smc*spl);}
+\DoxyCodeLine{1138       \}}
+\DoxyCodeLine{1139       \textcolor{keywordflow}{return} out;}
+\DoxyCodeLine{1140    \}}
+\DoxyCodeLine{1141    }
+\DoxyCodeLine{1142    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Access Private Member Functions-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{1143    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<CRS> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a99d239a294e73a555df201f0918db9b7}{GetOnsiteOperatorCUp}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aee5456ef719458abd885f28cdeb8b48b}{onsite\_operator\_c\_up\_}}; \}}
+\DoxyCodeLine{1144    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<CRS> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8a54e2bd0487fcaa5f3f727c601e837a}{GetOnsiteOperatorCDown}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5dd311f2b3cbc774303647c01ae0d77a}{onsite\_operator\_c\_down\_}}; \}}
+\DoxyCodeLine{1145    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<CRS> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a59e8d727631f3fa5c3a3f9ba1da668c9}{GetOnsiteOperatorCUpDagger}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa7df622178ee244bfa5d6407843e60af}{onsite\_operator\_c\_up\_dagger\_}}; \}}
+\DoxyCodeLine{1146    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<CRS> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af0008870991c7aadc241beb223daaa68}{GetOnsiteOperatorCDownDagger}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ac216fa16d421f5b75d7a62e7c2948f22}{onsite\_operator\_c\_down\_dagger\_}}; \}}
+\DoxyCodeLine{1147    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<CRS> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a243117ae46e52aa84fdb4507b77b4532}{GetOnsiteOperatorNCUp}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a561bcff85556fe1dde7093217722bd9e}{onsite\_operator\_nc\_up\_}}; \}}
+\DoxyCodeLine{1148    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<CRS> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ab5bc493d369afa790b504f6c57302142}{GetOnsiteOperatorNCDown}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a561bcff85556fe1dde7093217722bd9e}{onsite\_operator\_nc\_up\_}}; \}}
+\DoxyCodeLine{1149    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<CRS> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a312eee8f46ac943619a1cfe7395bff1c}{GetOnsiteOperatorNC}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_acf5411311f76e9f84ed67be2d8ab13a2}{onsite\_operator\_nc\_}}; \}}
+\DoxyCodeLine{1150    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<CRS> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a6a426b25368fef5c50f8165438e1a0f6}{GetOnsiteOperatorSxC}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ac28a20bceda0539987011c5ab184deeb}{onsite\_operator\_sxc\_}}; \}}
+\DoxyCodeLine{1151    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<CRS> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae2b6878e8172a0e94d3581af8d2c6554}{GetOnsiteOperatoriSyC}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a09f3be9d4a71133b95706a6dfb876e1e}{onsite\_operator\_isyc\_}}; \}}
+\DoxyCodeLine{1152    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<CRS> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5cf5b90e993fd07e60cb39faddf5f3ae}{GetOnsiteOperatorSzC}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abf6ffb8ddccae72ca86be88d1dd17ac8}{onsite\_operator\_szc\_}}; \}}
+\DoxyCodeLine{1153    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<CRS> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a29e69885d0537a6ae3fedc9a3c8f2aac}{GetOnsiteOperatorSpC}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af99cfad55fcbb3402a0f452726f659dc}{onsite\_operator\_spc\_}}; \}}
+\DoxyCodeLine{1154    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<CRS> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad5fc92a7320dc19aaaee31690bd5a0fd}{GetOnsiteOperatorSmC}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a56cdd1b894a9baab7bb52cc1cdbd503b}{onsite\_operator\_smc\_}}; \}}
+\DoxyCodeLine{1155    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<CRS> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a576c62e21e89cf74bf34b0d1fee278b1}{GetOnsiteOperatorSCSL}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae42cc437666ff47f9b04c7ba318000eb}{onsite\_operator\_scsl\_}};\}}
+\DoxyCodeLine{1156 }
+\DoxyCodeLine{1157    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ade0bec816c99ea8763fb209753dec77a}{GetOnsiteOperatorNCTot}}() \{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad40c29285f5707337a2bea07ecd9bbc6}{onsite\_operator\_nc\_tot\_}}; \}}
+\DoxyCodeLine{1158    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae6bcfb5c3d56eaf078ac2acae0d28595}{GetOnsiteOperatorCUp}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aee5456ef719458abd885f28cdeb8b48b}{onsite\_operator\_c\_up\_}}.at(orbital); \}}
+\DoxyCodeLine{1159    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4c568306a57d525c3c342977f27dddd8}{GetOnsiteOperatorCDown}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5dd311f2b3cbc774303647c01ae0d77a}{onsite\_operator\_c\_down\_}}.at(orbital); \}}
+\DoxyCodeLine{1160    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4eb686df8df2939d8027cf0d1a12aa0e}{GetOnsiteOperatorCUpDagger}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa7df622178ee244bfa5d6407843e60af}{onsite\_operator\_c\_up\_dagger\_}}.at(orbital); \}}
+\DoxyCodeLine{1161    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af026cf0072dba1ae66e46f91d7e3b3d3}{GetOnsiteOperatorCDownDagger}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ac216fa16d421f5b75d7a62e7c2948f22}{onsite\_operator\_c\_down\_dagger\_}}.at(orbital); \}}
+\DoxyCodeLine{1162    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8b5e1bcb8527c68b22301e9528629d8c}{GetOnsiteOperatorNCUp}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a561bcff85556fe1dde7093217722bd9e}{onsite\_operator\_nc\_up\_}}.at(orbital); \}}
+\DoxyCodeLine{1163    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a789d332323d713ce75ddd59d1aa505b7}{GetOnsiteOperatorNCDown}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a561bcff85556fe1dde7093217722bd9e}{onsite\_operator\_nc\_up\_}}.at(orbital); \}}
+\DoxyCodeLine{1164    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_afe415ed9d383486d6eb06ddf4cf52de4}{GetOnsiteOperatorNC}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_acf5411311f76e9f84ed67be2d8ab13a2}{onsite\_operator\_nc\_}}.at(orbital); \}}
+\DoxyCodeLine{1165    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abeb13eb3c535189c88f608f1e61691e9}{GetOnsiteOperatorSxC}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ac28a20bceda0539987011c5ab184deeb}{onsite\_operator\_sxc\_}}.at(orbital); \}}
+\DoxyCodeLine{1166    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae176458d92d870ab31ab8b53c5007f7f}{GetOnsiteOperatoriSyC}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a09f3be9d4a71133b95706a6dfb876e1e}{onsite\_operator\_isyc\_}}.at(orbital); \}}
+\DoxyCodeLine{1167    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa6e0ff75812d22ed39bc64856d834ed2}{GetOnsiteOperatorSzC}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abf6ffb8ddccae72ca86be88d1dd17ac8}{onsite\_operator\_szc\_}}.at(orbital); \}}
+\DoxyCodeLine{1168    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_acd4cc34fead7a41d18bbfdbeddcc67dc}{GetOnsiteOperatorSpC}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af99cfad55fcbb3402a0f452726f659dc}{onsite\_operator\_spc\_}}.at(orbital); \}}
+\DoxyCodeLine{1169    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a50caf8479a0ae845bce5b06aca814de6}{GetOnsiteOperatorSmC}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a56cdd1b894a9baab7bb52cc1cdbd503b}{onsite\_operator\_smc\_}}.at(orbital); \}}
+\DoxyCodeLine{1170    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa4f1c90f4a0354c89b58691cb2ce2548}{GetOnsiteOperatorSCSL}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae42cc437666ff47f9b04c7ba318000eb}{onsite\_operator\_scsl\_}}.at(orbital);\}}
+\DoxyCodeLine{1171    }
+\DoxyCodeLine{1174    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a489580f0553dc4de180c0a5ca0e093c0}{GetOnsiteOperatorSxL}}()\textcolor{keyword}{  const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aede6cf79398fb3e8c5693b971dfd99ad}{onsite\_operator\_sxl\_}}; \}}
+\DoxyCodeLine{1175    }
+\DoxyCodeLine{1178    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a172ed34aef5de3f60df7c5f8690f8944}{GetOnsiteOperatoriSyL}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae6365d3c8797be7f355767f1e389cf86}{onsite\_operator\_isyl\_}}; \}}
+\DoxyCodeLine{1179    }
+\DoxyCodeLine{1182    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a7eaa08a6c432e2ebf3eb106b7bdb825d}{GetOnsiteOperatorSzL}}()\textcolor{keyword}{  const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a9a1a099bd402df24ff062a486a82c9dd}{onsite\_operator\_szl\_}}; \}}
+\DoxyCodeLine{1183    }
+\DoxyCodeLine{1186    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a096dddc6e4fe7450b8db68e86369efc0}{GetOnsiteOperatorSpL}}()\textcolor{keyword}{  const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aba0cdb7f86b96d25ce980e5cfc51ab32}{onsite\_operator\_spl\_}}; \}}
+\DoxyCodeLine{1187    }
+\DoxyCodeLine{1190    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abb2f580f9b0bf279b0587dc69721f3e8}{GetOnsiteOperatorSmL}}()\textcolor{keyword}{  const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a01aee3febef5dd125382f8e0ac9d895f}{onsite\_operator\_sml\_}}; \}}
+\DoxyCodeLine{1191    }
+\DoxyCodeLine{1192    \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a766bdca012beb6cb8672cd86a67ce200}{GetDimOnsiteElectron}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa0c1648165b632ae0ca7f7da5a967f8e}{dim\_onsite\_electron\_}}; \}}
+\DoxyCodeLine{1193    }
+\DoxyCodeLine{1194    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<int> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aab47ed513eeccfefd34a657aafeb7b75}{GetTotalElectron}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abe176d44790bbf9b3ad7aa530ff8852b}{total\_electron\_}}; \}}
+\DoxyCodeLine{1195    }
+\DoxyCodeLine{1196    \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a1aebb0ea10dca65eeb2ba6f7d77b5326}{GetTotalElectron}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abe176d44790bbf9b3ad7aa530ff8852b}{total\_electron\_}}.at(orbital); \}}
+\DoxyCodeLine{1197 }
+\DoxyCodeLine{1198    \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a9fee2c97e4ab5da8fe137f738c100d52}{GetNumElectronOrbital}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}}; \}}
+\DoxyCodeLine{1199    }
+\DoxyCodeLine{1200    \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af363e5c9e27db10327b83c62f0736497}{GetDimOnsiteAllElectrons}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a1a6de3078e6c329c68e8ef821bdedafe}{dim\_onsite\_all\_electrons\_}}; \}}
+\DoxyCodeLine{1201    }
+\DoxyCodeLine{1204    \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ab432b58714de1e342265984faddf6721}{GetSystemSize}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}}; \}}
+\DoxyCodeLine{1205    }
+\DoxyCodeLine{1208    \textcolor{keyword}{inline} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a1a0eec13366170c91e4a17d68e9cfa92}{GetTotalSz}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a70d04f95b8f51b13f866ae7d388127a6}{total\_2sz\_}}; \}}
+\DoxyCodeLine{1209    }
+\DoxyCodeLine{1212    \textcolor{keyword}{inline} \textcolor{keywordtype}{double} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a59cc445d0fb9900e85b5b5237a4179d7}{GetMagnitudeLSpin}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}; \}}
+\DoxyCodeLine{1213    }
+\DoxyCodeLine{1214    \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a61163aa8f07d9e9627d063b60534f831}{GetDimOnsiteLSpin}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}} + 1; \}}
+\DoxyCodeLine{1215    }
+\DoxyCodeLine{1218    \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a48e2955cf4342d6c71279ea7fb0ed77c}{GetDimOnsite}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a9b72902b16e25d9a0e9d4eb3520596ee}{dim\_onsite\_}}; \}}
+\DoxyCodeLine{1219    }
+\DoxyCodeLine{1222    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::unordered\_set<int> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a2cfd5a47f99ecf073272213342b4fdcc}{GetCalculatedEigenvectorSet}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1223       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad6ae6b65e82fe64291bc54a2437dbf4b}{calculated\_eigenvector\_set\_}};}
+\DoxyCodeLine{1224    \}}
+\DoxyCodeLine{1225    }
+\DoxyCodeLine{1232    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<std::int64\_t> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a611fca47f7f3ff5501b1b15b37059776}{GetBasis}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} \&quantum\_number)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1233       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a0a376f3b07d2dec599b8a65e06da3e4b}{bases\_}}.at(\{quantum\_number.first, \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(quantum\_number.second)\});}
+\DoxyCodeLine{1234    \}}
+\DoxyCodeLine{1235    }
+\DoxyCodeLine{1242    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::unordered\_map<std::int64\_t, std::int64\_t> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae02c240b57445140672c0b1e4e0bed4f}{GetBasisInv}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} \&quantum\_number)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1243       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a69c1d80025844d01c52eecff5d5f449d}{bases\_inv\_}}.at(\{quantum\_number.first, \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(quantum\_number.second)\});}
+\DoxyCodeLine{1244    \}}
+\DoxyCodeLine{1245    }
+\DoxyCodeLine{1251    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<std::int64\_t> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a729440bd7d0bb0514c9e1d697e0b44a6}{GetTargetBasis}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1252       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a0a376f3b07d2dec599b8a65e06da3e4b}{bases\_}}.at(\{\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abe176d44790bbf9b3ad7aa530ff8852b}{total\_electron\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a70d04f95b8f51b13f866ae7d388127a6}{total\_2sz\_}}\});}
+\DoxyCodeLine{1253    \}}
+\DoxyCodeLine{1254    }
+\DoxyCodeLine{1260    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::unordered\_map<std::int64\_t, std::int64\_t> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a7b0104b052958a48418a3795cd469fab}{GetTargetBasisInv}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1261       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a69c1d80025844d01c52eecff5d5f449d}{bases\_inv\_}}.at(\{\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abe176d44790bbf9b3ad7aa530ff8852b}{total\_electron\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a70d04f95b8f51b13f866ae7d388127a6}{total\_2sz\_}}\});}
+\DoxyCodeLine{1262    \}}
+\DoxyCodeLine{1263    }
+\DoxyCodeLine{1264 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{1267    std::vector<CRS> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aee5456ef719458abd885f28cdeb8b48b}{onsite\_operator\_c\_up\_}};}
+\DoxyCodeLine{1268    }
+\DoxyCodeLine{1271    std::vector<CRS> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5dd311f2b3cbc774303647c01ae0d77a}{onsite\_operator\_c\_down\_}};}
+\DoxyCodeLine{1272    }
+\DoxyCodeLine{1275    std::vector<CRS> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa7df622178ee244bfa5d6407843e60af}{onsite\_operator\_c\_up\_dagger\_}};}
+\DoxyCodeLine{1276    }
+\DoxyCodeLine{1279    std::vector<CRS> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ac216fa16d421f5b75d7a62e7c2948f22}{onsite\_operator\_c\_down\_dagger\_}};}
+\DoxyCodeLine{1280    }
+\DoxyCodeLine{1284    std::vector<CRS> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a561bcff85556fe1dde7093217722bd9e}{onsite\_operator\_nc\_up\_}};}
+\DoxyCodeLine{1285    }
+\DoxyCodeLine{1289    std::vector<CRS> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa1c151c8f51cfa24eb3aeaa05c48efc4}{onsite\_operator\_nc\_down\_}};}
+\DoxyCodeLine{1290    }
+\DoxyCodeLine{1293    std::vector<CRS> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_acf5411311f76e9f84ed67be2d8ab13a2}{onsite\_operator\_nc\_}};}
+\DoxyCodeLine{1294    }
+\DoxyCodeLine{1297    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad40c29285f5707337a2bea07ecd9bbc6}{onsite\_operator\_nc\_tot\_}};}
+\DoxyCodeLine{1298    }
+\DoxyCodeLine{1302    std::vector<CRS> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ac28a20bceda0539987011c5ab184deeb}{onsite\_operator\_sxc\_}};}
+\DoxyCodeLine{1303    }
+\DoxyCodeLine{1308    std::vector<CRS> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a09f3be9d4a71133b95706a6dfb876e1e}{onsite\_operator\_isyc\_}};}
+\DoxyCodeLine{1309    }
+\DoxyCodeLine{1313    std::vector<CRS> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abf6ffb8ddccae72ca86be88d1dd17ac8}{onsite\_operator\_szc\_}};}
+\DoxyCodeLine{1314    }
+\DoxyCodeLine{1317    std::vector<CRS> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af99cfad55fcbb3402a0f452726f659dc}{onsite\_operator\_spc\_}};}
+\DoxyCodeLine{1318    }
+\DoxyCodeLine{1321    std::vector<CRS> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a56cdd1b894a9baab7bb52cc1cdbd503b}{onsite\_operator\_smc\_}};}
+\DoxyCodeLine{1322    }
+\DoxyCodeLine{1324    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aede6cf79398fb3e8c5693b971dfd99ad}{onsite\_operator\_sxl\_}};}
+\DoxyCodeLine{1325    }
+\DoxyCodeLine{1327    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae6365d3c8797be7f355767f1e389cf86}{onsite\_operator\_isyl\_}};}
+\DoxyCodeLine{1328    }
+\DoxyCodeLine{1330    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a9a1a099bd402df24ff062a486a82c9dd}{onsite\_operator\_szl\_}};}
+\DoxyCodeLine{1331    }
+\DoxyCodeLine{1333    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aba0cdb7f86b96d25ce980e5cfc51ab32}{onsite\_operator\_spl\_}};}
+\DoxyCodeLine{1334    }
+\DoxyCodeLine{1336    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a01aee3febef5dd125382f8e0ac9d895f}{onsite\_operator\_sml\_}};}
+\DoxyCodeLine{1337    }
+\DoxyCodeLine{1341    std::vector<CRS> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae42cc437666ff47f9b04c7ba318000eb}{onsite\_operator\_scsl\_}};}
+\DoxyCodeLine{1342    }
+\DoxyCodeLine{1344    \textcolor{keyword}{const} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa0c1648165b632ae0ca7f7da5a967f8e}{dim\_onsite\_electron\_}} = 4;}
+\DoxyCodeLine{1345    }
+\DoxyCodeLine{1347    std::vector<int> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abe176d44790bbf9b3ad7aa530ff8852b}{total\_electron\_}} = \{0\};}
+\DoxyCodeLine{1348    }
+\DoxyCodeLine{1350    \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}} = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abe176d44790bbf9b3ad7aa530ff8852b}{total\_electron\_}}.size());}
+\DoxyCodeLine{1351    }
+\DoxyCodeLine{1353    \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a1a6de3078e6c329c68e8ef821bdedafe}{dim\_onsite\_all\_electrons\_}} = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(std::pow(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa0c1648165b632ae0ca7f7da5a967f8e}{dim\_onsite\_electron\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}}));}
+\DoxyCodeLine{1354    }
+\DoxyCodeLine{1356    \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}} = 0;}
+\DoxyCodeLine{1357    }
+\DoxyCodeLine{1361    \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a70d04f95b8f51b13f866ae7d388127a6}{total\_2sz\_}} = 0;}
+\DoxyCodeLine{1362    }
+\DoxyCodeLine{1364    \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}} = 1;}
+\DoxyCodeLine{1365    }
+\DoxyCodeLine{1367    \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a48fa20a398bf67c557a07f2b1b837b1c}{dim\_onsite\_lspin\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}} + 1;}
+\DoxyCodeLine{1368    }
+\DoxyCodeLine{1370    \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a9b72902b16e25d9a0e9d4eb3520596ee}{dim\_onsite\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a1a6de3078e6c329c68e8ef821bdedafe}{dim\_onsite\_all\_electrons\_}}*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a48fa20a398bf67c557a07f2b1b837b1c}{dim\_onsite\_lspin\_}};}
+\DoxyCodeLine{1371    }
+\DoxyCodeLine{1373    std::unordered\_set<int> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad6ae6b65e82fe64291bc54a2437dbf4b}{calculated\_eigenvector\_set\_}};}
+\DoxyCodeLine{1374    }
+\DoxyCodeLine{1380    std::unordered\_map<std::pair<std::vector<int>, \textcolor{keywordtype}{int}>, std::vector<std::int64\_t>, \mbox{\hyperlink{structcompnal_1_1utility_1_1_vec_int_hash}{utility::VecIntHash}}> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a0a376f3b07d2dec599b8a65e06da3e4b}{bases\_}};}
+\DoxyCodeLine{1381    }
+\DoxyCodeLine{1387    std::unordered\_map<std::pair<std::vector<int>, \textcolor{keywordtype}{int}>, std::unordered\_map<std::int64\_t, std::int64\_t>, \mbox{\hyperlink{structcompnal_1_1utility_1_1_vec_int_hash}{utility::VecIntHash}}> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a69c1d80025844d01c52eecff5d5f449d}{bases\_inv\_}};}
+\DoxyCodeLine{1388    }
+\DoxyCodeLine{1390    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4e56bb2b6493a742b5b06b3bfd8986a1}{SetOnsiteOperator}}() \{}
+\DoxyCodeLine{1391       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aee5456ef719458abd885f28cdeb8b48b}{onsite\_operator\_c\_up\_}}         .resize(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1392       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5dd311f2b3cbc774303647c01ae0d77a}{onsite\_operator\_c\_down\_}}       .resize(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1393       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa7df622178ee244bfa5d6407843e60af}{onsite\_operator\_c\_up\_dagger\_}}  .resize(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1394       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ac216fa16d421f5b75d7a62e7c2948f22}{onsite\_operator\_c\_down\_dagger\_}}.resize(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1395       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a561bcff85556fe1dde7093217722bd9e}{onsite\_operator\_nc\_up\_}}        .resize(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1396       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa1c151c8f51cfa24eb3aeaa05c48efc4}{onsite\_operator\_nc\_down\_}}      .resize(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1397       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_acf5411311f76e9f84ed67be2d8ab13a2}{onsite\_operator\_nc\_}}           .resize(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1398       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ac28a20bceda0539987011c5ab184deeb}{onsite\_operator\_sxc\_}}          .resize(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1399       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a09f3be9d4a71133b95706a6dfb876e1e}{onsite\_operator\_isyc\_}}         .resize(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1400       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abf6ffb8ddccae72ca86be88d1dd17ac8}{onsite\_operator\_szc\_}}          .resize(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1401       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af99cfad55fcbb3402a0f452726f659dc}{onsite\_operator\_spc\_}}          .resize(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1402       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a56cdd1b894a9baab7bb52cc1cdbd503b}{onsite\_operator\_smc\_}}          .resize(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1403       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae42cc437666ff47f9b04c7ba318000eb}{onsite\_operator\_scsl\_}}         .resize(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1404       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} o = 0; o < \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}}; ++o) \{}
+\DoxyCodeLine{1405          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aee5456ef719458abd885f28cdeb8b48b}{onsite\_operator\_c\_up\_}}[o]          = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a64eb887ad8446e6fbf72ed8f3bf0f449}{CreateOnsiteOperatorCUp}}        (0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, o, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1406          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5dd311f2b3cbc774303647c01ae0d77a}{onsite\_operator\_c\_down\_}}[o]        = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5c22091962c1ce50aa1d975e7f891d3f}{CreateOnsiteOperatorCDown}}      (0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, o, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1407          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa7df622178ee244bfa5d6407843e60af}{onsite\_operator\_c\_up\_dagger\_}}[o]   = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a19bbf84cb3c37496eaa0ee7afec4331f}{CreateOnsiteOperatorCUpDagger}}  (0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, o, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1408          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ac216fa16d421f5b75d7a62e7c2948f22}{onsite\_operator\_c\_down\_dagger\_}}[o] = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a607eb0a02dd1dc5bb0289b60468bb647}{CreateOnsiteOperatorCDownDagger}}(0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, o, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1409          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a561bcff85556fe1dde7093217722bd9e}{onsite\_operator\_nc\_up\_}}[o]         = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af690f18f7e70aaf37f3d00b1da0fb8a2}{CreateOnsiteOperatorNCUp}}       (0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, o, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1410          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa1c151c8f51cfa24eb3aeaa05c48efc4}{onsite\_operator\_nc\_down\_}}[o]       = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8a30f80bde37ed238e2574bf7301b84e}{CreateOnsiteOperatorNCDown}}     (0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, o, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1411          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_acf5411311f76e9f84ed67be2d8ab13a2}{onsite\_operator\_nc\_}}[o]            = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a84248fbd8412972f4ff51e6ff7a320d8}{CreateOnsiteOperatorNC}}         (0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, o, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1412          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ac28a20bceda0539987011c5ab184deeb}{onsite\_operator\_sxc\_}}[o]           = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aafc17ceaa853846b2335569319d04e77}{CreateOnsiteOperatorSxC}}        (0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, o, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1413          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a09f3be9d4a71133b95706a6dfb876e1e}{onsite\_operator\_isyc\_}}[o]          = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ab4b05b21529cffc2263d7423d9daf79a}{CreateOnsiteOperatoriSyC}}       (0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, o, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1414          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abf6ffb8ddccae72ca86be88d1dd17ac8}{onsite\_operator\_szc\_}}[o]           = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5ae746eed7f08c1b115b720a4b6b480f}{CreateOnsiteOperatorSzC}}        (0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, o, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1415          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af99cfad55fcbb3402a0f452726f659dc}{onsite\_operator\_spc\_}}[o]           = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8197c2df1595d2342a4632b18e0512ff}{CreateOnsiteOperatorSpC}}        (0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, o, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1416          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a56cdd1b894a9baab7bb52cc1cdbd503b}{onsite\_operator\_smc\_}}[o]           = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae8882522614548811d1008a71b3b612d}{CreateOnsiteOperatorSmC}}        (0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, o, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1417          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae42cc437666ff47f9b04c7ba318000eb}{onsite\_operator\_scsl\_}}[o]          = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a0b80406ed5e4830bf7e2fd48f0622335}{CreateOnsiteOperatorSCSL}}       (0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, o, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1418       \}}
+\DoxyCodeLine{1419       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad40c29285f5707337a2bea07ecd9bbc6}{onsite\_operator\_nc\_tot\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad2ad35117dd5878ef6debfa0e459502e}{CreateOnsiteOperatorNCTot}}(0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1420       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aede6cf79398fb3e8c5693b971dfd99ad}{onsite\_operator\_sxl\_}}    = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ab0547e2406c5a37c96a49ee2228ead15}{CreateOnsiteOperatorSxL}}  (0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1421       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae6365d3c8797be7f355767f1e389cf86}{onsite\_operator\_isyl\_}}   = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a00dbf75844e4206da7aa4b447cf0e083}{CreateOnsiteOperatoriSyL}} (0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1422       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a9a1a099bd402df24ff062a486a82c9dd}{onsite\_operator\_szl\_}}    = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a042fa97ae7f2fd77b6b91a84ce6e287c}{CreateOnsiteOperatorSzL}}  (0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1423       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aba0cdb7f86b96d25ce980e5cfc51ab32}{onsite\_operator\_spl\_}}    = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8cabf7b2fa9505845905e30cfbbfa5fe}{CreateOnsiteOperatorSpL}}  (0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1424       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a01aee3febef5dd125382f8e0ac9d895f}{onsite\_operator\_sml\_}}    = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aefe5f033b8b1c8be8f688b04e2b1a24d}{CreateOnsiteOperatorSmL}}  (0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}});}
+\DoxyCodeLine{1425    \}}
+\DoxyCodeLine{1426       }
+\DoxyCodeLine{1431    \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a3d5150384f28ce59aa15473581322e96}{CalculateBasisOnsiteElectron}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} basis\_onsite, \textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1432       \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_inner\_electron = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a67736771e3b7bbdb84283e821d1412f9}{num\_electron\_orbital\_}} -\/ orbital -\/ 1;}
+\DoxyCodeLine{1433       \textcolor{keywordtype}{int} basis\_electron\_onsite = basis\_onsite/\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a48fa20a398bf67c557a07f2b1b837b1c}{dim\_onsite\_lspin\_}};}
+\DoxyCodeLine{1434       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < num\_inner\_electron; ++i) \{}
+\DoxyCodeLine{1435          basis\_electron\_onsite /= \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa0c1648165b632ae0ca7f7da5a967f8e}{dim\_onsite\_electron\_}};}
+\DoxyCodeLine{1436       \}}
+\DoxyCodeLine{1437       \textcolor{keywordflow}{return} basis\_electron\_onsite\%\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa0c1648165b632ae0ca7f7da5a967f8e}{dim\_onsite\_electron\_}};}
+\DoxyCodeLine{1438    \}}
+\DoxyCodeLine{1439    }
+\DoxyCodeLine{1446    \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5b1809bda3d91d140d23fe24c8690801}{CalculateBasisOnsiteElectron}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} basis\_onsite,}
+\DoxyCodeLine{1447                                                   \textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin,}
+\DoxyCodeLine{1448                                                   \textcolor{keyword}{const} \textcolor{keywordtype}{int} orbital,}
+\DoxyCodeLine{1449                                                   \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_orbital) \{}
+\DoxyCodeLine{1450       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite\_lspin = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(magnitude\_lspin) + 1;}
+\DoxyCodeLine{1451       \textcolor{keyword}{const} \textcolor{keywordtype}{int} num\_inner\_electron = num\_orbital -\/ orbital -\/ 1;}
+\DoxyCodeLine{1452       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite\_electron = 4;}
+\DoxyCodeLine{1453       \textcolor{keywordtype}{int} basis\_electron\_onsite = basis\_onsite/dim\_onsite\_lspin;}
+\DoxyCodeLine{1454       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < num\_inner\_electron; ++i) \{}
+\DoxyCodeLine{1455          basis\_electron\_onsite /= dim\_onsite\_electron;}
+\DoxyCodeLine{1456       \}}
+\DoxyCodeLine{1457       \textcolor{keywordflow}{return} basis\_electron\_onsite\%dim\_onsite\_electron;}
+\DoxyCodeLine{1458    \}}
+\DoxyCodeLine{1459    }
+\DoxyCodeLine{1463    \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4ff7b328710f62f5351dd482950ac5db}{CalculateBasisOnsiteLSpin}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} basis\_onsite)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1464       \textcolor{keywordflow}{return} basis\_onsite\%\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a48fa20a398bf67c557a07f2b1b837b1c}{dim\_onsite\_lspin\_}};}
+\DoxyCodeLine{1465    \}}
+\DoxyCodeLine{1466    }
+\DoxyCodeLine{1470    \textcolor{keyword}{inline} \textcolor{keyword}{static} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad94f55ffb42f8e61248a2e611366b124}{CalculateNumElectronFromElectronBasis}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} basis\_electron\_onsite) \{}
+\DoxyCodeLine{1471       \textcolor{keywordflow}{if} (basis\_electron\_onsite == 0) \{}
+\DoxyCodeLine{1472          \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{1473       \}}
+\DoxyCodeLine{1474       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (basis\_electron\_onsite == 1 || basis\_electron\_onsite == 2) \{}
+\DoxyCodeLine{1475          \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{1476       \}}
+\DoxyCodeLine{1477       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (basis\_electron\_onsite == 3) \{}
+\DoxyCodeLine{1478          \textcolor{keywordflow}{return} 2;}
+\DoxyCodeLine{1479       \}}
+\DoxyCodeLine{1480       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{1481          std::stringstream ss;}
+\DoxyCodeLine{1482          ss << \textcolor{stringliteral}{"{}Unknown error detected in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{1483          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{1484       \}}
+\DoxyCodeLine{1485    \}}
+\DoxyCodeLine{1486    }
+\DoxyCodeLine{1487    \textcolor{keyword}{static} std::vector<std::vector<int>> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a9ea3a542efc8659172ea383f9e5b6b5d}{GenerateElectronConfigurations}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size, \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_electron) \{}
+\DoxyCodeLine{1488       \textcolor{keyword}{const} \textcolor{keywordtype}{int} max\_n\_up\_down = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(total\_electron/2);}
+\DoxyCodeLine{1489       std::vector<std::vector<int>> ele\_configurations(4);}
+\DoxyCodeLine{1490       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} n\_up\_down = 0; n\_up\_down <= max\_n\_up\_down; ++n\_up\_down) \{}
+\DoxyCodeLine{1491          \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} n\_up = 0; n\_up <= total\_electron -\/ 2*n\_up\_down; ++n\_up) \{}
+\DoxyCodeLine{1492             \textcolor{keyword}{const} \textcolor{keywordtype}{int} n\_down = total\_electron -\/ 2*n\_up\_down -\/ n\_up;}
+\DoxyCodeLine{1493             \textcolor{keyword}{const} \textcolor{keywordtype}{int} n\_vac  = system\_size -\/ n\_up -\/ n\_down -\/ n\_up\_down;}
+\DoxyCodeLine{1494             \textcolor{keywordflow}{if} (0 <= n\_up \&\& 0 <= n\_down \&\& 0 <= n\_vac) \{}
+\DoxyCodeLine{1495                ele\_configurations[0].push\_back(n\_up\_down);}
+\DoxyCodeLine{1496                ele\_configurations[1].push\_back(n\_up     );}
+\DoxyCodeLine{1497                ele\_configurations[2].push\_back(n\_down   );}
+\DoxyCodeLine{1498                ele\_configurations[3].push\_back(n\_vac    );}
+\DoxyCodeLine{1499             \}}
+\DoxyCodeLine{1500          \}}
+\DoxyCodeLine{1501       \}}
+\DoxyCodeLine{1502       \textcolor{keywordflow}{return} ele\_configurations;}
+\DoxyCodeLine{1503    \}}
+\DoxyCodeLine{1504    }
+\DoxyCodeLine{1511    \textcolor{keyword}{static} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aeb1afedb4e1de6305a04886253a44bed}{isValidQNumber}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size, \textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_lspin, \textcolor{keyword}{const} std::vector<int> \&total\_electron, \textcolor{keyword}{const} \textcolor{keywordtype}{double} total\_sz) \{}
+\DoxyCodeLine{1512       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz            = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(total\_sz);}
+\DoxyCodeLine{1513       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2lspin     = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(magnitude\_lspin);}
+\DoxyCodeLine{1514       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_total\_electron = std::accumulate(total\_electron.begin(), total\_electron.end(), 0);}
+\DoxyCodeLine{1515       }
+\DoxyCodeLine{1516       \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&electron: total\_electron) \{}
+\DoxyCodeLine{1517          \textcolor{keywordflow}{if} (electron < 0 || 2*system\_size < electron) \{}
+\DoxyCodeLine{1518             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{1519          \}}
+\DoxyCodeLine{1520       \}}
+\DoxyCodeLine{1521       }
+\DoxyCodeLine{1522       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c1 = ((total\_total\_electron + system\_size*magnitude\_2lspin -\/ total\_2sz)\%2 == 0);}
+\DoxyCodeLine{1523       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c2 = (-\/(total\_total\_electron + system\_size*magnitude\_2lspin) <= total\_2sz);}
+\DoxyCodeLine{1524       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c3 = (total\_2sz <= total\_total\_electron + system\_size*magnitude\_2lspin);}
+\DoxyCodeLine{1525       }
+\DoxyCodeLine{1526       \textcolor{keywordflow}{if} (!c1 \&\& !c2 \&\& !c3) \{}
+\DoxyCodeLine{1527          \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{1528       \}}
+\DoxyCodeLine{1529       }
+\DoxyCodeLine{1530       \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{1531       }
+\DoxyCodeLine{1532    \}}
+\DoxyCodeLine{1533    }
+\DoxyCodeLine{1534 \};}
+\DoxyCodeLine{1535 }
+\DoxyCodeLine{1536 \}}
+\DoxyCodeLine{1537 \}}
+\DoxyCodeLine{1538 }
+\DoxyCodeLine{1539 }
+\DoxyCodeLine{1540 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_MODEL\_BASE\_U1\_SPIN\_MULTI\_ELECTRONS\_1D\_HPP\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

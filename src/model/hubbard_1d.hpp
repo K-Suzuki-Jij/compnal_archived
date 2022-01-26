@@ -18,6 +18,7 @@
 #ifndef COMPNAL_MODEL_HUBBARD_1D_HPP_
 #define COMPNAL_MODEL_HUBBARD_1D_HPP_
 
+#include "./utility.hpp"
 #include "./base_u1_electron_1d.hpp"
 
 namespace compnal {
@@ -65,7 +66,7 @@ public:
    //! @param system_size The system size \f$ N \f$.
    //! @param boundary_condition Boundary condition.
    //! Open boundary condition (OBC), periodic boundary condition (PBC), or sine square deformation (SSD).
-   Hubbard_1D(const int system_size, const utility::BoundaryCondition boundary_condition): BaseU1Electron_1D<RealType>(system_size) {
+   Hubbard_1D(const int system_size, const BoundaryCondition boundary_condition): BaseU1Electron_1D<RealType>(system_size) {
       SetBoundaryCondition(boundary_condition);
       onsite_operator_ham_ = CreateOnsiteOperatorHam(h_z_);
    }
@@ -77,7 +78,7 @@ public:
    //! @param boundary_condition Boundary condition.
    //! Open boundary condition (OBC), periodic boundary condition (PBC), or sine square deformation (SSD).
    Hubbard_1D(const int system_size, const int total_electron,
-              const utility::BoundaryCondition boundary_condition): BaseU1Electron_1D<RealType>(system_size, total_electron) {
+              const BoundaryCondition boundary_condition): BaseU1Electron_1D<RealType>(system_size, total_electron) {
       SetBoundaryCondition(boundary_condition);
       onsite_operator_ham_ = CreateOnsiteOperatorHam(h_z_);
    }
@@ -88,7 +89,7 @@ public:
    //! @brief Set the boundary condition.
    //! @param boundary_condition Boundary condition.
    //! Open boundary condition (OBC), periodic boundary condition (PBC), or sine square deformation (SSD).
-   void SetBoundaryCondition(const utility::BoundaryCondition boundary_condition) {
+   void SetBoundaryCondition(const BoundaryCondition boundary_condition) {
       boundary_condition_ = boundary_condition;
    }
    
@@ -169,13 +170,13 @@ public:
    //! @brief Print information about this class.
    void PrintInfo() const {
       std::string bc = "None";
-      if (boundary_condition_ == utility::BoundaryCondition::OBC) {
+      if (boundary_condition_ == BoundaryCondition::OBC) {
          bc = "OBC";
       }
-      else if (boundary_condition_ == utility::BoundaryCondition::PBC) {
+      else if (boundary_condition_ == BoundaryCondition::PBC) {
          bc = "PBC";
       }
-      else if (boundary_condition_ == utility::BoundaryCondition::SSD) {
+      else if (boundary_condition_ == BoundaryCondition::SSD) {
          bc = "SSD";
       }
       std::cout << "Print Hubbard Model Infomation:" << std::endl;
@@ -245,7 +246,7 @@ public:
    
    //! @brief Get the boundary condition.
    //! @return The boundary condition.
-   inline utility::BoundaryCondition GetBoundaryCondition() const { return boundary_condition_; }
+   inline BoundaryCondition GetBoundaryCondition() const { return boundary_condition_; }
 
 private:
    //! @brief the onsite Hamiltonian.
@@ -254,7 +255,7 @@ private:
 
    //! @brief Boundary condition.
    //! Open boundary condition (OBC), periodic boundary condition (PBC), or sine square deformation (SSD).
-   utility::BoundaryCondition boundary_condition_ = utility::BoundaryCondition::OBC;
+   BoundaryCondition boundary_condition_ = BoundaryCondition::OBC;
 
    //! @brief Hopping energy \f$ t \f$.
    std::vector<RealType> t_ = {1.0};
