@@ -871,7 +871,7 @@ private:
          }
       }
       
-      if (model_input.GetBoundaryCondition() == BoundaryCondition::PBC) {
+      if (model_input.GetBoundaryCondition() == model::BoundaryCondition::PBC) {
          //Intersite elements SzSz
          for (int distance = 1; distance <= static_cast<int>(model_input.GetJz().size()); ++distance) {
             for (int i = 0; i < distance; ++i) {
@@ -940,7 +940,7 @@ private:
          }
       }
       
-      if (model_input.GetBoundaryCondition() == BoundaryCondition::PBC) {
+      if (model_input.GetBoundaryCondition() == model::BoundaryCondition::PBC) {
          //Intersite Coulomb
          for (int distance = 1; distance <= static_cast<int>(model_input.GetIntersiteCoulomb().size()); ++distance) {
             for (int i = 0; i < distance; ++i) {
