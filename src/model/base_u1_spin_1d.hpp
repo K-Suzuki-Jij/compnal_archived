@@ -20,7 +20,6 @@
 
 #include "../sparse_matrix/all.hpp"
 #include "../utility/all.hpp"
-#include "../utility/type.hpp"
 
 #include <unordered_map>
 #include <unordered_set>
@@ -41,7 +40,7 @@ class BaseU1Spin_1D {
    using CRS = sparse_matrix::CRS<RealType>;
    
    //! @brief Alias of quantum number (total sz) type.
-   using QType = utility::HalfInt;
+   using QType = double;
    
 public:
    
@@ -65,7 +64,7 @@ public:
    //! @brief Constructor of BaseU1Spin_1D class.
    //! @param system_size The system size \f$ N \f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
-   BaseU1Spin_1D(const int system_size, const utility::HalfInt magnitude_spin): BaseU1Spin_1D(system_size) {
+   BaseU1Spin_1D(const int system_size, const double magnitude_spin): BaseU1Spin_1D(system_size) {
       SetMagnitudeSpin(magnitude_spin);
    }
 
@@ -73,7 +72,7 @@ public:
    //! @param system_size The system size \f$ N \f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{S}^{z}_{i}\rangle \f$.
-   BaseU1Spin_1D(const int system_size, const utility::HalfInt magnitude_spin, const utility::HalfInt total_sz): BaseU1Spin_1D(system_size, magnitude_spin) {
+   BaseU1Spin_1D(const int system_size, const double magnitude_spin, const double total_sz): BaseU1Spin_1D(system_size, magnitude_spin) {
       SetTotalSz(total_sz);
    }
    
@@ -97,7 +96,7 @@ public:
    
    //! @brief Set the magnitude of the spin \f$ S \f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
-   void SetMagnitudeSpin(const utility::HalfInt magnitude_spin) {
+   void SetMagnitudeSpin(const double magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       if (magnitude_2spin <= 0) {
          std::stringstream ss;
@@ -117,7 +116,7 @@ public:
    
    //! @brief Set target Hilbert space specified by the total sz to be diagonalized.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{S}^{z}_{i}\rangle \f$.
-   void SetTotalSz(const utility::HalfInt total_sz) {
+   void SetTotalSz(const double total_sz) {
       const int total_2sz = utility::DoubleTheNumber(total_sz);
       if (total_2sz_ != total_2sz) {
          total_2sz_ = total_2sz;
@@ -134,7 +133,7 @@ public:
    //! @brief Check if there is a subspace specified by the input total sz.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{S}^{z}_{i}\rangle \f$
    //! @return ture if there exists corresponding subspace, otherwise false.
-   bool isValidQNumber(const utility::HalfInt total_sz) const {
+   bool isValidQNumber(const double total_sz) const {
       return isValidQNumber(system_size_, 0.5*magnitude_2spin_, total_sz);
    }
    
@@ -155,7 +154,7 @@ public:
    
    //! @brief Print the onsite bases.
    void PrintBasisOnsite() const {
-      const utility::HalfInt magnitude_spin = magnitude_2spin_/2.0;
+      const double magnitude_spin = magnitude_2spin_/2.0;
       for (int row = 0; row < dim_onsite_; ++row) {
          std::cout << "row " << row << ": |Sz=" << magnitude_spin - row << ">" << std::endl;
       }
@@ -172,7 +171,7 @@ public:
    //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @return The dimension of the target Hilbert space.
-   std::int64_t CalculateTargetDim(const utility::HalfInt total_sz) const {
+   std::int64_t CalculateTargetDim(const double total_sz) const {
       return CalculateTargetDim(system_size_, 0.5*magnitude_2spin_, total_sz);
    }
    
@@ -185,7 +184,7 @@ public:
    //! @brief Generate bases of the target Hilbert space specified by
    //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
-   void GenerateBasis(const utility::HalfInt total_sz) {
+   void GenerateBasis(const double total_sz) {
       if (!isValidQNumber(total_sz)) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__ << std::endl;
@@ -466,7 +465,7 @@ public:
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    //! @return ture if there exists corresponding subspace, otherwise false.
-   static bool isValidQNumber(const int system_size, const utility::HalfInt magnitude_spin, const utility::HalfInt total_sz) {
+   static bool isValidQNumber(const int system_size, const double magnitude_spin, const double total_sz) {
       const int total_2sz = utility::DoubleTheNumber(total_sz);
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       const bool c1 = ((system_size*magnitude_2spin - total_2sz)%2 == 0);
@@ -485,7 +484,7 @@ public:
    //! @param system_size The system size \f$ N\f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
-   static std::int64_t CalculateTargetDim(const int system_size, const utility::HalfInt magnitude_spin, const utility::HalfInt total_sz) {
+   static std::int64_t CalculateTargetDim(const int system_size, const double magnitude_spin, const double total_sz) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       if (!isValidQNumber(system_size, magnitude_spin, total_sz)) {
          return 0;
@@ -517,7 +516,7 @@ public:
    //! @brief Generate the spin-\f$ S\f$ operator for the x-direction \f$ \hat{s}^{x}\f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{s}^{x}\f$.
-   static CRS CreateOnsiteOperatorSx(const utility::HalfInt magnitude_spin) {
+   static CRS CreateOnsiteOperatorSx(const double magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       const int dim_onsite      = magnitude_2spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
@@ -554,7 +553,7 @@ public:
    //! @brief Generate the spin-\f$ S\f$ operator for the y-direction \f$ i\hat{s}^{y}\f$ with \f$ i\f$ being the imaginary unit.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ i\hat{s}^{y}\f$.
-   static CRS CreateOnsiteOperatoriSy(const utility::HalfInt magnitude_spin) {
+   static CRS CreateOnsiteOperatoriSy(const double magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       const int dim_onsite      = magnitude_2spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
@@ -592,7 +591,7 @@ public:
    //! @brief Generate the spin-\f$ S\f$ operator for the z-direction \f$ \hat{s}^{z}\f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{s}^{z}\f$.
-   static CRS CreateOnsiteOperatorSz(const utility::HalfInt magnitude_spin) {
+   static CRS CreateOnsiteOperatorSz(const double magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       const int dim_onsite      = magnitude_2spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
@@ -611,7 +610,7 @@ public:
    //! @brief Generate the spin-\f$ S\f$ raising operator \f$ \hat{s}^{+}\f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{s}^{+}\f$.
-   static CRS CreateOnsiteOperatorSp(const utility::HalfInt magnitude_spin) {
+   static CRS CreateOnsiteOperatorSp(const double magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       const int dim_onsite      = magnitude_2spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
@@ -627,7 +626,7 @@ public:
    //! @brief Generate the spin-\f$ S\f$ raising operator \f$ \hat{s}^{-}\f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{s}^{-}\f$.
-   static CRS CreateOnsiteOperatorSm(const utility::HalfInt magnitude_spin) {
+   static CRS CreateOnsiteOperatorSm(const double magnitude_spin) {
       const int magnitude_2spin = utility::DoubleTheNumber(magnitude_spin);
       const int dim_onsite      = magnitude_2spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
@@ -705,7 +704,7 @@ public:
    //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @return Basis.
-   inline const std::vector<std::int64_t> &GetBasis(const utility::HalfInt total_sz) const {
+   inline const std::vector<std::int64_t> &GetBasis(const double total_sz) const {
       return bases_.at(utility::DoubleTheNumber(total_sz));
    }
    
@@ -713,7 +712,7 @@ public:
    //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @return Inverse basis.
-   inline const std::unordered_map<std::int64_t, std::int64_t> &GetBasisInv(const utility::HalfInt total_sz) const {
+   inline const std::unordered_map<std::int64_t, std::int64_t> &GetBasisInv(const double total_sz) const {
       return bases_inv_.at(utility::DoubleTheNumber(total_sz));
    }
    

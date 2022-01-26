@@ -19,7 +19,6 @@
 #define COMPNAL_SPARSE_MATRIX_COMPRESSED_ROW_STORAGE_HPP_
 
 #include "../utility/all.hpp"
-#include "../utility/type.hpp"
 
 #include <iostream>
 #include <cstdint>

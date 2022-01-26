@@ -40,7 +40,7 @@ class BaseU1Electron_1D {
    using CRS = sparse_matrix::CRS<RealType>;
    
    //! @brief Alias of quantum number (total electron, total sz) pair.
-   using QType = std::pair<int, utility::HalfInt>;
+   using QType = std::pair<int, double>;
    
 public:
    
@@ -77,7 +77,7 @@ public:
    //! \f[ \hat{S}^{z}_{\rm tot}=\sum^{N}_{i=1}\hat{S}^{z}_{i} \f]
    BaseU1Electron_1D(const int system_size,
                      const int total_electron,
-                     const utility::HalfInt total_sz): BaseU1Electron_1D(system_size, total_electron) {
+                     const double total_sz): BaseU1Electron_1D(system_size, total_electron) {
       SetTotalSz(total_sz);
    }
    
@@ -105,7 +105,7 @@ public:
    //! @brief Set target Hilbert space specified by the total sz to be diagonalized.
    //! @param total_sz The total sz is the expectation value of the following operator:
    //! \f[ \hat{S}^{z}_{\rm tot}=\sum^{N}_{i=1}\hat{S}^{z}_{i} \f]
-   void SetTotalSz(const utility::HalfInt total_sz) {
+   void SetTotalSz(const double total_sz) {
       const int total_2sz = utility::DoubleTheNumber(total_sz);
       if (total_2sz_ != total_2sz) {
          total_2sz_ = total_2sz;
@@ -140,7 +140,7 @@ public:
    //! @param total_electron The total electron \f$ \langle\hat{N}_{\rm e}\rangle\f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    //! @return ture if there exists corresponding subspace, otherwise false.
-   bool isValidQNumber(const int total_electron, const utility::HalfInt total_sz) const {
+   bool isValidQNumber(const int total_electron, const double total_sz) const {
       return isValidQNumber(system_size_, total_electron, total_sz);
    }
    
@@ -194,7 +194,7 @@ public:
    //! @param total_electron The total electron \f$ \langle\hat{N}_{\rm e}\rangle\f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    //! @return The dimension of the target Hilbert space.
-   std::int64_t CalculateTargetDim(const int total_electron, const utility::HalfInt total_sz) const {
+   std::int64_t CalculateTargetDim(const int total_electron, const double total_sz) const {
       return CalculateTargetDim(system_size_, total_electron, total_sz);
    }
    
@@ -225,7 +225,7 @@ public:
       
       const auto start         = std::chrono::system_clock::now();
       const int total_electron = quantum_number.first;
-      const utility::HalfInt total_sz    = quantum_number.second;
+      const double total_sz    = quantum_number.second;
       const int total_2sz      = utility::DoubleTheNumber(total_sz);
       
       if (bases_.count({total_electron, total_2sz}) != 0) {
@@ -520,7 +520,7 @@ public:
    //! @param total_electron The total electron \f$ \langle\hat{N}_{\rm e}\rangle\f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    //! @return ture if there exists corresponding subspace, otherwise false.
-   static bool isValidQNumber(const int system_size, const int total_electron, const utility::HalfInt total_sz) {
+   static bool isValidQNumber(const int system_size, const int total_electron, const double total_sz) {
       const int total_2sz = utility::DoubleTheNumber(total_sz);
       const bool c1 = (0 <= total_electron && total_electron <= 2*system_size);
       const bool c2 = ((total_electron - total_2sz)%2 == 0);
@@ -538,7 +538,7 @@ public:
    //! @param system_size The system size \f$ N\f$.
    //! @param total_electron The total electron \f$ \langle\hat{N}_{\rm e}\rangle\f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
-   static std::int64_t CalculateTargetDim(const int system_size, const int total_electron, const utility::HalfInt total_sz) {
+   static std::int64_t CalculateTargetDim(const int system_size, const int total_electron, const double total_sz) {
       if (!isValidQNumber(system_size, total_electron, total_sz)) {
          return 0;
       }

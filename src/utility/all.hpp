@@ -22,6 +22,5 @@
 #include "sort.hpp"
 #include "integer.hpp"
 #include "hash.hpp"
-#include "type.hpp"
 
 #endif /* COMPNAL_UTILITY_ALL_HPP_ */

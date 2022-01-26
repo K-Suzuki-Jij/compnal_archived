@@ -20,7 +20,6 @@
 
 #include "../sparse_matrix/all.hpp"
 #include "../utility/all.hpp"
-#include "../utility/type.hpp"
 #include "base_u1_spin_1d.hpp"
 #include "base_u1_electron_1d.hpp"
 
@@ -43,7 +42,7 @@ class BaseU1SpinElectron_1D {
    using CRS = sparse_matrix::CRS<RealType>;
    
    //! @brief Alias of quantum number (total electron, total sz) pair.
-   using QType = std::pair<int, utility::HalfInt>;
+   using QType = std::pair<int, double>;
    
 public:
    

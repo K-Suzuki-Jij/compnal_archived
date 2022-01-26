@@ -18,8 +18,6 @@
 #ifndef COMPNAL_SPARSE_MATRIX_BRAKET_VECTOR_HPP_
 #define COMPNAL_SPARSE_MATRIX_BRAKET_VECTOR_HPP_
 
-#include "../utility/type.hpp"
-
 #include <iostream>
 #include <sstream>
 #include <vector>
