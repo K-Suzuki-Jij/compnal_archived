@@ -106,7 +106,7 @@ public:
    void SetSystemSize(const int system_size) {
       if (system_size <= 0) {
          std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "system_size must be a non-negative integer" << std::endl;
          ss << "system_size=" << system_size << "is not allowed" << std::endl;
          throw std::runtime_error(ss.str());
@@ -168,7 +168,7 @@ public:
       const int magnitude_2lspin = utility::DoubleHalfInteger(magnitude_lspin);
       if (magnitude_2lspin <= 0) {
          std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "Please set magnitude_2lspin > 0" << std::endl;
          throw std::runtime_error(ss.str());
       }
@@ -207,7 +207,7 @@ public:
          }
          else {
             std::stringstream ss;
-            ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+            ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
             throw std::runtime_error(ss.str());
          }
       }
@@ -234,7 +234,7 @@ public:
             }
             else {
                std::stringstream ss;
-               ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+               ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
                throw std::runtime_error(ss.str());
             }
          }
@@ -569,7 +569,7 @@ public:
       
       if (static_cast<std::int64_t>(bias_basis[bias_basis.size()]) != dim_target_global) {
          std::stringstream ss;
-         ss << "Unknown error in " << __FUNCTION__ << std::endl;
+         ss << "Unknown error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          throw std::runtime_error(ss.str());
       }
       
@@ -617,7 +617,7 @@ public:
          }
          if (static_cast<std::int64_t>(spin_basis.size()) != dim_target_lspin) {
             std::stringstream ss;
-            ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+            ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
             throw std::runtime_error(ss.str());
          }
          std::sort(spin_basis.begin(), spin_basis.end());
@@ -686,7 +686,7 @@ public:
       
       if (static_cast<std::int64_t>(bases_.at({total_electron, total_2sz}).size()) != dim_target_global) {
          std::stringstream ss;
-         ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+         ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          throw std::runtime_error(ss.str());
       }
       
@@ -701,7 +701,7 @@ public:
       
       if (basis_inv_ref.size() != global_basis_ref.size()) {
          std::stringstream ss;
-         ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+         ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "The same basis has been detected" << std::endl;
          throw std::runtime_error(ss.str());
       }
@@ -1479,7 +1479,7 @@ protected:
       }
       else {
          std::stringstream ss;
-         ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+         ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          throw std::runtime_error(ss.str());
       }
    }

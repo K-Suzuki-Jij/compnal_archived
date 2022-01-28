@@ -89,7 +89,7 @@ public:
    void SetSystemSize(const int system_size) {
       if (system_size <= 0) {
          std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "system_size must be a non-negative integer" << std::endl;
          ss << "system_size=" << system_size << "is not allowed" << std::endl;
          throw std::runtime_error(ss.str());
@@ -168,7 +168,7 @@ public:
       }
       else {
          std::stringstream ss;
-         ss << "Error in " << __FUNCTION__  << std::endl;
+         ss << "Error in " << __FUNCTION__ << " at " << __LINE__  << std::endl;
          ss << "Invalid onsite basis" << std::endl;
          throw std::runtime_error(ss.str());
       }
@@ -218,7 +218,7 @@ public:
    void GenerateBasis(const QType &quantum_number) {
       if (!isValidQNumber(quantum_number)) {
          std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "Invalid parameters (system_size or magnitude_spin or total_sz)" << std::endl;
          throw std::runtime_error(ss.str());
       }
@@ -328,7 +328,7 @@ public:
       
       if (static_cast<std::int64_t>(bases_.at({total_electron, total_2sz}).size()) != dim_target) {
          std::stringstream ss;
-         ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+         ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          throw std::runtime_error(ss.str());
       }
       
@@ -343,7 +343,7 @@ public:
       
       if (basis_inv_ref.size() != basis_ref.size()) {
          std::stringstream ss;
-         ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+         ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "The same basis has been detected" << std::endl;
          throw std::runtime_error(ss.str());
       }

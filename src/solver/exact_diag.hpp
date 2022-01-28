@@ -839,7 +839,7 @@ private:
       
       if (flag_check_1 || flag_check_2 || flag_check_3) {
          std::stringstream ss;
-         ss << "Unknown error detected in " << __FUNCTION__  << std::endl;
+         ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__  << std::endl;
          throw std::runtime_error(ss.str());
       }
       ham->SortCol();

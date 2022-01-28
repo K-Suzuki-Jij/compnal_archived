@@ -156,7 +156,7 @@ void CalculateNthPermutation(std::vector<int> *vec, std::int64_t target_num) {
    
    if (target_num != 0) {
       std::stringstream ss;
-      ss << "Error in " << __FUNCTION__ << std::endl;
+      ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
       ss << "Can't find corresponding permutation, " << target_num << std::endl;
       throw std::runtime_error(ss.str());
    }
