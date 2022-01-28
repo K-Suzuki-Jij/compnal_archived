@@ -19,6 +19,6 @@
 #define COMPNAL_TEST_UTILITY_ALL_HPP_
 
 #include "./test.hpp"
-#include "./type_alias.hpp"
+#include "./utility_model.hpp"
 
 #endif /* COMPNAL_TEST_UTILITY_ALL_HPP_ */

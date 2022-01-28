@@ -25,114 +25,8 @@
 namespace compnal {
 namespace test {
 
-template<typename RealType>
-void TestElectron(const BaseU1Electron_1D<RealType> &model) {
-   
-   const double threshold = std::pow(10, -15);
-   EXPECT_EQ(model.GetDimOnsite(), 4);
-   
-   const CRS<RealType> ref_c_up ({
-      {0.0, 1.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 1.0},
-      {0.0, 0.0, 0.0, 0.0}
-   }, CRSTag::FERMION);
-   
-   const CRS<RealType> ref_c_up_d ({
-      {0.0, 0.0, 0.0, 0.0},
-      {1.0, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 1.0, 0.0}
-   }, CRSTag::FERMION);
-   
-   const CRS<RealType> ref_c_down ({
-      {0.0, 0.0, 1.0, 0.0},
-      {0.0, 0.0, 0.0, -1.0},
-      {0.0, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 0.0}
-   }, CRSTag::FERMION);
-   
-   const CRS<RealType> ref_c_down_d ({
-      {0.0, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 0.0},
-      {1.0, 0.0, 0.0, 0.0},
-      {0.0, -1.0, 0.0, 0.0}
-   }, CRSTag::FERMION);
-   
-   const CRS<RealType> ref_nc_up ({
-      {0.0, 0.0, 0.0, 0.0},
-      {0.0, 1.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 1.0}
-   });
-   
-   const CRS<RealType> ref_nc_down ({
-      {0.0, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 1.0, 0.0},
-      {0.0, 0.0, 0.0, 1.0}
-   });
-   
-   const CRS<RealType> ref_nc ({
-      {0.0, 0.0, 0.0, 0.0},
-      {0.0, 1.0, 0.0, 0.0},
-      {0.0, 0.0, 1.0, 0.0},
-      {0.0, 0.0, 0.0, 2.0}
-   });
-   
-   const CRS<RealType> ref_sz ({
-      {0.0, 0.0, 0.0, 0.0},
-      {0.0, 0.5, 0.0, 0.0},
-      {0.0, 0.0, -0.5, 0.0},
-      {0.0, 0.0, 0.0, 0.0}
-   });
-   
-   const CRS<RealType> ref_sx ({
-      {0.0, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 0.5, 0.0},
-      {0.0, 0.5, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 0.0}
-   });
-   
-   const CRS<RealType> ref_isy ({
-      {0.0, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 0.5, 0.0},
-      {0.0, -0.5, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 0.0}
-   });
-   
-   const CRS<RealType> ref_sp ({
-      {0.0, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 1.0, 0.0},
-      {0.0, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 0.0}
-   });
-   
-   const CRS<RealType> ref_sm ({
-      {0.0, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 0.0},
-      {0.0, 1.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 0.0}
-   });
-   
-   ExpectNear(model.GetOnsiteOperatorCUp()        , ref_c_up    , threshold);
-   ExpectNear(model.GetOnsiteOperatorCUpDagger()  , ref_c_up_d  , threshold);
-   ExpectNear(model.GetOnsiteOperatorCDown()      , ref_c_down  , threshold);
-   ExpectNear(model.GetOnsiteOperatorCDownDagger(), ref_c_down_d, threshold);
-   
-   ExpectNear(model.GetOnsiteOperatorNCUp()  , ref_nc_up  , threshold);
-   ExpectNear(model.GetOnsiteOperatorNCDown(), ref_nc_down, threshold);
-   ExpectNear(model.GetOnsiteOperatorNC()    , ref_nc     , threshold);
-   ExpectNear(model.GetOnsiteOperatorSz()    , ref_sz     , threshold);
-   ExpectNear(model.GetOnsiteOperatorSx()    , ref_sx     , threshold);
-   ExpectNear(model.GetOnsiteOperatoriSy()   , ref_isy    , threshold);
-   ExpectNear(model.GetOnsiteOperatorSp()    , ref_sp     , threshold);
-   ExpectNear(model.GetOnsiteOperatorSm()    , ref_sm     , threshold);
-   
-}
-
 TEST(ModelBaseU1Electron1D, ConstructorDefault) {
-   BaseU1Electron_1D<double> model;
+   model::BaseU1Electron_1D<double> model;
    TestElectron(model);
    
    EXPECT_EQ(model.GetSystemSize(), 0);
@@ -145,7 +39,7 @@ TEST(ModelBaseU1Electron1D, ConstructorDefault) {
 }
 
 TEST(ModelBaseU1Electron1D, ConstructorSystemSize) {
-   BaseU1Electron_1D<double> model(8);
+   model::BaseU1Electron_1D<double> model(8);
    TestElectron(model);
    
    EXPECT_EQ(model.GetSystemSize(), 8);
@@ -158,7 +52,7 @@ TEST(ModelBaseU1Electron1D, ConstructorSystemSize) {
 }
 
 TEST(ModelBaseU1Electron1D, ConstructorSystemSizeElectron) {
-   BaseU1Electron_1D<double> model(8, 2);
+   model::BaseU1Electron_1D<double> model(8, 2);
    TestElectron(model);
    
    EXPECT_EQ(model.GetSystemSize(), 8);
@@ -171,25 +65,25 @@ TEST(ModelBaseU1Electron1D, ConstructorSystemSizeElectron) {
 }
 
 TEST(ModelBaseU1Electron1D, SetSystemSize) {
-   BaseU1Electron_1D<double> model;
+   model::BaseU1Electron_1D<double> model;
    model.SetSystemSize(3);
    EXPECT_EQ(model.GetSystemSize(), 3);
 }
 
 TEST(ModelBaseU1Electron1D, SetTotalSz) {
-   BaseU1Electron_1D<double> model;
+   model::BaseU1Electron_1D<double> model;
    model.SetTotalSz(2.5);
    EXPECT_EQ(model.GetTotalSz(), 2.5);
 }
 
 TEST(ModelBaseU1Electron1D, SetTotalElectron) {
-   BaseU1Electron_1D<double> model;
+   model::BaseU1Electron_1D<double> model;
    model.SetTotalElectron(100);
    EXPECT_EQ(model.GetTotalElectron(), 100);
 }
 
 TEST(ModelBaseU1Electron1D, CalculateNumElectron) {
-   BaseU1Electron_1D<double> model;
+   model::BaseU1Electron_1D<double> model;
    EXPECT_EQ(model.CalculateNumElectron(0), 0);
    EXPECT_EQ(model.CalculateNumElectron(1), 1);
    EXPECT_EQ(model.CalculateNumElectron(2), 1);

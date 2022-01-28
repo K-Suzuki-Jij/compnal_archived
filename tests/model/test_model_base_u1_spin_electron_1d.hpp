@@ -25,69 +25,8 @@
 namespace compnal {
 namespace test {
 
-template<typename RealType>
-void TestSpinOneHalf(const BaseU1SpinElectron_1D<RealType> &model) {
-   
-   const double threshold = std::pow(10, -15);
-   
-   EXPECT_EQ(model.GetDimOnsite(), 4*2);
-   EXPECT_EQ(model.GetMagnitudeLSpin(), 0.5);
-   EXPECT_EQ(model.GetDimOnsiteELectron(), 4);
-   EXPECT_EQ(model.GetDimOnsiteLSpin(), 2);
-
-   const CRS<RealType> ref_c_up ({
-      {0, 0, 1, 0, 0, 0, 0, 0},
-      {0, 0, 0, 1, 0, 0, 0, 0},
-      {0, 0, 0, 0, 0, 0, 0, 0},
-      {0, 0, 0, 0, 0, 0, 0, 0},
-      {0, 0, 0, 0, 0, 0, 1, 0},
-      {0, 0, 0, 0, 0, 0, 0, 1},
-      {0, 0, 0, 0, 0, 0, 0, 0},
-      {0, 0, 0, 0, 0, 0, 0, 0}
-   }, CRSTag::FERMION);
-   
-   const CRS<RealType> ref_c_up_d ({
-      {0, 0, 0, 0, 0, 0, 0, 0},
-      {0, 0, 0, 0, 0, 0, 0, 0},
-      {1, 0, 0, 0, 0, 0, 0, 0},
-      {0, 1, 0, 0, 0, 0, 0, 0},
-      {0, 0, 0, 0, 0, 0, 0, 0},
-      {0, 0, 0, 0, 0, 0, 0, 0},
-      {0, 0, 0, 0, 1, 0, 0, 0},
-      {0, 0, 0, 0, 0, 1, 0, 0}
-   }, CRSTag::FERMION);
-   
-   const CRS<RealType> ref_c_down ({
-      {0, 0, 0, 0, 1, 0, 0, 0},
-      {0, 0, 0, 0, 0, 1, 0, 0},
-      {0, 0, 0, 0, 0, 0, -1, 0},
-      {0, 0, 0, 0, 0, 0, 0, -1},
-      {0, 0, 0, 0, 0, 0, 0, 0},
-      {0, 0, 0, 0, 0, 0, 0, 0},
-      {0, 0, 0, 0, 0, 0, 0, 0},
-      {0, 0, 0, 0, 0, 0, 0, 0}
-   }, CRSTag::FERMION);
-   
-   const CRS<RealType> ref_c_down_d ({
-      {0, 0, 0, 0, 0, 0, 0, 0},
-      {0, 0, 0, 0, 0, 0, 0, 0},
-      {0, 0, 0, 0, 0, 0, 0, 0},
-      {0, 0, 0, 0, 0, 0, 0, 0},
-      {1, 0, 0, 0, 0, 0, 0, 0},
-      {0, 1, 0, 0, 0, 0, 0, 0},
-      {0, 0, -1, 0, 0, 0, 0, 0},
-      {0, 0, 0, -1, 0, 0, 0, 0}
-   }, CRSTag::FERMION);
- 
-   ExpectNear(model.GetOnsiteOperatorCUp()        , ref_c_up    , threshold);
-   ExpectNear(model.GetOnsiteOperatorCUpDagger()  , ref_c_up_d  , threshold);
-   ExpectNear(model.GetOnsiteOperatorCDown()      , ref_c_down  , threshold);
-   ExpectNear(model.GetOnsiteOperatorCDownDagger(), ref_c_down_d, threshold);
-
-}
-
 TEST(ModelBaseU1SpinElectron1D, ConstructorDefault) {
-   BaseU1SpinElectron_1D<double> model;
+   model::BaseU1SpinElectron_1D<double> model;
    TestSpinOneHalf(model);
    
    EXPECT_EQ(model.GetSystemSize()    , 0  );

@@ -26,7 +26,7 @@ namespace compnal {
 namespace test {
 
 TEST(ModelBaseU1SpinMultiElectrons1D, ConstructorDefault) {
-   BaseU1SpinMultiElectrons_1D<double> model;
+   model::BaseU1SpinMultiElectrons_1D<double> model;
 }
 
 }
