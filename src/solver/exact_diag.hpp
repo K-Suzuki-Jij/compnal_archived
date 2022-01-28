@@ -65,6 +65,11 @@ public:
    ModelClass model;
    sparse_matrix::ParametersAll params;
    
+   ExactDiag() {
+      params.lanczos.flag_symmetric_crs = true;
+      params.ii.cg.flag_symmetric_crs   = true;
+   }
+   
    explicit ExactDiag(const ModelClass &model_input): model(model_input) {
       params.lanczos.flag_symmetric_crs = true;
       params.ii.cg.flag_symmetric_crs   = true;

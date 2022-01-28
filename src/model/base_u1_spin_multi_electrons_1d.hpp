@@ -489,7 +489,7 @@ public:
       for (const auto num_electron: total_electron) {
          const auto electron_configuration = GenerateElectronConfigurations(system_size_, num_electron);
          electron_configuration_list.push_back(electron_configuration);
-         length_list.push_back(electron_configuration[0].size());
+         length_list.push_back(static_cast<int>(electron_configuration[0].size()));
          length *= electron_configuration[0].size();
       }
       const std::vector<std::vector<std::int64_t>> binom = utility::CalculateBinomialTable(system_size_);
@@ -730,7 +730,7 @@ public:
       for (const auto num_electron: total_electron) {
          const auto electron_configuration = GenerateElectronConfigurations(system_size, num_electron);
          electron_configuration_list.push_back(electron_configuration);
-         length_list.push_back(electron_configuration[0].size());
+         length_list.push_back(static_cast<int>(electron_configuration[0].size()));
          length *= electron_configuration[0].size();
       }
       const int total_2sz = utility::DoubleHalfInteger(total_sz);

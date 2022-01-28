@@ -357,7 +357,7 @@ public:
       
       if (static_cast<std::int64_t>(bias_basis[bias_basis.size()]) != dim_target_global) {
          std::stringstream ss;
-         ss << "Unknown error in " << __FUNCTION__ << std::endl;
+         ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
          throw std::runtime_error(ss.str());
       }
 
