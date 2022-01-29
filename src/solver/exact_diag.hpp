@@ -65,17 +65,16 @@ public:
    
    ModelClass model;
    sparse_matrix::ParametersAll params;
-   
-   
-   ExactDiag() {
+      
+   explicit ExactDiag(const ModelClass &model_input): model(model_input) {
       params.lanczos.flag_symmetric_crs = true;
       params.ii.cg.flag_symmetric_crs   = true;
    }
    
-   explicit ExactDiag(const ModelClass &model_input): ExactDiag(), model(model_input) {}
-   
    ExactDiag(const ModelClass &model_input,
-             const sparse_matrix::ParametersAll &params_input): ExactDiag(model_input), params(params_input) {}
+             const sparse_matrix::ParametersAll &params_input): ExactDiag(model_input) {
+      params = params_input;
+   }
    
    void SetDiagonalizationMethod(const DiagMethod diag_method) {
       diag_method_ = diag_method;

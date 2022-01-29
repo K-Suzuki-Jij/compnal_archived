@@ -351,11 +351,11 @@ public:
          }
       }
       
-      for (std::size_t i = 0; i < bias_basis.size(); ++i) {
-         bias_basis[i+1] += bias_basis[i];
+      for (std::size_t i = 1; i < bias_basis.size(); ++i) {
+         bias_basis[i] += bias_basis[i - 1];
       }
       
-      if (static_cast<std::int64_t>(bias_basis[bias_basis.size()]) != dim_target_global) {
+      if (bias_basis.back() != dim_target_global) {
          std::stringstream ss;
          ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          throw std::runtime_error(ss.str());
@@ -370,7 +370,7 @@ public:
       for (std::int64_t i = 0; i < static_cast<std::int64_t>(temp_q_number_spin_vec.size()); ++i) {
          const int total_2_sz_lspin = temp_q_number_spin_vec[i];
          const int shifted_2sz      = (system_size_*magnitude_2lspin_ - total_2_sz_lspin)/2;
-         const std::int64_t dim_target_lspin = BaseU1Spin_1D<RealType>::CalculateTargetDim(system_size_, magnitude_2lspin_/2, total_2_sz_lspin/2);
+         const std::int64_t dim_target_lspin = BaseU1Spin_1D<RealType>::CalculateTargetDim(system_size_, 0.5*magnitude_2lspin_, 0.5*total_2_sz_lspin);
          std::vector<std::vector<int>> partition_integers;
          utility::GenerateIntegerPartition(&partition_integers, shifted_2sz, magnitude_2lspin_);
          auto &spin_basis = spin_bases[total_2_sz_lspin];

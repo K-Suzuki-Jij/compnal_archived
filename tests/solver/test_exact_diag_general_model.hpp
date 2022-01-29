@@ -26,26 +26,38 @@
 namespace compnal {
 namespace test {
 
-TEST(ExactDiagGeneralModel, U1Electron) {
-   solver::ExactDiag<model::GeneralModel_1D<model::BaseU1Electron_1D<double>>> solver;
+TEST(ExactDiagGeneralModel, U1Electron1) {
+   model::GeneralModel_1D<model::BaseU1Electron_1D<double>> model;
+   solver::ExactDiag solver(model);
+   solver.model.SetSystemSize(4);
+   solver.CalculateGroundState();
+}
+
+TEST(ExactDiagGeneralModel, U1Electron2) {
+   model::GeneralModel_1D<model::BaseU1Electron_1D<double>> model;
+   sparse_matrix::ParametersAll params;
+   solver::ExactDiag solver(model, params);
    solver.model.SetSystemSize(4);
    solver.CalculateGroundState();
 }
 
 TEST(ExactDiagGeneralModel, U1Spin) {
-   solver::ExactDiag<model::GeneralModel_1D<model::BaseU1Spin_1D<double>>> solver;
+   model::GeneralModel_1D<model::BaseU1Spin_1D<double>> model;
+   solver::ExactDiag solver(model);
    solver.model.SetSystemSize(4);
    solver.CalculateGroundState();
 }
 
 TEST(ExactDiagGeneralModel, U1SpinElectron) {
-   solver::ExactDiag<model::GeneralModel_1D<model::BaseU1SpinElectron_1D<double>>> solver;
+   model::GeneralModel_1D<model::BaseU1SpinElectron_1D<double>> model;
+   solver::ExactDiag solver(model);
    solver.model.SetSystemSize(4);
    solver.CalculateGroundState();
 }
 
 TEST(ExactDiagGeneralModel, U1SpinMultiElectron) {
-   solver::ExactDiag<model::GeneralModel_1D<model::BaseU1SpinMultiElectrons_1D<double>>> solver;
+   model::GeneralModel_1D<model::BaseU1SpinMultiElectrons_1D<double>> model;
+   solver::ExactDiag solver(model);
    solver.model.SetSystemSize(2);
    solver.CalculateGroundState();
 }
