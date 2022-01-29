@@ -118,7 +118,7 @@ public:
          ss << "Invalid target_sector: " << target_sector << std::endl;
          throw std::runtime_error(ss.str());
       }
-      CalculateGroundState(diag_method_);
+      CalculateGroundState();
       if (model.GetCalculatedEigenvectorSet().count(target_sector) != 0) {
          return;
       }
