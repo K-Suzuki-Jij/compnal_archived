@@ -20,6 +20,7 @@
 
 #include "../model/all.hpp"
 #include "../sparse_matrix/all.hpp"
+#include "./utility.hpp"
 
 namespace compnal {
 namespace solver {
@@ -65,22 +66,22 @@ public:
    ModelClass model;
    sparse_matrix::ParametersAll params;
    
+   
    ExactDiag() {
       params.lanczos.flag_symmetric_crs = true;
       params.ii.cg.flag_symmetric_crs   = true;
    }
    
-   explicit ExactDiag(const ModelClass &model_input): model(model_input) {
-      params.lanczos.flag_symmetric_crs = true;
-      params.ii.cg.flag_symmetric_crs   = true;
+   explicit ExactDiag(const ModelClass &model_input): ExactDiag(), model(model_input) {}
+   
+   ExactDiag(const ModelClass &model_input,
+             const sparse_matrix::ParametersAll &params_input): ExactDiag(model_input), params(params_input) {}
+   
+   void SetDiagonalizationMethod(const DiagMethod diag_method) {
+      diag_method_ = diag_method;
    }
    
-   ExactDiag(const ModelClass &model_input, const sparse_matrix::ParametersAll &params_input): model(model_input), params(params_input) {
-      params.lanczos.flag_symmetric_crs = true;
-      params.ii.cg.flag_symmetric_crs   = true;
-   }
-   
-   void CalculateGroundState(const std::string &diag_method = "Lanczos") {
+   void CalculateGroundState() {
       if (model.GetCalculatedEigenvectorSet().count(0) != 0) {
          return;
       }
@@ -93,16 +94,16 @@ public:
       if (eigenvectors_.size() == 0) {
          eigenvectors_.emplace_back();
       }
-      if (diag_method == "Lanczos") {
+      if (diag_method_ == DiagMethod::LANCZOS) {
          sparse_matrix::EigenvalueDecompositionLanczos(&eigenvalues_[0], &eigenvectors_[0], ham, params.lanczos);
       }
-      else if (diag_method == "LOBPCG") {
+      else if (diag_method_ == DiagMethod::LOBPCG) {
          sparse_matrix::EigenvalueDecompositionLOBPCG(&eigenvalues_[0], &eigenvectors_[0], ham, params.lanczos);
       }
       else {
          std::stringstream ss;
          ss << "Error in " << __func__ << std::endl;
-         ss << "Invalid diag_method: " << diag_method << std::endl;
+         ss << "Invalid diagonalization method detected." << std::endl;
          throw std::runtime_error(ss.str());
       }
       
@@ -111,14 +112,14 @@ public:
       model.SetCalculatedEigenvectorSet(0);
    }
    
-   void CalculateTargetState(const int target_sector, const std::string &diag_method = "Lanczos") {
+   void CalculateTargetState(const int target_sector) {
       if (target_sector < 0) {
          std::stringstream ss;
          ss << "Error in " << __func__ << std::endl;
          ss << "Invalid target_sector: " << target_sector << std::endl;
          throw std::runtime_error(ss.str());
       }
-      CalculateGroundState(diag_method);
+      CalculateGroundState(diag_method_);
       if (model.GetCalculatedEigenvectorSet().count(target_sector) != 0) {
          return;
       }
@@ -126,7 +127,7 @@ public:
       model.GenerateBasis();
       CRS ham;
       GenerateHamiltonian(&ham);
-      if (diag_method == "Lanczos") {
+      if (diag_method_ == DiagMethod::LANCZOS) {
          for (int sector = 1; sector <= target_sector; ++sector) {
             if (model.GetCalculatedEigenvectorSet().count(sector) == 0) {
                if (static_cast<int>(eigenvectors_.size()) != sector) {
@@ -145,7 +146,7 @@ public:
             }
          }
       }
-      else if (diag_method == "LOBPCG") {
+      else if (diag_method_ == DiagMethod::LOBPCG) {
          std::stringstream ss;
          ss << "Error in " << __func__ << std::endl;
          ss << "LOBPCG is under construction: " << target_sector << std::endl;
@@ -613,6 +614,7 @@ public:
 private:
    std::vector<BraketVector> eigenvectors_;
    std::vector<RealType>     eigenvalues_;
+   DiagMethod diag_method_ = DiagMethod::LANCZOS;
    
    int CalculateLocalBasis(std::int64_t global_basis, const int site, const int dim_onsite) const {
       for (int i = 0; i < site; ++i) {
