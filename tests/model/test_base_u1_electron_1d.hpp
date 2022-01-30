@@ -19,7 +19,7 @@
 #define COMPNAL_TEST_MODEL_BASE_U1_ELECTRON_1D_HPP_
 
 #include "../../src/model/base_u1_electron_1d.hpp"
-#include "../utility/all.hpp"
+#include "../include/all.hpp"
 #include <gtest/gtest.h>
 
 namespace compnal {

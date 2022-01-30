@@ -20,7 +20,7 @@
 
 #include "../../src/model/all.hpp"
 #include "../../src/solver/all.hpp"
-#include "../utility/all.hpp"
+#include "../include/all.hpp"
 #include <gtest/gtest.h>
 
 namespace compnal {
