@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>COMPNAL: src/model/utility.hpp Source File</title>
+<title>COMPNAL: src/solver/utility.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,14 +69,14 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_5dd65160827af56e6353642206b80129.html">model</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_041db6ad6a3d44280e40e5af409429cb.html">solver</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">utility.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="utility_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//  Copyright 2022 Kohei Suzuki</span></div>
+<a href="solver_2utility_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//  Copyright 2022 Kohei Suzuki</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//  you may not use this file except in compliance with the License.</span></div>
@@ -90,34 +90,30 @@ $(function() {
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//  See the License for the specific language governing permissions and</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//  limitations under the License.</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">//</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  Created by Kohei Suzuki on 2022/01/26.</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  Created by Kohei Suzuki on 2022/01/29.</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#ifndef COMPNAL_MODEL_UTILITY_HPP_</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#define COMPNAL_MODEL_UTILITY_HPP_</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#ifndef COMPNAL_SOLVER_UTILITY_HPP_</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#define COMPNAL_SOLVER_UTILITY_HPP_</span></div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacecompnal.html">compnal</a> {</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">namespace </span>model {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="namespacecompnal_1_1model.html#a472b79d22175004cb119fcc099cdd49b">   26</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="namespacecompnal_1_1model.html#a472b79d22175004cb119fcc099cdd49b">BoundaryCondition</a> {</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="namespacecompnal_1_1model.html#a472b79d22175004cb119fcc099cdd49bac7561e5003ce27517940dd2391775b12">   28</a></span>   <a class="code hl_enumvalue" href="namespacecompnal_1_1model.html#a472b79d22175004cb119fcc099cdd49bac7561e5003ce27517940dd2391775b12">OBC</a> = 0,</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="namespacecompnal_1_1model.html#a472b79d22175004cb119fcc099cdd49ba971a9be4942bbf28af21cd78bd5e6c15">   29</a></span>   <a class="code hl_enumvalue" href="namespacecompnal_1_1model.html#a472b79d22175004cb119fcc099cdd49ba971a9be4942bbf28af21cd78bd5e6c15">PBC</a> = 1,</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>   <a class="code hl_enumvalue" href="namespacecompnal_1_1model.html#a472b79d22175004cb119fcc099cdd49ba53f82f2e3270e115187896a7ae628069">SSD</a> = 2</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>   </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="namespacecompnal_1_1model.html#a472b79d22175004cb119fcc099cdd49ba53f82f2e3270e115187896a7ae628069">   32</a></span>};</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacecompnal.html">compnal</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">namespace </span>solver {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="namespacecompnal_1_1solver.html#aea9ed4356b9eb3f1e01e43d336026522">   24</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="namespacecompnal_1_1solver.html#aea9ed4356b9eb3f1e01e43d336026522">DiagMethod</a> {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="namespacecompnal_1_1solver.html#aea9ed4356b9eb3f1e01e43d336026522ac766432e40c81daf2b8104603413196b">   26</a></span>   <a class="code hl_enumvalue" href="namespacecompnal_1_1solver.html#aea9ed4356b9eb3f1e01e43d336026522ac766432e40c81daf2b8104603413196b">LANCZOS</a> = 0,</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>   <a class="code hl_enumvalue" href="namespacecompnal_1_1solver.html#aea9ed4356b9eb3f1e01e43d336026522a779f87f3b11a08240fd9da58d90071fe">LOBPCG</a>  = 1</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>   </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="namespacecompnal_1_1solver.html#aea9ed4356b9eb3f1e01e43d336026522a779f87f3b11a08240fd9da58d90071fe">   29</a></span>};</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>}</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>}</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>}</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#endif </span><span class="comment">/* COMPNAL_MODEL_UTILITY_HPP_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="anamespacecompnal_1_1model_html_a472b79d22175004cb119fcc099cdd49b"><div class="ttname"><a href="namespacecompnal_1_1model.html#a472b79d22175004cb119fcc099cdd49b">compnal::model::BoundaryCondition</a></div><div class="ttdeci">BoundaryCondition</div><div class="ttdef"><b>Definition:</b> utility.hpp:26</div></div>
-<div class="ttc" id="anamespacecompnal_1_1model_html_a472b79d22175004cb119fcc099cdd49ba53f82f2e3270e115187896a7ae628069"><div class="ttname"><a href="namespacecompnal_1_1model.html#a472b79d22175004cb119fcc099cdd49ba53f82f2e3270e115187896a7ae628069">compnal::model::SSD</a></div><div class="ttdeci">@ SSD</div><div class="ttdef"><b>Definition:</b> utility.hpp:30</div></div>
-<div class="ttc" id="anamespacecompnal_1_1model_html_a472b79d22175004cb119fcc099cdd49ba971a9be4942bbf28af21cd78bd5e6c15"><div class="ttname"><a href="namespacecompnal_1_1model.html#a472b79d22175004cb119fcc099cdd49ba971a9be4942bbf28af21cd78bd5e6c15">compnal::model::PBC</a></div><div class="ttdeci">@ PBC</div><div class="ttdef"><b>Definition:</b> utility.hpp:29</div></div>
-<div class="ttc" id="anamespacecompnal_1_1model_html_a472b79d22175004cb119fcc099cdd49bac7561e5003ce27517940dd2391775b12"><div class="ttname"><a href="namespacecompnal_1_1model.html#a472b79d22175004cb119fcc099cdd49bac7561e5003ce27517940dd2391775b12">compnal::model::OBC</a></div><div class="ttdeci">@ OBC</div><div class="ttdef"><b>Definition:</b> utility.hpp:28</div></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#endif </span><span class="comment">/*  COMPNAL_SOLVER_UTILITY_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="anamespacecompnal_1_1solver_html_aea9ed4356b9eb3f1e01e43d336026522"><div class="ttname"><a href="namespacecompnal_1_1solver.html#aea9ed4356b9eb3f1e01e43d336026522">compnal::solver::DiagMethod</a></div><div class="ttdeci">DiagMethod</div><div class="ttdef"><b>Definition:</b> utility.hpp:24</div></div>
+<div class="ttc" id="anamespacecompnal_1_1solver_html_aea9ed4356b9eb3f1e01e43d336026522a779f87f3b11a08240fd9da58d90071fe"><div class="ttname"><a href="namespacecompnal_1_1solver.html#aea9ed4356b9eb3f1e01e43d336026522a779f87f3b11a08240fd9da58d90071fe">compnal::solver::LOBPCG</a></div><div class="ttdeci">@ LOBPCG</div><div class="ttdef"><b>Definition:</b> utility.hpp:27</div></div>
+<div class="ttc" id="anamespacecompnal_1_1solver_html_aea9ed4356b9eb3f1e01e43d336026522ac766432e40c81daf2b8104603413196b"><div class="ttname"><a href="namespacecompnal_1_1solver.html#aea9ed4356b9eb3f1e01e43d336026522ac766432e40c81daf2b8104603413196b">compnal::solver::LANCZOS</a></div><div class="ttdeci">@ LANCZOS</div><div class="ttdef"><b>Definition:</b> utility.hpp:26</div></div>
 <div class="ttc" id="anamespacecompnal_html"><div class="ttname"><a href="namespacecompnal.html">compnal</a></div><div class="ttdef"><b>Definition:</b> base_u1_electron_1d.hpp:31</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

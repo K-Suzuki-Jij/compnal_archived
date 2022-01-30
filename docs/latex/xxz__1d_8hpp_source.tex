@@ -22,7 +22,7 @@
 \DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_MODEL\_XXZ\_1D\_HPP\_}}
 \DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_MODEL\_XXZ\_1D\_HPP\_}}
 \DoxyCodeLine{20 }
-\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{utility_8hpp}{./utility.hpp}}"{}}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}./utility.hpp"{}}}
 \DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{base__u1__spin__1d_8hpp}{./base\_u1\_spin\_1d.hpp}}"{}}}
 \DoxyCodeLine{23 }
 \DoxyCodeLine{24 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
@@ -152,7 +152,7 @@
 \DoxyCodeLine{184    \}}
 \DoxyCodeLine{185    }
 \DoxyCodeLine{189    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_x_x_z__1_d_a8a42b2808c4ef7a078aefd9b94f32060}{CreateOnsiteOperatorHam}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_spin, \textcolor{keyword}{const} RealType h\_z = 0.0, \textcolor{keyword}{const} RealType D\_z = 0.0) \{}
-\DoxyCodeLine{190       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(magnitude\_spin);}
+\DoxyCodeLine{190       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{utility::DoubleHalfInteger}}(magnitude\_spin);}
 \DoxyCodeLine{191       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite      = magnitude\_2spin + 1;}
 \DoxyCodeLine{192       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
 \DoxyCodeLine{193       }

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['none_0',['NONE',['../namespacecompnal_1_1sparse__matrix.html#ab956f5ab317ec175be8c3b3d709880dcae05bdf4bb6404aff5e00fb5c3b5eaca0',1,'compnal::sparse_matrix']]]
+  ['lanczos_0',['LANCZOS',['../namespacecompnal_1_1solver.html#aea9ed4356b9eb3f1e01e43d336026522ac766432e40c81daf2b8104603413196b',1,'compnal::solver']]],
+  ['lobpcg_1',['LOBPCG',['../namespacecompnal_1_1solver.html#aea9ed4356b9eb3f1e01e43d336026522a779f87f3b11a08240fd9da58d90071fe',1,'compnal::solver']]]
 ];

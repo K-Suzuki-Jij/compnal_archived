@@ -1,5 +1,10 @@
 \hypertarget{namespacecompnal_1_1utility}{}\doxysection{compnal\+::utility Namespace Reference}
 \label{namespacecompnal_1_1utility}\index{compnal::utility@{compnal::utility}}
+
+
+Utility classes and functions for compnal.  
+
+
 \doxysubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
@@ -22,13 +27,16 @@ std\+::int64\+\_\+t \mbox{\hyperlink{namespacecompnal_1_1utility_a31be084029ddf1
 \item 
 void \mbox{\hyperlink{namespacecompnal_1_1utility_a6d7737688a03ef322d62fc96017af67a}{Calculate\+Nth\+Permutation}} (std\+::vector$<$ int $>$ $\ast$vec, std\+::int64\+\_\+t target\+\_\+num)
 \item 
-void \mbox{\hyperlink{namespacecompnal_1_1utility_abf9e7e67bef6223906e6269589428337}{Check\+Half\+Integer}} (double s)
+{\footnotesize template$<$typename Value\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1utility_a37f0c3c479e48a3d90cb7e1fe36da4ab}{Check\+Half\+Integer}} (Value\+Type s)
 \item 
-int \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{Double\+Half\+Integer}} (double s)
+{\footnotesize template$<$typename Value\+Type $>$ }\\int \mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{Double\+Half\+Integer}} (Value\+Type s)
 \item 
 {\footnotesize template$<$typename T1 , typename T2 $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1utility_a0dd6adce4c848f9ea13250f5434390f3}{Quick\+Sort}} (std\+::vector$<$ T1 $>$ $\ast$array\+\_\+comp, std\+::vector$<$ T2 $>$ $\ast$array2, const std\+::int64\+\_\+t left, const std\+::int64\+\_\+t right)
 \end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+Utility classes and functions for compnal. 
 
 \doxysubsection{Function Documentation}
 \mbox{\Hypertarget{namespacecompnal_1_1utility_ae746f2f70fd507d6b7a7f6ffabdcdee3}\label{namespacecompnal_1_1utility_ae746f2f70fd507d6b7a7f6ffabdcdee3}} 
@@ -55,17 +63,19 @@ int \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac967
 \doxysubsubsection{\texorpdfstring{CalculateNumCombination()}{CalculateNumCombination()}}
 {\footnotesize\ttfamily std\+::int64\+\_\+t compnal\+::utility\+::\+Calculate\+Num\+Combination (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{list }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespacecompnal_1_1utility_abf9e7e67bef6223906e6269589428337}\label{namespacecompnal_1_1utility_abf9e7e67bef6223906e6269589428337}} 
+\mbox{\Hypertarget{namespacecompnal_1_1utility_a37f0c3c479e48a3d90cb7e1fe36da4ab}\label{namespacecompnal_1_1utility_a37f0c3c479e48a3d90cb7e1fe36da4ab}} 
 \index{compnal::utility@{compnal::utility}!CheckHalfInteger@{CheckHalfInteger}}
 \index{CheckHalfInteger@{CheckHalfInteger}!compnal::utility@{compnal::utility}}
 \doxysubsubsection{\texorpdfstring{CheckHalfInteger()}{CheckHalfInteger()}}
-{\footnotesize\ttfamily void compnal\+::utility\+::\+Check\+Half\+Integer (\begin{DoxyParamCaption}\item[{double}]{s }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+void compnal\+::utility\+::\+Check\+Half\+Integer (\begin{DoxyParamCaption}\item[{Value\+Type}]{s }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}\label{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}} 
+\mbox{\Hypertarget{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}\label{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}} 
 \index{compnal::utility@{compnal::utility}!DoubleHalfInteger@{DoubleHalfInteger}}
 \index{DoubleHalfInteger@{DoubleHalfInteger}!compnal::utility@{compnal::utility}}
 \doxysubsubsection{\texorpdfstring{DoubleHalfInteger()}{DoubleHalfInteger()}}
-{\footnotesize\ttfamily int compnal\+::utility\+::\+Double\+Half\+Integer (\begin{DoxyParamCaption}\item[{double}]{s }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+int compnal\+::utility\+::\+Double\+Half\+Integer (\begin{DoxyParamCaption}\item[{Value\+Type}]{s }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{namespacecompnal_1_1utility_a2580357fcc88b1c7bac5627e5b47925f}\label{namespacecompnal_1_1utility_a2580357fcc88b1c7bac5627e5b47925f}} 
 \index{compnal::utility@{compnal::utility}!GenerateIntegerPartition@{GenerateIntegerPartition}}

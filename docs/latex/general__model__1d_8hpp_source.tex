@@ -48,19 +48,19 @@
 \DoxyCodeLine{52       \textcolor{comment}{// TODO: Check of m is valid with BaseClass operator}}
 \DoxyCodeLine{53       \textcolor{keywordflow}{if} (m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} != m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}}) \{}
 \DoxyCodeLine{54          std::stringstream ss;}
-\DoxyCodeLine{55          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{55          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << \textcolor{stringliteral}{"{} at "{}} << \_\_LINE\_\_ << std::endl;}
 \DoxyCodeLine{56          ss << \textcolor{stringliteral}{"{}The input matrix is not a square matrix."{}} << std::endl;}
 \DoxyCodeLine{57          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{58       \}}
 \DoxyCodeLine{59       \textcolor{keywordflow}{if} (m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} != this-\/>dim\_onsite\_) \{}
 \DoxyCodeLine{60          std::stringstream ss;}
-\DoxyCodeLine{61          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{61          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << \textcolor{stringliteral}{"{} at "{}} << \_\_LINE\_\_ << std::endl;}
 \DoxyCodeLine{62          ss << \textcolor{stringliteral}{"{}The input matrix is invalid"{}} << std::endl;}
 \DoxyCodeLine{63          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{64       \}}
 \DoxyCodeLine{65       \textcolor{keywordflow}{if} (site < 0 || this-\/>system\_size\_ <= site) \{}
 \DoxyCodeLine{66          std::stringstream ss;}
-\DoxyCodeLine{67          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{67          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << \textcolor{stringliteral}{"{} at "{}} << \_\_LINE\_\_ << std::endl;}
 \DoxyCodeLine{68          ss << \textcolor{stringliteral}{"{}Invalid site: "{}} << site << std::endl;}
 \DoxyCodeLine{69          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{70       \}}
@@ -78,25 +78,25 @@
 \DoxyCodeLine{88       \}}
 \DoxyCodeLine{89       \textcolor{keywordflow}{if} (m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} != m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}} || m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} != m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}}) \{}
 \DoxyCodeLine{90          std::stringstream ss;}
-\DoxyCodeLine{91          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{91          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << \textcolor{stringliteral}{"{} at "{}} << \_\_LINE\_\_ << std::endl;}
 \DoxyCodeLine{92          ss << \textcolor{stringliteral}{"{}The input matrix is not a square matrix."{}} << std::endl;}
 \DoxyCodeLine{93          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{94       \}}
 \DoxyCodeLine{95       \textcolor{keywordflow}{if} (m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} != this-\/>dim\_onsite\_) \{}
 \DoxyCodeLine{96          std::stringstream ss;}
-\DoxyCodeLine{97          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{97          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << \textcolor{stringliteral}{"{} at "{}} << \_\_LINE\_\_ << std::endl;}
 \DoxyCodeLine{98          ss << \textcolor{stringliteral}{"{}The input matrix is invalid"{}} << std::endl;}
 \DoxyCodeLine{99          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{100       \}}
 \DoxyCodeLine{101       \textcolor{keywordflow}{if} (site\_1 < 0 || this-\/>system\_size\_ <= site\_1) \{}
 \DoxyCodeLine{102          std::stringstream ss;}
-\DoxyCodeLine{103          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{103          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << \textcolor{stringliteral}{"{} at "{}} << \_\_LINE\_\_ << std::endl;}
 \DoxyCodeLine{104          ss << \textcolor{stringliteral}{"{}Invalid site: "{}} << site\_1 << std::endl;}
 \DoxyCodeLine{105          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{106       \}}
 \DoxyCodeLine{107       \textcolor{keywordflow}{if} (site\_2 < 0 || this-\/>system\_size\_ <= site\_2) \{}
 \DoxyCodeLine{108          std::stringstream ss;}
-\DoxyCodeLine{109          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{109          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << \textcolor{stringliteral}{"{} at "{}} << \_\_LINE\_\_ << std::endl;}
 \DoxyCodeLine{110          ss << \textcolor{stringliteral}{"{}Invalid site: "{}} << site\_2 << std::endl;}
 \DoxyCodeLine{111          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{112       \}}

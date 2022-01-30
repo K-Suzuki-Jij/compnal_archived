@@ -68,7 +68,7 @@
 \DoxyCodeLine{81    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ab34e5e3dd6fdb9581c785c92f3ded892}{SetSystemSize}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size) \{}
 \DoxyCodeLine{82       \textcolor{keywordflow}{if} (system\_size <= 0) \{}
 \DoxyCodeLine{83          std::stringstream ss;}
-\DoxyCodeLine{84          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{84          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << \textcolor{stringliteral}{"{} at "{}} << \_\_LINE\_\_ << std::endl;}
 \DoxyCodeLine{85          ss << \textcolor{stringliteral}{"{}system\_size must be a non-\/negative integer"{}} << std::endl;}
 \DoxyCodeLine{86          ss << \textcolor{stringliteral}{"{}system\_size="{}} << system\_size << \textcolor{stringliteral}{"{}is not allowed"{}} << std::endl;}
 \DoxyCodeLine{87          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
@@ -82,10 +82,10 @@
 \DoxyCodeLine{95    \}}
 \DoxyCodeLine{96    }
 \DoxyCodeLine{99    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a200a44a8ea5b4d47d904208b24984f98}{SetMagnitudeSpin}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_spin) \{}
-\DoxyCodeLine{100       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(magnitude\_spin);}
+\DoxyCodeLine{100       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{utility::DoubleHalfInteger}}(magnitude\_spin);}
 \DoxyCodeLine{101       \textcolor{keywordflow}{if} (magnitude\_2spin <= 0) \{}
 \DoxyCodeLine{102          std::stringstream ss;}
-\DoxyCodeLine{103          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{103          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << \textcolor{stringliteral}{"{} at "{}} << \_\_LINE\_\_ << std::endl;}
 \DoxyCodeLine{104          ss << \textcolor{stringliteral}{"{}Please set magnitude\_2spin > 0"{}} << std::endl;}
 \DoxyCodeLine{105          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{106       \}}
@@ -100,7 +100,7 @@
 \DoxyCodeLine{115    \}}
 \DoxyCodeLine{116    }
 \DoxyCodeLine{119    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a4412e8c37d3c49bab4c5f983b89d06e9}{SetTotalSz}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} total\_sz) \{}
-\DoxyCodeLine{120       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(total\_sz);}
+\DoxyCodeLine{120       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = \mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{utility::DoubleHalfInteger}}(total\_sz);}
 \DoxyCodeLine{121       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}{total\_2sz\_}} != total\_2sz) \{}
 \DoxyCodeLine{122          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a822529c233c911a2db759c809628ed32}{total\_2sz\_}} = total\_2sz;}
 \DoxyCodeLine{123          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae9be05e81a30dddb6cd321248c66caf5}{calculated\_eigenvector\_set\_}}.clear();}
@@ -121,7 +121,7 @@
 \DoxyCodeLine{146       \}}
 \DoxyCodeLine{147       \textcolor{keywordflow}{else} \{}
 \DoxyCodeLine{148          std::stringstream ss;}
-\DoxyCodeLine{149          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_  << std::endl;}
+\DoxyCodeLine{149          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << \textcolor{stringliteral}{"{} at "{}} << \_\_LINE\_\_  << std::endl;}
 \DoxyCodeLine{150          ss << \textcolor{stringliteral}{"{}Invalid onsite basis"{}} << std::endl;}
 \DoxyCodeLine{151          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{152       \}}
@@ -149,13 +149,13 @@
 \DoxyCodeLine{187    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a60f9a90328ba84738a35f5d0c2e519c7}{GenerateBasis}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} total\_sz) \{}
 \DoxyCodeLine{188       \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae77f7a42530aabf69cf9bbd7b9e42dd9}{isValidQNumber}}(total\_sz)) \{}
 \DoxyCodeLine{189          std::stringstream ss;}
-\DoxyCodeLine{190          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{190          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << \textcolor{stringliteral}{"{} at "{}} << \_\_LINE\_\_ << std::endl;}
 \DoxyCodeLine{191          ss << \textcolor{stringliteral}{"{}Invalid parameters (system\_size or magnitude\_spin or total\_sz)"{}} << std::endl;}
 \DoxyCodeLine{192          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{193       \}}
 \DoxyCodeLine{194       }
 \DoxyCodeLine{195       \textcolor{keyword}{const} \textcolor{keyword}{auto} start = std::chrono::system\_clock::now();}
-\DoxyCodeLine{196       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(total\_sz);}
+\DoxyCodeLine{196       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = \mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{utility::DoubleHalfInteger}}(total\_sz);}
 \DoxyCodeLine{197       }
 \DoxyCodeLine{198       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}{bases\_}}.count(total\_2sz) != 0) \{}
 \DoxyCodeLine{199          \textcolor{keywordflow}{return};}
@@ -247,7 +247,7 @@
 \DoxyCodeLine{285       }
 \DoxyCodeLine{286       \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}{bases\_}}.at(total\_2sz).size()) != dim\_target) \{}
 \DoxyCodeLine{287          std::stringstream ss;}
-\DoxyCodeLine{288          ss << \textcolor{stringliteral}{"{}Unknown error detected in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{288          ss << \textcolor{stringliteral}{"{}Unknown error detected in "{}} << \_\_FUNCTION\_\_ << \textcolor{stringliteral}{"{} at "{}} << \_\_LINE\_\_ << std::endl;}
 \DoxyCodeLine{289          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{290       \}}
 \DoxyCodeLine{291       }
@@ -408,8 +408,8 @@
 \DoxyCodeLine{461    \}}
 \DoxyCodeLine{462    }
 \DoxyCodeLine{468    \textcolor{keyword}{static} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_af1c5be1ab60a0a335a52cc78bd9190d7}{isValidQNumber}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size, \textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_spin, \textcolor{keyword}{const} \textcolor{keywordtype}{double} total\_sz) \{}
-\DoxyCodeLine{469       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(total\_sz);}
-\DoxyCodeLine{470       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(magnitude\_spin);}
+\DoxyCodeLine{469       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = \mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{utility::DoubleHalfInteger}}(total\_sz);}
+\DoxyCodeLine{470       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{utility::DoubleHalfInteger}}(magnitude\_spin);}
 \DoxyCodeLine{471       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c1 = ((system\_size*magnitude\_2spin -\/ total\_2sz)\%2 == 0);}
 \DoxyCodeLine{472       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c2 = (-\/system\_size*magnitude\_2spin <= total\_2sz);}
 \DoxyCodeLine{473       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c3 = (total\_2sz <= system\_size*magnitude\_2spin);}
@@ -422,14 +422,14 @@
 \DoxyCodeLine{480    \}}
 \DoxyCodeLine{481    }
 \DoxyCodeLine{487    \textcolor{keyword}{static} std::int64\_t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_abe62f6fab5eb37595dc8bbbb99db7991}{CalculateTargetDim}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size, \textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_spin, \textcolor{keyword}{const} \textcolor{keywordtype}{double} total\_sz) \{}
-\DoxyCodeLine{488       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(magnitude\_spin);}
+\DoxyCodeLine{488       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{utility::DoubleHalfInteger}}(magnitude\_spin);}
 \DoxyCodeLine{489       \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae77f7a42530aabf69cf9bbd7b9e42dd9}{isValidQNumber}}(system\_size, magnitude\_spin, total\_sz)) \{}
 \DoxyCodeLine{490          \textcolor{keywordflow}{return} 0;}
 \DoxyCodeLine{491       \}}
 \DoxyCodeLine{492       \textcolor{keywordflow}{if} (system\_size <= 0) \{}
 \DoxyCodeLine{493          \textcolor{keywordflow}{return} 0;}
 \DoxyCodeLine{494       \}}
-\DoxyCodeLine{495       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(total\_sz);}
+\DoxyCodeLine{495       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = \mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{utility::DoubleHalfInteger}}(total\_sz);}
 \DoxyCodeLine{496       \textcolor{keyword}{const} \textcolor{keywordtype}{int} max\_total\_2sz = system\_size*magnitude\_2spin;}
 \DoxyCodeLine{497       std::vector<std::vector<std::int64\_t>> dim(system\_size, std::vector<std::int64\_t>(max\_total\_2sz + 1));}
 \DoxyCodeLine{498       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} s = -\/magnitude\_2spin; s <= magnitude\_2spin; s += 2) \{}
@@ -451,7 +451,7 @@
 \DoxyCodeLine{514    \}}
 \DoxyCodeLine{515    }
 \DoxyCodeLine{519    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a63e052b4fac0a797486ae37f288775d8}{CreateOnsiteOperatorSx}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_spin) \{}
-\DoxyCodeLine{520       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(magnitude\_spin);}
+\DoxyCodeLine{520       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{utility::DoubleHalfInteger}}(magnitude\_spin);}
 \DoxyCodeLine{521       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite      = magnitude\_2spin + 1;}
 \DoxyCodeLine{522       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
 \DoxyCodeLine{523       \textcolor{keywordtype}{int} a = 0;}
@@ -485,7 +485,7 @@
 \DoxyCodeLine{551    \}}
 \DoxyCodeLine{552    }
 \DoxyCodeLine{556    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a805af825f870052d613484dfc32bf781}{CreateOnsiteOperatoriSy}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_spin) \{}
-\DoxyCodeLine{557       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(magnitude\_spin);}
+\DoxyCodeLine{557       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{utility::DoubleHalfInteger}}(magnitude\_spin);}
 \DoxyCodeLine{558       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite      = magnitude\_2spin + 1;}
 \DoxyCodeLine{559       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
 \DoxyCodeLine{560       \textcolor{keywordtype}{int} a = 0;}
@@ -520,7 +520,7 @@
 \DoxyCodeLine{589    \}}
 \DoxyCodeLine{590    }
 \DoxyCodeLine{594    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a4b021604c01c8b7f9f2eab804cc78608}{CreateOnsiteOperatorSz}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_spin) \{}
-\DoxyCodeLine{595       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(magnitude\_spin);}
+\DoxyCodeLine{595       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{utility::DoubleHalfInteger}}(magnitude\_spin);}
 \DoxyCodeLine{596       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite      = magnitude\_2spin + 1;}
 \DoxyCodeLine{597       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
 \DoxyCodeLine{598       }
@@ -536,7 +536,7 @@
 \DoxyCodeLine{608    \}}
 \DoxyCodeLine{609    }
 \DoxyCodeLine{613    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a2c17c2baee22281d6d02f5dd5ab0b39d}{CreateOnsiteOperatorSp}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_spin) \{}
-\DoxyCodeLine{614       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(magnitude\_spin);}
+\DoxyCodeLine{614       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{utility::DoubleHalfInteger}}(magnitude\_spin);}
 \DoxyCodeLine{615       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite      = magnitude\_2spin + 1;}
 \DoxyCodeLine{616       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
 \DoxyCodeLine{617       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 1; row < dim\_onsite; ++row) \{}
@@ -549,7 +549,7 @@
 \DoxyCodeLine{624    \}}
 \DoxyCodeLine{625    }
 \DoxyCodeLine{629    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae10de81ba249004460d22bd991efe4f9}{CreateOnsiteOperatorSm}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_spin) \{}
-\DoxyCodeLine{630       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(magnitude\_spin);}
+\DoxyCodeLine{630       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = \mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{utility::DoubleHalfInteger}}(magnitude\_spin);}
 \DoxyCodeLine{631       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite      = magnitude\_2spin + 1;}
 \DoxyCodeLine{632       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
 \DoxyCodeLine{633       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 1; row < dim\_onsite; ++row) \{}
@@ -595,11 +595,11 @@
 \DoxyCodeLine{701    \}}
 \DoxyCodeLine{702    }
 \DoxyCodeLine{707    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<std::int64\_t> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a9d991926c779bf24c6608279a7f10601}{GetBasis}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} total\_sz)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{708       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}{bases\_}}.at(\mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(total\_sz));}
+\DoxyCodeLine{708       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8d1ca56fb9e8187821e797b0a713cb54}{bases\_}}.at(\mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{utility::DoubleHalfInteger}}(total\_sz));}
 \DoxyCodeLine{709    \}}
 \DoxyCodeLine{710    }
 \DoxyCodeLine{715    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::unordered\_map<std::int64\_t, std::int64\_t> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ac878a891c7aa10eca8840f3de0e8d0e1}{GetBasisInv}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} total\_sz)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{716       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_abeabf635a134fc6176db74e7fef56245}{bases\_inv\_}}.at(\mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{utility::DoubleHalfInteger}}(total\_sz));}
+\DoxyCodeLine{716       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_abeabf635a134fc6176db74e7fef56245}{bases\_inv\_}}.at(\mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{utility::DoubleHalfInteger}}(total\_sz));}
 \DoxyCodeLine{717    \}}
 \DoxyCodeLine{718    }
 \DoxyCodeLine{722    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<std::int64\_t> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a150a88b5f29693fd0342ec9d5f826be6}{GetTargetBasis}}()\textcolor{keyword}{ const }\{}

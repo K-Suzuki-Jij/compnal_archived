@@ -114,10 +114,12 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a535e85ef2697a25abb2e128542d65c68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2cdd5d5e73ad0ff77578a0dca66fc565"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#a2cdd5d5e73ad0ff77578a0dca66fc565">ExactDiag</a> (const ModelClass &amp;model_input, const <a class="el" href="structcompnal_1_1sparse__matrix_1_1_parameters_all.html">sparse_matrix::ParametersAll</a> &amp;params_input)</td></tr>
 <tr class="separator:a2cdd5d5e73ad0ff77578a0dca66fc565"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04a8e2c2aa3e67824f83a459fafd5092"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#a04a8e2c2aa3e67824f83a459fafd5092">CalculateGroundState</a> (const std::string &amp;diag_method=&quot;Lanczos&quot;)</td></tr>
-<tr class="separator:a04a8e2c2aa3e67824f83a459fafd5092"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51767027245917e4537e78966d6e7915"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#a51767027245917e4537e78966d6e7915">CalculateTargetState</a> (const int target_sector, const std::string &amp;diag_method=&quot;Lanczos&quot;)</td></tr>
-<tr class="separator:a51767027245917e4537e78966d6e7915"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed585bff140cd36887ffd247d681ca89"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#aed585bff140cd36887ffd247d681ca89">SetDiagonalizationMethod</a> (const <a class="el" href="namespacecompnal_1_1solver.html#aea9ed4356b9eb3f1e01e43d336026522">DiagMethod</a> diag_method)</td></tr>
+<tr class="separator:aed585bff140cd36887ffd247d681ca89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65480d7568c98d230c50e6c9d3731341"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#a65480d7568c98d230c50e6c9d3731341">CalculateGroundState</a> ()</td></tr>
+<tr class="separator:a65480d7568c98d230c50e6c9d3731341"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22420e816fb2c86f9e710312e8f346e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#a22420e816fb2c86f9e710312e8f346e2">CalculateTargetState</a> (const int target_sector)</td></tr>
+<tr class="separator:a22420e816fb2c86f9e710312e8f346e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1aafb57ecb9c2dcc044f4a6828cc93e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#ada6514651bff6cb916c47982c1b70ba5">RealType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#a1aafb57ecb9c2dcc044f4a6828cc93e8">CalculateExpectationValue</a> (const <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#aa54a851fbc71d43eb274c08d03bb767a">CRS</a> &amp;m, const int site, const int level=0) const</td></tr>
 <tr class="separator:a1aafb57ecb9c2dcc044f4a6828cc93e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd281c111110b09eeeea7a456f5220b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#ada6514651bff6cb916c47982c1b70ba5">RealType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#acd281c111110b09eeeea7a456f5220b5">CalculateCorrelationFunction</a> (const <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#aa54a851fbc71d43eb274c08d03bb767a">CRS</a> &amp;m, const int site, const int target_level=0) const</td></tr>
@@ -178,6 +180,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a9792ea70dd7ac9a0ac1b964c60cbba57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08b1c95d031f0b29727039f031480c1d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#ada6514651bff6cb916c47982c1b70ba5">RealType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#a08b1c95d031f0b29727039f031480c1d">eigenvalues_</a></td></tr>
 <tr class="separator:a08b1c95d031f0b29727039f031480c1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ebf7d0143bbc123c0cb826ece9e2bf9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecompnal_1_1solver.html#aea9ed4356b9eb3f1e01e43d336026522">DiagMethod</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html#a7ebf7d0143bbc123c0cb826ece9e2bf9">diag_method_</a> = DiagMethod::LANCZOS</td></tr>
+<tr class="separator:a7ebf7d0143bbc123c0cb826ece9e2bf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;class ModelClass&gt;<br />
@@ -627,8 +631,8 @@ template&lt;class ModelClass &gt; </div>
 
 </div>
 </div>
-<a id="a04a8e2c2aa3e67824f83a459fafd5092" name="a04a8e2c2aa3e67824f83a459fafd5092"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a04a8e2c2aa3e67824f83a459fafd5092">&#9670;&nbsp;</a></span>CalculateGroundState()</h2>
+<a id="a65480d7568c98d230c50e6c9d3731341" name="a65480d7568c98d230c50e6c9d3731341"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65480d7568c98d230c50e6c9d3731341">&#9670;&nbsp;</a></span>CalculateGroundState()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -641,8 +645,7 @@ template&lt;class ModelClass &gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html">compnal::solver::ExactDiag</a>&lt; ModelClass &gt;::CalculateGroundState </td>
           <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>diag_method</em> = <code>&quot;Lanczos&quot;</code></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -699,8 +702,8 @@ template&lt;class ModelClass &gt; </div>
 
 </div>
 </div>
-<a id="a51767027245917e4537e78966d6e7915" name="a51767027245917e4537e78966d6e7915"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51767027245917e4537e78966d6e7915">&#9670;&nbsp;</a></span>CalculateTargetState()</h2>
+<a id="a22420e816fb2c86f9e710312e8f346e2" name="a22420e816fb2c86f9e710312e8f346e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22420e816fb2c86f9e710312e8f346e2">&#9670;&nbsp;</a></span>CalculateTargetState()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -714,18 +717,8 @@ template&lt;class ModelClass &gt; </div>
           <td class="memname">void <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html">compnal::solver::ExactDiag</a>&lt; ModelClass &gt;::CalculateTargetState </td>
           <td>(</td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>target_sector</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>target_sector</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>diag_method</em> = <code>&quot;Lanczos&quot;</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -1127,7 +1120,59 @@ template&lt;class ModelClass &gt; </div>
 
 </div>
 </div>
+<a id="aed585bff140cd36887ffd247d681ca89" name="aed585bff140cd36887ffd247d681ca89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed585bff140cd36887ffd247d681ca89">&#9670;&nbsp;</a></span>SetDiagonalizationMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class ModelClass &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html">compnal::solver::ExactDiag</a>&lt; ModelClass &gt;::SetDiagonalizationMethod </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacecompnal_1_1solver.html#aea9ed4356b9eb3f1e01e43d336026522">DiagMethod</a>&#160;</td>
+          <td class="paramname"><em>diag_method</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a7ebf7d0143bbc123c0cb826ece9e2bf9" name="a7ebf7d0143bbc123c0cb826ece9e2bf9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ebf7d0143bbc123c0cb826ece9e2bf9">&#9670;&nbsp;</a></span>diag_method_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class ModelClass &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacecompnal_1_1solver.html#aea9ed4356b9eb3f1e01e43d336026522">DiagMethod</a> <a class="el" href="classcompnal_1_1solver_1_1_exact_diag.html">compnal::solver::ExactDiag</a>&lt; ModelClass &gt;::diag_method_ = DiagMethod::LANCZOS</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a08b1c95d031f0b29727039f031480c1d" name="a08b1c95d031f0b29727039f031480c1d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a08b1c95d031f0b29727039f031480c1d">&#9670;&nbsp;</a></span>eigenvalues_</h2>
 
