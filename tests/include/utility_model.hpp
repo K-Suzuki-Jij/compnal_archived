@@ -138,7 +138,7 @@ void TestSpinOneHalf(const model::BaseU1Spin_1D<RealType> &model) {
    const double threshold = std::pow(10, -15);
    
    EXPECT_EQ(model.GetDimOnsite(), 2);
-   EXPECT_EQ(model.GetMagnitudeSpin(), 0.5);
+   EXPECT_EQ(model.GetMagnitudeSpin(), 0.5_hi);
    
    const sparse_matrix::CRS<RealType> ref_sp ({{+0.0, +1.0}, {+0.0, +0.0}});
    const sparse_matrix::CRS<RealType> ref_sm ({{+0.0, +0.0}, {+1.0, +0.0}});
@@ -159,7 +159,7 @@ void TestSpinOne(const model::BaseU1Spin_1D<RealType> &model) {
    const double threshold = std::pow(10, -15);
    
    EXPECT_EQ(model.GetDimOnsite(), 3);
-   EXPECT_EQ(model.GetMagnitudeSpin(), 1.0);
+   EXPECT_EQ(model.GetMagnitudeSpin(), 1_hi);
    
    const sparse_matrix::CRS<RealType> ref_sp ({
       {+0.0, +std::sqrt(2), +0.0},

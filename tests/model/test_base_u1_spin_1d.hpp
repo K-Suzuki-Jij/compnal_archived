@@ -28,49 +28,34 @@ namespace test {
 TEST(ModelBaseU1Spin1D, ConstructorDefault) {
    model::BaseU1Spin_1D<double> model;
    TestSpinOneHalf(model);
-   
    EXPECT_EQ(model.GetSystemSize(), 0);
-   EXPECT_EQ(model.GetTotalSz(), 0.0);
-   
+   EXPECT_EQ(model.GetTotalSz(), 0_hi);
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   ExpectEQ(model.GetBases(), std::unordered_map<int, std::vector<std::int64_t>>{});
-   ExpectEQ(model.GetBasesInv(), std::unordered_map<int, std::unordered_map<std::int64_t, std::int64_t>>{});
+   
 }
 
 TEST(ModelBaseU1Spin1D, ConstructorSystemSize) {
    model::BaseU1Spin_1D<double> model(10);
    TestSpinOneHalf(model);
-   
    EXPECT_EQ(model.GetSystemSize(), 10);
-   EXPECT_EQ(model.GetTotalSz(), 0.0);
-   
+   EXPECT_EQ(model.GetTotalSz(), 0_hi);
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   ExpectEQ(model.GetBases(), std::unordered_map<int, std::vector<std::int64_t>>{});
-   ExpectEQ(model.GetBasesInv(), std::unordered_map<int, std::unordered_map<std::int64_t, std::int64_t>>{});
 }
 
 TEST(ModelBaseU1Spin1D, ConstructorSystemSizeSpin) {
    model::BaseU1Spin_1D<double> model(10, 1);
    TestSpinOne(model);
-   
    EXPECT_EQ(model.GetSystemSize(), 10);
-   EXPECT_EQ(model.GetTotalSz(), 0.0);
-   
+   EXPECT_EQ(model.GetTotalSz(), 0_hi);
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   ExpectEQ(model.GetBases(), std::unordered_map<int, std::vector<std::int64_t>>{});
-   ExpectEQ(model.GetBasesInv(), std::unordered_map<int, std::unordered_map<std::int64_t, std::int64_t>>{});
 }
 
 TEST(ModelBaseU1Spin1D, ConstructorSystemSizeSpinTotalSz) {
    model::BaseU1Spin_1D<double> model(10, 1, 1);
    TestSpinOne(model);
-   
    EXPECT_EQ(model.GetSystemSize(), 10);
-   EXPECT_EQ(model.GetTotalSz(), 1);
-   
+   EXPECT_EQ(model.GetTotalSz(), 1_hi);
    EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-   ExpectEQ(model.GetBases(), std::unordered_map<int, std::vector<std::int64_t>>{});
-   ExpectEQ(model.GetBasesInv(), std::unordered_map<int, std::unordered_map<std::int64_t, std::int64_t>>{});
 }
 
 TEST(ModelBaseU1Spin1D, SetSystemSize) {
@@ -81,50 +66,50 @@ TEST(ModelBaseU1Spin1D, SetSystemSize) {
 
 TEST(ModelBaseU1Spin1D, SetTotalSz) {
    model::BaseU1Spin_1D<double> model;
-   model.SetTotalSz(2);
-   EXPECT_EQ(model.GetTotalSz(), 2);
-   EXPECT_THROW(model.SetTotalSz(1.9), std::runtime_error);
+   model.SetTotalSz(2_hi);
+   EXPECT_EQ(model.GetTotalSz(), 2_hi);
+   EXPECT_THROW(model.SetTotalSz(1.9_hi), std::runtime_error);
 }
 
 TEST(ModelBaseU1Spin1D, SetMagnitudeSpin) {
    model::BaseU1Spin_1D<double> model;
-   model.SetMagnitudeSpin(1.5);
-   EXPECT_EQ(model.GetMagnitudeSpin(), 1.5);
-   EXPECT_THROW(model.SetMagnitudeSpin(1.3), std::runtime_error);
+   model.SetMagnitudeSpin(1.5_hi);
+   EXPECT_EQ(model.GetMagnitudeSpin(), 1.5_hi);
+   EXPECT_THROW(model.SetMagnitudeSpin(1.3_hi), std::runtime_error);
 }
 
 TEST(ModelBaseU1Spin1D, isValidQNumber) {
-   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(10, 0.5, +5.0));
-   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(10, 0.5, +0.0));
-   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(10, 0.5, -5.0));
-   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(9 , 0.5, -4.5));
-   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(9 , 0.5, -0.5));
-   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(9 , 0.5, +4.5));
+   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(10, 0.5_hi, +5.0_hi));
+   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(10, 0.5_hi, +0.0_hi));
+   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(10, 0.5_hi, -5.0_hi));
+   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(9 , 0.5_hi, -4.5_hi));
+   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(9 , 0.5_hi, -0.5_hi));
+   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(9 , 0.5_hi, +4.5_hi));
 
-   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(10, 1.0, +10.0));
-   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(10, 1.0, +0.0 ));
-   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(10, 1.0, -10.0));
-   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(9 , 1.0, -9.0 ));
-   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(9 , 1.0, -1.0 ));
-   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(9 , 1.0, +9.0 ));
+   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(10, 1.0_hi, +10.0_hi));
+   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(10, 1.0_hi, +0.0_hi ));
+   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(10, 1.0_hi, -10.0_hi));
+   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(9 , 1.0_hi, -9.0_hi ));
+   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(9 , 1.0_hi, -1.0_hi ));
+   EXPECT_TRUE(model::BaseU1Spin_1D<double>::isValidQNumber(9 , 1.0_hi, +9.0_hi ));
    
-   EXPECT_FALSE(model::BaseU1Spin_1D<double>::isValidQNumber(10, 0.5, +5.5));
-   EXPECT_FALSE(model::BaseU1Spin_1D<double>::isValidQNumber(10, 0.5, +0.5));
-   EXPECT_FALSE(model::BaseU1Spin_1D<double>::isValidQNumber(10, 0.5, -5.5));
-   EXPECT_FALSE(model::BaseU1Spin_1D<double>::isValidQNumber(9 , 0.5, -5.0));
-   EXPECT_FALSE(model::BaseU1Spin_1D<double>::isValidQNumber(9 , 0.5, -0.0));
-   EXPECT_FALSE(model::BaseU1Spin_1D<double>::isValidQNumber(9 , 0.5, +4.0));
+   EXPECT_FALSE(model::BaseU1Spin_1D<double>::isValidQNumber(10, 0.5_hi, +5.5_hi));
+   EXPECT_FALSE(model::BaseU1Spin_1D<double>::isValidQNumber(10, 0.5_hi, +0.5_hi));
+   EXPECT_FALSE(model::BaseU1Spin_1D<double>::isValidQNumber(10, 0.5_hi, -5.5_hi));
+   EXPECT_FALSE(model::BaseU1Spin_1D<double>::isValidQNumber(9 , 0.5_hi, -5.0_hi));
+   EXPECT_FALSE(model::BaseU1Spin_1D<double>::isValidQNumber(9 , 0.5_hi, -0.0_hi));
+   EXPECT_FALSE(model::BaseU1Spin_1D<double>::isValidQNumber(9 , 0.5_hi, +4.0_hi));
 }
 
 TEST(ModelBaseU1Spin1D, CalculateTargetDim) {
    //Spin-1/2
-   EXPECT_EQ(model::BaseU1Spin_1D<double>::CalculateTargetDim(0, 0.5, +0.0), 0);
-   EXPECT_EQ(model::BaseU1Spin_1D<double>::CalculateTargetDim(1, 0.5, +0.5), 1);
-   EXPECT_EQ(model::BaseU1Spin_1D<double>::CalculateTargetDim(2, 0.5, +0.0), 2);
-   EXPECT_EQ(model::BaseU1Spin_1D<double>::CalculateTargetDim(3, 0.5, +0.5), 3);
-   EXPECT_EQ(model::BaseU1Spin_1D<double>::CalculateTargetDim(4, 0.5, +0.0), 6);
-   EXPECT_EQ(model::BaseU1Spin_1D<double>::CalculateTargetDim(4, 0.5, +2.0), 1);
-   EXPECT_EQ(model::BaseU1Spin_1D<double>::CalculateTargetDim(4, 0.5, -2.0), 1);
+   EXPECT_EQ(model::BaseU1Spin_1D<double>::CalculateTargetDim(0, 0.5_hi, +0.0_hi), 0);
+   EXPECT_EQ(model::BaseU1Spin_1D<double>::CalculateTargetDim(1, 0.5_hi, +0.5_hi), 1);
+   EXPECT_EQ(model::BaseU1Spin_1D<double>::CalculateTargetDim(2, 0.5_hi, +0.0_hi), 2);
+   EXPECT_EQ(model::BaseU1Spin_1D<double>::CalculateTargetDim(3, 0.5_hi, +0.5_hi), 3);
+   EXPECT_EQ(model::BaseU1Spin_1D<double>::CalculateTargetDim(4, 0.5_hi, +0.0_hi), 6);
+   EXPECT_EQ(model::BaseU1Spin_1D<double>::CalculateTargetDim(4, 0.5_hi, +2.0_hi), 1);
+   EXPECT_EQ(model::BaseU1Spin_1D<double>::CalculateTargetDim(4, 0.5_hi, -2.0_hi), 1);
 }
 
 }

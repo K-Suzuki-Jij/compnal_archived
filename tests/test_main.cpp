@@ -16,10 +16,10 @@
 //
 
 #include "model/test_base_u1_spin_1d.hpp"
-#include "model/test_base_u1_electron_1d.hpp"
-#include "model/test_base_u1_spin_electron_1d.hpp"
-#include "model/test_base_u1_spin_multi_electrons_1d.hpp"
-#include "solver/test_exact_diag_general_model.hpp"
+//#include "model/test_base_u1_electron_1d.hpp"
+//#include "model/test_base_u1_spin_electron_1d.hpp"
+//#include "model/test_base_u1_spin_multi_electrons_1d.hpp"
+//#include "solver/test_exact_diag_general_model.hpp"
 #include "utility/test_type.hpp"
 #include "gtest/gtest.h"
 

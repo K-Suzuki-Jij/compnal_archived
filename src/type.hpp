@@ -48,6 +48,9 @@ public:
       return *this;
    }
    
+   operator int   () const noexcept { return static_cast<int>(0.5*integer_); }
+   operator double() const noexcept { return 0.5*integer_; }
+
 private:
    int integer_ = 0;
       
@@ -159,6 +162,63 @@ bool operator!=(const ValueType lhs, const HalfInt &rhs) {
 template<typename ValueType>
 bool operator!=(const HalfInt &lhs, const ValueType rhs) {
    return 0.5*lhs.GetInteger() != rhs;
+}
+
+// Operator overloading: Compare
+template<typename ValueType>
+bool operator<(const ValueType lhs, const HalfInt &rhs) {
+   return lhs < 0.5*rhs.GetInteger();
+}
+
+template<typename ValueType>
+bool operator<(const HalfInt &lhs, const ValueType &rhs) {
+   return 0.5*lhs.GetInteger() < rhs;
+}
+
+bool operator<(const HalfInt &lhs, const HalfInt &rhs) {
+   return lhs.GetInteger() < rhs.GetInteger();
+}
+
+template<typename ValueType>
+bool operator>(const ValueType lhs, const HalfInt &rhs) {
+   return  lhs > 0.5*rhs.GetInteger();
+}
+
+template<typename ValueType>
+bool operator>(const HalfInt &lhs, const ValueType &rhs) {
+   return 0.5*lhs.GetInteger() > rhs;
+}
+
+bool operator>(const HalfInt &lhs, const HalfInt &rhs) {
+   return lhs.GetInteger() > rhs.GetInteger();
+}
+
+template<typename ValueType>
+bool operator<=(const ValueType lhs, const HalfInt &rhs) {
+   return lhs <= 0.5*rhs.GetInteger();
+}
+
+template<typename ValueType>
+bool operator<=(const HalfInt &lhs, const ValueType &rhs) {
+   return 0.5*lhs.GetInteger() <= rhs;
+}
+
+bool operator<=(const HalfInt &lhs, const HalfInt &rhs) {
+   return lhs.GetInteger() <= rhs.GetInteger();
+}
+
+template<typename ValueType>
+bool operator>=(const ValueType lhs, const HalfInt &rhs) {
+   return lhs >= 0.5*rhs.GetInteger();
+}
+
+template<typename ValueType>
+bool operator>=(const HalfInt &lhs, const ValueType &rhs) {
+   return 0.5*lhs.GetInteger() >= rhs;
+}
+
+bool operator>=(const HalfInt &lhs, const HalfInt &rhs) {
+   return lhs.GetInteger() >= rhs.GetInteger();
 }
 
 //User-defined literals

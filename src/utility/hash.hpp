@@ -18,8 +18,16 @@
 #ifndef COMPNAL_UTILITY_HASH_HPP_
 #define COMPNAL_UTILITY_HASH_HPP_
 
+#include "../type.hpp"
+
 namespace compnal {
 namespace utility {
+
+struct HalfIntHash {
+   std::size_t operator() (const HalfInt &half_int) const {
+      return std::hash<int>()(half_int.GetInteger());
+   }
+};
 
 //! @brief Alias of hash class for std::pair.
 struct PairHash {
