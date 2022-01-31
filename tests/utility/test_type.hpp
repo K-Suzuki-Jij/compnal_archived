@@ -55,8 +55,10 @@ TEST(HalfInt, Arithmetic) {
    EXPECT_EQ(0.5_hi*1.0, 0.5);
    EXPECT_EQ(0.5_hi*1, 0.5_hi);
    EXPECT_EQ(0.5_hi*1, 0.5);
-
    
+   EXPECT_TRUE(0.5_hi >= 0.5);
+   EXPECT_TRUE(0.5_hi >  0.4);
+
 }
 
 } // namespace test

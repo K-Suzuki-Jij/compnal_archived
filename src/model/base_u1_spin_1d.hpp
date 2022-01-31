@@ -82,7 +82,7 @@ public:
    //! @brief Set system size.
    //! @param system_size The system size \f$ N \f$.
    void SetSystemSize(const int system_size) {
-      if (system_size <= 0) {
+      if (system_size < 0) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "system_size must be a non-negative integer" << std::endl;
