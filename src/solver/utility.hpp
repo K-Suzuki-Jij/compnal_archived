@@ -28,6 +28,29 @@ enum DiagMethod {
    
 };
 
+//! @brief Information for calculating the matrix elements of the Hamiltonian.
+template<typename RealType>
+struct ExactDiagMatrixComponents {
+   
+   //! @brief Values of the matrix elements.
+   std::vector<RealType> val;
+   
+   //! @brief Column number of the matrix elements.
+   std::vector<std::int64_t>  basis_affected;
+   
+   //! @brief The onsite basis.
+   std::vector<int> basis_onsite;
+   
+   //! @brief Constants for calculating matrix elements.
+   std::vector<std::int64_t> site_constant;
+   
+   //! @brief Inverse basis.
+   std::unordered_map<std::int64_t, std::int64_t> inv_basis_affected;
+   
+   //! @brief Calculation accuracy of the matrix elements.
+   double zero_precision = std::pow(10, -15);
+};
+
 }
 }
 

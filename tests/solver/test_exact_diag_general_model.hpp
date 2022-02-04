@@ -25,7 +25,7 @@
 
 namespace compnal {
 namespace test {
-
+/*
 TEST(ExactDiagGeneralModel, U1Electron1) {
    model::GeneralModel_1D<model::BaseU1Electron_1D<double>> model;
    solver::ExactDiag solver(model);
@@ -40,14 +40,14 @@ TEST(ExactDiagGeneralModel, U1Electron2) {
    solver.model.SetSystemSize(4);
    solver.CalculateGroundState();
 }
-
+*/
 TEST(ExactDiagGeneralModel, U1Spin) {
    model::GeneralModel_1D<model::BaseU1Spin_1D<double>> model;
    solver::ExactDiag solver(model);
    solver.model.SetSystemSize(4);
    solver.CalculateGroundState();
 }
-
+/*
 TEST(ExactDiagGeneralModel, U1SpinElectron) {
    model::GeneralModel_1D<model::BaseU1SpinElectron_1D<double>> model;
    solver::ExactDiag solver(model);
@@ -61,7 +61,7 @@ TEST(ExactDiagGeneralModel, U1SpinMultiElectron) {
    solver.model.SetSystemSize(2);
    solver.CalculateGroundState();
 }
-
+*/
 }
 }
 

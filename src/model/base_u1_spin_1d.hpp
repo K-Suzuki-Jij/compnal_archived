@@ -39,14 +39,17 @@ class BaseU1Spin_1D {
    
    //! @brief Alias of compressed row strage (CRS) with RealType.
    using CRS = sparse_matrix::CRS<RealType>;
-   
-   //! @brief Alias of quantum number (total sz) type.
-   using QType = HalfInt;
       
 public:
    
    //! @brief The type of real values.
    using ValueType = RealType;
+   
+   //! @brief Alias of quantum number (total sz) type.
+   using QType = HalfInt;
+   
+   //! @brief Alias of quantum number hash.
+   using QHash = utility::HalfIntHash;
    
    //------------------------------------------------------------------
    //---------------------------Constructors---------------------------
@@ -89,12 +92,7 @@ public:
          ss << "system_size=" << system_size << "is not allowed" << std::endl;
          throw std::runtime_error(ss.str());
       }
-      if (system_size_ != system_size) {
-         system_size_ = system_size;
-         bases_.clear();
-         bases_inv_.clear();
-         calculated_eigenvector_set_.clear();
-      }
+      system_size_ = system_size;
    }
    
    //! @brief Set the magnitude of the spin \f$ S \f$.
@@ -110,27 +108,15 @@ public:
          magnitude_spin_ = magnitude_spin;
          dim_onsite_     = 2*magnitude_spin + 1;
          SetOnsiteOperator();
-         bases_.clear();
-         bases_inv_.clear();
-         calculated_eigenvector_set_.clear();
       }
    }
    
    //! @brief Set target Hilbert space specified by the total sz to be diagonalized.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{S}^{z}_{i}\rangle \f$.
    void SetTotalSz(const HalfInt total_sz) {
-      if (total_sz_ != total_sz) {
-         total_sz_ = total_sz;
-         calculated_eigenvector_set_.clear();
-      }
+      total_sz_ = total_sz;
    }
-   
-   //! @brief Set calculated_eigenvector_set_, which represents the calculated eigenvectors and eigenvalues.
-   //! @param level Energy level.
-   void SetCalculatedEigenvectorSet(const std::int64_t level) {
-      calculated_eigenvector_set_.emplace(level);
-   }
-      
+         
    //! @brief Check if there is a subspace specified by the input total sz.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{S}^{z}_{i}\rangle \f$
    //! @return ture if there exists corresponding subspace, otherwise false.
@@ -175,28 +161,21 @@ public:
       return CalculateTargetDim(system_size_, magnitude_spin_, total_sz);
    }
    
-   //! @brief Generate bases of the target Hilbert space specified by
-   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
-   void GenerateBasis() {
-      GenerateBasis(total_sz_);
-   }
    
    //! @brief Generate bases of the target Hilbert space specified by
    //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
-   void GenerateBasis(const HalfInt total_sz, const bool flag_display_info = false) {
+   std::vector<std::int64_t> GenerateBasis(const HalfInt total_sz, const bool flag_display_info = false) const {
       if (!isValidQNumber(total_sz)) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "Invalid parameters (system_size or magnitude_spin or total_sz)" << std::endl;
          throw std::runtime_error(ss.str());
       }
-      
+   
       const auto start = std::chrono::system_clock::now();
-      
-      if (bases_.count(total_sz) != 0) {
-         return;
-      }
+   
+      std::vector<std::int64_t> basis;
       
       if (flag_display_info) {
          std::cout << "Generating Basis..." << std::flush;
@@ -211,10 +190,6 @@ public:
       for (int site = 0; site < system_size_; ++site) {
          site_constant[site] = static_cast<std::int64_t>(std::pow(dim_onsite_, site));
       }
-      
-      std::vector<std::int64_t>().swap(bases_[total_sz]);
-      
-      auto &basis_ref = bases_.at(total_sz);
       
 #ifdef _OPENMP
       const int num_threads = omp_get_max_threads();
@@ -252,13 +227,13 @@ public:
          }
       }
       
-      for (auto &&basis: temp_basis) {
-         basis_ref.insert(basis_ref.end(), basis.begin(), basis.end());
-         std::vector<std::int64_t>().swap(basis);
+      for (auto &&it: temp_basis) {
+         basis.insert(basis.end(), it.begin(), it.end());
+         std::vector<std::int64_t>().swap(it);
       }
       
 #else
-      basis_ref.reserve(dim_target);
+      basis.reserve(dim_target);
       
       for (auto &&integer_list: partition_integers) {
          const bool condition1 = (0 < integer_list.size()) && (static_cast<int>(integer_list.size()) <= system_size_);
@@ -276,192 +251,29 @@ public:
                for (std::size_t j = 0; j < integer_list.size(); ++j) {
                   basis_global += integer_list[j]*site_constant[j];
                }
-               basis_ref.push_back(basis_global);
+               basis.push_back(basis_global);
             } while (std::next_permutation(integer_list.begin(), integer_list.end()));
          }
       }
       
 #endif
       
-      if (static_cast<std::int64_t>(basis_ref.size()) != dim_target) {
+      if (static_cast<std::int64_t>(basis.size()) != dim_target) {
          std::stringstream ss;
          ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          throw std::runtime_error(ss.str());
       }
       
-      std::sort(basis_ref.begin(), basis_ref.end());
-      
-      bases_inv_[total_sz].clear();
-      
-      auto &basis_inv_ref = bases_inv_.at(total_sz);
-      
-      for (std::int64_t i = 0; i < dim_target; ++i) {
-         basis_inv_ref[basis_ref[i]] = i;
-      }
+      std::sort(basis.begin(), basis.end());
       
       if (flag_display_info) {
          const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
          const double time_sec   = static_cast<double>(time_count)/sparse_matrix::TIME_UNIT_CONSTANT;
          std::cout << "\rElapsed time of generating basis:" << time_sec << "[sec]" << std::endl;
       }
-      
+      return basis;
    }
-   
-   //! @brief Calculate the quantum numbers of excited states that appear when calculating the correlation functions.
-   //! @param m_1 The matrix of an onsite operator.
-   //! @param m_2 The matrix of an onsite operator.
-   //! @return The list of quantum numbers.
-   std::vector<QType> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
       
-      std::unordered_set<QType> delta_sector_set_m1;
-      std::unordered_set<QType> delta_sector_set_m2;
-      for (std::int64_t i = 0; i < m_1.row_dim; ++i) {
-         for (std::int64_t j = m_1.row[i]; j < m_1.row[i + 1]; ++j) {
-            if (m_1.val[j] != 0.0) {
-               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_1.col[j])));
-            }
-         }
-      }
-      for (std::int64_t i = 0; i < m_2.row_dim; ++i) {
-         for (std::int64_t j = m_2.row[i]; j < m_2.row[i + 1]; ++j) {
-            if (m_2.val[j] != 0.0) {
-               delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_2.col[j])));
-            }
-         }
-      }
-      std::vector<QType> target_sector_set;
-      for (const auto &del_sec_m1: delta_sector_set_m1) {
-         for (const auto &del_sec_m2: delta_sector_set_m2) {
-            const bool c1 = isValidQNumber(del_sec_m1 + total_sz_);
-            if (del_sec_m1 == del_sec_m2 && c1) {
-               target_sector_set.push_back(del_sec_m1 + total_sz_);
-            }
-         }
-      }
-      std::sort(target_sector_set.begin(), target_sector_set.end());
-      target_sector_set.erase(std::unique(target_sector_set.begin(), target_sector_set.end()), target_sector_set.end());
-      return target_sector_set;
-   }
-   
-   //! @brief Calculate the quantum numbers of excited states that appear when calculating the correlation functions.
-   //! @param m_1_bra The matrix of an onsite operator.
-   //! @param m_2_ket The matrix of an onsite operator.
-   //! @param m_3_ket The matrix of an onsite operator.
-   //! @return The list of quantum numbers.
-   std::vector<std::pair<QType, QType>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_ket, const CRS &m_3_ket) const {
-      std::unordered_set<QType> delta_sector_set_m1;
-      std::unordered_set<QType> delta_sector_set_m2;
-      std::unordered_set<QType> delta_sector_set_m3;
-      
-      for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
-         for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
-            if (m_1_bra.val[j] != 0.0) {
-               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_1_bra.col[j])));
-            }
-         }
-      }
-      
-      for (std::int64_t i = 0; i < m_2_ket.row_dim; ++i) {
-         for (std::int64_t j = m_2_ket.row[i]; j < m_2_ket.row[i + 1]; ++j) {
-            if (m_2_ket.val[j] != 0.0) {
-               delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_2_ket.col[j])));
-            }
-         }
-      }
-      
-      for (std::int64_t i = 0; i < m_3_ket.row_dim; ++i) {
-         for (std::int64_t j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
-            if (m_3_ket.val[j] != 0.0) {
-               delta_sector_set_m3.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_3_ket.col[j])));
-            }
-         }
-      }
-      
-      std::vector<std::pair<QType, QType>> target_sector_set;
-      
-      for (const auto &del_sec_m1: delta_sector_set_m1) {
-         for (const auto &del_sec_m2: delta_sector_set_m2) {
-            for (const auto &del_sec_m3: delta_sector_set_m3) {
-               const bool c1 = isValidQNumber(del_sec_m1 + total_sz_);
-               const bool c2 = isValidQNumber(del_sec_m3 + total_sz_);
-               if (del_sec_m1 == del_sec_m2 + del_sec_m3 && c1 && c2) {
-                  target_sector_set.push_back({
-                     del_sec_m1 + total_sz_,
-                     del_sec_m3 + total_sz_
-                  });
-               }
-            }
-         }
-      }
-      return target_sector_set;
-   }
-   
-   //! @brief Calculate the quantum numbers of excited states that appear when calculating the correlation functions.
-   //! @param m_1_bra The matrix of an onsite operator.
-   //! @param m_2_bra The matrix of an onsite operator.
-   //! @param m_3_ket The matrix of an onsite operator.
-   //! @param m_4_ket The matrix of an onsite operator.
-   //! @return The list of quantum numbers.
-   std::vector<std::tuple<QType, QType, QType>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_bra, const CRS &m_3_ket, const CRS &m_4_ket) const {
-      std::unordered_set<QType> delta_sector_set_m1;
-      std::unordered_set<QType> delta_sector_set_m2;
-      std::unordered_set<QType> delta_sector_set_m3;
-      std::unordered_set<QType> delta_sector_set_m4;
-      
-      for (std::int64_t i = 0; i < m_1_bra.row_dim; ++i) {
-         for (std::int64_t j = m_1_bra.row[i]; j < m_1_bra.row[i + 1]; ++j) {
-            if (m_1_bra.val[j] != 0.0) {
-               delta_sector_set_m1.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_1_bra.col[j])));
-            }
-         }
-      }
-      
-      for (std::int64_t i = 0; i < m_2_bra.row_dim; ++i) {
-         for (std::int64_t j = m_2_bra.row[i]; j < m_2_bra.row[i + 1]; ++j) {
-            if (m_2_bra.val[j] != 0.0) {
-               delta_sector_set_m2.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_2_bra.col[j])));
-            }
-         }
-      }
-      
-      for (std::int64_t i = 0; i < m_3_ket.row_dim; ++i) {
-         for (std::int64_t j = m_3_ket.row[i]; j < m_3_ket.row[i + 1]; ++j) {
-            if (m_3_ket.val[j] != 0.0) {
-               delta_sector_set_m3.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_3_ket.col[j])));
-            }
-         }
-      }
-      
-      for (std::int64_t i = 0; i < m_4_ket.row_dim; ++i) {
-         for (std::int64_t j = m_4_ket.row[i]; j < m_4_ket.row[i + 1]; ++j) {
-            if (m_4_ket.val[j] != 0.0) {
-               delta_sector_set_m4.emplace(CalculateQuntumNumberDifference(static_cast<int>(i), static_cast<int>(m_4_ket.col[j])));
-            }
-         }
-      }
-      
-      std::vector<std::tuple<QType, QType, QType>> target_sector_set;
-      for (const auto &del_sec_m1: delta_sector_set_m1) {
-         for (const auto &del_sec_m2: delta_sector_set_m2) {
-            for (const auto &del_sec_m3: delta_sector_set_m3) {
-               for (const auto &del_sec_m4: delta_sector_set_m4) {
-                  const bool c1 = isValidQNumber(del_sec_m1 + total_sz_);
-                  const bool c2 = isValidQNumber(del_sec_m1 + del_sec_m2 + total_sz_);
-                  const bool c3 = isValidQNumber(del_sec_m4 + total_sz_);
-                  if (del_sec_m1 + del_sec_m2 == del_sec_m3 + del_sec_m4 && c1 && c2 && c3) {
-                     target_sector_set.push_back({
-                        del_sec_m1 + total_sz_,
-                        del_sec_m1 + del_sec_m2 + total_sz_,
-                        del_sec_m4 + total_sz_
-                     });
-                  }
-               }
-            }
-         }
-      }
-      return target_sector_set;
-   }
-   
    //! @brief Check if there is a subspace specified by the input quantum numbers.
    //! @param system_size The system size \f$ N\f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
@@ -580,8 +392,9 @@ public:
    //! @param row The row in the matrix representation of an onsite operator.
    //! @param col The column in the matrix representation of an onsite operator.
    //! @return The differences of the total sz.
-   inline static HalfInt CalculateQuntumNumberDifference(const int row, const int col) {
-      return static_cast<HalfInt>(col - row);
+   template<typename IntegerType>
+   inline HalfInt CalculateQNumber(const IntegerType row, const IntegerType col) {
+      return static_cast<HalfInt>(col - row + total_sz_);
    }
 
    //! @brief Get the system size \f$ N\f$.
@@ -595,6 +408,8 @@ public:
    //! @brief Get the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    //! @return The total sz.
    inline HalfInt GetTotalSz() const { return total_sz_; }
+   
+   inline QType GetQNumber() const {return total_sz_; }
    
    //! @brief Get the magnitude of the spin \f$ S\f$.
    //! @return The magnitude of the spin \f$ S\f$.
@@ -619,43 +434,7 @@ public:
    //! @brief Get the spin-\f$ S\f$ lowering operator \f$ \hat{s}^{-}\f$.
    //! @return The matrix of \f$ \hat{s}^{-}\f$.
    inline const CRS &GetOnsiteOperatorSm () const { return onsite_operator_sm_; }
-   
-   //! @brief Get calculated_eigenvector_set_, which represents the calculated eigenvectors and eigenvalues.
-   //! @return calculated_eigenvector_set_.
-   inline const std::unordered_set<int> &GetCalculatedEigenvectorSet() const {
-      return calculated_eigenvector_set_;
-   }
       
-   //! @brief Get basis of the target Hilbert space specified by
-   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
-   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
-   //! @return Basis.
-   inline const std::vector<std::int64_t> &GetBasis(const HalfInt total_sz) const {
-      return bases_.at(total_sz);
-   }
-   
-   //! @brief Get inverse basis of the target Hilbert space specified by
-   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
-   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
-   //! @return Inverse basis.
-   inline const std::unordered_map<std::int64_t, std::int64_t> &GetBasisInv(const HalfInt total_sz) const {
-      return bases_inv_.at(total_sz);
-   }
-   
-   //! @brief Get basis of the target Hilbert space specified by
-   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
-   //! @return Basis.
-   inline const std::vector<std::int64_t> &GetTargetBasis() const {
-      return bases_.at(total_sz_);
-   }
-   
-   //! @brief Get inverse basis of the target Hilbert space specified by
-   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
-   //! @return Inverse basis.
-   inline const std::unordered_map<std::int64_t, std::int64_t> &GetTargetBasisInv() const {
-      return bases_inv_.at(total_sz_);
-   }
-   
 protected:
    
    //! @brief The spin-\f$ S\f$ operator for the x-direction \f$ \hat{s}^{x}\f$.
@@ -684,18 +463,7 @@ protected:
    
    //! @brief The magnitude of the spin \f$ S\f$.
    HalfInt magnitude_spin_ = 0.5_hi;
-      
-   //! @brief The calculated eigenvectors and eigenvalues.
-   std::unordered_set<int> calculated_eigenvector_set_;
-   
-   //! @brief Bases of the target Hilbert space specified by
-   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
-   std::unordered_map<HalfInt, std::vector<std::int64_t>, utility::HalfIntHash> bases_;
-   
-   //! @brief Inverse bases of the target Hilbert space specified by
-   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
-   std::unordered_map<HalfInt, std::unordered_map<std::int64_t, std::int64_t>, utility::HalfIntHash> bases_inv_;
-   
+            
    //! @brief Set onsite operators.
    void SetOnsiteOperator() {
       onsite_operator_sx_  = CreateOnsiteOperatorSx (magnitude_spin_);
