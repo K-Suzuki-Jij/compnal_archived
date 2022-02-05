@@ -201,7 +201,7 @@
 \DoxyCodeLine{197       \}}
 \DoxyCodeLine{198    \}}
 \DoxyCodeLine{199    }
-\DoxyCodeLine{200    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4bec11205690c0b77b91e262356d49e7}{PrintMatrix}}(\textcolor{keyword}{const} std::string display\_name = \textcolor{stringliteral}{"{}Matrix"{}})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{200    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a630ce4a8d7feb26bf33521bbe35f12c2}{Print}}(\textcolor{keyword}{const} std::string display\_name = \textcolor{stringliteral}{"{}Matrix"{}})\textcolor{keyword}{ const }\{}
 \DoxyCodeLine{201       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
 \DoxyCodeLine{202          \textcolor{keywordflow}{for} (std::int64\_t j = this-\/>row.at(i); j < this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}.at(i+1); ++j) \{}
 \DoxyCodeLine{203             std::cout << display\_name << \textcolor{stringliteral}{"{}["{}};}
@@ -564,13 +564,29 @@
 \DoxyCodeLine{560    }
 \DoxyCodeLine{561 \}}
 \DoxyCodeLine{562 }
-\DoxyCodeLine{563 }
-\DoxyCodeLine{564 }
-\DoxyCodeLine{565 }
-\DoxyCodeLine{566 \} \textcolor{comment}{// namespace sparse\_matrix}}
-\DoxyCodeLine{567 \} \textcolor{comment}{// namespace compnal}}
-\DoxyCodeLine{568 }
-\DoxyCodeLine{569 }
-\DoxyCodeLine{570 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_SPARSE\_MATRIX\_COMPRESSED\_ROW\_STORAGE\_HPP\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{563 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{564 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator overloading: I/O Stream-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{565 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{566 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
+\DoxyCodeLine{567 std::ostream\& \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a1e56b895c1f08b9af47da10a7d2bfb0e}{operator<<}}(std::ostream \&os, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS<RealType>}} \&m) \{}
+\DoxyCodeLine{568    os << std::fixed;}
+\DoxyCodeLine{569    os << std::setprecision(16);}
+\DoxyCodeLine{570    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{571       \textcolor{keywordflow}{for} (std::int64\_t j = m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}.at(i); j < m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}.at(i+1); ++j) \{}
+\DoxyCodeLine{572          os << \textcolor{stringliteral}{"{}M["{}};}
+\DoxyCodeLine{573          os << std::noshowpos << std::left << std::setw(3) << i << \textcolor{stringliteral}{"{}]["{}};}
+\DoxyCodeLine{574          os << std::left << std::setw(3) << m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j] << \textcolor{stringliteral}{"{}]="{}};}
+\DoxyCodeLine{575          os << std::showpos << m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j] << std::endl;}
+\DoxyCodeLine{576       \}}
+\DoxyCodeLine{577    \}}
+\DoxyCodeLine{578    \textcolor{keywordflow}{return} os;}
+\DoxyCodeLine{579 \}}
+\DoxyCodeLine{580 }
+\DoxyCodeLine{581 }
+\DoxyCodeLine{582 \} \textcolor{comment}{// namespace sparse\_matrix}}
+\DoxyCodeLine{583 \} \textcolor{comment}{// namespace compnal}}
+\DoxyCodeLine{584 }
+\DoxyCodeLine{585 }
+\DoxyCodeLine{586 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_SPARSE\_MATRIX\_COMPRESSED\_ROW\_STORAGE\_HPP\_ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

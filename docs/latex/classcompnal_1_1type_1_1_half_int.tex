@@ -22,10 +22,8 @@ int \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679c
 \begin{DoxyCompactList}\small\item\em Operator overloading\+: unary plus operator. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_af0f97e998280dd3b405212dee190d97e}{operator-\/}} () const
 \begin{DoxyCompactList}\small\item\em Operator overloading\+: unary negation operator. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_ac469f2d64c05ab2de71d6798bcaa05fc}{operator int}} () const noexcept
-\begin{DoxyCompactList}\small\item\em Operator overloading\+: casting operator to int. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a2a65a3e11d18df2872cae1a28957f2c0}{operator double}} () const noexcept
-\begin{DoxyCompactList}\small\item\em Operator overloading\+: casting operator to double. \end{DoxyCompactList}\end{DoxyCompactItemize}
+{\footnotesize template$<$typename Value\+Type $>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_ac9049ef5c3d906f30acde15f88b1ea8b}{operator Value\+Type}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: casting operator to Value\+Type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -81,26 +79,22 @@ Constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} c
 
 Get integer (two times the actual value). 
 
-\mbox{\Hypertarget{classcompnal_1_1type_1_1_half_int_a2a65a3e11d18df2872cae1a28957f2c0}\label{classcompnal_1_1type_1_1_half_int_a2a65a3e11d18df2872cae1a28957f2c0}} 
-\index{compnal::type::HalfInt@{compnal::type::HalfInt}!operator double@{operator double}}
-\index{operator double@{operator double}!compnal::type::HalfInt@{compnal::type::HalfInt}}
-\doxysubsubsection{\texorpdfstring{operator double()}{operator double()}}
-{\footnotesize\ttfamily compnal\+::type\+::\+Half\+Int\+::operator double (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_half_int_ac9049ef5c3d906f30acde15f88b1ea8b}\label{classcompnal_1_1type_1_1_half_int_ac9049ef5c3d906f30acde15f88b1ea8b}} 
+\index{compnal::type::HalfInt@{compnal::type::HalfInt}!operator ValueType@{operator ValueType}}
+\index{operator ValueType@{operator ValueType}!compnal::type::HalfInt@{compnal::type::HalfInt}}
+\doxysubsubsection{\texorpdfstring{operator ValueType()}{operator ValueType()}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+compnal\+::type\+::\+Half\+Int\+::operator Value\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
 
 
 
-Operator overloading\+: casting operator to double. 
-
-\mbox{\Hypertarget{classcompnal_1_1type_1_1_half_int_ac469f2d64c05ab2de71d6798bcaa05fc}\label{classcompnal_1_1type_1_1_half_int_ac469f2d64c05ab2de71d6798bcaa05fc}} 
-\index{compnal::type::HalfInt@{compnal::type::HalfInt}!operator int@{operator int}}
-\index{operator int@{operator int}!compnal::type::HalfInt@{compnal::type::HalfInt}}
-\doxysubsubsection{\texorpdfstring{operator int()}{operator int()}}
-{\footnotesize\ttfamily compnal\+::type\+::\+Half\+Int\+::operator int (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+Operator overloading\+: casting operator to Value\+Type. 
 
 
-
-Operator overloading\+: casting operator to int. 
-
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type. \\
+\hline
+\end{DoxyTemplParams}
 \mbox{\Hypertarget{classcompnal_1_1type_1_1_half_int_ae2ba2deb656867d08da2c5de01e37b3b}\label{classcompnal_1_1type_1_1_half_int_ae2ba2deb656867d08da2c5de01e37b3b}} 
 \index{compnal::type::HalfInt@{compnal::type::HalfInt}!operator+@{operator+}}
 \index{operator+@{operator+}!compnal::type::HalfInt@{compnal::type::HalfInt}}

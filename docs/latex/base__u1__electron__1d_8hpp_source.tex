@@ -87,7 +87,7 @@
 \DoxyCodeLine{103    \}}
 \DoxyCodeLine{104    }
 \DoxyCodeLine{108    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa1b973c2fc19f93b869304baea8de4ba}{SetTotalSz}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} total\_sz) \{}
-\DoxyCodeLine{109       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = \mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{utility::DoubleHalfInteger}}(total\_sz);}
+\DoxyCodeLine{109       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = utility::DoubleHalfInteger(total\_sz);}
 \DoxyCodeLine{110       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_af32092dc9d581d77d60b126fc71f9237}{total\_2sz\_}} != total\_2sz) \{}
 \DoxyCodeLine{111          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_af32092dc9d581d77d60b126fc71f9237}{total\_2sz\_}} = total\_2sz;}
 \DoxyCodeLine{112          \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aee93327a0e55a00bb8d759247c17fb3d}{calculated\_eigenvector\_set\_}}.clear();}
@@ -174,7 +174,7 @@
 \DoxyCodeLine{226       \textcolor{keyword}{const} \textcolor{keyword}{auto} start         = std::chrono::system\_clock::now();}
 \DoxyCodeLine{227       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_electron = quantum\_number.first;}
 \DoxyCodeLine{228       \textcolor{keyword}{const} \textcolor{keywordtype}{double} total\_sz    = quantum\_number.second;}
-\DoxyCodeLine{229       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz      = \mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{utility::DoubleHalfInteger}}(total\_sz);}
+\DoxyCodeLine{229       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz      = utility::DoubleHalfInteger(total\_sz);}
 \DoxyCodeLine{230       }
 \DoxyCodeLine{231       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a62cd383b7a05eb9a8b751bdfb7380557}{bases\_}}.count(\{total\_electron, total\_2sz\}) != 0) \{}
 \DoxyCodeLine{232          \textcolor{keywordflow}{return};}
@@ -449,7 +449,7 @@
 \DoxyCodeLine{516    \}}
 \DoxyCodeLine{517       }
 \DoxyCodeLine{523    \textcolor{keyword}{static} \textcolor{keywordtype}{bool} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ab9b2211fa92094ca8a9da65de0f32688}{isValidQNumber}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size, \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_electron, \textcolor{keyword}{const} \textcolor{keywordtype}{double} total\_sz) \{}
-\DoxyCodeLine{524       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = \mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{utility::DoubleHalfInteger}}(total\_sz);}
+\DoxyCodeLine{524       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = utility::DoubleHalfInteger(total\_sz);}
 \DoxyCodeLine{525       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c1 = (0 <= total\_electron \&\& total\_electron <= 2*system\_size);}
 \DoxyCodeLine{526       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c2 = ((total\_electron -\/ total\_2sz)\%2 == 0);}
 \DoxyCodeLine{527       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c3 = (-\/total\_electron <= total\_2sz \&\& total\_2sz <= total\_electron);}
@@ -465,7 +465,7 @@
 \DoxyCodeLine{542       \textcolor{keywordflow}{if} (!isValidQNumber(system\_size, total\_electron, total\_sz)) \{}
 \DoxyCodeLine{543          \textcolor{keywordflow}{return} 0;}
 \DoxyCodeLine{544       \}}
-\DoxyCodeLine{545       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = \mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{utility::DoubleHalfInteger}}(total\_sz);}
+\DoxyCodeLine{545       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = utility::DoubleHalfInteger(total\_sz);}
 \DoxyCodeLine{546       \textcolor{keyword}{const} std::vector<std::vector<std::int64\_t>> binom = \mbox{\hyperlink{namespacecompnal_1_1utility_a4cce9c29a3548fefaf4814bc1bfd0345}{utility::CalculateBinomialTable}}(system\_size);}
 \DoxyCodeLine{547       \textcolor{keyword}{const} \textcolor{keywordtype}{int} max\_n\_up\_down = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(total\_electron/2);}
 \DoxyCodeLine{548       std::int64\_t dim = 0;}
@@ -672,11 +672,11 @@
 \DoxyCodeLine{834    \}}
 \DoxyCodeLine{835    }
 \DoxyCodeLine{841    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<std::int64\_t> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a21ecf217e365b76ffd1968da0453c6df}{GetBasis}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} \&quantum\_number)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{842       \textcolor{keywordflow}{return} bases\_.at(\{quantum\_number.first, \mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{utility::DoubleHalfInteger}}(quantum\_number.second)\});}
+\DoxyCodeLine{842       \textcolor{keywordflow}{return} bases\_.at(\{quantum\_number.first, utility::DoubleHalfInteger(quantum\_number.second)\});}
 \DoxyCodeLine{843    \}}
 \DoxyCodeLine{844    }
 \DoxyCodeLine{850    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::unordered\_map<std::int64\_t, std::int64\_t> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a549ebf12d4a87d6d30c0fe405a6c3770}{GetBasisInv}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} \&quantum\_number)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{851       \textcolor{keywordflow}{return} bases\_inv\_.at(\{quantum\_number.first, \mbox{\hyperlink{namespacecompnal_1_1utility_a171eba2f7ced9de2db1f498bb07862df}{utility::DoubleHalfInteger}}(quantum\_number.second)\});}
+\DoxyCodeLine{851       \textcolor{keywordflow}{return} bases\_inv\_.at(\{quantum\_number.first, utility::DoubleHalfInteger(quantum\_number.second)\});}
 \DoxyCodeLine{852    \}}
 \DoxyCodeLine{853    }
 \DoxyCodeLine{857    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<std::int64\_t> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a194405e7ddf3ac34b19cf3720f85ffec}{GetTargetBasis}}()\textcolor{keyword}{ const }\{}

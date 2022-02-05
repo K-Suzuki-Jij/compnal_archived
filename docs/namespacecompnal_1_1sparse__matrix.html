@@ -157,6 +157,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ab0ce2bb34e0ce5690e1c8bc876580ac1"><td class="memTemplParams" colspan="2">template&lt;typename RealType &gt; </td></tr>
 <tr class="memitem:ab0ce2bb34e0ce5690e1c8bc876580ac1"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1sparse__matrix.html#ab0ce2bb34e0ce5690e1c8bc876580ac1">CalculateMatrixMatrixSum</a> (<a class="el" href="structcompnal_1_1sparse__matrix_1_1_c_r_s.html">CRS</a>&lt; RealType &gt; *matrix_out, const RealType coeef_1, const <a class="el" href="structcompnal_1_1sparse__matrix_1_1_c_r_s.html">CRS</a>&lt; RealType &gt; &amp;matrix_1, const RealType coeef_2, const <a class="el" href="structcompnal_1_1sparse__matrix_1_1_c_r_s.html">CRS</a>&lt; RealType &gt; &amp;matrix_2)</td></tr>
 <tr class="separator:ab0ce2bb34e0ce5690e1c8bc876580ac1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e56b895c1f08b9af47da10a7d2bfb0e"><td class="memTemplParams" colspan="2">template&lt;typename RealType &gt; </td></tr>
+<tr class="memitem:a1e56b895c1f08b9af47da10a7d2bfb0e"><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1sparse__matrix.html#a1e56b895c1f08b9af47da10a7d2bfb0e">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="structcompnal_1_1sparse__matrix_1_1_c_r_s.html">CRS</a>&lt; RealType &gt; &amp;m)</td></tr>
+<tr class="separator:a1e56b895c1f08b9af47da10a7d2bfb0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5542adf7c191075452c4b94070fee14e"><td class="memTemplParams" colspan="2">template&lt;typename RealType &gt; </td></tr>
 <tr class="memitem:a5542adf7c191075452c4b94070fee14e"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; int, double &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1sparse__matrix.html#a5542adf7c191075452c4b94070fee14e">ConjugateGradient</a> (<a class="el" href="structcompnal_1_1sparse__matrix_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; *vec_out, const <a class="el" href="structcompnal_1_1sparse__matrix_1_1_c_r_s.html">CRS</a>&lt; RealType &gt; &amp;matrix_in, const <a class="el" href="structcompnal_1_1sparse__matrix_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; &amp;vec_in, const <a class="el" href="structcompnal_1_1sparse__matrix_1_1_parameters_c_g.html">ParametersCG</a> &amp;params=<a class="el" href="structcompnal_1_1sparse__matrix_1_1_parameters_c_g.html">ParametersCG</a>(), const std::vector&lt; <a class="el" href="structcompnal_1_1sparse__matrix_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; &gt; &amp;subspace_vectors={})</td></tr>
 <tr class="separator:a5542adf7c191075452c4b94070fee14e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1632,6 +1635,36 @@ template&lt;typename RealType &gt; </div>
           <td></td>
           <td class="paramtype">const <a class="el" href="structcompnal_1_1sparse__matrix_1_1_c_r_s.html">CRS</a>&lt; RealType &gt; &amp;&#160;</td>
           <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1e56b895c1f08b9af47da10a7d2bfb0e" name="a1e56b895c1f08b9af47da10a7d2bfb0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e56b895c1f08b9af47da10a7d2bfb0e">&#9670;&nbsp;</a></span>operator&lt;&lt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RealType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; compnal::sparse_matrix::operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1sparse__matrix_1_1_c_r_s.html">CRS</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>m</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

@@ -59,6 +59,8 @@ enum \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b
 \item 
 {\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab0ce2bb34e0ce5690e1c8bc876580ac1}{Calculate\+Matrix\+Matrix\+Sum}} (\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ $\ast$matrix\+\_\+out, const Real\+Type coeef\+\_\+1, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+1, const Real\+Type coeef\+\_\+2, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+2)
 \item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\std\+::ostream \& \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a1e56b895c1f08b9af47da10a7d2bfb0e}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&m)
+\item 
 {\footnotesize template$<$typename Real\+Type $>$ }\\std\+::pair$<$ int, double $>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a5542adf7c191075452c4b94070fee14e}{Conjugate\+Gradient}} (\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}}$<$ Real\+Type $>$ $\ast$vec\+\_\+out, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+in, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}}$<$ Real\+Type $>$ \&vec\+\_\+in, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_c_g}{Parameters\+CG}} \&params=\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_c_g}{Parameters\+CG}}(), const std\+::vector$<$ \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}}$<$ Real\+Type $>$ $>$ \&subspace\+\_\+vectors=\{\})
 \item 
 {\footnotesize template$<$typename Real\+Type $>$ }\\std\+::pair$<$ int, double $>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab653e2e978de33c4cb8eaa35562e6fdd}{Eigenvalue\+Decomposition\+Lanczos}} (Real\+Type $\ast$target\+\_\+value\+\_\+out, \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}}$<$ Real\+Type $>$ $\ast$target\+\_\+vector\+\_\+out, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+in, const int target\+\_\+level, const std\+::vector$<$ \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}}$<$ Real\+Type $>$ $>$ \&subspace\+\_\+vectors, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_lanczos}{Parameters\+Lanczos}} \&params=\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_lanczos}{Parameters\+Lanczos}}())
@@ -351,6 +353,13 @@ bool compnal\+::sparse\+\_\+matrix\+::operator!= (\begin{DoxyParamCaption}\item[
 \doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
 \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ compnal\+::sparse\+\_\+matrix\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{rhs }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_a1e56b895c1f08b9af47da10a7d2bfb0e}\label{namespacecompnal_1_1sparse__matrix_a1e56b895c1f08b9af47da10a7d2bfb0e}} 
+\index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!compnal::sparse\_matrix@{compnal::sparse\_matrix}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::ostream \& compnal\+::sparse\+\_\+matrix\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{m }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_a49f523fe4883113284aa74f545f307fc}\label{namespacecompnal_1_1sparse__matrix_a49f523fe4883113284aa74f545f307fc}} 
 \index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!operator==@{operator==}}
