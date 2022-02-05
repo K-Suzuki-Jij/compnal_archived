@@ -15,8 +15,8 @@
 //  Created by Kohei Suzuki on 2021/11/18.
 //
 
-#ifndef COMPNAL_MODEL_BASE_U1SPIN_1D_HPP_
-#define COMPNAL_MODEL_BASE_U1SPIN_1D_HPP_
+#ifndef COMPNAL_MODEL_BASE_U1SPIN_HPP_
+#define COMPNAL_MODEL_BASE_U1SPIN_HPP_
 
 #include "../sparse_matrix/all.hpp"
 #include "../utility/all.hpp"
@@ -33,16 +33,18 @@ namespace compnal {
 namespace model {
 
 //! @brief The base class for one-dimensional spin systems with the U(1) symmetry.
-//! @tparam RealType The type of real values.
+//! @tparam RealType Type of real values.
 template<typename RealType>
 class BaseU1Spin_1D {
    
+public:
+   //------------------------------------------------------------------
+   //----------------------------Type Alias----------------------------
+   //------------------------------------------------------------------
    //! @brief Alias of compressed row strage (CRS) with RealType.
    using CRS = sparse_matrix::CRS<RealType>;
-      
-public:
    
-   //! @brief The type of real values.
+   //! @brief Type of real values.
    using ValueType = RealType;
    
    //! @brief Alias of quantum number (total sz) type.
@@ -82,6 +84,10 @@ public:
       SetTotalSz(total_sz);
    }
    
+   
+   //------------------------------------------------------------------
+   //----------------------Public Member Functions---------------------
+   //------------------------------------------------------------------
    //! @brief Set system size.
    //! @param system_size The system size \f$ N \f$.
    void SetSystemSize(const int system_size) {
@@ -481,4 +487,4 @@ protected:
 }
 
 
-#endif /* COMPNAL_MODEL_BASE_U1SPIN_1D_HPP_ */
+#endif /* COMPNAL_MODEL_BASE_U1SPIN_HPP_ */

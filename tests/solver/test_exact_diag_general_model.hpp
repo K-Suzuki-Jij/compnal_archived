@@ -43,8 +43,8 @@ TEST(ExactDiagGeneralModel, U1Electron2) {
 */
 TEST(ExactDiagGeneralModel, U1Spin) {
    model::GeneralModel_1D<model::BaseU1Spin_1D<double>> model;
+   model.SetSystemSize(4);
    solver::ExactDiag solver(model);
-   solver.model.SetSystemSize(4);
    solver.CalculateGroundState();
 }
 /*

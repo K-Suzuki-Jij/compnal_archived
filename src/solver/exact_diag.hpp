@@ -42,7 +42,7 @@ class ExactDiag {
    //! @brief Alias of compressed row strage (CRS) with RealType.
    using CRS = sparse_matrix::CRS<RealType>;
    
-   //! @brief Alias of the braket vector class with RealType.
+   //! @brief Alias of braket vector class with RealType.
    using BraketVector = sparse_matrix::BraketVector<RealType>;
       
 public:
@@ -80,6 +80,8 @@ public:
    //------------------------------------------------------------------
    //---------------------Public Member Functions---------------------
    //------------------------------------------------------------------
+   //! @brief Calculate ground state by the exact diagonalization method.
+   //! @param flag_display_info If true, display the progress status. Set false by default.
    void CalculateGroundState(const bool flag_display_info = false) {
       if (calculated_eigenvector_set_.count(0) != 0) {
          return;
@@ -96,6 +98,7 @@ public:
       if (eigenvectors_.size() == 0) {
          eigenvectors_.emplace_back();
       }
+      
       if (diag_method_ == DiagMethod::LANCZOS) {
          sparse_matrix::EigenvalueDecompositionLanczos(&eigenvalues_[0], &eigenvectors_[0], ham, params.lanczos);
       }
