@@ -1,0 +1,264 @@
+\hypertarget{half__int_8hpp_source}{}\doxysection{half\+\_\+int.\+hpp}
+\label{half__int_8hpp_source}\index{src/type/half\_int.hpp@{src/type/half\_int.hpp}}
+\mbox{\hyperlink{half__int_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{//  Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{4 \textcolor{comment}{//  you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{5 \textcolor{comment}{//  You may obtain a copy of the License at}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{//      http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{comment}{//  Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{10 \textcolor{comment}{//  distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{11 \textcolor{comment}{//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{12 \textcolor{comment}{//  See the License for the specific language governing permissions and}}
+\DoxyCodeLine{13 \textcolor{comment}{//  limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{//}}
+\DoxyCodeLine{15 \textcolor{comment}{//  Created by Kohei Suzuki on 2022/01/30.}}
+\DoxyCodeLine{16 \textcolor{comment}{//}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_TYPE\_HALF\_INT\_HPP\_}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_TYPE\_HALF\_INT\_HPP\_}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <cmath>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <stdexcept>}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
+\DoxyCodeLine{25 \textcolor{keyword}{namespace }type \{}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{28 \textcolor{keyword}{class }\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \{}
+\DoxyCodeLine{29    }
+\DoxyCodeLine{30 \textcolor{keyword}{public}:}
+\DoxyCodeLine{31    }
+\DoxyCodeLine{32    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Constructors-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{34 \textcolor{comment}{}   \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a62e84f737809e5553a760992b67cb9dc}{HalfInt}}() \{\};}
+\DoxyCodeLine{35    }
+\DoxyCodeLine{39    \textcolor{keyword}{template}<\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{40    \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a372da04386b481f6a017f84f7c8b64ce}{HalfInt}}(ValueType value) \{}
+\DoxyCodeLine{41       value = 2*value;}
+\DoxyCodeLine{42       \textcolor{keywordflow}{if} (std::floor(value) != value) \{}
+\DoxyCodeLine{43          \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}The input number is not half-\/integer"{}});}
+\DoxyCodeLine{44       \}}
+\DoxyCodeLine{45       \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a6ad67ad07c1bd8009e885f94953e8283}{integer\_}} = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(value);}
+\DoxyCodeLine{46    \};}
+\DoxyCodeLine{47    }
+\DoxyCodeLine{48    }
+\DoxyCodeLine{49    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Public Member Functions-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{51 \textcolor{comment}{}   \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{52       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a6ad67ad07c1bd8009e885f94953e8283}{integer\_}};}
+\DoxyCodeLine{53    \}}
+\DoxyCodeLine{54    }
+\DoxyCodeLine{55    }
+\DoxyCodeLine{56    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator Overloading-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{58 \textcolor{comment}{}   \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_ae2ba2deb656867d08da2c5de01e37b3b}{operator+}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{59       \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{60    \}}
+\DoxyCodeLine{61    }
+\DoxyCodeLine{63    \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_af0f97e998280dd3b405212dee190d97e}{operator-\/}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{64       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a62e84f737809e5553a760992b67cb9dc}{HalfInt}}(-\/0.5*this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a6ad67ad07c1bd8009e885f94953e8283}{integer\_}});}
+\DoxyCodeLine{65    \}}
+\DoxyCodeLine{66    }
+\DoxyCodeLine{68    \textcolor{keyword}{operator} int() const noexcept \{}
+\DoxyCodeLine{69       \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(0.5*\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a6ad67ad07c1bd8009e885f94953e8283}{integer\_}});}
+\DoxyCodeLine{70    \}}
+\DoxyCodeLine{71    }
+\DoxyCodeLine{73    \textcolor{keyword}{operator} double() const noexcept \{}
+\DoxyCodeLine{74       \textcolor{keywordflow}{return} 0.5*\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a6ad67ad07c1bd8009e885f94953e8283}{integer\_}};}
+\DoxyCodeLine{75    \}}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77 \textcolor{keyword}{private}:}
+\DoxyCodeLine{78    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Private Member variables-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{80 \textcolor{comment}{}   \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a6ad67ad07c1bd8009e885f94953e8283}{integer\_}} = 0;}
+\DoxyCodeLine{81       }
+\DoxyCodeLine{82 \};}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator overloading: Addition Operator-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{89 \textcolor{comment}{}\textcolor{keywordtype}{double} \mbox{\hyperlink{namespacecompnal_1_1type_a14b3297cde6bd08dd732c44149558de2}{operator+}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{90    \textcolor{keywordflow}{return} lhs + 0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}();}
+\DoxyCodeLine{91 \}}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{96 \textcolor{keywordtype}{double} \mbox{\hyperlink{namespacecompnal_1_1type_a14b3297cde6bd08dd732c44149558de2}{operator+}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} \textcolor{keywordtype}{double} rhs) \{}
+\DoxyCodeLine{97    \textcolor{keywordflow}{return} 0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() + rhs;}
+\DoxyCodeLine{98 \}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{103 \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \mbox{\hyperlink{namespacecompnal_1_1type_a14b3297cde6bd08dd732c44149558de2}{operator+}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{104    \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}}(lhs + 0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}());}
+\DoxyCodeLine{105 \}}
+\DoxyCodeLine{106 }
+\DoxyCodeLine{110 \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \mbox{\hyperlink{namespacecompnal_1_1type_a14b3297cde6bd08dd732c44149558de2}{operator+}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} \textcolor{keywordtype}{int} rhs) \{}
+\DoxyCodeLine{111    \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}}(0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() + rhs);}
+\DoxyCodeLine{112 \}}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{117 \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \mbox{\hyperlink{namespacecompnal_1_1type_a14b3297cde6bd08dd732c44149558de2}{operator+}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{118    \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}}(0.5*(lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() + rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}()));}
+\DoxyCodeLine{119 \}}
+\DoxyCodeLine{120 }
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator overloading: Subtraction Operator-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{126 \textcolor{comment}{}\textcolor{keywordtype}{double} \mbox{\hyperlink{namespacecompnal_1_1type_ac97aa52398a8c47e06f1bb9d1cb5980b}{operator-\/}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{127    \textcolor{keywordflow}{return} lhs -\/ 0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}();}
+\DoxyCodeLine{128 \}}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{133 \textcolor{keywordtype}{double} \mbox{\hyperlink{namespacecompnal_1_1type_ac97aa52398a8c47e06f1bb9d1cb5980b}{operator-\/}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} \textcolor{keywordtype}{double} rhs) \{}
+\DoxyCodeLine{134    \textcolor{keywordflow}{return} 0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() -\/ rhs;}
+\DoxyCodeLine{135 \}}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{140 \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \mbox{\hyperlink{namespacecompnal_1_1type_ac97aa52398a8c47e06f1bb9d1cb5980b}{operator-\/}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{141    \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}}(lhs -\/ 0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}());}
+\DoxyCodeLine{142 \}}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{147 \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \mbox{\hyperlink{namespacecompnal_1_1type_ac97aa52398a8c47e06f1bb9d1cb5980b}{operator-\/}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} \textcolor{keywordtype}{int} rhs) \{}
+\DoxyCodeLine{148    \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}}(0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() -\/ rhs);}
+\DoxyCodeLine{149 \}}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{154 \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \mbox{\hyperlink{namespacecompnal_1_1type_ac97aa52398a8c47e06f1bb9d1cb5980b}{operator-\/}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{155    \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}}(0.5*(lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() -\/ rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}()));}
+\DoxyCodeLine{156 \}}
+\DoxyCodeLine{157 }
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator overloading: Multiplication Operator-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{163 \textcolor{comment}{}\textcolor{keywordtype}{double} \mbox{\hyperlink{namespacecompnal_1_1type_abecfc74d07f73c12753142ab5ed55ac0}{operator*}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{164    \textcolor{keywordflow}{return} lhs*0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}();}
+\DoxyCodeLine{165 \}}
+\DoxyCodeLine{166 }
+\DoxyCodeLine{170 \textcolor{keywordtype}{double} \mbox{\hyperlink{namespacecompnal_1_1type_abecfc74d07f73c12753142ab5ed55ac0}{operator*}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} \textcolor{keywordtype}{double} rhs) \{}
+\DoxyCodeLine{171    \textcolor{keywordflow}{return} 0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}()*rhs;}
+\DoxyCodeLine{172 \}}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{177 \textcolor{keywordtype}{double} \mbox{\hyperlink{namespacecompnal_1_1type_abecfc74d07f73c12753142ab5ed55ac0}{operator*}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{178    \textcolor{keywordflow}{return} 0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}()*0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}();}
+\DoxyCodeLine{179 \}}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{184 \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \mbox{\hyperlink{namespacecompnal_1_1type_abecfc74d07f73c12753142ab5ed55ac0}{operator*}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{185    \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}}(lhs*0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}());}
+\DoxyCodeLine{186 \}}
+\DoxyCodeLine{187 }
+\DoxyCodeLine{191 \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \mbox{\hyperlink{namespacecompnal_1_1type_abecfc74d07f73c12753142ab5ed55ac0}{operator*}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} \textcolor{keywordtype}{int} rhs) \{}
+\DoxyCodeLine{192    \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}}(0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}()*rhs);}
+\DoxyCodeLine{193 \}}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator overloading: Division Operator-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{201 \textcolor{comment}{}\textcolor{keyword}{template}<\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{202 \textcolor{keywordtype}{double} \mbox{\hyperlink{namespacecompnal_1_1type_a74cd0f63550702cb88a027dffe32db19}{operator/}}(\textcolor{keyword}{const} ValueType lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{203    \textcolor{keywordflow}{return} lhs/(0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}());}
+\DoxyCodeLine{204 \}}
+\DoxyCodeLine{205 }
+\DoxyCodeLine{210 \textcolor{keyword}{template}<\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{211 \textcolor{keywordtype}{double} \mbox{\hyperlink{namespacecompnal_1_1type_a74cd0f63550702cb88a027dffe32db19}{operator/}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} ValueType rhs) \{}
+\DoxyCodeLine{212    \textcolor{keywordflow}{return} 0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}()/rhs;}
+\DoxyCodeLine{213 \}}
+\DoxyCodeLine{214 }
+\DoxyCodeLine{219 \textcolor{keywordtype}{double} \mbox{\hyperlink{namespacecompnal_1_1type_a74cd0f63550702cb88a027dffe32db19}{operator/}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{220    \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}()/rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}());}
+\DoxyCodeLine{221 \}}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{223 }
+\DoxyCodeLine{224 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator overloading: Equality Operator-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{228 \textcolor{comment}{}\textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_ad2d2798c1ea9ee20b4defce948ae6723}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{229    \textcolor{keywordflow}{return} lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() == rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}();}
+\DoxyCodeLine{230 \}}
+\DoxyCodeLine{231 }
+\DoxyCodeLine{236 \textcolor{keyword}{template}<\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{237 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_ad2d2798c1ea9ee20b4defce948ae6723}{operator==}}(\textcolor{keyword}{const} ValueType lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{238    \textcolor{keywordflow}{return} lhs == 0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}();}
+\DoxyCodeLine{239 \}}
+\DoxyCodeLine{240 }
+\DoxyCodeLine{245 \textcolor{keyword}{template}<\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{246 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_ad2d2798c1ea9ee20b4defce948ae6723}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} ValueType rhs) \{}
+\DoxyCodeLine{247    \textcolor{keywordflow}{return} 0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() == rhs;}
+\DoxyCodeLine{248 \}}
+\DoxyCodeLine{249 }
+\DoxyCodeLine{250 }
+\DoxyCodeLine{251 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator overloading: Inequality Operator-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{252 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator overloading: Comparison Operator-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{256 \textcolor{comment}{}\textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_abba320b8a3de0a5f85d02ed14f12100e}{operator!=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{257    \textcolor{keywordflow}{return} lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}();}
+\DoxyCodeLine{258 \}}
+\DoxyCodeLine{259 }
+\DoxyCodeLine{264 \textcolor{keyword}{template}<\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{265 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_abba320b8a3de0a5f85d02ed14f12100e}{operator!=}}(\textcolor{keyword}{const} ValueType lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{266    \textcolor{keywordflow}{return} lhs != 0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}();}
+\DoxyCodeLine{267 \}}
+\DoxyCodeLine{268 }
+\DoxyCodeLine{273 \textcolor{keyword}{template}<\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{274 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_abba320b8a3de0a5f85d02ed14f12100e}{operator!=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} ValueType rhs) \{}
+\DoxyCodeLine{275    \textcolor{keywordflow}{return} 0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() != rhs;}
+\DoxyCodeLine{276 \}}
+\DoxyCodeLine{277 }
+\DoxyCodeLine{278 }
+\DoxyCodeLine{279 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator overloading: Comparison Operator-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{284 \textcolor{comment}{}\textcolor{keyword}{template}<\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{285 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_a64ca8ea83a892de78ee2bd6eec6f5b60}{operator<}}(\textcolor{keyword}{const} ValueType lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{286    \textcolor{keywordflow}{return} lhs < 0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}();}
+\DoxyCodeLine{287 \}}
+\DoxyCodeLine{288 }
+\DoxyCodeLine{293 \textcolor{keyword}{template}<\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{294 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_a64ca8ea83a892de78ee2bd6eec6f5b60}{operator<}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} ValueType \&rhs) \{}
+\DoxyCodeLine{295    \textcolor{keywordflow}{return} 0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() < rhs;}
+\DoxyCodeLine{296 \}}
+\DoxyCodeLine{297 }
+\DoxyCodeLine{301 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_a64ca8ea83a892de78ee2bd6eec6f5b60}{operator<}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{302    \textcolor{keywordflow}{return} lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() < rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}();}
+\DoxyCodeLine{303 \}}
+\DoxyCodeLine{304 }
+\DoxyCodeLine{309 \textcolor{keyword}{template}<\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{310 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_a3d1a8bba09eb826843b52b60a4bcb86c}{operator>}}(\textcolor{keyword}{const} ValueType lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{311    \textcolor{keywordflow}{return}  lhs > 0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}();}
+\DoxyCodeLine{312 \}}
+\DoxyCodeLine{313 }
+\DoxyCodeLine{318 \textcolor{keyword}{template}<\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{319 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_a3d1a8bba09eb826843b52b60a4bcb86c}{operator>}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} ValueType \&rhs) \{}
+\DoxyCodeLine{320    \textcolor{keywordflow}{return} 0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() > rhs;}
+\DoxyCodeLine{321 \}}
+\DoxyCodeLine{322 }
+\DoxyCodeLine{326 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_a3d1a8bba09eb826843b52b60a4bcb86c}{operator>}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{327    \textcolor{keywordflow}{return} lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() > rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}();}
+\DoxyCodeLine{328 \}}
+\DoxyCodeLine{329 }
+\DoxyCodeLine{334 \textcolor{keyword}{template}<\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{335 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_a5f9db90871ad80fb5b7c215ddbb84013}{operator<=}}(\textcolor{keyword}{const} ValueType lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{336    \textcolor{keywordflow}{return} lhs <= 0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}();}
+\DoxyCodeLine{337 \}}
+\DoxyCodeLine{338 }
+\DoxyCodeLine{343 \textcolor{keyword}{template}<\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{344 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_a5f9db90871ad80fb5b7c215ddbb84013}{operator<=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} ValueType \&rhs) \{}
+\DoxyCodeLine{345    \textcolor{keywordflow}{return} 0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() <= rhs;}
+\DoxyCodeLine{346 \}}
+\DoxyCodeLine{347 }
+\DoxyCodeLine{351 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_a5f9db90871ad80fb5b7c215ddbb84013}{operator<=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{352    \textcolor{keywordflow}{return} lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() <= rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}();}
+\DoxyCodeLine{353 \}}
+\DoxyCodeLine{354 }
+\DoxyCodeLine{359 \textcolor{keyword}{template}<\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{360 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_a951c0a556b4d0f46a21aba5900dfdb02}{operator>=}}(\textcolor{keyword}{const} ValueType lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{361    \textcolor{keywordflow}{return} lhs >= 0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}();}
+\DoxyCodeLine{362 \}}
+\DoxyCodeLine{363 }
+\DoxyCodeLine{368 \textcolor{keyword}{template}<\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{369 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_a951c0a556b4d0f46a21aba5900dfdb02}{operator>=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} ValueType \&rhs) \{}
+\DoxyCodeLine{370    \textcolor{keywordflow}{return} 0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() >= rhs;}
+\DoxyCodeLine{371 \}}
+\DoxyCodeLine{372 }
+\DoxyCodeLine{376 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_a951c0a556b4d0f46a21aba5900dfdb02}{operator>=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&rhs) \{}
+\DoxyCodeLine{377    \textcolor{keywordflow}{return} lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() >= rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}();}
+\DoxyCodeLine{378 \}}
+\DoxyCodeLine{379 }
+\DoxyCodeLine{381 \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \textcolor{keyword}{operator}\textcolor{stringliteral}{"{}"{}} \_hi(\textcolor{keyword}{const} \textcolor{keywordtype}{char}* value) \{}
+\DoxyCodeLine{382    \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}}(std::stold(value, \textcolor{keyword}{nullptr}));}
+\DoxyCodeLine{383 \}}
+\DoxyCodeLine{384 }
+\DoxyCodeLine{388 std::ostream\& \mbox{\hyperlink{namespacecompnal_1_1type_a704bbed72ad19e842995cedefbc09f87}{operator<<}}(std::ostream \&os, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \&half\_int) \{}
+\DoxyCodeLine{389    os << half\_int.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}()*0.5;}
+\DoxyCodeLine{390    \textcolor{keywordflow}{return} os;}
+\DoxyCodeLine{391 \}}
+\DoxyCodeLine{392 }
+\DoxyCodeLine{393 \} \textcolor{comment}{// namespace type}}
+\DoxyCodeLine{394 \} \textcolor{comment}{// namespace compnal}}
+\DoxyCodeLine{395 }
+\DoxyCodeLine{396 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_TYPE\_HALF\_INT\_HPP\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -7,7 +7,7 @@ The base class for one-\/dimensional spin systems with the U(1) symmetry.
 
 
 
-{\ttfamily \#include $<$base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp$>$}
+{\ttfamily \#include $<$base\+\_\+u1\+\_\+spin.\+hpp$>$}
 
 
 
@@ -18,21 +18,17 @@ Inheritance diagram for compnal\+::model\+::Base\+U1\+Spin\+\_\+1D\texorpdfstrin
 \includegraphics[width=226pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d__inherit__graph}
 \end{center}
 \end{figure}
-
-
-Collaboration diagram for compnal\+::model\+::Base\+U1\+Spin\+\_\+1D\texorpdfstring{$<$}{<} Real\+Type \texorpdfstring{$>$}{>}\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=230pt]{classcompnal_1_1model_1_1_base_u1_spin__1_d__coll__graph}
-\end{center}
-\end{figure}
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} = \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{sparse\+\_\+matrix\+::\+CRS}}$<$ Real\+Type $>$
+\begin{DoxyCompactList}\small\item\em Alias of compressed row strage (CRS) with Real\+Type. \end{DoxyCompactList}\item 
 using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a44c9489af0b9d886187ffa94b7cbecad}{Value\+Type}} = Real\+Type
-\begin{DoxyCompactList}\small\item\em The type of real values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Type of real values. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a84976fe8bfcbaf92d804939a3259b989}{QType}} = Half\+Int
+\begin{DoxyCompactList}\small\item\em Alias of quantum number (total sz) type. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_aa7bb70d4b598155005090d902db09bc4}{QHash}} = \mbox{\hyperlink{structcompnal_1_1utility_1_1_half_int_hash}{utility\+::\+Half\+Int\+Hash}}
+\begin{DoxyCompactList}\small\item\em Alias of quantum number hash. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -40,19 +36,17 @@ using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a44c9489af0b9
 \begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{Base\+U1\+Spin\+\_\+1D}} class. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a20288b7e59875d82c99307127877d060}{Base\+U1\+Spin\+\_\+1D}} (const int system\+\_\+size)
 \begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{Base\+U1\+Spin\+\_\+1D}} class. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_af60d3338c3243a0ae29edc83c29a45cf}{Base\+U1\+Spin\+\_\+1D}} (const int system\+\_\+size, const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} magnitude\+\_\+spin)
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_af60d3338c3243a0ae29edc83c29a45cf}{Base\+U1\+Spin\+\_\+1D}} (const int system\+\_\+size, const Half\+Int magnitude\+\_\+spin)
 \begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{Base\+U1\+Spin\+\_\+1D}} class. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8a9336529b9d943764660faec0d4bed7}{Base\+U1\+Spin\+\_\+1D}} (const int system\+\_\+size, const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} magnitude\+\_\+spin, const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} total\+\_\+sz)
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8a9336529b9d943764660faec0d4bed7}{Base\+U1\+Spin\+\_\+1D}} (const int system\+\_\+size, const Half\+Int magnitude\+\_\+spin, const Half\+Int total\+\_\+sz)
 \begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{Base\+U1\+Spin\+\_\+1D}} class. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ab34e5e3dd6fdb9581c785c92f3ded892}{Set\+System\+Size}} (const int system\+\_\+size)
 \begin{DoxyCompactList}\small\item\em Set system size. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a005aa6c8c74deee5788175db6052bbb9}{Set\+Magnitude\+Spin}} (const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} magnitude\+\_\+spin)
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a005aa6c8c74deee5788175db6052bbb9}{Set\+Magnitude\+Spin}} (const Half\+Int magnitude\+\_\+spin)
 \begin{DoxyCompactList}\small\item\em Set the magnitude of the spin $ S $. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_acaa0b67864945fb2a6ccf76db0ee0984}{Set\+Total\+Sz}} (const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} total\+\_\+sz)
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_acaa0b67864945fb2a6ccf76db0ee0984}{Set\+Total\+Sz}} (const Half\+Int total\+\_\+sz)
 \begin{DoxyCompactList}\small\item\em Set target Hilbert space specified by the total sz to be diagonalized. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a1eaf81e0f4eb1f295d203984ede5aabc}{Set\+Calculated\+Eigenvector\+Set}} (const std\+::int64\+\_\+t level)
-\begin{DoxyCompactList}\small\item\em Set calculated\+\_\+eigenvector\+\_\+set\+\_\+, which represents the calculated eigenvectors and eigenvalues. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae4686d536414d2945fc3ab0d7d53faf0}{is\+Valid\+QNumber}} (const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} total\+\_\+sz) const
+bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae4686d536414d2945fc3ab0d7d53faf0}{is\+Valid\+QNumber}} (const Half\+Int total\+\_\+sz) const
 \begin{DoxyCompactList}\small\item\em Check if there is a subspace specified by the input total sz. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a941ea41537eec8a4e4dc88405f37af56}{Calculate\+Num\+Electron}} (const int basis\+\_\+onsite) const
 \begin{DoxyCompactList}\small\item\em Calculate the number of electrons from the input onsite basis. \end{DoxyCompactList}\item 
@@ -60,25 +54,21 @@ void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a3304d8eb9d66f
 \begin{DoxyCompactList}\small\item\em Print the onsite bases. \end{DoxyCompactList}\item 
 std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a2457e64fe751736bc3e533aebe3db1d3}{Calculate\+Target\+Dim}} () const
 \begin{DoxyCompactList}\small\item\em Calculate the dimension of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
-std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_aeff6806c17be198631c91c01b5236548}{Calculate\+Target\+Dim}} (const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} total\+\_\+sz) const
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_aeff6806c17be198631c91c01b5236548}{Calculate\+Target\+Dim}} (const Half\+Int total\+\_\+sz) const
 \begin{DoxyCompactList}\small\item\em Calculate the dimension of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a0d5752987edf3d3ca6eca59696d32a6d}{Generate\+Basis}} ()
+std\+::vector$<$ std\+::int64\+\_\+t $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_aac6a56a939bae6ba5c2a9ea6071cdbdb}{Generate\+Basis}} (const Half\+Int total\+\_\+sz, const bool flag\+\_\+display\+\_\+info=false) const
 \begin{DoxyCompactList}\small\item\em Generate bases of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_afc8625803d1863a63e944c6058cd2669}{Generate\+Basis}} (const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} total\+\_\+sz, const bool flag\+\_\+display\+\_\+info=false)
-\begin{DoxyCompactList}\small\item\em Generate bases of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a84976fe8bfcbaf92d804939a3259b989}{QType}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8bf413019e4ba0ae9e2822e3893e8d9c}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \&m\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \&m\+\_\+2) const
-\begin{DoxyCompactList}\small\item\em Calculate the quantum numbers of excited states that appear when calculating the correlation functions. \end{DoxyCompactList}\item 
-std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a84976fe8bfcbaf92d804939a3259b989}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a84976fe8bfcbaf92d804939a3259b989}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ade82ed7429ce5bd1bd1e38141342027e}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \&m\+\_\+1\+\_\+bra, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \&m\+\_\+2\+\_\+ket, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \&m\+\_\+3\+\_\+ket) const
-\begin{DoxyCompactList}\small\item\em Calculate the quantum numbers of excited states that appear when calculating the correlation functions. \end{DoxyCompactList}\item 
-std\+::vector$<$ std\+::tuple$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a84976fe8bfcbaf92d804939a3259b989}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a84976fe8bfcbaf92d804939a3259b989}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a84976fe8bfcbaf92d804939a3259b989}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a08ea0601048493ce13b22c4dd3016e8f}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \&m\+\_\+1\+\_\+bra, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \&m\+\_\+2\+\_\+bra, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \&m\+\_\+3\+\_\+ket, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \&m\+\_\+4\+\_\+ket) const
-\begin{DoxyCompactList}\small\item\em Calculate the quantum numbers of excited states that appear when calculating the correlation functions. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Integer\+Type $>$ }\\Half\+Int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a488d5b3c35c180217c71ea6fa81f0800}{Calculate\+QNumber}} (const Integer\+Type row, const Integer\+Type col)
+\begin{DoxyCompactList}\small\item\em Calculate difference of the total sz from the rows and columns in the matrix representation of an onsite operator. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_aa81237fe786d60d4ba859a889d95040c}{Get\+System\+Size}} () const
 \begin{DoxyCompactList}\small\item\em Get the system size $ N$. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ac08fdfaf7f9574d95c5a450b67104dd2}{Get\+Dim\+Onsite}} () const
 \begin{DoxyCompactList}\small\item\em Get dimension of the local Hilbert space, $ 2S+1$. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a3f48b0d81ab1f7445e2b6252a2037eb8}{Get\+Total\+Sz}} () const
+Half\+Int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a3f48b0d81ab1f7445e2b6252a2037eb8}{Get\+Total\+Sz}} () const
 \begin{DoxyCompactList}\small\item\em Get the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle$. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a35c36ddea8e98bf8a66f572a53d13f8b}{Get\+Magnitude\+Spin}} () const
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a84976fe8bfcbaf92d804939a3259b989}{QType}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ab6b3cd59987e4de26140e98ba38434b4}{Get\+QNumber}} () const
+\item 
+Half\+Int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a35c36ddea8e98bf8a66f572a53d13f8b}{Get\+Magnitude\+Spin}} () const
 \begin{DoxyCompactList}\small\item\em Get the magnitude of the spin $ S$. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a30092d8e74a2246007842fb4dfcefcf8}{Get\+Onsite\+Operator\+Sx}} () const
 \begin{DoxyCompactList}\small\item\em Get the spin-\/ $ S$ operator for the x-\/direction $ \hat{s}^{x}$. \end{DoxyCompactList}\item 
@@ -89,36 +79,24 @@ const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f
 const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_af28691e881c5f8b981c8e6712b29283b}{Get\+Onsite\+Operator\+Sp}} () const
 \begin{DoxyCompactList}\small\item\em Get the spin-\/ $ S$ raising operator $ \hat{s}^{+}$. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a66ad7be43af97b8162f2aadeda0512ad}{Get\+Onsite\+Operator\+Sm}} () const
-\begin{DoxyCompactList}\small\item\em Get the spin-\/ $ S$ lowering operator $ \hat{s}^{-}$. \end{DoxyCompactList}\item 
-const std\+::unordered\+\_\+set$<$ int $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a49ec19ada4660c35eb02fa6edfab3f8f}{Get\+Calculated\+Eigenvector\+Set}} () const
-\begin{DoxyCompactList}\small\item\em Get calculated\+\_\+eigenvector\+\_\+set\+\_\+, which represents the calculated eigenvectors and eigenvalues. \end{DoxyCompactList}\item 
-const std\+::vector$<$ std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ad3fcc0416a838dccbd4389a0f0005c02}{Get\+Basis}} (const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} total\+\_\+sz) const
-\begin{DoxyCompactList}\small\item\em Get basis of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
-const std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ad25eaf4f7d4094b0c0de114c893917b1}{Get\+Basis\+Inv}} (const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} total\+\_\+sz) const
-\begin{DoxyCompactList}\small\item\em Get inverse basis of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
-const std\+::vector$<$ std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a150a88b5f29693fd0342ec9d5f826be6}{Get\+Target\+Basis}} () const
-\begin{DoxyCompactList}\small\item\em Get basis of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
-const std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a40d13ea34bab79bcc0dc312922d105b3}{Get\+Target\+Basis\+Inv}} () const
-\begin{DoxyCompactList}\small\item\em Get inverse basis of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get the spin-\/ $ S$ lowering operator $ \hat{s}^{-}$. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-static bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_afc882f8b78ada9a87ccb0ffade4ae7ea}{is\+Valid\+QNumber}} (const int system\+\_\+size, const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} magnitude\+\_\+spin, const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} total\+\_\+sz)
+static bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_afc882f8b78ada9a87ccb0ffade4ae7ea}{is\+Valid\+QNumber}} (const int system\+\_\+size, const Half\+Int magnitude\+\_\+spin, const Half\+Int total\+\_\+sz)
 \begin{DoxyCompactList}\small\item\em Check if there is a subspace specified by the input quantum numbers. \end{DoxyCompactList}\item 
-static std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ad2f484ac85ba3169f59fa3f325b0e017}{Calculate\+Target\+Dim}} (const int system\+\_\+size, const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} magnitude\+\_\+spin, const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} total\+\_\+sz)
+static std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ad2f484ac85ba3169f59fa3f325b0e017}{Calculate\+Target\+Dim}} (const int system\+\_\+size, const Half\+Int magnitude\+\_\+spin, const Half\+Int total\+\_\+sz)
 \begin{DoxyCompactList}\small\item\em Generate bases of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a5de77a6360e6d833f90ea95aeab2cbad}{Create\+Onsite\+Operator\+Sx}} (const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} magnitude\+\_\+spin)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a5de77a6360e6d833f90ea95aeab2cbad}{Create\+Onsite\+Operator\+Sx}} (const Half\+Int magnitude\+\_\+spin)
 \begin{DoxyCompactList}\small\item\em Generate the spin-\/ $ S$ operator for the x-\/direction $ \hat{s}^{x}$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ab2f7b9f0f8a196cbe294b72857980ed2}{Create\+Onsite\+Operatori\+Sy}} (const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} magnitude\+\_\+spin)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ab2f7b9f0f8a196cbe294b72857980ed2}{Create\+Onsite\+Operatori\+Sy}} (const Half\+Int magnitude\+\_\+spin)
 \begin{DoxyCompactList}\small\item\em Generate the spin-\/ $ S$ operator for the y-\/direction $ i\hat{s}^{y}$ with $ i$ being the imaginary unit. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_abc1ef4288c88f2488145568351d929d2}{Create\+Onsite\+Operator\+Sz}} (const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} magnitude\+\_\+spin)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_abc1ef4288c88f2488145568351d929d2}{Create\+Onsite\+Operator\+Sz}} (const Half\+Int magnitude\+\_\+spin)
 \begin{DoxyCompactList}\small\item\em Generate the spin-\/ $ S$ operator for the z-\/direction $ \hat{s}^{z}$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a715d6a19d7c935934966a37ab72a27fc}{Create\+Onsite\+Operator\+Sp}} (const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} magnitude\+\_\+spin)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a715d6a19d7c935934966a37ab72a27fc}{Create\+Onsite\+Operator\+Sp}} (const Half\+Int magnitude\+\_\+spin)
 \begin{DoxyCompactList}\small\item\em Generate the spin-\/ $ S$ raising operator $ \hat{s}^{+}$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7757b492b357ad1238ace40671bc9895}{Create\+Onsite\+Operator\+Sm}} (const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} magnitude\+\_\+spin)
-\begin{DoxyCompactList}\small\item\em Generate the spin-\/ $ S$ raising operator $ \hat{s}^{-}$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a849d351beeeae4b97368cb45bfbf439c}{Calculate\+Quntum\+Number\+Difference}} (const int row, const int col)
-\begin{DoxyCompactList}\small\item\em Calculate difference of the total sz from the rows and columns in the matrix representation of an onsite operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7757b492b357ad1238ace40671bc9895}{Create\+Onsite\+Operator\+Sm}} (const Half\+Int magnitude\+\_\+spin)
+\begin{DoxyCompactList}\small\item\em Generate the spin-\/ $ S$ raising operator $ \hat{s}^{-}$. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -139,25 +117,12 @@ void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a580d5de16a28c
 \begin{DoxyCompactList}\small\item\em The the spin-\/ $ S$ raising operator $ \hat{s}^{-}$. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7d24d3a81f90fd3181c76094bde48617}{system\+\_\+size\+\_\+}} = 0
 \begin{DoxyCompactList}\small\item\em The system size. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a3f2cd8ad3c47a85fb225bc4cccc8c21e}{total\+\_\+sz\+\_\+}} = 0\+\_\+hi
+Half\+Int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a3f2cd8ad3c47a85fb225bc4cccc8c21e}{total\+\_\+sz\+\_\+}} = 0\+\_\+hi
 \begin{DoxyCompactList}\small\item\em Twice the number of the total sz $ 2\langle\hat{S}^{z}_{\rm tot}\rangle$. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a9924b41c451f42c5cef0a2047c6b64db}{dim\+\_\+onsite\+\_\+}} = 2
 \begin{DoxyCompactList}\small\item\em The dimension of the local Hilbert space, $ 2S + 1$. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_aa9654bd73d239343049bcc4e3c90121f}{magnitude\+\_\+spin\+\_\+}} = 0.\+5\+\_\+hi
-\begin{DoxyCompactList}\small\item\em The magnitude of the spin $ S$. \end{DoxyCompactList}\item 
-std\+::unordered\+\_\+set$<$ int $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae9be05e81a30dddb6cd321248c66caf5}{calculated\+\_\+eigenvector\+\_\+set\+\_\+}}
-\begin{DoxyCompactList}\small\item\em The calculated eigenvectors and eigenvalues. \end{DoxyCompactList}\item 
-std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}, std\+::vector$<$ std\+::int64\+\_\+t $>$, \mbox{\hyperlink{structcompnal_1_1utility_1_1_half_int_hash}{utility\+::\+Half\+Int\+Hash}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_aadf41297befbdc3af43d503f77f4abed}{bases\+\_\+}}
-\begin{DoxyCompactList}\small\item\em Bases of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
-std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}, std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$, \mbox{\hyperlink{structcompnal_1_1utility_1_1_half_int_hash}{utility\+::\+Half\+Int\+Hash}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a9b981739fc64b2e1055f37237064f014}{bases\+\_\+inv\+\_\+}}
-\begin{DoxyCompactList}\small\item\em Inverse bases of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Private Types}
-\begin{DoxyCompactItemize}
-\item 
-using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} = \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{sparse\+\_\+matrix\+::\+CRS}}$<$ Real\+Type $>$
-\begin{DoxyCompactList}\small\item\em Alias of compressed row strage (CRS) with Real\+Type. \end{DoxyCompactList}\item 
-using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a84976fe8bfcbaf92d804939a3259b989}{QType}} = \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}
-\begin{DoxyCompactList}\small\item\em Alias of quantum number (total sz) type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+Half\+Int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_aa9654bd73d239343049bcc4e3c90121f}{magnitude\+\_\+spin\+\_\+}} = 0.\+5\+\_\+hi
+\begin{DoxyCompactList}\small\item\em The magnitude of the spin $ S$. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -167,7 +132,7 @@ The base class for one-\/dimensional spin systems with the U(1) symmetry.
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em Real\+Type} & The type of real values. \\
+{\em Real\+Type} & Type of real values. \\
 \hline
 \end{DoxyTemplParams}
 
@@ -178,18 +143,29 @@ The base class for one-\/dimensional spin systems with the U(1) symmetry.
 \index{CRS@{CRS}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CRS}{CRS}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+CRS =  \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{sparse\+\_\+matrix\+::\+CRS}}$<$Real\+Type$>$\hspace{0.3cm}{\ttfamily [private]}}
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+CRS =  \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{sparse\+\_\+matrix\+::\+CRS}}$<$Real\+Type$>$}
 
 
 
 Alias of compressed row strage (CRS) with Real\+Type. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_aa7bb70d4b598155005090d902db09bc4}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_aa7bb70d4b598155005090d902db09bc4}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!QHash@{QHash}}
+\index{QHash@{QHash}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{QHash}{QHash}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+QHash =  \mbox{\hyperlink{structcompnal_1_1utility_1_1_half_int_hash}{utility\+::\+Half\+Int\+Hash}}}
+
+
+
+Alias of quantum number hash. 
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a84976fe8bfcbaf92d804939a3259b989}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a84976fe8bfcbaf92d804939a3259b989}} 
 \index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!QType@{QType}}
 \index{QType@{QType}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{QType}{QType}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+QType =  \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}\hspace{0.3cm}{\ttfamily [private]}}
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+QType =  Half\+Int}
 
 
 
@@ -204,7 +180,7 @@ using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::m
 
 
 
-The type of real values. 
+Type of real values. 
 
 
 
@@ -241,7 +217,7 @@ Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{Bas
 \index{BaseU1Spin\_1D@{BaseU1Spin\_1D}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{BaseU1Spin\_1D()}{BaseU1Spin\_1D()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Base\+U1\+Spin\+\_\+1D (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}}]{magnitude\+\_\+spin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Base\+U1\+Spin\+\_\+1D (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const Half\+Int}]{magnitude\+\_\+spin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -259,7 +235,7 @@ Constructor of \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{Bas
 \index{BaseU1Spin\_1D@{BaseU1Spin\_1D}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{BaseU1Spin\_1D()}{BaseU1Spin\_1D()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Base\+U1\+Spin\+\_\+1D (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}}]{magnitude\+\_\+spin,  }\item[{const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Base\+U1\+Spin\+\_\+1D (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const Half\+Int}]{magnitude\+\_\+spin,  }\item[{const Half\+Int}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -296,12 +272,13 @@ Calculate the number of electrons from the input onsite basis.
 \begin{DoxyReturn}{Returns}
 The number of electrons. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a849d351beeeae4b97368cb45bfbf439c}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a849d351beeeae4b97368cb45bfbf439c}} 
-\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!CalculateQuntumNumberDifference@{CalculateQuntumNumberDifference}}
-\index{CalculateQuntumNumberDifference@{CalculateQuntumNumberDifference}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
-\doxysubsubsection{\texorpdfstring{CalculateQuntumNumberDifference()}{CalculateQuntumNumberDifference()}}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a488d5b3c35c180217c71ea6fa81f0800}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a488d5b3c35c180217c71ea6fa81f0800}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!CalculateQNumber@{CalculateQNumber}}
+\index{CalculateQNumber@{CalculateQNumber}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateQNumber()}{CalculateQNumber()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Quntum\+Number\+Difference (\begin{DoxyParamCaption}\item[{const int}]{row,  }\item[{const int}]{col }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+template$<$typename Integer\+Type $>$ \\
+Half\+Int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+QNumber (\begin{DoxyParamCaption}\item[{const Integer\+Type}]{row,  }\item[{const Integer\+Type}]{col }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -336,7 +313,7 @@ The dimension of the target Hilbert space.
 \index{CalculateTargetDim@{CalculateTargetDim}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CalculateTargetDim()}{CalculateTargetDim()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Target\+Dim (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}}]{total\+\_\+sz }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Target\+Dim (\begin{DoxyParamCaption}\item[{const Half\+Int}]{total\+\_\+sz }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -355,7 +332,7 @@ The dimension of the target Hilbert space.
 \index{CalculateTargetDim@{CalculateTargetDim}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CalculateTargetDim()}{CalculateTargetDim()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Target\+Dim (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}}]{magnitude\+\_\+spin,  }\item[{const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Calculate\+Target\+Dim (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const Half\+Int}]{magnitude\+\_\+spin,  }\item[{const Half\+Int}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -375,7 +352,7 @@ Generate bases of the target Hilbert space specified by the system size $ N$ and
 \index{CreateOnsiteOperatoriSy@{CreateOnsiteOperatoriSy}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatoriSy()}{CreateOnsiteOperatoriSy()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operatori\+Sy (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}}]{magnitude\+\_\+spin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operatori\+Sy (\begin{DoxyParamCaption}\item[{const Half\+Int}]{magnitude\+\_\+spin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -394,7 +371,7 @@ The matrix of $ i\hat{s}^{y}$.
 \index{CreateOnsiteOperatorSm@{CreateOnsiteOperatorSm}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSm()}{CreateOnsiteOperatorSm()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+Sm (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}}]{magnitude\+\_\+spin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+Sm (\begin{DoxyParamCaption}\item[{const Half\+Int}]{magnitude\+\_\+spin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -413,7 +390,7 @@ The matrix of $ \hat{s}^{-}$.
 \index{CreateOnsiteOperatorSp@{CreateOnsiteOperatorSp}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSp()}{CreateOnsiteOperatorSp()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+Sp (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}}]{magnitude\+\_\+spin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+Sp (\begin{DoxyParamCaption}\item[{const Half\+Int}]{magnitude\+\_\+spin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -432,7 +409,7 @@ The matrix of $ \hat{s}^{+}$.
 \index{CreateOnsiteOperatorSx@{CreateOnsiteOperatorSx}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSx()}{CreateOnsiteOperatorSx()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+Sx (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}}]{magnitude\+\_\+spin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+Sx (\begin{DoxyParamCaption}\item[{const Half\+Int}]{magnitude\+\_\+spin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -451,7 +428,7 @@ The matrix of $ \hat{s}^{x}$.
 \index{CreateOnsiteOperatorSz@{CreateOnsiteOperatorSz}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSz()}{CreateOnsiteOperatorSz()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+Sz (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}}]{magnitude\+\_\+spin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+Sz (\begin{DoxyParamCaption}\item[{const Half\+Int}]{magnitude\+\_\+spin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -465,23 +442,12 @@ Generate the spin-\/ $ S$ operator for the z-\/direction $ \hat{s}^{z}$.
 \begin{DoxyReturn}{Returns}
 The matrix of $ \hat{s}^{z}$. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a0d5752987edf3d3ca6eca59696d32a6d}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a0d5752987edf3d3ca6eca59696d32a6d}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_aac6a56a939bae6ba5c2a9ea6071cdbdb}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_aac6a56a939bae6ba5c2a9ea6071cdbdb}} 
 \index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GenerateBasis@{GenerateBasis}}
 \index{GenerateBasis@{GenerateBasis}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
-\doxysubsubsection{\texorpdfstring{GenerateBasis()}{GenerateBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxysubsubsection{\texorpdfstring{GenerateBasis()}{GenerateBasis()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Basis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Generate bases of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
-
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_afc8625803d1863a63e944c6058cd2669}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_afc8625803d1863a63e944c6058cd2669}} 
-\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GenerateBasis@{GenerateBasis}}
-\index{GenerateBasis@{GenerateBasis}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
-\doxysubsubsection{\texorpdfstring{GenerateBasis()}{GenerateBasis()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Basis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}}]{total\+\_\+sz,  }\item[{const bool}]{flag\+\_\+display\+\_\+info = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+std\+::vector$<$ std\+::int64\+\_\+t $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Basis (\begin{DoxyParamCaption}\item[{const Half\+Int}]{total\+\_\+sz,  }\item[{const bool}]{flag\+\_\+display\+\_\+info = {\ttfamily false} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -492,127 +458,6 @@ Generate bases of the target Hilbert space specified by the system size $ N$ and
 {\em total\+\_\+sz} & The total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8bf413019e4ba0ae9e2822e3893e8d9c}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a8bf413019e4ba0ae9e2822e3893e8d9c}} 
-\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GenerateTargetSector@{GenerateTargetSector}}
-\index{GenerateTargetSector@{GenerateTargetSector}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
-\doxysubsubsection{\texorpdfstring{GenerateTargetSector()}{GenerateTargetSector()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a84976fe8bfcbaf92d804939a3259b989}{QType}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \&}]{m\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \&}]{m\+\_\+2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Calculate the quantum numbers of excited states that appear when calculating the correlation functions. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em m\+\_\+1} & The matrix of an onsite operator. \\
-\hline
-{\em m\+\_\+2} & The matrix of an onsite operator. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The list of quantum numbers. 
-\end{DoxyReturn}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a08ea0601048493ce13b22c4dd3016e8f}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a08ea0601048493ce13b22c4dd3016e8f}} 
-\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GenerateTargetSector@{GenerateTargetSector}}
-\index{GenerateTargetSector@{GenerateTargetSector}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
-\doxysubsubsection{\texorpdfstring{GenerateTargetSector()}{GenerateTargetSector()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$ std\+::tuple$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a84976fe8bfcbaf92d804939a3259b989}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a84976fe8bfcbaf92d804939a3259b989}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a84976fe8bfcbaf92d804939a3259b989}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \&}]{m\+\_\+1\+\_\+bra,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \&}]{m\+\_\+2\+\_\+bra,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \&}]{m\+\_\+3\+\_\+ket,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \&}]{m\+\_\+4\+\_\+ket }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Calculate the quantum numbers of excited states that appear when calculating the correlation functions. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em m\+\_\+1\+\_\+bra} & The matrix of an onsite operator. \\
-\hline
-{\em m\+\_\+2\+\_\+bra} & The matrix of an onsite operator. \\
-\hline
-{\em m\+\_\+3\+\_\+ket} & The matrix of an onsite operator. \\
-\hline
-{\em m\+\_\+4\+\_\+ket} & The matrix of an onsite operator. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The list of quantum numbers. 
-\end{DoxyReturn}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_ade82ed7429ce5bd1bd1e38141342027e}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_ade82ed7429ce5bd1bd1e38141342027e}} 
-\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GenerateTargetSector@{GenerateTargetSector}}
-\index{GenerateTargetSector@{GenerateTargetSector}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
-\doxysubsubsection{\texorpdfstring{GenerateTargetSector()}{GenerateTargetSector()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a84976fe8bfcbaf92d804939a3259b989}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a84976fe8bfcbaf92d804939a3259b989}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \&}]{m\+\_\+1\+\_\+bra,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \&}]{m\+\_\+2\+\_\+ket,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a7216fe52b47f0aa5320d76b39bb4c6c0}{CRS}} \&}]{m\+\_\+3\+\_\+ket }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Calculate the quantum numbers of excited states that appear when calculating the correlation functions. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em m\+\_\+1\+\_\+bra} & The matrix of an onsite operator. \\
-\hline
-{\em m\+\_\+2\+\_\+ket} & The matrix of an onsite operator. \\
-\hline
-{\em m\+\_\+3\+\_\+ket} & The matrix of an onsite operator. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-The list of quantum numbers. 
-\end{DoxyReturn}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_ad3fcc0416a838dccbd4389a0f0005c02}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_ad3fcc0416a838dccbd4389a0f0005c02}} 
-\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetBasis@{GetBasis}}
-\index{GetBasis@{GetBasis}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
-\doxysubsubsection{\texorpdfstring{GetBasis()}{GetBasis()}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const std\+::vector$<$ std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Basis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}}]{total\+\_\+sz }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Get basis of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em total\+\_\+sz} & The total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Basis. 
-\end{DoxyReturn}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_ad25eaf4f7d4094b0c0de114c893917b1}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_ad25eaf4f7d4094b0c0de114c893917b1}} 
-\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetBasisInv@{GetBasisInv}}
-\index{GetBasisInv@{GetBasisInv}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
-\doxysubsubsection{\texorpdfstring{GetBasisInv()}{GetBasisInv()}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Basis\+Inv (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}}]{total\+\_\+sz }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Get inverse basis of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em total\+\_\+sz} & The total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Inverse basis. 
-\end{DoxyReturn}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a49ec19ada4660c35eb02fa6edfab3f8f}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a49ec19ada4660c35eb02fa6edfab3f8f}} 
-\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetCalculatedEigenvectorSet@{GetCalculatedEigenvectorSet}}
-\index{GetCalculatedEigenvectorSet@{GetCalculatedEigenvectorSet}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
-\doxysubsubsection{\texorpdfstring{GetCalculatedEigenvectorSet()}{GetCalculatedEigenvectorSet()}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const std\+::unordered\+\_\+set$<$ int $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Calculated\+Eigenvector\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Get calculated\+\_\+eigenvector\+\_\+set\+\_\+, which represents the calculated eigenvectors and eigenvalues. 
-
-\begin{DoxyReturn}{Returns}
-calculated\+\_\+eigenvector\+\_\+set\+\_\+. 
-\end{DoxyReturn}
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_ac08fdfaf7f9574d95c5a450b67104dd2}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_ac08fdfaf7f9574d95c5a450b67104dd2}} 
 \index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetDimOnsite@{GetDimOnsite}}
 \index{GetDimOnsite@{GetDimOnsite}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
@@ -632,7 +477,7 @@ The dimension of the local Hilbert space, $ 2S+1$.
 \index{GetMagnitudeSpin@{GetMagnitudeSpin}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetMagnitudeSpin()}{GetMagnitudeSpin()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Magnitude\+Spin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+Half\+Int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Magnitude\+Spin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -711,6 +556,13 @@ Get the spin-\/ $ S$ operator for the z-\/direction $ \hat{s}^{z}$.
 \begin{DoxyReturn}{Returns}
 The matrix of $ \hat{s}^{z}$. 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_ab6b3cd59987e4de26140e98ba38434b4}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_ab6b3cd59987e4de26140e98ba38434b4}} 
+\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetQNumber@{GetQNumber}}
+\index{GetQNumber@{GetQNumber}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetQNumber()}{GetQNumber()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a84976fe8bfcbaf92d804939a3259b989}{QType}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+QNumber (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_aa81237fe786d60d4ba859a889d95040c}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_aa81237fe786d60d4ba859a889d95040c}} 
 \index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetSystemSize@{GetSystemSize}}
 \index{GetSystemSize@{GetSystemSize}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
@@ -725,40 +577,12 @@ Get the system size $ N$.
 \begin{DoxyReturn}{Returns}
 The system size $ N$. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a150a88b5f29693fd0342ec9d5f826be6}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a150a88b5f29693fd0342ec9d5f826be6}} 
-\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetTargetBasis@{GetTargetBasis}}
-\index{GetTargetBasis@{GetTargetBasis}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
-\doxysubsubsection{\texorpdfstring{GetTargetBasis()}{GetTargetBasis()}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const std\+::vector$<$ std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Target\+Basis (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Get basis of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
-
-\begin{DoxyReturn}{Returns}
-Basis. 
-\end{DoxyReturn}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a40d13ea34bab79bcc0dc312922d105b3}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a40d13ea34bab79bcc0dc312922d105b3}} 
-\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetTargetBasisInv@{GetTargetBasisInv}}
-\index{GetTargetBasisInv@{GetTargetBasisInv}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
-\doxysubsubsection{\texorpdfstring{GetTargetBasisInv()}{GetTargetBasisInv()}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Target\+Basis\+Inv (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Get inverse basis of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
-
-\begin{DoxyReturn}{Returns}
-Inverse basis. 
-\end{DoxyReturn}
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a3f48b0d81ab1f7445e2b6252a2037eb8}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a3f48b0d81ab1f7445e2b6252a2037eb8}} 
 \index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!GetTotalSz@{GetTotalSz}}
 \index{GetTotalSz@{GetTotalSz}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetTotalSz()}{GetTotalSz()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Total\+Sz (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+Half\+Int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Total\+Sz (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -772,7 +596,7 @@ The total sz.
 \index{isValidQNumber@{isValidQNumber}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{isValidQNumber()}{isValidQNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::is\+Valid\+QNumber (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}}]{total\+\_\+sz }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::is\+Valid\+QNumber (\begin{DoxyParamCaption}\item[{const Half\+Int}]{total\+\_\+sz }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -791,7 +615,7 @@ ture if there exists corresponding subspace, otherwise false.
 \index{isValidQNumber@{isValidQNumber}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{isValidQNumber()}{isValidQNumber()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::is\+Valid\+QNumber (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}}]{magnitude\+\_\+spin,  }\item[{const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::is\+Valid\+QNumber (\begin{DoxyParamCaption}\item[{const int}]{system\+\_\+size,  }\item[{const Half\+Int}]{magnitude\+\_\+spin,  }\item[{const Half\+Int}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -820,28 +644,12 @@ void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::mo
 
 Print the onsite bases. 
 
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a1eaf81e0f4eb1f295d203984ede5aabc}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a1eaf81e0f4eb1f295d203984ede5aabc}} 
-\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!SetCalculatedEigenvectorSet@{SetCalculatedEigenvectorSet}}
-\index{SetCalculatedEigenvectorSet@{SetCalculatedEigenvectorSet}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
-\doxysubsubsection{\texorpdfstring{SetCalculatedEigenvectorSet()}{SetCalculatedEigenvectorSet()}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Set\+Calculated\+Eigenvector\+Set (\begin{DoxyParamCaption}\item[{const std\+::int64\+\_\+t}]{level }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Set calculated\+\_\+eigenvector\+\_\+set\+\_\+, which represents the calculated eigenvectors and eigenvalues. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em level} & Energy level. \\
-\hline
-\end{DoxyParams}
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a005aa6c8c74deee5788175db6052bbb9}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a005aa6c8c74deee5788175db6052bbb9}} 
 \index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!SetMagnitudeSpin@{SetMagnitudeSpin}}
 \index{SetMagnitudeSpin@{SetMagnitudeSpin}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{SetMagnitudeSpin()}{SetMagnitudeSpin()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Set\+Magnitude\+Spin (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}}]{magnitude\+\_\+spin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Set\+Magnitude\+Spin (\begin{DoxyParamCaption}\item[{const Half\+Int}]{magnitude\+\_\+spin }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -884,7 +692,7 @@ Set system size.
 \index{SetTotalSz@{SetTotalSz}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{SetTotalSz()}{SetTotalSz()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Set\+Total\+Sz (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::\+Set\+Total\+Sz (\begin{DoxyParamCaption}\item[{const Half\+Int}]{total\+\_\+sz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -898,39 +706,6 @@ Set target Hilbert space specified by the total sz to be diagonalized.
 
 
 \doxysubsection{Member Data Documentation}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_aadf41297befbdc3af43d503f77f4abed}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_aadf41297befbdc3af43d503f77f4abed}} 
-\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!bases\_@{bases\_}}
-\index{bases\_@{bases\_}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
-\doxysubsubsection{\texorpdfstring{bases\_}{bases\_}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::unordered\+\_\+map$<$\mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}, std\+::vector$<$std\+::int64\+\_\+t$>$, \mbox{\hyperlink{structcompnal_1_1utility_1_1_half_int_hash}{utility\+::\+Half\+Int\+Hash}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::bases\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
-
-
-
-Bases of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
-
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a9b981739fc64b2e1055f37237064f014}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a9b981739fc64b2e1055f37237064f014}} 
-\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!bases\_inv\_@{bases\_inv\_}}
-\index{bases\_inv\_@{bases\_inv\_}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
-\doxysubsubsection{\texorpdfstring{bases\_inv\_}{bases\_inv\_}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::unordered\+\_\+map$<$\mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}}, std\+::unordered\+\_\+map$<$std\+::int64\+\_\+t, std\+::int64\+\_\+t$>$, \mbox{\hyperlink{structcompnal_1_1utility_1_1_half_int_hash}{utility\+::\+Half\+Int\+Hash}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::bases\+\_\+inv\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
-
-
-
-Inverse bases of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
-
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae9be05e81a30dddb6cd321248c66caf5}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_ae9be05e81a30dddb6cd321248c66caf5}} 
-\index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!calculated\_eigenvector\_set\_@{calculated\_eigenvector\_set\_}}
-\index{calculated\_eigenvector\_set\_@{calculated\_eigenvector\_set\_}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
-\doxysubsubsection{\texorpdfstring{calculated\_eigenvector\_set\_}{calculated\_eigenvector\_set\_}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::unordered\+\_\+set$<$int$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::calculated\+\_\+eigenvector\+\_\+set\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
-
-
-
-The calculated eigenvectors and eigenvalues. 
-
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin__1_d_a9924b41c451f42c5cef0a2047c6b64db}\label{classcompnal_1_1model_1_1_base_u1_spin__1_d_a9924b41c451f42c5cef0a2047c6b64db}} 
 \index{compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}!dim\_onsite\_@{dim\_onsite\_}}
 \index{dim\_onsite\_@{dim\_onsite\_}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
@@ -947,7 +722,7 @@ The dimension of the local Hilbert space, $ 2S + 1$.
 \index{magnitude\_spin\_@{magnitude\_spin\_}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{magnitude\_spin\_}{magnitude\_spin\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::magnitude\+\_\+spin\+\_\+ = 0.\+5\+\_\+hi\hspace{0.3cm}{\ttfamily [protected]}}
+Half\+Int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::magnitude\+\_\+spin\+\_\+ = 0.\+5\+\_\+hi\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -1024,7 +799,7 @@ The system size.
 \index{total\_sz\_@{total\_sz\_}!compnal::model::BaseU1Spin\_1D$<$ RealType $>$@{compnal::model::BaseU1Spin\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{total\_sz\_}{total\_sz\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{classcompnal_1_1_half_int}{Half\+Int}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::total\+\_\+sz\+\_\+ = 0\+\_\+hi\hspace{0.3cm}{\ttfamily [protected]}}
+Half\+Int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+\_\+1D}}$<$ Real\+Type $>$\+::total\+\_\+sz\+\_\+ = 0\+\_\+hi\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -1034,4 +809,4 @@ Twice the number of the total sz $ 2\langle\hat{S}^{z}_{\rm tot}\rangle$.
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/model/\mbox{\hyperlink{base__u1__spin__1d_8hpp}{base\+\_\+u1\+\_\+spin\+\_\+1d.\+hpp}}\end{DoxyCompactItemize}
+src/model/\mbox{\hyperlink{base__u1__spin_8hpp}{base\+\_\+u1\+\_\+spin.\+hpp}}\end{DoxyCompactItemize}

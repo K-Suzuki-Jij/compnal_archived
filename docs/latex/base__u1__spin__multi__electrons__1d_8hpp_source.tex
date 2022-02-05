@@ -24,7 +24,7 @@
 \DoxyCodeLine{20 }
 \DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}../sparse\_matrix/all.hpp"{}}}
 \DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}../utility/all.hpp"{}}}
-\DoxyCodeLine{23 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{base__u1__spin__1d_8hpp}{base\_u1\_spin\_1d.hpp}}"{}}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include "{}base\_u1\_spin\_1d.hpp"{}}}
 \DoxyCodeLine{24 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{base__u1__electron__1d_8hpp}{base\_u1\_electron\_1d.hpp}}"{}}}
 \DoxyCodeLine{25 }
 \DoxyCodeLine{26 \textcolor{preprocessor}{\#include <unordered\_map>}}
@@ -716,7 +716,7 @@
 \DoxyCodeLine{816       \}}
 \DoxyCodeLine{817       \textcolor{keyword}{const} \textcolor{keywordtype}{int} row\_lspin = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4ff7b328710f62f5351dd482950ac5db}{CalculateBasisOnsiteLSpin}}(row);}
 \DoxyCodeLine{818       \textcolor{keyword}{const} \textcolor{keywordtype}{int} col\_lspin = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4ff7b328710f62f5351dd482950ac5db}{CalculateBasisOnsiteLSpin}}(col);}
-\DoxyCodeLine{819       target\_total\_sz += \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d_a849d351beeeae4b97368cb45bfbf439c}{BaseU1Spin\_1D<RealType>::CalculateQuntumNumberDifference}}(row\_lspin, col\_lspin) + 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a70d04f95b8f51b13f866ae7d388127a6}{total\_2sz\_}};}
+\DoxyCodeLine{819       target\_total\_sz += \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin__1_d}{BaseU1Spin\_1D<RealType>::CalculateQuntumNumberDifference}}(row\_lspin, col\_lspin) + 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a70d04f95b8f51b13f866ae7d388127a6}{total\_2sz\_}};}
 \DoxyCodeLine{820       }
 \DoxyCodeLine{821       \textcolor{keywordflow}{return} \{diff\_electron\_list, target\_total\_sz\};}
 \DoxyCodeLine{822    \}}
