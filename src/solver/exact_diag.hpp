@@ -29,7 +29,9 @@ namespace solver {
 //! @tparam ModelClass The model class.
 template<class ModelClass>
 class ExactDiag {
-   
+   //------------------------------------------------------------------
+   //----------------------------Type Alias----------------------------
+   //------------------------------------------------------------------
    //! @brief Type of real values.
    using RealType = typename ModelClass::ValueType;
    
@@ -78,7 +80,7 @@ public:
     
    
    //------------------------------------------------------------------
-   //---------------------Public Member Functions---------------------
+   //---------------------Public Member Functions----------------------
    //------------------------------------------------------------------
    //! @brief Calculate ground state by the exact diagonalization method.
    //! @param flag_display_info If true, display the progress status. Set false by default.

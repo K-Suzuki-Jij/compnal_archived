@@ -132,26 +132,6 @@ void TestElectron(const model::BaseU1Electron_1D<RealType> &model) {
    
 }
 
-template<typename RealType>
-void TestSpinOneHalf(const model::BaseU1Spin_1D<RealType> &model) {
-   
-   const double threshold = std::pow(10, -15);
-   
-   EXPECT_EQ(model.GetDimOnsite(), 2);
-   EXPECT_EQ(model.GetMagnitudeSpin(), 0.5_hi);
-   
-   const sparse_matrix::CRS<RealType> ref_sp ({{+0.0, +1.0}, {+0.0, +0.0}});
-   const sparse_matrix::CRS<RealType> ref_sm ({{+0.0, +0.0}, {+1.0, +0.0}});
-   const sparse_matrix::CRS<RealType> ref_sx ({{+0.0, +0.5}, {+0.5, +0.0}});
-   const sparse_matrix::CRS<RealType> ref_isy({{+0.0, +0.5}, {-0.5, +0.0}});
-   const sparse_matrix::CRS<RealType> ref_sz ({{+0.5, +0.0}, {+0.0, -0.5}});
-   
-   ExpectNear(model.GetOnsiteOperatorSp() , ref_sp , threshold);
-   ExpectNear(model.GetOnsiteOperatorSm() , ref_sm , threshold);
-   ExpectNear(model.GetOnsiteOperatorSx() , ref_sx , threshold);
-   ExpectNear(model.GetOnsiteOperatoriSy(), ref_isy, threshold);
-   ExpectNear(model.GetOnsiteOperatorSz() , ref_sz , threshold);
-}
 
 template<typename RealType>
 void TestSpinOne(const model::BaseU1Spin_1D<RealType> &model) {

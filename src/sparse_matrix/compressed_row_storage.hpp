@@ -197,7 +197,7 @@ struct CRS {
       }
    }
    
-   void PrintMatrix(const std::string display_name = "Matrix") const {
+   void Print(const std::string display_name = "Matrix") const {
       for (std::int64_t i = 0; i < this->row_dim; ++i) {
          for (std::int64_t j = this->row.at(i); j < this->row.at(i+1); ++j) {
             std::cout << display_name << "[";
@@ -560,7 +560,23 @@ void CalculateMatrixMatrixSum(CRS<RealType> *matrix_out,
    
 }
 
-
+//------------------------------------------------------------------
+//----------------Operator overloading: I/O Stream------------------
+//------------------------------------------------------------------
+template<typename RealType>
+std::ostream& operator<<(std::ostream &os, const CRS<RealType> &m) {
+   os << std::fixed;
+   os << std::setprecision(16);
+   for (std::int64_t i = 0; i < m.row_dim; ++i) {
+      for (std::int64_t j = m.row.at(i); j < m.row.at(i+1); ++j) {
+         os << "M[";
+         os << std::noshowpos << std::left << std::setw(3) << i << "][";
+         os << std::left << std::setw(3) << m.col[j] << "]=";
+         os << std::showpos << m.val[j] << std::endl;
+      }
+   }
+   return os;
+}
 
 
 } // namespace sparse_matrix

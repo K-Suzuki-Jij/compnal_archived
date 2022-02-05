@@ -349,7 +349,7 @@ public:
       const int dim_onsite = 2*magnitude_spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
       for (int row = 1; row < dim_onsite; ++row) {
-         matrix.val.push_back(std::sqrt((magnitude_spin + 1)*2.0*row - row*(row + 1)));
+         matrix.val.push_back(std::sqrtl((magnitude_spin + 1)*2.0*row - row*(row + 1)));
          matrix.col.push_back(row);
          matrix.row[row] = matrix.col.size();
       }
@@ -364,7 +364,7 @@ public:
       const int dim_onsite = 2*magnitude_spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
       for (int row = 1; row < dim_onsite; ++row) {
-         matrix.val.push_back(std::sqrt((magnitude_spin + 1)*2.0*row - row*(row + 1)));
+         matrix.val.push_back(std::sqrtl((magnitude_spin + 1)*2.0*row - row*(row + 1)));
          matrix.col.push_back(row - 1);
          matrix.row[row + 1] = matrix.col.size();
       }
@@ -374,12 +374,12 @@ public:
    //------------------------------------------------------------------
    //----------------------Access Member variables---------------------
    //------------------------------------------------------------------
-   //! @brief Get dimension of the local Hilbert space, \f$ 2S+1\f$.
-   //! @return The dimension of the local Hilbert space, \f$ 2S+1\f$.
+   //! @brief Get dimension of the onsite Hilbert space, \f$ 2S+1\f$.
+   //! @return The dimension of the onsite Hilbert space, \f$ 2S+1\f$.
    inline int GetDimOnsite() const { return dim_onsite_; }
    
    //! @brief Get the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
-   //! @return The total sz.
+   //! @return The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    inline HalfInt GetTotalSz() const { return total_sz_; }
       
    //! @brief Get the magnitude of the spin \f$ S\f$.
@@ -435,7 +435,7 @@ private:
    CRS onsite_operator_sm_;
    
    //------------------------------------------------------------------
-   //----------------------Public Member Functions---------------------
+   //----------------------Private Member Functions---------------------
    //------------------------------------------------------------------
    //! @brief Set onsite operators.
    void SetOnsiteOperator() {
