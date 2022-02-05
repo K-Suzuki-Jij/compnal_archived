@@ -18,18 +18,19 @@
 #ifndef COMPNAL_UTILITY_HASH_HPP_
 #define COMPNAL_UTILITY_HASH_HPP_
 
-#include "../type.hpp"
+#include "../type/half_int.hpp"
 
 namespace compnal {
 namespace utility {
 
+//! @brief Hash struct of HalfInt.
 struct HalfIntHash {
-   std::size_t operator() (const HalfInt &half_int) const {
+   std::size_t operator() (const type::HalfInt &half_int) const {
       return std::hash<int>()(half_int.GetInteger());
    }
 };
 
-//! @brief Alias of hash class for std::pair.
+//! @brief Hash struct of std::pair.
 struct PairHash {
    template<class T1, class T2>
    std::size_t operator() (const std::pair<T1, T2>& p) const {
@@ -38,7 +39,7 @@ struct PairHash {
    }
 };
 
-//! @brief Alias of hash class for std::vector.
+//! @brief Hash struct of std::vector.
 struct VecHash {
    template<class T>
    std::size_t operator() (const std::vector<T> &V) const {
@@ -50,7 +51,7 @@ struct VecHash {
    }
 };
 
-//! @brief Alias of hash class for std::pair including std::vector.
+//! @brief Hash struct of std::pair including std::vector.
 struct VecIntHash {
    template<class T1, class T2>
    std::size_t operator() (const std::pair<std::vector<T1>, T2>& p) const {

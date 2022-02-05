@@ -20,10 +20,7 @@
 
 #include "../sparse_matrix/all.hpp"
 #include "../utility/all.hpp"
-#include "../type.hpp"
-
-#include <unordered_map>
-#include <unordered_set>
+#include "../type/all.hpp"
 
 #ifdef _OPENMP
 #include <omp.h>
@@ -32,20 +29,22 @@
 namespace compnal {
 namespace model {
 
-//! @brief The base class for one-dimensional spin systems with the U(1) symmetry.
+//! @brief The base class for spin systems with the U(1) symmetry.
+//! Conserved quantity is the total sz
+//! \f$ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{S}^{z}_{i}\rangle \f$
 //! @tparam RealType Type of real values.
 template<typename RealType>
-class BaseU1Spin_1D {
+class BaseU1Spin {
    
 public:
    //------------------------------------------------------------------
    //----------------------------Type Alias----------------------------
    //------------------------------------------------------------------
+   //! @brief Alias of HalfInt type.
+   using HalfInt = type::HalfInt;
+   
    //! @brief Alias of compressed row strage (CRS) with RealType.
    using CRS = sparse_matrix::CRS<RealType>;
-   
-   //! @brief Type of real values.
-   using ValueType = RealType;
    
    //! @brief Alias of quantum number (total sz) type.
    using QType = HalfInt;
@@ -53,54 +52,34 @@ public:
    //! @brief Alias of quantum number hash.
    using QHash = utility::HalfIntHash;
    
+   //! @brief Alias of RealType.
+   using ValueType = RealType;
+   
    //------------------------------------------------------------------
    //---------------------------Constructors---------------------------
    //------------------------------------------------------------------
-   //! @brief Constructor of BaseU1Spin_1D class.
-   BaseU1Spin_1D() {
+   //! @brief Constructor of BaseU1Spin class.
+   BaseU1Spin() {
       SetOnsiteOperator();
    }
    
-   //! @brief Constructor of BaseU1Spin_1D class.
-   //! @param system_size The system size \f$ N \f$.
-   explicit BaseU1Spin_1D(const int system_size): BaseU1Spin_1D() {
-      SetSystemSize(system_size);
-   }
-   
-   //! @brief Constructor of BaseU1Spin_1D class.
-   //! @param system_size The system size \f$ N \f$.
+   //! @brief Constructor of BaseU1Spin class.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
-   BaseU1Spin_1D(const int system_size, const HalfInt magnitude_spin): BaseU1Spin_1D(system_size) {
+   explicit BaseU1Spin(const HalfInt magnitude_spin) {
       SetMagnitudeSpin(magnitude_spin);
    }
-
-   //! @brief Constructor of BaseU1Spin_1D class.
-   //! @param system_size The system size \f$ N \f$.
+   
+   //! @brief Constructor of BaseU1Spin class.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{S}^{z}_{i}\rangle \f$.
-   BaseU1Spin_1D(const int system_size,
-                 const HalfInt magnitude_spin,
-                 const HalfInt total_sz): BaseU1Spin_1D(system_size, magnitude_spin) {
+   BaseU1Spin(const HalfInt magnitude_spin, const HalfInt total_sz) {
+      SetMagnitudeSpin(magnitude_spin);
       SetTotalSz(total_sz);
    }
-   
    
    //------------------------------------------------------------------
    //----------------------Public Member Functions---------------------
    //------------------------------------------------------------------
-   //! @brief Set system size.
-   //! @param system_size The system size \f$ N \f$.
-   void SetSystemSize(const int system_size) {
-      if (system_size < 0) {
-         std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
-         ss << "system_size must be a non-negative integer" << std::endl;
-         ss << "system_size=" << system_size << "is not allowed" << std::endl;
-         throw std::runtime_error(ss.str());
-      }
-      system_size_ = system_size;
-   }
-   
    //! @brief Set the magnitude of the spin \f$ S \f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    void SetMagnitudeSpin(const HalfInt magnitude_spin) {
@@ -110,26 +89,17 @@ public:
          ss << "Please set magnitude_spin > 0" << std::endl;
          throw std::runtime_error(ss.str());
       }
-      if (magnitude_spin_ != magnitude_spin) {
-         magnitude_spin_ = magnitude_spin;
-         dim_onsite_     = 2*magnitude_spin + 1;
-         SetOnsiteOperator();
-      }
+      magnitude_spin_ = magnitude_spin;
+      dim_onsite_     = 2*magnitude_spin + 1;
+      SetOnsiteOperator();
    }
    
-   //! @brief Set target Hilbert space specified by the total sz to be diagonalized.
+   //! @brief Set the target Hilbert space specified by the total sz.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{S}^{z}_{i}\rangle \f$.
    void SetTotalSz(const HalfInt total_sz) {
       total_sz_ = total_sz;
    }
-         
-   //! @brief Check if there is a subspace specified by the input total sz.
-   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle=\sum^{N}_{i=1}\langle\hat{S}^{z}_{i}\rangle \f$
-   //! @return ture if there exists corresponding subspace, otherwise false.
-   bool isValidQNumber(const HalfInt total_sz) const {
-      return isValidQNumber(system_size_, magnitude_spin_, total_sz);
-   }
-   
+      
    //! @brief Calculate the number of electrons from the input onsite basis.
    //! @param basis_onsite The onsite basis.
    //! @return The number of electrons.
@@ -152,59 +122,64 @@ public:
       }
    }
    
-   //! @brief Calculate the dimension of the target Hilbert space specified by
-   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
-   //! @return The dimension of the target Hilbert space.
-   std::int64_t CalculateTargetDim() const {
-      return CalculateTargetDim(total_sz_);
+   //! @brief Calculate sectors generated by an onsite operator.
+   //! @param row The row in the matrix representation of an onsite operator.
+   //! @param col The column in the matrix representation of an onsite operator.
+   //! @return Sectors generated by an onsite operator.
+   template<typename IntegerType>
+   QType CalculateQNumber(const IntegerType row, const IntegerType col) {
+      return static_cast<QType>(col - row + total_sz_);
    }
    
-   //! @brief Calculate the dimension of the target Hilbert space specified by
-   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //------------------------------------------------------------------
+   //----------------------Static Member Functions---------------------
+   //------------------------------------------------------------------
+   //! @brief Generate basis of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the spin \f$ S\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param system_size The system size.
+   //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
-   //! @return The dimension of the target Hilbert space.
-   std::int64_t CalculateTargetDim(const HalfInt total_sz) const {
-      return CalculateTargetDim(system_size_, magnitude_spin_, total_sz);
-   }
-   
-   
-   //! @brief Generate bases of the target Hilbert space specified by
-   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
-   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
-   std::vector<std::int64_t> GenerateBasis(const HalfInt total_sz, const bool flag_display_info = false) const {
-      if (!isValidQNumber(total_sz)) {
+   //! @param flag_display_info If true, display the progress status. Set ture by default.
+   //! @return Corresponding basis.
+   static std::vector<std::int64_t> GenerateBasis(const int system_size,
+                                                  const HalfInt magnitude_spin,
+                                                  const HalfInt total_sz,
+                                                  const bool flag_display_info = true) {
+      if (!isValidQNumber(system_size, magnitude_spin, total_sz) || system_size <= 0) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "Invalid parameters (system_size or magnitude_spin or total_sz)" << std::endl;
          throw std::runtime_error(ss.str());
       }
-   
+      
       const auto start = std::chrono::system_clock::now();
-   
+      
+      const int dim_onsite = 2*magnitude_spin + 1;
       std::vector<std::int64_t> basis;
       
       if (flag_display_info) {
          std::cout << "Generating Basis..." << std::flush;
       }
       
-      const int shifted_2sz = static_cast<int>(2*(system_size_*magnitude_spin_ - total_sz));
-      const std::int64_t dim_target = CalculateTargetDim(total_sz);
+      const int shifted_2sz = static_cast<int>(2*(system_size*magnitude_spin - total_sz));
+      const std::int64_t dim_target = CalculateTargetDim(system_size, magnitude_spin, total_sz);
       std::vector<std::vector<int>> partition_integers;
-      utility::GenerateIntegerPartition(&partition_integers, shifted_2sz, magnitude_spin_);
+      utility::GenerateIntegerPartition(&partition_integers, shifted_2sz, magnitude_spin);
       
-      std::vector<std::int64_t> site_constant(system_size_);
-      for (int site = 0; site < system_size_; ++site) {
-         site_constant[site] = static_cast<std::int64_t>(std::pow(dim_onsite_, site));
+      std::vector<std::int64_t> site_constant(system_size);
+      for (int site = 0; site < system_size; ++site) {
+         site_constant[site] = static_cast<std::int64_t>(std::pow(dim_onsite, site));
       }
       
 #ifdef _OPENMP
       const int num_threads = omp_get_max_threads();
       std::vector<std::vector<std::int64_t>> temp_basis(num_threads);
       for (auto &&integer_list: partition_integers) {
-         const bool condition1 = (0 < integer_list.size()) && (static_cast<int>(integer_list.size()) <= system_size_);
+         const bool condition1 = (0 < integer_list.size()) && (static_cast<int>(integer_list.size()) <= system_size);
          const bool condition2 = (integer_list.size() == 0) && (shifted_2sz  == 0);
          if (condition1 || condition2) {
-            for (int j = static_cast<int>(integer_list.size()); j < system_size_; ++j) {
+            for (int j = static_cast<int>(integer_list.size()); j < system_size; ++j) {
                integer_list.push_back(0);
             }
             
@@ -279,7 +254,7 @@ public:
       }
       return basis;
    }
-      
+   
    //! @brief Check if there is a subspace specified by the input quantum numbers.
    //! @param system_size The system size \f$ N\f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
@@ -299,8 +274,9 @@ public:
       }
    }
    
-   //! @brief Generate bases of the target Hilbert space specified by
-   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @brief Calculate dimension of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the spin \f$ S\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param system_size The system size \f$ N\f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
@@ -324,7 +300,7 @@ public:
                const std::int64_t a = dim[site    ][(s + s_prev + magnitude_2spin*(site + 1))/2];
                const std::int64_t b = dim[site - 1][(s_prev + magnitude_2spin*site)/2];
                if (a >= INT64_MAX - b) {
-                  throw std::runtime_error("Overflow detected for sumation using uint64_t");
+                  throw std::overflow_error("Overflow detected for sumation using uint64_t");
                }
                dim[site][(s + s_prev + magnitude_2spin*(site + 1))/2] = a + b;
             }
@@ -340,7 +316,8 @@ public:
       return 0.5*(CreateOnsiteOperatorSp(magnitude_spin) + CreateOnsiteOperatorSm(magnitude_spin));
    }
    
-   //! @brief Generate the spin-\f$ S\f$ operator for the y-direction \f$ i\hat{s}^{y}\f$ with \f$ i\f$ being the imaginary unit.
+   //! @brief Generate the spin-\f$ S\f$ operator for the y-direction
+   //! \f$ i\hat{s}^{y}\f$ with \f$ i\f$ being the imaginary unit.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ i\hat{s}^{y}\f$.
    static CRS CreateOnsiteOperatoriSy(const HalfInt magnitude_spin) {
@@ -394,29 +371,17 @@ public:
       return matrix;
    }
    
-   //! @brief Calculate difference of the total sz from the rows and columns in the matrix representation of an onsite operator.
-   //! @param row The row in the matrix representation of an onsite operator.
-   //! @param col The column in the matrix representation of an onsite operator.
-   //! @return The differences of the total sz.
-   template<typename IntegerType>
-   inline HalfInt CalculateQNumber(const IntegerType row, const IntegerType col) {
-      return static_cast<HalfInt>(col - row + total_sz_);
-   }
-
-   //! @brief Get the system size \f$ N\f$.
-   //! @return The system size \f$ N\f$.
-   inline int GetSystemSize() const { return system_size_; }
-   
+   //------------------------------------------------------------------
+   //----------------------Access Member variables---------------------
+   //------------------------------------------------------------------
    //! @brief Get dimension of the local Hilbert space, \f$ 2S+1\f$.
    //! @return The dimension of the local Hilbert space, \f$ 2S+1\f$.
    inline int GetDimOnsite() const { return dim_onsite_; }
-      
+   
    //! @brief Get the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    //! @return The total sz.
    inline HalfInt GetTotalSz() const { return total_sz_; }
-   
-   inline QType GetQNumber() const {return total_sz_; }
-   
+      
    //! @brief Get the magnitude of the spin \f$ S\f$.
    //! @return The magnitude of the spin \f$ S\f$.
    inline HalfInt GetMagnitudeSpin() const { return magnitude_spin_; }
@@ -440,8 +405,19 @@ public:
    //! @brief Get the spin-\f$ S\f$ lowering operator \f$ \hat{s}^{-}\f$.
    //! @return The matrix of \f$ \hat{s}^{-}\f$.
    inline const CRS &GetOnsiteOperatorSm () const { return onsite_operator_sm_; }
-      
-protected:
+   
+private:
+   //------------------------------------------------------------------
+   //---------------------Private Member Variables---------------------
+   //------------------------------------------------------------------
+   //! @brief Twice the number of the total sz \f$ 2\langle\hat{S}^{z}_{\rm tot}\rangle\f$.
+   HalfInt total_sz_ = 0;
+   
+   //! @brief The dimension of the local Hilbert space, \f$ 2S + 1\f$.
+   int dim_onsite_ = 2;
+   
+   //! @brief The magnitude of the spin \f$ S\f$.
+   HalfInt magnitude_spin_ = 0.5;
    
    //! @brief The spin-\f$ S\f$ operator for the x-direction \f$ \hat{s}^{x}\f$.
    CRS onsite_operator_sx_;
@@ -458,18 +434,9 @@ protected:
    //! @brief The the spin-\f$ S\f$ raising operator \f$ \hat{s}^{-}\f$.
    CRS onsite_operator_sm_;
    
-   //! @brief The system size.
-   int system_size_ = 0;
-   
-   //! @brief Twice the number of the total sz \f$ 2\langle\hat{S}^{z}_{\rm tot}\rangle\f$.
-   HalfInt total_sz_ = 0_hi;
-   
-   //! @brief The dimension of the local Hilbert space, \f$ 2S + 1\f$.
-   int dim_onsite_ = 2;
-   
-   //! @brief The magnitude of the spin \f$ S\f$.
-   HalfInt magnitude_spin_ = 0.5_hi;
-            
+   //------------------------------------------------------------------
+   //----------------------Public Member Functions---------------------
+   //------------------------------------------------------------------
    //! @brief Set onsite operators.
    void SetOnsiteOperator() {
       onsite_operator_sx_  = CreateOnsiteOperatorSx (magnitude_spin_);

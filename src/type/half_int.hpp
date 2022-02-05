@@ -28,8 +28,9 @@ namespace type {
 class HalfInt {
    
 public:
-   
+   //------------------------------------------------------------------
    //---------------------------Constructors---------------------------
+   //------------------------------------------------------------------
    //! @brief Constructor of HalfInt class.
    HalfInt() {};
    
@@ -45,15 +46,17 @@ public:
       integer_ = static_cast<int>(value);
    };
    
-   
+   //------------------------------------------------------------------
    //----------------------Public Member Functions---------------------
+   //------------------------------------------------------------------
    //! @brief Get integer (two times the actual value).
    int GetInteger() const {
       return integer_;
    }
    
-   
+   //------------------------------------------------------------------
    //-----------------------Operator Overloading-----------------------
+   //------------------------------------------------------------------
    //! @brief Operator overloading: unary plus operator.
    HalfInt operator+() const {
       return *this;
@@ -75,14 +78,17 @@ public:
    }
 
 private:
-   //-----------------------Private Member variables-----------------------
+   //------------------------------------------------------------------
+   //---------------------Private Member variables---------------------
+   //------------------------------------------------------------------
    //! @brief Store two times the actual half-integer as int.
    int integer_ = 0;
       
 };
 
-
-//-----------------Operator overloading: Addition Operator------------------
+//------------------------------------------------------------------
+//-------------Operator overloading: Addition Operator--------------
+//------------------------------------------------------------------
 //! @brief Operator overloading: addition operator.
 //! @param lhs The value of the left-hand side.
 //! @param rhs The value of the right-hand side.
@@ -118,8 +124,9 @@ HalfInt operator+(const HalfInt &lhs, const HalfInt &rhs) {
    return HalfInt(0.5*(lhs.GetInteger() + rhs.GetInteger()));
 }
 
-
-//---------------Operator overloading: Subtraction Operator-----------------
+//------------------------------------------------------------------
+//-----------Operator overloading: Subtraction Operator-------------
+//------------------------------------------------------------------
 //! @brief Operator overloading: subtraction operator.
 //! @param lhs The value of the left-hand side.
 //! @param rhs The value of the right-hand side.
@@ -155,8 +162,9 @@ HalfInt operator-(const HalfInt &lhs, const HalfInt &rhs) {
    return HalfInt(0.5*(lhs.GetInteger() - rhs.GetInteger()));
 }
 
-
-//--------------Operator overloading: Multiplication Operator---------------
+//------------------------------------------------------------------
+//----------Operator overloading: Multiplication Operator-----------
+//------------------------------------------------------------------
 //! @brief Operator overloading: multiplication operator.
 //! @param lhs The value of the left-hand side.
 //! @param rhs The value of the right-hand side.
@@ -192,8 +200,9 @@ HalfInt operator*(const HalfInt &lhs, const int rhs) {
    return HalfInt(0.5*lhs.GetInteger()*rhs);
 }
 
-
-//--------------Operator overloading: Division Operator---------------
+//------------------------------------------------------------------
+//-------------Operator overloading: Division Operator--------------
+//------------------------------------------------------------------
 //! @brief Operator overloading: division operator.
 //! @tparam ValueType Value type.
 //! @param lhs The value of the left-hand side.
@@ -213,15 +222,15 @@ double operator/(const HalfInt &lhs, const ValueType rhs) {
 }
 
 //! @brief Operator overloading: division operator.
-//! @tparam ValueType Value type.
 //! @param lhs The value of the left-hand side.
 //! @param rhs The value of the right-hand side.
 double operator/(const HalfInt &lhs, const HalfInt &rhs) {
    return static_cast<double>(lhs.GetInteger()/rhs.GetInteger());
 }
 
-
-//--------------Operator overloading: Equality Operator---------------
+//------------------------------------------------------------------
+//-------------Operator overloading: Equality Operator--------------
+//------------------------------------------------------------------
 //! @brief Operator overloading: equality operator.
 //! @param lhs The value of the left-hand side.
 //! @param rhs The value of the right-hand side.
@@ -247,9 +256,9 @@ bool operator==(const HalfInt &lhs, const ValueType rhs) {
    return 0.5*lhs.GetInteger() == rhs;
 }
 
-
-//-------------Operator overloading: Inequality Operator--------------
-//-------------Operator overloading: Comparison Operator--------------
+//------------------------------------------------------------------
+//------------Operator overloading: Inequality Operator-------------
+//------------------------------------------------------------------
 //! @brief Operator overloading: inequality operator.
 //! @param lhs The value of the left-hand side.
 //! @param rhs The value of the right-hand side.
@@ -275,8 +284,9 @@ bool operator!=(const HalfInt &lhs, const ValueType rhs) {
    return 0.5*lhs.GetInteger() != rhs;
 }
 
-
-//-------------Operator overloading: Comparison Operator--------------
+//------------------------------------------------------------------
+//------------Operator overloading: Comparison Operator-------------
+//------------------------------------------------------------------
 //! @brief Operator overloading: comparison operator (less than).
 //! @tparam ValueType Value type.
 //! @param lhs The value of the left-hand side.
@@ -377,11 +387,9 @@ bool operator>=(const HalfInt &lhs, const HalfInt &rhs) {
    return lhs.GetInteger() >= rhs.GetInteger();
 }
 
-//! @brief User-defined literals.
-HalfInt operator"" _hi(const char* value) {
-   return HalfInt(std::stold(value, nullptr));
-}
-
+//------------------------------------------------------------------
+//----------------Operator overloading: I/O Stream------------------
+//------------------------------------------------------------------
 //! @brief Operator overloading: output operator.
 //! @param os Ostream object.
 //! @param half_int Half-integer.
