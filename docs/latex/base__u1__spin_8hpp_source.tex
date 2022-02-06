@@ -294,7 +294,7 @@
 \DoxyCodeLine{349       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite = 2*magnitude\_spin + 1;}
 \DoxyCodeLine{350       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
 \DoxyCodeLine{351       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 1; row < dim\_onsite; ++row) \{}
-\DoxyCodeLine{352          matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}.push\_back(std::sqrtl((magnitude\_spin + 1)*2.0*row -\/ row*(row + 1)));}
+\DoxyCodeLine{352          matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}.push\_back(std::sqrt((magnitude\_spin + 1)*2.0*row -\/ row*(row + 1)));}
 \DoxyCodeLine{353          matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.push\_back(row);}
 \DoxyCodeLine{354          matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[row] = matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.size();}
 \DoxyCodeLine{355       \}}
@@ -306,7 +306,7 @@
 \DoxyCodeLine{364       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite = 2*magnitude\_spin + 1;}
 \DoxyCodeLine{365       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
 \DoxyCodeLine{366       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 1; row < dim\_onsite; ++row) \{}
-\DoxyCodeLine{367          matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}.push\_back(std::sqrtl((magnitude\_spin + 1)*2.0*row -\/ row*(row + 1)));}
+\DoxyCodeLine{367          matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}.push\_back(std::sqrt((magnitude\_spin + 1)*2.0*row -\/ row*(row + 1)));}
 \DoxyCodeLine{368          matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.push\_back(row -\/ 1);}
 \DoxyCodeLine{369          matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[row + 1] = matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.size();}
 \DoxyCodeLine{370       \}}

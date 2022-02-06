@@ -6,7 +6,7 @@
 struct \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}}
 \item 
 struct \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}
-\item 
+\begin{DoxyCompactList}\small\item\em Sparse matrix classs (Compressed Row Strage\+: \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}). \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_all}{Parameters\+All}}
 \item 
 struct \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_c_g}{Parameters\+CG}}
@@ -20,8 +20,10 @@ struct \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_lanczos}{
 \item 
 enum \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dc}{CRSTag}} \{ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dcae05bdf4bb6404aff5e00fb5c3b5eaca0}{NONE}} = 0
 , \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{FERMION}} = 1
+, \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca05234a42c14cce89b03095163ab5ed42}{BOSON}} = 2
+, \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dcab68331254a7c64a63ae149c44bfb74d8}{MIX}} = 3
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Enumerated type to represent Fermion or not. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -33,34 +35,30 @@ enum \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b
 \item 
 {\footnotesize template$<$typename Real\+Type $>$ }\\\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}}$<$ Real\+Type $>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a3942b79c66a1a5c4603698e0eb56c9ca}{Calculate\+Vector\+Sum}} (const Real\+Type coeef\+\_\+1, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}}$<$ Real\+Type $>$ \&braket\+\_\+vector\+\_\+1, const Real\+Type coeef\+\_\+2, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}}$<$ Real\+Type $>$ \&braket\+\_\+vector\+\_\+2)
 \item 
-{\footnotesize template$<$typename Real\+Type $>$ }\\\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab80c1b46b8f1a7e3d4fd6686ee455d44}{operator+}} (const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&lhs, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&rhs)
+{\footnotesize template$<$typename T1 , typename T2 , typename T3 $>$ }\\\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ decltype(T1\{0\} $\ast$T2\{0\} $\ast$T3\{0\})$>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a84aff8ca71e76b722c47c396a0fc16e6}{Calculate\+Matrix\+Matrix\+Product}} (const T1 coeef\+\_\+1, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&matrix\+\_\+1, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T3 $>$ \&matrix\+\_\+2)
 \item 
-{\footnotesize template$<$typename Real\+Type $>$ }\\\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a76a74686b1e0447d7ccd33bf29063f0a}{operator-\/}} (const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&lhs, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&rhs)
+{\footnotesize template$<$typename T1 , typename T2 , typename T3 , typename T4 $>$ }\\\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ decltype(T1\{0\}+T2\{0\}+T3\{0\}+T4\{0\})$>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_afe9699b31d9d2e37532767c6039a813a}{Calculate\+Matrix\+Matrix\+Sum}} (const T1 coeef\+\_\+1, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&matrix\+\_\+1, const T3 coeef\+\_\+2, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T4 $>$ \&matrix\+\_\+2)
 \item 
-{\footnotesize template$<$typename Real\+Type $>$ }\\\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_afc5b1fce88850c2e46c2b8efad188d59}{operator$\ast$}} (const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&lhs, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&rhs)
-\item 
-{\footnotesize template$<$typename Real\+Type $>$ }\\\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a9afa61e49111cba41d14680b179886af}{operator$\ast$}} (const Real\+Type \&lhs, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&rhs)
-\item 
-{\footnotesize template$<$typename Real\+Type $>$ }\\\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a0029ffad139421aa9233dbe12aa8b940}{operator$\ast$}} (const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&lhs, const Real\+Type \&rhs)
-\item 
-{\footnotesize template$<$typename Real\+Type $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a49f523fe4883113284aa74f545f307fc}{operator==}} (const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&lhs, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&rhs)
-\item 
-{\footnotesize template$<$typename Real\+Type $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a3d5c87f0498c3f912ab74e67176c9297}{operator!=}} (const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&lhs, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&rhs)
-\item 
-{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a55b77bf4b52994ffde7829a8b1ad8637}{Calculate\+Transposed\+Matrix}} (\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ $\ast$matrix\+\_\+out, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+in)
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ decltype(T1\{0\} $\ast$T2\{0\})$>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_adbcb79d1f723a5809d308d7073336a8f}{Calculate\+Scalar\+Matrix\+Product}} (const T1 lhs, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&rhs)
 \item 
 {\footnotesize template$<$typename Real\+Type $>$ }\\\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_aeb8905fe10ee567358f1e3656ea21eb4}{Calculate\+Transposed\+Matrix}} (const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+in)
 \item 
-{\footnotesize template$<$typename Real\+Type $>$ }\\\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ae96031f37623a90ebb421f75d8f3ae83}{Calculate\+Matrix\+Matrix\+Product}} (const Real\+Type coeef\+\_\+1, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+1, const Real\+Type coeef\+\_\+2, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+2)
-\item 
-{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a62aabe97379db1f1486aadd833ac51b4}{Calculate\+Matrix\+Matrix\+Product}} (\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ $\ast$matrix\+\_\+out, const Real\+Type coeef\+\_\+1, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+1, const Real\+Type coeef\+\_\+2, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+2)
-\item 
-{\footnotesize template$<$typename Real\+Type $>$ }\\\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ac96ccd3b32760093ebb9dbc2481053b2}{Calculate\+Matrix\+Matrix\+Sum}} (const Real\+Type coeef\+\_\+1, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+1, const Real\+Type coeef\+\_\+2, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+2)
-\item 
-{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab0ce2bb34e0ce5690e1c8bc876580ac1}{Calculate\+Matrix\+Matrix\+Sum}} (\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ $\ast$matrix\+\_\+out, const Real\+Type coeef\+\_\+1, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+1, const Real\+Type coeef\+\_\+2, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+2)
-\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ decltype(T1\{0\}+T2\{0\})$>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ac2f14972aa87dae127f4f064077fe4ab}{operator+}} (const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&lhs, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: addition operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ decltype(T1\{0\}-\/T2\{0\})$>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a1ba90ba45b55cf4a93dd0e8246d7b1be}{operator-\/}} (const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&lhs, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: subtraction operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ decltype(T1\{0\} $\ast$T2\{0\})$>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_abc257ab12d0265a6314b67de791850f5}{operator$\ast$}} (const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&lhs, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: multiplication operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ decltype(T1\{0\} $\ast$T2\{0\})$>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a7c4921f029c2ebf6cf769573611319d7}{operator$\ast$}} (const T1 lhs, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: multiplication operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ decltype(T1\{0\} $\ast$T2\{0\})$>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_adc94eb42ed80e287991d3643bbf8a5a3}{operator$\ast$}} (const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&lhs, const T2 rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: multiplication operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_abb6c59c798c127caa97ce367f9b8be0b}{operator==}} (const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&lhs, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: equality operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_adcd40a447e73c362f846f73ec7d1be54}{operator!=}} (const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&lhs, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: inequality operator. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename Real\+Type $>$ }\\std\+::ostream \& \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a1e56b895c1f08b9af47da10a7d2bfb0e}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&m)
-\item 
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: output operator. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename Real\+Type $>$ }\\std\+::pair$<$ int, double $>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a5542adf7c191075452c4b94070fee14e}{Conjugate\+Gradient}} (\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}}$<$ Real\+Type $>$ $\ast$vec\+\_\+out, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+in, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}}$<$ Real\+Type $>$ \&vec\+\_\+in, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_c_g}{Parameters\+CG}} \&params=\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_c_g}{Parameters\+CG}}(), const std\+::vector$<$ \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}}$<$ Real\+Type $>$ $>$ \&subspace\+\_\+vectors=\{\})
 \item 
 {\footnotesize template$<$typename Real\+Type $>$ }\\std\+::pair$<$ int, double $>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab653e2e978de33c4cb8eaa35562e6fdd}{Eigenvalue\+Decomposition\+Lanczos}} (Real\+Type $\ast$target\+\_\+value\+\_\+out, \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}}$<$ Real\+Type $>$ $\ast$target\+\_\+vector\+\_\+out, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+in, const int target\+\_\+level, const std\+::vector$<$ \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}}$<$ Real\+Type $>$ $>$ \&subspace\+\_\+vectors, const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_lanczos}{Parameters\+Lanczos}} \&params=\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_lanczos}{Parameters\+Lanczos}}())
@@ -113,13 +111,25 @@ const int \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_abc3cda835ae580805
 \doxysubsubsection{\texorpdfstring{CRSTag}{CRSTag}}
 {\footnotesize\ttfamily enum \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dc}{compnal\+::sparse\+\_\+matrix\+::\+CRSTag}}}
 
+
+
+Enumerated type to represent Fermion or not. 
+
 \begin{DoxyEnumFields}{Enumerator}
 \raisebox{\heightof{T}}[0pt][0pt]{\index{NONE@{NONE}!compnal::sparse\_matrix@{compnal::sparse\_matrix}}\index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!NONE@{NONE}}}\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dcae05bdf4bb6404aff5e00fb5c3b5eaca0}\label{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dcae05bdf4bb6404aff5e00fb5c3b5eaca0}} 
-NONE&\\
+NONE&No taged. \\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{FERMION@{FERMION}!compnal::sparse\_matrix@{compnal::sparse\_matrix}}\index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!FERMION@{FERMION}}}\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}\label{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}} 
-FERMION&\\
+FERMION&Fermionic operator. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOSON@{BOSON}!compnal::sparse\_matrix@{compnal::sparse\_matrix}}\index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!BOSON@{BOSON}}}\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca05234a42c14cce89b03095163ab5ed42}\label{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca05234a42c14cce89b03095163ab5ed42}} 
+BOSON&Bosonic operator. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MIX@{MIX}!compnal::sparse\_matrix@{compnal::sparse\_matrix}}\index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!MIX@{MIX}}}\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dcab68331254a7c64a63ae149c44bfb74d8}\label{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dcab68331254a7c64a63ae149c44bfb74d8}} 
+MIX&Sum of Fermion and Boson. \\
 \hline
 
 \end{DoxyEnumFields}
@@ -140,33 +150,19 @@ Real\+Type compnal\+::sparse\+\_\+matrix\+::\+Calculate\+Inner\+Product (\begin{
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
 Real\+Type compnal\+::sparse\+\_\+matrix\+::\+Calculate\+L1\+Norm (\begin{DoxyParamCaption}\item[{const Real\+Type}]{coeef\+\_\+1,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}}$<$ Real\+Type $>$ \&}]{braket\+\_\+vector\+\_\+1,  }\item[{const Real\+Type}]{coeef\+\_\+2,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}}$<$ Real\+Type $>$ \&}]{braket\+\_\+vector\+\_\+2 }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_ae96031f37623a90ebb421f75d8f3ae83}\label{namespacecompnal_1_1sparse__matrix_ae96031f37623a90ebb421f75d8f3ae83}} 
+\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_a84aff8ca71e76b722c47c396a0fc16e6}\label{namespacecompnal_1_1sparse__matrix_a84aff8ca71e76b722c47c396a0fc16e6}} 
 \index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!CalculateMatrixMatrixProduct@{CalculateMatrixMatrixProduct}}
 \index{CalculateMatrixMatrixProduct@{CalculateMatrixMatrixProduct}!compnal::sparse\_matrix@{compnal::sparse\_matrix}}
-\doxysubsubsection{\texorpdfstring{CalculateMatrixMatrixProduct()}{CalculateMatrixMatrixProduct()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ compnal\+::sparse\+\_\+matrix\+::\+Calculate\+Matrix\+Matrix\+Product (\begin{DoxyParamCaption}\item[{const Real\+Type}]{coeef\+\_\+1,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+1,  }\item[{const Real\+Type}]{coeef\+\_\+2,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+2 }\end{DoxyParamCaption})}
+\doxysubsubsection{\texorpdfstring{CalculateMatrixMatrixProduct()}{CalculateMatrixMatrixProduct()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 , typename T3 $>$ \\
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ decltype(T1\{0\} $\ast$T2\{0\} $\ast$T3\{0\})$>$ compnal\+::sparse\+\_\+matrix\+::\+Calculate\+Matrix\+Matrix\+Product (\begin{DoxyParamCaption}\item[{const T1}]{coeef\+\_\+1,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&}]{matrix\+\_\+1,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T3 $>$ \&}]{matrix\+\_\+2 }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_a62aabe97379db1f1486aadd833ac51b4}\label{namespacecompnal_1_1sparse__matrix_a62aabe97379db1f1486aadd833ac51b4}} 
-\index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!CalculateMatrixMatrixProduct@{CalculateMatrixMatrixProduct}}
-\index{CalculateMatrixMatrixProduct@{CalculateMatrixMatrixProduct}!compnal::sparse\_matrix@{compnal::sparse\_matrix}}
-\doxysubsubsection{\texorpdfstring{CalculateMatrixMatrixProduct()}{CalculateMatrixMatrixProduct()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-void compnal\+::sparse\+\_\+matrix\+::\+Calculate\+Matrix\+Matrix\+Product (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ $\ast$}]{matrix\+\_\+out,  }\item[{const Real\+Type}]{coeef\+\_\+1,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+1,  }\item[{const Real\+Type}]{coeef\+\_\+2,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+2 }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_ac96ccd3b32760093ebb9dbc2481053b2}\label{namespacecompnal_1_1sparse__matrix_ac96ccd3b32760093ebb9dbc2481053b2}} 
+\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_afe9699b31d9d2e37532767c6039a813a}\label{namespacecompnal_1_1sparse__matrix_afe9699b31d9d2e37532767c6039a813a}} 
 \index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!CalculateMatrixMatrixSum@{CalculateMatrixMatrixSum}}
 \index{CalculateMatrixMatrixSum@{CalculateMatrixMatrixSum}!compnal::sparse\_matrix@{compnal::sparse\_matrix}}
-\doxysubsubsection{\texorpdfstring{CalculateMatrixMatrixSum()}{CalculateMatrixMatrixSum()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ compnal\+::sparse\+\_\+matrix\+::\+Calculate\+Matrix\+Matrix\+Sum (\begin{DoxyParamCaption}\item[{const Real\+Type}]{coeef\+\_\+1,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+1,  }\item[{const Real\+Type}]{coeef\+\_\+2,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+2 }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_ab0ce2bb34e0ce5690e1c8bc876580ac1}\label{namespacecompnal_1_1sparse__matrix_ab0ce2bb34e0ce5690e1c8bc876580ac1}} 
-\index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!CalculateMatrixMatrixSum@{CalculateMatrixMatrixSum}}
-\index{CalculateMatrixMatrixSum@{CalculateMatrixMatrixSum}!compnal::sparse\_matrix@{compnal::sparse\_matrix}}
-\doxysubsubsection{\texorpdfstring{CalculateMatrixMatrixSum()}{CalculateMatrixMatrixSum()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-void compnal\+::sparse\+\_\+matrix\+::\+Calculate\+Matrix\+Matrix\+Sum (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ $\ast$}]{matrix\+\_\+out,  }\item[{const Real\+Type}]{coeef\+\_\+1,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+1,  }\item[{const Real\+Type}]{coeef\+\_\+2,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+2 }\end{DoxyParamCaption})}
+\doxysubsubsection{\texorpdfstring{CalculateMatrixMatrixSum()}{CalculateMatrixMatrixSum()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 , typename T3 , typename T4 $>$ \\
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ decltype(T1\{0\}+T2\{0\}+T3\{0\}+T4\{0\})$>$ compnal\+::sparse\+\_\+matrix\+::\+Calculate\+Matrix\+Matrix\+Sum (\begin{DoxyParamCaption}\item[{const T1}]{coeef\+\_\+1,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&}]{matrix\+\_\+1,  }\item[{const T3}]{coeef\+\_\+2,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T4 $>$ \&}]{matrix\+\_\+2 }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_ab4434cd1f0754845236fda113f33393b}\label{namespacecompnal_1_1sparse__matrix_ab4434cd1f0754845236fda113f33393b}} 
 \index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!CalculateMatrixVectorProduct@{CalculateMatrixVectorProduct}}
@@ -181,6 +177,13 @@ void compnal\+::sparse\+\_\+matrix\+::\+Calculate\+Matrix\+Vector\+Product (\beg
 \doxysubsubsection{\texorpdfstring{CalculateMatrixVectorProduct()}{CalculateMatrixVectorProduct()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
 \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}}$<$ Real\+Type $>$ compnal\+::sparse\+\_\+matrix\+::\+Calculate\+Matrix\+Vector\+Product (\begin{DoxyParamCaption}\item[{const Real\+Type}]{coeef,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+in,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{Braket\+Vector}}$<$ Real\+Type $>$ \&}]{vector\+\_\+in }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_adbcb79d1f723a5809d308d7073336a8f}\label{namespacecompnal_1_1sparse__matrix_adbcb79d1f723a5809d308d7073336a8f}} 
+\index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!CalculateScalarMatrixProduct@{CalculateScalarMatrixProduct}}
+\index{CalculateScalarMatrixProduct@{CalculateScalarMatrixProduct}!compnal::sparse\_matrix@{compnal::sparse\_matrix}}
+\doxysubsubsection{\texorpdfstring{CalculateScalarMatrixProduct()}{CalculateScalarMatrixProduct()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ decltype(T1\{0\} $\ast$T2\{0\})$>$ compnal\+::sparse\+\_\+matrix\+::\+Calculate\+Scalar\+Matrix\+Product (\begin{DoxyParamCaption}\item[{const T1}]{lhs,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&}]{rhs }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_a921298b3f9466b07630d3307baee5af1}\label{namespacecompnal_1_1sparse__matrix_a921298b3f9466b07630d3307baee5af1}} 
 \index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!CalculateSymmetricMatrixVectorProduct@{CalculateSymmetricMatrixVectorProduct}}
@@ -213,16 +216,9 @@ void compnal\+::sparse\+\_\+matrix\+::\+Calculate\+Symmetric\+Matrix\+Vector\+Pr
 \mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_aeb8905fe10ee567358f1e3656ea21eb4}\label{namespacecompnal_1_1sparse__matrix_aeb8905fe10ee567358f1e3656ea21eb4}} 
 \index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!CalculateTransposedMatrix@{CalculateTransposedMatrix}}
 \index{CalculateTransposedMatrix@{CalculateTransposedMatrix}!compnal::sparse\_matrix@{compnal::sparse\_matrix}}
-\doxysubsubsection{\texorpdfstring{CalculateTransposedMatrix()}{CalculateTransposedMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxysubsubsection{\texorpdfstring{CalculateTransposedMatrix()}{CalculateTransposedMatrix()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
 \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ compnal\+::sparse\+\_\+matrix\+::\+Calculate\+Transposed\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+in }\end{DoxyParamCaption})}
-
-\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_a55b77bf4b52994ffde7829a8b1ad8637}\label{namespacecompnal_1_1sparse__matrix_a55b77bf4b52994ffde7829a8b1ad8637}} 
-\index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!CalculateTransposedMatrix@{CalculateTransposedMatrix}}
-\index{CalculateTransposedMatrix@{CalculateTransposedMatrix}!compnal::sparse\_matrix@{compnal::sparse\_matrix}}
-\doxysubsubsection{\texorpdfstring{CalculateTransposedMatrix()}{CalculateTransposedMatrix()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-void compnal\+::sparse\+\_\+matrix\+::\+Calculate\+Transposed\+Matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ $\ast$}]{matrix\+\_\+out,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+in }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_ac6379142a8da9a140ba3ff9de1e3ab35}\label{namespacecompnal_1_1sparse__matrix_ac6379142a8da9a140ba3ff9de1e3ab35}} 
 \index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!CalculateVectorSum@{CalculateVectorSum}}
@@ -312,48 +308,156 @@ void compnal\+::sparse\+\_\+matrix\+::\+Lapack\+Dstev (\begin{DoxyParamCaption}\
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
 void compnal\+::sparse\+\_\+matrix\+::\+Lapack\+Dsyev (\begin{DoxyParamCaption}\item[{Real\+Type $\ast$}]{gs\+\_\+value,  }\item[{std\+::vector$<$ Real\+Type $>$ $\ast$}]{gs\+\_\+vector,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+in,  }\item[{const int}]{target\+\_\+level = {\ttfamily 0} }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_a3d5c87f0498c3f912ab74e67176c9297}\label{namespacecompnal_1_1sparse__matrix_a3d5c87f0498c3f912ab74e67176c9297}} 
+\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_adcd40a447e73c362f846f73ec7d1be54}\label{namespacecompnal_1_1sparse__matrix_adcd40a447e73c362f846f73ec7d1be54}} 
 \index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!operator"!=@{operator"!=}}
 \index{operator"!=@{operator"!=}!compnal::sparse\_matrix@{compnal::sparse\_matrix}}
 \doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-bool compnal\+::sparse\+\_\+matrix\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{rhs }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+bool compnal\+::sparse\+\_\+matrix\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&}]{rhs }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_afc5b1fce88850c2e46c2b8efad188d59}\label{namespacecompnal_1_1sparse__matrix_afc5b1fce88850c2e46c2b8efad188d59}} 
+
+
+Operator overloading\+: inequality operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of the left-\/hand side. \\
+\hline
+{\em T2} & Value type of the right-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_abc257ab12d0265a6314b67de791850f5}\label{namespacecompnal_1_1sparse__matrix_abc257ab12d0265a6314b67de791850f5}} 
 \index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!operator$\ast$@{operator$\ast$}}
 \index{operator$\ast$@{operator$\ast$}!compnal::sparse\_matrix@{compnal::sparse\_matrix}}
 \doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ compnal\+::sparse\+\_\+matrix\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{rhs }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ decltype(T1\{0\} $\ast$T2\{0\})$>$ compnal\+::sparse\+\_\+matrix\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&}]{rhs }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_a0029ffad139421aa9233dbe12aa8b940}\label{namespacecompnal_1_1sparse__matrix_a0029ffad139421aa9233dbe12aa8b940}} 
+
+
+Operator overloading\+: multiplication operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of the left-\/hand side. \\
+\hline
+{\em T2} & Value type of the right-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_adc94eb42ed80e287991d3643bbf8a5a3}\label{namespacecompnal_1_1sparse__matrix_adc94eb42ed80e287991d3643bbf8a5a3}} 
 \index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!operator$\ast$@{operator$\ast$}}
 \index{operator$\ast$@{operator$\ast$}!compnal::sparse\_matrix@{compnal::sparse\_matrix}}
 \doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ compnal\+::sparse\+\_\+matrix\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{lhs,  }\item[{const Real\+Type \&}]{rhs }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ decltype(T1\{0\} $\ast$T2\{0\})$>$ compnal\+::sparse\+\_\+matrix\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&}]{lhs,  }\item[{const T2}]{rhs }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_a9afa61e49111cba41d14680b179886af}\label{namespacecompnal_1_1sparse__matrix_a9afa61e49111cba41d14680b179886af}} 
+
+
+Operator overloading\+: multiplication operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of the left-\/hand side. \\
+\hline
+{\em T2} & Value type of the right-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_a7c4921f029c2ebf6cf769573611319d7}\label{namespacecompnal_1_1sparse__matrix_a7c4921f029c2ebf6cf769573611319d7}} 
 \index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!operator$\ast$@{operator$\ast$}}
 \index{operator$\ast$@{operator$\ast$}!compnal::sparse\_matrix@{compnal::sparse\_matrix}}
 \doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ compnal\+::sparse\+\_\+matrix\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const Real\+Type \&}]{lhs,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{rhs }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ decltype(T1\{0\} $\ast$T2\{0\})$>$ compnal\+::sparse\+\_\+matrix\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const T1}]{lhs,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&}]{rhs }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_ab80c1b46b8f1a7e3d4fd6686ee455d44}\label{namespacecompnal_1_1sparse__matrix_ab80c1b46b8f1a7e3d4fd6686ee455d44}} 
+
+
+Operator overloading\+: multiplication operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of the left-\/hand side. \\
+\hline
+{\em T2} & Value type of the right-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_ac2f14972aa87dae127f4f064077fe4ab}\label{namespacecompnal_1_1sparse__matrix_ac2f14972aa87dae127f4f064077fe4ab}} 
 \index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!operator+@{operator+}}
 \index{operator+@{operator+}!compnal::sparse\_matrix@{compnal::sparse\_matrix}}
 \doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ compnal\+::sparse\+\_\+matrix\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{rhs }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ decltype(T1\{0\}+T2\{0\})$>$ compnal\+::sparse\+\_\+matrix\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&}]{rhs }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_a76a74686b1e0447d7ccd33bf29063f0a}\label{namespacecompnal_1_1sparse__matrix_a76a74686b1e0447d7ccd33bf29063f0a}} 
+
+
+Operator overloading\+: addition operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of the left-\/hand side. \\
+\hline
+{\em T2} & Value type of the right-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_a1ba90ba45b55cf4a93dd0e8246d7b1be}\label{namespacecompnal_1_1sparse__matrix_a1ba90ba45b55cf4a93dd0e8246d7b1be}} 
 \index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!operator-\/@{operator-\/}}
 \index{operator-\/@{operator-\/}!compnal::sparse\_matrix@{compnal::sparse\_matrix}}
 \doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ compnal\+::sparse\+\_\+matrix\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{rhs }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ decltype(T1\{0\}-\/T2\{0\})$>$ compnal\+::sparse\+\_\+matrix\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&}]{rhs }\end{DoxyParamCaption})}
 
+
+
+Operator overloading\+: subtraction operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of the left-\/hand side. \\
+\hline
+{\em T2} & Value type of the right-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_a1e56b895c1f08b9af47da10a7d2bfb0e}\label{namespacecompnal_1_1sparse__matrix_a1e56b895c1f08b9af47da10a7d2bfb0e}} 
 \index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!compnal::sparse\_matrix@{compnal::sparse\_matrix}}
@@ -361,13 +465,47 @@ bool compnal\+::sparse\+\_\+matrix\+::operator!= (\begin{DoxyParamCaption}\item[
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
 std\+::ostream \& compnal\+::sparse\+\_\+matrix\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{m }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_a49f523fe4883113284aa74f545f307fc}\label{namespacecompnal_1_1sparse__matrix_a49f523fe4883113284aa74f545f307fc}} 
+
+
+Operator overloading\+: output operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Real\+Type} & Value type \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} matrix. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em os} & Ostream object. \\
+\hline
+{\em m} & The matrix as \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} form. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_abb6c59c798c127caa97ce367f9b8be0b}\label{namespacecompnal_1_1sparse__matrix_abb6c59c798c127caa97ce367f9b8be0b}} 
 \index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!operator==@{operator==}}
 \index{operator==@{operator==}!compnal::sparse\_matrix@{compnal::sparse\_matrix}}
 \doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-bool compnal\+::sparse\+\_\+matrix\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{rhs }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+bool compnal\+::sparse\+\_\+matrix\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&}]{rhs }\end{DoxyParamCaption})}
 
+
+
+Operator overloading\+: equality operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of the left-\/hand side. \\
+\hline
+{\em T2} & Value type of the right-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespacecompnal_1_1sparse__matrix_acc7659e912249aaf5279eaa263311906}\label{namespacecompnal_1_1sparse__matrix_acc7659e912249aaf5279eaa263311906}} 
 \index{compnal::sparse\_matrix@{compnal::sparse\_matrix}!Orthonormalize@{Orthonormalize}}
 \index{Orthonormalize@{Orthonormalize}!compnal::sparse\_matrix@{compnal::sparse\_matrix}}
