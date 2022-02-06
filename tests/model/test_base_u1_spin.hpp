@@ -26,16 +26,17 @@ namespace compnal {
 namespace test {
 
 TEST(ModelBaseU1Spin, ConstructorDefault) {
-   model::BaseU1Spin<double> model;
+   using RealType = double;
+   model::BaseU1Spin<RealType> model;
 
    EXPECT_EQ(model.GetDimOnsite(), 2);
    EXPECT_EQ(model.GetMagnitudeSpin(), 0.5);
    
-   const sparse_matrix::CRS<double> ref_sp ({{+0.0, +1.0}, {+0.0, +0.0}});
-   const sparse_matrix::CRS<double> ref_sm ({{+0.0, +0.0}, {+1.0, +0.0}});
-   const sparse_matrix::CRS<double> ref_sx ({{+0.0, +0.5}, {+0.5, +0.0}});
-   const sparse_matrix::CRS<double> ref_isy({{+0.0, +0.5}, {-0.5, +0.0}});
-   const sparse_matrix::CRS<double> ref_sz ({{+0.5, +0.0}, {+0.0, -0.5}});
+   const sparse_matrix::CRS<RealType> ref_sp ({{+0.0, +1.0}, {+0.0, +0.0}});
+   const sparse_matrix::CRS<RealType> ref_sm ({{+0.0, +0.0}, {+1.0, +0.0}});
+   const sparse_matrix::CRS<RealType> ref_sx ({{+0.0, +0.5}, {+0.5, +0.0}});
+   const sparse_matrix::CRS<RealType> ref_isy({{+0.0, +0.5}, {-0.5, +0.0}});
+   const sparse_matrix::CRS<RealType> ref_sz ({{+0.5, +0.0}, {+0.0, -0.5}});
    
    EXPECT_EQ(model.GetOnsiteOperatorSp() , ref_sp );
    EXPECT_EQ(model.GetOnsiteOperatorSm() , ref_sm );
@@ -45,36 +46,37 @@ TEST(ModelBaseU1Spin, ConstructorDefault) {
 }
 
 TEST(ModelBaseU1Spin, ConstructorSystemSize) {
-   model::BaseU1Spin<long double> model(1);
+   using RealType = long double;
+   model::BaseU1Spin<RealType> model(1);
    
    EXPECT_EQ(model.GetDimOnsite(), 3);
    EXPECT_EQ(model.GetMagnitudeSpin(), 1);
-  
-   const sparse_matrix::CRS<long double> ref_sp ({
-      {+0.0, +std::sqrt(2), +0.0},
-      {+0.0, +0.0, +std::sqrt(2)},
+   const RealType sqrt2 = std::sqrt(static_cast<RealType>(2));
+   const sparse_matrix::CRS<RealType> ref_sp ({
+      {+0.0, +sqrt2, +0.0},
+      {+0.0, +0.0, +sqrt2},
       {+0.0, +0.0, +0.0}
    });
    
-   const sparse_matrix::CRS<long double> ref_sm ({
+   const sparse_matrix::CRS<RealType> ref_sm ({
       {+0.0, +0.0, +0.0},
-      {+std::sqrt(2), +0.0, +0.0},
-      {+0.0, +std::sqrt(2), +0.0}
+      {+sqrt2, +0.0, +0.0},
+      {+0.0, +sqrt2, +0.0}
    });
    
-   const sparse_matrix::CRS<long double> ref_sx ({
-      {+0.0, +1.0/std::sqrt(2), +0.0},
-      {+1.0/std::sqrt(2), +0.0, +1.0/std::sqrt(2)},
-      {+0.0, +1.0/std::sqrt(2), +0.0}
+   const sparse_matrix::CRS<RealType> ref_sx ({
+      {+0.0, +sqrt2/2.0, +0.0},
+      {+sqrt2/2.0, +0.0, +sqrt2/2.0},
+      {+0.0, +sqrt2/2.0, +0.0}
    });
    
-   const sparse_matrix::CRS<long double> ref_isy ({
-      {+0.0, +1.0/std::sqrt(2), +0.0},
-      {-1.0/std::sqrt(2), +0.0, +1.0/std::sqrt(2)},
-      {+0.0, -1.0/std::sqrt(2), +0.0}
+   const sparse_matrix::CRS<RealType> ref_isy ({
+      {+0.0, +sqrt2/2.0, +0.0},
+      {-sqrt2/2.0, +0.0, +sqrt2/2.0},
+      {+0.0, -sqrt2/2.0, +0.0}
    });
    
-   const sparse_matrix::CRS<long double> ref_sz ({
+   const sparse_matrix::CRS<RealType> ref_sz ({
       {+1.0, +0.0, +0.0},
       {+0.0, +0.0, +0.0},
       {+0.0, +0.0, -1.0}
@@ -83,10 +85,9 @@ TEST(ModelBaseU1Spin, ConstructorSystemSize) {
    EXPECT_EQ(model.GetOnsiteOperatorSp() , ref_sp );
    EXPECT_EQ(model.GetOnsiteOperatorSm() , ref_sm );
    EXPECT_EQ(model.GetOnsiteOperatorSx() , ref_sx );
-   //EXPECT_EQ(model.GetOnsiteOperatoriSy(), ref_isy);
+   EXPECT_EQ(model.GetOnsiteOperatoriSy(), ref_isy);
    EXPECT_EQ(model.GetOnsiteOperatorSz() , ref_sz );
-   EXPECT_EQ(0.99999999999999999, 1.0);
-   //EXPECT_PRED_FORMAT3(::testing::internal::EqHelper::Compare, model.GetOnsiteOperatorSx(), ref_sx, 0.001);
+   
 }
 
 

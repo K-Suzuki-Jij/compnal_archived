@@ -313,7 +313,7 @@ public:
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{s}^{x}\f$.
    static CRS CreateOnsiteOperatorSx(const HalfInt magnitude_spin) {
-      return 0.5*(CreateOnsiteOperatorSp(magnitude_spin) + CreateOnsiteOperatorSm(magnitude_spin));
+      return static_cast<RealType>(0.5)*(CreateOnsiteOperatorSp(magnitude_spin) + CreateOnsiteOperatorSm(magnitude_spin));
    }
    
    //! @brief Generate the spin-\f$ S\f$ operator for the y-direction
@@ -321,7 +321,7 @@ public:
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ i\hat{s}^{y}\f$.
    static CRS CreateOnsiteOperatoriSy(const HalfInt magnitude_spin) {
-      return 0.5*(CreateOnsiteOperatorSp(magnitude_spin) - CreateOnsiteOperatorSm(magnitude_spin));
+      return static_cast<RealType>(0.5)*(CreateOnsiteOperatorSp(magnitude_spin) - CreateOnsiteOperatorSm(magnitude_spin));
    }
    
    //! @brief Generate the spin-\f$ S\f$ operator for the z-direction \f$ \hat{s}^{z}\f$.
@@ -347,9 +347,10 @@ public:
    //! @return The matrix of \f$ \hat{s}^{+}\f$.
    static CRS CreateOnsiteOperatorSp(const HalfInt magnitude_spin) {
       const int dim_onsite = 2*magnitude_spin + 1;
+      const RealType constant = 2.0;
       CRS matrix(dim_onsite, dim_onsite);
       for (int row = 1; row < dim_onsite; ++row) {
-         matrix.val.push_back(std::sqrt((magnitude_spin + 1)*2.0*row - row*(row + 1)));
+         matrix.val.push_back(std::sqrt((magnitude_spin + 1)*constant*row - row*(row + 1)));
          matrix.col.push_back(row);
          matrix.row[row] = matrix.col.size();
       }
@@ -363,8 +364,9 @@ public:
    static CRS CreateOnsiteOperatorSm(const HalfInt magnitude_spin) {
       const int dim_onsite = 2*magnitude_spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
+      const RealType constant = 2.0;
       for (int row = 1; row < dim_onsite; ++row) {
-         matrix.val.push_back(std::sqrt((magnitude_spin + 1)*2.0*row - row*(row + 1)));
+         matrix.val.push_back(std::sqrt((magnitude_spin + 1)*constant*row - row*(row + 1)));
          matrix.col.push_back(row - 1);
          matrix.row[row + 1] = matrix.col.size();
       }
