@@ -102,6 +102,7 @@ var menudata={children:[
 {text:"o",url:"functions_func_o.html#index_o"},
 {text:"p",url:"functions_func_p.html#index_p"},
 {text:"s",url:"functions_func_s.html#index_s"},
+{text:"v",url:"functions_func_v.html#index_v"},
 {text:"x",url:"functions_func_x.html#index_x"}]},
 {text:"Variables",url:"functions_vars.html",children:[
 {text:"a",url:"functions_vars.html#index_a"},
