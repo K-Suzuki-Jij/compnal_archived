@@ -36,6 +36,8 @@ namespace model {
 template<typename RealType>
 class BaseU1Spin {
    
+   static_assert(std::is_floating_point<RealType>::value, "Template parameter RealType must be floating point type");
+   
 public:
    //------------------------------------------------------------------
    //----------------------------Type Alias----------------------------
@@ -131,22 +133,17 @@ public:
       return static_cast<QType>(col - row + total_sz_);
    }
    
-   //------------------------------------------------------------------
-   //----------------------Static Member Functions---------------------
-   //------------------------------------------------------------------
    //! @brief Generate basis of the target Hilbert space specified by
    //! the system size \f$ N\f$, the magnitude of the spin \f$ S\f$,
    //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param system_size The system size.
-   //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
    //! @param flag_display_info If true, display the progress status. Set ture by default.
    //! @return Corresponding basis.
-   static std::vector<std::int64_t> GenerateBasis(const int system_size,
-                                                  const HalfInt magnitude_spin,
-                                                  const HalfInt total_sz,
-                                                  const bool flag_display_info = true) {
-      if (!isValidQNumber(system_size, magnitude_spin, total_sz) || system_size <= 0) {
+   std::vector<std::int64_t> GenerateBasis(const int system_size,
+                                           const QType total_sz,
+                                           const bool flag_display_info = true) const {
+      if (!ValidateQNumber(system_size, magnitude_spin_, total_sz) || system_size <= 0) {
          std::stringstream ss;
          ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "Invalid parameters (system_size or magnitude_spin or total_sz)" << std::endl;
@@ -155,17 +152,17 @@ public:
       
       const auto start = std::chrono::system_clock::now();
       
-      const int dim_onsite = 2*magnitude_spin + 1;
+      const int dim_onsite = 2*magnitude_spin_ + 1;
       std::vector<std::int64_t> basis;
       
       if (flag_display_info) {
          std::cout << "Generating Basis..." << std::flush;
       }
       
-      const int shifted_2sz = static_cast<int>(2*(system_size*magnitude_spin - total_sz));
-      const std::int64_t dim_target = CalculateTargetDim(system_size, magnitude_spin, total_sz);
+      const int shifted_2sz = static_cast<int>(2*(system_size*magnitude_spin_ - total_sz));
+      const std::int64_t dim_target = CalculateTargetDim(system_size, magnitude_spin_, total_sz);
       std::vector<std::vector<int>> partition_integers;
-      utility::GenerateIntegerPartition(&partition_integers, shifted_2sz, magnitude_spin);
+      utility::GenerateIntegerPartition(&partition_integers, shifted_2sz, magnitude_spin_);
       
       std::vector<std::int64_t> site_constant(system_size);
       for (int site = 0; site < system_size; ++site) {
@@ -257,10 +254,30 @@ public:
    
    //! @brief Check if there is a subspace specified by the input quantum numbers.
    //! @param system_size The system size \f$ N\f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
+   //! @return ture if there exists corresponding subspace, otherwise false.
+   bool ValidateQNumber(const int system_size, const QType total_sz) const {
+      return ValidateQNumber(system_size, magnitude_spin_ ,total_sz);
+   }
+   
+   //! @brief Calculate dimension of the target Hilbert space specified by
+   //! the system size \f$ N\f$, the magnitude of the spin \f$ S\f$,
+   //! and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   //! @param system_size The system size \f$ N\f$.
+   //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
+   std::int64_t CalculateTargetDim(const int system_size, const QType total_sz) const {
+      return CalculateTargetDim(system_size, magnitude_spin_, total_sz);
+   }
+      
+   //------------------------------------------------------------------
+   //----------------------Static Member Functions---------------------
+   //------------------------------------------------------------------
+   //! @brief Check if there is a subspace specified by the input quantum numbers.
+   //! @param system_size The system size \f$ N\f$.
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    //! @return ture if there exists corresponding subspace, otherwise false.
-   static bool isValidQNumber(const int system_size, const HalfInt magnitude_spin, const HalfInt total_sz) {
+   static bool ValidateQNumber(const int system_size, const HalfInt magnitude_spin, const HalfInt total_sz) {
       const int total_2sz       = 2*total_sz;
       const int magnitude_2spin = 2*magnitude_spin;
       const bool c1 = ((system_size*magnitude_2spin - total_2sz)%2 == 0);
@@ -281,7 +298,7 @@ public:
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    static std::int64_t CalculateTargetDim(const int system_size, const HalfInt magnitude_spin, const HalfInt total_sz) {
-      if (!isValidQNumber(system_size, magnitude_spin, total_sz)) {
+      if (!ValidateQNumber(system_size, magnitude_spin, total_sz)) {
          return 0;
       }
       if (system_size <= 0) {

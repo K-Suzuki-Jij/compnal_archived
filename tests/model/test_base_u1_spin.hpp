@@ -19,7 +19,6 @@
 #define COMPNAL_TEST_MODEL_BASE_U1_SPIN_HPP_
 
 #include "../../src/model/base_u1_spin.hpp"
-//#include "../include/all.hpp"
 #include <gtest/gtest.h>
 
 namespace compnal {
@@ -89,7 +88,6 @@ TEST(ModelBaseU1Spin, ConstructorSystemSize) {
    EXPECT_EQ(model.GetOnsiteOperatorSz() , ref_sz );
    
 }
-
 
 /*
 TEST(ModelBaseU1Spin, ConstructorSystemSizeSpin) {
