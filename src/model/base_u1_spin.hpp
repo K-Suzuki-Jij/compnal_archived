@@ -349,7 +349,7 @@ public:
       const int dim_onsite = 2*magnitude_spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
       for (int row = 1; row < dim_onsite; ++row) {
-         matrix.val.push_back(std::sqrtl((magnitude_spin + 1)*2.0*row - row*(row + 1)));
+         matrix.val.push_back(std::sqrt((magnitude_spin + 1)*2.0*row - row*(row + 1)));
          matrix.col.push_back(row);
          matrix.row[row] = matrix.col.size();
       }
@@ -364,7 +364,7 @@ public:
       const int dim_onsite = 2*magnitude_spin + 1;
       CRS matrix(dim_onsite, dim_onsite);
       for (int row = 1; row < dim_onsite; ++row) {
-         matrix.val.push_back(std::sqrtl((magnitude_spin + 1)*2.0*row - row*(row + 1)));
+         matrix.val.push_back(std::sqrt((magnitude_spin + 1)*2.0*row - row*(row + 1)));
          matrix.col.push_back(row - 1);
          matrix.row[row + 1] = matrix.col.size();
       }

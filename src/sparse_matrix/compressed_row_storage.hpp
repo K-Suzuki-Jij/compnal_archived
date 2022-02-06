@@ -29,21 +29,39 @@
 namespace compnal {
 namespace sparse_matrix {
 
+//! @brief Enumerated type to represent Fermion or not.
 enum CRSTag {
+   
+   //! @brief No taged.
    NONE = 0,
-   FERMION = 1
+   
+   //! @brief Fermionic operator.
+   FERMION = 1,
+   
+   //! @brief Bosonic operator.
+   BOSON = 2,
+   
+   //! @brief Sum of Fermion and Boson.
+   MIX = 3
 };
 
+//! @brief Sparse matrix classs (Compressed Row Strage: CRS).
+//! @tparam RealType Type of real values.
 template<typename RealType>
 struct CRS {
-   
+   //------------------------------------------------------------------
+   //----------------------Public Member Variables---------------------
+   //------------------------------------------------------------------
    std::int64_t row_dim = 0;
    std::int64_t col_dim = 0;
    std::vector<std::int64_t> row;
    std::vector<std::int64_t> col;
    std::vector<RealType> val;
    CRSTag tag = CRSTag::NONE;
-   
+
+   //------------------------------------------------------------------
+   //---------------------------Constructors---------------------------
+   //------------------------------------------------------------------
    CRS(const std::int64_t row_dim_in = 0, const std::int64_t col_dim_in = 0, const CRSTag tag_in = CRSTag::NONE) {
       this->row_dim = row_dim_in;
       this->col_dim = col_dim_in;
@@ -84,11 +102,10 @@ struct CRS {
       Assign(matrix);
       return *this;
    }
-   
-   void UpdateRow() {
-      this->row.push_back(this->col.size());
-   }
-   
+      
+   //------------------------------------------------------------------
+   //----------------------Public Member Functions---------------------
+   //------------------------------------------------------------------
    void Assign(const CRS &matrix) {
       this->row_dim = matrix.row_dim;
       this->col_dim = matrix.col_dim;
@@ -126,21 +143,7 @@ struct CRS {
          }
       }
    }
-   
-   CRS MultiplyByScalar(const RealType coeef) const {
-      if (coeef == 0.0) {
-         return CRS(this->row_dim, this->col_dim, this->tag);
-      }
-      else {
-         CRS m = *this;
-#pragma omp parallel for
-         for (std::size_t i = 0; i < m.col.size(); ++i) {
-            m.val[i] *= coeef;
-         }
-         return m;
-      }
-   }
-   
+      
    void DiagonalScaling(const RealType diag_add) {
       if (this->row_dim != this->col_dim) {
          std::stringstream ss;
@@ -159,13 +162,10 @@ struct CRS {
             }
          }
          if (flag) {
-#pragma omp critical
-            {
-               std::stringstream ss;
-               ss << "Error in " << __func__ << std::endl;
-               ss << "Some of the diagonal components are not registered." << std::endl;
-               throw std::runtime_error(ss.str());
-            }
+            std::stringstream ss;
+            ss << "Error in " << __func__ << std::endl;
+            ss << "Some of the diagonal components are not registered." << std::endl;
+            throw std::runtime_error(ss.str());
          }
       }
    }
@@ -189,7 +189,7 @@ struct CRS {
       this->row.push_back(0);
       this->tag = CRSTag::NONE;
    }
-   
+      
    void SortCol() {
 #pragma omp parallel for schedule (guided)
       for (std::int64_t i = 0; i < this->row_dim; ++i) {
@@ -249,120 +249,10 @@ struct CRS {
    
 };
 
-//Operator overloading
-template<typename RealType>
-CRS<RealType> operator+(const CRS<RealType> &lhs, const CRS<RealType> &rhs) {
-   return CalculateMatrixMatrixSum(1.0, lhs, 1.0, rhs);
-}
-
-template<typename RealType>
-CRS<RealType> operator-(const CRS<RealType> &lhs, const CRS<RealType> &rhs) {
-   return CalculateMatrixMatrixSum(1.0, lhs, -1.0, rhs);
-}
-
-template<typename RealType>
-CRS<RealType> operator*(const CRS<RealType> &lhs, const CRS<RealType> &rhs) {
-   return CalculateMatrixMatrixProduct(1.0, lhs, 1.0, rhs);
-}
-
-template<typename RealType>
-CRS<RealType> operator*(const RealType &lhs, const CRS<RealType> &rhs) {
-   return rhs.MultiplyByScalar(lhs);
-}
-
-template<typename RealType>
-CRS<RealType> operator*(const CRS<RealType> &lhs, const RealType &rhs) {
-   return lhs.MultiplyByScalar(rhs);
-}
-
-template<typename RealType>
-bool operator==(const CRS<RealType> &lhs, const CRS<RealType> &rhs) {
-   if (lhs.row_dim != rhs.row_dim) {
-      return false;
-   }
-   if (lhs.col_dim != rhs.col_dim) {
-      return false;
-   }
-   if (lhs.row.size() != rhs.row.size()) {
-      return false;
-   }
-   if (lhs.tag != rhs.tag) {
-      return false;
-   }
-   if (lhs.col.size() != rhs.col.size()) {
-      return false;
-   }
-   if (lhs.val.size() != rhs.val.size()) {
-      return false;
-   }
-   for (std::size_t i = 0; i < lhs.row.size(); ++i) {
-      if (lhs.row[i] != rhs.row[i]) {
-         return false;
-      }
-   }
-   for (std::size_t i = 0; i < lhs.col.size(); ++i) {
-      if (lhs.col[i] != rhs.col[i]) {
-         return false;
-      }
-   }
-   for (std::size_t i = 0; i < lhs.val.size(); ++i) {
-      if (lhs.val[i] != rhs.val[i]) {
-         return false;
-      }
-   }
-   return true;
-}
-
-template<typename RealType>
-bool operator!=(const CRS<RealType> &lhs, const CRS<RealType> &rhs) {
-   return !(lhs == rhs);
-}
-
-template<typename RealType>
-void CalculateTransposedMatrix(CRS<RealType> *matrix_out, const CRS<RealType> &matrix_in) {
-   
-   std::vector<std::int64_t> row_count(matrix_in.row_dim);
-   matrix_out->Clear();
-   for (std::int64_t i = 0; i < matrix_in.col_dim; ++i) {
-      for (std::int64_t j = 0; j < matrix_in.row_dim; ++j) {
-         const std::int64_t row = matrix_in.row[j] + row_count[j];
-         if (row < matrix_in.row[j + 1] && matrix_in.col[row] == i) {
-            matrix_out->val.push_back(matrix_in.val[row]);
-            matrix_out->col.push_back(j);
-            row_count[j]++;
-         }
-      }
-      matrix_out->row.push_back(matrix_out->col.size());
-   }
-   matrix_out->row_dim = matrix_in.col_dim;
-   matrix_out->col_dim = matrix_in.row_dim;
-   matrix_out->tag     = matrix_in.tag;
-}
-
-
-template<typename RealType>
-CRS<RealType> CalculateTransposedMatrix(const CRS<RealType> &matrix_in) {
-   CRS<RealType> matrix_out;
-   CalculateTransposedMatrix(&matrix_out, matrix_in);
-   return matrix_out;
-}
-
-template<typename RealType>
-CRS<RealType> CalculateMatrixMatrixProduct(const RealType coeef_1,
-                                           const CRS<RealType> &matrix_1,
-                                           const RealType coeef_2,
-                                           const CRS<RealType> &matrix_2) {
-   CRS<RealType> m;
-   CalculateMatrixMatrixProduct(&m, coeef_1, matrix_1, coeef_2, matrix_2);
-   return m;
-}
-
-template<typename RealType>
-void CalculateMatrixMatrixProduct(CRS<RealType> *matrix_out,
-                                  const RealType coeef_1,
-                                  const CRS<RealType> &matrix_1,
-                                  const RealType coeef_2,
-                                  const CRS<RealType> &matrix_2) {
+template<typename T1, typename T2, typename T3>
+CRS<decltype(T1{0}*T2{0}*T3{0})> CalculateMatrixMatrixProduct(const T1 coeef_1,
+                                                              const CRS<T2> &matrix_1,
+                                                              const CRS<T3> &matrix_2) {
    
    if (matrix_1.col_dim != matrix_2.row_dim) {
       std::stringstream ss;
@@ -372,11 +262,10 @@ void CalculateMatrixMatrixProduct(CRS<RealType> *matrix_out,
       throw std::runtime_error(ss.str());
    }
    
-   matrix_out->Clear();
-   matrix_out->row.resize(matrix_1.row_dim + 1);
+   CRS<decltype(T1{0}*T2{0}*T3{0})> matrix_out(matrix_1.row_dim, matrix_2.col_dim);
    
-   std::vector<RealType> temp_v1(matrix_1.col_dim, 0.0);
-   std::vector<RealType> temp_v2(matrix_2.col_dim, 0.0);
+   std::vector<decltype(T1{0}*T2{0})>       temp_v1(matrix_1.col_dim, 0.0);
+   std::vector<decltype(T1{0}*T2{0}*T3{0})> temp_v2(matrix_2.col_dim, 0.0);
    
    for (std::int64_t i = 0; i < matrix_1.row_dim; ++i) {
       for (std::int64_t j = matrix_1.row[i]; j < matrix_1.row[i + 1]; ++j) {
@@ -384,17 +273,17 @@ void CalculateMatrixMatrixProduct(CRS<RealType> *matrix_out,
       }
       for (std::int64_t j = 0; j < matrix_1.col_dim; ++j) {
          for (std::int64_t k = matrix_2.row[j]; k < matrix_2.row[j + 1]; ++k) {
-            temp_v2[matrix_2.col[k]] += temp_v1[j]*coeef_2*matrix_2.val[k];
+            temp_v2[matrix_2.col[k]] += temp_v1[j]*matrix_2.val[k];
          }
       }
       for (std::int64_t j = 0; j < matrix_2.col_dim; ++j) {
          if (std::abs(temp_v2[j]) > 0.0) {
-            matrix_out->val.push_back(temp_v2[j]);
-            matrix_out->col.push_back(j);
+            matrix_out.val.push_back(temp_v2[j]);
+            matrix_out.col.push_back(j);
          }
       }
       
-      matrix_out->row[i + 1] = matrix_out->col.size();
+      matrix_out.row[i + 1] = matrix_out->col.size();
       
       for (std::int64_t j = matrix_1.row[i]; j < matrix_1.row[i + 1]; ++j) {
          temp_v1[matrix_1.col[j]] = 0.0;
@@ -404,36 +293,58 @@ void CalculateMatrixMatrixProduct(CRS<RealType> *matrix_out,
       }
    }
    
-   matrix_out->row_dim = matrix_1.row_dim;
-   matrix_out->col_dim = matrix_2.col_dim;
-   
-   if (matrix_1.tag == matrix_2.tag) {
-      matrix_out->tag = CRSTag::NONE;
+   if (matrix_1.tag == CRSTag::NONE) {
+      matrix_out.tag = matrix_2.tag;
+   }
+   else if (matrix_1.tag == CRSTag::FERMION) {
+      if (matrix_2.tag == CRSTag::NONE || matrix_2.tag == CRSTag::BOSON) {
+         matrix_out.tag = CRSTag::FERMION;
+      }
+      else if (matrix_2.tag == CRSTag::FERMION) {
+         matrix_out.tag = CRSTag::BOSON;
+      }
+      else if (matrix_2.tag == CRSTag::MIX) {
+         matrix_out.tag = CRSTag::MIX;
+      }
+      else {
+         std::stringstream ss;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+         ss << "Unknown CRSTag detected.";
+         throw std::runtime_error(ss.str());
+      }
+   }
+   else if (matrix_1.tag == CRSTag::BOSON) {
+      if (matrix_2.tag == CRSTag::FERMION || matrix_2.tag == CRSTag::BOSON || matrix_2.tag == CRSTag::MIX) {
+         matrix_out.tag = matrix_2.tag;
+      }
+      else if (matrix_2.tag == CRSTag::NONE) {
+         matrix_out.tag = CRSTag::BOSON;
+      }
+      else {
+         std::stringstream ss;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+         ss << "Unknown CRSTag detected.";
+         throw std::runtime_error(ss.str());
+      }
+   }
+   else if (matrix_1.tag == CRSTag::MIX) {
+      matrix_out.tag = CRSTag::MIX;
    }
    else {
-      matrix_out->tag = CRSTag::FERMION;
+      std::stringstream ss;
+      ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+      ss << "Unknown CRSTag detected.";
+      throw std::runtime_error(ss.str());
    }
    
+   return matrix_out;
 }
 
-template<typename RealType>
-CRS<RealType> CalculateMatrixMatrixSum(const RealType coeef_1,
-                                       const CRS<RealType> &matrix_1,
-                                       const RealType coeef_2,
-                                       const CRS<RealType> &matrix_2) {
-   
-   CRS<RealType> m;
-   CalculateMatrixMatrixSum(&m, coeef_1, matrix_1, coeef_2, matrix_2);
-   return m;
-   
-}
-
-template<typename RealType>
-void CalculateMatrixMatrixSum(CRS<RealType> *matrix_out,
-                              const RealType coeef_1,
-                              const CRS<RealType> &matrix_1,
-                              const RealType coeef_2,
-                              const CRS<RealType> &matrix_2) {
+template<typename T1, typename T2, typename T3, typename T4>
+CRS<decltype(T1{0}+T2{0}+T3{0}+T4{0})> CalculateMatrixMatrixSum(const T1 coeef_1,
+                                                                const CRS<T2> &matrix_1,
+                                                                const T3 coeef_2,
+                                                                const CRS<T4> &matrix_2) {
    
    if (matrix_1.row_dim != matrix_2.row_dim || matrix_1.col_dim != matrix_2.col_dim) {
       std::stringstream ss;
@@ -443,15 +354,9 @@ void CalculateMatrixMatrixSum(CRS<RealType> *matrix_out,
       ss << "matrix_2.row_dim = " << matrix_2.row_dim << ", matrix_2.col_dim = " << matrix_2.col_dim << std::endl;
       throw std::runtime_error(ss.str());
    }
+      
+   CRS<decltype(T1{0}+T2{0}+T3{0}+T4{0})> matrix_out(matrix_1.row_dim, matrix_1.col_dim);
    
-   if (matrix_1.tag != matrix_2.tag) {
-      std::stringstream ss;
-      ss << "Error in " << __func__ << std::endl;
-      ss << "The summation of bosonic and fermionic operator cannot be defined." << std::endl;
-      throw std::runtime_error(ss.str());
-   }
-   
-   *matrix_out = CRS<RealType>(matrix_1.row_dim, matrix_1.col_dim);
    for (std::int64_t i = 0; i < matrix_1.row_dim; ++i) {
       
       int check = 0;
@@ -468,21 +373,21 @@ void CalculateMatrixMatrixSum(CRS<RealType> *matrix_out,
       
       if (m1_count != 0 && m2_count == 0) {
          for (std::int64_t j = row_lower_1; j < row_upper_1; ++j) {
-            matrix_out->val.push_back(coeef_1*matrix_1.val[j]);
-            matrix_out->col.push_back(matrix_1.col[j]);
+            matrix_out.val.push_back(coeef_1*matrix_1.val[j]);
+            matrix_out.col.push_back(matrix_1.col[j]);
          }
       }
       else if (m1_count == 0 && m2_count != 0) {
          for (std::int64_t j = row_lower_2; j < row_upper_2; ++j) {
-            matrix_out->val.push_back(coeef_2*matrix_2.val[j]);
-            matrix_out->col.push_back(matrix_2.col[j]);
+            matrix_out.val.push_back(coeef_2*matrix_2.val[j]);
+            matrix_out.col.push_back(matrix_2.col[j]);
          }
       }
       else if (m1_count != 0 && m2_count != 0) {
          for (std::int64_t j = 0; j < m1_count + m2_count; ++j) {
             if (matrix_1.col[row_lower_1 + count_1] < matrix_2.col[row_lower_2 + count_2]) {
-               matrix_out->val.push_back(coeef_1*matrix_1.val[row_lower_1 + count_1]);
-               matrix_out->col.push_back(matrix_1.col[row_lower_1 + count_1]);
+               matrix_out.val.push_back(coeef_1*matrix_1.val[row_lower_1 + count_1]);
+               matrix_out.col.push_back(matrix_1.col[row_lower_1 + count_1]);
                count_1++;
                if (row_lower_1 + count_1 == row_upper_1) {
                   check = 1;
@@ -490,10 +395,10 @@ void CalculateMatrixMatrixSum(CRS<RealType> *matrix_out,
                }
             }
             else if (matrix_1.col[row_lower_1 + count_1] == matrix_2.col[row_lower_2 + count_2]) {
-               const RealType val = coeef_1*matrix_1.val[row_lower_1 + count_1] + coeef_2*matrix_2.val[row_lower_2 + count_2];
+               const auto val = coeef_1*matrix_1.val[row_lower_1 + count_1] + coeef_2*matrix_2.val[row_lower_2 + count_2];
                if (std::abs(val) > 0.0) {
-                  matrix_out->val.push_back(val);
-                  matrix_out->col.push_back(matrix_1.col[row_lower_1 + count_1]);
+                  matrix_out.val.push_back(val);
+                  matrix_out.col.push_back(matrix_1.col[row_lower_1 + count_1]);
                   count_1++;
                   count_2++;
                   const std::int64_t temp_count_1 = row_lower_1 + count_1;
@@ -531,8 +436,8 @@ void CalculateMatrixMatrixSum(CRS<RealType> *matrix_out,
                }
             }
             else {
-               matrix_out->val.push_back(coeef_2*matrix_2.val[row_lower_2 + count_2]);
-               matrix_out->col.push_back(matrix_2.col[row_lower_2 + count_2]);
+               matrix_out.val.push_back(coeef_2*matrix_2.val[row_lower_2 + count_2]);
+               matrix_out.col.push_back(matrix_2.col[row_lower_2 + count_2]);
                count_2++;
                if (row_lower_2 + count_2 == row_upper_2) {
                   check = 2;
@@ -542,27 +447,178 @@ void CalculateMatrixMatrixSum(CRS<RealType> *matrix_out,
          }
          if (check == 1) {
             for (std::int64_t j = row_lower_2 + count_2; j < row_upper_2; ++j) {
-               matrix_out->val.push_back(coeef_2*matrix_2.val[j]);
-               matrix_out->col.push_back(matrix_2.col[j]);
+               matrix_out.val.push_back(coeef_2*matrix_2.val[j]);
+               matrix_out.col.push_back(matrix_2.col[j]);
             }
          }
          else if (check == 2) {
             for (std::int64_t j = row_lower_1 + count_1; j < row_upper_1; ++j) {
-               matrix_out->val.push_back(coeef_1*matrix_1.val[j]);
-               matrix_out->col.push_back(matrix_1.col[j]);
+               matrix_out.val.push_back(coeef_1*matrix_1.val[j]);
+               matrix_out.col.push_back(matrix_1.col[j]);
             }
          }
       }
-      matrix_out->row[i + 1] = matrix_out->col.size();
+      matrix_out.row[i + 1] = matrix_out.col.size();
    }
    
-   matrix_out->tag = matrix_1.tag;
+   matrix_out.tag = matrix_1.tag;
+   return matrix_out;
+}
+
+template<typename T1, typename T2>
+CRS<decltype(T1{0}*T2{0})> CalculateScalarMatrixProduct(const T1 lhs, const CRS<T2> &rhs) {
    
+   CRS<decltype(T1{0}*T2{0})> out(rhs.row_dim, rhs.col_dim, rhs.tag);
+   out.col.resize(rhs.col.size());
+   out.val.resize(rhs.val.size());
+   
+#pragma omp parallel for
+   for (std::size_t i = 0; i < rhs.col.size(); ++i) {
+      out.col[i] = rhs.col[i];
+      out.val[i] = lhs*rhs.val[i];
+   }
+   
+#pragma omp parallel for
+   for (std::int64_t i = 1; i <= rhs.row_dim; ++i) {
+      out.row[i] = rhs.row[i];
+   }
+   return out;
+}
+
+template<typename RealType>
+CRS<RealType> CalculateTransposedMatrix(const CRS<RealType> &matrix_in) {
+
+   CRS<RealType> matrix_out(matrix_in.col_dim, matrix_in.row_dim, matrix_in.tag);
+   
+   std::vector<std::int64_t> row_count(matrix_in.row_dim);
+   for (std::int64_t i = 0; i < matrix_in.col_dim; ++i) {
+      for (std::int64_t j = 0; j < matrix_in.row_dim; ++j) {
+         const std::int64_t row = matrix_in.row[j] + row_count[j];
+         if (row < matrix_in.row[j + 1] && matrix_in.col[row] == i) {
+            matrix_out.val.push_back(matrix_in.val[row]);
+            matrix_out.col.push_back(j);
+            row_count[j]++;
+         }
+      }
+      matrix_out.row[i + 1] = matrix_out.col.size();
+   }
+   
+   return matrix_out;
+}
+
+//------------------------------------------------------------------
+//----------------------Operator overloading------------------------
+//------------------------------------------------------------------
+//! @brief Operator overloading: addition operator.
+//! @tparam T1 Value type of the left-hand side.
+//! @tparam T2 Value type of the right-hand side.
+//! @param lhs The value of the left-hand side.
+//! @param rhs The value of the right-hand side.
+template<typename T1, typename T2>
+CRS<decltype(T1{0}+T2{0})> operator+(const CRS<T1> &lhs, const CRS<T2> &rhs) {
+   return CalculateMatrixMatrixSum(T1{1}, lhs, T2{1}, rhs);
+}
+
+//! @brief Operator overloading: subtraction operator.
+//! @tparam T1 Value type of the left-hand side.
+//! @tparam T2 Value type of the right-hand side.
+//! @param lhs The value of the left-hand side.
+//! @param rhs The value of the right-hand side.
+template<typename T1, typename T2>
+CRS<decltype(T1{0}-T2{0})> operator-(const CRS<T1> &lhs, const CRS<T2> &rhs) {
+   return CalculateMatrixMatrixSum(T1{1}, lhs, T2{-1}, rhs);
+}
+
+//! @brief Operator overloading: multiplication operator.
+//! @tparam T1 Value type of the left-hand side.
+//! @tparam T2 Value type of the right-hand side.
+//! @param lhs The value of the left-hand side.
+//! @param rhs The value of the right-hand side.
+template<typename T1, typename T2>
+CRS<decltype(T1{0}*T2{0})> operator*(const CRS<T1> &lhs, const CRS<T2> &rhs) {
+   return CalculateMatrixMatrixProduct(T1{1}, lhs, rhs);
+}
+
+//! @brief Operator overloading: multiplication operator.
+//! @tparam T1 Value type of the left-hand side.
+//! @tparam T2 Value type of the right-hand side.
+//! @param lhs The value of the left-hand side.
+//! @param rhs The value of the right-hand side.
+template<typename T1, typename T2>
+CRS<decltype(T1{0}*T2{0})> operator*(const T1 lhs, const CRS<T2> &rhs) {
+   return CalculateScalarMatrixProduct(lhs, rhs);
+}
+
+//! @brief Operator overloading: multiplication operator.
+//! @tparam T1 Value type of the left-hand side.
+//! @tparam T2 Value type of the right-hand side.
+//! @param lhs The value of the left-hand side.
+//! @param rhs The value of the right-hand side.
+template<typename T1, typename T2>
+CRS<decltype(T1{0}*T2{0})> operator*(const CRS<T1> &lhs, const T2 rhs) {
+   return CalculateScalarMatrixProduct(rhs, lhs);
+}
+
+//! @brief Operator overloading: equality operator.
+//! @tparam T1 Value type of the left-hand side.
+//! @tparam T2 Value type of the right-hand side.
+//! @param lhs The value of the left-hand side.
+//! @param rhs The value of the right-hand side.
+template<typename T1, typename T2>
+bool operator==(const CRS<T1> &lhs, const CRS<T2> &rhs) {
+   if (lhs.row_dim != rhs.row_dim) {
+      return false;
+   }
+   if (lhs.col_dim != rhs.col_dim) {
+      return false;
+   }
+   if (lhs.row.size() != rhs.row.size()) {
+      return false;
+   }
+   if (lhs.tag != rhs.tag) {
+      return false;
+   }
+   if (lhs.col.size() != rhs.col.size()) {
+      return false;
+   }
+   if (lhs.val.size() != rhs.val.size()) {
+      return false;
+   }
+   for (std::size_t i = 0; i < lhs.row.size(); ++i) {
+      if (lhs.row[i] != rhs.row[i]) {
+         return false;
+      }
+   }
+   for (std::size_t i = 0; i < lhs.col.size(); ++i) {
+      if (lhs.col[i] != rhs.col[i]) {
+         return false;
+      }
+   }
+   for (std::size_t i = 0; i < lhs.val.size(); ++i) {
+      if (lhs.val[i] != rhs.val[i]) {
+         return false;
+      }
+   }
+   return true;
+}
+
+//! @brief Operator overloading: inequality operator.
+//! @tparam T1 Value type of the left-hand side.
+//! @tparam T2 Value type of the right-hand side.
+//! @param lhs The value of the left-hand side.
+//! @param rhs The value of the right-hand side.
+template<typename T1, typename T2>
+bool operator!=(const CRS<T1> &lhs, const CRS<T2> &rhs) {
+   return !(lhs == rhs);
 }
 
 //------------------------------------------------------------------
 //----------------Operator overloading: I/O Stream------------------
 //------------------------------------------------------------------
+//! @brief Operator overloading: output operator.
+//! @tparam RealType Value type CRS matrix.
+//! @param os Ostream object.
+//! @param m The matrix as CRS form.
 template<typename RealType>
 std::ostream& operator<<(std::ostream &os, const CRS<RealType> &m) {
    os << std::fixed;

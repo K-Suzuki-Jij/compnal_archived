@@ -87,138 +87,109 @@ private:
 //-------------Operator overloading: Addition Operator--------------
 //------------------------------------------------------------------
 //! @brief Operator overloading: addition operator.
-//! @tparam ValueType Value type.
-//! @tparam ReturnType Return type.
+//! @tparam ValueType Value type of the left-hand side.
 //! @param lhs The value of the left-hand side.
 //! @param rhs The value of the right-hand side.
-template<typename ValueType, typename ReturnType = ValueType>
-ReturnType operator+(const ValueType lhs, const HalfInt &rhs) {
-   return static_cast<ReturnType>(lhs + 0.5*rhs.GetInteger());
+template<typename ValueType>
+auto operator+(const ValueType lhs, const HalfInt &rhs) {
+   if constexpr (std::is_integral<ValueType>::value) {
+      return HalfInt{lhs + 0.5*rhs.GetInteger()};
+   }
+   else {
+      return ValueType{lhs + 0.5*rhs.GetInteger()};
+   }
 }
-
-template<> HalfInt operator+<char, HalfInt>(const char, const HalfInt&);
-template<> HalfInt operator+<int, HalfInt>(const int, const HalfInt&);
-template<> HalfInt operator+<long, HalfInt>(const long, const HalfInt&);
-template<> HalfInt operator+<long long, HalfInt>(const long long, const HalfInt&);
-template<> HalfInt operator+<unsigned char, HalfInt>(const unsigned char, const HalfInt&);
-template<> HalfInt operator+<unsigned int, HalfInt>(const unsigned int, const HalfInt&);
-template<> HalfInt operator+<unsigned long, HalfInt>(const unsigned long, const HalfInt&);
-template<> HalfInt operator+<unsigned long long, HalfInt>(const unsigned long long, const HalfInt&);
 
 //! @brief Operator overloading: addition operator.
-//! @tparam ValueType Value type.
-//! @tparam ReturnType Return type.
+//! @tparam ValueType Value type of the left-hand side.
 //! @param lhs The value of the left-hand side.
 //! @param rhs The value of the right-hand side.
-template<typename ValueType, typename ReturnType = ValueType>
-ReturnType operator+(const HalfInt &lhs, const ValueType rhs) {
-   return static_cast<ReturnType>(0.5*lhs.GetInteger() + rhs);
+template<typename ValueType>
+auto operator+(const HalfInt &lhs, const ValueType rhs) {
+   if constexpr (std::is_integral<ValueType>::value) {
+      return HalfInt{0.5*lhs.GetInteger() + rhs};
+   }
+   else {
+      return ValueType{0.5*lhs.GetInteger() + rhs};
+   }
 }
-
-template<> HalfInt operator+<char, HalfInt>(const HalfInt&, const char);
-template<> HalfInt operator+<int, HalfInt>(const HalfInt&, const int);
-template<> HalfInt operator+<long, HalfInt>(const HalfInt&, const long);
-template<> HalfInt operator+<long long, HalfInt>(const HalfInt&, const long long);
-template<> HalfInt operator+<unsigned char, HalfInt>(const HalfInt&, const unsigned char);
-template<> HalfInt operator+<unsigned int, HalfInt>(const HalfInt&, const unsigned int);
-template<> HalfInt operator+<unsigned long, HalfInt>(const HalfInt&, const unsigned long);
-template<> HalfInt operator+<unsigned long long, HalfInt>(const HalfInt&, const unsigned long long);
 
 //! @brief Operator overloading: addition operator.
 //! @param lhs The value of the left-hand side.
 //! @param rhs The value of the right-hand side.
 HalfInt operator+(const HalfInt &lhs, const HalfInt &rhs) {
-   return HalfInt(0.5*(lhs.GetInteger() + rhs.GetInteger()));
+   return HalfInt{0.5*(lhs.GetInteger() + rhs.GetInteger())};
 }
 
 //------------------------------------------------------------------
 //-----------Operator overloading: Subtraction Operator-------------
 //------------------------------------------------------------------
 //! @brief Operator overloading: subtraction operator.
-//! @tparam ValueType Value type.
-//! @tparam ReturnType Return type.
+//! @tparam ValueType Value type of the left-hand side.
 //! @param lhs The value of the left-hand side.
 //! @param rhs The value of the right-hand side.
-template<typename ValueType, typename ReturnType = ValueType>
-ReturnType operator-(const ValueType lhs, const HalfInt &rhs) {
-   return static_cast<ReturnType>(lhs - 0.5*rhs.GetInteger());
+template<typename ValueType>
+auto operator-(const ValueType lhs, const HalfInt &rhs) {
+   if constexpr (std::is_integral<ValueType>::value) {
+      return HalfInt{lhs - 0.5*rhs.GetInteger()};
+   }
+   else {
+      return ValueType{lhs - 0.5*rhs.GetInteger()};
+   }
 }
 
-template<> HalfInt operator-<char, HalfInt>(const char, const HalfInt&);
-template<> HalfInt operator-<int, HalfInt>(const int, const HalfInt&);
-template<> HalfInt operator-<long, HalfInt>(const long, const HalfInt&);
-template<> HalfInt operator-<long long, HalfInt>(const long long, const HalfInt&);
-template<> HalfInt operator-<unsigned char, HalfInt>(const unsigned char, const HalfInt&);
-template<> HalfInt operator-<unsigned int, HalfInt>(const unsigned int, const HalfInt&);
-template<> HalfInt operator-<unsigned long, HalfInt>(const unsigned long, const HalfInt&);
-template<> HalfInt operator-<unsigned long long, HalfInt>(const unsigned long long, const HalfInt&);
 
 //! @brief Operator overloading: subtraction operator.
-//! @tparam ValueType Value type.
-//! @tparam ReturnType Return type.
+//! @tparam ValueType Value type of the left-hand side.
 //! @param lhs The value of the left-hand side.
 //! @param rhs The value of the right-hand side.
-template<typename ValueType, typename ReturnType = ValueType>
-ReturnType operator-(const HalfInt &lhs, const ValueType rhs) {
-   return static_cast<ReturnType>(0.5*lhs.GetInteger() - rhs);
+template<typename ValueType>
+auto operator-(const HalfInt &lhs, const ValueType rhs) {
+   if constexpr (std::is_integral<ValueType>::value) {
+      return HalfInt{0.5*lhs.GetInteger() - rhs};
+   }
+   else {
+      return ValueType{0.5*lhs.GetInteger() - rhs};
+   }
 }
-
-template<> HalfInt operator-<char, HalfInt>(const HalfInt&, const char);
-template<> HalfInt operator-<int, HalfInt>(const HalfInt&, const int);
-template<> HalfInt operator-<long, HalfInt>(const HalfInt&, const long);
-template<> HalfInt operator-<long long, HalfInt>(const HalfInt&, const long long);
-template<> HalfInt operator-<unsigned char, HalfInt>(const HalfInt&, const unsigned char);
-template<> HalfInt operator-<unsigned int, HalfInt>(const HalfInt&, const unsigned int);
-template<> HalfInt operator-<unsigned long, HalfInt>(const HalfInt&, const unsigned long);
-template<> HalfInt operator-<unsigned long long, HalfInt>(const HalfInt&, const unsigned long long);
 
 //! @brief Operator overloading: subtraction operator.
 //! @param lhs The value of the left-hand side.
 //! @param rhs The value of the right-hand side.
 HalfInt operator-(const HalfInt &lhs, const HalfInt &rhs) {
-   return HalfInt(0.5*(lhs.GetInteger() - rhs.GetInteger()));
+   return HalfInt{0.5*(lhs.GetInteger() - rhs.GetInteger())};
 }
 
 //------------------------------------------------------------------
 //----------Operator overloading: Multiplication Operator-----------
 //------------------------------------------------------------------
 //! @brief Operator overloading: multiplication operator.
-//! @tparam ValueType Value type.
-//! @tparam ReturnType Return type.
+//! @tparam ValueType Value type of the left-hand side.
 //! @param lhs The value of the left-hand side.
 //! @param rhs The value of the right-hand side.
-template<typename ValueType, typename ReturnType = ValueType>
-ReturnType operator*(const ValueType lhs, const HalfInt &rhs) {
-   return static_cast<ReturnType>(lhs*0.5*rhs.GetInteger());
+template<typename ValueType>
+auto operator*(const ValueType lhs, const HalfInt &rhs) {
+   if constexpr (std::is_integral<ValueType>::value) {
+      return HalfInt{lhs*0.5*rhs.GetInteger()};
+   }
+   else {
+      return ValueType{lhs*0.5*rhs.GetInteger()};
+   }
 }
-
-template<> HalfInt operator*<char, HalfInt>(const char, const HalfInt&);
-template<> HalfInt operator*<int, HalfInt>(const int, const HalfInt&);
-template<> HalfInt operator*<long, HalfInt>(const long, const HalfInt&);
-template<> HalfInt operator*<long long, HalfInt>(const long long, const HalfInt&);
-template<> HalfInt operator*<unsigned char, HalfInt>(const unsigned char, const HalfInt&);
-template<> HalfInt operator*<unsigned int, HalfInt>(const unsigned int, const HalfInt&);
-template<> HalfInt operator*<unsigned long, HalfInt>(const unsigned long, const HalfInt&);
-template<> HalfInt operator*<unsigned long long, HalfInt>(const unsigned long long, const HalfInt&);
 
 //! @brief Operator overloading: multiplication operator.
-//! @tparam ValueType Value type.
-//! @tparam ReturnType Return type.
+//! @tparam ValueType Value type of the left-hand side.
 //! @param lhs The value of the left-hand side.
 //! @param rhs The value of the right-hand side.
-template<typename ValueType, typename ReturnType = ValueType>
-ReturnType operator*(const HalfInt &lhs, const ValueType rhs) {
-   return 0.5*lhs.GetInteger()*rhs;
+template<typename ValueType>
+auto operator*(const HalfInt &lhs, const ValueType rhs) {
+   if constexpr (std::is_integral<ValueType>::value) {
+      return HalfInt{0.5*lhs.GetInteger()*rhs};
+   }
+   else {
+      return ValueType{0.5*lhs.GetInteger()*rhs};
+   }
 }
-
-template<> HalfInt operator*<char, HalfInt>(const HalfInt&, const char);
-template<> HalfInt operator*<int, HalfInt>(const HalfInt&, const int);
-template<> HalfInt operator*<long, HalfInt>(const HalfInt&, const long);
-template<> HalfInt operator*<long long, HalfInt>(const HalfInt&, const long long);
-template<> HalfInt operator*<unsigned char, HalfInt>(const HalfInt&, const unsigned char);
-template<> HalfInt operator*<unsigned int, HalfInt>(const HalfInt&, const unsigned int);
-template<> HalfInt operator*<unsigned long, HalfInt>(const HalfInt&, const unsigned long);
-template<> HalfInt operator*<unsigned long long, HalfInt>(const HalfInt&, const unsigned long long);
 
 //! @brief Operator overloading: multiplication operator.
 //! @param lhs The value of the left-hand side.
@@ -231,48 +202,38 @@ double operator*(const HalfInt &lhs, const HalfInt &rhs) {
 //-------------Operator overloading: Division Operator--------------
 //------------------------------------------------------------------
 //! @brief Operator overloading: division operator.
-//! @tparam ValueType Value type.
-//! @tparam ReturnType Return type.
+//! @tparam ValueType Value type of the left-hand side.
 //! @param lhs The value of the left-hand side.
 //! @param rhs The value of the right-hand side.
-template<typename ValueType, typename ReturnType = ValueType>
-ReturnType operator/(const ValueType lhs, const HalfInt &rhs) {
-   return static_cast<ReturnType>(lhs/(0.5*rhs.GetInteger()));
+template<typename ValueType>
+auto operator/(const ValueType lhs, const HalfInt &rhs) {
+   if constexpr (std::is_integral<ValueType>::value) {
+      return double{lhs/(0.5*rhs.GetInteger())};
+   }
+   else {
+      return ValueType{lhs/(0.5*rhs.GetInteger())};
+   }
 }
-
-template<> double operator/<char, double>(char, const HalfInt&);
-template<> double operator/<int, double>(int, const HalfInt&);
-template<> double operator/<long, double>(long, const HalfInt&);
-template<> double operator/<long long, double>(long long, const HalfInt&);
-template<> double operator/<unsigned char, double>(unsigned char, const HalfInt&);
-template<> double operator/<unsigned int, double>(unsigned int, const HalfInt&);
-template<> double operator/<unsigned long, double>(unsigned long, const HalfInt&);
-template<> double operator/<unsigned long long, double>(unsigned long long, const HalfInt&);
 
 //! @brief Operator overloading: division operator.
-//! @tparam ValueType Value type.
-//! @tparam ReturnType Return type.
+//! @tparam ValueType Value type of the left-hand side.
 //! @param lhs The value of the left-hand side.
 //! @param rhs The value of the right-hand side.
-template<typename ValueType, typename ReturnType = ValueType>
-ReturnType operator/(const HalfInt &lhs, const ValueType rhs) {
-   return static_cast<ReturnType>(0.5*lhs.GetInteger()/rhs);
+template<typename ValueType>
+auto operator/(const HalfInt &lhs, const ValueType rhs) {
+   if constexpr (std::is_integral<ValueType>::value) {
+      return double{0.5*lhs.GetInteger()/rhs};
+   }
+   else {
+      return ValueType{0.5*lhs.GetInteger()/rhs};
+   }
 }
-
-template<> double operator/<char, double>(const HalfInt&, char);
-template<> double operator/<int, double>(const HalfInt&, int);
-template<> double operator/<long, double>(const HalfInt&, long);
-template<> double operator/<long long, double>(const HalfInt&, long long);
-template<> double operator/<unsigned char, double>(const HalfInt&, unsigned char);
-template<> double operator/<unsigned int, double>(const HalfInt&, unsigned int);
-template<> double operator/<unsigned long, double>(const HalfInt&, unsigned long);
-template<> double operator/<unsigned long long, double>(const HalfInt&, unsigned long long);
 
 //! @brief Operator overloading: division operator.
 //! @param lhs The value of the left-hand side.
 //! @param rhs The value of the right-hand side.
 double operator/(const HalfInt &lhs, const HalfInt &rhs) {
-   return static_cast<double>(lhs.GetInteger()/rhs.GetInteger());
+   return static_cast<double>(lhs.GetInteger())/rhs.GetInteger();
 }
 
 //------------------------------------------------------------------

@@ -43,7 +43,7 @@ TEST(ModelBaseU1Spin, ConstructorDefault) {
    EXPECT_EQ(model.GetOnsiteOperatoriSy(), ref_isy);
    EXPECT_EQ(model.GetOnsiteOperatorSz() , ref_sz );
 }
-/*
+
 TEST(ModelBaseU1Spin, ConstructorSystemSize) {
    model::BaseU1Spin<long double> model(1);
    
