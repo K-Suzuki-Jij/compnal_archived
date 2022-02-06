@@ -2,6 +2,11 @@
 \label{structcompnal_1_1sparse__matrix_1_1_c_r_s}\index{compnal::sparse\_matrix::CRS$<$ RealType $>$@{compnal::sparse\_matrix::CRS$<$ RealType $>$}}
 
 
+Sparse matrix classs (Compressed Row Strage\+: \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}).  
+
+
+
+
 {\ttfamily \#include $<$compressed\+\_\+row\+\_\+storage.\+hpp$>$}
 
 \doxysubsection*{Public Member Functions}
@@ -15,13 +20,9 @@
 \item 
 \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \& \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af3b2dc61ff6a6eb35e65e879cdc08ee4}{operator=}} (const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&matrix) \&
 \item 
-void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ab9b4e491715df3d7826086bb3f9a2e54}{Update\+Row}} ()
-\item 
 void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ae9787c189eb909874211a098ba453ed7}{Assign}} (const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&matrix)
 \item 
 void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a818173aa562d5c541552627b1570244f}{Multiply\+By\+Scalar}} (const Real\+Type coeef)
-\item 
-\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a6050c1888c1b37645e19d7379c19c4ad}{Multiply\+By\+Scalar}} (const Real\+Type coeef) const
 \item 
 void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad64678d1387884cbf00aefd936ee3f36}{Diagonal\+Scaling}} (const Real\+Type diag\+\_\+add)
 \item 
@@ -31,7 +32,7 @@ void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ac196a07cc2959d2
 \item 
 void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a461f3df023c6215768aca60b9743fe0c}{Sort\+Col}} ()
 \item 
-void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4bec11205690c0b77b91e262356d49e7}{Print\+Matrix}} (const std\+::string display\+\_\+name=\char`\"{}Matrix\char`\"{}) const
+void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a630ce4a8d7feb26bf33521bbe35f12c2}{Print}} (const std\+::string display\+\_\+name=\char`\"{}Matrix\char`\"{}) const
 \item 
 void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a984f9042aade4c462eca059bb64ee346}{Print\+Info}} (const std\+::string display\+\_\+name=\char`\"{}Matrix\char`\"{}) const
 \item 
@@ -52,6 +53,18 @@ std\+::vector$<$ Real\+Type $>$ \mbox{\hyperlink{structcompnal_1_1sparse__matrix
 \item 
 \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dc}{CRSTag}} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a6e745b9eae6656c2210783e1e9d1d2b7}{tag}} = CRSTag\+::\+NONE
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Real\+Type$>$\newline
+struct compnal\+::sparse\+\_\+matrix\+::\+CRS$<$ Real\+Type $>$}
+Sparse matrix classs (Compressed Row Strage\+: \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}). 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Real\+Type} & Type of real values. \\
+\hline
+\end{DoxyTemplParams}
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
@@ -117,16 +130,9 @@ bool \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{compnal\+::spar
 \mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_c_r_s_a818173aa562d5c541552627b1570244f}\label{structcompnal_1_1sparse__matrix_1_1_c_r_s_a818173aa562d5c541552627b1570244f}} 
 \index{compnal::sparse\_matrix::CRS$<$ RealType $>$@{compnal::sparse\_matrix::CRS$<$ RealType $>$}!MultiplyByScalar@{MultiplyByScalar}}
 \index{MultiplyByScalar@{MultiplyByScalar}!compnal::sparse\_matrix::CRS$<$ RealType $>$@{compnal::sparse\_matrix::CRS$<$ RealType $>$}}
-\doxysubsubsection{\texorpdfstring{MultiplyByScalar()}{MultiplyByScalar()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+\doxysubsubsection{\texorpdfstring{MultiplyByScalar()}{MultiplyByScalar()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
 void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{compnal\+::sparse\+\_\+matrix\+::\+CRS}}$<$ Real\+Type $>$\+::\+Multiply\+By\+Scalar (\begin{DoxyParamCaption}\item[{const Real\+Type}]{coeef }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-\mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_c_r_s_a6050c1888c1b37645e19d7379c19c4ad}\label{structcompnal_1_1sparse__matrix_1_1_c_r_s_a6050c1888c1b37645e19d7379c19c4ad}} 
-\index{compnal::sparse\_matrix::CRS$<$ RealType $>$@{compnal::sparse\_matrix::CRS$<$ RealType $>$}!MultiplyByScalar@{MultiplyByScalar}}
-\index{MultiplyByScalar@{MultiplyByScalar}!compnal::sparse\_matrix::CRS$<$ RealType $>$@{compnal::sparse\_matrix::CRS$<$ RealType $>$}}
-\doxysubsubsection{\texorpdfstring{MultiplyByScalar()}{MultiplyByScalar()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{compnal\+::sparse\+\_\+matrix\+::\+CRS}}$<$ Real\+Type $>$\+::\+Multiply\+By\+Scalar (\begin{DoxyParamCaption}\item[{const Real\+Type}]{coeef }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_c_r_s_af3b2dc61ff6a6eb35e65e879cdc08ee4}\label{structcompnal_1_1sparse__matrix_1_1_c_r_s_af3b2dc61ff6a6eb35e65e879cdc08ee4}} 
 \index{compnal::sparse\_matrix::CRS$<$ RealType $>$@{compnal::sparse\_matrix::CRS$<$ RealType $>$}!operator=@{operator=}}
@@ -135,6 +141,13 @@ void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{compnal\+::spar
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
 \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \& \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{compnal\+::sparse\+\_\+matrix\+::\+CRS}}$<$ Real\+Type $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}$<$ Real\+Type $>$ \&}]{matrix }\end{DoxyParamCaption}) \&\hspace{0.3cm}{\ttfamily [inline]}}
 
+\mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_c_r_s_a630ce4a8d7feb26bf33521bbe35f12c2}\label{structcompnal_1_1sparse__matrix_1_1_c_r_s_a630ce4a8d7feb26bf33521bbe35f12c2}} 
+\index{compnal::sparse\_matrix::CRS$<$ RealType $>$@{compnal::sparse\_matrix::CRS$<$ RealType $>$}!Print@{Print}}
+\index{Print@{Print}!compnal::sparse\_matrix::CRS$<$ RealType $>$@{compnal::sparse\_matrix::CRS$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{Print()}{Print()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{compnal\+::sparse\+\_\+matrix\+::\+CRS}}$<$ Real\+Type $>$\+::\+Print (\begin{DoxyParamCaption}\item[{const std\+::string}]{display\+\_\+name = {\ttfamily \char`\"{}Matrix\char`\"{}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
 \mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_c_r_s_a984f9042aade4c462eca059bb64ee346}\label{structcompnal_1_1sparse__matrix_1_1_c_r_s_a984f9042aade4c462eca059bb64ee346}} 
 \index{compnal::sparse\_matrix::CRS$<$ RealType $>$@{compnal::sparse\_matrix::CRS$<$ RealType $>$}!PrintInfo@{PrintInfo}}
 \index{PrintInfo@{PrintInfo}!compnal::sparse\_matrix::CRS$<$ RealType $>$@{compnal::sparse\_matrix::CRS$<$ RealType $>$}}
@@ -142,26 +155,12 @@ void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{compnal\+::spar
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
 void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{compnal\+::sparse\+\_\+matrix\+::\+CRS}}$<$ Real\+Type $>$\+::\+Print\+Info (\begin{DoxyParamCaption}\item[{const std\+::string}]{display\+\_\+name = {\ttfamily \char`\"{}Matrix\char`\"{}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-\mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4bec11205690c0b77b91e262356d49e7}\label{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4bec11205690c0b77b91e262356d49e7}} 
-\index{compnal::sparse\_matrix::CRS$<$ RealType $>$@{compnal::sparse\_matrix::CRS$<$ RealType $>$}!PrintMatrix@{PrintMatrix}}
-\index{PrintMatrix@{PrintMatrix}!compnal::sparse\_matrix::CRS$<$ RealType $>$@{compnal::sparse\_matrix::CRS$<$ RealType $>$}}
-\doxysubsubsection{\texorpdfstring{PrintMatrix()}{PrintMatrix()}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{compnal\+::sparse\+\_\+matrix\+::\+CRS}}$<$ Real\+Type $>$\+::\+Print\+Matrix (\begin{DoxyParamCaption}\item[{const std\+::string}]{display\+\_\+name = {\ttfamily \char`\"{}Matrix\char`\"{}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
-
 \mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_c_r_s_a461f3df023c6215768aca60b9743fe0c}\label{structcompnal_1_1sparse__matrix_1_1_c_r_s_a461f3df023c6215768aca60b9743fe0c}} 
 \index{compnal::sparse\_matrix::CRS$<$ RealType $>$@{compnal::sparse\_matrix::CRS$<$ RealType $>$}!SortCol@{SortCol}}
 \index{SortCol@{SortCol}!compnal::sparse\_matrix::CRS$<$ RealType $>$@{compnal::sparse\_matrix::CRS$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{SortCol()}{SortCol()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
 void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{compnal\+::sparse\+\_\+matrix\+::\+CRS}}$<$ Real\+Type $>$\+::\+Sort\+Col (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-\mbox{\Hypertarget{structcompnal_1_1sparse__matrix_1_1_c_r_s_ab9b4e491715df3d7826086bb3f9a2e54}\label{structcompnal_1_1sparse__matrix_1_1_c_r_s_ab9b4e491715df3d7826086bb3f9a2e54}} 
-\index{compnal::sparse\_matrix::CRS$<$ RealType $>$@{compnal::sparse\_matrix::CRS$<$ RealType $>$}!UpdateRow@{UpdateRow}}
-\index{UpdateRow@{UpdateRow}!compnal::sparse\_matrix::CRS$<$ RealType $>$@{compnal::sparse\_matrix::CRS$<$ RealType $>$}}
-\doxysubsubsection{\texorpdfstring{UpdateRow()}{UpdateRow()}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-void \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{compnal\+::sparse\+\_\+matrix\+::\+CRS}}$<$ Real\+Type $>$\+::\+Update\+Row (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 

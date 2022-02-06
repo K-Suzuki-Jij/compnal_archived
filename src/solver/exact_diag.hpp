@@ -29,70 +29,78 @@ namespace solver {
 //! @tparam ModelClass The model class.
 template<class ModelClass>
 class ExactDiag {
-   
-   //! @brief The type of real values.
+   //------------------------------------------------------------------
+   //----------------------------Type Alias----------------------------
+   //------------------------------------------------------------------
+   //! @brief Type of real values.
    using RealType = typename ModelClass::ValueType;
+   
+   //! @brief Type of quantum numbers.
+   using QType = typename ModelClass::QType;
+   
+   //! @brief Type of QType hash.
+   using QHash = typename ModelClass::QHash;
    
    //! @brief Alias of compressed row strage (CRS) with RealType.
    using CRS = sparse_matrix::CRS<RealType>;
    
-   //! @brief Alias of the braket vector class with RealType.
+   //! @brief Alias of braket vector class with RealType.
    using BraketVector = sparse_matrix::BraketVector<RealType>;
-   
-   //! @brief Information for calculating the matrix elements of the Hamiltonian.
-   struct ExactDiagMatrixComponents {
       
-      //! @brief Values of the matrix elements.
-      std::vector<RealType> val;
-      
-      //! @brief Column number of the matrix elements.
-      std::vector<std::int64_t>  basis_affected;
-      
-      //! @brief The onsite basis.
-      std::vector<int> basis_onsite;
-      
-      //! @brief Constants for calculating matrix elements.
-      std::vector<std::int64_t> site_constant;
-      
-      //! @brief Inverse basis.
-      std::unordered_map<std::int64_t, std::int64_t> inv_basis_affected;
-      
-      //! @brief Calculation accuracy of the matrix elements.
-      double zero_precision = std::pow(10, -15);
-   };
-   
 public:
+   //------------------------------------------------------------------
+   //---------------------Public Member Variables----------------------
+   //------------------------------------------------------------------
+   //! @brief Model class.
+   const ModelClass model;
    
-   ModelClass model;
+   //! @brief Parameters for diagonalization methods.
    sparse_matrix::ParametersAll params;
-      
+   
+   //! @brief Diagonalization method.
+   DiagMethod diag_method_ = DiagMethod::LANCZOS;
+
+   //------------------------------------------------------------------
+   //--------------------------Constructors----------------------------
+   //------------------------------------------------------------------
+   //! @brief Constructor of ExactDiag class.
+   //! @param model_input The model class to be diagonalized.
    explicit ExactDiag(const ModelClass &model_input): model(model_input) {
       params.lanczos.flag_symmetric_crs = true;
       params.ii.cg.flag_symmetric_crs   = true;
    }
    
+   //! @brief Constructor of ExactDiag class.
+   //! @param model_input The model class to be diagonalized.
+   //! @param params_input Parameters for diagonalization methods.
    ExactDiag(const ModelClass &model_input,
              const sparse_matrix::ParametersAll &params_input): ExactDiag(model_input) {
       params = params_input;
    }
+    
    
-   void SetDiagonalizationMethod(const DiagMethod diag_method) {
-      diag_method_ = diag_method;
-   }
-   
-   void CalculateGroundState() {
-      if (model.GetCalculatedEigenvectorSet().count(0) != 0) {
+   //------------------------------------------------------------------
+   //---------------------Public Member Functions----------------------
+   //------------------------------------------------------------------
+   //! @brief Calculate ground state by the exact diagonalization method.
+   //! @param flag_display_info If true, display the progress status. Set false by default.
+   void CalculateGroundState(const bool flag_display_info = false) {
+      if (calculated_eigenvector_set_.count(0) != 0) {
          return;
       }
-      model.GenerateBasis();
+      
+      GenerateBasis(model.GetQNumber(), flag_display_info);
+      
       CRS ham;
       GenerateHamiltonian(&ham);
+      
       if (eigenvalues_.size() == 0) {
          eigenvalues_.emplace_back();
       }
       if (eigenvectors_.size() == 0) {
          eigenvectors_.emplace_back();
       }
+      
       if (diag_method_ == DiagMethod::LANCZOS) {
          sparse_matrix::EigenvalueDecompositionLanczos(&eigenvalues_[0], &eigenvectors_[0], ham, params.lanczos);
       }
@@ -108,7 +116,7 @@ public:
       
       sparse_matrix::InverseIteration(&ham, &eigenvectors_[0], eigenvalues_[0], params.ii);
       
-      model.SetCalculatedEigenvectorSet(0);
+      calculated_eigenvector_set_.emplace(0);
    }
    
    void CalculateTargetState(const int target_sector) {
@@ -611,9 +619,130 @@ public:
    inline const std::vector<RealType>     &GetEigenvalues()  const { return eigenvalues_; }
    
 private:
+   //------------------------------------------------------------------
+   //---------------------Private Member Variables---------------------
+   //------------------------------------------------------------------
    std::vector<BraketVector> eigenvectors_;
    std::vector<RealType>     eigenvalues_;
-   DiagMethod diag_method_ = DiagMethod::LANCZOS;
+   
+   //! @brief Bases of the target Hilbert space specified by
+   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   std::unordered_map<QType, std::vector<std::int64_t>, QHash> bases_;
+   
+   //! @brief Inverse bases of the target Hilbert space specified by
+   //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
+   std::unordered_map<QType, std::unordered_map<std::int64_t, std::int64_t>, QHash> bases_inv_;
+   
+   //! @brief The calculated eigenvectors and eigenvalues.
+   std::unordered_set<int> calculated_eigenvector_set_;
+   
+   //------------------------------------------------------------------
+   //---------------------Private Member Functions---------------------
+   //------------------------------------------------------------------
+   std::unordered_set<QType> GenerateTargetSector(const CRS &m_1) {
+      std::unordered_set<QType> target_q_set;
+      for (std::int64_t i = 0; i < m_1.row_dim; ++i) {
+         for (std::int64_t j = m_1.row[i]; j < m_1.row[i + 1]; ++j) {
+            if (m_1.val[j] != 0.0) {
+               target_q_set.emplace(model.CalculateQNumber(i, m_1.col[j]));
+            }
+         }
+      }
+      return target_q_set;
+   }
+   
+   //! @brief Calculate the quantum numbers of excited states that appear when calculating the correlation functions.
+   //! @param m_1 The matrix of an onsite operator.
+   //! @param m_2 The matrix of an onsite operator.
+   //! @return The list of quantum numbers.
+   std::vector<QType> GenerateTargetSector(const CRS &m_1, const CRS &m_2) const {
+      std::unordered_set<QType, QHash> q_set_m1 = GenerateTargetSector(m_1);
+      std::unordered_set<QType, QHash> q_set_m2 = GenerateTargetSector(m_2);
+      
+      std::vector<QType> target_q_set;
+      for (const auto &q_m1: q_set_m1) {
+         if (q_set_m2.count(q_m1) > 0 && model.isValidQNumber(q_m1)) {
+            target_q_set.push_back(q_m1);
+         }
+      }
+   
+      return target_q_set;
+   }
+   
+   //! @brief Calculate the quantum numbers of excited states that appear when calculating the correlation functions.
+   //! @param m_1_bra The matrix of an onsite operator.
+   //! @param m_2_ket The matrix of an onsite operator.
+   //! @param m_3_ket The matrix of an onsite operator.
+   //! @return The list of quantum numbers.
+   std::vector<std::vector<QType>> GenerateTargetSector(const CRS &m_1_bra, const CRS &m_2_ket, const CRS &m_3_ket) const {
+      std::unordered_set<QType, QHash> q_set_m1_bra = GenerateTargetSector(m_1_bra);
+      std::unordered_set<QType, QHash> q_set_m2_ket = GenerateTargetSector(m_2_ket);
+      std::unordered_set<QType, QHash> q_set_m3_ket = GenerateTargetSector(m_3_ket);
+      
+      std::unordered_map<QType, std::vector<QType>, QHash> q_list_m2_m3_ket;
+      
+      for (const auto &q2: q_set_m2_ket) {
+         for (const auto &q3: q_set_m3_ket) {
+            if (model.isValidQNumber(q2 + q3) && model.isValidQNumber(q3)) {
+               q_list_m2_m3_ket[q2 + q3].push_back(q3);
+            }
+         }
+      }
+      
+      std::vector<std::vector<QType>> target_q_set;
+      for (const auto &q1: q_set_m1_bra) {
+         if (q_list_m2_m3_ket.count(q1) > 0) {
+            for (const auto &q3: q_list_m2_m3_ket.at(q1)) {
+               target_q_set.push_back({q1, q3});
+            }
+         }
+      }
+      return target_q_set;
+   }
+   
+   //! @brief Calculate the quantum numbers of excited states that appear when calculating the correlation functions.
+   //! @param m_1_bra The matrix of an onsite operator.
+   //! @param m_2_bra The matrix of an onsite operator.
+   //! @param m_3_ket The matrix of an onsite operator.
+   //! @param m_4_ket The matrix of an onsite operator.
+   //! @return The list of quantum numbers.
+   std::vector<std::vector<QType>> GenerateTargetSector(const CRS &m_1_bra,
+                                                        const CRS &m_2_bra,
+                                                        const CRS &m_3_ket,
+                                                        const CRS &m_4_ket) const {
+      std::unordered_set<QType, QHash> q_set_m1_bra = GenerateTargetSector(m_1_bra);
+      std::unordered_set<QType, QHash> q_set_m2_bra = GenerateTargetSector(m_2_bra);
+      std::unordered_set<QType, QHash> q_set_m3_ket = GenerateTargetSector(m_3_ket);
+      std::unordered_set<QType, QHash> q_set_m4_ket = GenerateTargetSector(m_4_ket);
+
+      std::unordered_map<QType, std::vector<QType>, QHash> q_list_m1_m2_bra;
+      for (const auto &q1: q_set_m1_bra) {
+         for (const auto &q2: q_set_m2_bra) {
+            if (model.isValidQNumbe(q1 + q2) && model.isValidQNumber(q1)) {
+               q_list_m1_m2_bra[q1 + q2].push_back(q1);
+            }
+         }
+      }
+      
+      std::unordered_map<QType, std::vector<QType>, QHash> q_list_m3_m4_ket;
+      for (const auto &q3: q_set_m3_ket) {
+         for (const auto &q4: q_set_m4_ket) {
+            if (model.isValidQNumbe(q3 + q4) && model.isValidQNumber(q4)) {
+               q_list_m3_m4_ket[q3 + q4].push_back(q4);
+            }
+         }
+      }
+      
+      std::vector<std::vector<QType>> target_q_set;
+      for (const auto it_q1_q2: q_list_m1_m2_bra) {
+         if (q_list_m3_m4_ket.count(it_q1_q2.first) > 0) {
+            for (const auto q4: q_list_m3_m4_ket.at(it_q1_q2.first)) {
+               target_q_set.push_back({it_q1_q2.second, it_q1_q2.first, q4});
+            }
+         }
+      }
+      return target_q_set;
+   }
    
    int CalculateLocalBasis(std::int64_t global_basis, const int site, const int dim_onsite) const {
       for (int i = 0; i < site; ++i) {
@@ -622,7 +751,19 @@ private:
       return static_cast<int>(global_basis%dim_onsite);
    }
    
-   void GenerateMatrixComponentsOnsite(ExactDiagMatrixComponents *edmc,
+   void GenerateBasis(const QType &q_number, const bool flag_display_info = false) {
+      if (bases_.count(q_number) == 0) {
+         bases_[q_number] = model.GenerateBasis(q_number, flag_display_info);
+         const auto &basis = bases_.at(q_number);
+         auto &basis_inv = bases_inv_[q_number];
+         basis_inv.clear();
+         for (std::size_t i = 0; i < basis.size(); ++i) {
+            basis_inv[basis[i]] = i;
+         }
+      }
+   }
+   
+   void GenerateMatrixComponentsOnsite(ExactDiagMatrixComponents<RealType> *edmc,
                                        const std::int64_t basis,
                                        const int site,
                                        const CRS &matrix_onsite,
@@ -648,7 +789,7 @@ private:
       }
    }
    
-   void GenerateMatrixComponentsIntersite(ExactDiagMatrixComponents *edmc,
+   void GenerateMatrixComponentsIntersite(ExactDiagMatrixComponents<RealType> *edmc,
                                           const std::int64_t basis,
                                           const int site_1,
                                           const CRS &matrix_onsite_1,
@@ -695,7 +836,7 @@ private:
       
 #ifdef _OPENMP
       const int num_threads = omp_get_max_threads();
-      std::vector<ExactDiagMatrixComponents> components(num_threads);
+      std::vector<ExactDiagMatrixComponents<RealType>> components(num_threads);
       
       for (int thread_num = 0; thread_num < num_threads; ++thread_num) {
          components[thread_num].site_constant.resize(model.GetSystemSize());
@@ -850,64 +991,10 @@ private:
       std::cout << "\rElapsed time of generating Hamiltonian:" << time_sec << "[sec]" << std::endl;
       
    }
-   
-   void GenerateMatrixComponents(ExactDiagMatrixComponents *edmc, const std::int64_t basis, const model::XXZ_1D<RealType> &model_input) const {
       
-      for (int site = 0; site < model_input.GetSystemSize(); ++site) {
-         edmc->basis_onsite[site] = CalculateLocalBasis(basis, site, model_input.GetDimOnsite());
-      }
-      
-      //Onsite elements
-      for (int site = 0; site < model_input.GetSystemSize(); ++site) {
-         GenerateMatrixComponentsOnsite(edmc, basis, site, model_input.GetOnsiteOperatorHam(), 1.0);
-      }
-      
-      //Intersite elements SzSz
-      for (int distance = 1; distance <= static_cast<int>(model_input.GetJz().size()); ++distance) {
-         for (int site = 0; site < model_input.GetSystemSize() - distance; ++site) {
-            GenerateMatrixComponentsIntersite(edmc, basis, site, model_input.GetOnsiteOperatorSz(), site + distance, model_input.GetOnsiteOperatorSz(), model_input.GetJz(distance - 1));
-         }
-      }
-      
-      //Intersite elements 0.5*(SpSm + SmSp) = SxSx + SySy
-      for (int distance = 1; distance <= static_cast<int>(model_input.GetJxy().size()); ++distance) {
-         for (int site = 0; site < model_input.GetSystemSize() - distance; ++site) {
-            GenerateMatrixComponentsIntersite(edmc, basis, site, model_input.GetOnsiteOperatorSp(), site + distance, model_input.GetOnsiteOperatorSm(), 0.5*model_input.GetJxy(distance - 1));
-            GenerateMatrixComponentsIntersite(edmc, basis, site, model_input.GetOnsiteOperatorSm(), site + distance, model_input.GetOnsiteOperatorSp(), 0.5*model_input.GetJxy(distance - 1));
-         }
-      }
-      
-      if (model_input.GetBoundaryCondition() == model::BoundaryCondition::PBC) {
-         //Intersite elements SzSz
-         for (int distance = 1; distance <= static_cast<int>(model_input.GetJz().size()); ++distance) {
-            for (int i = 0; i < distance; ++i) {
-               const auto d1 = model_input.GetSystemSize() - distance + i;
-               const auto d2 = i;
-               GenerateMatrixComponentsIntersite(edmc, basis, d1, model_input.GetOnsiteOperatorSz(), d2, model_input.GetOnsiteOperatorSz(), model_input.GetJz(distance - 1));
-            }
-         }
-         
-         //Intersite elements 0.5*(SpSm + SmSp) = SxSx + SySy
-         for (int distance = 1; distance <= static_cast<int>(model_input.GetJxy().size()); ++distance) {
-            for (int i = 0; i < distance; ++i) {
-               const auto d1 = model_input.GetSystemSize() - distance + i;
-               const auto d2 = i;
-               GenerateMatrixComponentsIntersite(edmc, basis, d1, model_input.GetOnsiteOperatorSp(), d2, model_input.GetOnsiteOperatorSm(), 0.5*model_input.GetJxy(distance - 1));
-               GenerateMatrixComponentsIntersite(edmc, basis, d1, model_input.GetOnsiteOperatorSm(), d2, model_input.GetOnsiteOperatorSp(), 0.5*model.GetJxy(distance - 1));
-            }
-         }
-      }
-      
-      //Fill zero in the diagonal elements for symmetric matrix vector product calculation.
-      if (edmc->inv_basis_affected.count(basis) == 0) {
-         edmc->inv_basis_affected[basis] = edmc->basis_affected.size();
-         edmc->val.push_back(0.0);
-         edmc->basis_affected.push_back(basis);
-      }
-      
-   }
-   
-   void GenerateMatrixComponents(ExactDiagMatrixComponents *edmc, const std::int64_t basis, const model::Hubbard_1D<RealType> &model_input) const {
+   void GenerateMatrixComponents(ExactDiagMatrixComponents<RealType> *edmc,
+                                 const std::int64_t basis,
+                                 const model::Hubbard_1D<RealType> &model_input) const {
       
       const auto &nc            = model_input.GetOnsiteOperatorNC();
       const auto &c_up          = model_input.GetOnsiteOperatorCUp();
@@ -983,7 +1070,9 @@ private:
       
    }
    
-   void GenerateMatrixComponents(ExactDiagMatrixComponents *edmc, const std::int64_t basis, const model::KondoLattice_1D<RealType> &model_input) const {
+   void GenerateMatrixComponents(ExactDiagMatrixComponents<RealType> *edmc,
+                                 const std::int64_t basis,
+                                 const model::KondoLattice_1D<RealType> &model_input) const {
       
       const auto &c_up          = model_input.GetOnsiteOperatorCUp();
       const auto &c_up_dagger   = model_input.GetOnsiteOperatorCUpDagger();
@@ -1017,7 +1106,9 @@ private:
    }
    
    template<class BaseClass>
-   void GenerateMatrixComponents(ExactDiagMatrixComponents *edmc, const std::int64_t basis, const model::GeneralModel_1D<BaseClass> &model_input) const {
+   void GenerateMatrixComponents(ExactDiagMatrixComponents<RealType> *edmc,
+                                 const std::int64_t basis,
+                                 const model::GeneralModel_1D<BaseClass> &model_input) const {
       
       for (int site = 0; site < model_input.GetSystemSize(); ++site) {
          edmc->basis_onsite[site] = CalculateLocalBasis(basis, site, model_input.GetDimOnsite());
