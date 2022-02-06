@@ -19,5 +19,6 @@
 #define COMPNAL_SOLVER_ALL_HPP_
 
 #include "exact_diag.hpp"
+#include "utility.hpp"
 
 #endif /* COMPNAL_SOLVER_ALL_HPP_ */

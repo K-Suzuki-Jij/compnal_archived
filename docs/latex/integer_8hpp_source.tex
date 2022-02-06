@@ -160,28 +160,16 @@
 \DoxyCodeLine{156    }
 \DoxyCodeLine{157    \textcolor{keywordflow}{if} (target\_num != 0) \{}
 \DoxyCodeLine{158       std::stringstream ss;}
-\DoxyCodeLine{159       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << std::endl;}
+\DoxyCodeLine{159       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_FUNCTION\_\_ << \textcolor{stringliteral}{"{} at "{}} << \_\_LINE\_\_ << std::endl;}
 \DoxyCodeLine{160       ss << \textcolor{stringliteral}{"{}Can't find corresponding permutation, "{}} << target\_num << std::endl;}
 \DoxyCodeLine{161       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{162    \}}
 \DoxyCodeLine{163    }
 \DoxyCodeLine{164 \}}
 \DoxyCodeLine{165 }
-\DoxyCodeLine{166 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1utility_abf9e7e67bef6223906e6269589428337}{CheckHalfInteger}}(\textcolor{keywordtype}{double} s) \{}
-\DoxyCodeLine{167    s = 2*s;}
-\DoxyCodeLine{168    \textcolor{keywordflow}{if} (std::floor(s) != s) \{}
-\DoxyCodeLine{169       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}The input number is not half-\/integer"{}});}
-\DoxyCodeLine{170    \}}
-\DoxyCodeLine{171 \}}
-\DoxyCodeLine{172 }
-\DoxyCodeLine{173 \textcolor{keywordtype}{int} \mbox{\hyperlink{namespacecompnal_1_1utility_a2a72f9ca4b619a91f9f98f97aac96787}{DoubleHalfInteger}}(\textcolor{keywordtype}{double} s) \{}
-\DoxyCodeLine{174    \mbox{\hyperlink{namespacecompnal_1_1utility_abf9e7e67bef6223906e6269589428337}{CheckHalfInteger}}(s);}
-\DoxyCodeLine{175    \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(2*s);}
-\DoxyCodeLine{176 \}}
-\DoxyCodeLine{177 }
-\DoxyCodeLine{178 \}}
-\DoxyCodeLine{179 \}}
-\DoxyCodeLine{180 }
-\DoxyCodeLine{181 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_UTILITY\_INTEGER\_HPP\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{166 \}}
+\DoxyCodeLine{167 \}}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_UTILITY\_INTEGER\_HPP\_ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

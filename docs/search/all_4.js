@@ -7,5 +7,5 @@ var searchData=
   ['eigenvectors_5f_4',['eigenvectors_',['../classcompnal_1_1solver_1_1_exact_diag.html#a9792ea70dd7ac9a0ac1b964c60cbba57',1,'compnal::solver::ExactDiag']]],
   ['exact_5fdiag_2ehpp_5',['exact_diag.hpp',['../exact__diag_8hpp.html',1,'']]],
   ['exactdiag_6',['ExactDiag',['../classcompnal_1_1solver_1_1_exact_diag.html',1,'compnal::solver::ExactDiag&lt; ModelClass &gt;'],['../classcompnal_1_1solver_1_1_exact_diag.html#a535e85ef2697a25abb2e128542d65c68',1,'compnal::solver::ExactDiag::ExactDiag(const ModelClass &amp;model_input)'],['../classcompnal_1_1solver_1_1_exact_diag.html#a2cdd5d5e73ad0ff77578a0dca66fc565',1,'compnal::solver::ExactDiag::ExactDiag(const ModelClass &amp;model_input, const sparse_matrix::ParametersAll &amp;params_input)']]],
-  ['exactdiagmatrixcomponents_7',['ExactDiagMatrixComponents',['../structcompnal_1_1solver_1_1_exact_diag_1_1_exact_diag_matrix_components.html',1,'compnal::solver::ExactDiag']]]
+  ['exactdiagmatrixcomponents_7',['ExactDiagMatrixComponents',['../structcompnal_1_1solver_1_1_exact_diag_matrix_components.html',1,'compnal::solver']]]
 ];

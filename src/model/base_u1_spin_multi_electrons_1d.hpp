@@ -106,7 +106,7 @@ public:
    void SetSystemSize(const int system_size) {
       if (system_size <= 0) {
          std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "system_size must be a non-negative integer" << std::endl;
          ss << "system_size=" << system_size << "is not allowed" << std::endl;
          throw std::runtime_error(ss.str());
@@ -168,7 +168,7 @@ public:
       const int magnitude_2lspin = utility::DoubleHalfInteger(magnitude_lspin);
       if (magnitude_2lspin <= 0) {
          std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "Please set magnitude_2lspin > 0" << std::endl;
          throw std::runtime_error(ss.str());
       }
@@ -207,7 +207,7 @@ public:
          }
          else {
             std::stringstream ss;
-            ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+            ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
             throw std::runtime_error(ss.str());
          }
       }
@@ -234,7 +234,7 @@ public:
             }
             else {
                std::stringstream ss;
-               ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+               ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
                throw std::runtime_error(ss.str());
             }
          }
@@ -489,7 +489,7 @@ public:
       for (const auto num_electron: total_electron) {
          const auto electron_configuration = GenerateElectronConfigurations(system_size_, num_electron);
          electron_configuration_list.push_back(electron_configuration);
-         length_list.push_back(electron_configuration[0].size());
+         length_list.push_back(static_cast<int>(electron_configuration[0].size()));
          length *= electron_configuration[0].size();
       }
       const std::vector<std::vector<std::int64_t>> binom = utility::CalculateBinomialTable(system_size_);
@@ -563,13 +563,13 @@ public:
          }
       }
       
-      for (std::size_t i = 0; i < bias_basis.size(); ++i) {
-         bias_basis[i+1] += bias_basis[i];
+      for (std::size_t i = 1; i < bias_basis.size(); ++i) {
+         bias_basis[i] += bias_basis[i - 1];
       }
       
-      if (static_cast<std::int64_t>(bias_basis[bias_basis.size()]) != dim_target_global) {
+      if (bias_basis.back() != dim_target_global) {
          std::stringstream ss;
-         ss << "Unknown error in " << __FUNCTION__ << std::endl;
+         ss << "Unknown error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          throw std::runtime_error(ss.str());
       }
       
@@ -617,7 +617,7 @@ public:
          }
          if (static_cast<std::int64_t>(spin_basis.size()) != dim_target_lspin) {
             std::stringstream ss;
-            ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+            ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
             throw std::runtime_error(ss.str());
          }
          std::sort(spin_basis.begin(), spin_basis.end());
@@ -625,12 +625,50 @@ public:
       
       //Generate electron bases
       const std::int64_t loop_size = static_cast<std::int64_t>(q_number_spin_vec.size());
-      std::unordered_map<std::vector<int>, std::vector<std::int64_t>, utility::VecHash> electron_bases;
       std::vector<std::vector<int>> temp_q_number_ele_list = q_number_ele_list;
+      std::unordered_map<std::vector<int>, std::vector<std::int64_t>, utility::VecHash> electron_bases;
       std::sort(temp_q_number_ele_list.begin(), temp_q_number_ele_list.end());
       temp_q_number_ele_list.erase(std::unique(temp_q_number_ele_list.begin(), temp_q_number_ele_list.end()), temp_q_number_ele_list.end());
       
+#ifdef _OPENMP
+      const int num_threads = omp_get_max_threads();
+      std::vector<std::unordered_map<std::vector<int>, std::vector<std::int64_t>, utility::VecHash>> temp_electron_bases(num_threads);
+      
 #pragma omp parallel for
+      for (std::size_t i = 0; i < temp_q_number_ele_list.size(); ++i) {
+         const int n_up_down = temp_q_number_ele_list[i][0];
+         const int n_down    = temp_q_number_ele_list[i][1];
+         const int n_up      = temp_q_number_ele_list[i][2];
+         const int n_vac     = temp_q_number_ele_list[i][3];
+         const int thread_num = omp_get_thread_num();
+         std::vector<int> basis_list_electron(system_size_);
+         for (int s = 0; s < n_vac; ++s) {
+            basis_list_electron[s] = 0;
+         }
+         for (int s = 0; s < n_up; ++s) {
+            basis_list_electron[s + n_vac] = 1;
+         }
+         for (int s = 0; s < n_down; ++s) {
+            basis_list_electron[s + n_vac + n_up] = 2;
+         }
+         for (int s = 0; s < n_up_down; ++s) {
+            basis_list_electron[s + n_vac + n_up + n_down] = 3;
+         }
+         auto &temp_basis = temp_electron_bases[thread_num][{n_up_down, n_up, n_down, n_vac}];
+         do {
+            std::int64_t basis_global_electron = 0;
+            for (std::size_t j = 0; j < basis_list_electron.size(); ++j) {
+               basis_global_electron += basis_list_electron[j]*site_constant_global[j]*dim_onsite_lspin_;
+            }
+            temp_basis.push_back(basis_global_electron);
+         } while (std::next_permutation(basis_list_electron.begin(), basis_list_electron.end()));
+      }
+      
+      for (auto &&basis: temp_electron_bases) {
+         electron_bases.merge(basis);
+      }
+      
+#else
       for (std::size_t i = 0; i < temp_q_number_ele_list.size(); ++i) {
          const int n_up_down = temp_q_number_ele_list[i][0];
          const int n_down    = temp_q_number_ele_list[i][1];
@@ -654,8 +692,10 @@ public:
             for (std::size_t j = 0; j < basis_list_electron.size(); ++j) {
                basis_global_electron += basis_list_electron[j]*site_constant_global[j]*dim_onsite_lspin_;
             }
+            electron_bases[{n_up_down, n_up, n_down, n_vac}].push_back(basis_global_electron);
          } while (std::next_permutation(basis_list_electron.begin(), basis_list_electron.end()));
       }
+#endif
       
       //Generate global bases
       std::vector<std::int64_t>().swap(bases_[{total_electron, total_2sz}]);
@@ -686,7 +726,7 @@ public:
       
       if (static_cast<std::int64_t>(bases_.at({total_electron, total_2sz}).size()) != dim_target_global) {
          std::stringstream ss;
-         ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+         ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          throw std::runtime_error(ss.str());
       }
       
@@ -701,7 +741,7 @@ public:
       
       if (basis_inv_ref.size() != global_basis_ref.size()) {
          std::stringstream ss;
-         ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+         ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "The same basis has been detected" << std::endl;
          throw std::runtime_error(ss.str());
       }
@@ -730,7 +770,7 @@ public:
       for (const auto num_electron: total_electron) {
          const auto electron_configuration = GenerateElectronConfigurations(system_size, num_electron);
          electron_configuration_list.push_back(electron_configuration);
-         length_list.push_back(electron_configuration[0].size());
+         length_list.push_back(static_cast<int>(electron_configuration[0].size()));
          length *= electron_configuration[0].size();
       }
       const int total_2sz = utility::DoubleHalfInteger(total_sz);
@@ -1479,7 +1519,7 @@ protected:
       }
       else {
          std::stringstream ss;
-         ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+         ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          throw std::runtime_error(ss.str());
       }
    }

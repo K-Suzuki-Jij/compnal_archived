@@ -22,4 +22,7 @@
 #include "integer.hpp"
 #include "hash.hpp"
 
+//! @namespace compnal::utility
+//! @brief Utility classes and functions for compnal.
+
 #endif /* COMPNAL_UTILITY_ALL_HPP_ */

@@ -52,19 +52,19 @@ public:
       // TODO: Check of m is valid with BaseClass operator
       if (m.row_dim != m.col_dim) {
          std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "The input matrix is not a square matrix." << std::endl;
          throw std::runtime_error(ss.str());
       }
       if (m.row_dim != this->dim_onsite_) {
          std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "The input matrix is invalid" << std::endl;
          throw std::runtime_error(ss.str());
       }
       if (site < 0 || this->system_size_ <= site) {
          std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "Invalid site: " << site << std::endl;
          throw std::runtime_error(ss.str());
       }
@@ -88,25 +88,25 @@ public:
       }
       if (m_1.row_dim != m_1.col_dim || m_2.row_dim != m_2.col_dim) {
          std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "The input matrix is not a square matrix." << std::endl;
          throw std::runtime_error(ss.str());
       }
       if (m_1.row_dim != this->dim_onsite_) {
          std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "The input matrix is invalid" << std::endl;
          throw std::runtime_error(ss.str());
       }
       if (site_1 < 0 || this->system_size_ <= site_1) {
          std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "Invalid site: " << site_1 << std::endl;
          throw std::runtime_error(ss.str());
       }
       if (site_2 < 0 || this->system_size_ <= site_2) {
          std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "Invalid site: " << site_2 << std::endl;
          throw std::runtime_error(ss.str());
       }

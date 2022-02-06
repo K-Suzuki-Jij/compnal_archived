@@ -111,7 +111,7 @@ public:
    void SetSystemSize(const int system_size) {
       if (system_size <= 0) {
          std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "system_size must be a non-negative integer" << std::endl;
          ss << "system_size=" << system_size << "is not allowed" << std::endl;
          throw std::runtime_error(ss.str());
@@ -151,7 +151,7 @@ public:
       const int magnitude_2lspin = utility::DoubleHalfInteger(magnitude_lspin);
       if (magnitude_2lspin <= 0) {
          std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "Please set magnitude_2lspin > 0" << std::endl;
          throw std::runtime_error(ss.str());
       }
@@ -213,7 +213,7 @@ public:
       }
       else {
          std::stringstream ss;
-         ss << "Error in " << __FUNCTION__  << std::endl;
+         ss << "Error in " << __FUNCTION__ << " at " << __LINE__  << std::endl;
          ss << "Invalid onsite basis" << std::endl;
          throw std::runtime_error(ss.str());
       }
@@ -296,7 +296,7 @@ public:
    void GenerateBasis(const int total_electron, const double total_sz) {
       if (!isValidQNumber(total_electron, total_sz)) {
          std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << std::endl;
+         ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "Invalid parameters (system_size or magnitude_spin or total_sz)" << std::endl;
          throw std::runtime_error(ss.str());
       }
@@ -351,13 +351,13 @@ public:
          }
       }
       
-      for (std::size_t i = 0; i < bias_basis.size(); ++i) {
-         bias_basis[i+1] += bias_basis[i];
+      for (std::size_t i = 1; i < bias_basis.size(); ++i) {
+         bias_basis[i] += bias_basis[i - 1];
       }
       
-      if (static_cast<std::int64_t>(bias_basis[bias_basis.size()]) != dim_target_global) {
+      if (bias_basis.back() != dim_target_global) {
          std::stringstream ss;
-         ss << "Unknown error in " << __FUNCTION__ << std::endl;
+         ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          throw std::runtime_error(ss.str());
       }
 
@@ -370,7 +370,7 @@ public:
       for (std::int64_t i = 0; i < static_cast<std::int64_t>(temp_q_number_spin_vec.size()); ++i) {
          const int total_2_sz_lspin = temp_q_number_spin_vec[i];
          const int shifted_2sz      = (system_size_*magnitude_2lspin_ - total_2_sz_lspin)/2;
-         const std::int64_t dim_target_lspin = BaseU1Spin_1D<RealType>::CalculateTargetDim(system_size_, magnitude_2lspin_/2, total_2_sz_lspin/2);
+         const std::int64_t dim_target_lspin = BaseU1Spin_1D<RealType>::CalculateTargetDim(system_size_, 0.5*magnitude_2lspin_, 0.5*total_2_sz_lspin);
          std::vector<std::vector<int>> partition_integers;
          utility::GenerateIntegerPartition(&partition_integers, shifted_2sz, magnitude_2lspin_);
          auto &spin_basis = spin_bases[total_2_sz_lspin];
@@ -394,7 +394,7 @@ public:
          }
          if (static_cast<std::int64_t>(spin_basis.size()) != dim_target_lspin) {
             std::stringstream ss;
-            ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+            ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
             throw std::runtime_error(ss.str());
          }
          std::sort(spin_basis.begin(), spin_basis.end());
@@ -438,7 +438,7 @@ public:
       
       if (static_cast<std::int64_t>(bases_.at({total_electron, total_2sz}).size()) != dim_target_global) {
          std::stringstream ss;
-         ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+         ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          throw std::runtime_error(ss.str());
       }
       
@@ -453,7 +453,7 @@ public:
       
       if (basis_inv_ref.size() != global_basis_ref.size()) {
          std::stringstream ss;
-         ss << "Unknown error detected in " << __FUNCTION__ << std::endl;
+         ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
          ss << "The same basis has been detected" << std::endl;
          throw std::runtime_error(ss.str());
       }
