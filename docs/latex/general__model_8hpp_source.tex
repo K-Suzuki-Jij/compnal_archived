@@ -106,32 +106,36 @@
 \DoxyCodeLine{121       \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a058181213ceab978e9b673b057659129}{index\_list\_}}.size());}
 \DoxyCodeLine{122    \}}
 \DoxyCodeLine{123    }
-\DoxyCodeLine{126    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a608db81d3c78bcf02a769bdf0c1afb2c}{OnsiteListType}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a36e2760fa49dcd8e853d20a2d1ab53cd}{GetPotentialList}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa9270da6d33798eed4465903e8de51cd}{potential\_list\_}}; \}}
-\DoxyCodeLine{127    }
-\DoxyCodeLine{131    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a0fd799b2f10d89141058f0c43be75891}{GetPotential}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a86189799e80e0b86bcdd60d6f9232754}{IndexType}} \&site)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa9270da6d33798eed4465903e8de51cd}{potential\_list\_}}.at(site); \}}
-\DoxyCodeLine{132    }
-\DoxyCodeLine{135    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a32d80cf19f562e27f8ba69fc1b811877}{IntersiteListType}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a823653e68ea08af7bc13b9c8c6b7487b}{GetInteractionList}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a32f92db6c157e455268dde147a78d27c}{interaction\_list\_}}; \}}
-\DoxyCodeLine{136    }
-\DoxyCodeLine{141    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<std::pair<CRS, CRS>> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab8ebb37695bfb6c4245822615e4200cc}{GetInteraction}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a86189799e80e0b86bcdd60d6f9232754}{IndexType}} \&site\_1, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a86189799e80e0b86bcdd60d6f9232754}{IndexType}} \&site\_2)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{142       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a32f92db6c157e455268dde147a78d27c}{interaction\_list\_}}.at(site\_1).at(site\_2);}
-\DoxyCodeLine{143    \}}
-\DoxyCodeLine{144    }
-\DoxyCodeLine{145 \textcolor{keyword}{private}:}
-\DoxyCodeLine{147    \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a608db81d3c78bcf02a769bdf0c1afb2c}{OnsiteListType}} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa9270da6d33798eed4465903e8de51cd}{potential\_list\_}};}
-\DoxyCodeLine{148    }
-\DoxyCodeLine{150    \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a32d80cf19f562e27f8ba69fc1b811877}{IntersiteListType}} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a32f92db6c157e455268dde147a78d27c}{interaction\_list\_}};}
-\DoxyCodeLine{151    }
-\DoxyCodeLine{153    std::unordered\_set<IndexType, utility::VariantHash> \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a058181213ceab978e9b673b057659129}{index\_list\_}};}
+\DoxyCodeLine{126    \textcolor{keyword}{const} std::unordered\_set<IndexType, utility::VariantHash> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a2ba4a506f1ee1ef3e525550fa7725d90}{GetIndexList}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{127       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a058181213ceab978e9b673b057659129}{index\_list\_}};}
+\DoxyCodeLine{128    \}}
+\DoxyCodeLine{129    }
+\DoxyCodeLine{132    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a608db81d3c78bcf02a769bdf0c1afb2c}{OnsiteListType}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a36e2760fa49dcd8e853d20a2d1ab53cd}{GetPotentialList}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa9270da6d33798eed4465903e8de51cd}{potential\_list\_}}; \}}
+\DoxyCodeLine{133    }
+\DoxyCodeLine{137    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a0fd799b2f10d89141058f0c43be75891}{GetPotential}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a86189799e80e0b86bcdd60d6f9232754}{IndexType}} \&site)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa9270da6d33798eed4465903e8de51cd}{potential\_list\_}}.at(site); \}}
+\DoxyCodeLine{138    }
+\DoxyCodeLine{141    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a32d80cf19f562e27f8ba69fc1b811877}{IntersiteListType}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a823653e68ea08af7bc13b9c8c6b7487b}{GetInteractionList}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a32f92db6c157e455268dde147a78d27c}{interaction\_list\_}}; \}}
+\DoxyCodeLine{142    }
+\DoxyCodeLine{147    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<std::pair<CRS, CRS>> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab8ebb37695bfb6c4245822615e4200cc}{GetInteraction}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a86189799e80e0b86bcdd60d6f9232754}{IndexType}} \&site\_1, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a86189799e80e0b86bcdd60d6f9232754}{IndexType}} \&site\_2)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{148       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a32f92db6c157e455268dde147a78d27c}{interaction\_list\_}}.at(site\_1).at(site\_2);}
+\DoxyCodeLine{149    \}}
+\DoxyCodeLine{150    }
+\DoxyCodeLine{151 \textcolor{keyword}{private}:}
+\DoxyCodeLine{153    \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a608db81d3c78bcf02a769bdf0c1afb2c}{OnsiteListType}} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa9270da6d33798eed4465903e8de51cd}{potential\_list\_}};}
 \DoxyCodeLine{154    }
-\DoxyCodeLine{155 \};}
-\DoxyCodeLine{156 }
-\DoxyCodeLine{157 \} \textcolor{comment}{//namespace model}}
-\DoxyCodeLine{158 \} \textcolor{comment}{//namespace compnal}}
-\DoxyCodeLine{159 }
-\DoxyCodeLine{160 }
-\DoxyCodeLine{161 }
+\DoxyCodeLine{156    \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a32d80cf19f562e27f8ba69fc1b811877}{IntersiteListType}} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a32f92db6c157e455268dde147a78d27c}{interaction\_list\_}};}
+\DoxyCodeLine{157    }
+\DoxyCodeLine{159    std::unordered\_set<IndexType, utility::VariantHash> \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a058181213ceab978e9b673b057659129}{index\_list\_}};}
+\DoxyCodeLine{160    }
+\DoxyCodeLine{161 \};}
 \DoxyCodeLine{162 }
-\DoxyCodeLine{163 }
-\DoxyCodeLine{164 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_MODEL\_GENERAL\_MODEL\_HPP\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{163 \} \textcolor{comment}{//namespace model}}
+\DoxyCodeLine{164 \} \textcolor{comment}{//namespace compnal}}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_MODEL\_GENERAL\_MODEL\_HPP\_ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

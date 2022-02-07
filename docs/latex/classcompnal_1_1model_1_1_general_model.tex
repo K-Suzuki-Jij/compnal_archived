@@ -11,7 +11,8 @@ The general model class.
 
 
 
-Inheritance diagram for compnal\+::model\+::General\+Model\texorpdfstring{$<$}{<} Base\+Class \texorpdfstring{$>$}{>}\+:\nopagebreak
+Inheritance diagram for compnal\+::model\+::General\+Model\texorpdfstring{$<$}{<} Base\+Class \texorpdfstring{$>$}{>}\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -20,7 +21,8 @@ Inheritance diagram for compnal\+::model\+::General\+Model\texorpdfstring{$<$}{<
 \end{figure}
 
 
-Collaboration diagram for compnal\+::model\+::General\+Model\texorpdfstring{$<$}{<} Base\+Class \texorpdfstring{$>$}{>}\+:\nopagebreak
+Collaboration diagram for compnal\+::model\+::General\+Model\texorpdfstring{$<$}{<} Base\+Class \texorpdfstring{$>$}{>}\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -36,6 +38,8 @@ void \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a1cf17d5728570f359
 \begin{DoxyCompactList}\small\item\em Add an interaction term $ c\hat{O}_{i}\hat{P}_{j} $ to the system. \end{DoxyCompactList}\item 
 std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab8a710a679276ddb0d5f909201f0ae1c}{Get\+System\+Size}} () const
 \begin{DoxyCompactList}\small\item\em Get the system size. \end{DoxyCompactList}\item 
+const std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a86189799e80e0b86bcdd60d6f9232754}{Index\+Type}}, \mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash}{utility\+::\+Variant\+Hash}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a2ba4a506f1ee1ef3e525550fa7725d90}{Get\+Index\+List}} () const
+\begin{DoxyCompactList}\small\item\em Get the site index list. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a608db81d3c78bcf02a769bdf0c1afb2c}{Onsite\+List\+Type}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a36e2760fa49dcd8e853d20a2d1ab53cd}{Get\+Potential\+List}} () const
 \begin{DoxyCompactList}\small\item\em Get onsite potential term list added to the system. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a0fd799b2f10d89141058f0c43be75891}{Get\+Potential}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a86189799e80e0b86bcdd60d6f9232754}{Index\+Type}} \&site) const
@@ -183,6 +187,20 @@ Add an onsite potential term $ c\hat{O}_{i} $ to the system.
 {\em val} & The coefficient of the potential term $ c $. \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_general_model_a2ba4a506f1ee1ef3e525550fa7725d90}\label{classcompnal_1_1model_1_1_general_model_a2ba4a506f1ee1ef3e525550fa7725d90}} 
+\index{compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}!GetIndexList@{GetIndexList}}
+\index{GetIndexList@{GetIndexList}!compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}}
+\doxysubsubsection{\texorpdfstring{GetIndexList()}{GetIndexList()}}
+{\footnotesize\ttfamily template$<$class Base\+Class $>$ \\
+const std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a86189799e80e0b86bcdd60d6f9232754}{Index\+Type}}, \mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash}{utility\+::\+Variant\+Hash}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+Get\+Index\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the site index list. 
+
+\begin{DoxyReturn}{Returns}
+The site index list. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_general_model_ab8ebb37695bfb6c4245822615e4200cc}\label{classcompnal_1_1model_1_1_general_model_ab8ebb37695bfb6c4245822615e4200cc}} 
 \index{compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}!GetInteraction@{GetInteraction}}
 \index{GetInteraction@{GetInteraction}!compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}}
