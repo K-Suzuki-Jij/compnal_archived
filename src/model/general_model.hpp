@@ -121,6 +121,12 @@ public:
       return static_cast<std::int64_t>(index_list_.size());
    }
    
+   //! @brief Get the site index list.
+   //! @return The site index list.
+   const std::unordered_set<IndexType, utility::VariantHash> &GetIndexList() const {
+      return index_list_;
+   }
+   
    //! @brief Get onsite potential term list added to the system.
    //! @return Onsite potential term list added to the system.
    inline const OnsiteListType &GetPotentialList() const { return potential_list_; }
