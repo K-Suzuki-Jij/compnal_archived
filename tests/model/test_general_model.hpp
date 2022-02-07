@@ -26,19 +26,52 @@ namespace compnal {
 namespace test {
 
 TEST(ModelGeneralModel, U1Spin) {
-   using RealType = double;
-   model::GeneralModel<model::BaseU1Spin<RealType>> model;
-   model.AddPotential(-1, model.GetOnsiteOperatorSz());
-   model.AddPotential("a", model.GetOnsiteOperatorSz());
-   model.AddPotential(std::vector<std::variant<int, std::string>>{1, "a"}, model.GetOnsiteOperatorSz());
    
-   model.AddInteraction(1, model.GetOnsiteOperatorSp(), 2, model.GetOnsiteOperatorSm());
-   model.AddInteraction(1, model.GetOnsiteOperatorSp(), "a", model.GetOnsiteOperatorSm());
-   model.AddInteraction(1, model.GetOnsiteOperatorSp(), std::vector<std::variant<int, std::string>>{1, "a"}, model.GetOnsiteOperatorSm());
+   using VariantVecType = std::vector<std::variant<int, std::string>>;
+
+   model::GeneralModel<model::BaseU1Spin<double>> model;
+   
+   const auto sz = model.GetOnsiteOperatorSz();
+   const auto sp = model.GetOnsiteOperatorSp();
+   const auto sm = model.GetOnsiteOperatorSm();
+   
+   model.AddPotential(-1 , sz);
+   model.AddPotential(-1 , sm);
+   model.AddPotential("a", sp);
+   model.AddPotential(VariantVecType{1, "a"}, sz);
+   
+   model.AddInteraction(1, sp, -2 , sm);
+   model.AddInteraction(1, sp, "a", sm);
+   model.AddInteraction(1, sm, "a", sp);
+   model.AddInteraction(VariantVecType{1, "a"}, sp, 1, sm);
+   model.AddInteraction(VariantVecType{1, "a"}, sp, VariantVecType{1, "a"}, sz);
+
    
    EXPECT_EQ(model.GetSystemSize(), 5);
+   EXPECT_EQ(model.GetIndexList().count(+1), 1);
+   EXPECT_EQ(model.GetIndexList().count(-1), 1);
+   EXPECT_EQ(model.GetIndexList().count(-2), 1);
+   EXPECT_EQ(model.GetIndexList().count("a"), 1);
+   EXPECT_EQ(model.GetIndexList().count(VariantVecType{1, "a"}), 1);
+   
+   EXPECT_EQ(model.GetPotentialList().size(), 3);
+   EXPECT_EQ(model.GetPotential(-1), sz + sm);
+   EXPECT_EQ(model.GetPotential("a"), sp);
+   EXPECT_EQ(model.GetPotential(VariantVecType{1, "a"}), sz + sp*sz);
 
-
+   EXPECT_EQ(model.GetInteraction(1, -2).size(), 1);
+   EXPECT_EQ(model.GetInteraction(1, -2).at(0).first , sp);
+   EXPECT_EQ(model.GetInteraction(1, -2).at(0).second, sm);
+   
+   EXPECT_EQ(model.GetInteraction(1, "a").size(), 2);
+   EXPECT_EQ(model.GetInteraction(1, "a").at(0).first , sp);
+   EXPECT_EQ(model.GetInteraction(1, "a").at(0).second, sm);
+   EXPECT_EQ(model.GetInteraction(1, "a").at(1).first , sm);
+   EXPECT_EQ(model.GetInteraction(1, "a").at(1).second, sp);
+   
+   EXPECT_EQ(model.GetInteraction(VariantVecType{1, "a"}, 1).size(), 1);
+   EXPECT_EQ(model.GetInteraction(VariantVecType{1, "a"}, 1).at(0).first , sp);
+   EXPECT_EQ(model.GetInteraction(VariantVecType{1, "a"}, 1).at(0).second, sm);
 }
 
 
