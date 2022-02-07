@@ -19,6 +19,7 @@
 #define COMPNAL_UTILITY_HASH_HPP_
 
 #include "../type/half_int.hpp"
+#include <variant>
 
 namespace compnal {
 namespace utility {
@@ -48,6 +49,40 @@ struct VecHash {
          hash ^= std::hash<T>()(i) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
       }
       return hash;
+   }
+};
+
+struct VariantHash {
+   
+   using VariantVecType = std::vector<std::variant<int, std::string>>;
+   
+   template<class... Types>
+   std::size_t operator() (const std::variant<Types...> &v) const {
+      if (std::holds_alternative<int>(v)) {
+         return std::hash<int>()(std::get<int>(v));
+      }
+      else if (std::holds_alternative<std::string>(v)) {
+         return std::hash<std::string>()(std::get<std::string>(v));
+      }
+      else if (std::holds_alternative<VariantVecType>(v)) {
+         const auto &variant_vec = std::get<VariantVecType>(v);
+         std::size_t hash = variant_vec.size();
+         for (const auto &i : variant_vec) {
+            if (std::holds_alternative<int>(i)) {
+               hash ^= std::hash<int>()(std::get<int>(i)) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+            }
+            else if (std::holds_alternative<std::string>(i)) {
+               hash ^= std::hash<std::string>()(std::get<std::string>(i)) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+            }
+            else {
+               throw std::runtime_error("Invalid template parameters");
+            }
+         }
+         return hash;
+      }
+      else {
+         throw std::runtime_error("Invalid template parameters");
+      }
    }
 };
 

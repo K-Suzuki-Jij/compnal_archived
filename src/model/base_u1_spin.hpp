@@ -38,9 +38,8 @@ class BaseU1Spin {
    
    static_assert(std::is_floating_point<RealType>::value, "Template parameter RealType must be floating point type");
    
-public:
    //------------------------------------------------------------------
-   //----------------------------Type Alias----------------------------
+   //------------------------Private Type Alias------------------------
    //------------------------------------------------------------------
    //! @brief Alias of HalfInt type.
    using HalfInt = type::HalfInt;
@@ -48,6 +47,10 @@ public:
    //! @brief Alias of compressed row strage (CRS) with RealType.
    using CRS = sparse_matrix::CRS<RealType>;
    
+public:
+   //------------------------------------------------------------------
+   //------------------------Public Type Alias-------------------------
+   //------------------------------------------------------------------
    //! @brief Alias of quantum number (total sz) type.
    using QType = HalfInt;
    
@@ -467,10 +470,8 @@ private:
    
 };
 
-
-
-}
-}
+} //namespace model
+} //namespace compnal
 
 
 #endif /* COMPNAL_MODEL_BASE_U1SPIN_HPP_ */

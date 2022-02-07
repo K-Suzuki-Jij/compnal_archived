@@ -287,13 +287,13 @@ CRS<decltype(T1{0}*T2{0}*T3{0})> CalculateMatrixMatrixProduct(const T1 coeef_1,
          }
       }
       
-      matrix_out.row[i + 1] = matrix_out->col.size();
+      matrix_out.row[i + 1] = matrix_out.col.size();
       
       for (std::int64_t j = matrix_1.row[i]; j < matrix_1.row[i + 1]; ++j) {
          temp_v1[matrix_1.col[j]] = 0.0;
       }
-      for (std::int64_t j = matrix_out->row[i]; j < matrix_out->row[i + 1]; ++j) {
-         temp_v2[matrix_out->col[j]] = 0.0;
+      for (std::int64_t j = matrix_out.row[i]; j < matrix_out.row[i + 1]; ++j) {
+         temp_v2[matrix_out.col[j]] = 0.0;
       }
    }
    
