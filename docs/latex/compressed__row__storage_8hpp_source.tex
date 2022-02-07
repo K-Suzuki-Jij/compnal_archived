@@ -284,13 +284,13 @@
 \DoxyCodeLine{287          \}}
 \DoxyCodeLine{288       \}}
 \DoxyCodeLine{289       }
-\DoxyCodeLine{290       matrix\_out.row[i + 1] = matrix\_out-\/>col.size();}
+\DoxyCodeLine{290       matrix\_out.row[i + 1] = matrix\_out.col.size();}
 \DoxyCodeLine{291       }
 \DoxyCodeLine{292       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_1.row[i]; j < matrix\_1.row[i + 1]; ++j) \{}
 \DoxyCodeLine{293          temp\_v1[matrix\_1.col[j]] = 0.0;}
 \DoxyCodeLine{294       \}}
-\DoxyCodeLine{295       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_out-\/>row[i]; j < matrix\_out-\/>row[i + 1]; ++j) \{}
-\DoxyCodeLine{296          temp\_v2[matrix\_out-\/>col[j]] = 0.0;}
+\DoxyCodeLine{295       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_out.row[i]; j < matrix\_out.row[i + 1]; ++j) \{}
+\DoxyCodeLine{296          temp\_v2[matrix\_out.col[j]] = 0.0;}
 \DoxyCodeLine{297       \}}
 \DoxyCodeLine{298    \}}
 \DoxyCodeLine{299    }

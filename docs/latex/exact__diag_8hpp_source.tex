@@ -1075,14 +1075,14 @@
 \DoxyCodeLine{1108    \textcolor{keyword}{template}<\textcolor{keyword}{class} BaseClass>}
 \DoxyCodeLine{1109    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a259b4ea5e04a394742135d8182a1f46e}{GenerateMatrixComponents}}(\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components}{ExactDiagMatrixComponents<RealType>}} *edmc,}
 \DoxyCodeLine{1110                                  \textcolor{keyword}{const} std::int64\_t basis,}
-\DoxyCodeLine{1111                                  \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d}{model::GeneralModel\_1D<BaseClass>}} \&model\_input)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{1111                                  \textcolor{keyword}{const} model::GeneralModel\_1D<BaseClass> \&model\_input)\textcolor{keyword}{ const }\{}
 \DoxyCodeLine{1112       }
 \DoxyCodeLine{1113       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} site = 0; site < model\_input.GetSystemSize(); ++site) \{}
 \DoxyCodeLine{1114          edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a7329695bd8377ce171a1774a1ecb36a9}{basis\_onsite}}[site] = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a3a0400cf96ee595d5a095cfb1c4f87}{CalculateLocalBasis}}(basis, site, model\_input.GetDimOnsite());}
 \DoxyCodeLine{1115       \}}
 \DoxyCodeLine{1116       }
 \DoxyCodeLine{1117       \textcolor{comment}{//Onsite elements}}
-\DoxyCodeLine{1118       \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&it: model\_input.\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model__1_d_a06a053ae83790d126cb115b5559682f5}{GetOnsiteOperatorList}}()) \{}
+\DoxyCodeLine{1118       \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&it: model\_input.GetOnsiteOperatorList()) \{}
 \DoxyCodeLine{1119          \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a0b18fac0aecdc44c9c3309c8e8a7dfc8}{GenerateMatrixComponentsOnsite}}(edmc, basis, it.first, it.second, 1.0);}
 \DoxyCodeLine{1120       \}}
 \DoxyCodeLine{1121       }

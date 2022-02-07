@@ -358,13 +358,13 @@ $(function() {
 <div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>         }</div>
 <div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>      }</div>
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>      </div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>      matrix_out.row[i + 1] = matrix_out-&gt;col.size();</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>      matrix_out.row[i + 1] = matrix_out.col.size();</div>
 <div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>      </div>
 <div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>      <span class="keywordflow">for</span> (std::int64_t j = matrix_1.row[i]; j &lt; matrix_1.row[i + 1]; ++j) {</div>
 <div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>         temp_v1[matrix_1.col[j]] = 0.0;</div>
 <div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>      }</div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>      <span class="keywordflow">for</span> (std::int64_t j = matrix_out-&gt;row[i]; j &lt; matrix_out-&gt;row[i + 1]; ++j) {</div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>         temp_v2[matrix_out-&gt;col[j]] = 0.0;</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>      <span class="keywordflow">for</span> (std::int64_t j = matrix_out.row[i]; j &lt; matrix_out.row[i + 1]; ++j) {</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>         temp_v2[matrix_out.col[j]] = 0.0;</div>
 <div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>      }</div>
 <div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>   }</div>
 <div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>   </div>
