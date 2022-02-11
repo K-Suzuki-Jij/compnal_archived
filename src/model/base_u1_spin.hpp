@@ -90,7 +90,7 @@ public:
    void SetMagnitudeSpin(const HalfInt magnitude_spin) {
       if (magnitude_spin <= 0) {
          std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
          ss << "Please set magnitude_spin > 0" << std::endl;
          throw std::runtime_error(ss.str());
       }
@@ -114,7 +114,7 @@ public:
       }
       else {
          std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << " at " << __LINE__  << std::endl;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
          ss << "Invalid onsite basis" << std::endl;
          throw std::runtime_error(ss.str());
       }
@@ -148,7 +148,7 @@ public:
                                            const bool flag_display_info = true) const {
       if (!ValidateQNumber(system_size, magnitude_spin_, total_sz) || system_size <= 0) {
          std::stringstream ss;
-         ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
          ss << "Invalid parameters (system_size or magnitude_spin or total_sz)" << std::endl;
          throw std::runtime_error(ss.str());
       }
@@ -217,11 +217,11 @@ public:
       basis.reserve(dim_target);
       
       for (auto &&integer_list: partition_integers) {
-         const bool condition1 = (0 < integer_list.size()) && (static_cast<int>(integer_list.size()) <= system_size_);
+         const bool condition1 = (0 < integer_list.size()) && (static_cast<int>(integer_list.size()) <= system_size);
          const bool condition2 = (integer_list.size() == 0) && (shifted_2sz  == 0);
          if (condition1 || condition2) {
             
-            for (std::int64_t j = integer_list.size(); j < system_size_; ++j) {
+            for (std::int64_t j = integer_list.size(); j < system_size; ++j) {
                integer_list.push_back(0);
             }
             
@@ -241,7 +241,7 @@ public:
       
       if (static_cast<std::int64_t>(basis.size()) != dim_target) {
          std::stringstream ss;
-         ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
+         ss << "Unknown error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
          throw std::runtime_error(ss.str());
       }
       

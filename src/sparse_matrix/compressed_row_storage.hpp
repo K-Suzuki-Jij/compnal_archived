@@ -260,7 +260,7 @@ CRS<decltype(T1{0}*T2{0}*T3{0})> CalculateMatrixMatrixProduct(const T1 coeef_1,
    
    if (matrix_1.col_dim != matrix_2.row_dim) {
       std::stringstream ss;
-      ss << "Error in " << __func__ << std::endl;
+      ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
       ss << "Matrix product cannot be defined" << std::endl;
       ss << "matrix_1.col_dim = " << matrix_1.col_dim << ", matrix_2.row_dim = " << matrix_2.row_dim << std::endl;
       throw std::runtime_error(ss.str());
@@ -352,7 +352,7 @@ CRS<decltype(T1{0}+T2{0}+T3{0}+T4{0})> CalculateMatrixMatrixSum(const T1 coeef_1
    
    if (matrix_1.row_dim != matrix_2.row_dim || matrix_1.col_dim != matrix_2.col_dim) {
       std::stringstream ss;
-      ss << "Error in " << __func__ << std::endl;
+      ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
       ss << "The summation of the matrices cannot be defined." << std::endl;
       ss << "matrix_1.row_dim = " << matrix_1.row_dim << ", matrix_1.col_dim = " << matrix_1.col_dim << std::endl;
       ss << "matrix_2.row_dim = " << matrix_2.row_dim << ", matrix_2.col_dim = " << matrix_2.col_dim << std::endl;

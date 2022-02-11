@@ -26,47 +26,80 @@
 namespace compnal {
 namespace utility {
 
-void GenerateIntegerPartition(std::vector<std::vector<int>> *results, int n, int max_partition_num) {
+
+template<typename IntegerType>
+std::vector<std::vector<IntegerType>> GenerateIntegerPartition(const IntegerType partitioned_number, IntegerType max_number) {
+   static_assert(std::is_integral<IntegerType>::value, "Template parameter IntegerType must be integer type");
    
-   std::vector<int> temp_vec;
-   
-   if (results->size() > 0 && n >= max_partition_num) {
-      temp_vec = results->back();
+   if (partitioned_number <= 0 || max_number <= 0) {
+      std::stringstream ss;
+      ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+      ss << "Invalid input parameters" << std::endl;
+      throw std::runtime_error(ss.str());
    }
    
-   if (results->size() == 0 && n == 0) {
-      results->push_back(std::vector<int>());
-   }
-   else if (n == 1) {
-      if (results->size() == 0) {
-         results->push_back(std::vector<int>());
+   auto generate_next = [](const std::vector<IntegerType> &vec) -> std::vector<IntegerType> {
+      std::int64_t size = static_cast<std::int64_t>(vec.size());
+      std::vector<IntegerType> out = vec;
+      for (std::int64_t i = size - 1; i >= 0; --i) {
+         if (vec[i] > 1) {
+            if (i + 1 < size) {
+               if (vec[i] - 1 >= vec[i + 1] + 1) {
+                  out[i]--;
+                  out[i + 1]++;
+                  return out;
+               }
+               else {
+                  out[i]--;
+                  out.push_back(1);
+                  return out;
+               }
+            }
+            else {
+               out[i]--;
+               out.push_back(1);
+               return out;
+            }
+         }
       }
-      results->back().push_back(1);
-   }
-   else if (max_partition_num == 1) {
-      if (results->size() == 0) {
-         results->push_back(std::vector<int>());
-      }
-      for (int i = 0; i < n; ++i) {
-         results->back().push_back(1);
-      }
+      return std::vector<IntegerType>();
+   };
+   
+   std::vector<std::vector<IntegerType>> out;
+   
+   if (max_number >= partitioned_number) {
+      max_number = partitioned_number;
+      out.push_back({max_number});
    }
    else {
-      if (n >= max_partition_num) {
-         if (results->size() == 0) {
-            results->push_back(std::vector<int>());
+      std::vector<IntegerType> temp = {max_number};
+      IntegerType rem = partitioned_number - max_number;
+      while (rem != 0) {
+         if (rem <= max_number) {
+            temp.push_back(rem);
+            rem = 0;
          }
-         results->back().push_back(max_partition_num);
-         GenerateIntegerPartition(results, n - max_partition_num, max_partition_num);
-         results->push_back(std::vector<int>());
-         for (const auto &v: temp_vec) {
-            results->back().push_back(v);
+         else {
+            temp.push_back(max_number);
+            rem -= max_number;
          }
       }
-      GenerateIntegerPartition(results, n, max_partition_num - 1);
+      out.push_back(temp);
    }
+   
+   while (true) {
+      auto next_partition = generate_next(out.back());
+      if (next_partition.size() > 0) {
+         out.push_back(next_partition);
+      }
+      else {
+         break;
+      }
+   }
+   
+   return out;
+   
 }
-
 
 std::int64_t CalculateBinomialCoefficient(int n, const int k) {
    if (n < 0 || k < 0) {

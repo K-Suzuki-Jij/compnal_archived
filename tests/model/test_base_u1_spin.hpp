@@ -91,6 +91,14 @@ TEST(ModelBaseU1Spin, SpinOne) {
    EXPECT_EQ(model.GetOnsiteOperatorSz() , ref_sz );
 }
 
+TEST(ModelBaseU1Spin, GenerateBasis) {
+   //using RealType = long double;
+   //model::BaseU1Spin<RealType> model(0.5);
+   //auto basis = model.GenerateBasis(2, 0);
+   
+   
+}
+
 TEST(ModelBaseU1Spin, ValidateQNumber) {
    EXPECT_TRUE(model::BaseU1Spin<double>::ValidateQNumber(10, 0.5, +5.0));
    EXPECT_TRUE(model::BaseU1Spin<double>::ValidateQNumber(10, 0.5, +0.0));
