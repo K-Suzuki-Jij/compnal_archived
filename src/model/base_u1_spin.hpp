@@ -146,102 +146,72 @@ public:
    std::vector<std::int64_t> GenerateBasis(const int system_size,
                                            const QType total_sz,
                                            const bool flag_display_info = true) const {
-      if (!ValidateQNumber(system_size, magnitude_spin_, total_sz) || system_size <= 0) {
+      
+      const auto start = std::chrono::system_clock::now();
+
+      if (!ValidateQNumber(system_size, magnitude_spin_, total_sz)) {
          std::stringstream ss;
          ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
          ss << "Invalid parameters (system_size or magnitude_spin or total_sz)" << std::endl;
          throw std::runtime_error(ss.str());
       }
       
-      const auto start = std::chrono::system_clock::now();
-      
       const int dim_onsite = 2*magnitude_spin_ + 1;
-      std::vector<std::int64_t> basis;
       
       if (flag_display_info) {
          std::cout << "Generating Basis..." << std::flush;
       }
+            
+      auto partition_integers = utility::GenerateIntegerPartition(static_cast<int>(system_size*magnitude_spin_ - total_sz),
+                                                                  static_cast<int>(2*magnitude_spin_),
+                                                                  system_size);
       
-      const int shifted_2sz = static_cast<int>(2*(system_size*magnitude_spin_ - total_sz));
-      const std::int64_t dim_target = CalculateTargetDim(system_size, magnitude_spin_, total_sz);
-      std::vector<std::vector<int>> partition_integers;
-      utility::GenerateIntegerPartition(&partition_integers, shifted_2sz, magnitude_spin_);
+      for (auto &&it: partition_integers) {
+         it.resize(system_size, 0);
+      }
+      
+      for (const auto &it: partition_integers) {
+         for (const auto &val: it) {
+            std::cout << ", " << val;
+         }
+         std::cout << std::endl;
+      }
       
       std::vector<std::int64_t> site_constant(system_size);
       for (int site = 0; site < system_size; ++site) {
          site_constant[site] = static_cast<std::int64_t>(std::pow(dim_onsite, site));
       }
       
-#ifdef _OPENMP
-      const int num_threads = omp_get_max_threads();
-      std::vector<std::vector<std::int64_t>> temp_basis(num_threads);
-      for (auto &&integer_list: partition_integers) {
-         const bool condition1 = (0 < integer_list.size()) && (static_cast<int>(integer_list.size()) <= system_size);
-         const bool condition2 = (integer_list.size() == 0) && (shifted_2sz  == 0);
-         if (condition1 || condition2) {
-            for (int j = static_cast<int>(integer_list.size()); j < system_size; ++j) {
-               integer_list.push_back(0);
+      std::int64_t partition_integer_size = static_cast<std::int64_t>(partition_integers.size());
+      std::vector<std::vector<std::int64_t>> temp_basis(partition_integer_size);
+      
+#pragma omp parallel for
+      for (std::int64_t i = 0; i < partition_integer_size; ++i) {
+         auto &integer_list = partition_integers[i];
+         std::sort(integer_list.begin(), integer_list.end());
+         do {
+            std::int64_t basis_global = 0;
+            for (std::size_t j = 0; j < integer_list.size(); ++j) {
+               basis_global += integer_list[j]*site_constant[j];
             }
-            
-            const std::int64_t size = utility::CalculateNumCombination(integer_list);
-            std::vector<std::vector<int>> temp_partition_integer(num_threads);
-            
-#pragma omp parallel num_threads (num_threads)
-            {
-               const int thread_num = omp_get_thread_num();
-               const std::int64_t loop_begin = thread_num*size/num_threads;
-               const std::int64_t loop_end   = (thread_num + 1)*size/num_threads;
-               temp_partition_integer[thread_num] = integer_list;
-               utility::CalculateNthPermutation(&temp_partition_integer[thread_num], loop_begin);
-               
-               for (std::int64_t j = loop_begin; j < loop_end; ++j) {
-                  std::int64_t basis_global = 0;
-                  const auto iter_begin = temp_partition_integer[thread_num].begin();
-                  const auto iter_end   = temp_partition_integer[thread_num].end();
-                  for (auto itr = iter_begin; itr != iter_end; ++itr) {
-                     basis_global += *itr*site_constant[std::distance(iter_begin, itr)];
-                  }
-                  temp_basis[thread_num].push_back(basis_global);
-                  std::next_permutation(temp_partition_integer[thread_num].begin(), temp_partition_integer[thread_num].end());
-               }
-            }
-         }
+            temp_basis[i].push_back(basis_global);
+         } while (std::next_permutation(integer_list.begin(), integer_list.end()));
       }
       
+      const std::int64_t dim_target = CalculateTargetDim(system_size, magnitude_spin_, total_sz);
+      std::vector<std::int64_t> basis;
+
       for (auto &&it: temp_basis) {
          basis.insert(basis.end(), it.begin(), it.end());
          std::vector<std::int64_t>().swap(it);
       }
       
-#else
-      basis.reserve(dim_target);
-      
-      for (auto &&integer_list: partition_integers) {
-         const bool condition1 = (0 < integer_list.size()) && (static_cast<int>(integer_list.size()) <= system_size);
-         const bool condition2 = (integer_list.size() == 0) && (shifted_2sz  == 0);
-         if (condition1 || condition2) {
-            
-            for (std::int64_t j = integer_list.size(); j < system_size; ++j) {
-               integer_list.push_back(0);
-            }
-            
-            std::sort(integer_list.begin(), integer_list.end());
-            
-            do {
-               std::int64_t basis_global = 0;
-               for (std::size_t j = 0; j < integer_list.size(); ++j) {
-                  basis_global += integer_list[j]*site_constant[j];
-               }
-               basis.push_back(basis_global);
-            } while (std::next_permutation(integer_list.begin(), integer_list.end()));
-         }
-      }
-      
-#endif
-      
+      basis.shrink_to_fit();
+
       if (static_cast<std::int64_t>(basis.size()) != dim_target) {
          std::stringstream ss;
          ss << "Unknown error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+         ss << "basis.size()=" << basis.size() << ", but dim_target=" << dim_target << std::endl;
          throw std::runtime_error(ss.str());
       }
       
@@ -281,6 +251,11 @@ public:
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    //! @return ture if there exists corresponding subspace, otherwise false.
    static bool ValidateQNumber(const int system_size, const HalfInt magnitude_spin, const HalfInt total_sz) {
+      if (system_size <= 0 || magnitude_spin <= 0) {
+         std::stringstream ss;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+         ss << "Invalid parameters (system_size or magnitude_spin)" << std::endl;
+      }
       const int total_2sz       = 2*total_sz;
       const int magnitude_2spin = 2*magnitude_spin;
       const bool c1 = ((system_size*magnitude_2spin - total_2sz)%2 == 0);

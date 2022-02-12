@@ -92,9 +92,9 @@ TEST(ModelBaseU1Spin, SpinOne) {
 }
 
 TEST(ModelBaseU1Spin, GenerateBasis) {
-   //using RealType = long double;
-   //model::BaseU1Spin<RealType> model(0.5);
-   //auto basis = model.GenerateBasis(2, 0);
+   using RealType = double;
+   model::BaseU1Spin<RealType> model(0.5);
+   auto basis = model.GenerateBasis(4, 0);
    
    
 }

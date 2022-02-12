@@ -26,12 +26,18 @@
 namespace compnal {
 namespace utility {
 
-
+//! @brief Generate partitions of a positive integer.
+//! @tparam IntegerType Integer type
+//! @param partitioned_number A positive integer to be partitioned.
+//! @param max_number The maximum number in the partition list.
+//! @param max_size The maximum list size.
 template<typename IntegerType>
-std::vector<std::vector<IntegerType>> GenerateIntegerPartition(const IntegerType partitioned_number, IntegerType max_number) {
+std::vector<std::vector<IntegerType>> GenerateIntegerPartition(const IntegerType partitioned_number,
+                                                               IntegerType max_number,
+                                                               const IntegerType max_size) {
    static_assert(std::is_integral<IntegerType>::value, "Template parameter IntegerType must be integer type");
    
-   if (partitioned_number <= 0 || max_number <= 0) {
+   if (partitioned_number <= 0 || max_number <= 0 || max_size <= 0) {
       std::stringstream ss;
       ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
       ss << "Invalid input parameters" << std::endl;
@@ -84,12 +90,17 @@ std::vector<std::vector<IntegerType>> GenerateIntegerPartition(const IntegerType
             rem -= max_number;
          }
       }
-      out.push_back(temp);
+      if (static_cast<IntegerType>(temp.size()) > max_size) {
+         return std::vector<std::vector<IntegerType>>();
+      }
+      else {
+         out.push_back(temp);
+      }
    }
    
    while (true) {
       auto next_partition = generate_next(out.back());
-      if (next_partition.size() > 0) {
+      if (0 < next_partition.size() && static_cast<IntegerType>(next_partition.size()) <= max_size) {
          out.push_back(next_partition);
       }
       else {
@@ -101,16 +112,35 @@ std::vector<std::vector<IntegerType>> GenerateIntegerPartition(const IntegerType
    
 }
 
-std::int64_t CalculateBinomialCoefficient(int n, const int k) {
+//! @brief Generate partitions of a positive integer.
+//! @tparam IntegerType Integer type
+//! @param partitioned_number A positive integer to be partitioned.
+//! @param max_number The maximum number in the partition list.
+template<typename IntegerType>
+std::vector<std::vector<IntegerType>> GenerateIntegerPartition(const IntegerType partitioned_number,
+                                                               const IntegerType max_number) {
+   return GenerateIntegerPartition(partitioned_number, max_number, partitioned_number);
+}
+
+
+//! @brief Calculate binomial coefficient
+//! @tparam IntegerType Integer type
+//! @param n Non-negative integer \f$ n \f$ in \f$ \frac{n!}{k!(n-k)!} \f$.
+//! @param k Non-negative integer \f$ k \f$ in \f$ \frac{n!}{k!(n-k)!} \f$.
+template<typename IntegerType>
+std::int64_t CalculateBinomialCoefficient(IntegerType n, const IntegerType k) {
+   static_assert(std::is_integral<IntegerType>::value, "Template parameter IntegerType must be integer type");
+   
    if (n < 0 || k < 0) {
       std::stringstream ss;
-      ss << "Error in " << __func__ << std::endl;
+      ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+      ss << "Invalid input parameters" << std::endl;
       throw std::runtime_error(ss.str());
    }
    
    std::int64_t r = 1;
    
-   for (int d = 1; d <= k; d++) {
+   for (IntegerType d = 1; d <= k; d++) {
        r *= n--;
        r /= d;
    }
@@ -119,10 +149,16 @@ std::int64_t CalculateBinomialCoefficient(int n, const int k) {
    
 }
 
-std::vector<std::vector<std::int64_t>> CalculateBinomialTable(int N) {
-   std::vector<std::vector<std::int64_t>> vec(N + 1, std::vector<std::int64_t>(N + 1));
-   for (int i = 0; i <= N; ++i) {
-      for (int j = 0; j <= i; j++) {
+//! @brief Generate binomial coefficients \f$ \frac{n!}{k!(n-k)!} \f$ for \f$ n \f$ and all \f$ 0 <= k <= n\f$.
+//! @tparam IntegerType Integer type.
+//! @param n Non-negative integer \f$ n \f$.
+template<typename IntegerType>
+std::vector<std::vector<std::int64_t>> GenerateBinomialTable(const IntegerType n) {
+   static_assert(std::is_integral<IntegerType>::value, "Template parameter IntegerType must be integer type");
+   
+   std::vector<std::vector<std::int64_t>> vec(n + 1, std::vector<std::int64_t>(n + 1));
+   for (IntegerType i = 0; i <= n; ++i) {
+      for (IntegerType j = 0; j <= i; j++) {
          if (j == 0 || j == i) {
             vec[i][j] = 1;
          }
@@ -134,16 +170,24 @@ std::vector<std::vector<std::int64_t>> CalculateBinomialTable(int N) {
    return vec;
 }
 
-std::int64_t CalculateNumCombination(const std::vector<int> &list) {
+//! @brief Calculate the number of permutations from list.
+//! @n For example, all the possible permutations for {1, 1, 2} are
+//! @n {1, 1, 2}, {1, 2, 1}, {2, 1, 1}.
+//! @n Thus, this function return the value 3.
+//! @tparam T Integer type or string type.
+//! @param list The list.
+template<typename T>
+std::int64_t CalculateNumPermutation(const std::vector<T> &list) {
+   static_assert(!std::is_floating_point<T>::value, "Template parameter T must not be floating point");
    
-   std::unordered_map<int, int> u_map;
+   std::unordered_map<T, std::int64_t> u_map;
    
    for (const auto &it: list) {
       u_map[it]++;
    }
    
    std::int64_t result = 1;
-   int size_list = static_cast<int>(list.size());
+   std::int64_t size_list = static_cast<std::int64_t>(list.size());
    
    for (const auto &it: u_map) {
       result *= CalculateBinomialCoefficient(size_list, it.second);
@@ -154,45 +198,67 @@ std::int64_t CalculateNumCombination(const std::vector<int> &list) {
    
 }
 
-void CalculateNthPermutation(std::vector<int> *vec, std::int64_t target_num) {
+//! @brief Calculate \f$ n\f$ -th permutation of the list.
+//! @n For example, all the possible permutations for {1, 1, 2} are
+//! @n {1, 1, 2}, {1, 2, 1}, {2, 1, 1}.
+//! @n Thus, this function GenerateNthPermutation({1, 1, 2}, 2) returns {1, 2, 1}.
+//! @tparam T Integer type or string type.
+//! @param list The list.
+//! @param n Non-negative integer \f$ n\f$.
+template<typename T>
+std::vector<T> GenerateNthPermutation(const std::vector<T> &list, const std::int64_t n) {
+   static_assert(!std::is_floating_point<T>::value, "Template parameter T must not be floating point");
    
-   std::map<int, int> u_map;
-   
-   for (const auto &it: *vec) {
-      u_map[it]++;
-   }
-   
-   int size_vec = static_cast<int>(vec->size());
-   
-   for (int i = 0; i < size_vec; ++i) {
-      std::int64_t temp1 = 0;
-      for (auto &&it: u_map) {
-         if (it.second > 0) {
-            it.second -= 1;
-            std::int64_t temp2 = 1;
-            int size = size_vec - (i + 1);
-            for (const auto it2: u_map) {
-               temp2 *= CalculateBinomialCoefficient(size, it2.second);
-               size  -= it2.second;
-            }
-            temp1 += temp2;
-            if (temp1 > target_num) {
-               (*vec)[i] = it.first;
-               temp1 -= temp2;
-               break;
-            }
-            it.second += 1;
-         }
-      }
-      target_num -= temp1;
-   }
-   
-   if (target_num != 0) {
+   if (n <= 0) {
       std::stringstream ss;
-      ss << "Error in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
-      ss << "Can't find corresponding permutation, " << target_num << std::endl;
+      ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+      ss << "Invalid input parameters" << std::endl;
       throw std::runtime_error(ss.str());
    }
+   
+   std::int64_t size_list = static_cast<std::int64_t>(list.size());
+   std::int64_t rem = n;
+   std::int64_t num_perm = CalculateNumPermutation(list);
+   
+   if (n > num_perm) {
+      std::stringstream ss;
+      ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+      ss << "Invalid input parameters" << std::endl;
+      throw std::runtime_error(ss.str());
+   }
+   
+   std::map<T, std::int64_t> map;
+   
+   for (const auto &it: list) {
+      map[it]++;
+   }
+   
+   std::vector<T> out;
+   
+   while (true) {
+      std::size_t negative_count = 0;
+      for (auto &&it: map) {
+         if (it.second > 0) {
+            const std::int64_t count = (num_perm*it.second)/size_list;
+            if (rem <= count) {
+               out.push_back(it.first);
+               num_perm = count;
+               it.second--;
+               size_list--;
+               break;
+            }
+            rem -= count;
+         }
+         else {
+            negative_count++;
+         }
+      }
+      if (negative_count == map.size()) {
+         break;
+      }
+   }
+   
+   return out;
    
 }
 
