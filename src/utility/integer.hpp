@@ -36,12 +36,19 @@ std::vector<std::vector<IntegerType>> GenerateIntegerPartition(const IntegerType
                                                                IntegerType max_number,
                                                                const IntegerType max_size) {
    static_assert(std::is_integral<IntegerType>::value, "Template parameter IntegerType must be integer type");
-   
-   if (partitioned_number <= 0 || max_number <= 0 || max_size <= 0) {
+      
+   if (partitioned_number < 0 || max_number <= 0 || max_size <= 0) {
       std::stringstream ss;
       ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
       ss << "Invalid input parameters" << std::endl;
+      ss << "partitioned_number=" << partitioned_number << std::endl;
+      ss << "max_number=" << max_number << std::endl;
+      ss << "max_size=" << max_size << std::endl;
       throw std::runtime_error(ss.str());
+   }
+      
+   if (partitioned_number == 0) {
+      std::vector<std::vector<IntegerType>>{std::vector<IntegerType>(max_size)};
    }
    
    auto generate_next = [](const std::vector<IntegerType> &vec) -> std::vector<IntegerType> {
@@ -212,7 +219,8 @@ std::int64_t CalculateNumPermutation(const std::vector<T> &list) {
 //! @brief Calculate \f$ n\f$ -th permutation of the list.
 //! @n For example, all the possible permutations for {1, 1, 2} are
 //! @n {1, 1, 2}, {1, 2, 1}, {2, 1, 1}.
-//! @n Thus, this function GenerateNthPermutation({1, 1, 2}, 2) returns {1, 2, 1}.
+//! @n Thus, this function GenerateNthPermutation({1, 1, 2}, 1) returns {1, 2, 1}.
+//! @n Note that the index starts from 0.
 //! @tparam T Integer type or string type.
 //! @param list The list.
 //! @param n Non-negative integer \f$ n\f$.
@@ -220,7 +228,7 @@ template<typename T>
 std::vector<T> GenerateNthPermutation(const std::vector<T> &list, const std::int64_t n) {
    static_assert(!std::is_floating_point<T>::value, "Template parameter T must not be floating point");
    
-   if (n <= 0) {
+   if (n < 0) {
       std::stringstream ss;
       ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
       ss << "Invalid input parameters" << std::endl;
@@ -228,10 +236,10 @@ std::vector<T> GenerateNthPermutation(const std::vector<T> &list, const std::int
    }
    
    std::int64_t size_list = static_cast<std::int64_t>(list.size());
-   std::int64_t rem = n;
+   std::int64_t rem = n + 1;
    std::int64_t num_perm = CalculateNumPermutation(list);
    
-   if (n > num_perm) {
+   if (n >= num_perm) {
       std::stringstream ss;
       ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
       ss << "Invalid input parameters" << std::endl;

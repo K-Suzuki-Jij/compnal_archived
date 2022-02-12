@@ -91,12 +91,38 @@ TEST(ModelBaseU1Spin, SpinOne) {
    EXPECT_EQ(model.GetOnsiteOperatorSz() , ref_sz );
 }
 
-TEST(ModelBaseU1Spin, GenerateBasis) {
-   using RealType = double;
-   model::BaseU1Spin<RealType> model(0.5);
-   auto basis = model.GenerateBasis(4, 0);
-   
-   
+TEST(ModelBaseU1Spin, GenerateBasisSpin05) {
+   model::BaseU1Spin<double> model(0.5);
+   std::vector<std::int64_t> basis_spin05_sz_p1 = {0};
+   std::vector<std::int64_t> basis_spin05_sz_0  = {1, 2};
+   std::vector<std::int64_t> basis_spin05_sz_m1 = {3};
+   EXPECT_THROW(model.GenerateBasis(2, -2.0, false), std::runtime_error);
+   EXPECT_THROW(model.GenerateBasis(2, -1.5, false), std::runtime_error);
+   EXPECT_EQ   (model.GenerateBasis(2, -1.0, false), basis_spin05_sz_m1);
+   EXPECT_THROW(model.GenerateBasis(2, -0.5, false), std::runtime_error);
+   EXPECT_EQ   (model.GenerateBasis(2,  0.0, false), basis_spin05_sz_0 );
+   EXPECT_THROW(model.GenerateBasis(2, +0.5, false), std::runtime_error);
+   EXPECT_EQ   (model.GenerateBasis(2, +1.0, false), basis_spin05_sz_p1);
+   EXPECT_THROW(model.GenerateBasis(2, +1.5, false), std::runtime_error);
+   EXPECT_THROW(model.GenerateBasis(2, +2.0, false), std::runtime_error);
+}
+
+TEST(ModelBaseU1Spin, GenerateBasisSpin1) {
+   model::BaseU1Spin<double> model(1);
+   std::vector<std::int64_t> basis_spin1_sz_p2 = {0};
+   std::vector<std::int64_t> basis_spin1_sz_p1 = {1, 3};
+   std::vector<std::int64_t> basis_spin1_sz_0  = {2, 4, 6};
+   std::vector<std::int64_t> basis_spin1_sz_m1 = {5, 7};
+   std::vector<std::int64_t> basis_spin1_sz_m2 = {8};
+   EXPECT_EQ   (model.GenerateBasis(2, -2.0, false), basis_spin1_sz_m2);
+   EXPECT_THROW(model.GenerateBasis(2, -1.5, false), std::runtime_error);
+   EXPECT_EQ   (model.GenerateBasis(2, -1.0, false), basis_spin1_sz_m1);
+   EXPECT_THROW(model.GenerateBasis(2, -0.5, false), std::runtime_error);
+   EXPECT_EQ   (model.GenerateBasis(2,  0.0, false), basis_spin1_sz_0);
+   EXPECT_THROW(model.GenerateBasis(2, +0.5, false), std::runtime_error);
+   EXPECT_EQ   (model.GenerateBasis(2, +1.0, false), basis_spin1_sz_p1);
+   EXPECT_THROW(model.GenerateBasis(2, +1.5, false), std::runtime_error);
+   EXPECT_EQ   (model.GenerateBasis(2, +2.0, false), basis_spin1_sz_p2);
 }
 
 TEST(ModelBaseU1Spin, ValidateQNumber) {
