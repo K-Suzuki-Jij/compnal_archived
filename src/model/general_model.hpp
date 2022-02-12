@@ -39,13 +39,16 @@ class GeneralModel: public BaseClass {
    using CRS = sparse_matrix::CRS<RealType>;
    
    //! @brief Alias of variant type.
-   using IndexType = std::variant<int, std::string, std::vector<std::variant<int, std::string>>>;
+   using IndexType = std::variant<std::int64_t, std::string, std::vector<std::variant<std::int64_t, std::string>>>;
       
+   //! @brief Alias of hash struct for IndexType.
+   using Hash = utility::VariantHash<std::int64_t>;
+   
    //! @brief Type for onsite operator lists.
-   using OnsiteListType = std::unordered_map<IndexType, CRS, utility::VariantHash>;
+   using OnsiteListType = std::unordered_map<IndexType, CRS, Hash>;
    
    //! @brief Type for lists of onsite operator pairs.
-   using IntersiteListType = std::unordered_map<IndexType, std::unordered_map<IndexType, std::vector<std::pair<CRS, CRS>>, utility::VariantHash>, utility::VariantHash>;
+   using IntersiteListType = std::unordered_map<IndexType, std::unordered_map<IndexType, std::vector<std::pair<CRS, CRS>>, Hash>, Hash>;
       
 public:
    using BaseClass::BaseClass;
@@ -123,7 +126,7 @@ public:
    
    //! @brief Get the site index list.
    //! @return The site index list.
-   const std::unordered_set<IndexType, utility::VariantHash> &GetIndexList() const {
+   const std::unordered_set<IndexType, Hash> &GetIndexList() const {
       return index_list_;
    }
    
@@ -156,7 +159,7 @@ private:
    IntersiteListType interaction_list_;
    
    //! @brief The site index list.
-   std::unordered_set<IndexType, utility::VariantHash> index_list_;
+   std::unordered_set<IndexType, Hash> index_list_;
    
 };
 

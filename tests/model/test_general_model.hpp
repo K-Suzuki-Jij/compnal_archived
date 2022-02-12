@@ -27,7 +27,7 @@ namespace test {
 
 TEST(ModelGeneralModel, U1Spin) {
    
-   using VariantVecType = std::vector<std::variant<int, std::string>>;
+   using VariantVecType = std::vector<std::variant<std::int64_t, std::string>>;
 
    model::GeneralModel<model::BaseU1Spin<double>> model;
    

@@ -52,14 +52,18 @@ struct VecHash {
    }
 };
 
+//! @brief Hash struct of IndexType used in model::GeneralModel
+//! @tparam IntegerType Integer type.
+template<typename IntegerType>
 struct VariantHash {
+   static_assert(std::is_integral<IntegerType>::value, "Template parameter IntegerType must be integer type");
    
-   using VariantVecType = std::vector<std::variant<int, std::string>>;
+   using VariantVecType = std::vector<std::variant<IntegerType, std::string>>;
    
    template<class... Types>
    std::size_t operator() (const std::variant<Types...> &v) const {
-      if (std::holds_alternative<int>(v)) {
-         return std::hash<int>()(std::get<int>(v));
+      if (std::holds_alternative<IntegerType>(v)) {
+         return std::hash<IntegerType>()(std::get<IntegerType>(v));
       }
       else if (std::holds_alternative<std::string>(v)) {
          return std::hash<std::string>()(std::get<std::string>(v));
@@ -68,8 +72,8 @@ struct VariantHash {
          const auto &variant_vec = std::get<VariantVecType>(v);
          std::size_t hash = variant_vec.size();
          for (const auto &i : variant_vec) {
-            if (std::holds_alternative<int>(i)) {
-               hash ^= std::hash<int>()(std::get<int>(i)) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+            if (std::holds_alternative<IntegerType>(i)) {
+               hash ^= std::hash<IntegerType>()(std::get<IntegerType>(i)) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
             }
             else if (std::holds_alternative<std::string>(i)) {
                hash ^= std::hash<std::string>()(std::get<std::string>(i)) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
