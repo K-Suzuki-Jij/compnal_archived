@@ -85,7 +85,7 @@
 \DoxyCodeLine{96       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}}\{lhs + 0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}()\};}
 \DoxyCodeLine{97    \}}
 \DoxyCodeLine{98    \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{99       \textcolor{keywordflow}{return} ValueType\{lhs + 0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}()\};}
+\DoxyCodeLine{99       \textcolor{keywordflow}{return} lhs + ValueType\{0.5\}*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}();}
 \DoxyCodeLine{100    \}}
 \DoxyCodeLine{101 \}}
 \DoxyCodeLine{102 }
@@ -95,7 +95,7 @@
 \DoxyCodeLine{110       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}}\{0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() + rhs\};}
 \DoxyCodeLine{111    \}}
 \DoxyCodeLine{112    \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{113       \textcolor{keywordflow}{return} ValueType\{0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() + rhs\};}
+\DoxyCodeLine{113       \textcolor{keywordflow}{return} ValueType\{0.5\}*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() + rhs;}
 \DoxyCodeLine{114    \}}
 \DoxyCodeLine{115 \}}
 \DoxyCodeLine{116 }
@@ -112,7 +112,7 @@
 \DoxyCodeLine{134       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}}\{lhs -\/ 0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}()\};}
 \DoxyCodeLine{135    \}}
 \DoxyCodeLine{136    \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{137       \textcolor{keywordflow}{return} ValueType\{lhs -\/ 0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}()\};}
+\DoxyCodeLine{137       \textcolor{keywordflow}{return} lhs -\/ ValueType\{0.5\}*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}();}
 \DoxyCodeLine{138    \}}
 \DoxyCodeLine{139 \}}
 \DoxyCodeLine{140 }
@@ -123,7 +123,7 @@
 \DoxyCodeLine{149       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}}\{0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() -\/ rhs\};}
 \DoxyCodeLine{150    \}}
 \DoxyCodeLine{151    \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{152       \textcolor{keywordflow}{return} ValueType\{0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() -\/ rhs\};}
+\DoxyCodeLine{152       \textcolor{keywordflow}{return} ValueType\{0.5\}*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}() -\/ rhs;}
 \DoxyCodeLine{153    \}}
 \DoxyCodeLine{154 \}}
 \DoxyCodeLine{155 }
@@ -140,7 +140,7 @@
 \DoxyCodeLine{173       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}}\{lhs*0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}()\};}
 \DoxyCodeLine{174    \}}
 \DoxyCodeLine{175    \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{176       \textcolor{keywordflow}{return} ValueType\{lhs*0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}()\};}
+\DoxyCodeLine{176       \textcolor{keywordflow}{return} lhs*ValueType\{0.5\}*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}();}
 \DoxyCodeLine{177    \}}
 \DoxyCodeLine{178 \}}
 \DoxyCodeLine{179 }
@@ -150,7 +150,7 @@
 \DoxyCodeLine{187       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}}\{0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}()*rhs\};}
 \DoxyCodeLine{188    \}}
 \DoxyCodeLine{189    \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{190       \textcolor{keywordflow}{return} ValueType\{0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}()*rhs\};}
+\DoxyCodeLine{190       \textcolor{keywordflow}{return} ValueType\{0.5\}*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}()*rhs;}
 \DoxyCodeLine{191    \}}
 \DoxyCodeLine{192 \}}
 \DoxyCodeLine{193 }
@@ -167,7 +167,7 @@
 \DoxyCodeLine{211       \textcolor{keywordflow}{return} \textcolor{keywordtype}{double}\{lhs/(0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}())\};}
 \DoxyCodeLine{212    \}}
 \DoxyCodeLine{213    \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{214       \textcolor{keywordflow}{return} ValueType\{lhs/(0.5*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}())\};}
+\DoxyCodeLine{214       \textcolor{keywordflow}{return} lhs/(ValueType\{0.5\}*rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}());}
 \DoxyCodeLine{215    \}}
 \DoxyCodeLine{216 \}}
 \DoxyCodeLine{217 }
@@ -177,7 +177,7 @@
 \DoxyCodeLine{225       \textcolor{keywordflow}{return} \textcolor{keywordtype}{double}\{0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}()/rhs\};}
 \DoxyCodeLine{226    \}}
 \DoxyCodeLine{227    \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{228       \textcolor{keywordflow}{return} ValueType\{0.5*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}()/rhs\};}
+\DoxyCodeLine{228       \textcolor{keywordflow}{return} ValueType\{0.5\}*lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}()/rhs;}
 \DoxyCodeLine{229    \}}
 \DoxyCodeLine{230 \}}
 \DoxyCodeLine{231 }

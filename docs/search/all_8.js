@@ -1,12 +1,12 @@
 var searchData=
 [
   ['ii_0',['ii',['../structcompnal_1_1sparse__matrix_1_1_parameters_all.html#abdff80529ad29e3797baaf430a2f651f',1,'compnal::sparse_matrix::ParametersAll']]],
-  ['index_5flist_5f_1',['index_list_',['../classcompnal_1_1model_1_1_general_model.html#a058181213ceab978e9b673b057659129',1,'compnal::model::GeneralModel']]],
-  ['indextype_2',['IndexType',['../classcompnal_1_1model_1_1_general_model.html#a86189799e80e0b86bcdd60d6f9232754',1,'compnal::model::GeneralModel']]],
+  ['index_5flist_5f_1',['index_list_',['../classcompnal_1_1model_1_1_general_model.html#a7d37d82218483bb044c70de3008d3222',1,'compnal::model::GeneralModel']]],
+  ['indextype_2',['IndexType',['../classcompnal_1_1model_1_1_general_model.html#a33626d4877a81bcd906c726ab31b1ebf',1,'compnal::model::GeneralModel']]],
   ['integer_2ehpp_3',['integer.hpp',['../integer_8hpp.html',1,'']]],
   ['integer_5f_4',['integer_',['../classcompnal_1_1type_1_1_half_int.html#a6ad67ad07c1bd8009e885f94953e8283',1,'compnal::type::HalfInt']]],
   ['interaction_5flist_5f_5',['interaction_list_',['../classcompnal_1_1model_1_1_general_model.html#a32f92db6c157e455268dde147a78d27c',1,'compnal::model::GeneralModel']]],
-  ['intersitelisttype_6',['IntersiteListType',['../classcompnal_1_1model_1_1_general_model.html#a32d80cf19f562e27f8ba69fc1b811877',1,'compnal::model::GeneralModel']]],
+  ['intersitelisttype_6',['IntersiteListType',['../classcompnal_1_1model_1_1_general_model.html#aaaedb359cd2fa167e2ae9865f5d18e4c',1,'compnal::model::GeneralModel']]],
   ['inv_5fbasis_5faffected_7',['inv_basis_affected',['../structcompnal_1_1solver_1_1_exact_diag_matrix_components.html#a253673ab20bc51bc09af60c5daccf531',1,'compnal::solver::ExactDiagMatrixComponents']]],
   ['inverse_5fiteration_2ehpp_8',['inverse_iteration.hpp',['../inverse__iteration_8hpp.html',1,'']]],
   ['inverseiteration_9',['InverseIteration',['../namespacecompnal_1_1sparse__matrix.html#a6a27a252e65bad8f004467384383df61',1,'compnal::sparse_matrix']]],

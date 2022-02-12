@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>COMPNAL: compnal::utility::VariantHash Struct Reference</title>
+<title>COMPNAL: compnal::utility::VariantHash&lt; IntegerType &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -77,32 +77,46 @@ $(function() {
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="structcompnal_1_1utility_1_1_variant_hash-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">compnal::utility::VariantHash Struct Reference</div></div>
+  <div class="headertitle"><div class="title">compnal::utility::VariantHash&lt; IntegerType &gt; Struct Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Hash struct of IndexType used in <a class="el" href="classcompnal_1_1model_1_1_general_model.html" title="The general model class.">model::GeneralModel</a>.  
+ <a href="structcompnal_1_1utility_1_1_variant_hash.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="hash_8hpp_source.html">hash.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a567bc6aeaa80dd6d7a07814cd8c1079c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcompnal_1_1utility_1_1_variant_hash.html#a567bc6aeaa80dd6d7a07814cd8c1079c">VariantVecType</a> = std::vector&lt; std::variant&lt; int, std::string &gt; &gt;</td></tr>
-<tr class="separator:a567bc6aeaa80dd6d7a07814cd8c1079c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bd6d0503b78d7aa77a1b068b414b858"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcompnal_1_1utility_1_1_variant_hash.html#a8bd6d0503b78d7aa77a1b068b414b858">VariantVecType</a> = std::vector&lt; std::variant&lt; IntegerType, std::string &gt; &gt;</td></tr>
+<tr class="separator:a8bd6d0503b78d7aa77a1b068b414b858"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a95fb6ebe24c2b489fd64a998567f5ada"><td class="memTemplParams" colspan="2">template&lt;class... Types&gt; </td></tr>
-<tr class="memitem:a95fb6ebe24c2b489fd64a998567f5ada"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structcompnal_1_1utility_1_1_variant_hash.html#a95fb6ebe24c2b489fd64a998567f5ada">operator()</a> (const std::variant&lt; Types... &gt; &amp;v) const</td></tr>
-<tr class="separator:a95fb6ebe24c2b489fd64a998567f5ada"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65d6baf7936c364ff373de4c17379fb2"><td class="memTemplParams" colspan="2">template&lt;class... Types&gt; </td></tr>
+<tr class="memitem:a65d6baf7936c364ff373de4c17379fb2"><td class="memTemplItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structcompnal_1_1utility_1_1_variant_hash.html#a65d6baf7936c364ff373de4c17379fb2">operator()</a> (const std::variant&lt; Types... &gt; &amp;v) const</td></tr>
+<tr class="separator:a65d6baf7936c364ff373de4c17379fb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Typedef Documentation</h2>
-<a id="a567bc6aeaa80dd6d7a07814cd8c1079c" name="a567bc6aeaa80dd6d7a07814cd8c1079c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a567bc6aeaa80dd6d7a07814cd8c1079c">&#9670;&nbsp;</a></span>VariantVecType</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename IntegerType&gt;<br />
+struct compnal::utility::VariantHash&lt; IntegerType &gt;</div><p >Hash struct of IndexType used in <a class="el" href="classcompnal_1_1model_1_1_general_model.html" title="The general model class.">model::GeneralModel</a>. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">IntegerType</td><td>Integer type. </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a8bd6d0503b78d7aa77a1b068b414b858" name="a8bd6d0503b78d7aa77a1b068b414b858"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bd6d0503b78d7aa77a1b068b414b858">&#9670;&nbsp;</a></span>VariantVecType</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename IntegerType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structcompnal_1_1utility_1_1_variant_hash.html#a567bc6aeaa80dd6d7a07814cd8c1079c">compnal::utility::VariantHash::VariantVecType</a> =  std::vector&lt;std::variant&lt;int, std::string&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="structcompnal_1_1utility_1_1_variant_hash.html">compnal::utility::VariantHash</a>&lt; IntegerType &gt;::VariantVecType =  std::vector&lt;std::variant&lt;IntegerType, std::string&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -110,11 +124,13 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a95fb6ebe24c2b489fd64a998567f5ada" name="a95fb6ebe24c2b489fd64a998567f5ada"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a95fb6ebe24c2b489fd64a998567f5ada">&#9670;&nbsp;</a></span>operator()()</h2>
+<a id="a65d6baf7936c364ff373de4c17379fb2" name="a65d6baf7936c364ff373de4c17379fb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65d6baf7936c364ff373de4c17379fb2">&#9670;&nbsp;</a></span>operator()()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename IntegerType &gt; </div>
 <div class="memtemplate">
 template&lt;class... Types&gt; </div>
 <table class="mlabels">
@@ -122,7 +138,7 @@ template&lt;class... Types&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::size_t compnal::utility::VariantHash::operator() </td>
+          <td class="memname">std::size_t <a class="el" href="structcompnal_1_1utility_1_1_variant_hash.html">compnal::utility::VariantHash</a>&lt; IntegerType &gt;::operator() </td>
           <td>(</td>
           <td class="paramtype">const std::variant&lt; Types... &gt; &amp;&#160;</td>
           <td class="paramname"><em>v</em></td><td>)</td>

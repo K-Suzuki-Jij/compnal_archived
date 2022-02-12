@@ -257,7 +257,7 @@
 \DoxyCodeLine{260    }
 \DoxyCodeLine{261    \textcolor{keywordflow}{if} (matrix\_1.col\_dim != matrix\_2.row\_dim) \{}
 \DoxyCodeLine{262       std::stringstream ss;}
-\DoxyCodeLine{263       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
+\DoxyCodeLine{263       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
 \DoxyCodeLine{264       ss << \textcolor{stringliteral}{"{}Matrix product cannot be defined"{}} << std::endl;}
 \DoxyCodeLine{265       ss << \textcolor{stringliteral}{"{}matrix\_1.col\_dim = "{}} << matrix\_1.col\_dim << \textcolor{stringliteral}{"{}, matrix\_2.row\_dim = "{}} << matrix\_2.row\_dim << std::endl;}
 \DoxyCodeLine{266       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
@@ -349,7 +349,7 @@
 \DoxyCodeLine{352    }
 \DoxyCodeLine{353    \textcolor{keywordflow}{if} (matrix\_1.row\_dim != matrix\_2.row\_dim || matrix\_1.col\_dim != matrix\_2.col\_dim) \{}
 \DoxyCodeLine{354       std::stringstream ss;}
-\DoxyCodeLine{355       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
+\DoxyCodeLine{355       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
 \DoxyCodeLine{356       ss << \textcolor{stringliteral}{"{}The summation of the matrices cannot be defined."{}} << std::endl;}
 \DoxyCodeLine{357       ss << \textcolor{stringliteral}{"{}matrix\_1.row\_dim = "{}} << matrix\_1.row\_dim << \textcolor{stringliteral}{"{}, matrix\_1.col\_dim = "{}} << matrix\_1.col\_dim << std::endl;}
 \DoxyCodeLine{358       ss << \textcolor{stringliteral}{"{}matrix\_2.row\_dim = "{}} << matrix\_2.row\_dim << \textcolor{stringliteral}{"{}, matrix\_2.col\_dim = "{}} << matrix\_2.col\_dim << std::endl;}

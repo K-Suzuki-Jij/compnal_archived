@@ -127,59 +127,61 @@ $(function() {
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>   }</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>};</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="structcompnal_1_1utility_1_1_variant_hash.html">   55</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcompnal_1_1utility_1_1_variant_hash.html">VariantHash</a> {</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>   </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structcompnal_1_1utility_1_1_variant_hash.html#a567bc6aeaa80dd6d7a07814cd8c1079c">   57</a></span>   <span class="keyword">using</span> <a class="code hl_typedef" href="structcompnal_1_1utility_1_1_variant_hash.html#a567bc6aeaa80dd6d7a07814cd8c1079c">VariantVecType</a> = std::vector&lt;std::variant&lt;int, std::string&gt;&gt;;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>   </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>   <span class="keyword">template</span>&lt;<span class="keyword">class</span>... Types&gt;</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="structcompnal_1_1utility_1_1_variant_hash.html#a95fb6ebe24c2b489fd64a998567f5ada">   60</a></span>   std::size_t <a class="code hl_function" href="structcompnal_1_1utility_1_1_variant_hash.html#a95fb6ebe24c2b489fd64a998567f5ada">operator() </a>(<span class="keyword">const</span> std::variant&lt;Types...&gt; &amp;v)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>      <span class="keywordflow">if</span> (std::holds_alternative&lt;int&gt;(v)) {</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>         <span class="keywordflow">return</span> std::hash&lt;int&gt;()(std::get&lt;int&gt;(v));</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>      }</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (std::holds_alternative&lt;std::string&gt;(v)) {</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>         <span class="keywordflow">return</span> std::hash&lt;std::string&gt;()(std::get&lt;std::string&gt;(v));</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>      }</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (std::holds_alternative&lt;VariantVecType&gt;(v)) {</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>         <span class="keyword">const</span> <span class="keyword">auto</span> &amp;variant_vec = std::get&lt;VariantVecType&gt;(v);</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>         std::size_t hash = variant_vec.size();</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>         <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;i : variant_vec) {</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            <span class="keywordflow">if</span> (std::holds_alternative&lt;int&gt;(i)) {</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>               hash ^= std::hash&lt;int&gt;()(std::get&lt;int&gt;(i)) + 0x9e3779b9 + (hash &lt;&lt; 6) + (hash &gt;&gt; 2);</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            }</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (std::holds_alternative&lt;std::string&gt;(i)) {</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>               hash ^= std::hash&lt;std::string&gt;()(std::get&lt;std::string&gt;(i)) + 0x9e3779b9 + (hash &lt;&lt; 6) + (hash &gt;&gt; 2);</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            }</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>               <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Invalid template parameters&quot;</span>);</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            }</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>         }</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>         <span class="keywordflow">return</span> hash;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>      }</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>      <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>         <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Invalid template parameters&quot;</span>);</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>      }</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>   }</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>};</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="structcompnal_1_1utility_1_1_vec_int_hash.html">   90</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcompnal_1_1utility_1_1_vec_int_hash.html">VecIntHash</a> {</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>   <span class="keyword">template</span>&lt;<span class="keyword">class</span> T1, <span class="keyword">class</span> T2&gt;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="structcompnal_1_1utility_1_1_vec_int_hash.html#a08ac76d14974c9d6a82de51f8b3dbea8">   92</a></span>   std::size_t <a class="code hl_function" href="structcompnal_1_1utility_1_1_vec_int_hash.html#a08ac76d14974c9d6a82de51f8b3dbea8">operator() </a>(<span class="keyword">const</span> std::pair&lt;std::vector&lt;T1&gt;, T2&gt;&amp; p)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>      std::size_t hash = p.first.size();</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>      <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;i: p.first) {</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>         hash ^= std::hash&lt;T1&gt;()(i) + 0x9e3779b9 + (hash &lt;&lt; 6) + (hash &gt;&gt; 2);</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>      }</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>      std::size_t lhs = std::hash&lt;T2&gt;()(p.second);</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>      hash ^= lhs^(0x9e3779b9 + (lhs &lt;&lt; 6));</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>      <span class="keywordflow">return</span> hash;</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>   }</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>};</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>}</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>}</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> IntegerType&gt;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="structcompnal_1_1utility_1_1_variant_hash.html">   58</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcompnal_1_1utility_1_1_variant_hash.html">VariantHash</a> {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>   <span class="keyword">static_assert</span>(std::is_integral&lt;IntegerType&gt;::value, <span class="stringliteral">&quot;Template parameter IntegerType must be integer type&quot;</span>);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>   </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="structcompnal_1_1utility_1_1_variant_hash.html#a8bd6d0503b78d7aa77a1b068b414b858">   61</a></span>   <span class="keyword">using</span> <a class="code hl_typedef" href="structcompnal_1_1utility_1_1_variant_hash.html#a8bd6d0503b78d7aa77a1b068b414b858">VariantVecType</a> = std::vector&lt;std::variant&lt;IntegerType, std::string&gt;&gt;;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>   </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>   <span class="keyword">template</span>&lt;<span class="keyword">class</span>... Types&gt;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="structcompnal_1_1utility_1_1_variant_hash.html#a65d6baf7936c364ff373de4c17379fb2">   64</a></span>   std::size_t <a class="code hl_function" href="structcompnal_1_1utility_1_1_variant_hash.html#a65d6baf7936c364ff373de4c17379fb2">operator() </a>(<span class="keyword">const</span> std::variant&lt;Types...&gt; &amp;v)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>      <span class="keywordflow">if</span> (std::holds_alternative&lt;IntegerType&gt;(v)) {</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>         <span class="keywordflow">return</span> std::hash&lt;IntegerType&gt;()(std::get&lt;IntegerType&gt;(v));</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      }</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (std::holds_alternative&lt;std::string&gt;(v)) {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>         <span class="keywordflow">return</span> std::hash&lt;std::string&gt;()(std::get&lt;std::string&gt;(v));</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>      }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (std::holds_alternative&lt;VariantVecType&gt;(v)) {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>         <span class="keyword">const</span> <span class="keyword">auto</span> &amp;variant_vec = std::get&lt;VariantVecType&gt;(v);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>         std::size_t hash = variant_vec.size();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>         <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;i : variant_vec) {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            <span class="keywordflow">if</span> (std::holds_alternative&lt;IntegerType&gt;(i)) {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>               hash ^= std::hash&lt;IntegerType&gt;()(std::get&lt;IntegerType&gt;(i)) + 0x9e3779b9 + (hash &lt;&lt; 6) + (hash &gt;&gt; 2);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            <span class="keywordflow">else</span> <span class="keywordflow">if</span> (std::holds_alternative&lt;std::string&gt;(i)) {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>               hash ^= std::hash&lt;std::string&gt;()(std::get&lt;std::string&gt;(i)) + 0x9e3779b9 + (hash &lt;&lt; 6) + (hash &gt;&gt; 2);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            }</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>               <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Invalid template parameters&quot;</span>);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            }</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>         }</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>         <span class="keywordflow">return</span> hash;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>      }</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>      <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>         <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Invalid template parameters&quot;</span>);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      }</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>   }</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>};</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="structcompnal_1_1utility_1_1_vec_int_hash.html">   94</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structcompnal_1_1utility_1_1_vec_int_hash.html">VecIntHash</a> {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>   <span class="keyword">template</span>&lt;<span class="keyword">class</span> T1, <span class="keyword">class</span> T2&gt;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="structcompnal_1_1utility_1_1_vec_int_hash.html#a08ac76d14974c9d6a82de51f8b3dbea8">   96</a></span>   std::size_t <a class="code hl_function" href="structcompnal_1_1utility_1_1_vec_int_hash.html#a08ac76d14974c9d6a82de51f8b3dbea8">operator() </a>(<span class="keyword">const</span> std::pair&lt;std::vector&lt;T1&gt;, T2&gt;&amp; p)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>      std::size_t hash = p.first.size();</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>      <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;i: p.first) {</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>         hash ^= std::hash&lt;T1&gt;()(i) + 0x9e3779b9 + (hash &lt;&lt; 6) + (hash &gt;&gt; 2);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>      }</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>      std::size_t lhs = std::hash&lt;T2&gt;()(p.second);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      hash ^= lhs^(0x9e3779b9 + (lhs &lt;&lt; 6));</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>      <span class="keywordflow">return</span> hash;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>   }</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>};</div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="preprocessor">#endif </span><span class="comment">/* COMPNAL_UTILITY_HASH_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>}</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>}</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="preprocessor">#endif </span><span class="comment">/* COMPNAL_UTILITY_HASH_HPP_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aclasscompnal_1_1type_1_1_half_int_html"><div class="ttname"><a href="classcompnal_1_1type_1_1_half_int.html">compnal::type::HalfInt</a></div><div class="ttdoc">Class to represent half-integer.</div><div class="ttdef"><b>Definition:</b> half_int.hpp:28</div></div>
 <div class="ttc" id="aclasscompnal_1_1type_1_1_half_int_html_a162dc898dcc953635192679cf3b6d020"><div class="ttname"><a href="classcompnal_1_1type_1_1_half_int.html#a162dc898dcc953635192679cf3b6d020">compnal::type::HalfInt::GetInteger</a></div><div class="ttdeci">int GetInteger() const</div><div class="ttdoc">Get integer (two times the actual value).</div><div class="ttdef"><b>Definition:</b> half_int.hpp:53</div></div>
 <div class="ttc" id="anamespacecompnal_html"><div class="ttname"><a href="namespacecompnal.html">compnal</a></div><div class="ttdef"><b>Definition:</b> base_u1_electron_1d.hpp:31</div></div>
@@ -187,13 +189,13 @@ $(function() {
 <div class="ttc" id="astructcompnal_1_1utility_1_1_half_int_hash_html_a76500bfb29914d9dce1a104a34e94190"><div class="ttname"><a href="structcompnal_1_1utility_1_1_half_int_hash.html#a76500bfb29914d9dce1a104a34e94190">compnal::utility::HalfIntHash::operator()</a></div><div class="ttdeci">std::size_t operator()(const type::HalfInt &amp;half_int) const</div><div class="ttdef"><b>Definition:</b> hash.hpp:29</div></div>
 <div class="ttc" id="astructcompnal_1_1utility_1_1_pair_hash_html"><div class="ttname"><a href="structcompnal_1_1utility_1_1_pair_hash.html">compnal::utility::PairHash</a></div><div class="ttdoc">Hash struct of std::pair.</div><div class="ttdef"><b>Definition:</b> hash.hpp:35</div></div>
 <div class="ttc" id="astructcompnal_1_1utility_1_1_pair_hash_html_a84d86428351acf249bd5c880e1bb5b54"><div class="ttname"><a href="structcompnal_1_1utility_1_1_pair_hash.html#a84d86428351acf249bd5c880e1bb5b54">compnal::utility::PairHash::operator()</a></div><div class="ttdeci">std::size_t operator()(const std::pair&lt; T1, T2 &gt; &amp;p) const</div><div class="ttdef"><b>Definition:</b> hash.hpp:37</div></div>
-<div class="ttc" id="astructcompnal_1_1utility_1_1_variant_hash_html"><div class="ttname"><a href="structcompnal_1_1utility_1_1_variant_hash.html">compnal::utility::VariantHash</a></div><div class="ttdef"><b>Definition:</b> hash.hpp:55</div></div>
-<div class="ttc" id="astructcompnal_1_1utility_1_1_variant_hash_html_a567bc6aeaa80dd6d7a07814cd8c1079c"><div class="ttname"><a href="structcompnal_1_1utility_1_1_variant_hash.html#a567bc6aeaa80dd6d7a07814cd8c1079c">compnal::utility::VariantHash::VariantVecType</a></div><div class="ttdeci">std::vector&lt; std::variant&lt; int, std::string &gt; &gt; VariantVecType</div><div class="ttdef"><b>Definition:</b> hash.hpp:57</div></div>
-<div class="ttc" id="astructcompnal_1_1utility_1_1_variant_hash_html_a95fb6ebe24c2b489fd64a998567f5ada"><div class="ttname"><a href="structcompnal_1_1utility_1_1_variant_hash.html#a95fb6ebe24c2b489fd64a998567f5ada">compnal::utility::VariantHash::operator()</a></div><div class="ttdeci">std::size_t operator()(const std::variant&lt; Types... &gt; &amp;v) const</div><div class="ttdef"><b>Definition:</b> hash.hpp:60</div></div>
+<div class="ttc" id="astructcompnal_1_1utility_1_1_variant_hash_html"><div class="ttname"><a href="structcompnal_1_1utility_1_1_variant_hash.html">compnal::utility::VariantHash</a></div><div class="ttdoc">Hash struct of IndexType used in model::GeneralModel.</div><div class="ttdef"><b>Definition:</b> hash.hpp:58</div></div>
+<div class="ttc" id="astructcompnal_1_1utility_1_1_variant_hash_html_a65d6baf7936c364ff373de4c17379fb2"><div class="ttname"><a href="structcompnal_1_1utility_1_1_variant_hash.html#a65d6baf7936c364ff373de4c17379fb2">compnal::utility::VariantHash::operator()</a></div><div class="ttdeci">std::size_t operator()(const std::variant&lt; Types... &gt; &amp;v) const</div><div class="ttdef"><b>Definition:</b> hash.hpp:64</div></div>
+<div class="ttc" id="astructcompnal_1_1utility_1_1_variant_hash_html_a8bd6d0503b78d7aa77a1b068b414b858"><div class="ttname"><a href="structcompnal_1_1utility_1_1_variant_hash.html#a8bd6d0503b78d7aa77a1b068b414b858">compnal::utility::VariantHash::VariantVecType</a></div><div class="ttdeci">std::vector&lt; std::variant&lt; IntegerType, std::string &gt; &gt; VariantVecType</div><div class="ttdef"><b>Definition:</b> hash.hpp:61</div></div>
 <div class="ttc" id="astructcompnal_1_1utility_1_1_vec_hash_html"><div class="ttname"><a href="structcompnal_1_1utility_1_1_vec_hash.html">compnal::utility::VecHash</a></div><div class="ttdoc">Hash struct of std::vector.</div><div class="ttdef"><b>Definition:</b> hash.hpp:44</div></div>
 <div class="ttc" id="astructcompnal_1_1utility_1_1_vec_hash_html_ad1834f38cff7289df12b99e63e0e80dd"><div class="ttname"><a href="structcompnal_1_1utility_1_1_vec_hash.html#ad1834f38cff7289df12b99e63e0e80dd">compnal::utility::VecHash::operator()</a></div><div class="ttdeci">std::size_t operator()(const std::vector&lt; T &gt; &amp;V) const</div><div class="ttdef"><b>Definition:</b> hash.hpp:46</div></div>
-<div class="ttc" id="astructcompnal_1_1utility_1_1_vec_int_hash_html"><div class="ttname"><a href="structcompnal_1_1utility_1_1_vec_int_hash.html">compnal::utility::VecIntHash</a></div><div class="ttdoc">Hash struct of std::pair including std::vector.</div><div class="ttdef"><b>Definition:</b> hash.hpp:90</div></div>
-<div class="ttc" id="astructcompnal_1_1utility_1_1_vec_int_hash_html_a08ac76d14974c9d6a82de51f8b3dbea8"><div class="ttname"><a href="structcompnal_1_1utility_1_1_vec_int_hash.html#a08ac76d14974c9d6a82de51f8b3dbea8">compnal::utility::VecIntHash::operator()</a></div><div class="ttdeci">std::size_t operator()(const std::pair&lt; std::vector&lt; T1 &gt;, T2 &gt; &amp;p) const</div><div class="ttdef"><b>Definition:</b> hash.hpp:92</div></div>
+<div class="ttc" id="astructcompnal_1_1utility_1_1_vec_int_hash_html"><div class="ttname"><a href="structcompnal_1_1utility_1_1_vec_int_hash.html">compnal::utility::VecIntHash</a></div><div class="ttdoc">Hash struct of std::pair including std::vector.</div><div class="ttdef"><b>Definition:</b> hash.hpp:94</div></div>
+<div class="ttc" id="astructcompnal_1_1utility_1_1_vec_int_hash_html_a08ac76d14974c9d6a82de51f8b3dbea8"><div class="ttname"><a href="structcompnal_1_1utility_1_1_vec_int_hash.html#a08ac76d14974c9d6a82de51f8b3dbea8">compnal::utility::VecIntHash::operator()</a></div><div class="ttdeci">std::size_t operator()(const std::pair&lt; std::vector&lt; T1 &gt;, T2 &gt; &amp;p) const</div><div class="ttdef"><b>Definition:</b> hash.hpp:96</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

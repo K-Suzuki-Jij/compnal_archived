@@ -13,7 +13,7 @@ struct \mbox{\hyperlink{structcompnal_1_1utility_1_1_half_int_hash}{Half\+Int\+H
 struct \mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash}{Pair\+Hash}}
 \begin{DoxyCompactList}\small\item\em Hash struct of std\+::pair. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash}{Variant\+Hash}}
-\item 
+\begin{DoxyCompactList}\small\item\em Hash struct of Index\+Type used in \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{model\+::\+General\+Model}}. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structcompnal_1_1utility_1_1_vec_hash}{Vec\+Hash}}
 \begin{DoxyCompactList}\small\item\em Hash struct of std\+::vector. \end{DoxyCompactList}\item 
 struct \mbox{\hyperlink{structcompnal_1_1utility_1_1_vec_int_hash}{Vec\+Int\+Hash}}
@@ -21,16 +21,25 @@ struct \mbox{\hyperlink{structcompnal_1_1utility_1_1_vec_int_hash}{Vec\+Int\+Has
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{namespacecompnal_1_1utility_a2580357fcc88b1c7bac5627e5b47925f}{Generate\+Integer\+Partition}} (std\+::vector$<$ std\+::vector$<$ int $>$ $>$ $\ast$results, int n, int max\+\_\+partition\+\_\+num)
-\item 
-std\+::int64\+\_\+t \mbox{\hyperlink{namespacecompnal_1_1utility_ae746f2f70fd507d6b7a7f6ffabdcdee3}{Calculate\+Binomial\+Coefficient}} (int n, const int k)
-\item 
-std\+::vector$<$ std\+::vector$<$ std\+::int64\+\_\+t $>$ $>$ \mbox{\hyperlink{namespacecompnal_1_1utility_a4cce9c29a3548fefaf4814bc1bfd0345}{Calculate\+Binomial\+Table}} (int N)
-\item 
-std\+::int64\+\_\+t \mbox{\hyperlink{namespacecompnal_1_1utility_a31be084029ddf129959d1682fd54cdf5}{Calculate\+Num\+Combination}} (const std\+::vector$<$ int $>$ \&list)
-\item 
-void \mbox{\hyperlink{namespacecompnal_1_1utility_a6d7737688a03ef322d62fc96017af67a}{Calculate\+Nth\+Permutation}} (std\+::vector$<$ int $>$ $\ast$vec, std\+::int64\+\_\+t target\+\_\+num)
-\item 
+{\footnotesize template$<$typename Integer\+Type $>$ }\\std\+::vector$<$ std\+::vector$<$ Integer\+Type $>$ $>$ \mbox{\hyperlink{namespacecompnal_1_1utility_a19f7e6247e080cfaf331019133ae80cd}{Generate\+Integer\+Partition}} (const Integer\+Type partitioned\+\_\+number, Integer\+Type max\+\_\+number, const Integer\+Type max\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Generate partitions of a positive integer. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Integer\+Type $>$ }\\std\+::vector$<$ std\+::vector$<$ Integer\+Type $>$ $>$ \mbox{\hyperlink{namespacecompnal_1_1utility_a476dca6d6e10211a5f72d9aed05a1b68}{Generate\+Integer\+Partition}} (const Integer\+Type partitioned\+\_\+number, const Integer\+Type max\+\_\+number)
+\begin{DoxyCompactList}\small\item\em Generate partitions of a positive integer. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Integer\+Type $>$ }\\std\+::int64\+\_\+t \mbox{\hyperlink{namespacecompnal_1_1utility_ad5998331a6095cfe0d7e1c4d3e9de658}{Calculate\+Binomial\+Coefficient}} (Integer\+Type n, const Integer\+Type k)
+\begin{DoxyCompactList}\small\item\em Calculate binomial coefficient. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Integer\+Type $>$ }\\std\+::vector$<$ std\+::vector$<$ std\+::int64\+\_\+t $>$ $>$ \mbox{\hyperlink{namespacecompnal_1_1utility_a69e83b5318f469cbdcbb2d29c305a49c}{Generate\+Binomial\+Table}} (const Integer\+Type n)
+\begin{DoxyCompactList}\small\item\em Generate binomial coefficients $ \frac{n!}{k!(n-k)!} $ for $ n $ and all $ 0 <= k <= n$. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::int64\+\_\+t \mbox{\hyperlink{namespacecompnal_1_1utility_aee9ff806431adb586e95bc9d77516915}{Calculate\+Num\+Permutation}} (const std\+::vector$<$ T $>$ \&list)
+\begin{DoxyCompactList}\small\item\em Calculate the number of permutations from list. ~\newline
+ For example, all the possible permutations for \{1, 1, 2\} are ~\newline
+ \{1, 1, 2\}, \{1, 2, 1\}, \{2, 1, 1\}. ~\newline
+ Thus, this function return the value 3. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacecompnal_1_1utility_a7e59d7a03bcbd9fb222fd52300d29fd7}{Generate\+Nth\+Permutation}} (const std\+::vector$<$ T $>$ \&list, const std\+::int64\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Calculate $ n$ -\/th permutation of the list. ~\newline
+ For example, all the possible permutations for \{1, 1, 2\} are ~\newline
+ \{1, 1, 2\}, \{1, 2, 1\}, \{2, 1, 1\}. ~\newline
+ Thus, this function Generate\+Nth\+Permutation(\{1, 1, 2\}, 1) returns \{1, 2, 1\}. ~\newline
+ Note that the index starts from 0. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T1 , typename T2 $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1utility_a0dd6adce4c848f9ea13250f5434390f3}{Quick\+Sort}} (std\+::vector$<$ T1 $>$ $\ast$array\+\_\+comp, std\+::vector$<$ T2 $>$ $\ast$array2, const std\+::int64\+\_\+t left, const std\+::int64\+\_\+t right)
 \end{DoxyCompactItemize}
 
@@ -39,36 +48,149 @@ void \mbox{\hyperlink{namespacecompnal_1_1utility_a6d7737688a03ef322d62fc96017af
 Utility classes and functions for compnal. 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{namespacecompnal_1_1utility_ae746f2f70fd507d6b7a7f6ffabdcdee3}\label{namespacecompnal_1_1utility_ae746f2f70fd507d6b7a7f6ffabdcdee3}} 
+\mbox{\Hypertarget{namespacecompnal_1_1utility_ad5998331a6095cfe0d7e1c4d3e9de658}\label{namespacecompnal_1_1utility_ad5998331a6095cfe0d7e1c4d3e9de658}} 
 \index{compnal::utility@{compnal::utility}!CalculateBinomialCoefficient@{CalculateBinomialCoefficient}}
 \index{CalculateBinomialCoefficient@{CalculateBinomialCoefficient}!compnal::utility@{compnal::utility}}
 \doxysubsubsection{\texorpdfstring{CalculateBinomialCoefficient()}{CalculateBinomialCoefficient()}}
-{\footnotesize\ttfamily std\+::int64\+\_\+t compnal\+::utility\+::\+Calculate\+Binomial\+Coefficient (\begin{DoxyParamCaption}\item[{int}]{n,  }\item[{const int}]{k }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily template$<$typename Integer\+Type $>$ \\
+std\+::int64\+\_\+t compnal\+::utility\+::\+Calculate\+Binomial\+Coefficient (\begin{DoxyParamCaption}\item[{Integer\+Type}]{n,  }\item[{const Integer\+Type}]{k }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespacecompnal_1_1utility_a4cce9c29a3548fefaf4814bc1bfd0345}\label{namespacecompnal_1_1utility_a4cce9c29a3548fefaf4814bc1bfd0345}} 
-\index{compnal::utility@{compnal::utility}!CalculateBinomialTable@{CalculateBinomialTable}}
-\index{CalculateBinomialTable@{CalculateBinomialTable}!compnal::utility@{compnal::utility}}
-\doxysubsubsection{\texorpdfstring{CalculateBinomialTable()}{CalculateBinomialTable()}}
-{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ std\+::int64\+\_\+t $>$ $>$ compnal\+::utility\+::\+Calculate\+Binomial\+Table (\begin{DoxyParamCaption}\item[{int}]{N }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespacecompnal_1_1utility_a6d7737688a03ef322d62fc96017af67a}\label{namespacecompnal_1_1utility_a6d7737688a03ef322d62fc96017af67a}} 
-\index{compnal::utility@{compnal::utility}!CalculateNthPermutation@{CalculateNthPermutation}}
-\index{CalculateNthPermutation@{CalculateNthPermutation}!compnal::utility@{compnal::utility}}
-\doxysubsubsection{\texorpdfstring{CalculateNthPermutation()}{CalculateNthPermutation()}}
-{\footnotesize\ttfamily void compnal\+::utility\+::\+Calculate\+Nth\+Permutation (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$ $\ast$}]{vec,  }\item[{std\+::int64\+\_\+t}]{target\+\_\+num }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespacecompnal_1_1utility_a31be084029ddf129959d1682fd54cdf5}\label{namespacecompnal_1_1utility_a31be084029ddf129959d1682fd54cdf5}} 
-\index{compnal::utility@{compnal::utility}!CalculateNumCombination@{CalculateNumCombination}}
-\index{CalculateNumCombination@{CalculateNumCombination}!compnal::utility@{compnal::utility}}
-\doxysubsubsection{\texorpdfstring{CalculateNumCombination()}{CalculateNumCombination()}}
-{\footnotesize\ttfamily std\+::int64\+\_\+t compnal\+::utility\+::\+Calculate\+Num\+Combination (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ int $>$ \&}]{list }\end{DoxyParamCaption})}
+Calculate binomial coefficient. 
 
-\mbox{\Hypertarget{namespacecompnal_1_1utility_a2580357fcc88b1c7bac5627e5b47925f}\label{namespacecompnal_1_1utility_a2580357fcc88b1c7bac5627e5b47925f}} 
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Integer\+Type} & Integer type \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Non-\/negative integer $ n $ in $ \frac{n!}{k!(n-k)!} $. \\
+\hline
+{\em k} & Non-\/negative integer $ k $ in $ \frac{n!}{k!(n-k)!} $. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacecompnal_1_1utility_aee9ff806431adb586e95bc9d77516915}\label{namespacecompnal_1_1utility_aee9ff806431adb586e95bc9d77516915}} 
+\index{compnal::utility@{compnal::utility}!CalculateNumPermutation@{CalculateNumPermutation}}
+\index{CalculateNumPermutation@{CalculateNumPermutation}!compnal::utility@{compnal::utility}}
+\doxysubsubsection{\texorpdfstring{CalculateNumPermutation()}{CalculateNumPermutation()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::int64\+\_\+t compnal\+::utility\+::\+Calculate\+Num\+Permutation (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{list }\end{DoxyParamCaption})}
+
+
+
+Calculate the number of permutations from list. ~\newline
+ For example, all the possible permutations for \{1, 1, 2\} are ~\newline
+ \{1, 1, 2\}, \{1, 2, 1\}, \{2, 1, 1\}. ~\newline
+ Thus, this function return the value 3. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Integer type or string type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The list. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacecompnal_1_1utility_a69e83b5318f469cbdcbb2d29c305a49c}\label{namespacecompnal_1_1utility_a69e83b5318f469cbdcbb2d29c305a49c}} 
+\index{compnal::utility@{compnal::utility}!GenerateBinomialTable@{GenerateBinomialTable}}
+\index{GenerateBinomialTable@{GenerateBinomialTable}!compnal::utility@{compnal::utility}}
+\doxysubsubsection{\texorpdfstring{GenerateBinomialTable()}{GenerateBinomialTable()}}
+{\footnotesize\ttfamily template$<$typename Integer\+Type $>$ \\
+std\+::vector$<$ std\+::vector$<$ std\+::int64\+\_\+t $>$ $>$ compnal\+::utility\+::\+Generate\+Binomial\+Table (\begin{DoxyParamCaption}\item[{const Integer\+Type}]{n }\end{DoxyParamCaption})}
+
+
+
+Generate binomial coefficients $ \frac{n!}{k!(n-k)!} $ for $ n $ and all $ 0 <= k <= n$. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Integer\+Type} & Integer type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em n} & Non-\/negative integer $ n $. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacecompnal_1_1utility_a476dca6d6e10211a5f72d9aed05a1b68}\label{namespacecompnal_1_1utility_a476dca6d6e10211a5f72d9aed05a1b68}} 
 \index{compnal::utility@{compnal::utility}!GenerateIntegerPartition@{GenerateIntegerPartition}}
 \index{GenerateIntegerPartition@{GenerateIntegerPartition}!compnal::utility@{compnal::utility}}
-\doxysubsubsection{\texorpdfstring{GenerateIntegerPartition()}{GenerateIntegerPartition()}}
-{\footnotesize\ttfamily void compnal\+::utility\+::\+Generate\+Integer\+Partition (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::vector$<$ int $>$ $>$ $\ast$}]{results,  }\item[{int}]{n,  }\item[{int}]{max\+\_\+partition\+\_\+num }\end{DoxyParamCaption})}
+\doxysubsubsection{\texorpdfstring{GenerateIntegerPartition()}{GenerateIntegerPartition()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Integer\+Type $>$ \\
+std\+::vector$<$ std\+::vector$<$ Integer\+Type $>$ $>$ compnal\+::utility\+::\+Generate\+Integer\+Partition (\begin{DoxyParamCaption}\item[{const Integer\+Type}]{partitioned\+\_\+number,  }\item[{const Integer\+Type}]{max\+\_\+number }\end{DoxyParamCaption})}
 
+
+
+Generate partitions of a positive integer. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Integer\+Type} & Integer type \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em partitioned\+\_\+number} & A positive integer to be partitioned. \\
+\hline
+{\em max\+\_\+number} & The maximum number in the partition list. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacecompnal_1_1utility_a19f7e6247e080cfaf331019133ae80cd}\label{namespacecompnal_1_1utility_a19f7e6247e080cfaf331019133ae80cd}} 
+\index{compnal::utility@{compnal::utility}!GenerateIntegerPartition@{GenerateIntegerPartition}}
+\index{GenerateIntegerPartition@{GenerateIntegerPartition}!compnal::utility@{compnal::utility}}
+\doxysubsubsection{\texorpdfstring{GenerateIntegerPartition()}{GenerateIntegerPartition()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Integer\+Type $>$ \\
+std\+::vector$<$ std\+::vector$<$ Integer\+Type $>$ $>$ compnal\+::utility\+::\+Generate\+Integer\+Partition (\begin{DoxyParamCaption}\item[{const Integer\+Type}]{partitioned\+\_\+number,  }\item[{Integer\+Type}]{max\+\_\+number,  }\item[{const Integer\+Type}]{max\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Generate partitions of a positive integer. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Integer\+Type} & Integer type \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em partitioned\+\_\+number} & A positive integer to be partitioned. \\
+\hline
+{\em max\+\_\+number} & The maximum number in the partition list. \\
+\hline
+{\em max\+\_\+size} & The maximum list size. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{namespacecompnal_1_1utility_a7e59d7a03bcbd9fb222fd52300d29fd7}\label{namespacecompnal_1_1utility_a7e59d7a03bcbd9fb222fd52300d29fd7}} 
+\index{compnal::utility@{compnal::utility}!GenerateNthPermutation@{GenerateNthPermutation}}
+\index{GenerateNthPermutation@{GenerateNthPermutation}!compnal::utility@{compnal::utility}}
+\doxysubsubsection{\texorpdfstring{GenerateNthPermutation()}{GenerateNthPermutation()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::vector$<$ T $>$ compnal\+::utility\+::\+Generate\+Nth\+Permutation (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{list,  }\item[{const std\+::int64\+\_\+t}]{n }\end{DoxyParamCaption})}
+
+
+
+Calculate $ n$ -\/th permutation of the list. ~\newline
+ For example, all the possible permutations for \{1, 1, 2\} are ~\newline
+ \{1, 1, 2\}, \{1, 2, 1\}, \{2, 1, 1\}. ~\newline
+ Thus, this function Generate\+Nth\+Permutation(\{1, 1, 2\}, 1) returns \{1, 2, 1\}. ~\newline
+ Note that the index starts from 0. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Integer type or string type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The list. \\
+\hline
+{\em n} & Non-\/negative integer $ n$. \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{namespacecompnal_1_1utility_a0dd6adce4c848f9ea13250f5434390f3}\label{namespacecompnal_1_1utility_a0dd6adce4c848f9ea13250f5434390f3}} 
 \index{compnal::utility@{compnal::utility}!QuickSort@{QuickSort}}
 \index{QuickSort@{QuickSort}!compnal::utility@{compnal::utility}}

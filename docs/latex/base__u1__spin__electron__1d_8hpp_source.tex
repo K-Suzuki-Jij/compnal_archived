@@ -244,7 +244,7 @@
 \DoxyCodeLine{323          site\_constant\_lspin[site]    = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(std::pow(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a88e6fb30eb30c28620dae59f67181249}{dim\_onsite\_lspin\_}}   , site));}
 \DoxyCodeLine{324       \}}
 \DoxyCodeLine{325 }
-\DoxyCodeLine{326       \textcolor{keyword}{const} std::vector<std::vector<std::int64\_t>> binom = \mbox{\hyperlink{namespacecompnal_1_1utility_a4cce9c29a3548fefaf4814bc1bfd0345}{utility::CalculateBinomialTable}}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a7e254cfc3251d5aa58dcb4ce7f47f6cb}{system\_size\_}});}
+\DoxyCodeLine{326       \textcolor{keyword}{const} std::vector<std::vector<std::int64\_t>> binom = utility::CalculateBinomialTable(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a7e254cfc3251d5aa58dcb4ce7f47f6cb}{system\_size\_}});}
 \DoxyCodeLine{327       std::vector<int> q\_number\_spin\_vec;}
 \DoxyCodeLine{328       std::vector<int> q\_number\_n\_vac\_vec;}
 \DoxyCodeLine{329       std::vector<int> q\_number\_n\_up\_vec;}
@@ -293,7 +293,7 @@
 \DoxyCodeLine{372          \textcolor{keyword}{const} \textcolor{keywordtype}{int} shifted\_2sz      = (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a7e254cfc3251d5aa58dcb4ce7f47f6cb}{system\_size\_}}*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}} -\/ total\_2\_sz\_lspin)/2;}
 \DoxyCodeLine{373          \textcolor{keyword}{const} std::int64\_t dim\_target\_lspin = BaseU1Spin\_1D<RealType>::CalculateTargetDim(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a7e254cfc3251d5aa58dcb4ce7f47f6cb}{system\_size\_}}, 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}}, 0.5*total\_2\_sz\_lspin);}
 \DoxyCodeLine{374          std::vector<std::vector<int>> partition\_integers;}
-\DoxyCodeLine{375          \mbox{\hyperlink{namespacecompnal_1_1utility_a2580357fcc88b1c7bac5627e5b47925f}{utility::GenerateIntegerPartition}}(\&partition\_integers, shifted\_2sz, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}});}
+\DoxyCodeLine{375          \mbox{\hyperlink{namespacecompnal_1_1utility_a19f7e6247e080cfaf331019133ae80cd}{utility::GenerateIntegerPartition}}(\&partition\_integers, shifted\_2sz, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a1d3d813515a57a1866f9c255d1a16f7e}{magnitude\_2lspin\_}});}
 \DoxyCodeLine{376          \textcolor{keyword}{auto} \&spin\_basis = spin\_bases[total\_2\_sz\_lspin];}
 \DoxyCodeLine{377          spin\_basis.reserve(dim\_target\_lspin);}
 \DoxyCodeLine{378          \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} \&\&integer\_list: partition\_integers) \{}
@@ -403,7 +403,7 @@
 \DoxyCodeLine{497       \textcolor{keywordflow}{if} (!\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_electron__1_d_a7a6bc26a9343fa46fad1455869d78da3}{isValidQNumber}}(system\_size, magnitude\_lspin, total\_electron, total\_sz)) \{}
 \DoxyCodeLine{498          \textcolor{keywordflow}{return} 0;}
 \DoxyCodeLine{499       \}}
-\DoxyCodeLine{500       \textcolor{keyword}{const} std::vector<std::vector<std::int64\_t>> binom = \mbox{\hyperlink{namespacecompnal_1_1utility_a4cce9c29a3548fefaf4814bc1bfd0345}{utility::CalculateBinomialTable}}(system\_size);}
+\DoxyCodeLine{500       \textcolor{keyword}{const} std::vector<std::vector<std::int64\_t>> binom = utility::CalculateBinomialTable(system\_size);}
 \DoxyCodeLine{501       \textcolor{keyword}{const} \textcolor{keywordtype}{int} max\_n\_up\_down = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(total\_electron/2);}
 \DoxyCodeLine{502       std::int64\_t dim = 0;}
 \DoxyCodeLine{503       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} n\_up\_down = 0; n\_up\_down <= max\_n\_up\_down; ++n\_up\_down) \{}

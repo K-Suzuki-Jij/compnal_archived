@@ -53,58 +53,60 @@
 \DoxyCodeLine{52    \}}
 \DoxyCodeLine{53 \};}
 \DoxyCodeLine{54 }
-\DoxyCodeLine{55 \textcolor{keyword}{struct }\mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash}{VariantHash}} \{}
-\DoxyCodeLine{56    }
-\DoxyCodeLine{57    \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash_a567bc6aeaa80dd6d7a07814cd8c1079c}{VariantVecType}} = std::vector<std::variant<int, std::string>>;}
-\DoxyCodeLine{58    }
-\DoxyCodeLine{59    \textcolor{keyword}{template}<\textcolor{keyword}{class}... Types>}
-\DoxyCodeLine{60    std::size\_t \mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash_a95fb6ebe24c2b489fd64a998567f5ada}{operator() }}(\textcolor{keyword}{const} std::variant<Types...> \&v)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{61       \textcolor{keywordflow}{if} (std::holds\_alternative<int>(v)) \{}
-\DoxyCodeLine{62          \textcolor{keywordflow}{return} std::hash<int>()(std::get<int>(v));}
-\DoxyCodeLine{63       \}}
-\DoxyCodeLine{64       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (std::holds\_alternative<std::string>(v)) \{}
-\DoxyCodeLine{65          \textcolor{keywordflow}{return} std::hash<std::string>()(std::get<std::string>(v));}
-\DoxyCodeLine{66       \}}
-\DoxyCodeLine{67       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (std::holds\_alternative<VariantVecType>(v)) \{}
-\DoxyCodeLine{68          \textcolor{keyword}{const} \textcolor{keyword}{auto} \&variant\_vec = std::get<VariantVecType>(v);}
-\DoxyCodeLine{69          std::size\_t hash = variant\_vec.size();}
-\DoxyCodeLine{70          \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&i : variant\_vec) \{}
-\DoxyCodeLine{71             \textcolor{keywordflow}{if} (std::holds\_alternative<int>(i)) \{}
-\DoxyCodeLine{72                hash \string^= std::hash<int>()(std::get<int>(i)) + 0x9e3779b9 + (hash << 6) + (hash >> 2);}
-\DoxyCodeLine{73             \}}
-\DoxyCodeLine{74             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (std::holds\_alternative<std::string>(i)) \{}
-\DoxyCodeLine{75                hash \string^= std::hash<std::string>()(std::get<std::string>(i)) + 0x9e3779b9 + (hash << 6) + (hash >> 2);}
-\DoxyCodeLine{76             \}}
-\DoxyCodeLine{77             \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{78                \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Invalid template parameters"{}});}
-\DoxyCodeLine{79             \}}
-\DoxyCodeLine{80          \}}
-\DoxyCodeLine{81          \textcolor{keywordflow}{return} hash;}
-\DoxyCodeLine{82       \}}
-\DoxyCodeLine{83       \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{84          \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Invalid template parameters"{}});}
-\DoxyCodeLine{85       \}}
-\DoxyCodeLine{86    \}}
-\DoxyCodeLine{87 \};}
-\DoxyCodeLine{88 }
-\DoxyCodeLine{90 \textcolor{keyword}{struct }\mbox{\hyperlink{structcompnal_1_1utility_1_1_vec_int_hash}{VecIntHash}} \{}
-\DoxyCodeLine{91    \textcolor{keyword}{template}<\textcolor{keyword}{class} T1, \textcolor{keyword}{class} T2>}
-\DoxyCodeLine{92    std::size\_t \mbox{\hyperlink{structcompnal_1_1utility_1_1_vec_int_hash_a08ac76d14974c9d6a82de51f8b3dbea8}{operator() }}(\textcolor{keyword}{const} std::pair<std::vector<T1>, T2>\& p)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{93       std::size\_t hash = p.first.size();}
-\DoxyCodeLine{94       \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} \&i: p.first) \{}
-\DoxyCodeLine{95          hash \string^= std::hash<T1>()(i) + 0x9e3779b9 + (hash << 6) + (hash >> 2);}
-\DoxyCodeLine{96       \}}
-\DoxyCodeLine{97       std::size\_t lhs = std::hash<T2>()(p.second);}
-\DoxyCodeLine{98       hash \string^= lhs\string^(0x9e3779b9 + (lhs << 6));}
-\DoxyCodeLine{99       \textcolor{keywordflow}{return} hash;}
-\DoxyCodeLine{100    \}}
-\DoxyCodeLine{101 \};}
-\DoxyCodeLine{102 }
-\DoxyCodeLine{103 }
-\DoxyCodeLine{104 \}}
-\DoxyCodeLine{105 \}}
+\DoxyCodeLine{57 \textcolor{keyword}{template}<\textcolor{keyword}{typename} IntegerType>}
+\DoxyCodeLine{58 \textcolor{keyword}{struct }\mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash}{VariantHash}} \{}
+\DoxyCodeLine{59    \textcolor{keyword}{static\_assert}(std::is\_integral<IntegerType>::value, \textcolor{stringliteral}{"{}Template parameter IntegerType must be integer type"{}});}
+\DoxyCodeLine{60    }
+\DoxyCodeLine{61    \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash_a8bd6d0503b78d7aa77a1b068b414b858}{VariantVecType}} = std::vector<std::variant<IntegerType, std::string>>;}
+\DoxyCodeLine{62    }
+\DoxyCodeLine{63    \textcolor{keyword}{template}<\textcolor{keyword}{class}... Types>}
+\DoxyCodeLine{64    std::size\_t \mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash_a65d6baf7936c364ff373de4c17379fb2}{operator() }}(\textcolor{keyword}{const} std::variant<Types...> \&v)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{65       \textcolor{keywordflow}{if} (std::holds\_alternative<IntegerType>(v)) \{}
+\DoxyCodeLine{66          \textcolor{keywordflow}{return} std::hash<IntegerType>()(std::get<IntegerType>(v));}
+\DoxyCodeLine{67       \}}
+\DoxyCodeLine{68       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (std::holds\_alternative<std::string>(v)) \{}
+\DoxyCodeLine{69          \textcolor{keywordflow}{return} std::hash<std::string>()(std::get<std::string>(v));}
+\DoxyCodeLine{70       \}}
+\DoxyCodeLine{71       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (std::holds\_alternative<VariantVecType>(v)) \{}
+\DoxyCodeLine{72          \textcolor{keyword}{const} \textcolor{keyword}{auto} \&variant\_vec = std::get<VariantVecType>(v);}
+\DoxyCodeLine{73          std::size\_t hash = variant\_vec.size();}
+\DoxyCodeLine{74          \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&i : variant\_vec) \{}
+\DoxyCodeLine{75             \textcolor{keywordflow}{if} (std::holds\_alternative<IntegerType>(i)) \{}
+\DoxyCodeLine{76                hash \string^= std::hash<IntegerType>()(std::get<IntegerType>(i)) + 0x9e3779b9 + (hash << 6) + (hash >> 2);}
+\DoxyCodeLine{77             \}}
+\DoxyCodeLine{78             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (std::holds\_alternative<std::string>(i)) \{}
+\DoxyCodeLine{79                hash \string^= std::hash<std::string>()(std::get<std::string>(i)) + 0x9e3779b9 + (hash << 6) + (hash >> 2);}
+\DoxyCodeLine{80             \}}
+\DoxyCodeLine{81             \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{82                \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Invalid template parameters"{}});}
+\DoxyCodeLine{83             \}}
+\DoxyCodeLine{84          \}}
+\DoxyCodeLine{85          \textcolor{keywordflow}{return} hash;}
+\DoxyCodeLine{86       \}}
+\DoxyCodeLine{87       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{88          \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Invalid template parameters"{}});}
+\DoxyCodeLine{89       \}}
+\DoxyCodeLine{90    \}}
+\DoxyCodeLine{91 \};}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{94 \textcolor{keyword}{struct }\mbox{\hyperlink{structcompnal_1_1utility_1_1_vec_int_hash}{VecIntHash}} \{}
+\DoxyCodeLine{95    \textcolor{keyword}{template}<\textcolor{keyword}{class} T1, \textcolor{keyword}{class} T2>}
+\DoxyCodeLine{96    std::size\_t \mbox{\hyperlink{structcompnal_1_1utility_1_1_vec_int_hash_a08ac76d14974c9d6a82de51f8b3dbea8}{operator() }}(\textcolor{keyword}{const} std::pair<std::vector<T1>, T2>\& p)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{97       std::size\_t hash = p.first.size();}
+\DoxyCodeLine{98       \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} \&i: p.first) \{}
+\DoxyCodeLine{99          hash \string^= std::hash<T1>()(i) + 0x9e3779b9 + (hash << 6) + (hash >> 2);}
+\DoxyCodeLine{100       \}}
+\DoxyCodeLine{101       std::size\_t lhs = std::hash<T2>()(p.second);}
+\DoxyCodeLine{102       hash \string^= lhs\string^(0x9e3779b9 + (lhs << 6));}
+\DoxyCodeLine{103       \textcolor{keywordflow}{return} hash;}
+\DoxyCodeLine{104    \}}
+\DoxyCodeLine{105 \};}
 \DoxyCodeLine{106 }
 \DoxyCodeLine{107 }
-\DoxyCodeLine{108 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_UTILITY\_HASH\_HPP\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{108 \}}
+\DoxyCodeLine{109 \}}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111 }
+\DoxyCodeLine{112 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_UTILITY\_HASH\_HPP\_ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}
