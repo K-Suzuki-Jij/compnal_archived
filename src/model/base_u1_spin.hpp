@@ -134,6 +134,12 @@ public:
    template<typename IntegerType>
    QType CalculateQNumber(const IntegerType row, const IntegerType col) {
       static_assert(std::is_integral<IntegerType>::value, "Template parameter IntegerType must be integer type");
+      if (row < 0 || col < 0 || dim_onsite_ <= row || dim_onsite_ <= col) {
+         std::stringstream ss;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+         ss << "Invalid parameters" << std::endl;
+         throw std::runtime_error(ss.str());
+      }
       return static_cast<QType>(col - row + total_sz_);
    }
    

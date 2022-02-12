@@ -24,71 +24,92 @@
 namespace compnal {
 namespace test {
 
-TEST(ModelBaseU1Spin, SpinOneHalf) {
+TEST(ModelBaseU1Spin, Constructors) {
    using RealType = double;
+   
    model::BaseU1Spin<RealType> model;
-
-   EXPECT_EQ(model.GetDimOnsite(), 2);
+   EXPECT_EQ(model.GetDimOnsite()    , 2  );
+   EXPECT_EQ(model.GetTotalSz()      , 0  );
    EXPECT_EQ(model.GetMagnitudeSpin(), 0.5);
-   EXPECT_EQ(model.GetTotalSz(), 0);
    
-   const sparse_matrix::CRS<RealType> ref_sp ({{+0.0, +1.0}, {+0.0, +0.0}});
-   const sparse_matrix::CRS<RealType> ref_sm ({{+0.0, +0.0}, {+1.0, +0.0}});
-   const sparse_matrix::CRS<RealType> ref_sx ({{+0.0, +0.5}, {+0.5, +0.0}});
-   const sparse_matrix::CRS<RealType> ref_isy({{+0.0, +0.5}, {-0.5, +0.0}});
-   const sparse_matrix::CRS<RealType> ref_sz ({{+0.5, +0.0}, {+0.0, -0.5}});
-   
-   EXPECT_EQ(model.GetOnsiteOperatorSp() , ref_sp );
-   EXPECT_EQ(model.GetOnsiteOperatorSm() , ref_sm );
-   EXPECT_EQ(model.GetOnsiteOperatorSx() , ref_sx );
-   EXPECT_EQ(model.GetOnsiteOperatoriSy(), ref_isy);
-   EXPECT_EQ(model.GetOnsiteOperatorSz() , ref_sz );
+   EXPECT_EQ(model.GetOnsiteOperatorSp (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSp (0.5));
+   EXPECT_EQ(model.GetOnsiteOperatorSm (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSm (0.5));
+   EXPECT_EQ(model.GetOnsiteOperatorSx (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSx (0.5));
+   EXPECT_EQ(model.GetOnsiteOperatoriSy(), model::BaseU1Spin<RealType>::CreateOnsiteOperatoriSy(0.5));
+   EXPECT_EQ(model.GetOnsiteOperatorSz (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSz (0.5));
 }
 
-TEST(ModelBaseU1Spin, SpinOne) {
+TEST(ModelBaseU1Spin, ConstructorsSpin) {
    using RealType = long double;
+   
    model::BaseU1Spin<RealType> model(1);
-   
-   EXPECT_EQ(model.GetDimOnsite(), 3);
+   EXPECT_EQ(model.GetDimOnsite()    , 3);
+   EXPECT_EQ(model.GetTotalSz()      , 0);
    EXPECT_EQ(model.GetMagnitudeSpin(), 1);
-   EXPECT_EQ(model.GetTotalSz(), 0);
+   
+   EXPECT_EQ(model.GetOnsiteOperatorSp (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSp (1));
+   EXPECT_EQ(model.GetOnsiteOperatorSm (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSm (1));
+   EXPECT_EQ(model.GetOnsiteOperatorSx (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSx (1));
+   EXPECT_EQ(model.GetOnsiteOperatoriSy(), model::BaseU1Spin<RealType>::CreateOnsiteOperatoriSy(1));
+   EXPECT_EQ(model.GetOnsiteOperatorSz (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSz (1));
+}
 
-   const RealType sqrt2 = std::sqrt(static_cast<RealType>(2));
-   const sparse_matrix::CRS<RealType> ref_sp ({
-      {+0.0, +sqrt2, +0.0},
-      {+0.0, +0.0, +sqrt2},
-      {+0.0, +0.0, +0.0}
-   });
+TEST(ModelBaseU1Spin, ConstructorsSpinSz) {
+   model::BaseU1Spin<double> model(1, 2);
+   EXPECT_EQ(model.GetDimOnsite()    , 3);
+   EXPECT_EQ(model.GetTotalSz()      , 2);
+   EXPECT_EQ(model.GetMagnitudeSpin(), 1);
+}
+
+TEST(ModelBaseU1Spin, SetMagnitudeSpin) {
+   using RealType = long double;
    
-   const sparse_matrix::CRS<RealType> ref_sm ({
-      {+0.0, +0.0, +0.0},
-      {+sqrt2, +0.0, +0.0},
-      {+0.0, +sqrt2, +0.0}
-   });
+   model::BaseU1Spin<RealType> model;
+   model.SetMagnitudeSpin(1.5);
+   EXPECT_EQ(model.GetDimOnsite()    , 4);
+   EXPECT_EQ(model.GetTotalSz()      , 0);
+   EXPECT_EQ(model.GetMagnitudeSpin(), 1.5);
+   EXPECT_EQ(model.GetOnsiteOperatorSp (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSp (1.5));
+   EXPECT_EQ(model.GetOnsiteOperatorSm (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSm (1.5));
+   EXPECT_EQ(model.GetOnsiteOperatorSx (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSx (1.5));
+   EXPECT_EQ(model.GetOnsiteOperatoriSy(), model::BaseU1Spin<RealType>::CreateOnsiteOperatoriSy(1.5));
+   EXPECT_EQ(model.GetOnsiteOperatorSz (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSz (1.5));
    
-   const sparse_matrix::CRS<RealType> ref_sx ({
-      {+0.0, +sqrt2/2.0, +0.0},
-      {+sqrt2/2.0, +0.0, +sqrt2/2.0},
-      {+0.0, +sqrt2/2.0, +0.0}
-   });
+   EXPECT_THROW(model.SetMagnitudeSpin(0) , std::runtime_error);
+   EXPECT_THROW(model.SetMagnitudeSpin(-1), std::runtime_error);
+}
+
+TEST(ModelBaseU1Spin, SetTotalSz) {
+   model::BaseU1Spin<double> model;
+   model.SetTotalSz(-4);
+   EXPECT_EQ(model.GetDimOnsite()    , 2);
+   EXPECT_EQ(model.GetTotalSz()      , -4);
+   EXPECT_EQ(model.GetMagnitudeSpin(), 0.5);
+}
+
+TEST(ModelBaseU1Spin, CalculateNumElectron) {
+   model::BaseU1Spin<double> model;
+   EXPECT_THROW(model.CalculateNumElectron(-1), std::runtime_error);
+   EXPECT_EQ(model.CalculateNumElectron(0), 0);
+   EXPECT_EQ(model.CalculateNumElectron(1), 0);
+   EXPECT_THROW(model.CalculateNumElectron(2) , std::runtime_error);
+}
+
+TEST(ModelBaseU1Spin, CalculateQNumber) {
+   model::BaseU1Spin<double> model;
+   model.SetTotalSz(3);
+   EXPECT_THROW(model.CalculateQNumber(-1, 0), std::runtime_error);
+   EXPECT_THROW(model.CalculateQNumber(0, -1), std::runtime_error);
+   EXPECT_THROW(model.CalculateQNumber(-2, -1), std::runtime_error);
    
-   const sparse_matrix::CRS<RealType> ref_isy ({
-      {+0.0, +sqrt2/2.0, +0.0},
-      {-sqrt2/2.0, +0.0, +sqrt2/2.0},
-      {+0.0, -sqrt2/2.0, +0.0}
-   });
-   
-   const sparse_matrix::CRS<RealType> ref_sz ({
-      {+1.0, +0.0, +0.0},
-      {+0.0, +0.0, +0.0},
-      {+0.0, +0.0, -1.0}
-   });
-   
-   EXPECT_EQ(model.GetOnsiteOperatorSp() , ref_sp );
-   EXPECT_EQ(model.GetOnsiteOperatorSm() , ref_sm );
-   EXPECT_EQ(model.GetOnsiteOperatorSx() , ref_sx );
-   EXPECT_EQ(model.GetOnsiteOperatoriSy(), ref_isy);
-   EXPECT_EQ(model.GetOnsiteOperatorSz() , ref_sz );
+   EXPECT_THROW(model.CalculateQNumber(2, 0), std::runtime_error);
+   EXPECT_THROW(model.CalculateQNumber(0, 2), std::runtime_error);
+   EXPECT_THROW(model.CalculateQNumber(2, 2), std::runtime_error);
+
+   EXPECT_EQ(model.CalculateQNumber(0, 0), 3);
+   EXPECT_EQ(model.CalculateQNumber(0, 1), 4);
+   EXPECT_EQ(model.CalculateQNumber(1, 0), 2);
+   EXPECT_EQ(model.CalculateQNumber(1, 1), 3);
 }
 
 TEST(ModelBaseU1Spin, GenerateBasisSpin05) {
@@ -156,6 +177,63 @@ TEST(ModelBaseU1Spin, CalculateTargetDim) {
    EXPECT_EQ(model::BaseU1Spin<double>::CalculateTargetDim(4, 0.5, +0.0), 6);
    EXPECT_EQ(model::BaseU1Spin<double>::CalculateTargetDim(4, 0.5, +2.0), 1);
    EXPECT_EQ(model::BaseU1Spin<double>::CalculateTargetDim(4, 0.5, -2.0), 1);
+}
+
+TEST(ModelBaseU1Spin, SpinOneHalf) {
+   using RealType = double;
+   
+   const sparse_matrix::CRS<RealType> ref_sp ({{+0.0, +1.0}, {+0.0, +0.0}});
+   const sparse_matrix::CRS<RealType> ref_sm ({{+0.0, +0.0}, {+1.0, +0.0}});
+   const sparse_matrix::CRS<RealType> ref_sx ({{+0.0, +0.5}, {+0.5, +0.0}});
+   const sparse_matrix::CRS<RealType> ref_isy({{+0.0, +0.5}, {-0.5, +0.0}});
+   const sparse_matrix::CRS<RealType> ref_sz ({{+0.5, +0.0}, {+0.0, -0.5}});
+   
+   EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSp (0.5) , ref_sp );
+   EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSm (0.5) , ref_sm );
+   EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSx (0.5) , ref_sx );
+   EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatoriSy(0.5) , ref_isy);
+   EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSz (0.5) , ref_sz );
+}
+
+TEST(ModelBaseU1Spin, SpinOne) {
+   using RealType = long double;
+   const RealType sqrt2 = std::sqrt(static_cast<RealType>(2));
+   
+   const sparse_matrix::CRS<RealType> ref_sp ({
+      {+0.0, +sqrt2, +0.0},
+      {+0.0, +0.0, +sqrt2},
+      {+0.0, +0.0, +0.0}
+   });
+   
+   const sparse_matrix::CRS<RealType> ref_sm ({
+      {+0.0, +0.0, +0.0},
+      {+sqrt2, +0.0, +0.0},
+      {+0.0, +sqrt2, +0.0}
+   });
+   
+   const sparse_matrix::CRS<RealType> ref_sx ({
+      {+0.0, +sqrt2/2.0, +0.0},
+      {+sqrt2/2.0, +0.0, +sqrt2/2.0},
+      {+0.0, +sqrt2/2.0, +0.0}
+   });
+   
+   const sparse_matrix::CRS<RealType> ref_isy ({
+      {+0.0, +sqrt2/2.0, +0.0},
+      {-sqrt2/2.0, +0.0, +sqrt2/2.0},
+      {+0.0, -sqrt2/2.0, +0.0}
+   });
+   
+   const sparse_matrix::CRS<RealType> ref_sz ({
+      {+1.0, +0.0, +0.0},
+      {+0.0, +0.0, +0.0},
+      {+0.0, +0.0, -1.0}
+   });
+   
+   EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSp (1) , ref_sp );
+   EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSm (1) , ref_sm );
+   EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSx (1) , ref_sx );
+   EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatoriSy(1) , ref_isy);
+   EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSz (1) , ref_sz );
 }
 
 } //namespace test
