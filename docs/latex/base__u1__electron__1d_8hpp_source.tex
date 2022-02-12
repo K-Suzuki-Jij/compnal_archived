@@ -215,7 +215,7 @@
 \DoxyCodeLine{267                basis\_list[s + n\_vac + n\_up + n\_down] = 3;}
 \DoxyCodeLine{268             \}}
 \DoxyCodeLine{269             }
-\DoxyCodeLine{270             \textcolor{keyword}{const} std::int64\_t size = \mbox{\hyperlink{namespacecompnal_1_1utility_a31be084029ddf129959d1682fd54cdf5}{utility::CalculateNumCombination}}(basis\_list);}
+\DoxyCodeLine{270             \textcolor{keyword}{const} std::int64\_t size = utility::CalculateNumCombination(basis\_list);}
 \DoxyCodeLine{271             std::vector<std::vector<int>> temp\_basis\_list(num\_threads);}
 \DoxyCodeLine{272             }
 \DoxyCodeLine{273 \textcolor{preprocessor}{\#pragma omp parallel num\_threads (num\_threads)}}
@@ -224,7 +224,7 @@
 \DoxyCodeLine{276                \textcolor{keyword}{const} std::int64\_t loop\_begin = thread\_num*size/num\_threads;}
 \DoxyCodeLine{277                \textcolor{keyword}{const} std::int64\_t loop\_end   = (thread\_num + 1)*size/num\_threads;}
 \DoxyCodeLine{278                temp\_basis\_list[thread\_num]   = basis\_list;}
-\DoxyCodeLine{279                \mbox{\hyperlink{namespacecompnal_1_1utility_a6d7737688a03ef322d62fc96017af67a}{utility::CalculateNthPermutation}}(\&temp\_basis\_list[thread\_num], loop\_begin);}
+\DoxyCodeLine{279                utility::CalculateNthPermutation(\&temp\_basis\_list[thread\_num], loop\_begin);}
 \DoxyCodeLine{280                }
 \DoxyCodeLine{281                \textcolor{keywordflow}{for} (std::int64\_t j = loop\_begin; j < loop\_end; ++j) \{}
 \DoxyCodeLine{282                   std::int64\_t basis\_global = 0;}
@@ -466,7 +466,7 @@
 \DoxyCodeLine{543          \textcolor{keywordflow}{return} 0;}
 \DoxyCodeLine{544       \}}
 \DoxyCodeLine{545       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = utility::DoubleHalfInteger(total\_sz);}
-\DoxyCodeLine{546       \textcolor{keyword}{const} std::vector<std::vector<std::int64\_t>> binom = \mbox{\hyperlink{namespacecompnal_1_1utility_a4cce9c29a3548fefaf4814bc1bfd0345}{utility::CalculateBinomialTable}}(system\_size);}
+\DoxyCodeLine{546       \textcolor{keyword}{const} std::vector<std::vector<std::int64\_t>> binom = utility::CalculateBinomialTable(system\_size);}
 \DoxyCodeLine{547       \textcolor{keyword}{const} \textcolor{keywordtype}{int} max\_n\_up\_down = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(total\_electron/2);}
 \DoxyCodeLine{548       std::int64\_t dim = 0;}
 \DoxyCodeLine{549       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} n\_up\_down = 0; n\_up\_down <= max\_n\_up\_down; ++n\_up\_down) \{}

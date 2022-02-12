@@ -19,148 +19,223 @@
 #define COMPNAL_TEST_MODEL_BASE_U1_SPIN_HPP_
 
 #include "../../src/model/base_u1_spin.hpp"
-//#include "../include/all.hpp"
 #include <gtest/gtest.h>
 
 namespace compnal {
 namespace test {
 
-TEST(ModelBaseU1Spin, ConstructorDefault) {
-   model::BaseU1Spin<double> model;
-
-   EXPECT_EQ(model.GetDimOnsite(), 2);
+TEST(ModelBaseU1Spin, Constructors) {
+   using RealType = double;
+   
+   model::BaseU1Spin<RealType> model;
+   EXPECT_EQ(model.GetDimOnsite()    , 2  );
+   EXPECT_EQ(model.GetTotalSz()      , 0  );
    EXPECT_EQ(model.GetMagnitudeSpin(), 0.5);
    
-   const sparse_matrix::CRS<double> ref_sp ({{+0.0, +1.0}, {+0.0, +0.0}});
-   const sparse_matrix::CRS<double> ref_sm ({{+0.0, +0.0}, {+1.0, +0.0}});
-   const sparse_matrix::CRS<double> ref_sx ({{+0.0, +0.5}, {+0.5, +0.0}});
-   const sparse_matrix::CRS<double> ref_isy({{+0.0, +0.5}, {-0.5, +0.0}});
-   const sparse_matrix::CRS<double> ref_sz ({{+0.5, +0.0}, {+0.0, -0.5}});
-   
-   EXPECT_EQ(model.GetOnsiteOperatorSp() , ref_sp );
-   EXPECT_EQ(model.GetOnsiteOperatorSm() , ref_sm );
-   EXPECT_EQ(model.GetOnsiteOperatorSx() , ref_sx );
-   EXPECT_EQ(model.GetOnsiteOperatoriSy(), ref_isy);
-   EXPECT_EQ(model.GetOnsiteOperatorSz() , ref_sz );
+   EXPECT_EQ(model.GetOnsiteOperatorSp (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSp (0.5));
+   EXPECT_EQ(model.GetOnsiteOperatorSm (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSm (0.5));
+   EXPECT_EQ(model.GetOnsiteOperatorSx (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSx (0.5));
+   EXPECT_EQ(model.GetOnsiteOperatoriSy(), model::BaseU1Spin<RealType>::CreateOnsiteOperatoriSy(0.5));
+   EXPECT_EQ(model.GetOnsiteOperatorSz (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSz (0.5));
 }
 
-TEST(ModelBaseU1Spin, ConstructorSystemSize) {
-   model::BaseU1Spin<long double> model(1);
+TEST(ModelBaseU1Spin, ConstructorsSpin) {
+   using RealType = long double;
    
-   EXPECT_EQ(model.GetDimOnsite(), 3);
+   model::BaseU1Spin<RealType> model(1);
+   EXPECT_EQ(model.GetDimOnsite()    , 3);
+   EXPECT_EQ(model.GetTotalSz()      , 0);
    EXPECT_EQ(model.GetMagnitudeSpin(), 1);
-  
-   const sparse_matrix::CRS<long double> ref_sp ({
-      {+0.0, +std::sqrt(2), +0.0},
-      {+0.0, +0.0, +std::sqrt(2)},
+   
+   EXPECT_EQ(model.GetOnsiteOperatorSp (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSp (1));
+   EXPECT_EQ(model.GetOnsiteOperatorSm (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSm (1));
+   EXPECT_EQ(model.GetOnsiteOperatorSx (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSx (1));
+   EXPECT_EQ(model.GetOnsiteOperatoriSy(), model::BaseU1Spin<RealType>::CreateOnsiteOperatoriSy(1));
+   EXPECT_EQ(model.GetOnsiteOperatorSz (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSz (1));
+}
+
+TEST(ModelBaseU1Spin, ConstructorsSpinSz) {
+   model::BaseU1Spin<double> model(1, 2);
+   EXPECT_EQ(model.GetDimOnsite()    , 3);
+   EXPECT_EQ(model.GetTotalSz()      , 2);
+   EXPECT_EQ(model.GetMagnitudeSpin(), 1);
+}
+
+TEST(ModelBaseU1Spin, SetMagnitudeSpin) {
+   using RealType = long double;
+   
+   model::BaseU1Spin<RealType> model;
+   model.SetMagnitudeSpin(1.5);
+   EXPECT_EQ(model.GetDimOnsite()    , 4);
+   EXPECT_EQ(model.GetTotalSz()      , 0);
+   EXPECT_EQ(model.GetMagnitudeSpin(), 1.5);
+   EXPECT_EQ(model.GetOnsiteOperatorSp (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSp (1.5));
+   EXPECT_EQ(model.GetOnsiteOperatorSm (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSm (1.5));
+   EXPECT_EQ(model.GetOnsiteOperatorSx (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSx (1.5));
+   EXPECT_EQ(model.GetOnsiteOperatoriSy(), model::BaseU1Spin<RealType>::CreateOnsiteOperatoriSy(1.5));
+   EXPECT_EQ(model.GetOnsiteOperatorSz (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSz (1.5));
+   
+   EXPECT_THROW(model.SetMagnitudeSpin(0) , std::runtime_error);
+   EXPECT_THROW(model.SetMagnitudeSpin(-1), std::runtime_error);
+}
+
+TEST(ModelBaseU1Spin, SetTotalSz) {
+   model::BaseU1Spin<double> model;
+   model.SetTotalSz(-4);
+   EXPECT_EQ(model.GetDimOnsite()    , 2);
+   EXPECT_EQ(model.GetTotalSz()      , -4);
+   EXPECT_EQ(model.GetMagnitudeSpin(), 0.5);
+}
+
+TEST(ModelBaseU1Spin, CalculateNumElectron) {
+   model::BaseU1Spin<double> model;
+   EXPECT_THROW(model.CalculateNumElectron(-1), std::runtime_error);
+   EXPECT_EQ(model.CalculateNumElectron(0), 0);
+   EXPECT_EQ(model.CalculateNumElectron(1), 0);
+   EXPECT_THROW(model.CalculateNumElectron(2) , std::runtime_error);
+}
+
+TEST(ModelBaseU1Spin, CalculateQNumber) {
+   model::BaseU1Spin<double> model;
+   model.SetTotalSz(3);
+   EXPECT_THROW(model.CalculateQNumber(-1, 0), std::runtime_error);
+   EXPECT_THROW(model.CalculateQNumber(0, -1), std::runtime_error);
+   EXPECT_THROW(model.CalculateQNumber(-2, -1), std::runtime_error);
+   
+   EXPECT_THROW(model.CalculateQNumber(2, 0), std::runtime_error);
+   EXPECT_THROW(model.CalculateQNumber(0, 2), std::runtime_error);
+   EXPECT_THROW(model.CalculateQNumber(2, 2), std::runtime_error);
+
+   EXPECT_EQ(model.CalculateQNumber(0, 0), 3);
+   EXPECT_EQ(model.CalculateQNumber(0, 1), 4);
+   EXPECT_EQ(model.CalculateQNumber(1, 0), 2);
+   EXPECT_EQ(model.CalculateQNumber(1, 1), 3);
+}
+
+TEST(ModelBaseU1Spin, GenerateBasisSpin05) {
+   model::BaseU1Spin<double> model(0.5);
+   std::vector<std::int64_t> basis_spin05_sz_p1 = {0};
+   std::vector<std::int64_t> basis_spin05_sz_0  = {1, 2};
+   std::vector<std::int64_t> basis_spin05_sz_m1 = {3};
+   EXPECT_THROW(model.GenerateBasis(2, -2.0, false), std::runtime_error);
+   EXPECT_THROW(model.GenerateBasis(2, -1.5, false), std::runtime_error);
+   EXPECT_EQ   (model.GenerateBasis(2, -1.0, false), basis_spin05_sz_m1);
+   EXPECT_THROW(model.GenerateBasis(2, -0.5, false), std::runtime_error);
+   EXPECT_EQ   (model.GenerateBasis(2,  0.0, false), basis_spin05_sz_0 );
+   EXPECT_THROW(model.GenerateBasis(2, +0.5, false), std::runtime_error);
+   EXPECT_EQ   (model.GenerateBasis(2, +1.0, false), basis_spin05_sz_p1);
+   EXPECT_THROW(model.GenerateBasis(2, +1.5, false), std::runtime_error);
+   EXPECT_THROW(model.GenerateBasis(2, +2.0, false), std::runtime_error);
+}
+
+TEST(ModelBaseU1Spin, GenerateBasisSpin1) {
+   model::BaseU1Spin<double> model(1);
+   std::vector<std::int64_t> basis_spin1_sz_p2 = {0};
+   std::vector<std::int64_t> basis_spin1_sz_p1 = {1, 3};
+   std::vector<std::int64_t> basis_spin1_sz_0  = {2, 4, 6};
+   std::vector<std::int64_t> basis_spin1_sz_m1 = {5, 7};
+   std::vector<std::int64_t> basis_spin1_sz_m2 = {8};
+   EXPECT_EQ   (model.GenerateBasis(2, -2.0, false), basis_spin1_sz_m2);
+   EXPECT_THROW(model.GenerateBasis(2, -1.5, false), std::runtime_error);
+   EXPECT_EQ   (model.GenerateBasis(2, -1.0, false), basis_spin1_sz_m1);
+   EXPECT_THROW(model.GenerateBasis(2, -0.5, false), std::runtime_error);
+   EXPECT_EQ   (model.GenerateBasis(2,  0.0, false), basis_spin1_sz_0);
+   EXPECT_THROW(model.GenerateBasis(2, +0.5, false), std::runtime_error);
+   EXPECT_EQ   (model.GenerateBasis(2, +1.0, false), basis_spin1_sz_p1);
+   EXPECT_THROW(model.GenerateBasis(2, +1.5, false), std::runtime_error);
+   EXPECT_EQ   (model.GenerateBasis(2, +2.0, false), basis_spin1_sz_p2);
+}
+
+TEST(ModelBaseU1Spin, ValidateQNumber) {
+   EXPECT_TRUE(model::BaseU1Spin<double>::ValidateQNumber(10, 0.5, +5.0));
+   EXPECT_TRUE(model::BaseU1Spin<double>::ValidateQNumber(10, 0.5, +0.0));
+   EXPECT_TRUE(model::BaseU1Spin<double>::ValidateQNumber(10, 0.5, -5.0));
+   EXPECT_TRUE(model::BaseU1Spin<double>::ValidateQNumber(9 , 0.5, -4.5));
+   EXPECT_TRUE(model::BaseU1Spin<double>::ValidateQNumber(9 , 0.5, -0.5));
+   EXPECT_TRUE(model::BaseU1Spin<double>::ValidateQNumber(9 , 0.5, +4.5));
+
+   EXPECT_TRUE(model::BaseU1Spin<double>::ValidateQNumber(10, 1.0, +10.0));
+   EXPECT_TRUE(model::BaseU1Spin<double>::ValidateQNumber(10, 1.0, +0.0 ));
+   EXPECT_TRUE(model::BaseU1Spin<double>::ValidateQNumber(10, 1.0, -10.0));
+   EXPECT_TRUE(model::BaseU1Spin<double>::ValidateQNumber(9 , 1.0, -9.0 ));
+   EXPECT_TRUE(model::BaseU1Spin<double>::ValidateQNumber(9 , 1.0, -1.0 ));
+   EXPECT_TRUE(model::BaseU1Spin<double>::ValidateQNumber(9 , 1.0, +9.0 ));
+   
+   EXPECT_FALSE(model::BaseU1Spin<double>::ValidateQNumber(10, 0.5, +5.5));
+   EXPECT_FALSE(model::BaseU1Spin<double>::ValidateQNumber(10, 0.5, +0.5));
+   EXPECT_FALSE(model::BaseU1Spin<double>::ValidateQNumber(10, 0.5, -5.5));
+   EXPECT_FALSE(model::BaseU1Spin<double>::ValidateQNumber(9 , 0.5, -5.0));
+   EXPECT_FALSE(model::BaseU1Spin<double>::ValidateQNumber(9 , 0.5, -0.0));
+   EXPECT_FALSE(model::BaseU1Spin<double>::ValidateQNumber(9 , 0.5, +4.0));
+}
+
+TEST(ModelBaseU1Spin, CalculateTargetDim) {
+   EXPECT_EQ(model::BaseU1Spin<double>::CalculateTargetDim(0, 0.5, +0.0), 0);
+   EXPECT_EQ(model::BaseU1Spin<double>::CalculateTargetDim(1, 0.5, +0.5), 1);
+   EXPECT_EQ(model::BaseU1Spin<double>::CalculateTargetDim(2, 0.5, +0.0), 2);
+   EXPECT_EQ(model::BaseU1Spin<double>::CalculateTargetDim(3, 0.5, +0.5), 3);
+   EXPECT_EQ(model::BaseU1Spin<double>::CalculateTargetDim(4, 0.5, +0.0), 6);
+   EXPECT_EQ(model::BaseU1Spin<double>::CalculateTargetDim(4, 0.5, +2.0), 1);
+   EXPECT_EQ(model::BaseU1Spin<double>::CalculateTargetDim(4, 0.5, -2.0), 1);
+}
+
+TEST(ModelBaseU1Spin, SpinOneHalf) {
+   using RealType = double;
+   
+   const sparse_matrix::CRS<RealType> ref_sp ({{+0.0, +1.0}, {+0.0, +0.0}});
+   const sparse_matrix::CRS<RealType> ref_sm ({{+0.0, +0.0}, {+1.0, +0.0}});
+   const sparse_matrix::CRS<RealType> ref_sx ({{+0.0, +0.5}, {+0.5, +0.0}});
+   const sparse_matrix::CRS<RealType> ref_isy({{+0.0, +0.5}, {-0.5, +0.0}});
+   const sparse_matrix::CRS<RealType> ref_sz ({{+0.5, +0.0}, {+0.0, -0.5}});
+   
+   EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSp (0.5) , ref_sp );
+   EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSm (0.5) , ref_sm );
+   EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSx (0.5) , ref_sx );
+   EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatoriSy(0.5) , ref_isy);
+   EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSz (0.5) , ref_sz );
+}
+
+TEST(ModelBaseU1Spin, SpinOne) {
+   using RealType = long double;
+   const RealType sqrt2 = std::sqrt(static_cast<RealType>(2));
+   
+   const sparse_matrix::CRS<RealType> ref_sp ({
+      {+0.0, +sqrt2, +0.0},
+      {+0.0, +0.0, +sqrt2},
       {+0.0, +0.0, +0.0}
    });
    
-   const sparse_matrix::CRS<long double> ref_sm ({
+   const sparse_matrix::CRS<RealType> ref_sm ({
       {+0.0, +0.0, +0.0},
-      {+std::sqrt(2), +0.0, +0.0},
-      {+0.0, +std::sqrt(2), +0.0}
+      {+sqrt2, +0.0, +0.0},
+      {+0.0, +sqrt2, +0.0}
    });
    
-   const sparse_matrix::CRS<long double> ref_sx ({
-      {+0.0, +1.0/std::sqrt(2), +0.0},
-      {+1.0/std::sqrt(2), +0.0, +1.0/std::sqrt(2)},
-      {+0.0, +1.0/std::sqrt(2), +0.0}
+   const sparse_matrix::CRS<RealType> ref_sx ({
+      {+0.0, +sqrt2/2.0, +0.0},
+      {+sqrt2/2.0, +0.0, +sqrt2/2.0},
+      {+0.0, +sqrt2/2.0, +0.0}
    });
    
-   const sparse_matrix::CRS<long double> ref_isy ({
-      {+0.0, +1.0/std::sqrt(2), +0.0},
-      {-1.0/std::sqrt(2), +0.0, +1.0/std::sqrt(2)},
-      {+0.0, -1.0/std::sqrt(2), +0.0}
+   const sparse_matrix::CRS<RealType> ref_isy ({
+      {+0.0, +sqrt2/2.0, +0.0},
+      {-sqrt2/2.0, +0.0, +sqrt2/2.0},
+      {+0.0, -sqrt2/2.0, +0.0}
    });
    
-   const sparse_matrix::CRS<long double> ref_sz ({
+   const sparse_matrix::CRS<RealType> ref_sz ({
       {+1.0, +0.0, +0.0},
       {+0.0, +0.0, +0.0},
       {+0.0, +0.0, -1.0}
    });
    
-   EXPECT_EQ(model.GetOnsiteOperatorSp() , ref_sp );
-   EXPECT_EQ(model.GetOnsiteOperatorSm() , ref_sm );
-   EXPECT_EQ(model.GetOnsiteOperatorSx() , ref_sx );
-   //EXPECT_EQ(model.GetOnsiteOperatoriSy(), ref_isy);
-   EXPECT_EQ(model.GetOnsiteOperatorSz() , ref_sz );
-   EXPECT_EQ(0.99999999999999999, 1.0);
-   //EXPECT_PRED_FORMAT3(::testing::internal::EqHelper::Compare, model.GetOnsiteOperatorSx(), ref_sx, 0.001);
+   EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSp (1) , ref_sp );
+   EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSm (1) , ref_sm );
+   EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSx (1) , ref_sx );
+   EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatoriSy(1) , ref_isy);
+   EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSz (1) , ref_sz );
 }
 
-
-/*
-TEST(ModelBaseU1Spin, ConstructorSystemSizeSpin) {
-   model::BaseU1Spin<double> model(10, 1);
-   TestSpinOne(model);
-   EXPECT_EQ(model.GetSystemSize(), 10);
-   EXPECT_EQ(model.GetTotalSz(), 0_hi);
-   EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-}
-
-TEST(ModelBaseU1Spin, ConstructorSystemSizeSpinTotalSz) {
-   model::BaseU1Spin<double> model(10, 1, 1);
-   TestSpinOne(model);
-   EXPECT_EQ(model.GetSystemSize(), 10);
-   EXPECT_EQ(model.GetTotalSz(), 1_hi);
-   EXPECT_EQ(model.GetCalculatedEigenvectorSet(), std::unordered_set<int>());
-}
-
-TEST(ModelBaseU1Spin, SetSystemSize) {
-   model::BaseU1Spin<double> model;
-   model.SetSystemSize(5);
-   EXPECT_EQ(model.GetSystemSize(), 5);
-}
-
-TEST(ModelBaseU1Spin, SetTotalSz) {
-   model::BaseU1Spin<double> model;
-   model.SetTotalSz(2_hi);
-   EXPECT_EQ(model.GetTotalSz(), 2_hi);
-   EXPECT_THROW(model.SetTotalSz(1.9_hi), std::runtime_error);
-}
-
-TEST(ModelBaseU1Spin, SetMagnitudeSpin) {
-   model::BaseU1Spin<double> model;
-   model.SetMagnitudeSpin(1.5_hi);
-   EXPECT_EQ(model.GetMagnitudeSpin(), 1.5_hi);
-   EXPECT_THROW(model.SetMagnitudeSpin(1.3_hi), std::runtime_error);
-}
-
-TEST(ModelBaseU1Spin, isValidQNumber) {
-   EXPECT_TRUE(model::BaseU1Spin<double>::isValidQNumber(10, 0.5_hi, +5.0_hi));
-   EXPECT_TRUE(model::BaseU1Spin<double>::isValidQNumber(10, 0.5_hi, +0.0_hi));
-   EXPECT_TRUE(model::BaseU1Spin<double>::isValidQNumber(10, 0.5_hi, -5.0_hi));
-   EXPECT_TRUE(model::BaseU1Spin<double>::isValidQNumber(9 , 0.5_hi, -4.5_hi));
-   EXPECT_TRUE(model::BaseU1Spin<double>::isValidQNumber(9 , 0.5_hi, -0.5_hi));
-   EXPECT_TRUE(model::BaseU1Spin<double>::isValidQNumber(9 , 0.5_hi, +4.5_hi));
-
-   EXPECT_TRUE(model::BaseU1Spin<double>::isValidQNumber(10, 1.0_hi, +10.0_hi));
-   EXPECT_TRUE(model::BaseU1Spin<double>::isValidQNumber(10, 1.0_hi, +0.0_hi ));
-   EXPECT_TRUE(model::BaseU1Spin<double>::isValidQNumber(10, 1.0_hi, -10.0_hi));
-   EXPECT_TRUE(model::BaseU1Spin<double>::isValidQNumber(9 , 1.0_hi, -9.0_hi ));
-   EXPECT_TRUE(model::BaseU1Spin<double>::isValidQNumber(9 , 1.0_hi, -1.0_hi ));
-   EXPECT_TRUE(model::BaseU1Spin<double>::isValidQNumber(9 , 1.0_hi, +9.0_hi ));
-   
-   EXPECT_FALSE(model::BaseU1Spin<double>::isValidQNumber(10, 0.5_hi, +5.5_hi));
-   EXPECT_FALSE(model::BaseU1Spin<double>::isValidQNumber(10, 0.5_hi, +0.5_hi));
-   EXPECT_FALSE(model::BaseU1Spin<double>::isValidQNumber(10, 0.5_hi, -5.5_hi));
-   EXPECT_FALSE(model::BaseU1Spin<double>::isValidQNumber(9 , 0.5_hi, -5.0_hi));
-   EXPECT_FALSE(model::BaseU1Spin<double>::isValidQNumber(9 , 0.5_hi, -0.0_hi));
-   EXPECT_FALSE(model::BaseU1Spin<double>::isValidQNumber(9 , 0.5_hi, +4.0_hi));
-}
-
-TEST(ModelBaseU1Spin, CalculateTargetDim) {
-   //Spin-1/2
-   EXPECT_EQ(model::BaseU1Spin<double>::CalculateTargetDim(0, 0.5_hi, +0.0_hi), 0);
-   EXPECT_EQ(model::BaseU1Spin<double>::CalculateTargetDim(1, 0.5_hi, +0.5_hi), 1);
-   EXPECT_EQ(model::BaseU1Spin<double>::CalculateTargetDim(2, 0.5_hi, +0.0_hi), 2);
-   EXPECT_EQ(model::BaseU1Spin<double>::CalculateTargetDim(3, 0.5_hi, +0.5_hi), 3);
-   EXPECT_EQ(model::BaseU1Spin<double>::CalculateTargetDim(4, 0.5_hi, +0.0_hi), 6);
-   EXPECT_EQ(model::BaseU1Spin<double>::CalculateTargetDim(4, 0.5_hi, +2.0_hi), 1);
-   EXPECT_EQ(model::BaseU1Spin<double>::CalculateTargetDim(4, 0.5_hi, -2.0_hi), 1);
-}
-*/
 } //namespace test
 } //namespace compnal
 

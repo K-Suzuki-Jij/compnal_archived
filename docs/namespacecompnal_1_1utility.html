@@ -91,6 +91,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcompnal_1_1utility_1_1_pair_hash.html">PairHash</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hash struct of std::pair.  <a href="structcompnal_1_1utility_1_1_pair_hash.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcompnal_1_1utility_1_1_variant_hash.html">VariantHash</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hash struct of IndexType used in <a class="el" href="classcompnal_1_1model_1_1_general_model.html" title="The general model class.">model::GeneralModel</a>.  <a href="structcompnal_1_1utility_1_1_variant_hash.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcompnal_1_1utility_1_1_vec_hash.html">VecHash</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hash struct of std::vector.  <a href="structcompnal_1_1utility_1_1_vec_hash.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -100,16 +103,37 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a2580357fcc88b1c7bac5627e5b47925f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1utility.html#a2580357fcc88b1c7bac5627e5b47925f">GenerateIntegerPartition</a> (std::vector&lt; std::vector&lt; int &gt; &gt; *results, int n, int max_partition_num)</td></tr>
-<tr class="separator:a2580357fcc88b1c7bac5627e5b47925f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae746f2f70fd507d6b7a7f6ffabdcdee3"><td class="memItemLeft" align="right" valign="top">std::int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1utility.html#ae746f2f70fd507d6b7a7f6ffabdcdee3">CalculateBinomialCoefficient</a> (int n, const int k)</td></tr>
-<tr class="separator:ae746f2f70fd507d6b7a7f6ffabdcdee3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4cce9c29a3548fefaf4814bc1bfd0345"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; std::int64_t &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1utility.html#a4cce9c29a3548fefaf4814bc1bfd0345">CalculateBinomialTable</a> (int N)</td></tr>
-<tr class="separator:a4cce9c29a3548fefaf4814bc1bfd0345"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31be084029ddf129959d1682fd54cdf5"><td class="memItemLeft" align="right" valign="top">std::int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1utility.html#a31be084029ddf129959d1682fd54cdf5">CalculateNumCombination</a> (const std::vector&lt; int &gt; &amp;list)</td></tr>
-<tr class="separator:a31be084029ddf129959d1682fd54cdf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d7737688a03ef322d62fc96017af67a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1utility.html#a6d7737688a03ef322d62fc96017af67a">CalculateNthPermutation</a> (std::vector&lt; int &gt; *vec, std::int64_t target_num)</td></tr>
-<tr class="separator:a6d7737688a03ef322d62fc96017af67a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19f7e6247e080cfaf331019133ae80cd"><td class="memTemplParams" colspan="2">template&lt;typename IntegerType &gt; </td></tr>
+<tr class="memitem:a19f7e6247e080cfaf331019133ae80cd"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; IntegerType &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1utility.html#a19f7e6247e080cfaf331019133ae80cd">GenerateIntegerPartition</a> (const IntegerType partitioned_number, IntegerType max_number, const IntegerType max_size)</td></tr>
+<tr class="memdesc:a19f7e6247e080cfaf331019133ae80cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate partitions of a positive integer.  <a href="namespacecompnal_1_1utility.html#a19f7e6247e080cfaf331019133ae80cd">More...</a><br /></td></tr>
+<tr class="separator:a19f7e6247e080cfaf331019133ae80cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a476dca6d6e10211a5f72d9aed05a1b68"><td class="memTemplParams" colspan="2">template&lt;typename IntegerType &gt; </td></tr>
+<tr class="memitem:a476dca6d6e10211a5f72d9aed05a1b68"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; IntegerType &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1utility.html#a476dca6d6e10211a5f72d9aed05a1b68">GenerateIntegerPartition</a> (const IntegerType partitioned_number, const IntegerType max_number)</td></tr>
+<tr class="memdesc:a476dca6d6e10211a5f72d9aed05a1b68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate partitions of a positive integer.  <a href="namespacecompnal_1_1utility.html#a476dca6d6e10211a5f72d9aed05a1b68">More...</a><br /></td></tr>
+<tr class="separator:a476dca6d6e10211a5f72d9aed05a1b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5998331a6095cfe0d7e1c4d3e9de658"><td class="memTemplParams" colspan="2">template&lt;typename IntegerType &gt; </td></tr>
+<tr class="memitem:ad5998331a6095cfe0d7e1c4d3e9de658"><td class="memTemplItemLeft" align="right" valign="top">std::int64_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1utility.html#ad5998331a6095cfe0d7e1c4d3e9de658">CalculateBinomialCoefficient</a> (IntegerType n, const IntegerType k)</td></tr>
+<tr class="memdesc:ad5998331a6095cfe0d7e1c4d3e9de658"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate binomial coefficient.  <a href="namespacecompnal_1_1utility.html#ad5998331a6095cfe0d7e1c4d3e9de658">More...</a><br /></td></tr>
+<tr class="separator:ad5998331a6095cfe0d7e1c4d3e9de658"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69e83b5318f469cbdcbb2d29c305a49c"><td class="memTemplParams" colspan="2">template&lt;typename IntegerType &gt; </td></tr>
+<tr class="memitem:a69e83b5318f469cbdcbb2d29c305a49c"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; std::int64_t &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1utility.html#a69e83b5318f469cbdcbb2d29c305a49c">GenerateBinomialTable</a> (const IntegerType n)</td></tr>
+<tr class="memdesc:a69e83b5318f469cbdcbb2d29c305a49c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate binomial coefficients \( \frac{n!}{k!(n-k)!} \) for \( n \) and all \( 0 &lt;= k &lt;= n\).  <a href="namespacecompnal_1_1utility.html#a69e83b5318f469cbdcbb2d29c305a49c">More...</a><br /></td></tr>
+<tr class="separator:a69e83b5318f469cbdcbb2d29c305a49c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee9ff806431adb586e95bc9d77516915"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:aee9ff806431adb586e95bc9d77516915"><td class="memTemplItemLeft" align="right" valign="top">std::int64_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1utility.html#aee9ff806431adb586e95bc9d77516915">CalculateNumPermutation</a> (const std::vector&lt; T &gt; &amp;list)</td></tr>
+<tr class="memdesc:aee9ff806431adb586e95bc9d77516915"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the number of permutations from list. <br  />
+ For example, all the possible permutations for {1, 1, 2} are <br  />
+ {1, 1, 2}, {1, 2, 1}, {2, 1, 1}. <br  />
+ Thus, this function return the value 3.  <a href="namespacecompnal_1_1utility.html#aee9ff806431adb586e95bc9d77516915">More...</a><br /></td></tr>
+<tr class="separator:aee9ff806431adb586e95bc9d77516915"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e59d7a03bcbd9fb222fd52300d29fd7"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a7e59d7a03bcbd9fb222fd52300d29fd7"><td class="memTemplItemLeft" align="right" valign="top">std::vector&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1utility.html#a7e59d7a03bcbd9fb222fd52300d29fd7">GenerateNthPermutation</a> (const std::vector&lt; T &gt; &amp;list, const std::int64_t n)</td></tr>
+<tr class="memdesc:a7e59d7a03bcbd9fb222fd52300d29fd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate \( n\) -th permutation of the list. <br  />
+ For example, all the possible permutations for {1, 1, 2} are <br  />
+ {1, 1, 2}, {1, 2, 1}, {2, 1, 1}. <br  />
+ Thus, this function GenerateNthPermutation({1, 1, 2}, 1) returns {1, 2, 1}. <br  />
+ Note that the index starts from 0.  <a href="namespacecompnal_1_1utility.html#a7e59d7a03bcbd9fb222fd52300d29fd7">More...</a><br /></td></tr>
+<tr class="separator:a7e59d7a03bcbd9fb222fd52300d29fd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0dd6adce4c848f9ea13250f5434390f3"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
 <tr class="memitem:a0dd6adce4c848f9ea13250f5434390f3"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1utility.html#a0dd6adce4c848f9ea13250f5434390f3">QuickSort</a> (std::vector&lt; T1 &gt; *array_comp, std::vector&lt; T2 &gt; *array2, const std::int64_t left, const std::int64_t right)</td></tr>
 <tr class="separator:a0dd6adce4c848f9ea13250f5434390f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -117,22 +141,24 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Utility classes and functions for compnal. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="ae746f2f70fd507d6b7a7f6ffabdcdee3" name="ae746f2f70fd507d6b7a7f6ffabdcdee3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae746f2f70fd507d6b7a7f6ffabdcdee3">&#9670;&nbsp;</a></span>CalculateBinomialCoefficient()</h2>
+<a id="ad5998331a6095cfe0d7e1c4d3e9de658" name="ad5998331a6095cfe0d7e1c4d3e9de658"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5998331a6095cfe0d7e1c4d3e9de658">&#9670;&nbsp;</a></span>CalculateBinomialCoefficient()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename IntegerType &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">std::int64_t compnal::utility::CalculateBinomialCoefficient </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
+          <td class="paramtype">IntegerType&#160;</td>
           <td class="paramname"><em>n</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int&#160;</td>
+          <td class="paramtype">const IntegerType&#160;</td>
           <td class="paramname"><em>k</em>&#160;</td>
         </tr>
         <tr>
@@ -143,95 +169,113 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Calculate binomial coefficient. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">IntegerType</td><td>Integer type </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>Non-negative integer \( n \) in \( \frac{n!}{k!(n-k)!} \). </td></tr>
+    <tr><td class="paramname">k</td><td>Non-negative integer \( k \) in \( \frac{n!}{k!(n-k)!} \). </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a id="a4cce9c29a3548fefaf4814bc1bfd0345" name="a4cce9c29a3548fefaf4814bc1bfd0345"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4cce9c29a3548fefaf4814bc1bfd0345">&#9670;&nbsp;</a></span>CalculateBinomialTable()</h2>
+<a id="aee9ff806431adb586e95bc9d77516915" name="aee9ff806431adb586e95bc9d77516915"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee9ff806431adb586e95bc9d77516915">&#9670;&nbsp;</a></span>CalculateNumPermutation()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; std::vector&lt; std::int64_t &gt; &gt; compnal::utility::CalculateBinomialTable </td>
+          <td class="memname">std::int64_t compnal::utility::CalculateNumPermutation </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>N</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a6d7737688a03ef322d62fc96017af67a" name="a6d7737688a03ef322d62fc96017af67a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d7737688a03ef322d62fc96017af67a">&#9670;&nbsp;</a></span>CalculateNthPermutation()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void compnal::utility::CalculateNthPermutation </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; int &gt; *&#160;</td>
-          <td class="paramname"><em>vec</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::int64_t&#160;</td>
-          <td class="paramname"><em>target_num</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a31be084029ddf129959d1682fd54cdf5" name="a31be084029ddf129959d1682fd54cdf5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31be084029ddf129959d1682fd54cdf5">&#9670;&nbsp;</a></span>CalculateNumCombination()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::int64_t compnal::utility::CalculateNumCombination </td>
-          <td>(</td>
-          <td class="paramtype">const std::vector&lt; int &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
           <td class="paramname"><em>list</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
+<p>Calculate the number of permutations from list. <br  />
+ For example, all the possible permutations for {1, 1, 2} are <br  />
+ {1, 1, 2}, {1, 2, 1}, {2, 1, 1}. <br  />
+ Thus, this function return the value 3. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Integer type or string type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">list</td><td>The list. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a id="a2580357fcc88b1c7bac5627e5b47925f" name="a2580357fcc88b1c7bac5627e5b47925f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2580357fcc88b1c7bac5627e5b47925f">&#9670;&nbsp;</a></span>GenerateIntegerPartition()</h2>
+<a id="a69e83b5318f469cbdcbb2d29c305a49c" name="a69e83b5318f469cbdcbb2d29c305a49c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69e83b5318f469cbdcbb2d29c305a49c">&#9670;&nbsp;</a></span>GenerateBinomialTable()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename IntegerType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void compnal::utility::GenerateIntegerPartition </td>
+          <td class="memname">std::vector&lt; std::vector&lt; std::int64_t &gt; &gt; compnal::utility::GenerateBinomialTable </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; std::vector&lt; int &gt; &gt; *&#160;</td>
-          <td class="paramname"><em>results</em>, </td>
+          <td class="paramtype">const IntegerType&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generate binomial coefficients \( \frac{n!}{k!(n-k)!} \) for \( n \) and all \( 0 &lt;= k &lt;= n\). </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">IntegerType</td><td>Integer type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">n</td><td>Non-negative integer \( n \). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a476dca6d6e10211a5f72d9aed05a1b68" name="a476dca6d6e10211a5f72d9aed05a1b68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a476dca6d6e10211a5f72d9aed05a1b68">&#9670;&nbsp;</a></span>GenerateIntegerPartition() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename IntegerType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::vector&lt; IntegerType &gt; &gt; compnal::utility::GenerateIntegerPartition </td>
+          <td>(</td>
+          <td class="paramtype">const IntegerType&#160;</td>
+          <td class="paramname"><em>partitioned_number</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>n</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>max_partition_num</em>&#160;</td>
+          <td class="paramtype">const IntegerType&#160;</td>
+          <td class="paramname"><em>max_number</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -240,6 +284,122 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Generate partitions of a positive integer. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">IntegerType</td><td>Integer type </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">partitioned_number</td><td>A positive integer to be partitioned. </td></tr>
+    <tr><td class="paramname">max_number</td><td>The maximum number in the partition list. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a19f7e6247e080cfaf331019133ae80cd" name="a19f7e6247e080cfaf331019133ae80cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19f7e6247e080cfaf331019133ae80cd">&#9670;&nbsp;</a></span>GenerateIntegerPartition() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename IntegerType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::vector&lt; IntegerType &gt; &gt; compnal::utility::GenerateIntegerPartition </td>
+          <td>(</td>
+          <td class="paramtype">const IntegerType&#160;</td>
+          <td class="paramname"><em>partitioned_number</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IntegerType&#160;</td>
+          <td class="paramname"><em>max_number</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const IntegerType&#160;</td>
+          <td class="paramname"><em>max_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generate partitions of a positive integer. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">IntegerType</td><td>Integer type </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">partitioned_number</td><td>A positive integer to be partitioned. </td></tr>
+    <tr><td class="paramname">max_number</td><td>The maximum number in the partition list. </td></tr>
+    <tr><td class="paramname">max_size</td><td>The maximum list size. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a7e59d7a03bcbd9fb222fd52300d29fd7" name="a7e59d7a03bcbd9fb222fd52300d29fd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e59d7a03bcbd9fb222fd52300d29fd7">&#9670;&nbsp;</a></span>GenerateNthPermutation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; T &gt; compnal::utility::GenerateNthPermutation </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>list</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::int64_t&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Calculate \( n\) -th permutation of the list. <br  />
+ For example, all the possible permutations for {1, 1, 2} are <br  />
+ {1, 1, 2}, {1, 2, 1}, {2, 1, 1}. <br  />
+ Thus, this function GenerateNthPermutation({1, 1, 2}, 1) returns {1, 2, 1}. <br  />
+ Note that the index starts from 0. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Integer type or string type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">list</td><td>The list. </td></tr>
+    <tr><td class="paramname">n</td><td>Non-negative integer \( n\). </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

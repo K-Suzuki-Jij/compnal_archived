@@ -406,7 +406,7 @@
 \DoxyCodeLine{492          length\_list.push\_back(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(electron\_configuration[0].size()));}
 \DoxyCodeLine{493          length *= electron\_configuration[0].size();}
 \DoxyCodeLine{494       \}}
-\DoxyCodeLine{495       \textcolor{keyword}{const} std::vector<std::vector<std::int64\_t>> binom = \mbox{\hyperlink{namespacecompnal_1_1utility_a4cce9c29a3548fefaf4814bc1bfd0345}{utility::CalculateBinomialTable}}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}});}
+\DoxyCodeLine{495       \textcolor{keyword}{const} std::vector<std::vector<std::int64\_t>> binom = utility::CalculateBinomialTable(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}});}
 \DoxyCodeLine{496       \textcolor{keyword}{const} std::int64\_t dim\_target\_global = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af65466dc461d26785c648f15b2f6f1c7}{CalculateTargetDim}}(total\_electron, total\_sz);}
 \DoxyCodeLine{497 }
 \DoxyCodeLine{498       std::vector<std::vector<int>> q\_number\_n\_up\_down;}
@@ -509,7 +509,7 @@
 \DoxyCodeLine{595          \textcolor{keyword}{const} \textcolor{keywordtype}{int} shifted\_2sz      = (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}}*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}} -\/ total\_2\_sz\_lspin)/2;}
 \DoxyCodeLine{596          \textcolor{keyword}{const} std::int64\_t dim\_target\_lspin = BaseU1Spin\_1D<RealType>::CalculateTargetDim(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aaa4e6a0a26b31814a2c17303455dbd67}{system\_size\_}}, 0.5*\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}}, 0.5*total\_2\_sz\_lspin);}
 \DoxyCodeLine{597          std::vector<std::vector<int>> partition\_integers;}
-\DoxyCodeLine{598          \mbox{\hyperlink{namespacecompnal_1_1utility_a2580357fcc88b1c7bac5627e5b47925f}{utility::GenerateIntegerPartition}}(\&partition\_integers, shifted\_2sz, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}});}
+\DoxyCodeLine{598          \mbox{\hyperlink{namespacecompnal_1_1utility_a19f7e6247e080cfaf331019133ae80cd}{utility::GenerateIntegerPartition}}(\&partition\_integers, shifted\_2sz, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a63fe1f6ba99bd29ab2b50e24371fbaed}{magnitude\_2lspin\_}});}
 \DoxyCodeLine{599          \textcolor{keyword}{auto} \&spin\_basis = spin\_bases[total\_2\_sz\_lspin];}
 \DoxyCodeLine{600          spin\_basis.reserve(dim\_target\_lspin);}
 \DoxyCodeLine{601          \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} \&\&integer\_list: partition\_integers) \{}
@@ -679,7 +679,7 @@
 \DoxyCodeLine{774          length *= electron\_configuration[0].size();}
 \DoxyCodeLine{775       \}}
 \DoxyCodeLine{776       \textcolor{keyword}{const} \textcolor{keywordtype}{int} total\_2sz = utility::DoubleHalfInteger(total\_sz);}
-\DoxyCodeLine{777       \textcolor{keyword}{const} std::vector<std::vector<std::int64\_t>> binom = \mbox{\hyperlink{namespacecompnal_1_1utility_a4cce9c29a3548fefaf4814bc1bfd0345}{utility::CalculateBinomialTable}}(system\_size);}
+\DoxyCodeLine{777       \textcolor{keyword}{const} std::vector<std::vector<std::int64\_t>> binom = utility::CalculateBinomialTable(system\_size);}
 \DoxyCodeLine{778       std::int64\_t dim = 0;}
 \DoxyCodeLine{779       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < length; ++i) \{}
 \DoxyCodeLine{780          \textcolor{keywordtype}{int} electron\_2sz = 0;}

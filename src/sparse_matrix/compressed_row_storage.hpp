@@ -198,6 +198,8 @@ struct CRS {
    }
    
    void Print(const std::string display_name = "Matrix") const {
+      std::cout << std::fixed;
+      std::cout << std::setprecision(std::numeric_limits<RealType>::max_digits10);
       for (std::int64_t i = 0; i < this->row_dim; ++i) {
          for (std::int64_t j = this->row.at(i); j < this->row.at(i+1); ++j) {
             std::cout << display_name << "[";
@@ -210,6 +212,8 @@ struct CRS {
    }
    
    void PrintInfo(const std::string display_name = "Matrix") const {
+      std::cout << std::fixed;
+      std::cout << std::setprecision(std::numeric_limits<RealType>::max_digits10);
       std::cout << "Print information about CRS: " << display_name << std::endl;
       std::cout << "row_dim = " << this->row_dim << std::endl;
       std::cout << "col_dim = " << this->col_dim << std::endl;
@@ -256,7 +260,7 @@ CRS<decltype(T1{0}*T2{0}*T3{0})> CalculateMatrixMatrixProduct(const T1 coeef_1,
    
    if (matrix_1.col_dim != matrix_2.row_dim) {
       std::stringstream ss;
-      ss << "Error in " << __func__ << std::endl;
+      ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
       ss << "Matrix product cannot be defined" << std::endl;
       ss << "matrix_1.col_dim = " << matrix_1.col_dim << ", matrix_2.row_dim = " << matrix_2.row_dim << std::endl;
       throw std::runtime_error(ss.str());
@@ -283,13 +287,13 @@ CRS<decltype(T1{0}*T2{0}*T3{0})> CalculateMatrixMatrixProduct(const T1 coeef_1,
          }
       }
       
-      matrix_out.row[i + 1] = matrix_out->col.size();
+      matrix_out.row[i + 1] = matrix_out.col.size();
       
       for (std::int64_t j = matrix_1.row[i]; j < matrix_1.row[i + 1]; ++j) {
          temp_v1[matrix_1.col[j]] = 0.0;
       }
-      for (std::int64_t j = matrix_out->row[i]; j < matrix_out->row[i + 1]; ++j) {
-         temp_v2[matrix_out->col[j]] = 0.0;
+      for (std::int64_t j = matrix_out.row[i]; j < matrix_out.row[i + 1]; ++j) {
+         temp_v2[matrix_out.col[j]] = 0.0;
       }
    }
    
@@ -348,7 +352,7 @@ CRS<decltype(T1{0}+T2{0}+T3{0}+T4{0})> CalculateMatrixMatrixSum(const T1 coeef_1
    
    if (matrix_1.row_dim != matrix_2.row_dim || matrix_1.col_dim != matrix_2.col_dim) {
       std::stringstream ss;
-      ss << "Error in " << __func__ << std::endl;
+      ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
       ss << "The summation of the matrices cannot be defined." << std::endl;
       ss << "matrix_1.row_dim = " << matrix_1.row_dim << ", matrix_1.col_dim = " << matrix_1.col_dim << std::endl;
       ss << "matrix_2.row_dim = " << matrix_2.row_dim << ", matrix_2.col_dim = " << matrix_2.col_dim << std::endl;
@@ -622,7 +626,7 @@ bool operator!=(const CRS<T1> &lhs, const CRS<T2> &rhs) {
 template<typename RealType>
 std::ostream& operator<<(std::ostream &os, const CRS<RealType> &m) {
    os << std::fixed;
-   os << std::setprecision(16);
+   os << std::setprecision(std::numeric_limits<RealType>::max_digits10);
    for (std::int64_t i = 0; i < m.row_dim; ++i) {
       for (std::int64_t j = m.row.at(i); j < m.row.at(i+1); ++j) {
          os << "M[";

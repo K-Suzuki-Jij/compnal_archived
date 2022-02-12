@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['qhash_0',['QHash',['../classcompnal_1_1model_1_1_base_u1_spin.html#a32758e3f043f18c7746fee31f003235a',1,'compnal::model::BaseU1Spin::QHash()'],['../classcompnal_1_1solver_1_1_exact_diag.html#a8b50861a822124ea37cf63af26235f98',1,'compnal::solver::ExactDiag::QHash()']]],
-  ['qtype_1',['QType',['../classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a8f0a590290a48392b0b3a3ebdb7e2ab2',1,'compnal::model::BaseU1Electron_1D::QType()'],['../classcompnal_1_1model_1_1_base_u1_spin.html#aebbba83bf47b7a316551f8c18da09d72',1,'compnal::model::BaseU1Spin::QType()'],['../classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a8526e8fe332e5204f75bca6d2f671446',1,'compnal::model::BaseU1SpinElectron_1D::QType()'],['../classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#aac75f90c862054fdeb66d6d4af2ea55f',1,'compnal::model::BaseU1SpinMultiElectrons_1D::QType()'],['../classcompnal_1_1solver_1_1_exact_diag.html#aef6fb4a525be81943447384b6170f3ef',1,'compnal::solver::ExactDiag::QType()']]]
+  ['indextype_0',['IndexType',['../classcompnal_1_1model_1_1_general_model.html#a33626d4877a81bcd906c726ab31b1ebf',1,'compnal::model::GeneralModel']]],
+  ['intersitelisttype_1',['IntersiteListType',['../classcompnal_1_1model_1_1_general_model.html#aaaedb359cd2fa167e2ae9865f5d18e4c',1,'compnal::model::GeneralModel']]]
 ];

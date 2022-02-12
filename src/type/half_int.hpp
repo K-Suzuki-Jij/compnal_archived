@@ -96,7 +96,7 @@ auto operator+(const ValueType lhs, const HalfInt &rhs) {
       return HalfInt{lhs + 0.5*rhs.GetInteger()};
    }
    else {
-      return ValueType{lhs + 0.5*rhs.GetInteger()};
+      return lhs + ValueType{0.5}*rhs.GetInteger();
    }
 }
 
@@ -110,7 +110,7 @@ auto operator+(const HalfInt &lhs, const ValueType rhs) {
       return HalfInt{0.5*lhs.GetInteger() + rhs};
    }
    else {
-      return ValueType{0.5*lhs.GetInteger() + rhs};
+      return ValueType{0.5}*lhs.GetInteger() + rhs;
    }
 }
 
@@ -134,7 +134,7 @@ auto operator-(const ValueType lhs, const HalfInt &rhs) {
       return HalfInt{lhs - 0.5*rhs.GetInteger()};
    }
    else {
-      return ValueType{lhs - 0.5*rhs.GetInteger()};
+      return lhs - ValueType{0.5}*rhs.GetInteger();
    }
 }
 
@@ -149,7 +149,7 @@ auto operator-(const HalfInt &lhs, const ValueType rhs) {
       return HalfInt{0.5*lhs.GetInteger() - rhs};
    }
    else {
-      return ValueType{0.5*lhs.GetInteger() - rhs};
+      return ValueType{0.5}*lhs.GetInteger() - rhs;
    }
 }
 
@@ -173,7 +173,7 @@ auto operator*(const ValueType lhs, const HalfInt &rhs) {
       return HalfInt{lhs*0.5*rhs.GetInteger()};
    }
    else {
-      return ValueType{lhs*0.5*rhs.GetInteger()};
+      return lhs*ValueType{0.5}*rhs.GetInteger();
    }
 }
 
@@ -187,7 +187,7 @@ auto operator*(const HalfInt &lhs, const ValueType rhs) {
       return HalfInt{0.5*lhs.GetInteger()*rhs};
    }
    else {
-      return ValueType{0.5*lhs.GetInteger()*rhs};
+      return ValueType{0.5}*lhs.GetInteger()*rhs;
    }
 }
 
@@ -211,7 +211,7 @@ auto operator/(const ValueType lhs, const HalfInt &rhs) {
       return double{lhs/(0.5*rhs.GetInteger())};
    }
    else {
-      return ValueType{lhs/(0.5*rhs.GetInteger())};
+      return lhs/(ValueType{0.5}*rhs.GetInteger());
    }
 }
 
@@ -225,7 +225,7 @@ auto operator/(const HalfInt &lhs, const ValueType rhs) {
       return double{0.5*lhs.GetInteger()/rhs};
    }
    else {
-      return ValueType{0.5*lhs.GetInteger()/rhs};
+      return ValueType{0.5}*lhs.GetInteger()/rhs;
    }
 }
 
