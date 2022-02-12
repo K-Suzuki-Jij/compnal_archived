@@ -131,7 +131,7 @@ template<typename IntegerType>
 std::int64_t CalculateBinomialCoefficient(IntegerType n, const IntegerType k) {
    static_assert(std::is_integral<IntegerType>::value, "Template parameter IntegerType must be integer type");
    
-   if (n < 0 || k < 0) {
+   if (n < 0 || k < 0 || n < k) {
       std::stringstream ss;
       ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
       ss << "Invalid input parameters" << std::endl;
@@ -156,7 +156,18 @@ template<typename IntegerType>
 std::vector<std::vector<std::int64_t>> GenerateBinomialTable(const IntegerType n) {
    static_assert(std::is_integral<IntegerType>::value, "Template parameter IntegerType must be integer type");
    
-   std::vector<std::vector<std::int64_t>> vec(n + 1, std::vector<std::int64_t>(n + 1));
+   if (n < 0) {
+      std::stringstream ss;
+      ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+      ss << "Invalid input parameters" << std::endl;
+      throw std::runtime_error(ss.str());
+   }
+   
+   std::vector<std::vector<std::int64_t>> vec(n + 1);
+   for (IntegerType i = 0; i <= n; ++i) {
+      vec[i].resize(i + 1);
+   }
+   
    for (IntegerType i = 0; i <= n; ++i) {
       for (IntegerType j = 0; j <= i; j++) {
          if (j == 0 || j == i) {

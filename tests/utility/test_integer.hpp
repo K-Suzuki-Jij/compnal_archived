@@ -127,7 +127,56 @@ TEST(UtilityInteger, GenerateIntegerPartitionMaxSize) {
 
 }
 
-TEST(UtilityInteger, GenerateNthPermutation) {
+TEST(UtilityInteger, CalculateBinomialCoefficient) {
+   EXPECT_THROW(utility::CalculateBinomialCoefficient(9, -1) , std::runtime_error);
+   EXPECT_THROW(utility::CalculateBinomialCoefficient(-9, 3) , std::runtime_error);
+   EXPECT_THROW(utility::CalculateBinomialCoefficient(-9, -2), std::runtime_error);
+   EXPECT_THROW(utility::CalculateBinomialCoefficient(9, 11), std::runtime_error);
+
+   EXPECT_EQ(utility::CalculateBinomialCoefficient(9, 0), 1);
+   EXPECT_EQ(utility::CalculateBinomialCoefficient(9, 1), 9);
+   EXPECT_EQ(utility::CalculateBinomialCoefficient(9, 2), 36);
+   EXPECT_EQ(utility::CalculateBinomialCoefficient(9, 3), 84);
+   EXPECT_EQ(utility::CalculateBinomialCoefficient(9, 4), 126);
+   EXPECT_EQ(utility::CalculateBinomialCoefficient(9, 5), 126);
+   EXPECT_EQ(utility::CalculateBinomialCoefficient(9, 6), 84);
+   EXPECT_EQ(utility::CalculateBinomialCoefficient(9, 7), 36);
+   EXPECT_EQ(utility::CalculateBinomialCoefficient(9, 8), 9);
+   EXPECT_EQ(utility::CalculateBinomialCoefficient(9, 9), 1);
+}
+
+TEST(UtilityInteger, GenerateBinomialTable) {
+   std::vector<std::vector<std::int64_t>> ans(4);
+   ans[0].resize(1);
+   ans[0][0] = 1;
+   
+   ans[1].resize(2);
+   ans[1][0] = 1;
+   ans[1][1] = 1;
+   
+   ans[2].resize(3);
+   ans[2][0] = 1;
+   ans[2][1] = 2;
+   ans[2][2] = 1;
+   
+   ans[3].resize(4);
+   ans[3][0] = 1;
+   ans[3][1] = 3;
+   ans[3][2] = 3;
+   ans[3][3] = 1;
+
+   EXPECT_EQ(utility::GenerateBinomialTable(3), ans);
+   EXPECT_EQ(utility::GenerateBinomialTable(0), std::vector<std::vector<std::int64_t>>{{1}});
+   EXPECT_THROW(utility::GenerateBinomialTable(-1), std::runtime_error);
+}
+
+TEST(UtilityInteger, CalculateNumPermutation) {
+   EXPECT_EQ(utility::CalculateNumPermutation<int>({1, 2, 3}), 6);
+   EXPECT_EQ(utility::CalculateNumPermutation<int>({1, 2, 2, 3}), 12);
+   EXPECT_EQ(utility::CalculateNumPermutation<std::string>({"a", "b", "b", "c"}), 12);
+}
+
+TEST(UtilityInteger, GenerateNthPermutationInt) {
    std::vector<int> vec_int_p1   = {1, 2, 3};
    std::vector<int> vec_ans_p1_1 = {1, 2, 3};
    std::vector<int> vec_ans_p1_2 = {1, 3, 2};
@@ -136,12 +185,16 @@ TEST(UtilityInteger, GenerateNthPermutation) {
    std::vector<int> vec_ans_p1_5 = {3, 1, 2};
    std::vector<int> vec_ans_p1_6 = {3, 2, 1};
 
+   EXPECT_THROW(utility::GenerateNthPermutation(vec_int_p1, -1), std::runtime_error);
+   EXPECT_THROW(utility::GenerateNthPermutation(vec_int_p1, 0), std::runtime_error);
    EXPECT_EQ(utility::GenerateNthPermutation(vec_int_p1, 1), vec_ans_p1_1);
    EXPECT_EQ(utility::GenerateNthPermutation(vec_int_p1, 2), vec_ans_p1_2);
    EXPECT_EQ(utility::GenerateNthPermutation(vec_int_p1, 3), vec_ans_p1_3);
    EXPECT_EQ(utility::GenerateNthPermutation(vec_int_p1, 4), vec_ans_p1_4);
    EXPECT_EQ(utility::GenerateNthPermutation(vec_int_p1, 5), vec_ans_p1_5);
    EXPECT_EQ(utility::GenerateNthPermutation(vec_int_p1, 6), vec_ans_p1_6);
+   EXPECT_THROW(utility::GenerateNthPermutation(vec_int_p1, 7), std::runtime_error);
+
    
    std::vector<int> vec_int_p2    = {1, 2, 2, 3};
    std::vector<int> vec_ans_p2_1  = {1, 2, 2, 3};
@@ -157,6 +210,8 @@ TEST(UtilityInteger, GenerateNthPermutation) {
    std::vector<int> vec_ans_p2_11 = {3, 2, 1, 2};
    std::vector<int> vec_ans_p2_12 = {3, 2, 2, 1};
    
+   EXPECT_THROW(utility::GenerateNthPermutation(vec_int_p2, -1), std::runtime_error);
+   EXPECT_THROW(utility::GenerateNthPermutation(vec_int_p2, 0), std::runtime_error);
    EXPECT_EQ(utility::GenerateNthPermutation(vec_int_p2, 1 ), vec_ans_p2_1 );
    EXPECT_EQ(utility::GenerateNthPermutation(vec_int_p2, 2 ), vec_ans_p2_2 );
    EXPECT_EQ(utility::GenerateNthPermutation(vec_int_p2, 3 ), vec_ans_p2_3 );
@@ -169,6 +224,60 @@ TEST(UtilityInteger, GenerateNthPermutation) {
    EXPECT_EQ(utility::GenerateNthPermutation(vec_int_p2, 10), vec_ans_p2_10);
    EXPECT_EQ(utility::GenerateNthPermutation(vec_int_p2, 11), vec_ans_p2_11);
    EXPECT_EQ(utility::GenerateNthPermutation(vec_int_p2, 12), vec_ans_p2_12);
+   EXPECT_THROW(utility::GenerateNthPermutation(vec_int_p2, 13), std::runtime_error);
+
+}
+
+TEST(UtilityInteger, GenerateNthPermutationString) {
+   
+   std::vector<std::string> vec_str_p1   = {"a", "b", "c"};
+   std::vector<std::string> vec_ans_p1_1 = {"a", "b", "c"};
+   std::vector<std::string> vec_ans_p1_2 = {"a", "c", "b"};
+   std::vector<std::string> vec_ans_p1_3 = {"b", "a", "c"};
+   std::vector<std::string> vec_ans_p1_4 = {"b", "c", "a"};
+   std::vector<std::string> vec_ans_p1_5 = {"c", "a", "b"};
+   std::vector<std::string> vec_ans_p1_6 = {"c", "b", "a"};
+
+   EXPECT_THROW(utility::GenerateNthPermutation(vec_str_p1, -1), std::runtime_error);
+   EXPECT_THROW(utility::GenerateNthPermutation(vec_str_p1, 0), std::runtime_error);
+   EXPECT_EQ(utility::GenerateNthPermutation(vec_str_p1, 1), vec_ans_p1_1);
+   EXPECT_EQ(utility::GenerateNthPermutation(vec_str_p1, 2), vec_ans_p1_2);
+   EXPECT_EQ(utility::GenerateNthPermutation(vec_str_p1, 3), vec_ans_p1_3);
+   EXPECT_EQ(utility::GenerateNthPermutation(vec_str_p1, 4), vec_ans_p1_4);
+   EXPECT_EQ(utility::GenerateNthPermutation(vec_str_p1, 5), vec_ans_p1_5);
+   EXPECT_EQ(utility::GenerateNthPermutation(vec_str_p1, 6), vec_ans_p1_6);
+   EXPECT_THROW(utility::GenerateNthPermutation(vec_str_p1, 7), std::runtime_error);
+
+   
+   std::vector<std::string> vec_str_p2    = {"a", "b", "b", "c"};
+   std::vector<std::string> vec_ans_p2_1  = {"a", "b", "b", "c"};
+   std::vector<std::string> vec_ans_p2_2  = {"a", "b", "c", "b"};
+   std::vector<std::string> vec_ans_p2_3  = {"a", "c", "b", "b"};
+   std::vector<std::string> vec_ans_p2_4  = {"b", "a", "b", "c"};
+   std::vector<std::string> vec_ans_p2_5  = {"b", "a", "c", "b"};
+   std::vector<std::string> vec_ans_p2_6  = {"b", "b", "a", "c"};
+   std::vector<std::string> vec_ans_p2_7  = {"b", "b", "c", "a"};
+   std::vector<std::string> vec_ans_p2_8  = {"b", "c", "a", "b"};
+   std::vector<std::string> vec_ans_p2_9  = {"b", "c", "b", "a"};
+   std::vector<std::string> vec_ans_p2_10 = {"c", "a", "b", "b"};
+   std::vector<std::string> vec_ans_p2_11 = {"c", "b", "a", "b"};
+   std::vector<std::string> vec_ans_p2_12 = {"c", "b", "b", "a"};
+   
+   EXPECT_THROW(utility::GenerateNthPermutation(vec_str_p2, -1), std::runtime_error);
+   EXPECT_THROW(utility::GenerateNthPermutation(vec_str_p2, 0), std::runtime_error);
+   EXPECT_EQ(utility::GenerateNthPermutation(vec_str_p2, 1 ), vec_ans_p2_1 );
+   EXPECT_EQ(utility::GenerateNthPermutation(vec_str_p2, 2 ), vec_ans_p2_2 );
+   EXPECT_EQ(utility::GenerateNthPermutation(vec_str_p2, 3 ), vec_ans_p2_3 );
+   EXPECT_EQ(utility::GenerateNthPermutation(vec_str_p2, 4 ), vec_ans_p2_4 );
+   EXPECT_EQ(utility::GenerateNthPermutation(vec_str_p2, 5 ), vec_ans_p2_5 );
+   EXPECT_EQ(utility::GenerateNthPermutation(vec_str_p2, 6 ), vec_ans_p2_6 );
+   EXPECT_EQ(utility::GenerateNthPermutation(vec_str_p2, 7 ), vec_ans_p2_7 );
+   EXPECT_EQ(utility::GenerateNthPermutation(vec_str_p2, 8 ), vec_ans_p2_8 );
+   EXPECT_EQ(utility::GenerateNthPermutation(vec_str_p2, 9 ), vec_ans_p2_9 );
+   EXPECT_EQ(utility::GenerateNthPermutation(vec_str_p2, 10), vec_ans_p2_10);
+   EXPECT_EQ(utility::GenerateNthPermutation(vec_str_p2, 11), vec_ans_p2_11);
+   EXPECT_EQ(utility::GenerateNthPermutation(vec_str_p2, 12), vec_ans_p2_12);
+   EXPECT_THROW(utility::GenerateNthPermutation(vec_str_p2, 13), std::runtime_error);
 
 }
 
