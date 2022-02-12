@@ -51,8 +51,14 @@ public:
    //! @brief Alias of integer type.
    using IntegerType = std::int64_t;
    
-   //! @brief Alias of variant type.
-   using IndexType = std::variant<IntegerType, std::string, std::vector<std::variant<IntegerType, std::string>>>;
+   //! @brief Alias of string type.
+   using StringType = std::string;
+   
+   //! @brief Alias of variant type as mixture of IntegerType and StringType.
+   using VariantType = std::variant<IntegerType, StringType>;
+   
+   //! @brief Alias of index type.
+   using IndexType = std::variant<IntegerType, StringType, std::vector<VariantType>>;
    
    //! @brief Type for onsite operator lists.
    using OnsiteListType = std::unordered_map<IndexType, CRS, Hash>;
