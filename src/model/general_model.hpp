@@ -32,27 +32,39 @@ namespace model {
 template<class BaseClass>
 class GeneralModel: public BaseClass {
    
+   //------------------------------------------------------------------
+   //------------------------Private Type Alias------------------------
+   //------------------------------------------------------------------
    //! @brief Alias of ValueType.
    using RealType = typename BaseClass::ValueType;
    
    //! @brief Alias of compressed row strage (CRS) with RealType.
    using CRS = sparse_matrix::CRS<RealType>;
-   
-   //! @brief Alias of variant type.
-   using IndexType = std::variant<std::int64_t, std::string, std::vector<std::variant<std::int64_t, std::string>>>;
-      
+         
    //! @brief Alias of hash struct for IndexType.
    using Hash = utility::VariantHash<std::int64_t>;
+   
+public:
+   //------------------------------------------------------------------
+   //------------------------Public Type Alias-------------------------
+   //------------------------------------------------------------------
+   //! @brief Alias of variant type.
+   using IndexType = std::variant<std::int64_t, std::string, std::vector<std::variant<std::int64_t, std::string>>>;
    
    //! @brief Type for onsite operator lists.
    using OnsiteListType = std::unordered_map<IndexType, CRS, Hash>;
    
    //! @brief Type for lists of onsite operator pairs.
    using IntersiteListType = std::unordered_map<IndexType, std::unordered_map<IndexType, std::vector<std::pair<CRS, CRS>>, Hash>, Hash>;
-      
-public:
-   using BaseClass::BaseClass;
    
+   //------------------------------------------------------------------
+   //---------------------------Constructors---------------------------
+   //------------------------------------------------------------------
+   using BaseClass::BaseClass;
+      
+   //------------------------------------------------------------------
+   //----------------------Public Member Functions---------------------
+   //------------------------------------------------------------------
    //! @brief Add an onsite potential term \f$ c\hat{O}_{i} \f$ to the system.
    //! @param site The site index \f$ i \f$.
    //! @param m The onsite operator \f$ \hat{O}_{i} \f$.
@@ -118,6 +130,9 @@ public:
       index_list_.emplace(site_2);
    }
    
+   //------------------------------------------------------------------
+   //----------------------Access Member variables---------------------
+   //------------------------------------------------------------------
    //! @brief Get the system size.
    //! @return The system size.
    std::int64_t GetSystemSize() const {
@@ -152,6 +167,9 @@ public:
    }
    
 private:
+   //------------------------------------------------------------------
+   //---------------------Private Member Variables---------------------
+   //------------------------------------------------------------------
    //! @brief Onsite potential term list added to the system.
    OnsiteListType potential_list_;
    
