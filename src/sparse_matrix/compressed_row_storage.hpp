@@ -57,16 +57,12 @@ struct CRS {
    std::vector<std::int64_t> row;
    std::vector<std::int64_t> col;
    std::vector<RealType> val;
-   std::string name = "";
    CRSTag tag = CRSTag::NONE;
 
    //------------------------------------------------------------------
    //---------------------------Constructors---------------------------
    //------------------------------------------------------------------
-   CRS(const std::int64_t row_dim_in = 0,
-       const std::int64_t col_dim_in = 0,
-       const CRSTag tag_in = CRSTag::NONE,
-       const std::string name_in = "") {
+   CRS(const std::int64_t row_dim_in = 0, const std::int64_t col_dim_in = 0, const CRSTag tag_in = CRSTag::NONE) {
       
       this->row_dim = row_dim_in;
       this->col_dim = col_dim_in;
@@ -76,12 +72,9 @@ struct CRS {
          this->row[i] = 0;
       }
       this->tag = tag_in;
-      this->name = name_in;
    }
    
-   explicit CRS(const std::vector<std::vector<RealType>> &mat_vec,
-                const CRSTag tag_in = CRSTag::NONE,
-                const std::string name_in = "") {
+   explicit CRS(const std::vector<std::vector<RealType>> &mat_vec, const CRSTag tag_in = CRSTag::NONE) {
       this->row_dim = mat_vec.size();
       this->col_dim = 0;
       this->row.resize(this->row_dim + 1);
@@ -100,7 +93,6 @@ struct CRS {
          this->row[i + 1] = this->col.size();
       }
       this->tag = tag_in;
-      this->name = name_in;
    }
    
    CRS(const CRS &matrix) {
@@ -134,7 +126,6 @@ struct CRS {
          this->val[i] = matrix.val[i];
       }
       this->tag = matrix.tag;
-      this->name = matrix.name;
    }
    
    void MultiplyByScalar(const RealType coeef) {
@@ -188,7 +179,6 @@ struct CRS {
       std::vector<RealType>().swap(this->val);
       this->row.push_back(0);
       this->tag = CRSTag::NONE;
-      this->name = "";
    }
    
    void Clear() {
@@ -199,7 +189,6 @@ struct CRS {
       this->val.clear();
       this->row.push_back(0);
       this->tag = CRSTag::NONE;
-      this->name = "";
    }
       
    void SortCol() {
@@ -238,7 +227,6 @@ struct CRS {
       for (std::size_t i = 0; i < this->val.size(); ++i) {
          std::cout << "val[" << i << "] = " << this->val.at(i) << std::endl;
       }
-      std::cout << "name=" << this->name << std::endl;
    }
    
    bool isSymmetric(const RealType threshold = 0.000000000000001/*pow(10,-15)*/) const {
