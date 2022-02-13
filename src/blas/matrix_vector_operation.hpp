@@ -15,14 +15,14 @@
 //  Created by Kohei Suzuki on 2021/11/05.
 //
 
-#ifndef COMPNAL_SPARSE_MATRIX_MATRIX_VECTOR_OPERATION_HPP_
-#define COMPNAL_SPARSE_MATRIX_MATRIX_VECTOR_OPERATION_HPP_
+#ifndef COMPNAL_BLAS_MATRIX_VECTOR_OPERATION_HPP_
+#define COMPNAL_BLAS_MATRIX_VECTOR_OPERATION_HPP_
 
-#include "compressed_row_storage.hpp"
+#include "../type/compressed_row_storage.hpp"
 #include "braket_vector.hpp"
 
 namespace compnal {
-namespace sparse_matrix {
+namespace blas {
 
 template<typename RealType>
 void CalculateMatrixVectorProduct(type::BraketVector<RealType> *vector_out,
@@ -185,9 +185,7 @@ type::BraketVector<RealType> CalculateSymmetricMatrixVectorProduct(const RealTyp
 }
 
 
-}
-}
+} // namespace blas
+} // namespace compnel
 
-
-
-#endif /* COMPNAL_SPARSE_MATRIX_MATRIX_VECTOR_OPERATION_HPP_ */
+#endif /* COMPNAL_BLAS_MATRIX_VECTOR_OPERATION_HPP_ */

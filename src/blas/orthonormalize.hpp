@@ -15,14 +15,14 @@
 //  Created by Kohei Suzuki on 2021/12/09.
 //
 
-#ifndef COMPNAL_SPARSE_MATRIX_ORTHONORMALIZE_HPP_
-#define COMPNAL_SPARSE_MATRIX_ORTHONORMALIZE_HPP_
+#ifndef COMPNAL_BLAS_ORTHONORMALIZE_HPP_
+#define COMPNAL_BLAS_ORTHONORMALIZE_HPP_
 
-#include "braket_vector.hpp"
+#include "../type/braket_vector.hpp"
 #include <sstream>
 
 namespace compnal {
-namespace sparse_matrix {
+namespace blas {
 
 template<typename RealType>
 void Orthonormalize(std::vector<type::BraketVector<RealType>> *vectors) {
@@ -54,4 +54,4 @@ void Orthonormalize(type::BraketVector<RealType> *target_vector, const std::vect
 }  // namespace compnal
 
 
-#endif /* COMPNAL_SPARSE_MATRIX_ORTHONORMALIZE_HPP_ */
+#endif /* COMPNAL_BLAS_ORTHONORMALIZE_HPP_ */

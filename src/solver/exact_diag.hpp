@@ -45,7 +45,7 @@ class ExactDiag {
    using CRS = type::CRS<RealType>;
    
    //! @brief Alias of braket vector class with RealType.
-   using BraketVector = sparse_matrix::BraketVector<RealType>;
+   using BraketVector = blas::BraketVector<RealType>;
       
 public:
    //------------------------------------------------------------------
@@ -55,7 +55,7 @@ public:
    const ModelClass model;
    
    //! @brief Parameters for diagonalization methods.
-   sparse_matrix::ParametersAll params;
+   blas::ParametersAll params;
    
    //! @brief Diagonalization method.
    DiagMethod diag_method_ = DiagMethod::LANCZOS;
@@ -74,7 +74,7 @@ public:
    //! @param model_input The model class to be diagonalized.
    //! @param params_input Parameters for diagonalization methods.
    ExactDiag(const ModelClass &model_input,
-             const sparse_matrix::ParametersAll &params_input): ExactDiag(model_input) {
+             const blas::ParametersAll &params_input): ExactDiag(model_input) {
       params = params_input;
    }
     
@@ -102,10 +102,10 @@ public:
       }
       
       if (diag_method_ == DiagMethod::LANCZOS) {
-         sparse_matrix::EigenvalueDecompositionLanczos(&eigenvalues_[0], &eigenvectors_[0], ham, params.lanczos);
+         blas::EigenvalueDecompositionLanczos(&eigenvalues_[0], &eigenvectors_[0], ham, params.lanczos);
       }
       else if (diag_method_ == DiagMethod::LOBPCG) {
-         sparse_matrix::EigenvalueDecompositionLOBPCG(&eigenvalues_[0], &eigenvectors_[0], ham, params.lanczos);
+         blas::EigenvalueDecompositionLOBPCG(&eigenvalues_[0], &eigenvectors_[0], ham, params.lanczos);
       }
       else {
          std::stringstream ss;
@@ -114,7 +114,7 @@ public:
          throw std::runtime_error(ss.str());
       }
       
-      sparse_matrix::InverseIteration(&ham, &eigenvectors_[0], eigenvalues_[0], params.ii);
+      blas::InverseIteration(&ham, &eigenvectors_[0], eigenvalues_[0], params.ii);
       
       calculated_eigenvector_set_.emplace(0);
    }
@@ -145,8 +145,8 @@ public:
                }
                BraketVector temp_vector(ham.row_dim);
                RealType temp_value = 0.0;
-               sparse_matrix::EigenvalueDecompositionLanczos(&temp_value, &temp_vector, ham, sector, eigenvectors_, params.lanczos);
-               sparse_matrix::InverseIteration(&ham, &temp_vector, temp_value, params.ii, eigenvectors_);
+               blas::EigenvalueDecompositionLanczos(&temp_value, &temp_vector, ham, sector, eigenvectors_, params.lanczos);
+               blas::InverseIteration(&ham, &temp_vector, temp_value, params.ii, eigenvectors_);
                eigenvalues_.push_back(temp_value);
                eigenvectors_.push_back(temp_vector);
                model.SetCalculatedEigenvectorSet(sector);
@@ -227,7 +227,7 @@ public:
          throw std::runtime_error(ss.str());
       }
       
-      const CRS m1_dagger = sparse_matrix::CalculateTransposedMatrix(m_1);
+      const CRS m1_dagger = blas::CalculateTransposedMatrix(m_1);
       
       const auto target_sectors  = model.GenerateTargetSector(m1_dagger, m_2);
       const auto &basis_inv = model.GetTargetBasisInv();
@@ -291,7 +291,7 @@ public:
             }
             vector_work_m2.val[i] = temp_val_m2*fermion_sign_m2;
          }
-         val += sparse_matrix::CalculateInnerProduct(vector_work_m1, vector_work_m2);
+         val += blas::CalculateInnerProduct(vector_work_m1, vector_work_m2);
       }
       return val;
    }
@@ -327,7 +327,7 @@ public:
          return CalculateCorrelationFunction(m_1, site_1, m_2*m_3, site_3, target_level);
       }
       
-      const CRS  m1_dagger      = sparse_matrix::CalculateTransposedMatrix(m_1);
+      const CRS  m1_dagger      = blas::CalculateTransposedMatrix(m_1);
       const auto target_sectors = model.GenerateTargetSector(m1_dagger, m_2, m_3);
       
       const auto &basis_gs_sector_inv = model.GetTargetBasisInv();
@@ -429,7 +429,7 @@ public:
             }
             vector_work_c.val[i] = temp_val_m1*fermion_sign_m1;
          }
-         val += sparse_matrix::CalculateInnerProduct(vector_work_b, vector_work_c);
+         val += blas::CalculateInnerProduct(vector_work_b, vector_work_c);
       }
       return val;
    }
@@ -470,8 +470,8 @@ public:
          return CalculateCorrelationFunction(m_1, site_1, m_2, site_2, m_3*m_4, site_3);
       }
       
-      const CRS  m1_dagger = sparse_matrix::CalculateTransposedMatrix(m_1);
-      const CRS  m2_dagger = sparse_matrix::CalculateTransposedMatrix(m_2);
+      const CRS  m1_dagger = blas::CalculateTransposedMatrix(m_1);
+      const CRS  m2_dagger = blas::CalculateTransposedMatrix(m_2);
       const auto target_sectors = model.GenerateTargetSector(m1_dagger, m2_dagger, m_3, m_4);
       
       const auto &basis_gs_sector_inv = model.GetTargetBasisInv();
@@ -610,7 +610,7 @@ public:
             }
             vector_work_m2m1.val[i] = temp_val*fermion_sign_m2;
          }
-         val += sparse_matrix::CalculateInnerProduct(vector_work_m2m1, vector_work_m3m4);
+         val += blas::CalculateInnerProduct(vector_work_m2m1, vector_work_m3m4);
       }
       return val;
    }
@@ -987,7 +987,7 @@ private:
       ham->SortCol();
       
       const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
-      const double time_sec   = static_cast<double>(time_count)/sparse_matrix::TIME_UNIT_CONSTANT;
+      const double time_sec   = static_cast<double>(time_count)/blas::TIME_UNIT_CONSTANT;
       std::cout << "\rElapsed time of generating Hamiltonian:" << time_sec << "[sec]" << std::endl;
       
    }

@@ -15,21 +15,21 @@
 //  Created by Kohei Suzuki on 2021/11/12.
 //
 
-#ifndef COMPNAL_SPARSE_MATRIX_CONJUGATE_GRADIENT_HPP_
-#define COMPNAL_SPARSE_MATRIX_CONJUGATE_GRADIENT_HPP_
+#ifndef COMPNAL_BLAS_CONJUGATE_GRADIENT_HPP_
+#define COMPNAL_BLAS_CONJUGATE_GRADIENT_HPP_
+
+#include "../type/compressed_row_storage.hpp"
+#include "../type/braket_vector.hpp"
 
 #include <vector>
 #include <random>
-
-#include "compressed_row_storage.hpp"
-#include "braket_vector.hpp"
 
 #ifdef _OPENMP
 #include <omp.h>
 #endif
 
 namespace compnal {
-namespace sparse_matrix {
+namespace blas {
 
 template<typename RealType>
 std::pair<int, double> ConjugateGradient(type::BraketVector<RealType> *vec_out,
@@ -156,7 +156,7 @@ std::pair<int, double> ConjugateGradient(type::BraketVector<RealType> *vec_out,
    
 }
 
-}
-}
+} // namespace blas
+} // namespace compnel
 
-#endif /* COMPNAL_SPARSE_MATRIX_CONJUGATE_GRADIENT_HPP_ */
+#endif /* COMPNAL_BLAS_CONJUGATE_GRADIENT_HPP_ */

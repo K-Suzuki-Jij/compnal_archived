@@ -15,14 +15,14 @@
 //  Created by Kohei Suzuki on 2021/11/12.
 //
 
-#ifndef COMPNAL_SPARSE_MATRIX_INVERSE_ITERATION_HPP_
-#define COMPNAL_SPARSE_MATRIX_INVERSE_ITERATION_HPP_
+#ifndef COMPNAL_BLAS_INVERSE_ITERATION_HPP_
+#define COMPNAL_BLAS_INVERSE_ITERATION_HPP_
 
-#include "compressed_row_storage.hpp"
-#include "braket_vector.hpp"
+#include "../type/compressed_row_storage.hpp"
+#include "../type/braket_vector.hpp"
 
 namespace compnal {
-namespace sparse_matrix {
+namespace blas {
 
 template<typename RealType>
 std::pair<int, double> InverseIteration(type::CRS<RealType>          *matrix_in,
@@ -93,8 +93,7 @@ std::pair<int, double> InverseIteration(type::CRS<RealType>          *matrix_in,
    
 }
 
-}
-}
+} // namespace blas
+} // namespace compnel
 
-
-#endif /* COMPNAL_SPARSE_MATRIX_INVERSE_ITERATION_HPP_ */
+#endif /* COMPNAL_BLAS_INVERSE_ITERATION_HPP_ */

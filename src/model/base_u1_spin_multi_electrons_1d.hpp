@@ -746,7 +746,7 @@ public:
          throw std::runtime_error(ss.str());
       }
       const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
-      const double time_sec   = static_cast<double>(time_count)/sparse_matrix::TIME_UNIT_CONSTANT;
+      const double time_sec   = static_cast<double>(time_count)/blas::TIME_UNIT_CONSTANT;
       std::cout << "\rElapsed time of generating basis:" << time_sec << "[sec]" << std::endl;
       
    }
@@ -1005,7 +1005,7 @@ public:
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @return The matrix of \f$ \hat{c}^{\dagger}_{\alpha, \uparrow}\f$.
    static CRS CreateOnsiteOperatorCUpDagger(const double magnitude_lspin, const int orbital, const int num_orbital) {
-      return sparse_matrix::CalculateTransposedMatrix(CreateOnsiteOperatorCUp(magnitude_lspin, orbital, num_orbital));
+      return blas::CalculateTransposedMatrix(CreateOnsiteOperatorCUp(magnitude_lspin, orbital, num_orbital));
    }
    
    //! @brief Generate the creation operator for the electrons
@@ -1015,7 +1015,7 @@ public:
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{c}^{\dagger}_{\alpha, \downarrow}\f$.
    static CRS CreateOnsiteOperatorCDownDagger(const double magnitude_lspin, const int orbital, const int num_orbital) {
-      return sparse_matrix::CalculateTransposedMatrix(CreateOnsiteOperatorCDown(magnitude_lspin, orbital, num_orbital));
+      return blas::CalculateTransposedMatrix(CreateOnsiteOperatorCDown(magnitude_lspin, orbital, num_orbital));
    }
    
    //! @brief Generate the number operator for the electrons
@@ -1123,7 +1123,7 @@ public:
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$
    //! @return The matrix of \f$ \hat{S}^{-}\f$.
    static CRS CreateOnsiteOperatorSmL(const double magnitude_lspin, const int num_orbital) {
-      return sparse_matrix::CalculateTransposedMatrix(CreateOnsiteOperatorSpL(magnitude_lspin, num_orbital));
+      return blas::CalculateTransposedMatrix(CreateOnsiteOperatorSpL(magnitude_lspin, num_orbital));
    }
    
    //! @brief Generate the spin-\f$ S\f$ operator of the local spin for the x-direction \f$ \hat{S}^{x}\f$.

@@ -15,16 +15,16 @@
 //  Created by Kohei Suzuki on 2021/05/23.
 //
 
-#ifndef COMPNAL_SPARSE_MATRIX_EIGENDECOMPOSITION_HPP_
-#define COMPNAL_SPARSE_MATRIX_EIGENDECOMPOSITION_HPP_
+#ifndef COMPNAL_BLAS_EIGENDECOMPOSITION_HPP_
+#define COMPNAL_BLAS_EIGENDECOMPOSITION_HPP_
+
+#include "../type/compressed_row_storage.hpp"
+#include "../type/braket_vector.hpp"
+#include "lapack.hpp"
+#include "orthonormalize.hpp"
 
 #include <vector>
 #include <random>
-
-#include "lapack.hpp"
-#include "compressed_row_storage.hpp"
-#include "braket_vector.hpp"
-#include "orthonormalize.hpp"
 
 #ifdef _OPENMP
 #include <omp.h>
@@ -32,7 +32,7 @@
 
 
 namespace compnal {
-namespace sparse_matrix {
+namespace blas {
 
 const int TIME_UNIT_CONSTANT = 1000*1000;
 
@@ -707,8 +707,8 @@ std::pair<int, double> EigenvalueDecompositionLOBPCG(RealType                *gs
    
 }
 
-} // namespace sparse_matrix
-} // namespace compnal
+} // namespace blas
+} // namespace compnel
 
 
-#endif /* eigendecomposition_hpp */
+#endif /* COMPNAL_BLAS_EIGENDECOMPOSITION_HPP_ */

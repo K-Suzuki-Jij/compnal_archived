@@ -18,7 +18,7 @@
 #ifndef COMPNAL_MODEL_GENERAL_MODEL_HPP_
 #define COMPNAL_MODEL_GENERAL_MODEL_HPP_
 
-#include "../sparse_matrix/all.hpp"
+#include "../blas/all.hpp"
 #include "../utility/all.hpp"
 
 #include <variant>

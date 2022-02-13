@@ -348,7 +348,7 @@ public:
          throw std::runtime_error(ss.str());
       }
       const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
-      const double time_sec   = static_cast<double>(time_count)/sparse_matrix::TIME_UNIT_CONSTANT;
+      const double time_sec   = static_cast<double>(time_count)/blas::TIME_UNIT_CONSTANT;
       std::cout << "\rElapsed time of generating basis:" << time_sec << "[sec]" << std::endl;
    }
    
@@ -624,42 +624,42 @@ public:
    //! \f$ \hat{c}^{\dagger}_{\uparrow}\f$.
    //! @return The matrix of \f$ \hat{c}^{\dagger}_{\uparrow}\f$.
    static CRS CreateOnsiteOperatorCUpDagger() {
-      return sparse_matrix::CalculateTransposedMatrix(CreateOnsiteOperatorCUp());
+      return blas::CalculateTransposedMatrix(CreateOnsiteOperatorCUp());
    }
    
    //! @brief Generate the creation operator for the electrons with the down spin
    //! \f$ \hat{c}^{\dagger}_{\downarrow}\f$.
    //! @return The matrix of \f$ \hat{c}^{\dagger}_{\downarrow}\f$.
    static CRS CreateOnsiteOperatorCDownDagger() {
-      return sparse_matrix::CalculateTransposedMatrix(CreateOnsiteOperatorCDown());
+      return blas::CalculateTransposedMatrix(CreateOnsiteOperatorCDown());
    }
    
    //! @brief Generate the number operator for the electrons with the up spin
    //! \f$ \hat{n}_{\uparrow}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow}\f$.
    //! @return The matrix of \f$ \hat{n}_{\uparrow}\f$.
    static CRS CreateOnsiteOperatorNCUp() {
-      return sparse_matrix::CalculateMatrixMatrixProduct(1.0, CreateOnsiteOperatorCUpDagger(), 1.0, CreateOnsiteOperatorCUp());
+      return blas::CalculateMatrixMatrixProduct(1.0, CreateOnsiteOperatorCUpDagger(), 1.0, CreateOnsiteOperatorCUp());
    }
    
    //! @brief Generate the number operator for the electrons with the down spin
    //! \f$ \hat{n}_{\downarrow}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow}\f$.
    //! @return The matrix of \f$ \hat{n}_{\downarrow}\f$.
    static CRS CreateOnsiteOperatorNCDown() {
-      return sparse_matrix::CalculateMatrixMatrixProduct(1.0, CreateOnsiteOperatorCDownDagger(), 1.0, CreateOnsiteOperatorCDown());
+      return blas::CalculateMatrixMatrixProduct(1.0, CreateOnsiteOperatorCDownDagger(), 1.0, CreateOnsiteOperatorCDown());
    }
    
    //! @brief Generate the number operator for the electrons
    //! \f$ \hat{n}=\hat{n}_{\uparrow} + \hat{n}_{\downarrow}\f$.
    //! @return The matrix of \f$ \hat{n}\f$.
    static CRS CreateOnsiteOperatorNC() {
-      return sparse_matrix::CalculateMatrixMatrixSum(1.0, CreateOnsiteOperatorNCUp(), 1.0, CreateOnsiteOperatorNCDown());
+      return blas::CalculateMatrixMatrixSum(1.0, CreateOnsiteOperatorNCUp(), 1.0, CreateOnsiteOperatorNCDown());
    }
    
    //! @brief Generate the spin operator for the x-direction for the electrons
    //! \f$ \hat{s}^{x}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow} + \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow})\f$.
    //! @return The matrix of \f$ \hat{s}^{x}\f$.
    static CRS CreateOnsiteOperatorSx() {
-      return sparse_matrix::CalculateMatrixMatrixSum(0.5, CreateOnsiteOperatorSp(), 0.5, CreateOnsiteOperatorSm());
+      return blas::CalculateMatrixMatrixSum(0.5, CreateOnsiteOperatorSp(), 0.5, CreateOnsiteOperatorSm());
    }
    
    //! @brief Generate the spin operator for the y-direction for the electrons
@@ -667,28 +667,28 @@ public:
    //! Here \f$ i=\sqrt{-1}\f$ is the the imaginary unit.
    //! @return The matrix of \f$ i\hat{s}^{y}\f$.
    static CRS CreateOnsiteOperatoriSy() {
-      return sparse_matrix::CalculateMatrixMatrixSum(0.5, CreateOnsiteOperatorSp(), -0.5, CreateOnsiteOperatorSm());
+      return blas::CalculateMatrixMatrixSum(0.5, CreateOnsiteOperatorSp(), -0.5, CreateOnsiteOperatorSm());
    }
    
    //! @brief Generate the spin operator for the z-direction for the electrons
    //! \f$ \hat{s}^{z}=\frac{1}{2}(\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\uparrow} - \hat{c}^{\dagger}_{\downarrow}\hat{c}_{\downarrow})\f$.
    //! @return The matrix of \f$ \hat{s}^{z}\f$.
    static CRS CreateOnsiteOperatorSz() {
-      return sparse_matrix::CalculateMatrixMatrixSum(0.5, CreateOnsiteOperatorNCUp(), -0.5,CreateOnsiteOperatorNCDown());
+      return blas::CalculateMatrixMatrixSum(0.5, CreateOnsiteOperatorNCUp(), -0.5,CreateOnsiteOperatorNCDown());
    }
    
    //! @brief Generate the raising operator for spin of the electrons
    //! \f$ \hat{s}^{+}=\hat{c}^{\dagger}_{\uparrow}\hat{c}_{\downarrow}\f$.
    //! @return The matrix of \f$ \hat{s}^{+}\f$.
    static CRS CreateOnsiteOperatorSp() {
-      return sparse_matrix::CalculateMatrixMatrixProduct(1.0, CreateOnsiteOperatorCUpDagger(), 1.0, CreateOnsiteOperatorCDown());
+      return blas::CalculateMatrixMatrixProduct(1.0, CreateOnsiteOperatorCUpDagger(), 1.0, CreateOnsiteOperatorCDown());
    }
    
    //! @brief Generate the lowering operator for spin of the electrons
    //! \f$ \hat{s}^{-}=\hat{c}^{\dagger}_{\downarrow}\hat{c}_{\uparrow}\f$.
    //! @return The matrix of \f$ \hat{s}^{-}\f$.
    static CRS CreateOnsiteOperatorSm() {
-      return sparse_matrix::CalculateMatrixMatrixProduct(1.0, CreateOnsiteOperatorCDownDagger(), 1.0, CreateOnsiteOperatorCUp());
+      return blas::CalculateMatrixMatrixProduct(1.0, CreateOnsiteOperatorCDownDagger(), 1.0, CreateOnsiteOperatorCUp());
    }
    
    //! @brief Calculate difference of the number of total electrons and the total sz

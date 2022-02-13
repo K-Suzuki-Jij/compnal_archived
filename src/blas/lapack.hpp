@@ -15,14 +15,14 @@
 //  Created by Kohei Suzuki on 2021/05/22.
 //
 
-#ifndef COMPNAL_SPARSE_MATRIX_LAPACK_HPP_
-#define COMPNAL_SPARSE_MATRIX_LAPACK_HPP_
+#ifndef COMPNAL_BLAS_LAPACK_HPP_
+#define COMPNAL_BLAS_LAPACK_HPP_
 
-#include "compressed_row_storage.hpp"
+#include "../type/compressed_row_storage.hpp"
 #include <sstream>
 
 namespace compnal {
-namespace sparse_matrix {
+namespace blas {
 
 extern "C" {
 void dsyev_(const char &JOBZ, const char &UPLO, const int &N, double **A, const int &LDA, double *W, double *work, const int &Lwork, int &INFO);
@@ -173,8 +173,7 @@ void LapackDspgv(std::vector<RealType> *eigenvalues,
    
 }
 
-}  // namespace sparse_matrix
-}  // namespace compnal
+} // namespace blas
+} // namespace compnel
 
-
-#endif /* COMPNAL_SPARSE_MATRIX_LAPACK_HPP_ */
+#endif /* COMPNAL_BLAS_LAPACK_HPP_ */

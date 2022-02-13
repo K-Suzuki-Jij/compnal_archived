@@ -35,7 +35,7 @@ TEST(ExactDiagGeneralModel, U1Electron1) {
 
 TEST(ExactDiagGeneralModel, U1Electron2) {
    model::GeneralModel_1D<model::BaseU1Electron_1D<double>> model;
-   sparse_matrix::ParametersAll params;
+   blas::ParametersAll params;
    solver::ExactDiag solver(model, params);
    solver.model.SetSystemSize(4);
    solver.CalculateGroundState();

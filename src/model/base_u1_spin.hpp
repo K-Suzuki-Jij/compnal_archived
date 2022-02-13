@@ -18,7 +18,7 @@
 #ifndef COMPNAL_MODEL_BASE_U1SPIN_HPP_
 #define COMPNAL_MODEL_BASE_U1SPIN_HPP_
 
-#include "../sparse_matrix/all.hpp"
+#include "../blas/all.hpp"
 #include "../utility/all.hpp"
 #include "../type/all.hpp"
 
@@ -238,7 +238,7 @@ public:
       
       if (flag_display_info) {
          const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
-         const double time_sec   = static_cast<double>(time_count)/sparse_matrix::TIME_UNIT_CONSTANT;
+         const double time_sec   = static_cast<double>(time_count)/blas::TIME_UNIT_CONSTANT;
          std::cout << "\rElapsed time of generating basis:" << time_sec << "[sec]" << std::endl;
       }
       return basis;

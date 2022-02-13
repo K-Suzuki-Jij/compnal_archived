@@ -54,8 +54,8 @@ void QuickSort(std::vector<T1> *array_comp, std::vector<T2> *array2, const std::
 }
 
 
-} //utility
-} //compnel
+} // namespace utility
+} // namespace compnel
 
 
 #endif /* COMPNAL_UTILITY_SORT_HPP_ */
