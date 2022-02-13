@@ -12,20 +12,25 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Created by Kohei Suzuki on 2021/06/14.
+//  Created by Kohei Suzuki on 2022/02/13.
 //
 
-#include "model/test_base_u1_spin.hpp"
-#include "model/test_general_model.hpp"
-#include "type/test_half_int.hpp"
-//#include "model/test_base_u1_electron_1d.hpp"
-//#include "model/test_base_u1_spin_electron_1d.hpp"
-//#include "model/test_base_u1_spin_multi_electrons_1d.hpp"
-//#include "solver/test_exact_diag_general_model.hpp"
-#include "utility/test_integer.hpp"
-#include "gtest/gtest.h"
+#ifndef COMPNAL_TEST_HALF_INT_HPP_
+#define COMPNAL_TEST_HALF_INT_HPP_
 
-int main(int argc, char **argv) {
-   testing::InitGoogleTest(&argc, argv);
-   return RUN_ALL_TESTS();
+#include "../../src/type/half_int.hpp"
+#include <gtest/gtest.h>
+
+namespace compnal {
+namespace test {
+
+TEST(TypeHalfInt, Basic) {
+   type::HalfInt x = 1.5;
+   EXPECT_THROW(x += 2.1, std::runtime_error);
 }
+
+
+} //namespace test
+} //namespace compnal
+
+#endif /* COMPNAL_TEST_HALF_INT_HPP_ */
