@@ -182,11 +182,11 @@ TEST(ModelBaseU1Spin, CalculateTargetDim) {
 TEST(ModelBaseU1Spin, SpinOneHalf) {
    using RealType = double;
    
-   const sparse_matrix::CRS<RealType> ref_sp ({{+0.0, +1.0}, {+0.0, +0.0}});
-   const sparse_matrix::CRS<RealType> ref_sm ({{+0.0, +0.0}, {+1.0, +0.0}});
-   const sparse_matrix::CRS<RealType> ref_sx ({{+0.0, +0.5}, {+0.5, +0.0}});
-   const sparse_matrix::CRS<RealType> ref_isy({{+0.0, +0.5}, {-0.5, +0.0}});
-   const sparse_matrix::CRS<RealType> ref_sz ({{+0.5, +0.0}, {+0.0, -0.5}});
+   const sparse_matrix::CRS<RealType> ref_sp ({{+0.0, +1.0}, {+0.0, +0.0}}, sparse_matrix::CRSTag::BOSON);
+   const sparse_matrix::CRS<RealType> ref_sm ({{+0.0, +0.0}, {+1.0, +0.0}}, sparse_matrix::CRSTag::BOSON);
+   const sparse_matrix::CRS<RealType> ref_sx ({{+0.0, +0.5}, {+0.5, +0.0}}, sparse_matrix::CRSTag::BOSON);
+   const sparse_matrix::CRS<RealType> ref_isy({{+0.0, +0.5}, {-0.5, +0.0}}, sparse_matrix::CRSTag::BOSON);
+   const sparse_matrix::CRS<RealType> ref_sz ({{+0.5, +0.0}, {+0.0, -0.5}}, sparse_matrix::CRSTag::BOSON);
    
    EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSp (0.5) , ref_sp );
    EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSm (0.5) , ref_sm );
@@ -196,38 +196,39 @@ TEST(ModelBaseU1Spin, SpinOneHalf) {
 }
 
 TEST(ModelBaseU1Spin, SpinOne) {
-   using RealType = long double;
-   const RealType sqrt2 = std::sqrt(static_cast<RealType>(2));
-   
+   using RealType = double;
+   const RealType sqrt2   = std::sqrt(RealType{2.0});
+   const RealType sqrt2_2 = std::sqrt(RealType{2.0})/RealType{2.0};
+
    const sparse_matrix::CRS<RealType> ref_sp ({
       {+0.0, +sqrt2, +0.0},
       {+0.0, +0.0, +sqrt2},
       {+0.0, +0.0, +0.0}
-   });
+   }, sparse_matrix::CRSTag::BOSON);
    
    const sparse_matrix::CRS<RealType> ref_sm ({
       {+0.0, +0.0, +0.0},
       {+sqrt2, +0.0, +0.0},
       {+0.0, +sqrt2, +0.0}
-   });
+   }, sparse_matrix::CRSTag::BOSON);
    
    const sparse_matrix::CRS<RealType> ref_sx ({
-      {+0.0, +sqrt2/2.0, +0.0},
-      {+sqrt2/2.0, +0.0, +sqrt2/2.0},
-      {+0.0, +sqrt2/2.0, +0.0}
-   });
+      {+0.0, +sqrt2_2, +0.0},
+      {+sqrt2_2, +0.0, +sqrt2_2},
+      {+0.0, +sqrt2_2, +0.0}
+   }, sparse_matrix::CRSTag::BOSON);
    
    const sparse_matrix::CRS<RealType> ref_isy ({
-      {+0.0, +sqrt2/2.0, +0.0},
-      {-sqrt2/2.0, +0.0, +sqrt2/2.0},
-      {+0.0, -sqrt2/2.0, +0.0}
-   });
+      {+0.0, +sqrt2_2, +0.0},
+      {-sqrt2_2, +0.0, +sqrt2_2},
+      {+0.0, -sqrt2_2, +0.0}
+   }, sparse_matrix::CRSTag::BOSON);
    
    const sparse_matrix::CRS<RealType> ref_sz ({
       {+1.0, +0.0, +0.0},
       {+0.0, +0.0, +0.0},
       {+0.0, +0.0, -1.0}
-   });
+   }, sparse_matrix::CRSTag::BOSON);
    
    EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSp (1) , ref_sp );
    EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSm (1) , ref_sm );

@@ -327,7 +327,9 @@ public:
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{s}^{x}\f$.
    static CRS CreateOnsiteOperatorSx(const HalfInt magnitude_spin) {
-      return static_cast<RealType>(0.5)*(CreateOnsiteOperatorSp(magnitude_spin) + CreateOnsiteOperatorSm(magnitude_spin));
+      auto out = static_cast<RealType>(0.5)*(CreateOnsiteOperatorSp(magnitude_spin) + CreateOnsiteOperatorSm(magnitude_spin));
+      out.name = "Sx";
+      return out;
    }
    
    //! @brief Generate the spin-\f$ S\f$ operator for the y-direction
@@ -335,7 +337,9 @@ public:
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ i\hat{s}^{y}\f$.
    static CRS CreateOnsiteOperatoriSy(const HalfInt magnitude_spin) {
-      return static_cast<RealType>(0.5)*(CreateOnsiteOperatorSp(magnitude_spin) - CreateOnsiteOperatorSm(magnitude_spin));
+      auto out = static_cast<RealType>(0.5)*(CreateOnsiteOperatorSp(magnitude_spin) - CreateOnsiteOperatorSm(magnitude_spin));
+      out.name = "iSy";
+      return out;
    }
    
    //! @brief Generate the spin-\f$ S\f$ operator for the z-direction \f$ \hat{s}^{z}\f$.
@@ -353,6 +357,8 @@ public:
          }
          matrix.row[row + 1] = matrix.col.size();
       }
+      matrix.tag = sparse_matrix::CRSTag::BOSON;
+      matrix.name = "Sz";
       return matrix;
    }
    
@@ -369,6 +375,8 @@ public:
          matrix.row[row] = matrix.col.size();
       }
       matrix.row[dim_onsite] = matrix.col.size();
+      matrix.tag = sparse_matrix::CRSTag::BOSON;
+      matrix.name = "Sp";
       return matrix;
    }
    
@@ -384,6 +392,8 @@ public:
          matrix.col.push_back(row - 1);
          matrix.row[row + 1] = matrix.col.size();
       }
+      matrix.tag = sparse_matrix::CRSTag::BOSON;
+      matrix.name = "Sm";
       return matrix;
    }
    

@@ -66,6 +66,34 @@ public:
    HalfInt operator-() const {
       return HalfInt(-0.5*this->integer_);
    }
+   
+   //! @brief Operator overloading: compound assignment plus operator.
+   template<typename ValueType>
+   HalfInt& operator+=(const ValueType rhs) {
+      this->integer_ += static_cast<int>(2*rhs);
+      return *this;
+   }
+   
+   //! @brief Operator overloading: compound assignment subtraction operator.
+   template<typename ValueType>
+   HalfInt& operator-=(const ValueType rhs) {
+      this->integer_ -= static_cast<int>(2*rhs);
+      return *this;
+   }
+   
+   //! @brief Operator overloading: compound assignment multiplication operator.
+   template<typename ValueType>
+   HalfInt& operator*=(const ValueType rhs) {
+      this->integer_ = static_cast<int>(0.5*this->integer_*rhs);
+      return *this;
+   }
+   
+   //! @brief Operator overloading: compound assignment division operator.
+   template<typename ValueType>
+   HalfInt& operator/=(const ValueType rhs) {
+      this->integer_ = static_cast<int>(0.5*this->integer_/rhs);
+      return *this;
+   }
       
    //! @brief Operator overloading: casting operator to ValueType.
    //! @tparam ValueType Value type.
