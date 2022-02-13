@@ -25,10 +25,10 @@ namespace compnal {
 namespace sparse_matrix {
 
 template<typename RealType>
-void CalculateMatrixVectorProduct(BraketVector<RealType> *vector_out,
+void CalculateMatrixVectorProduct(type::BraketVector<RealType> *vector_out,
                                   const RealType coeef,
-                                  const CRS<RealType> &matrix_in,
-                                  const BraketVector<RealType> &vector_in) {
+                                  const type::CRS<RealType> &matrix_in,
+                                  const type::BraketVector<RealType> &vector_in) {
    
    if (matrix_in.col_dim != static_cast<std::int64_t>(vector_in.val.size())) {
       std::stringstream ss;
@@ -50,10 +50,10 @@ void CalculateMatrixVectorProduct(BraketVector<RealType> *vector_out,
 }
 
 template<typename RealType>
-void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
+void CalculateSymmetricMatrixVectorProduct(type::BraketVector<RealType> *vector_out,
                                            const RealType coeef,
-                                           const CRS<RealType> &matrix_in,
-                                           const BraketVector<RealType> &vector_in,
+                                           const type::CRS<RealType> &matrix_in,
+                                           const type::BraketVector<RealType> &vector_in,
                                            std::vector<std::vector<RealType>> *vectors_work) {
    
    if (matrix_in.row_dim != matrix_in.col_dim) {
@@ -120,10 +120,10 @@ void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
 }
 
 template<typename RealType>
-void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
+void CalculateSymmetricMatrixVectorProduct(type::BraketVector<RealType> *vector_out,
                                            const RealType coeef,
-                                           const CRS<RealType> &matrix_in,
-                                           const BraketVector<RealType> &vector_in) {
+                                           const type::CRS<RealType> &matrix_in,
+                                           const type::BraketVector<RealType> &vector_in) {
 
    if (matrix_in.row_dim != matrix_in.col_dim) {
       std::stringstream ss;
@@ -157,29 +157,29 @@ void CalculateSymmetricMatrixVectorProduct(BraketVector<RealType> *vector_out,
 
 
 template<typename RealType>
-BraketVector<RealType> CalculateMatrixVectorProduct(const RealType coeef,
-                                                    const CRS<RealType> &matrix_in,
-                                                    const BraketVector<RealType> &vector_in) {
-   BraketVector<RealType> vector_out;
+type::BraketVector<RealType> CalculateMatrixVectorProduct(const RealType coeef,
+                                                    const type::CRS<RealType> &matrix_in,
+                                                    const type::BraketVector<RealType> &vector_in) {
+   type::BraketVector<RealType> vector_out;
    CalculateMatrixVectorProduct(&vector_out, coeef, matrix_in, vector_in);
    return vector_out;
 }
 
 template<typename RealType>
-BraketVector<RealType> CalculateSymmetricMatrixVectorProduct(const RealType coeef,
-                                                             const CRS<RealType> &matrix_in,
-                                                             const BraketVector<RealType> &vector_in,
+type::BraketVector<RealType> CalculateSymmetricMatrixVectorProduct(const RealType coeef,
+                                                             const type::CRS<RealType> &matrix_in,
+                                                             const type::BraketVector<RealType> &vector_in,
                                                              std::vector<std::vector<RealType>> *vectors_work) {
-   BraketVector<RealType> vector_out;
+   type::BraketVector<RealType> vector_out;
    CalculateSymmetricMatrixVectorProduct(&vector_out, coeef, matrix_in, vector_in, vectors_work);
    return vector_out;
 }
 
 template<typename RealType>
-BraketVector<RealType> CalculateSymmetricMatrixVectorProduct(const RealType coeef,
-                                                             const CRS<RealType> &matrix_in,
-                                                             const BraketVector<RealType> &vector_in) {
-   BraketVector<RealType> vector_out;
+type::BraketVector<RealType> CalculateSymmetricMatrixVectorProduct(const RealType coeef,
+                                                             const type::CRS<RealType> &matrix_in,
+                                                             const type::BraketVector<RealType> &vector_in) {
+   type::BraketVector<RealType> vector_out;
    CalculateSymmetricMatrixVectorProduct(&vector_out, coeef, matrix_in, vector_in);
    return vector_out;
 }

@@ -39,7 +39,7 @@ void dspgv_(const int &ITYPE,const char &JOBZ, const char &UPLO, const int &N, d
 template <typename RealType>
 void LapackDsyev(RealType *gs_value,
                  std::vector<RealType> *gs_vector,
-                 const CRS<RealType> &matrix_in,
+                 const type::CRS<RealType> &matrix_in,
                  const int target_level = 0
                  ) {
    

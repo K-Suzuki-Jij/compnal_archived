@@ -37,7 +37,7 @@ template<typename RealType>
 class BaseU1Electron_1D {
    
    //! @brief Alias of compressed row strage (CRS) with RealType.
-   using CRS = sparse_matrix::CRS<RealType>;
+   using CRS = type::CRS<RealType>;
    
    //! @brief Alias of quantum number (total electron, total sz) pair.
    using QType = std::pair<int, double>;
@@ -582,7 +582,7 @@ public:
          matrix.row[row + 1] = matrix.col.size();
       }
       
-      matrix.tag = sparse_matrix::CRSTag::FERMION;
+      matrix.tag = type::CRSTag::FERMION;
       
       return matrix;
    }
@@ -615,7 +615,7 @@ public:
          matrix.row[row + 1] = matrix.col.size();
       }
       
-      matrix.tag = sparse_matrix::CRSTag::FERMION;
+      matrix.tag = type::CRSTag::FERMION;
 
       return matrix;
    }

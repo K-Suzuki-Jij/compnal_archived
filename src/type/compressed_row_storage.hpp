@@ -15,8 +15,8 @@
 //  Created by Kohei Suzuki on 2021/05/20.
 //
 
-#ifndef COMPNAL_SPARSE_MATRIX_COMPRESSED_ROW_STORAGE_HPP_
-#define COMPNAL_SPARSE_MATRIX_COMPRESSED_ROW_STORAGE_HPP_
+#ifndef COMPNAL_TYPE_COMPRESSED_ROW_STORAGE_HPP_
+#define COMPNAL_TYPE_COMPRESSED_ROW_STORAGE_HPP_
 
 #include "../utility/all.hpp"
 
@@ -27,7 +27,7 @@
 #include <sstream>
 
 namespace compnal {
-namespace sparse_matrix {
+namespace type {
 
 //! @brief Enumerated type to represent Fermion or not.
 enum CRSTag {
@@ -640,8 +640,8 @@ std::ostream& operator<<(std::ostream &os, const CRS<RealType> &m) {
 }
 
 
-} // namespace sparse_matrix
+} // namespace type
 } // namespace compnal
 
 
-#endif /* COMPNAL_SPARSE_MATRIX_COMPRESSED_ROW_STORAGE_HPP_ */
+#endif /* COMPNAL_TYPE_COMPRESSED_ROW_STORAGE_HPP_ */

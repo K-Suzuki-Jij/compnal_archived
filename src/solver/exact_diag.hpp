@@ -42,7 +42,7 @@ class ExactDiag {
    using QHash = typename ModelClass::QHash;
    
    //! @brief Alias of compressed row strage (CRS) with RealType.
-   using CRS = sparse_matrix::CRS<RealType>;
+   using CRS = type::CRS<RealType>;
    
    //! @brief Alias of braket vector class with RealType.
    using BraketVector = sparse_matrix::BraketVector<RealType>;
@@ -254,7 +254,7 @@ public:
             RealType temp_val_m2 = 0.0;
             
             int fermion_sign_m1 = 1;
-            if (m_1.tag == sparse_matrix::CRSTag::FERMION) {
+            if (m_1.tag == type::CRSTag::FERMION) {
                int num_electron = 0;
                for (int site = 0; site < site_1; site++) {
                   num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
@@ -273,7 +273,7 @@ public:
             vector_work_m1.val[i] = temp_val_m1*fermion_sign_m1;
             
             int fermion_sign_m2 = 1;
-            if (m_2.tag == sparse_matrix::CRSTag::FERMION) {
+            if (m_2.tag == type::CRSTag::FERMION) {
                int num_electron = 0;
                for (int site = 0; site < site_2; site++) {
                   num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
@@ -360,7 +360,7 @@ public:
             RealType temp_val = 0.0;
             
             int fermion_sign_m3 = 1;
-            if (m_3.tag == sparse_matrix::CRSTag::FERMION) {
+            if (m_3.tag == type::CRSTag::FERMION) {
                int num_electron = 0;
                for (int site = 0; site < site_1; site++) {
                   num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
@@ -392,7 +392,7 @@ public:
             RealType temp_val_m2 = 0.0;
             
             int fermion_sign_m2 = 1;
-            if (m_2.tag == sparse_matrix::CRSTag::FERMION) {
+            if (m_2.tag == type::CRSTag::FERMION) {
                int num_electron = 0;
                for (int site = 0; site < site_1; site++) {
                   num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
@@ -411,7 +411,7 @@ public:
             vector_work_b.val[i] = temp_val_m2*fermion_sign_m2;
             
             int fermion_sign_m1 = 1;
-            if (m_1.tag == sparse_matrix::CRSTag::FERMION) {
+            if (m_1.tag == type::CRSTag::FERMION) {
                int num_electron = 0;
                for (int site = 0; site < site_1; site++) {
                   num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
@@ -512,7 +512,7 @@ public:
             RealType temp_val = 0.0;
             
             int fermion_sign_m4 = 1;
-            if (m_4.tag == sparse_matrix::CRSTag::FERMION) {
+            if (m_4.tag == type::CRSTag::FERMION) {
                int num_electron = 0;
                for (int site = 0; site < site_1; site++) {
                   num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
@@ -540,7 +540,7 @@ public:
             RealType temp_val = 0.0;
             
             int fermion_sign_m1 = 1;
-            if (m_1.tag == sparse_matrix::CRSTag::FERMION) {
+            if (m_1.tag == type::CRSTag::FERMION) {
                int num_electron = 0;
                for (int site = 0; site < site_1; site++) {
                   num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
@@ -571,7 +571,7 @@ public:
             RealType temp_val = 0.0;
             
             int fermion_sign_m3 = 1;
-            if (m_3.tag == sparse_matrix::CRSTag::FERMION) {
+            if (m_3.tag == type::CRSTag::FERMION) {
                int num_electron = 0;
                for (int site = 0; site < site_1; site++) {
                   num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
@@ -592,7 +592,7 @@ public:
             temp_val = 0.0;
             
             int fermion_sign_m2 = 1;
-            if (m_2.tag == sparse_matrix::CRSTag::FERMION) {
+            if (m_2.tag == type::CRSTag::FERMION) {
                int num_electron = 0;
                for (int site = 0; site < site_1; site++) {
                   num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));

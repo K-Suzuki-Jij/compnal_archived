@@ -45,7 +45,7 @@ class BaseU1Spin {
    using HalfInt = type::HalfInt;
    
    //! @brief Alias of compressed row strage (CRS) with RealType.
-   using CRS = sparse_matrix::CRS<RealType>;
+   using CRS = type::CRS<RealType>;
    
 public:
    //------------------------------------------------------------------
@@ -353,7 +353,7 @@ public:
          }
          matrix.row[row + 1] = matrix.col.size();
       }
-      matrix.tag = sparse_matrix::CRSTag::BOSON;
+      matrix.tag = type::CRSTag::BOSON;
       return matrix;
    }
    
@@ -370,7 +370,7 @@ public:
          matrix.row[row] = matrix.col.size();
       }
       matrix.row[dim_onsite] = matrix.col.size();
-      matrix.tag = sparse_matrix::CRSTag::BOSON;
+      matrix.tag = type::CRSTag::BOSON;
       return matrix;
    }
    
@@ -386,7 +386,7 @@ public:
          matrix.col.push_back(row - 1);
          matrix.row[row + 1] = matrix.col.size();
       }
-      matrix.tag = sparse_matrix::CRSTag::BOSON;
+      matrix.tag = type::CRSTag::BOSON;
       return matrix;
    }
    

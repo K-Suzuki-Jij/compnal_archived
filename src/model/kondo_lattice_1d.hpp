@@ -34,7 +34,7 @@ template<typename RealType>
 class KondoLattice_1D: public BaseU1SpinElectron_1D<RealType> {
 
    //! @brief Alias of compressed row strage (CRS) with RealType.
-   using CRS = sparse_matrix::CRS<RealType>;
+   using CRS = type::CRS<RealType>;
    
 public:
    //------------------------------------------------------------------

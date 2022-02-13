@@ -25,11 +25,11 @@ namespace compnal {
 namespace sparse_matrix {
 
 template<typename RealType>
-std::pair<int, double> InverseIteration(CRS<RealType>          *matrix_in,
-                                        BraketVector<RealType> *eigenvector,
+std::pair<int, double> InverseIteration(type::CRS<RealType>          *matrix_in,
+                                        type::BraketVector<RealType> *eigenvector,
                                         const RealType         eigenvalue,
                                         const ParametersII     &params = ParametersII(),
-                                        const std::vector<BraketVector<RealType>> &subspace_vectors = {}
+                                        const std::vector<type::BraketVector<RealType>> &subspace_vectors = {}
                                         ) {
    
    if (matrix_in->row_dim != matrix_in->col_dim) {
@@ -42,8 +42,8 @@ std::pair<int, double> InverseIteration(CRS<RealType>          *matrix_in,
    
    const auto start = std::chrono::system_clock::now();
    
-   BraketVector<RealType> improved_eigenvector;
-   BraketVector<RealType> vectors_work(matrix_in->row_dim);
+   type::BraketVector<RealType> improved_eigenvector;
+   type::BraketVector<RealType> vectors_work(matrix_in->row_dim);
    
    if (params.cg.flag_use_initial_vec) {
       if (static_cast<std::int64_t>(eigenvector->val.size()) != matrix_in->row_dim) {

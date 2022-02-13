@@ -32,84 +32,84 @@ void TestElectron(const model::BaseU1Electron_1D<RealType> &model) {
    const double threshold = std::pow(10, -15);
    EXPECT_EQ(model.GetDimOnsite(), 4);
    
-   const sparse_matrix::CRS<RealType> ref_c_up ({
+   const type::CRS<RealType> ref_c_up ({
       {0.0, 1.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 1.0},
       {0.0, 0.0, 0.0, 0.0}
-   }, sparse_matrix::CRSTag::FERMION);
+   }, type::CRSTag::FERMION);
    
-   const sparse_matrix::CRS<RealType> ref_c_up_d ({
+   const type::CRS<RealType> ref_c_up_d ({
       {0.0, 0.0, 0.0, 0.0},
       {1.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 1.0, 0.0}
-   }, sparse_matrix::CRSTag::FERMION);
+   }, type::CRSTag::FERMION);
    
-   const sparse_matrix::CRS<RealType> ref_c_down ({
+   const type::CRS<RealType> ref_c_down ({
       {0.0, 0.0, 1.0, 0.0},
       {0.0, 0.0, 0.0, -1.0},
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0}
-   }, sparse_matrix::CRSTag::FERMION);
+   }, type::CRSTag::FERMION);
    
-   const sparse_matrix::CRS<RealType> ref_c_down_d ({
+   const type::CRS<RealType> ref_c_down_d ({
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0},
       {1.0, 0.0, 0.0, 0.0},
       {0.0, -1.0, 0.0, 0.0}
-   }, sparse_matrix::CRSTag::FERMION);
+   }, type::CRSTag::FERMION);
    
-   const sparse_matrix::CRS<RealType> ref_nc_up ({
+   const type::CRS<RealType> ref_nc_up ({
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 1.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 1.0}
    });
    
-   const sparse_matrix::CRS<RealType> ref_nc_down ({
+   const type::CRS<RealType> ref_nc_down ({
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 1.0, 0.0},
       {0.0, 0.0, 0.0, 1.0}
    });
    
-   const sparse_matrix::CRS<RealType> ref_nc ({
+   const type::CRS<RealType> ref_nc ({
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 1.0, 0.0, 0.0},
       {0.0, 0.0, 1.0, 0.0},
       {0.0, 0.0, 0.0, 2.0}
    });
    
-   const sparse_matrix::CRS<RealType> ref_sz ({
+   const type::CRS<RealType> ref_sz ({
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.5, 0.0, 0.0},
       {0.0, 0.0, -0.5, 0.0},
       {0.0, 0.0, 0.0, 0.0}
    });
    
-   const sparse_matrix::CRS<RealType> ref_sx ({
+   const type::CRS<RealType> ref_sx ({
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.5, 0.0},
       {0.0, 0.5, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0}
    });
    
-   const sparse_matrix::CRS<RealType> ref_isy ({
+   const type::CRS<RealType> ref_isy ({
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.5, 0.0},
       {0.0, -0.5, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0}
    });
    
-   const sparse_matrix::CRS<RealType> ref_sp ({
+   const type::CRS<RealType> ref_sp ({
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 1.0, 0.0},
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0}
    });
    
-   const sparse_matrix::CRS<RealType> ref_sm ({
+   const type::CRS<RealType> ref_sm ({
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0},
       {0.0, 1.0, 0.0, 0.0},
@@ -141,31 +141,31 @@ void TestSpinOne(const model::BaseU1Spin_1D<RealType> &model) {
    EXPECT_EQ(model.GetDimOnsite(), 3);
    EXPECT_EQ(model.GetMagnitudeSpin(), 1_hi);
    
-   const sparse_matrix::CRS<RealType> ref_sp ({
+   const type::CRS<RealType> ref_sp ({
       {+0.0, +std::sqrt(2), +0.0},
       {+0.0, +0.0, +std::sqrt(2)},
       {+0.0, +0.0, +0.0}
    });
    
-   const sparse_matrix::CRS<RealType> ref_sm ({
+   const type::CRS<RealType> ref_sm ({
       {+0.0, +0.0, +0.0},
       {+std::sqrt(2), +0.0, +0.0},
       {+0.0, +std::sqrt(2), +0.0}
    });
    
-   const sparse_matrix::CRS<RealType> ref_sx ({
+   const type::CRS<RealType> ref_sx ({
       {+0.0, +1.0/std::sqrt(2), +0.0},
       {+1.0/std::sqrt(2), +0.0, +1.0/std::sqrt(2)},
       {+0.0, +1.0/std::sqrt(2), +0.0}
    });
    
-   const sparse_matrix::CRS<RealType> ref_isy ({
+   const type::CRS<RealType> ref_isy ({
       {+0.0, +1.0/std::sqrt(2), +0.0},
       {-1.0/std::sqrt(2), +0.0, +1.0/std::sqrt(2)},
       {+0.0, -1.0/std::sqrt(2), +0.0}
    });
    
-   const sparse_matrix::CRS<RealType> ref_sz ({
+   const type::CRS<RealType> ref_sz ({
       {+1.0, +0.0, +0.0},
       {+0.0, +0.0, +0.0},
       {+0.0, +0.0, -1.0}
@@ -188,7 +188,7 @@ void TestSpinOneHalf(const model::BaseU1SpinElectron_1D<RealType> &model) {
    EXPECT_EQ(model.GetDimOnsiteELectron(), 4);
    EXPECT_EQ(model.GetDimOnsiteLSpin(), 2);
 
-   const sparse_matrix::CRS<RealType> ref_c_up ({
+   const type::CRS<RealType> ref_c_up ({
       {0, 0, 1, 0, 0, 0, 0, 0},
       {0, 0, 0, 1, 0, 0, 0, 0},
       {0, 0, 0, 0, 0, 0, 0, 0},
@@ -197,9 +197,9 @@ void TestSpinOneHalf(const model::BaseU1SpinElectron_1D<RealType> &model) {
       {0, 0, 0, 0, 0, 0, 0, 1},
       {0, 0, 0, 0, 0, 0, 0, 0},
       {0, 0, 0, 0, 0, 0, 0, 0}
-   }, sparse_matrix::CRSTag::FERMION);
+   }, type::CRSTag::FERMION);
    
-   const sparse_matrix::CRS<RealType> ref_c_up_d ({
+   const type::CRS<RealType> ref_c_up_d ({
       {0, 0, 0, 0, 0, 0, 0, 0},
       {0, 0, 0, 0, 0, 0, 0, 0},
       {1, 0, 0, 0, 0, 0, 0, 0},
@@ -208,9 +208,9 @@ void TestSpinOneHalf(const model::BaseU1SpinElectron_1D<RealType> &model) {
       {0, 0, 0, 0, 0, 0, 0, 0},
       {0, 0, 0, 0, 1, 0, 0, 0},
       {0, 0, 0, 0, 0, 1, 0, 0}
-   }, sparse_matrix::CRSTag::FERMION);
+   }, type::CRSTag::FERMION);
    
-   const sparse_matrix::CRS<RealType> ref_c_down ({
+   const type::CRS<RealType> ref_c_down ({
       {0, 0, 0, 0, 1, 0, 0, 0},
       {0, 0, 0, 0, 0, 1, 0, 0},
       {0, 0, 0, 0, 0, 0, -1, 0},
@@ -219,9 +219,9 @@ void TestSpinOneHalf(const model::BaseU1SpinElectron_1D<RealType> &model) {
       {0, 0, 0, 0, 0, 0, 0, 0},
       {0, 0, 0, 0, 0, 0, 0, 0},
       {0, 0, 0, 0, 0, 0, 0, 0}
-   }, sparse_matrix::CRSTag::FERMION);
+   }, type::CRSTag::FERMION);
    
-   const sparse_matrix::CRS<RealType> ref_c_down_d ({
+   const type::CRS<RealType> ref_c_down_d ({
       {0, 0, 0, 0, 0, 0, 0, 0},
       {0, 0, 0, 0, 0, 0, 0, 0},
       {0, 0, 0, 0, 0, 0, 0, 0},
@@ -230,7 +230,7 @@ void TestSpinOneHalf(const model::BaseU1SpinElectron_1D<RealType> &model) {
       {0, 1, 0, 0, 0, 0, 0, 0},
       {0, 0, -1, 0, 0, 0, 0, 0},
       {0, 0, 0, -1, 0, 0, 0, 0}
-   }, sparse_matrix::CRSTag::FERMION);
+   }, type::CRSTag::FERMION);
  
    ExpectNear(model.GetOnsiteOperatorCUp()        , ref_c_up    , threshold);
    ExpectNear(model.GetOnsiteOperatorCUpDagger()  , ref_c_up_d  , threshold);

@@ -15,8 +15,8 @@
 //  Created by Kohei Suzuki on 2021/05/22.
 //
 
-#ifndef COMPNAL_SPARSE_MATRIX_BRAKET_VECTOR_HPP_
-#define COMPNAL_SPARSE_MATRIX_BRAKET_VECTOR_HPP_
+#ifndef COMPNAL_TYPE_BRAKET_VECTOR_HPP_
+#define COMPNAL_TYPE_BRAKET_VECTOR_HPP_
 
 #include <iostream>
 #include <sstream>
@@ -28,7 +28,7 @@
 #endif
 
 namespace compnal {
-namespace sparse_matrix {
+namespace type {
 
 template<typename RealType>
 struct BraketVector {
@@ -203,8 +203,8 @@ BraketVector<RealType> CalculateVectorSum(const RealType coeef_1,
    return vector_out;
 }
 
-} // namespace sparse_matrix
+} // namespace type
 } // namespace compnal
 
 
-#endif /* COMPNAL_SPARSE_MATRIX_BRAKET_VECTOR_HPP_ */
+#endif /* COMPNAL_TYPE_BRAKET_VECTOR_HPP_ */
