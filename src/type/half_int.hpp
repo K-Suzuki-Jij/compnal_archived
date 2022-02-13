@@ -69,24 +69,32 @@ public:
    }
    
    //! @brief Operator overloading: compound assignment plus operator.
+   //! @tparam ValueType Value type of the right-hand side.
+   //! @param rhs The value of the right-hand side.
    template<typename ValueType>
    HalfInt& operator+=(const ValueType rhs) {
       return *this = *this + rhs;
    }
    
    //! @brief Operator overloading: compound assignment subtraction operator.
+   //! @tparam ValueType Value type of the right-hand side.
+   //! @param rhs The value of the right-hand side.
    template<typename ValueType>
    HalfInt& operator-=(const ValueType rhs) {
       return *this = *this - rhs;
    }
    
    //! @brief Operator overloading: compound assignment multiplication operator.
+   //! @tparam ValueType Value type of the right-hand side.
+   //! @param rhs The value of the right-hand side.
    template<typename ValueType>
    HalfInt& operator*=(const ValueType rhs) {
       return *this = *this * rhs;
    }
    
    //! @brief Operator overloading: compound assignment division operator.
+   //! @tparam ValueType Value type of the right-hand side.
+   //! @param rhs The value of the right-hand side.
    template<typename ValueType>
    HalfInt& operator/=(const ValueType rhs) {
       return *this = *this / rhs;

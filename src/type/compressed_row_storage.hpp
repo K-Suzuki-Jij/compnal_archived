@@ -18,7 +18,7 @@
 #ifndef COMPNAL_TYPE_COMPRESSED_ROW_STORAGE_HPP_
 #define COMPNAL_TYPE_COMPRESSED_ROW_STORAGE_HPP_
 
-#include "../utility/all.hpp"
+#include "../utility/sort.hpp"
 
 #include <iostream>
 #include <cstdint>
@@ -46,8 +46,8 @@ enum CRSTag {
 };
 
 //! @brief Sparse matrix classs (Compressed Row Strage: CRS).
-//! @tparam RealType Type of real values.
-template<typename RealType>
+//! @tparam ValueType Value type.
+template<typename ValueType>
 struct CRS {
    //------------------------------------------------------------------
    //----------------------Public Member Variables---------------------
@@ -56,7 +56,7 @@ struct CRS {
    std::int64_t col_dim = 0;
    std::vector<std::int64_t> row;
    std::vector<std::int64_t> col;
-   std::vector<RealType> val;
+   std::vector<ValueType> val;
    CRSTag tag = CRSTag::NONE;
 
    //------------------------------------------------------------------
@@ -74,7 +74,7 @@ struct CRS {
       this->tag = tag_in;
    }
    
-   explicit CRS(const std::vector<std::vector<RealType>> &mat_vec, const CRSTag tag_in = CRSTag::NONE) {
+   explicit CRS(const std::vector<std::vector<ValueType>> &mat_vec, const CRSTag tag_in = CRSTag::NONE) {
       this->row_dim = mat_vec.size();
       this->col_dim = 0;
       this->row.resize(this->row_dim + 1);
@@ -128,7 +128,7 @@ struct CRS {
       this->tag = matrix.tag;
    }
    
-   void MultiplyByScalar(const RealType coeef) {
+   void MultiplyByScalar(const ValueType coeef) {
       if (coeef == 0.0) {
 #pragma omp parallel for
          for (std::int64_t i = 0; i < this->row_dim; ++i) {
@@ -145,7 +145,7 @@ struct CRS {
       }
    }
       
-   void DiagonalScaling(const RealType diag_add) {
+   void DiagonalScaling(const ValueType diag_add) {
       if (this->row_dim != this->col_dim) {
          std::stringstream ss;
          ss << "Error in " << __func__ << std::endl;
@@ -176,7 +176,7 @@ struct CRS {
       this->col_dim = 0;
       std::vector<std::int64_t>().swap(this->row);
       std::vector<std::int64_t>().swap(this->col);
-      std::vector<RealType>().swap(this->val);
+      std::vector<ValueType>().swap(this->val);
       this->row.push_back(0);
       this->tag = CRSTag::NONE;
    }
@@ -194,13 +194,13 @@ struct CRS {
    void SortCol() {
 #pragma omp parallel for schedule (guided)
       for (std::int64_t i = 0; i < this->row_dim; ++i) {
-         utility::QuickSort<std::int64_t, RealType>(&this->col, &this->val, this->row[i], this->row[i + 1]);
+         utility::QuickSort<std::int64_t, ValueType>(&this->col, &this->val, this->row[i], this->row[i + 1]);
       }
    }
    
    void Print(const std::string display_name = "Matrix") const {
       std::cout << std::fixed;
-      std::cout << std::setprecision(std::numeric_limits<RealType>::max_digits10);
+      std::cout << std::setprecision(std::numeric_limits<ValueType>::max_digits10);
       for (std::int64_t i = 0; i < this->row_dim; ++i) {
          for (std::int64_t j = this->row.at(i); j < this->row.at(i+1); ++j) {
             std::cout << display_name << "[";
@@ -214,7 +214,7 @@ struct CRS {
    
    void PrintInfo(const std::string display_name = "Matrix") const {
       std::cout << std::fixed;
-      std::cout << std::setprecision(std::numeric_limits<RealType>::max_digits10);
+      std::cout << std::setprecision(std::numeric_limits<ValueType>::max_digits10);
       std::cout << "Print information about CRS: " << display_name << std::endl;
       std::cout << "row_dim = " << this->row_dim << std::endl;
       std::cout << "col_dim = " << this->col_dim << std::endl;
@@ -229,7 +229,7 @@ struct CRS {
       }
    }
    
-   bool isSymmetric(const RealType threshold = 0.000000000000001/*pow(10,-15)*/) const {
+   bool isSymmetric(const ValueType threshold = 0.000000000000001/*pow(10,-15)*/) const {
       for (std::int64_t i = 0; i < this->row_dim; ++i) {
          for (std::int64_t j = this->row[i]; j < this->row[i + 1]; ++j) {
             const auto iter_begin = this->col.begin() + this->row[col[j]];
@@ -252,7 +252,173 @@ struct CRS {
       return true;
    }
    
+   //------------------------------------------------------------------
+   //-----------------------Operator Overloading-----------------------
+   //------------------------------------------------------------------
+   //! @brief Operator overloading: unary plus operator.
+   CRS operator+() const {
+      return *this;
+   }
+   
+   //! @brief Operator overloading: unary negation operator.
+   CRS operator-() const {
+      MultiplyByScalar(ValueType{-1.0});
+      return *this;
+   }
+   
+   //! @brief Operator overloading: compound assignment plus operator.
+   //! @tparam T Value type of the right-hand side.
+   //! @param rhs The value of the right-hand side.
+   template<typename T>
+   CRS& operator+=(const CRS<T> rhs) {
+      return *this = *this + rhs;
+   }
+   
+   //! @brief Operator overloading: compound assignment subtraction operator.
+   //! @tparam T Value type of the right-hand side.
+   //! @param rhs The value of the right-hand side.
+   template<typename T>
+   CRS& operator-=(const CRS<T> rhs) {
+      return *this = *this - rhs;
+   }
+   
+   //! @brief Operator overloading: compound assignment multiplication operator.
+   //! @tparam T Value type of the right-hand side.
+   //! @param rhs The value of the right-hand side.
+   template<typename T>
+   CRS& operator*=(const CRS<T> rhs) {
+      return *this = *this * rhs;
+   }
+   
 };
+
+//------------------------------------------------------------------
+//----------------------Operator overloading------------------------
+//------------------------------------------------------------------
+//! @brief Operator overloading: addition operator.
+//! @tparam T1 Value type of the left-hand side.
+//! @tparam T2 Value type of the right-hand side.
+//! @param lhs The value of the left-hand side.
+//! @param rhs The value of the right-hand side.
+template<typename T1, typename T2>
+CRS<decltype(T1{0}+T2{0})> operator+(const CRS<T1> &lhs, const CRS<T2> &rhs) {
+   return CalculateMatrixMatrixSum(T1{1}, lhs, T2{1}, rhs);
+}
+
+//! @brief Operator overloading: subtraction operator.
+//! @tparam T1 Value type of the left-hand side.
+//! @tparam T2 Value type of the right-hand side.
+//! @param lhs The value of the left-hand side.
+//! @param rhs The value of the right-hand side.
+template<typename T1, typename T2>
+CRS<decltype(T1{0}-T2{0})> operator-(const CRS<T1> &lhs, const CRS<T2> &rhs) {
+   return CalculateMatrixMatrixSum(T1{1}, lhs, T2{-1}, rhs);
+}
+
+//! @brief Operator overloading: multiplication operator.
+//! @tparam T1 Value type of the left-hand side.
+//! @tparam T2 Value type of the right-hand side.
+//! @param lhs The value of the left-hand side.
+//! @param rhs The value of the right-hand side.
+template<typename T1, typename T2>
+CRS<decltype(T1{0}*T2{0})> operator*(const CRS<T1> &lhs, const CRS<T2> &rhs) {
+   return CalculateMatrixMatrixProduct(T1{1}, lhs, rhs);
+}
+
+//! @brief Operator overloading: multiplication operator.
+//! @tparam T1 Value type of the left-hand side.
+//! @tparam T2 Value type of the right-hand side.
+//! @param lhs The value of the left-hand side.
+//! @param rhs The value of the right-hand side.
+template<typename T1, typename T2>
+CRS<decltype(T1{0}*T2{0})> operator*(const T1 lhs, const CRS<T2> &rhs) {
+   return CalculateScalarMatrixProduct(lhs, rhs);
+}
+
+//! @brief Operator overloading: multiplication operator.
+//! @tparam T1 Value type of the left-hand side.
+//! @tparam T2 Value type of the right-hand side.
+//! @param lhs The value of the left-hand side.
+//! @param rhs The value of the right-hand side.
+template<typename T1, typename T2>
+CRS<decltype(T1{0}*T2{0})> operator*(const CRS<T1> &lhs, const T2 rhs) {
+   return CalculateScalarMatrixProduct(rhs, lhs);
+}
+
+//! @brief Operator overloading: equality operator.
+//! @tparam T1 Value type of the left-hand side.
+//! @tparam T2 Value type of the right-hand side.
+//! @param lhs The value of the left-hand side.
+//! @param rhs The value of the right-hand side.
+template<typename T1, typename T2>
+bool operator==(const CRS<T1> &lhs, const CRS<T2> &rhs) {
+   if (lhs.row_dim != rhs.row_dim) {
+      return false;
+   }
+   if (lhs.col_dim != rhs.col_dim) {
+      return false;
+   }
+   if (lhs.row.size() != rhs.row.size()) {
+      return false;
+   }
+   if (lhs.tag != rhs.tag) {
+      return false;
+   }
+   if (lhs.col.size() != rhs.col.size()) {
+      return false;
+   }
+   if (lhs.val.size() != rhs.val.size()) {
+      return false;
+   }
+   for (std::size_t i = 0; i < lhs.row.size(); ++i) {
+      if (lhs.row[i] != rhs.row[i]) {
+         return false;
+      }
+   }
+   for (std::size_t i = 0; i < lhs.col.size(); ++i) {
+      if (lhs.col[i] != rhs.col[i]) {
+         return false;
+      }
+   }
+   for (std::size_t i = 0; i < lhs.val.size(); ++i) {
+      if (lhs.val[i] != rhs.val[i]) {
+         return false;
+      }
+   }
+   return true;
+}
+
+//! @brief Operator overloading: inequality operator.
+//! @tparam T1 Value type of the left-hand side.
+//! @tparam T2 Value type of the right-hand side.
+//! @param lhs The value of the left-hand side.
+//! @param rhs The value of the right-hand side.
+template<typename T1, typename T2>
+bool operator!=(const CRS<T1> &lhs, const CRS<T2> &rhs) {
+   return !(lhs == rhs);
+}
+
+//------------------------------------------------------------------
+//----------------Operator overloading: I/O Stream------------------
+//------------------------------------------------------------------
+//! @brief Operator overloading: output operator.
+//! @tparam ValueType Value type CRS matrix.
+//! @param os Ostream object.
+//! @param m The matrix as CRS form.
+template<typename ValueType>
+std::ostream& operator<<(std::ostream &os, const CRS<ValueType> &m) {
+   os << std::fixed;
+   os << std::setprecision(std::numeric_limits<ValueType>::max_digits10);
+   for (std::int64_t i = 0; i < m.row_dim; ++i) {
+      for (std::int64_t j = m.row.at(i); j < m.row.at(i+1); ++j) {
+         os << "M[";
+         os << std::noshowpos << std::left << std::setw(3) << i << "][";
+         os << std::left << std::setw(3) << m.col[j] << "]=";
+         os << std::showpos << m.val[j] << std::endl;
+      }
+   }
+   return os;
+}
 
 template<typename T1, typename T2, typename T3>
 CRS<decltype(T1{0}*T2{0}*T3{0})> CalculateMatrixMatrixProduct(const T1 coeef_1,
@@ -490,10 +656,10 @@ CRS<decltype(T1{0}*T2{0})> CalculateScalarMatrixProduct(const T1 lhs, const CRS<
    return out;
 }
 
-template<typename RealType>
-CRS<RealType> CalculateTransposedMatrix(const CRS<RealType> &matrix_in) {
+template<typename ValueType>
+CRS<ValueType> CalculateTransposedMatrix(const CRS<ValueType> &matrix_in) {
 
-   CRS<RealType> matrix_out(matrix_in.col_dim, matrix_in.row_dim, matrix_in.tag);
+   CRS<ValueType> matrix_out(matrix_in.col_dim, matrix_in.row_dim, matrix_in.tag);
    
    std::vector<std::int64_t> row_count(matrix_in.row_dim);
    for (std::int64_t i = 0; i < matrix_in.col_dim; ++i) {
@@ -510,135 +676,6 @@ CRS<RealType> CalculateTransposedMatrix(const CRS<RealType> &matrix_in) {
    
    return matrix_out;
 }
-
-//------------------------------------------------------------------
-//----------------------Operator overloading------------------------
-//------------------------------------------------------------------
-//! @brief Operator overloading: addition operator.
-//! @tparam T1 Value type of the left-hand side.
-//! @tparam T2 Value type of the right-hand side.
-//! @param lhs The value of the left-hand side.
-//! @param rhs The value of the right-hand side.
-template<typename T1, typename T2>
-CRS<decltype(T1{0}+T2{0})> operator+(const CRS<T1> &lhs, const CRS<T2> &rhs) {
-   return CalculateMatrixMatrixSum(T1{1}, lhs, T2{1}, rhs);
-}
-
-//! @brief Operator overloading: subtraction operator.
-//! @tparam T1 Value type of the left-hand side.
-//! @tparam T2 Value type of the right-hand side.
-//! @param lhs The value of the left-hand side.
-//! @param rhs The value of the right-hand side.
-template<typename T1, typename T2>
-CRS<decltype(T1{0}-T2{0})> operator-(const CRS<T1> &lhs, const CRS<T2> &rhs) {
-   return CalculateMatrixMatrixSum(T1{1}, lhs, T2{-1}, rhs);
-}
-
-//! @brief Operator overloading: multiplication operator.
-//! @tparam T1 Value type of the left-hand side.
-//! @tparam T2 Value type of the right-hand side.
-//! @param lhs The value of the left-hand side.
-//! @param rhs The value of the right-hand side.
-template<typename T1, typename T2>
-CRS<decltype(T1{0}*T2{0})> operator*(const CRS<T1> &lhs, const CRS<T2> &rhs) {
-   return CalculateMatrixMatrixProduct(T1{1}, lhs, rhs);
-}
-
-//! @brief Operator overloading: multiplication operator.
-//! @tparam T1 Value type of the left-hand side.
-//! @tparam T2 Value type of the right-hand side.
-//! @param lhs The value of the left-hand side.
-//! @param rhs The value of the right-hand side.
-template<typename T1, typename T2>
-CRS<decltype(T1{0}*T2{0})> operator*(const T1 lhs, const CRS<T2> &rhs) {
-   return CalculateScalarMatrixProduct(lhs, rhs);
-}
-
-//! @brief Operator overloading: multiplication operator.
-//! @tparam T1 Value type of the left-hand side.
-//! @tparam T2 Value type of the right-hand side.
-//! @param lhs The value of the left-hand side.
-//! @param rhs The value of the right-hand side.
-template<typename T1, typename T2>
-CRS<decltype(T1{0}*T2{0})> operator*(const CRS<T1> &lhs, const T2 rhs) {
-   return CalculateScalarMatrixProduct(rhs, lhs);
-}
-
-//! @brief Operator overloading: equality operator.
-//! @tparam T1 Value type of the left-hand side.
-//! @tparam T2 Value type of the right-hand side.
-//! @param lhs The value of the left-hand side.
-//! @param rhs The value of the right-hand side.
-template<typename T1, typename T2>
-bool operator==(const CRS<T1> &lhs, const CRS<T2> &rhs) {
-   if (lhs.row_dim != rhs.row_dim) {
-      return false;
-   }
-   if (lhs.col_dim != rhs.col_dim) {
-      return false;
-   }
-   if (lhs.row.size() != rhs.row.size()) {
-      return false;
-   }
-   if (lhs.tag != rhs.tag) {
-      return false;
-   }
-   if (lhs.col.size() != rhs.col.size()) {
-      return false;
-   }
-   if (lhs.val.size() != rhs.val.size()) {
-      return false;
-   }
-   for (std::size_t i = 0; i < lhs.row.size(); ++i) {
-      if (lhs.row[i] != rhs.row[i]) {
-         return false;
-      }
-   }
-   for (std::size_t i = 0; i < lhs.col.size(); ++i) {
-      if (lhs.col[i] != rhs.col[i]) {
-         return false;
-      }
-   }
-   for (std::size_t i = 0; i < lhs.val.size(); ++i) {
-      if (lhs.val[i] != rhs.val[i]) {
-         return false;
-      }
-   }
-   return true;
-}
-
-//! @brief Operator overloading: inequality operator.
-//! @tparam T1 Value type of the left-hand side.
-//! @tparam T2 Value type of the right-hand side.
-//! @param lhs The value of the left-hand side.
-//! @param rhs The value of the right-hand side.
-template<typename T1, typename T2>
-bool operator!=(const CRS<T1> &lhs, const CRS<T2> &rhs) {
-   return !(lhs == rhs);
-}
-
-//------------------------------------------------------------------
-//----------------Operator overloading: I/O Stream------------------
-//------------------------------------------------------------------
-//! @brief Operator overloading: output operator.
-//! @tparam RealType Value type CRS matrix.
-//! @param os Ostream object.
-//! @param m The matrix as CRS form.
-template<typename RealType>
-std::ostream& operator<<(std::ostream &os, const CRS<RealType> &m) {
-   os << std::fixed;
-   os << std::setprecision(std::numeric_limits<RealType>::max_digits10);
-   for (std::int64_t i = 0; i < m.row_dim; ++i) {
-      for (std::int64_t j = m.row.at(i); j < m.row.at(i+1); ++j) {
-         os << "M[";
-         os << std::noshowpos << std::left << std::setw(3) << i << "][";
-         os << std::left << std::setw(3) << m.col[j] << "]=";
-         os << std::showpos << m.val[j] << std::endl;
-      }
-   }
-   return os;
-}
-
 
 } // namespace type
 } // namespace compnal
