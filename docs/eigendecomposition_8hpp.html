@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>COMPNAL: src/sparse_matrix/eigendecomposition.hpp File Reference</title>
+<title>COMPNAL: src/blas/eigendecomposition.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_f5ef15774b98e8846613aaefb3c2607c.html">sparse_matrix</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_0b251772e3153bf9148552a8025983e3.html">blas</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -86,38 +86,38 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcompnal_1_1sparse__matrix_1_1_parameters_lanczos.html">compnal::sparse_matrix::ParametersLanczos</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcompnal_1_1blas_1_1_parameters_lanczos.html">compnal::blas::ParametersLanczos</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcompnal_1_1sparse__matrix_1_1_parameters_c_g.html">compnal::sparse_matrix::ParametersCG</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcompnal_1_1blas_1_1_parameters_c_g.html">compnal::blas::ParametersCG</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcompnal_1_1sparse__matrix_1_1_parameters_i_i.html">compnal::sparse_matrix::ParametersII</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcompnal_1_1blas_1_1_parameters_i_i.html">compnal::blas::ParametersII</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcompnal_1_1sparse__matrix_1_1_parameters_all.html">compnal::sparse_matrix::ParametersAll</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcompnal_1_1blas_1_1_parameters_all.html">compnal::blas::ParametersAll</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacecompnal"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal.html">compnal</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespacecompnal_1_1sparse__matrix"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1sparse__matrix.html">compnal::sparse_matrix</a></td></tr>
+<tr class="memitem:namespacecompnal_1_1blas"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1blas.html">compnal::blas</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ab653e2e978de33c4cb8eaa35562e6fdd"><td class="memTemplParams" colspan="2">template&lt;typename RealType &gt; </td></tr>
-<tr class="memitem:ab653e2e978de33c4cb8eaa35562e6fdd"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; int, double &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1sparse__matrix.html#ab653e2e978de33c4cb8eaa35562e6fdd">compnal::sparse_matrix::EigenvalueDecompositionLanczos</a> (RealType *target_value_out, BraketVector&lt; RealType &gt; *target_vector_out, const CRS&lt; RealType &gt; &amp;matrix_in, const int target_level, const std::vector&lt; BraketVector&lt; RealType &gt; &gt; &amp;subspace_vectors, const ParametersLanczos &amp;params=ParametersLanczos())</td></tr>
-<tr class="separator:ab653e2e978de33c4cb8eaa35562e6fdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a785dabd2915fe57f77fa60259958a92c"><td class="memTemplParams" colspan="2">template&lt;typename RealType &gt; </td></tr>
-<tr class="memitem:a785dabd2915fe57f77fa60259958a92c"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; int, double &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1sparse__matrix.html#a785dabd2915fe57f77fa60259958a92c">compnal::sparse_matrix::EigenvalueDecompositionLanczos</a> (RealType *gs_value_out, BraketVector&lt; RealType &gt; *gs_vector_out, const CRS&lt; RealType &gt; &amp;matrix_in, const ParametersLanczos &amp;params=ParametersLanczos())</td></tr>
-<tr class="separator:a785dabd2915fe57f77fa60259958a92c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fe5c3d33825a5f1d493f29c61f3c086"><td class="memTemplParams" colspan="2">template&lt;typename RealType &gt; </td></tr>
-<tr class="memitem:a7fe5c3d33825a5f1d493f29c61f3c086"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; int, double &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1sparse__matrix.html#a7fe5c3d33825a5f1d493f29c61f3c086">compnal::sparse_matrix::EigenvalueDecompositionLOBPCG</a> (RealType *gs_value_out, BraketVector&lt; RealType &gt; *gs_vector_out, const CRS&lt; RealType &gt; &amp;matrix_in, const ParametersLanczos &amp;params=ParametersLanczos())</td></tr>
-<tr class="separator:a7fe5c3d33825a5f1d493f29c61f3c086"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41a8fbd0adade2a6702b987c653abf7b"><td class="memTemplParams" colspan="2">template&lt;typename RealType &gt; </td></tr>
+<tr class="memitem:a41a8fbd0adade2a6702b987c653abf7b"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; int, double &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1blas.html#a41a8fbd0adade2a6702b987c653abf7b">compnal::blas::EigenvalueDecompositionLanczos</a> (RealType *target_value_out, type::BraketVector&lt; RealType &gt; *target_vector_out, const type::CRS&lt; RealType &gt; &amp;matrix_in, const int target_level, const std::vector&lt; type::BraketVector&lt; RealType &gt; &gt; &amp;subspace_vectors, const ParametersLanczos &amp;params=ParametersLanczos())</td></tr>
+<tr class="separator:a41a8fbd0adade2a6702b987c653abf7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac83d4397d2ebb218b629cb5a1c37c6a2"><td class="memTemplParams" colspan="2">template&lt;typename RealType &gt; </td></tr>
+<tr class="memitem:ac83d4397d2ebb218b629cb5a1c37c6a2"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; int, double &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1blas.html#ac83d4397d2ebb218b629cb5a1c37c6a2">compnal::blas::EigenvalueDecompositionLanczos</a> (RealType *gs_value_out, type::BraketVector&lt; RealType &gt; *gs_vector_out, const type::CRS&lt; RealType &gt; &amp;matrix_in, const ParametersLanczos &amp;params=ParametersLanczos())</td></tr>
+<tr class="separator:ac83d4397d2ebb218b629cb5a1c37c6a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f728907b3675c8558f09749abf793af"><td class="memTemplParams" colspan="2">template&lt;typename RealType &gt; </td></tr>
+<tr class="memitem:a1f728907b3675c8558f09749abf793af"><td class="memTemplItemLeft" align="right" valign="top">std::pair&lt; int, double &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1blas.html#a1f728907b3675c8558f09749abf793af">compnal::blas::EigenvalueDecompositionLOBPCG</a> (RealType *gs_value_out, type::BraketVector&lt; RealType &gt; *gs_vector_out, const type::CRS&lt; RealType &gt; &amp;matrix_in, const ParametersLanczos &amp;params=ParametersLanczos())</td></tr>
+<tr class="separator:a1f728907b3675c8558f09749abf793af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:abc3cda835ae580805bef02651b4a7fbd"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1sparse__matrix.html#abc3cda835ae580805bef02651b4a7fbd">compnal::sparse_matrix::TIME_UNIT_CONSTANT</a> = 1000*1000</td></tr>
-<tr class="separator:abc3cda835ae580805bef02651b4a7fbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1196aeb106e923cc2ad6c17fea58f26"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1blas.html#aa1196aeb106e923cc2ad6c17fea58f26">compnal::blas::TIME_UNIT_CONSTANT</a> = 1000*1000</td></tr>
+<tr class="separator:aa1196aeb106e923cc2ad6c17fea58f26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

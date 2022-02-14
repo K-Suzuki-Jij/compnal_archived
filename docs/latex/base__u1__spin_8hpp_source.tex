@@ -22,7 +22,7 @@
 \DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_MODEL\_BASE\_U1SPIN\_HPP\_}}
 \DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_MODEL\_BASE\_U1SPIN\_HPP\_}}
 \DoxyCodeLine{20 }
-\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}../sparse\_matrix/all.hpp"{}}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}../blas/all.hpp"{}}}
 \DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}../utility/all.hpp"{}}}
 \DoxyCodeLine{23 \textcolor{preprocessor}{\#include "{}../type/all.hpp"{}}}
 \DoxyCodeLine{24 }
@@ -43,7 +43,7 @@
 \DoxyCodeLine{43    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{45 \textcolor{comment}{}   \textcolor{keyword}{using} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} = \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{type::HalfInt}};}
 \DoxyCodeLine{46    }
-\DoxyCodeLine{48    \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} = \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{sparse\_matrix::CRS<RealType>}};}
+\DoxyCodeLine{48    \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} = \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}};}
 \DoxyCodeLine{49    }
 \DoxyCodeLine{50 \textcolor{keyword}{public}:}
 \DoxyCodeLine{51    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
@@ -208,7 +208,7 @@
 \DoxyCodeLine{238       }
 \DoxyCodeLine{239       \textcolor{keywordflow}{if} (flag\_display\_info) \{}
 \DoxyCodeLine{240          \textcolor{keyword}{const} \textcolor{keyword}{auto}   time\_count = std::chrono::duration\_cast<std::chrono::microseconds>(std::chrono::system\_clock::now() -\/ start).count();}
-\DoxyCodeLine{241          \textcolor{keyword}{const} \textcolor{keywordtype}{double} time\_sec   = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(time\_count)/\mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_abc3cda835ae580805bef02651b4a7fbd}{sparse\_matrix::TIME\_UNIT\_CONSTANT}};}
+\DoxyCodeLine{241          \textcolor{keyword}{const} \textcolor{keywordtype}{double} time\_sec   = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(time\_count)/\mbox{\hyperlink{namespacecompnal_1_1blas_aa1196aeb106e923cc2ad6c17fea58f26}{blas::TIME\_UNIT\_CONSTANT}};}
 \DoxyCodeLine{242          std::cout << \textcolor{stringliteral}{"{}\(\backslash\)rElapsed time of generating basis:"{}} << time\_sec << \textcolor{stringliteral}{"{}[sec]"{}} << std::endl;}
 \DoxyCodeLine{243       \}}
 \DoxyCodeLine{244       \textcolor{keywordflow}{return} basis;}
@@ -273,110 +273,113 @@
 \DoxyCodeLine{323       \textcolor{keywordflow}{return} dim[system\_size -\/ 1][(total\_2sz + max\_total\_2sz)/2];}
 \DoxyCodeLine{324    \}}
 \DoxyCodeLine{325    }
-\DoxyCodeLine{329    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a6cf484f066492e0865296e842b23bcfb}{CreateOnsiteOperatorSx}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} magnitude\_spin) \{}
-\DoxyCodeLine{330       \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}RealType\textcolor{keyword}{>}(0.5)*(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a30faf4a11241d28449058113368c827c}{CreateOnsiteOperatorSp}}(magnitude\_spin) + \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a6b9d0ff1ab79def96b6aa4b5620d39a6}{CreateOnsiteOperatorSm}}(magnitude\_spin));}
+\DoxyCodeLine{329    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a6cf484f066492e0865296e842b23bcfb}{CreateOnsiteOperatorSx}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} magnitude\_spin) \{}
+\DoxyCodeLine{330       \textcolor{keywordflow}{return} RealType\{0.5\}*(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a30faf4a11241d28449058113368c827c}{CreateOnsiteOperatorSp}}(magnitude\_spin) + \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a6b9d0ff1ab79def96b6aa4b5620d39a6}{CreateOnsiteOperatorSm}}(magnitude\_spin));}
 \DoxyCodeLine{331    \}}
 \DoxyCodeLine{332    }
-\DoxyCodeLine{337    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a0ad8ed9859946ad665f469f200278188}{CreateOnsiteOperatoriSy}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} magnitude\_spin) \{}
-\DoxyCodeLine{338       \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}RealType\textcolor{keyword}{>}(0.5)*(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a30faf4a11241d28449058113368c827c}{CreateOnsiteOperatorSp}}(magnitude\_spin) -\/ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a6b9d0ff1ab79def96b6aa4b5620d39a6}{CreateOnsiteOperatorSm}}(magnitude\_spin));}
+\DoxyCodeLine{337    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a0ad8ed9859946ad665f469f200278188}{CreateOnsiteOperatoriSy}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} magnitude\_spin) \{}
+\DoxyCodeLine{338       \textcolor{keywordflow}{return} RealType\{0.5\}*(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a30faf4a11241d28449058113368c827c}{CreateOnsiteOperatorSp}}(magnitude\_spin) -\/ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a6b9d0ff1ab79def96b6aa4b5620d39a6}{CreateOnsiteOperatorSm}}(magnitude\_spin));}
 \DoxyCodeLine{339    \}}
 \DoxyCodeLine{340    }
-\DoxyCodeLine{344    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a63d1f180fc4be983c436d9e5251c927d}{CreateOnsiteOperatorSz}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} magnitude\_spin) \{}
+\DoxyCodeLine{344    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a63d1f180fc4be983c436d9e5251c927d}{CreateOnsiteOperatorSz}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} magnitude\_spin) \{}
 \DoxyCodeLine{345       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite = 2*magnitude\_spin + 1;}
-\DoxyCodeLine{346       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
+\DoxyCodeLine{346       \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
 \DoxyCodeLine{347       }
 \DoxyCodeLine{348       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 0; row < dim\_onsite; ++row) \{}
 \DoxyCodeLine{349          \textcolor{keyword}{const} RealType val = magnitude\_spin -\/ row;}
 \DoxyCodeLine{350          \textcolor{keywordflow}{if} (val != 0.0) \{}
-\DoxyCodeLine{351             matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}.push\_back(val);}
-\DoxyCodeLine{352             matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.push\_back(row);}
+\DoxyCodeLine{351             matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}.push\_back(val);}
+\DoxyCodeLine{352             matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.push\_back(row);}
 \DoxyCodeLine{353          \}}
-\DoxyCodeLine{354          matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[row + 1] = matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.size();}
+\DoxyCodeLine{354          matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[row + 1] = matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.size();}
 \DoxyCodeLine{355       \}}
-\DoxyCodeLine{356       \textcolor{keywordflow}{return} matrix;}
-\DoxyCodeLine{357    \}}
-\DoxyCodeLine{358    }
-\DoxyCodeLine{362    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a30faf4a11241d28449058113368c827c}{CreateOnsiteOperatorSp}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} magnitude\_spin) \{}
-\DoxyCodeLine{363       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite = 2*magnitude\_spin + 1;}
-\DoxyCodeLine{364       \textcolor{keyword}{const} RealType constant = 2.0;}
-\DoxyCodeLine{365       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
-\DoxyCodeLine{366       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 1; row < dim\_onsite; ++row) \{}
-\DoxyCodeLine{367          matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}.push\_back(std::sqrt((magnitude\_spin + 1)*constant*row -\/ row*(row + 1)));}
-\DoxyCodeLine{368          matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.push\_back(row);}
-\DoxyCodeLine{369          matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[row] = matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.size();}
-\DoxyCodeLine{370       \}}
-\DoxyCodeLine{371       matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[dim\_onsite] = matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.size();}
-\DoxyCodeLine{372       \textcolor{keywordflow}{return} matrix;}
-\DoxyCodeLine{373    \}}
-\DoxyCodeLine{374    }
-\DoxyCodeLine{378    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a6b9d0ff1ab79def96b6aa4b5620d39a6}{CreateOnsiteOperatorSm}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} magnitude\_spin) \{}
-\DoxyCodeLine{379       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite = 2*magnitude\_spin + 1;}
-\DoxyCodeLine{380       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
-\DoxyCodeLine{381       \textcolor{keyword}{const} RealType constant = 2.0;}
-\DoxyCodeLine{382       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 1; row < dim\_onsite; ++row) \{}
-\DoxyCodeLine{383          matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}.push\_back(std::sqrt((magnitude\_spin + 1)*constant*row -\/ row*(row + 1)));}
-\DoxyCodeLine{384          matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.push\_back(row -\/ 1);}
-\DoxyCodeLine{385          matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[row + 1] = matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.size();}
-\DoxyCodeLine{386       \}}
-\DoxyCodeLine{387       \textcolor{keywordflow}{return} matrix;}
-\DoxyCodeLine{388    \}}
-\DoxyCodeLine{389    }
-\DoxyCodeLine{390    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{391    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Access Member variables-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{392    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{395 \textcolor{comment}{}   \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_afaabb5a037faa01bbce5ab49395da0d7}{GetDimOnsite}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a0e18f2a9e9c9245f1d87dfdf63f9a5ba}{dim\_onsite\_}}; \}}
-\DoxyCodeLine{396    }
-\DoxyCodeLine{399    \textcolor{keyword}{inline} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_aedd60e2f33ce829d43c64ce92152e3a8}{GetTotalSz}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a002376a8a964023d697f01bf674197c1}{total\_sz\_}}; \}}
-\DoxyCodeLine{400       }
-\DoxyCodeLine{403    \textcolor{keyword}{inline} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a3d16f2c2a1878069b990b3113193b357}{GetMagnitudeSpin}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a2bf05396c6509a436316ad9d09750bff}{magnitude\_spin\_}}; \}}
-\DoxyCodeLine{404    }
-\DoxyCodeLine{407    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a4d537383db9e0f46cd59f5b924414b85}{GetOnsiteOperatorSx}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_ab613ccb8b87eee4bee36a14e12a3a0b9}{onsite\_operator\_sx\_}}; \}}
-\DoxyCodeLine{408    }
-\DoxyCodeLine{411    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_aed78042369da66f16b1f867e47724417}{GetOnsiteOperatoriSy}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a0babc32412530971a3768aa746f22ee5}{onsite\_operator\_isy\_}}; \}}
-\DoxyCodeLine{412    }
-\DoxyCodeLine{415    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_acf36ca8ae0fc2eabdfd6369ffd1b66ab}{GetOnsiteOperatorSz}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a9de3f6eb120e22b725ec926eaa3ee5ec}{onsite\_operator\_sz\_}}; \}}
-\DoxyCodeLine{416    }
-\DoxyCodeLine{419    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a29becac997032c3519495727feefc942}{GetOnsiteOperatorSp}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a89292c6449728fc422a26454e4c0d0e3}{onsite\_operator\_sp\_}}; \}}
-\DoxyCodeLine{420    }
-\DoxyCodeLine{423    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a8e6b4ebc2469fbb5f79f6be88227acdd}{GetOnsiteOperatorSm}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a9dd5b896bc5afcc4ead4750f5399191e}{onsite\_operator\_sm\_}}; \}}
-\DoxyCodeLine{424    }
-\DoxyCodeLine{425 \textcolor{keyword}{private}:}
-\DoxyCodeLine{426    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{427    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Private Member Variables-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{428    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{430 \textcolor{comment}{}   \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a002376a8a964023d697f01bf674197c1}{total\_sz\_}} = 0;}
-\DoxyCodeLine{431    }
-\DoxyCodeLine{433    \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a0e18f2a9e9c9245f1d87dfdf63f9a5ba}{dim\_onsite\_}} = 2;}
+\DoxyCodeLine{356       matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aacfa2feb99e5970d2a2d0a07b2528577}{tag}} = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{type::CRSTag::BOSON}};}
+\DoxyCodeLine{357       \textcolor{keywordflow}{return} matrix;}
+\DoxyCodeLine{358    \}}
+\DoxyCodeLine{359    }
+\DoxyCodeLine{363    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a30faf4a11241d28449058113368c827c}{CreateOnsiteOperatorSp}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} magnitude\_spin) \{}
+\DoxyCodeLine{364       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite = 2*magnitude\_spin + 1;}
+\DoxyCodeLine{365       \textcolor{keyword}{const} RealType constant = 2.0;}
+\DoxyCodeLine{366       \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
+\DoxyCodeLine{367       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 1; row < dim\_onsite; ++row) \{}
+\DoxyCodeLine{368          matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}.push\_back(std::sqrt((magnitude\_spin + 1)*constant*row -\/ row*(row + 1)));}
+\DoxyCodeLine{369          matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.push\_back(row);}
+\DoxyCodeLine{370          matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[row] = matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.size();}
+\DoxyCodeLine{371       \}}
+\DoxyCodeLine{372       matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[dim\_onsite] = matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.size();}
+\DoxyCodeLine{373       matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aacfa2feb99e5970d2a2d0a07b2528577}{tag}} = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{type::CRSTag::BOSON}};}
+\DoxyCodeLine{374       \textcolor{keywordflow}{return} matrix;}
+\DoxyCodeLine{375    \}}
+\DoxyCodeLine{376    }
+\DoxyCodeLine{380    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a6b9d0ff1ab79def96b6aa4b5620d39a6}{CreateOnsiteOperatorSm}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} magnitude\_spin) \{}
+\DoxyCodeLine{381       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite = 2*magnitude\_spin + 1;}
+\DoxyCodeLine{382       \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
+\DoxyCodeLine{383       \textcolor{keyword}{const} RealType constant = 2.0;}
+\DoxyCodeLine{384       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 1; row < dim\_onsite; ++row) \{}
+\DoxyCodeLine{385          matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}.push\_back(std::sqrt((magnitude\_spin + 1)*constant*row -\/ row*(row + 1)));}
+\DoxyCodeLine{386          matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.push\_back(row -\/ 1);}
+\DoxyCodeLine{387          matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[row + 1] = matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.size();}
+\DoxyCodeLine{388       \}}
+\DoxyCodeLine{389       matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aacfa2feb99e5970d2a2d0a07b2528577}{tag}} = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{type::CRSTag::BOSON}};}
+\DoxyCodeLine{390       \textcolor{keywordflow}{return} matrix;}
+\DoxyCodeLine{391    \}}
+\DoxyCodeLine{392    }
+\DoxyCodeLine{393    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{394    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Access Member variables-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{395    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{398 \textcolor{comment}{}   \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_afaabb5a037faa01bbce5ab49395da0d7}{GetDimOnsite}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a0e18f2a9e9c9245f1d87dfdf63f9a5ba}{dim\_onsite\_}}; \}}
+\DoxyCodeLine{399    }
+\DoxyCodeLine{402    \textcolor{keyword}{inline} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_aedd60e2f33ce829d43c64ce92152e3a8}{GetTotalSz}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a002376a8a964023d697f01bf674197c1}{total\_sz\_}}; \}}
+\DoxyCodeLine{403       }
+\DoxyCodeLine{406    \textcolor{keyword}{inline} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a3d16f2c2a1878069b990b3113193b357}{GetMagnitudeSpin}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a2bf05396c6509a436316ad9d09750bff}{magnitude\_spin\_}}; \}}
+\DoxyCodeLine{407    }
+\DoxyCodeLine{410    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a4d537383db9e0f46cd59f5b924414b85}{GetOnsiteOperatorSx}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_ab613ccb8b87eee4bee36a14e12a3a0b9}{onsite\_operator\_sx\_}}; \}}
+\DoxyCodeLine{411    }
+\DoxyCodeLine{414    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_aed78042369da66f16b1f867e47724417}{GetOnsiteOperatoriSy}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a0babc32412530971a3768aa746f22ee5}{onsite\_operator\_isy\_}}; \}}
+\DoxyCodeLine{415    }
+\DoxyCodeLine{418    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_acf36ca8ae0fc2eabdfd6369ffd1b66ab}{GetOnsiteOperatorSz}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a9de3f6eb120e22b725ec926eaa3ee5ec}{onsite\_operator\_sz\_}}; \}}
+\DoxyCodeLine{419    }
+\DoxyCodeLine{422    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a29becac997032c3519495727feefc942}{GetOnsiteOperatorSp}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a89292c6449728fc422a26454e4c0d0e3}{onsite\_operator\_sp\_}}; \}}
+\DoxyCodeLine{423    }
+\DoxyCodeLine{426    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a8e6b4ebc2469fbb5f79f6be88227acdd}{GetOnsiteOperatorSm}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a9dd5b896bc5afcc4ead4750f5399191e}{onsite\_operator\_sm\_}}; \}}
+\DoxyCodeLine{427    }
+\DoxyCodeLine{428 \textcolor{keyword}{private}:}
+\DoxyCodeLine{429    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{430    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Private Member Variables-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{431    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{433 \textcolor{comment}{}   \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a002376a8a964023d697f01bf674197c1}{total\_sz\_}} = 0;}
 \DoxyCodeLine{434    }
-\DoxyCodeLine{436    \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a2bf05396c6509a436316ad9d09750bff}{magnitude\_spin\_}} = 0.5;}
+\DoxyCodeLine{436    \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a0e18f2a9e9c9245f1d87dfdf63f9a5ba}{dim\_onsite\_}} = 2;}
 \DoxyCodeLine{437    }
-\DoxyCodeLine{439    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_ab613ccb8b87eee4bee36a14e12a3a0b9}{onsite\_operator\_sx\_}};}
+\DoxyCodeLine{439    \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{HalfInt}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a2bf05396c6509a436316ad9d09750bff}{magnitude\_spin\_}} = 0.5;}
 \DoxyCodeLine{440    }
-\DoxyCodeLine{442    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a0babc32412530971a3768aa746f22ee5}{onsite\_operator\_isy\_}};}
+\DoxyCodeLine{442    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_ab613ccb8b87eee4bee36a14e12a3a0b9}{onsite\_operator\_sx\_}};}
 \DoxyCodeLine{443    }
-\DoxyCodeLine{445    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a9de3f6eb120e22b725ec926eaa3ee5ec}{onsite\_operator\_sz\_}};}
+\DoxyCodeLine{445    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a0babc32412530971a3768aa746f22ee5}{onsite\_operator\_isy\_}};}
 \DoxyCodeLine{446    }
-\DoxyCodeLine{448    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a89292c6449728fc422a26454e4c0d0e3}{onsite\_operator\_sp\_}};}
+\DoxyCodeLine{448    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a9de3f6eb120e22b725ec926eaa3ee5ec}{onsite\_operator\_sz\_}};}
 \DoxyCodeLine{449    }
-\DoxyCodeLine{451    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a9dd5b896bc5afcc4ead4750f5399191e}{onsite\_operator\_sm\_}};}
+\DoxyCodeLine{451    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a89292c6449728fc422a26454e4c0d0e3}{onsite\_operator\_sp\_}};}
 \DoxyCodeLine{452    }
-\DoxyCodeLine{453    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{454    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Private Member Functions-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{455    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{457 \textcolor{comment}{}   \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a55509590c0fe917c47ba022acbabcb2c}{SetOnsiteOperator}}() \{}
-\DoxyCodeLine{458       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_ab613ccb8b87eee4bee36a14e12a3a0b9}{onsite\_operator\_sx\_}}  = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a6cf484f066492e0865296e842b23bcfb}{CreateOnsiteOperatorSx}} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a2bf05396c6509a436316ad9d09750bff}{magnitude\_spin\_}});}
-\DoxyCodeLine{459       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a0babc32412530971a3768aa746f22ee5}{onsite\_operator\_isy\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a0ad8ed9859946ad665f469f200278188}{CreateOnsiteOperatoriSy}}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a2bf05396c6509a436316ad9d09750bff}{magnitude\_spin\_}});}
-\DoxyCodeLine{460       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a9de3f6eb120e22b725ec926eaa3ee5ec}{onsite\_operator\_sz\_}}  = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a63d1f180fc4be983c436d9e5251c927d}{CreateOnsiteOperatorSz}} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a2bf05396c6509a436316ad9d09750bff}{magnitude\_spin\_}});}
-\DoxyCodeLine{461       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a89292c6449728fc422a26454e4c0d0e3}{onsite\_operator\_sp\_}}  = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a30faf4a11241d28449058113368c827c}{CreateOnsiteOperatorSp}} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a2bf05396c6509a436316ad9d09750bff}{magnitude\_spin\_}});}
-\DoxyCodeLine{462       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a9dd5b896bc5afcc4ead4750f5399191e}{onsite\_operator\_sm\_}}  = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a6b9d0ff1ab79def96b6aa4b5620d39a6}{CreateOnsiteOperatorSm}} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a2bf05396c6509a436316ad9d09750bff}{magnitude\_spin\_}});}
-\DoxyCodeLine{463    \}}
-\DoxyCodeLine{464    }
-\DoxyCodeLine{465 \};}
-\DoxyCodeLine{466 }
-\DoxyCodeLine{467 \} \textcolor{comment}{//namespace model}}
-\DoxyCodeLine{468 \} \textcolor{comment}{//namespace compnal}}
+\DoxyCodeLine{454    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a9dd5b896bc5afcc4ead4750f5399191e}{onsite\_operator\_sm\_}};}
+\DoxyCodeLine{455    }
+\DoxyCodeLine{456    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{457    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Private Member Functions-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{458    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{460 \textcolor{comment}{}   \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a55509590c0fe917c47ba022acbabcb2c}{SetOnsiteOperator}}() \{}
+\DoxyCodeLine{461       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_ab613ccb8b87eee4bee36a14e12a3a0b9}{onsite\_operator\_sx\_}}  = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a6cf484f066492e0865296e842b23bcfb}{CreateOnsiteOperatorSx}} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a2bf05396c6509a436316ad9d09750bff}{magnitude\_spin\_}});}
+\DoxyCodeLine{462       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a0babc32412530971a3768aa746f22ee5}{onsite\_operator\_isy\_}} = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a0ad8ed9859946ad665f469f200278188}{CreateOnsiteOperatoriSy}}(\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a2bf05396c6509a436316ad9d09750bff}{magnitude\_spin\_}});}
+\DoxyCodeLine{463       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a9de3f6eb120e22b725ec926eaa3ee5ec}{onsite\_operator\_sz\_}}  = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a63d1f180fc4be983c436d9e5251c927d}{CreateOnsiteOperatorSz}} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a2bf05396c6509a436316ad9d09750bff}{magnitude\_spin\_}});}
+\DoxyCodeLine{464       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a89292c6449728fc422a26454e4c0d0e3}{onsite\_operator\_sp\_}}  = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a30faf4a11241d28449058113368c827c}{CreateOnsiteOperatorSp}} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a2bf05396c6509a436316ad9d09750bff}{magnitude\_spin\_}});}
+\DoxyCodeLine{465       \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a9dd5b896bc5afcc4ead4750f5399191e}{onsite\_operator\_sm\_}}  = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a6b9d0ff1ab79def96b6aa4b5620d39a6}{CreateOnsiteOperatorSm}} (\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_a2bf05396c6509a436316ad9d09750bff}{magnitude\_spin\_}});}
+\DoxyCodeLine{466    \}}
+\DoxyCodeLine{467    }
+\DoxyCodeLine{468 \};}
 \DoxyCodeLine{469 }
-\DoxyCodeLine{470 }
-\DoxyCodeLine{471 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_MODEL\_BASE\_U1SPIN\_HPP\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{470 \} \textcolor{comment}{//namespace model}}
+\DoxyCodeLine{471 \} \textcolor{comment}{//namespace compnal}}
+\DoxyCodeLine{472 }
+\DoxyCodeLine{473 }
+\DoxyCodeLine{474 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_MODEL\_BASE\_U1SPIN\_HPP\_ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

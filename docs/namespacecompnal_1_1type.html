@@ -75,6 +75,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">compnal::type Namespace Reference</div></div>
 </div><!--header-->
@@ -82,12 +83,83 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcompnal_1_1type_1_1_braket_vector.html">BraketVector</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sparse matrix classs (Compressed Row Strage: <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a>).  <a href="structcompnal_1_1type_1_1_c_r_s.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcompnal_1_1type_1_1_half_int.html">HalfInt</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class to represent half-integer.  <a href="classcompnal_1_1type_1_1_half_int.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:aa249dd69b73057aa6d2d501c0825e11b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1type.html#aa249dd69b73057aa6d2d501c0825e11b">CRSTag</a> { <a class="el" href="namespacecompnal_1_1type.html#aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987">NONE</a> = 0
+, <a class="el" href="namespacecompnal_1_1type.html#aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f">FERMION</a> = 1
+, <a class="el" href="namespacecompnal_1_1type.html#aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de">BOSON</a> = 2
+, <a class="el" href="namespacecompnal_1_1type.html#aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647">MIX</a> = 3
+ }</td></tr>
+<tr class="memdesc:aa249dd69b73057aa6d2d501c0825e11b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type to represent Fermion or not.  <a href="namespacecompnal_1_1type.html#aa249dd69b73057aa6d2d501c0825e11b">More...</a><br /></td></tr>
+<tr class="separator:aa249dd69b73057aa6d2d501c0825e11b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a12f1cdfaf6a066d34b5d2de3dca82682"><td class="memTemplParams" colspan="2">template&lt;typename RealType &gt; </td></tr>
+<tr class="memitem:a12f1cdfaf6a066d34b5d2de3dca82682"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1type.html#a12f1cdfaf6a066d34b5d2de3dca82682">CalculateVectorSum</a> (<a class="el" href="structcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; *vector_out, const RealType coeef_1, const <a class="el" href="structcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; &amp;braket_vector_1, const RealType coeef_2, const <a class="el" href="structcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; &amp;braket_vector_2)</td></tr>
+<tr class="separator:a12f1cdfaf6a066d34b5d2de3dca82682"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35b3c9a755f272ad25de042834e0933d"><td class="memTemplParams" colspan="2">template&lt;typename RealType &gt; </td></tr>
+<tr class="memitem:a35b3c9a755f272ad25de042834e0933d"><td class="memTemplItemLeft" align="right" valign="top">RealType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1type.html#a35b3c9a755f272ad25de042834e0933d">CalculateL1Norm</a> (const RealType coeef_1, const <a class="el" href="structcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; &amp;braket_vector_1, const RealType coeef_2, const <a class="el" href="structcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; &amp;braket_vector_2)</td></tr>
+<tr class="separator:a35b3c9a755f272ad25de042834e0933d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31939adf3cd225e389a22c977793b46d"><td class="memTemplParams" colspan="2">template&lt;typename RealType &gt; </td></tr>
+<tr class="memitem:a31939adf3cd225e389a22c977793b46d"><td class="memTemplItemLeft" align="right" valign="top">RealType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1type.html#a31939adf3cd225e389a22c977793b46d">CalculateInnerProduct</a> (const <a class="el" href="structcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; &amp;braket_vector_1, const <a class="el" href="structcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; &amp;braket_vector_2)</td></tr>
+<tr class="separator:a31939adf3cd225e389a22c977793b46d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14b90416e54f73e661eb367a4eef99bc"><td class="memTemplParams" colspan="2">template&lt;typename RealType &gt; </td></tr>
+<tr class="memitem:a14b90416e54f73e661eb367a4eef99bc"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1type.html#a14b90416e54f73e661eb367a4eef99bc">CalculateVectorSum</a> (const RealType coeef_1, const <a class="el" href="structcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; &amp;braket_vector_1, const RealType coeef_2, const <a class="el" href="structcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; &amp;braket_vector_2)</td></tr>
+<tr class="separator:a14b90416e54f73e661eb367a4eef99bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c13be3bb08671eb44f5c810c9d0eeda"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:a1c13be3bb08671eb44f5c810c9d0eeda"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0}+T2{0})&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1type.html#a1c13be3bb08671eb44f5c810c9d0eeda">operator+</a> (const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;lhs, const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;rhs)</td></tr>
+<tr class="memdesc:a1c13be3bb08671eb44f5c810c9d0eeda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: addition operator.  <a href="namespacecompnal_1_1type.html#a1c13be3bb08671eb44f5c810c9d0eeda">More...</a><br /></td></tr>
+<tr class="separator:a1c13be3bb08671eb44f5c810c9d0eeda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f3ebb23a90eca3caa4c0bdf9a81370c"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:a9f3ebb23a90eca3caa4c0bdf9a81370c"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0}-T2{0})&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1type.html#a9f3ebb23a90eca3caa4c0bdf9a81370c">operator-</a> (const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;lhs, const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;rhs)</td></tr>
+<tr class="memdesc:a9f3ebb23a90eca3caa4c0bdf9a81370c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: subtraction operator.  <a href="namespacecompnal_1_1type.html#a9f3ebb23a90eca3caa4c0bdf9a81370c">More...</a><br /></td></tr>
+<tr class="separator:a9f3ebb23a90eca3caa4c0bdf9a81370c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3177a46aa55e8ad7a088f050cabaffc"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:aa3177a46aa55e8ad7a088f050cabaffc"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0} *T2{0})&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1type.html#aa3177a46aa55e8ad7a088f050cabaffc">operator*</a> (const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;lhs, const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;rhs)</td></tr>
+<tr class="memdesc:aa3177a46aa55e8ad7a088f050cabaffc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: multiplication operator.  <a href="namespacecompnal_1_1type.html#aa3177a46aa55e8ad7a088f050cabaffc">More...</a><br /></td></tr>
+<tr class="separator:aa3177a46aa55e8ad7a088f050cabaffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af66199bcd7917a046615dfb2aee2ef70"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:af66199bcd7917a046615dfb2aee2ef70"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0} *T2{0})&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1type.html#af66199bcd7917a046615dfb2aee2ef70">operator*</a> (const T1 lhs, const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;rhs)</td></tr>
+<tr class="memdesc:af66199bcd7917a046615dfb2aee2ef70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: multiplication operator.  <a href="namespacecompnal_1_1type.html#af66199bcd7917a046615dfb2aee2ef70">More...</a><br /></td></tr>
+<tr class="separator:af66199bcd7917a046615dfb2aee2ef70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd654d7409c5c26fca3df1982822cc9d"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:afd654d7409c5c26fca3df1982822cc9d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0} *T2{0})&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1type.html#afd654d7409c5c26fca3df1982822cc9d">operator*</a> (const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;lhs, const T2 rhs)</td></tr>
+<tr class="memdesc:afd654d7409c5c26fca3df1982822cc9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: multiplication operator.  <a href="namespacecompnal_1_1type.html#afd654d7409c5c26fca3df1982822cc9d">More...</a><br /></td></tr>
+<tr class="separator:afd654d7409c5c26fca3df1982822cc9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ac388bfa253c05504da2301092939bf"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:a0ac388bfa253c05504da2301092939bf"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1type.html#a0ac388bfa253c05504da2301092939bf">operator==</a> (const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;lhs, const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;rhs)</td></tr>
+<tr class="memdesc:a0ac388bfa253c05504da2301092939bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: equality operator.  <a href="namespacecompnal_1_1type.html#a0ac388bfa253c05504da2301092939bf">More...</a><br /></td></tr>
+<tr class="separator:a0ac388bfa253c05504da2301092939bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f92334599a209b293d788605d89029f"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:a6f92334599a209b293d788605d89029f"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1type.html#a6f92334599a209b293d788605d89029f">operator!=</a> (const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;lhs, const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;rhs)</td></tr>
+<tr class="memdesc:a6f92334599a209b293d788605d89029f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: inequality operator.  <a href="namespacecompnal_1_1type.html#a6f92334599a209b293d788605d89029f">More...</a><br /></td></tr>
+<tr class="separator:a6f92334599a209b293d788605d89029f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7b08ca40c92cebb1de8b0a804f3795c"><td class="memTemplParams" colspan="2">template&lt;typename ValueType &gt; </td></tr>
+<tr class="memitem:ab7b08ca40c92cebb1de8b0a804f3795c"><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1type.html#ab7b08ca40c92cebb1de8b0a804f3795c">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; ValueType &gt; &amp;m)</td></tr>
+<tr class="memdesc:ab7b08ca40c92cebb1de8b0a804f3795c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: output operator.  <a href="namespacecompnal_1_1type.html#ab7b08ca40c92cebb1de8b0a804f3795c">More...</a><br /></td></tr>
+<tr class="separator:ab7b08ca40c92cebb1de8b0a804f3795c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4084b7468d3900b83b409da1b0d9254"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename T3 &gt; </td></tr>
+<tr class="memitem:ad4084b7468d3900b83b409da1b0d9254"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0} *T2{0} *T3{0})&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1type.html#ad4084b7468d3900b83b409da1b0d9254">CalculateMatrixMatrixProduct</a> (const T1 coeef_1, const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;matrix_1, const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T3 &gt; &amp;matrix_2)</td></tr>
+<tr class="separator:ad4084b7468d3900b83b409da1b0d9254"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab183cd2077b21a5126d0927d9ac4756"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </td></tr>
+<tr class="memitem:aab183cd2077b21a5126d0927d9ac4756"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0}+T2{0}+T3{0}+T4{0})&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1type.html#aab183cd2077b21a5126d0927d9ac4756">CalculateMatrixMatrixSum</a> (const T1 coeef_1, const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;matrix_1, const T3 coeef_2, const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T4 &gt; &amp;matrix_2)</td></tr>
+<tr class="separator:aab183cd2077b21a5126d0927d9ac4756"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d20246b76133046a66537e761e8b5cc"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:a3d20246b76133046a66537e761e8b5cc"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0} *T2{0})&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1type.html#a3d20246b76133046a66537e761e8b5cc">CalculateScalarMatrixProduct</a> (const T1 lhs, const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;rhs)</td></tr>
+<tr class="separator:a3d20246b76133046a66537e761e8b5cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5346fac9bf3b703982976a27f440168b"><td class="memTemplParams" colspan="2">template&lt;typename ValueType &gt; </td></tr>
+<tr class="memitem:a5346fac9bf3b703982976a27f440168b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; ValueType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1type.html#a5346fac9bf3b703982976a27f440168b">CalculateTransposedMatrix</a> (const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; ValueType &gt; &amp;matrix_in)</td></tr>
+<tr class="separator:a5346fac9bf3b703982976a27f440168b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b08cd1cc210f7313ca403293d702166"><td class="memTemplParams" colspan="2">template&lt;typename ValueType &gt; </td></tr>
 <tr class="memitem:a9b08cd1cc210f7313ca403293d702166"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1type.html#a9b08cd1cc210f7313ca403293d702166">operator+</a> (const ValueType lhs, const <a class="el" href="classcompnal_1_1type_1_1_half_int.html">HalfInt</a> &amp;rhs)</td></tr>
 <tr class="memdesc:a9b08cd1cc210f7313ca403293d702166"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: addition operator.  <a href="namespacecompnal_1_1type.html#a9b08cd1cc210f7313ca403293d702166">More...</a><br /></td></tr>
@@ -202,9 +274,372 @@ Functions</h2></td></tr>
 <tr class="memdesc:a704bbed72ad19e842995cedefbc09f87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: output operator.  <a href="namespacecompnal_1_1type.html#a704bbed72ad19e842995cedefbc09f87">More...</a><br /></td></tr>
 <tr class="separator:a704bbed72ad19e842995cedefbc09f87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="aa249dd69b73057aa6d2d501c0825e11b" name="aa249dd69b73057aa6d2d501c0825e11b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa249dd69b73057aa6d2d501c0825e11b">&#9670;&nbsp;</a></span>CRSTag</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespacecompnal_1_1type.html#aa249dd69b73057aa6d2d501c0825e11b">compnal::type::CRSTag</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enumerated type to represent Fermion or not. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987" name="aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987"></a>NONE&#160;</td><td class="fielddoc"><p >No taged. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f" name="aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f"></a>FERMION&#160;</td><td class="fielddoc"><p >Fermionic operator. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de" name="aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de"></a>BOSON&#160;</td><td class="fielddoc"><p >Bosonic operator. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647" name="aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647"></a>MIX&#160;</td><td class="fielddoc"><p >Sum of Fermion and Boson. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a31939adf3cd225e389a22c977793b46d" name="a31939adf3cd225e389a22c977793b46d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31939adf3cd225e389a22c977793b46d">&#9670;&nbsp;</a></span>CalculateInnerProduct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RealType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">RealType compnal::type::CalculateInnerProduct </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>braket_vector_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>braket_vector_2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a35b3c9a755f272ad25de042834e0933d" name="a35b3c9a755f272ad25de042834e0933d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35b3c9a755f272ad25de042834e0933d">&#9670;&nbsp;</a></span>CalculateL1Norm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RealType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">RealType compnal::type::CalculateL1Norm </td>
+          <td>(</td>
+          <td class="paramtype">const RealType&#160;</td>
+          <td class="paramname"><em>coeef_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>braket_vector_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const RealType&#160;</td>
+          <td class="paramname"><em>coeef_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>braket_vector_2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad4084b7468d3900b83b409da1b0d9254" name="ad4084b7468d3900b83b409da1b0d9254"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4084b7468d3900b83b409da1b0d9254">&#9670;&nbsp;</a></span>CalculateMatrixMatrixProduct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename T3 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0} *T2{0} *T3{0})&gt; compnal::type::CalculateMatrixMatrixProduct </td>
+          <td>(</td>
+          <td class="paramtype">const T1&#160;</td>
+          <td class="paramname"><em>coeef_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T3 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix_2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aab183cd2077b21a5126d0927d9ac4756" name="aab183cd2077b21a5126d0927d9ac4756"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab183cd2077b21a5126d0927d9ac4756">&#9670;&nbsp;</a></span>CalculateMatrixMatrixSum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0}+T2{0}+T3{0}+T4{0})&gt; compnal::type::CalculateMatrixMatrixSum </td>
+          <td>(</td>
+          <td class="paramtype">const T1&#160;</td>
+          <td class="paramname"><em>coeef_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T3&#160;</td>
+          <td class="paramname"><em>coeef_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T4 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix_2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3d20246b76133046a66537e761e8b5cc" name="a3d20246b76133046a66537e761e8b5cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d20246b76133046a66537e761e8b5cc">&#9670;&nbsp;</a></span>CalculateScalarMatrixProduct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0} *T2{0})&gt; compnal::type::CalculateScalarMatrixProduct </td>
+          <td>(</td>
+          <td class="paramtype">const T1&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5346fac9bf3b703982976a27f440168b" name="a5346fac9bf3b703982976a27f440168b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5346fac9bf3b703982976a27f440168b">&#9670;&nbsp;</a></span>CalculateTransposedMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ValueType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; ValueType &gt; compnal::type::CalculateTransposedMatrix </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; ValueType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix_in</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a12f1cdfaf6a066d34b5d2de3dca82682" name="a12f1cdfaf6a066d34b5d2de3dca82682"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12f1cdfaf6a066d34b5d2de3dca82682">&#9670;&nbsp;</a></span>CalculateVectorSum() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RealType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void compnal::type::CalculateVectorSum </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; *&#160;</td>
+          <td class="paramname"><em>vector_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const RealType&#160;</td>
+          <td class="paramname"><em>coeef_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>braket_vector_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const RealType&#160;</td>
+          <td class="paramname"><em>coeef_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>braket_vector_2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a14b90416e54f73e661eb367a4eef99bc" name="a14b90416e54f73e661eb367a4eef99bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14b90416e54f73e661eb367a4eef99bc">&#9670;&nbsp;</a></span>CalculateVectorSum() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RealType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; compnal::type::CalculateVectorSum </td>
+          <td>(</td>
+          <td class="paramtype">const RealType&#160;</td>
+          <td class="paramname"><em>coeef_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>braket_vector_1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const RealType&#160;</td>
+          <td class="paramname"><em>coeef_2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>braket_vector_2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6f92334599a209b293d788605d89029f" name="a6f92334599a209b293d788605d89029f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f92334599a209b293d788605d89029f">&#9670;&nbsp;</a></span>operator!=() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool compnal::type::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Operator overloading: inequality operator. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td>Value type of the left-hand side. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of the right-hand side. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>The value of the left-hand side. </td></tr>
+    <tr><td class="paramname">rhs</td><td>The value of the right-hand side. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="abba320b8a3de0a5f85d02ed14f12100e" name="abba320b8a3de0a5f85d02ed14f12100e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abba320b8a3de0a5f85d02ed14f12100e">&#9670;&nbsp;</a></span>operator!=() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abba320b8a3de0a5f85d02ed14f12100e">&#9670;&nbsp;</a></span>operator!=() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -241,7 +676,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 <a id="a5544ff679f24a79b2ea11f016b063679" name="a5544ff679f24a79b2ea11f016b063679"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5544ff679f24a79b2ea11f016b063679">&#9670;&nbsp;</a></span>operator!=() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5544ff679f24a79b2ea11f016b063679">&#9670;&nbsp;</a></span>operator!=() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -286,7 +721,7 @@ template&lt;typename ValueType &gt; </div>
 </div>
 </div>
 <a id="a677ed82ce1151398ee1b2b9cb3c34204" name="a677ed82ce1151398ee1b2b9cb3c34204"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a677ed82ce1151398ee1b2b9cb3c34204">&#9670;&nbsp;</a></span>operator!=() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a677ed82ce1151398ee1b2b9cb3c34204">&#9670;&nbsp;</a></span>operator!=() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -330,8 +765,100 @@ template&lt;typename ValueType &gt; </div>
 
 </div>
 </div>
+<a id="aa3177a46aa55e8ad7a088f050cabaffc" name="aa3177a46aa55e8ad7a088f050cabaffc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3177a46aa55e8ad7a088f050cabaffc">&#9670;&nbsp;</a></span>operator*() <span class="overload">[1/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0} *T2{0})&gt; compnal::type::operator* </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Operator overloading: multiplication operator. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td>Value type of the left-hand side. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of the right-hand side. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>The value of the left-hand side. </td></tr>
+    <tr><td class="paramname">rhs</td><td>The value of the right-hand side. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afd654d7409c5c26fca3df1982822cc9d" name="afd654d7409c5c26fca3df1982822cc9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd654d7409c5c26fca3df1982822cc9d">&#9670;&nbsp;</a></span>operator*() <span class="overload">[2/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0} *T2{0})&gt; compnal::type::operator* </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const T2&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Operator overloading: multiplication operator. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td>Value type of the left-hand side. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of the right-hand side. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>The value of the left-hand side. </td></tr>
+    <tr><td class="paramname">rhs</td><td>The value of the right-hand side. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a40fa1a6abd727b9f6fe05acfacea7690" name="a40fa1a6abd727b9f6fe05acfacea7690"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a40fa1a6abd727b9f6fe05acfacea7690">&#9670;&nbsp;</a></span>operator*() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a40fa1a6abd727b9f6fe05acfacea7690">&#9670;&nbsp;</a></span>operator*() <span class="overload">[3/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -368,7 +895,7 @@ template&lt;typename ValueType &gt; </div>
 </div>
 </div>
 <a id="a568edadab37e626b00dd1e7ee66fc550" name="a568edadab37e626b00dd1e7ee66fc550"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a568edadab37e626b00dd1e7ee66fc550">&#9670;&nbsp;</a></span>operator*() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a568edadab37e626b00dd1e7ee66fc550">&#9670;&nbsp;</a></span>operator*() <span class="overload">[4/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -399,6 +926,52 @@ template&lt;typename ValueType &gt; </div>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">ValueType</td><td>Value type of the left-hand side. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>The value of the left-hand side. </td></tr>
+    <tr><td class="paramname">rhs</td><td>The value of the right-hand side. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af66199bcd7917a046615dfb2aee2ef70" name="af66199bcd7917a046615dfb2aee2ef70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af66199bcd7917a046615dfb2aee2ef70">&#9670;&nbsp;</a></span>operator*() <span class="overload">[5/6]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0} *T2{0})&gt; compnal::type::operator* </td>
+          <td>(</td>
+          <td class="paramtype">const T1&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Operator overloading: multiplication operator. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td>Value type of the left-hand side. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of the right-hand side. </td></tr>
   </table>
   </dd>
 </dl>
@@ -413,7 +986,7 @@ template&lt;typename ValueType &gt; </div>
 </div>
 </div>
 <a id="a1e4e5475b89250ca8c016d136cb8c721" name="a1e4e5475b89250ca8c016d136cb8c721"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e4e5475b89250ca8c016d136cb8c721">&#9670;&nbsp;</a></span>operator*() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e4e5475b89250ca8c016d136cb8c721">&#9670;&nbsp;</a></span>operator*() <span class="overload">[6/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -457,8 +1030,54 @@ template&lt;typename ValueType &gt; </div>
 
 </div>
 </div>
+<a id="a1c13be3bb08671eb44f5c810c9d0eeda" name="a1c13be3bb08671eb44f5c810c9d0eeda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c13be3bb08671eb44f5c810c9d0eeda">&#9670;&nbsp;</a></span>operator+() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0}+T2{0})&gt; compnal::type::operator+ </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Operator overloading: addition operator. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td>Value type of the left-hand side. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of the right-hand side. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>The value of the left-hand side. </td></tr>
+    <tr><td class="paramname">rhs</td><td>The value of the right-hand side. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a8d78f405833ca8841cf85e4c681e756b" name="a8d78f405833ca8841cf85e4c681e756b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8d78f405833ca8841cf85e4c681e756b">&#9670;&nbsp;</a></span>operator+() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d78f405833ca8841cf85e4c681e756b">&#9670;&nbsp;</a></span>operator+() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -495,7 +1114,7 @@ template&lt;typename ValueType &gt; </div>
 </div>
 </div>
 <a id="a5d1aa2ee0eec747859942ef1bbca8eb0" name="a5d1aa2ee0eec747859942ef1bbca8eb0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5d1aa2ee0eec747859942ef1bbca8eb0">&#9670;&nbsp;</a></span>operator+() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d1aa2ee0eec747859942ef1bbca8eb0">&#9670;&nbsp;</a></span>operator+() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -540,7 +1159,7 @@ template&lt;typename ValueType &gt; </div>
 </div>
 </div>
 <a id="a9b08cd1cc210f7313ca403293d702166" name="a9b08cd1cc210f7313ca403293d702166"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b08cd1cc210f7313ca403293d702166">&#9670;&nbsp;</a></span>operator+() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b08cd1cc210f7313ca403293d702166">&#9670;&nbsp;</a></span>operator+() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -584,8 +1203,54 @@ template&lt;typename ValueType &gt; </div>
 
 </div>
 </div>
+<a id="a9f3ebb23a90eca3caa4c0bdf9a81370c" name="a9f3ebb23a90eca3caa4c0bdf9a81370c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f3ebb23a90eca3caa4c0bdf9a81370c">&#9670;&nbsp;</a></span>operator-() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0}-T2{0})&gt; compnal::type::operator- </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Operator overloading: subtraction operator. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td>Value type of the left-hand side. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of the right-hand side. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>The value of the left-hand side. </td></tr>
+    <tr><td class="paramname">rhs</td><td>The value of the right-hand side. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a766984ff9b0528c6afb3d98bbf2b6899" name="a766984ff9b0528c6afb3d98bbf2b6899"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a766984ff9b0528c6afb3d98bbf2b6899">&#9670;&nbsp;</a></span>operator-() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a766984ff9b0528c6afb3d98bbf2b6899">&#9670;&nbsp;</a></span>operator-() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -622,7 +1287,7 @@ template&lt;typename ValueType &gt; </div>
 </div>
 </div>
 <a id="aae69b144fcea1ea9f21f9be2496a6280" name="aae69b144fcea1ea9f21f9be2496a6280"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae69b144fcea1ea9f21f9be2496a6280">&#9670;&nbsp;</a></span>operator-() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aae69b144fcea1ea9f21f9be2496a6280">&#9670;&nbsp;</a></span>operator-() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -667,7 +1332,7 @@ template&lt;typename ValueType &gt; </div>
 </div>
 </div>
 <a id="a4e711d785b1ede687153437f8ac67c61" name="a4e711d785b1ede687153437f8ac67c61"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4e711d785b1ede687153437f8ac67c61">&#9670;&nbsp;</a></span>operator-() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e711d785b1ede687153437f8ac67c61">&#9670;&nbsp;</a></span>operator-() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -965,8 +1630,53 @@ template&lt;typename ValueType &gt; </div>
 
 </div>
 </div>
+<a id="ab7b08ca40c92cebb1de8b0a804f3795c" name="ab7b08ca40c92cebb1de8b0a804f3795c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7b08ca40c92cebb1de8b0a804f3795c">&#9670;&nbsp;</a></span>operator&lt;&lt;() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename ValueType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; compnal::type::operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; ValueType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>m</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Operator overloading: output operator. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">ValueType</td><td>Value type <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> matrix. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">os</td><td>Ostream object. </td></tr>
+    <tr><td class="paramname">m</td><td>The matrix as <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> form. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a704bbed72ad19e842995cedefbc09f87" name="a704bbed72ad19e842995cedefbc09f87"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a704bbed72ad19e842995cedefbc09f87">&#9670;&nbsp;</a></span>operator&lt;&lt;()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a704bbed72ad19e842995cedefbc09f87">&#9670;&nbsp;</a></span>operator&lt;&lt;() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1129,8 +1839,54 @@ template&lt;typename ValueType &gt; </div>
 
 </div>
 </div>
+<a id="a0ac388bfa253c05504da2301092939bf" name="a0ac388bfa253c05504da2301092939bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ac388bfa253c05504da2301092939bf">&#9670;&nbsp;</a></span>operator==() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool compnal::type::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Operator overloading: equality operator. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td>Value type of the left-hand side. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of the right-hand side. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>The value of the left-hand side. </td></tr>
+    <tr><td class="paramname">rhs</td><td>The value of the right-hand side. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ad2d2798c1ea9ee20b4defce948ae6723" name="ad2d2798c1ea9ee20b4defce948ae6723"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad2d2798c1ea9ee20b4defce948ae6723">&#9670;&nbsp;</a></span>operator==() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2d2798c1ea9ee20b4defce948ae6723">&#9670;&nbsp;</a></span>operator==() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1167,7 +1923,7 @@ template&lt;typename ValueType &gt; </div>
 </div>
 </div>
 <a id="aab1ca04085edd567564b034416035d57" name="aab1ca04085edd567564b034416035d57"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab1ca04085edd567564b034416035d57">&#9670;&nbsp;</a></span>operator==() <span class="overload">[2/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aab1ca04085edd567564b034416035d57">&#9670;&nbsp;</a></span>operator==() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1212,7 +1968,7 @@ template&lt;typename ValueType &gt; </div>
 </div>
 </div>
 <a id="a64b6cf325945652ff307e82bcab34a14" name="a64b6cf325945652ff307e82bcab34a14"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a64b6cf325945652ff307e82bcab34a14">&#9670;&nbsp;</a></span>operator==() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a64b6cf325945652ff307e82bcab34a14">&#9670;&nbsp;</a></span>operator==() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">

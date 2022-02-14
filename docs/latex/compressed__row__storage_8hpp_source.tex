@@ -1,5 +1,5 @@
 \hypertarget{compressed__row__storage_8hpp_source}{}\doxysection{compressed\+\_\+row\+\_\+storage.\+hpp}
-\label{compressed__row__storage_8hpp_source}\index{src/sparse\_matrix/compressed\_row\_storage.hpp@{src/sparse\_matrix/compressed\_row\_storage.hpp}}
+\label{compressed__row__storage_8hpp_source}\index{src/type/compressed\_row\_storage.hpp@{src/type/compressed\_row\_storage.hpp}}
 \mbox{\hyperlink{compressed__row__storage_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
@@ -19,10 +19,10 @@
 \DoxyCodeLine{15 \textcolor{comment}{//  Created by Kohei Suzuki on 2021/05/20.}}
 \DoxyCodeLine{16 \textcolor{comment}{//}}
 \DoxyCodeLine{17 }
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_SPARSE\_MATRIX\_COMPRESSED\_ROW\_STORAGE\_HPP\_}}
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_SPARSE\_MATRIX\_COMPRESSED\_ROW\_STORAGE\_HPP\_}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_TYPE\_COMPRESSED\_ROW\_STORAGE\_HPP\_}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_TYPE\_COMPRESSED\_ROW\_STORAGE\_HPP\_}}
 \DoxyCodeLine{20 }
-\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}../utility/all.hpp"{}}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}../utility/sort.hpp"{}}}
 \DoxyCodeLine{22 }
 \DoxyCodeLine{23 \textcolor{preprocessor}{\#include <iostream>}}
 \DoxyCodeLine{24 \textcolor{preprocessor}{\#include <cstdint>}}
@@ -31,576 +31,603 @@
 \DoxyCodeLine{27 \textcolor{preprocessor}{\#include <sstream>}}
 \DoxyCodeLine{28 }
 \DoxyCodeLine{29 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
-\DoxyCodeLine{30 \textcolor{keyword}{namespace }sparse\_matrix \{}
+\DoxyCodeLine{30 \textcolor{keyword}{namespace }type \{}
 \DoxyCodeLine{31 }
-\DoxyCodeLine{33 \textcolor{keyword}{enum} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dc}{CRSTag}} \{}
+\DoxyCodeLine{33 \textcolor{keyword}{enum} \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}} \{}
 \DoxyCodeLine{34    }
-\DoxyCodeLine{36    \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dcae05bdf4bb6404aff5e00fb5c3b5eaca0}{NONE}} = 0,}
+\DoxyCodeLine{36    \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{NONE}} = 0,}
 \DoxyCodeLine{37    }
-\DoxyCodeLine{39    \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{FERMION}} = 1,}
+\DoxyCodeLine{39    \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{FERMION}} = 1,}
 \DoxyCodeLine{40    }
-\DoxyCodeLine{42    \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca05234a42c14cce89b03095163ab5ed42}{BOSON}} = 2,}
+\DoxyCodeLine{42    \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{BOSON}} = 2,}
 \DoxyCodeLine{43    }
-\DoxyCodeLine{45    \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dcab68331254a7c64a63ae149c44bfb74d8}{MIX}} = 3}
+\DoxyCodeLine{45    \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{MIX}} = 3}
 \DoxyCodeLine{46 \};}
 \DoxyCodeLine{47 }
-\DoxyCodeLine{50 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
-\DoxyCodeLine{51 \textcolor{keyword}{struct }\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \{}
+\DoxyCodeLine{50 \textcolor{keyword}{template}<\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{51 \textcolor{keyword}{struct }\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \{}
 \DoxyCodeLine{52    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{53    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Public Member Variables-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{54    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{55    std::int64\_t \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} = 0;}
-\DoxyCodeLine{56    std::int64\_t \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}} = 0;}
-\DoxyCodeLine{57    std::vector<std::int64\_t> \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}};}
-\DoxyCodeLine{58    std::vector<std::int64\_t> \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}};}
-\DoxyCodeLine{59    std::vector<RealType> \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}};}
-\DoxyCodeLine{60    \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dc}{CRSTag}} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a6e745b9eae6656c2210783e1e9d1d2b7}{tag}} = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dcae05bdf4bb6404aff5e00fb5c3b5eaca0}{CRSTag::NONE}};}
+\DoxyCodeLine{55    std::int64\_t \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} = 0;}
+\DoxyCodeLine{56    std::int64\_t \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}} = 0;}
+\DoxyCodeLine{57    std::vector<std::int64\_t> \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}};}
+\DoxyCodeLine{58    std::vector<std::int64\_t> \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}};}
+\DoxyCodeLine{59    std::vector<ValueType> \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}};}
+\DoxyCodeLine{60    \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aacfa2feb99e5970d2a2d0a07b2528577}{tag}} = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}};}
 \DoxyCodeLine{61 }
 \DoxyCodeLine{62    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{63    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Constructors-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{64    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{65    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad8ff5aced2c767e4f38f8c952f7cd638}{CRS}}(\textcolor{keyword}{const} std::int64\_t row\_dim\_in = 0, \textcolor{keyword}{const} std::int64\_t col\_dim\_in = 0, \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dc}{CRSTag}} tag\_in = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dcae05bdf4bb6404aff5e00fb5c3b5eaca0}{CRSTag::NONE}}) \{}
-\DoxyCodeLine{66       this-\/>row\_dim = row\_dim\_in;}
-\DoxyCodeLine{67       this-\/>col\_dim = col\_dim\_in;}
-\DoxyCodeLine{68       this-\/>row.resize(row\_dim\_in + 1);}
-\DoxyCodeLine{69 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{70       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i <= row\_dim\_in; ++i) \{}
-\DoxyCodeLine{71          this-\/>row[i] = 0;}
-\DoxyCodeLine{72       \}}
-\DoxyCodeLine{73       this-\/>tag = tag\_in;}
-\DoxyCodeLine{74    \}}
-\DoxyCodeLine{75    }
-\DoxyCodeLine{76    \textcolor{keyword}{explicit} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_abf651ae27c5d19a446933fce51a13ea6}{CRS}}(\textcolor{keyword}{const} std::vector<std::vector<RealType>> \&mat\_vec, \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dc}{CRSTag}} tag\_in = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dcae05bdf4bb6404aff5e00fb5c3b5eaca0}{CRSTag::NONE}}) \{}
-\DoxyCodeLine{77       this-\/>row\_dim = mat\_vec.size();}
-\DoxyCodeLine{78       this-\/>col\_dim = 0;}
-\DoxyCodeLine{79       this-\/>row.resize(this-\/>row\_dim + 1);}
-\DoxyCodeLine{80       this-\/>row[0] = 0;}
-\DoxyCodeLine{81       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{82          \textcolor{keyword}{const} std::int64\_t size = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(mat\_vec[i].size());}
-\DoxyCodeLine{83          \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < size;++j) \{}
-\DoxyCodeLine{84             \textcolor{keywordflow}{if} (mat\_vec[i][j] != 0.0) \{}
-\DoxyCodeLine{85                this-\/>col.push\_back(j);}
-\DoxyCodeLine{86                this-\/>val.push\_back(mat\_vec[i][j]);}
-\DoxyCodeLine{87             \}}
-\DoxyCodeLine{88             \textcolor{keywordflow}{if} (this-\/>col\_dim < j + 1) \{}
-\DoxyCodeLine{89                this-\/>col\_dim = j + 1;}
-\DoxyCodeLine{90             \}}
-\DoxyCodeLine{91          \}}
-\DoxyCodeLine{92          this-\/>row[i + 1] = this-\/>col.size();}
-\DoxyCodeLine{93       \}}
-\DoxyCodeLine{94       this-\/>tag = tag\_in;}
-\DoxyCodeLine{95    \}}
-\DoxyCodeLine{96    }
-\DoxyCodeLine{97    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a5fcddd1fd69cb414e15b7a35e173dfd9}{CRS}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&matrix) \{}
-\DoxyCodeLine{98       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ae9787c189eb909874211a098ba453ed7}{Assign}}(matrix);}
-\DoxyCodeLine{99    \}}
-\DoxyCodeLine{100    }
-\DoxyCodeLine{101    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af3b2dc61ff6a6eb35e65e879cdc08ee4}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&matrix) \& \{}
-\DoxyCodeLine{102       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ae9787c189eb909874211a098ba453ed7}{Assign}}(matrix);}
-\DoxyCodeLine{103       \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
-\DoxyCodeLine{104    \}}
-\DoxyCodeLine{105       }
-\DoxyCodeLine{106    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{107    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Public Member Functions-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{108    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{109    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ae9787c189eb909874211a098ba453ed7}{Assign}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&matrix) \{}
-\DoxyCodeLine{110       this-\/>row\_dim = matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}};}
-\DoxyCodeLine{111       this-\/>col\_dim = matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}};}
-\DoxyCodeLine{112       this-\/>row.resize(matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} + 1);}
-\DoxyCodeLine{113       }
-\DoxyCodeLine{114       this-\/>col.resize(matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.size());}
-\DoxyCodeLine{115       this-\/>val.resize(matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.size());}
-\DoxyCodeLine{116       }
-\DoxyCodeLine{117 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{118       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i <= matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{119          this-\/>row[i] = matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i];}
-\DoxyCodeLine{120       \}}
-\DoxyCodeLine{121       }
-\DoxyCodeLine{122 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{123       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.size(); ++i) \{}
-\DoxyCodeLine{124          this-\/>col[i] = matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[i];}
-\DoxyCodeLine{125          this-\/>val[i] = matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[i];}
-\DoxyCodeLine{126       \}}
-\DoxyCodeLine{127       this-\/>tag = matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a6e745b9eae6656c2210783e1e9d1d2b7}{tag}};}
-\DoxyCodeLine{128    \}}
-\DoxyCodeLine{129    }
-\DoxyCodeLine{130    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a818173aa562d5c541552627b1570244f}{MultiplyByScalar}}(\textcolor{keyword}{const} RealType coeef) \{}
-\DoxyCodeLine{131       \textcolor{keywordflow}{if} (coeef == 0.0) \{}
-\DoxyCodeLine{132 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{133          \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{134             this-\/>row[i + 1] = 0;}
-\DoxyCodeLine{135          \}}
-\DoxyCodeLine{136          this-\/>col.clear();}
-\DoxyCodeLine{137          this-\/>val.clear();}
-\DoxyCodeLine{138       \}}
-\DoxyCodeLine{139       \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{140 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{141          \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>col.size(); ++i) \{}
-\DoxyCodeLine{142             this-\/>val[i] *= coeef;}
-\DoxyCodeLine{143          \}}
-\DoxyCodeLine{144       \}}
-\DoxyCodeLine{145    \}}
-\DoxyCodeLine{146       }
-\DoxyCodeLine{147    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad64678d1387884cbf00aefd936ee3f36}{DiagonalScaling}}(\textcolor{keyword}{const} RealType diag\_add) \{}
-\DoxyCodeLine{148       \textcolor{keywordflow}{if} (this-\/>row\_dim != this-\/>col\_dim) \{}
-\DoxyCodeLine{149          std::stringstream ss;}
-\DoxyCodeLine{150          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
-\DoxyCodeLine{151          ss << \textcolor{stringliteral}{"{}The matrix is not a square matrix."{}} << std::endl;}
-\DoxyCodeLine{152          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
-\DoxyCodeLine{153       \}}
-\DoxyCodeLine{154 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{155       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{156          \textcolor{keywordtype}{bool} flag = \textcolor{keyword}{true};}
-\DoxyCodeLine{157          \textcolor{keywordflow}{for} (std::int64\_t j = this-\/>row[i]; j < this-\/>row[i + 1]; ++j) \{}
-\DoxyCodeLine{158             \textcolor{keywordflow}{if} (i == this-\/>col[j]) \{}
-\DoxyCodeLine{159                this-\/>val[j] += diag\_add;}
-\DoxyCodeLine{160                flag = \textcolor{keyword}{false};}
-\DoxyCodeLine{161                \textcolor{keywordflow}{break};}
-\DoxyCodeLine{162             \}}
-\DoxyCodeLine{163          \}}
-\DoxyCodeLine{164          \textcolor{keywordflow}{if} (flag) \{}
-\DoxyCodeLine{165             std::stringstream ss;}
-\DoxyCodeLine{166             ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
-\DoxyCodeLine{167             ss << \textcolor{stringliteral}{"{}Some of the diagonal components are not registered."{}} << std::endl;}
-\DoxyCodeLine{168             \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
-\DoxyCodeLine{169          \}}
-\DoxyCodeLine{170       \}}
-\DoxyCodeLine{171    \}}
-\DoxyCodeLine{172    }
-\DoxyCodeLine{173    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a5ad7bce09d843653a2e9e6651ef2a7eb}{Free}}() \{}
-\DoxyCodeLine{174       this-\/>row\_dim = 0;}
-\DoxyCodeLine{175       this-\/>col\_dim = 0;}
-\DoxyCodeLine{176       std::vector<std::int64\_t>().swap(this-\/>row);}
-\DoxyCodeLine{177       std::vector<std::int64\_t>().swap(this-\/>col);}
-\DoxyCodeLine{178       std::vector<RealType>().swap(this-\/>val);}
-\DoxyCodeLine{179       this-\/>row.push\_back(0);}
-\DoxyCodeLine{180       this-\/>tag = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dcae05bdf4bb6404aff5e00fb5c3b5eaca0}{CRSTag::NONE}};}
-\DoxyCodeLine{181    \}}
-\DoxyCodeLine{182    }
-\DoxyCodeLine{183    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ac196a07cc2959d23578ef9e25d2121c2}{Clear}}() \{}
-\DoxyCodeLine{184       this-\/>row\_dim = 0;}
-\DoxyCodeLine{185       this-\/>col\_dim = 0;}
-\DoxyCodeLine{186       this-\/>row.clear();}
-\DoxyCodeLine{187       this-\/>col.clear();}
-\DoxyCodeLine{188       this-\/>val.clear();}
-\DoxyCodeLine{189       this-\/>row.push\_back(0);}
-\DoxyCodeLine{190       this-\/>tag = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dcae05bdf4bb6404aff5e00fb5c3b5eaca0}{CRSTag::NONE}};}
-\DoxyCodeLine{191    \}}
-\DoxyCodeLine{192       }
-\DoxyCodeLine{193    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a461f3df023c6215768aca60b9743fe0c}{SortCol}}() \{}
-\DoxyCodeLine{194 \textcolor{preprocessor}{\#pragma omp parallel for schedule (guided)}}
-\DoxyCodeLine{195       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{196          utility::QuickSort<std::int64\_t, RealType>(\&this-\/>col, \&this-\/>val, this-\/>row[i], this-\/>row[i + 1]);}
-\DoxyCodeLine{197       \}}
-\DoxyCodeLine{198    \}}
-\DoxyCodeLine{199    }
-\DoxyCodeLine{200    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a630ce4a8d7feb26bf33521bbe35f12c2}{Print}}(\textcolor{keyword}{const} std::string display\_name = \textcolor{stringliteral}{"{}Matrix"{}})\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{201       std::cout << std::fixed;}
-\DoxyCodeLine{202       std::cout << std::setprecision(std::numeric\_limits<RealType>::max\_digits10);}
-\DoxyCodeLine{203       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{204          \textcolor{keywordflow}{for} (std::int64\_t j = this-\/>row.at(i); j < this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}.at(i+1); ++j) \{}
-\DoxyCodeLine{205             std::cout << display\_name << \textcolor{stringliteral}{"{}["{}};}
-\DoxyCodeLine{206             std::cout << std::noshowpos << std::left << std::setw(3) << i << \textcolor{stringliteral}{"{}]["{}};}
-\DoxyCodeLine{207             std::cout << std::left << std::setw(3) << this-\/>col[j] << \textcolor{stringliteral}{"{}]="{}};}
-\DoxyCodeLine{208             std::cout << std::showpos << this-\/>val[j] << std::endl;}
-\DoxyCodeLine{209          \}}
-\DoxyCodeLine{210       \}}
-\DoxyCodeLine{211       std::cout << std::noshowpos;}
-\DoxyCodeLine{212    \}}
-\DoxyCodeLine{213    }
-\DoxyCodeLine{214    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a984f9042aade4c462eca059bb64ee346}{PrintInfo}}(\textcolor{keyword}{const} std::string display\_name = \textcolor{stringliteral}{"{}Matrix"{}})\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{215       std::cout << std::fixed;}
-\DoxyCodeLine{216       std::cout << std::setprecision(std::numeric\_limits<RealType>::max\_digits10);}
-\DoxyCodeLine{217       std::cout << \textcolor{stringliteral}{"{}Print information about CRS: "{}} << display\_name << std::endl;}
-\DoxyCodeLine{218       std::cout << \textcolor{stringliteral}{"{}row\_dim = "{}} << this-\/>row\_dim << std::endl;}
-\DoxyCodeLine{219       std::cout << \textcolor{stringliteral}{"{}col\_dim = "{}} << this-\/>col\_dim << std::endl;}
-\DoxyCodeLine{220       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>row.size(); ++i) \{}
-\DoxyCodeLine{221          std::cout << \textcolor{stringliteral}{"{}row["{}} << i << \textcolor{stringliteral}{"{}] = "{}} << this-\/>row.at(i) << std::endl;}
-\DoxyCodeLine{222       \}}
-\DoxyCodeLine{223       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>col.size(); ++i) \{}
-\DoxyCodeLine{224          std::cout << \textcolor{stringliteral}{"{}col["{}} << i << \textcolor{stringliteral}{"{}] = "{}} << this-\/>col.at(i) << std::endl;}
-\DoxyCodeLine{225       \}}
-\DoxyCodeLine{226       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>val.size(); ++i) \{}
-\DoxyCodeLine{227          std::cout << \textcolor{stringliteral}{"{}val["{}} << i << \textcolor{stringliteral}{"{}] = "{}} << this-\/>val.at(i) << std::endl;}
-\DoxyCodeLine{228       \}}
-\DoxyCodeLine{229    \}}
-\DoxyCodeLine{230    }
-\DoxyCodeLine{231    \textcolor{keywordtype}{bool} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a2d8712384b5f694bfd6d8e51eed2888d}{isSymmetric}}(\textcolor{keyword}{const} RealType threshold = 0.000000000000001\textcolor{comment}{/*pow(10,-\/15)*/})\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{232       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{233          \textcolor{keywordflow}{for} (std::int64\_t j = this-\/>row[i]; j < this-\/>row[i + 1]; ++j) \{}
-\DoxyCodeLine{234             \textcolor{keyword}{const} \textcolor{keyword}{auto} iter\_begin = this-\/>col.begin() + this-\/>row[\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j]];}
-\DoxyCodeLine{235             \textcolor{keyword}{const} \textcolor{keyword}{auto} iter\_end   = this-\/>col.begin() + this-\/>row[\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j] + 1];}
-\DoxyCodeLine{236             \textcolor{keyword}{const} \textcolor{keyword}{auto} iter\_find  = std::lower\_bound(iter\_begin, iter\_end, i);}
-\DoxyCodeLine{237             \textcolor{keywordflow}{if} (iter\_find == iter\_end || *iter\_find != i) \{}
-\DoxyCodeLine{238                std::cout << \textcolor{stringliteral}{"{}The input matrix is not symmetric."{}} << std::endl;}
-\DoxyCodeLine{239                std::cout << \textcolor{stringliteral}{"{}Corresponding element does not exist."{}} << std::endl;}
-\DoxyCodeLine{240                std::cout << \textcolor{stringliteral}{"{}row="{}} << i << \textcolor{stringliteral}{"{}, col="{}} << \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j] << \textcolor{stringliteral}{"{}, val="{}} << \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j] << std::endl;}
-\DoxyCodeLine{241                \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{242             \}}
-\DoxyCodeLine{243             \textcolor{keyword}{const} \textcolor{keyword}{auto} inv = std::distance(iter\_begin, iter\_find);}
-\DoxyCodeLine{244             \textcolor{keywordflow}{if} (std::abs(this-\/>val[j] -\/ this-\/>val[inv]) > threshold) \{}
-\DoxyCodeLine{245                std::cout << \textcolor{stringliteral}{"{}The input matrix is not symmetric."{}} << std::endl;}
-\DoxyCodeLine{246                std::cout << \textcolor{stringliteral}{"{}M["{}} << i << \textcolor{stringliteral}{"{}]["{}} << this-\/>col[j] << \textcolor{stringliteral}{"{}]="{}} << this-\/>val[j] << \textcolor{stringliteral}{"{}, "{}} << this-\/>val[inv] << \textcolor{stringliteral}{"{}=M["{}} << this-\/>col[j] << \textcolor{stringliteral}{"{}]["{}} << i << \textcolor{stringliteral}{"{}]"{}} << std::endl;}
-\DoxyCodeLine{247                \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{248             \}}
-\DoxyCodeLine{249          \}}
-\DoxyCodeLine{250       \}}
-\DoxyCodeLine{251       \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
-\DoxyCodeLine{252    \}}
-\DoxyCodeLine{253    }
-\DoxyCodeLine{254 \};}
-\DoxyCodeLine{255 }
-\DoxyCodeLine{256 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2, \textcolor{keyword}{typename} T3>}
-\DoxyCodeLine{257 \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\}*T3\{0\})> \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a84aff8ca71e76b722c47c396a0fc16e6}{CalculateMatrixMatrixProduct}}(\textcolor{keyword}{const} T1 coeef\_1,}
-\DoxyCodeLine{258                                                               \textcolor{keyword}{const} CRS<T2> \&matrix\_1,}
-\DoxyCodeLine{259                                                               \textcolor{keyword}{const} CRS<T3> \&matrix\_2) \{}
-\DoxyCodeLine{260    }
-\DoxyCodeLine{261    \textcolor{keywordflow}{if} (matrix\_1.col\_dim != matrix\_2.row\_dim) \{}
-\DoxyCodeLine{262       std::stringstream ss;}
-\DoxyCodeLine{263       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
-\DoxyCodeLine{264       ss << \textcolor{stringliteral}{"{}Matrix product cannot be defined"{}} << std::endl;}
-\DoxyCodeLine{265       ss << \textcolor{stringliteral}{"{}matrix\_1.col\_dim = "{}} << matrix\_1.col\_dim << \textcolor{stringliteral}{"{}, matrix\_2.row\_dim = "{}} << matrix\_2.row\_dim << std::endl;}
-\DoxyCodeLine{266       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{65    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a37dba5ff2dc2e6e85bdbad49ec31cc44}{CRS}}(\textcolor{keyword}{const} std::int64\_t row\_dim\_in = 0, \textcolor{keyword}{const} std::int64\_t col\_dim\_in = 0, \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}} tag\_in = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}}) \{}
+\DoxyCodeLine{66       }
+\DoxyCodeLine{67       this-\/>row\_dim = row\_dim\_in;}
+\DoxyCodeLine{68       this-\/>col\_dim = col\_dim\_in;}
+\DoxyCodeLine{69       this-\/>row.resize(row\_dim\_in + 1);}
+\DoxyCodeLine{70 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{71       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i <= row\_dim\_in; ++i) \{}
+\DoxyCodeLine{72          this-\/>row[i] = 0;}
+\DoxyCodeLine{73       \}}
+\DoxyCodeLine{74       this-\/>tag = tag\_in;}
+\DoxyCodeLine{75    \}}
+\DoxyCodeLine{76    }
+\DoxyCodeLine{77    \textcolor{keyword}{explicit} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a70f2f713a02f7f93645598a2b33467e1}{CRS}}(\textcolor{keyword}{const} std::vector<std::vector<ValueType>> \&mat\_vec, \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}} tag\_in = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}}) \{}
+\DoxyCodeLine{78       this-\/>row\_dim = mat\_vec.size();}
+\DoxyCodeLine{79       this-\/>col\_dim = 0;}
+\DoxyCodeLine{80       this-\/>row.resize(this-\/>row\_dim + 1);}
+\DoxyCodeLine{81       this-\/>row[0] = 0;}
+\DoxyCodeLine{82       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{83          \textcolor{keyword}{const} std::int64\_t size = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(mat\_vec[i].size());}
+\DoxyCodeLine{84          \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < size;++j) \{}
+\DoxyCodeLine{85             \textcolor{keywordflow}{if} (mat\_vec[i][j] != 0.0) \{}
+\DoxyCodeLine{86                this-\/>col.push\_back(j);}
+\DoxyCodeLine{87                this-\/>val.push\_back(mat\_vec[i][j]);}
+\DoxyCodeLine{88             \}}
+\DoxyCodeLine{89             \textcolor{keywordflow}{if} (this-\/>col\_dim < j + 1) \{}
+\DoxyCodeLine{90                this-\/>col\_dim = j + 1;}
+\DoxyCodeLine{91             \}}
+\DoxyCodeLine{92          \}}
+\DoxyCodeLine{93          this-\/>row[i + 1] = this-\/>col.size();}
+\DoxyCodeLine{94       \}}
+\DoxyCodeLine{95       this-\/>tag = tag\_in;}
+\DoxyCodeLine{96    \}}
+\DoxyCodeLine{97    }
+\DoxyCodeLine{98    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a09b1269bff27d2b30aa935b504463e5e}{CRS}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&matrix) \{}
+\DoxyCodeLine{99       \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a90af006fe31ee7c3b9c2351f00e7a566}{Assign}}(matrix);}
+\DoxyCodeLine{100    \}}
+\DoxyCodeLine{101    }
+\DoxyCodeLine{102    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a17bc5dbecee0652fe96498f966320d14}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&matrix) \& \{}
+\DoxyCodeLine{103       \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a90af006fe31ee7c3b9c2351f00e7a566}{Assign}}(matrix);}
+\DoxyCodeLine{104       \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{105    \}}
+\DoxyCodeLine{106       }
+\DoxyCodeLine{107    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{108    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Public Member Functions-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{109    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{110    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a90af006fe31ee7c3b9c2351f00e7a566}{Assign}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&matrix) \{}
+\DoxyCodeLine{111       this-\/>row\_dim = matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}};}
+\DoxyCodeLine{112       this-\/>col\_dim = matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}};}
+\DoxyCodeLine{113       this-\/>row.resize(matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} + 1);}
+\DoxyCodeLine{114       }
+\DoxyCodeLine{115       this-\/>col.resize(matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.size());}
+\DoxyCodeLine{116       this-\/>val.resize(matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.size());}
+\DoxyCodeLine{117       }
+\DoxyCodeLine{118 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{119       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i <= matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{120          this-\/>row[i] = matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i];}
+\DoxyCodeLine{121       \}}
+\DoxyCodeLine{122       }
+\DoxyCodeLine{123 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{124       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.size(); ++i) \{}
+\DoxyCodeLine{125          this-\/>col[i] = matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[i];}
+\DoxyCodeLine{126          this-\/>val[i] = matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[i];}
+\DoxyCodeLine{127       \}}
+\DoxyCodeLine{128       this-\/>tag = matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aacfa2feb99e5970d2a2d0a07b2528577}{tag}};}
+\DoxyCodeLine{129    \}}
+\DoxyCodeLine{130    }
+\DoxyCodeLine{131    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a318f4f77bbe19e1e082c2c5710afe60c}{MultiplyByScalar}}(\textcolor{keyword}{const} ValueType coeef) \{}
+\DoxyCodeLine{132       \textcolor{keywordflow}{if} (coeef == 0.0) \{}
+\DoxyCodeLine{133 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{134          \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{135             this-\/>row[i + 1] = 0;}
+\DoxyCodeLine{136          \}}
+\DoxyCodeLine{137          this-\/>col.clear();}
+\DoxyCodeLine{138          this-\/>val.clear();}
+\DoxyCodeLine{139       \}}
+\DoxyCodeLine{140       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{141 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{142          \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>col.size(); ++i) \{}
+\DoxyCodeLine{143             this-\/>val[i] *= coeef;}
+\DoxyCodeLine{144          \}}
+\DoxyCodeLine{145       \}}
+\DoxyCodeLine{146    \}}
+\DoxyCodeLine{147       }
+\DoxyCodeLine{148    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aeaa037a9aeb2896778db4f00f4fc1ad9}{DiagonalScaling}}(\textcolor{keyword}{const} ValueType diag\_add) \{}
+\DoxyCodeLine{149       \textcolor{keywordflow}{if} (this-\/>row\_dim != this-\/>col\_dim) \{}
+\DoxyCodeLine{150          std::stringstream ss;}
+\DoxyCodeLine{151          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
+\DoxyCodeLine{152          ss << \textcolor{stringliteral}{"{}The matrix is not a square matrix."{}} << std::endl;}
+\DoxyCodeLine{153          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{154       \}}
+\DoxyCodeLine{155 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{156       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{157          \textcolor{keywordtype}{bool} flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{158          \textcolor{keywordflow}{for} (std::int64\_t j = this-\/>row[i]; j < this-\/>row[i + 1]; ++j) \{}
+\DoxyCodeLine{159             \textcolor{keywordflow}{if} (i == this-\/>col[j]) \{}
+\DoxyCodeLine{160                this-\/>val[j] += diag\_add;}
+\DoxyCodeLine{161                flag = \textcolor{keyword}{false};}
+\DoxyCodeLine{162                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{163             \}}
+\DoxyCodeLine{164          \}}
+\DoxyCodeLine{165          \textcolor{keywordflow}{if} (flag) \{}
+\DoxyCodeLine{166             std::stringstream ss;}
+\DoxyCodeLine{167             ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
+\DoxyCodeLine{168             ss << \textcolor{stringliteral}{"{}Some of the diagonal components are not registered."{}} << std::endl;}
+\DoxyCodeLine{169             \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{170          \}}
+\DoxyCodeLine{171       \}}
+\DoxyCodeLine{172    \}}
+\DoxyCodeLine{173    }
+\DoxyCodeLine{174    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a873a86015ef3b94d2431334d19fd8777}{Free}}() \{}
+\DoxyCodeLine{175       this-\/>row\_dim = 0;}
+\DoxyCodeLine{176       this-\/>col\_dim = 0;}
+\DoxyCodeLine{177       std::vector<std::int64\_t>().swap(this-\/>row);}
+\DoxyCodeLine{178       std::vector<std::int64\_t>().swap(this-\/>col);}
+\DoxyCodeLine{179       std::vector<ValueType>().swap(this-\/>val);}
+\DoxyCodeLine{180       this-\/>row.push\_back(0);}
+\DoxyCodeLine{181       this-\/>tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}};}
+\DoxyCodeLine{182    \}}
+\DoxyCodeLine{183    }
+\DoxyCodeLine{184    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_ab14acaeda07d595338c416e45aff812b}{Clear}}() \{}
+\DoxyCodeLine{185       this-\/>row\_dim = 0;}
+\DoxyCodeLine{186       this-\/>col\_dim = 0;}
+\DoxyCodeLine{187       this-\/>row.clear();}
+\DoxyCodeLine{188       this-\/>col.clear();}
+\DoxyCodeLine{189       this-\/>val.clear();}
+\DoxyCodeLine{190       this-\/>row.push\_back(0);}
+\DoxyCodeLine{191       this-\/>tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}};}
+\DoxyCodeLine{192    \}}
+\DoxyCodeLine{193       }
+\DoxyCodeLine{194    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa8519157c209179f8e84e3b18dd9faa8}{SortCol}}() \{}
+\DoxyCodeLine{195 \textcolor{preprocessor}{\#pragma omp parallel for schedule (guided)}}
+\DoxyCodeLine{196       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{197          utility::QuickSort<std::int64\_t, ValueType>(\&this-\/>col, \&this-\/>val, this-\/>row[i], this-\/>row[i + 1]);}
+\DoxyCodeLine{198       \}}
+\DoxyCodeLine{199    \}}
+\DoxyCodeLine{200    }
+\DoxyCodeLine{201    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a4d74d6e1bd95f86be8364cb576aa4479}{Print}}(\textcolor{keyword}{const} std::string display\_name = \textcolor{stringliteral}{"{}Matrix"{}})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{202       std::cout << std::fixed;}
+\DoxyCodeLine{203       std::cout << std::setprecision(std::numeric\_limits<ValueType>::max\_digits10);}
+\DoxyCodeLine{204       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{205          \textcolor{keywordflow}{for} (std::int64\_t j = this-\/>row.at(i); j < this-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}.at(i+1); ++j) \{}
+\DoxyCodeLine{206             std::cout << display\_name << \textcolor{stringliteral}{"{}["{}};}
+\DoxyCodeLine{207             std::cout << std::noshowpos << std::left << std::setw(3) << i << \textcolor{stringliteral}{"{}]["{}};}
+\DoxyCodeLine{208             std::cout << std::left << std::setw(3) << this-\/>col[j] << \textcolor{stringliteral}{"{}]="{}};}
+\DoxyCodeLine{209             std::cout << std::showpos << this-\/>val[j] << std::endl;}
+\DoxyCodeLine{210          \}}
+\DoxyCodeLine{211       \}}
+\DoxyCodeLine{212       std::cout << std::noshowpos;}
+\DoxyCodeLine{213    \}}
+\DoxyCodeLine{214    }
+\DoxyCodeLine{215    \textcolor{keywordtype}{void} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_ab90f8eeff163c77713811f990d4ab5a0}{PrintInfo}}(\textcolor{keyword}{const} std::string display\_name = \textcolor{stringliteral}{"{}Matrix"{}})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{216       std::cout << std::fixed;}
+\DoxyCodeLine{217       std::cout << std::setprecision(std::numeric\_limits<ValueType>::max\_digits10);}
+\DoxyCodeLine{218       std::cout << \textcolor{stringliteral}{"{}Print information about CRS: "{}} << display\_name << std::endl;}
+\DoxyCodeLine{219       std::cout << \textcolor{stringliteral}{"{}row\_dim = "{}} << this-\/>row\_dim << std::endl;}
+\DoxyCodeLine{220       std::cout << \textcolor{stringliteral}{"{}col\_dim = "{}} << this-\/>col\_dim << std::endl;}
+\DoxyCodeLine{221       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>row.size(); ++i) \{}
+\DoxyCodeLine{222          std::cout << \textcolor{stringliteral}{"{}row["{}} << i << \textcolor{stringliteral}{"{}] = "{}} << this-\/>row.at(i) << std::endl;}
+\DoxyCodeLine{223       \}}
+\DoxyCodeLine{224       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>col.size(); ++i) \{}
+\DoxyCodeLine{225          std::cout << \textcolor{stringliteral}{"{}col["{}} << i << \textcolor{stringliteral}{"{}] = "{}} << this-\/>col.at(i) << std::endl;}
+\DoxyCodeLine{226       \}}
+\DoxyCodeLine{227       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>val.size(); ++i) \{}
+\DoxyCodeLine{228          std::cout << \textcolor{stringliteral}{"{}val["{}} << i << \textcolor{stringliteral}{"{}] = "{}} << this-\/>val.at(i) << std::endl;}
+\DoxyCodeLine{229       \}}
+\DoxyCodeLine{230    \}}
+\DoxyCodeLine{231    }
+\DoxyCodeLine{232    \textcolor{keywordtype}{bool} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a3b910e315a8172954534c526ca173031}{isSymmetric}}(\textcolor{keyword}{const} ValueType threshold = 0.000000000000001\textcolor{comment}{/*pow(10,-\/15)*/})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{233       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{234          \textcolor{keywordflow}{for} (std::int64\_t j = this-\/>row[i]; j < this-\/>row[i + 1]; ++j) \{}
+\DoxyCodeLine{235             \textcolor{keyword}{const} \textcolor{keyword}{auto} iter\_begin = this-\/>col.begin() + this-\/>row[\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j]];}
+\DoxyCodeLine{236             \textcolor{keyword}{const} \textcolor{keyword}{auto} iter\_end   = this-\/>col.begin() + this-\/>row[\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j] + 1];}
+\DoxyCodeLine{237             \textcolor{keyword}{const} \textcolor{keyword}{auto} iter\_find  = std::lower\_bound(iter\_begin, iter\_end, i);}
+\DoxyCodeLine{238             \textcolor{keywordflow}{if} (iter\_find == iter\_end || *iter\_find != i) \{}
+\DoxyCodeLine{239                std::cout << \textcolor{stringliteral}{"{}The input matrix is not symmetric."{}} << std::endl;}
+\DoxyCodeLine{240                std::cout << \textcolor{stringliteral}{"{}Corresponding element does not exist."{}} << std::endl;}
+\DoxyCodeLine{241                std::cout << \textcolor{stringliteral}{"{}row="{}} << i << \textcolor{stringliteral}{"{}, col="{}} << \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j] << \textcolor{stringliteral}{"{}, val="{}} << \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j] << std::endl;}
+\DoxyCodeLine{242                \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{243             \}}
+\DoxyCodeLine{244             \textcolor{keyword}{const} \textcolor{keyword}{auto} inv = std::distance(iter\_begin, iter\_find);}
+\DoxyCodeLine{245             \textcolor{keywordflow}{if} (std::abs(this-\/>val[j] -\/ this-\/>val[inv]) > threshold) \{}
+\DoxyCodeLine{246                std::cout << \textcolor{stringliteral}{"{}The input matrix is not symmetric."{}} << std::endl;}
+\DoxyCodeLine{247                std::cout << \textcolor{stringliteral}{"{}M["{}} << i << \textcolor{stringliteral}{"{}]["{}} << this-\/>col[j] << \textcolor{stringliteral}{"{}]="{}} << this-\/>val[j] << \textcolor{stringliteral}{"{}, "{}} << this-\/>val[inv] << \textcolor{stringliteral}{"{}=M["{}} << this-\/>col[j] << \textcolor{stringliteral}{"{}]["{}} << i << \textcolor{stringliteral}{"{}]"{}} << std::endl;}
+\DoxyCodeLine{248                \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{249             \}}
+\DoxyCodeLine{250          \}}
+\DoxyCodeLine{251       \}}
+\DoxyCodeLine{252       \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{253    \}}
+\DoxyCodeLine{254    }
+\DoxyCodeLine{255    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{256    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator Overloading-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{257    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{259 \textcolor{comment}{}   \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_ad91a2437f8d08e7dc483a45d42ba80bc}{operator+}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{260       \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{261    \}}
+\DoxyCodeLine{262    }
+\DoxyCodeLine{264    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9c48d4b112148748d8506cc63b1ec6dc}{operator-\/}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{265       \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a318f4f77bbe19e1e082c2c5710afe60c}{MultiplyByScalar}}(ValueType\{-\/1.0\});}
+\DoxyCodeLine{266       \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
 \DoxyCodeLine{267    \}}
 \DoxyCodeLine{268    }
-\DoxyCodeLine{269    CRS<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\}*T3\{0\})> matrix\_out(matrix\_1.row\_dim, matrix\_2.col\_dim);}
-\DoxyCodeLine{270    }
-\DoxyCodeLine{271    std::vector<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\})>       temp\_v1(matrix\_1.col\_dim, 0.0);}
-\DoxyCodeLine{272    std::vector<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\}*T3\{0\})> temp\_v2(matrix\_2.col\_dim, 0.0);}
-\DoxyCodeLine{273    }
-\DoxyCodeLine{274    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_1.row\_dim; ++i) \{}
-\DoxyCodeLine{275       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_1.row[i]; j < matrix\_1.row[i + 1]; ++j) \{}
-\DoxyCodeLine{276          temp\_v1[matrix\_1.col[j]] = coeef\_1*matrix\_1.val[j];}
-\DoxyCodeLine{277       \}}
-\DoxyCodeLine{278       \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < matrix\_1.col\_dim; ++j) \{}
-\DoxyCodeLine{279          \textcolor{keywordflow}{for} (std::int64\_t k = matrix\_2.row[j]; k < matrix\_2.row[j + 1]; ++k) \{}
-\DoxyCodeLine{280             temp\_v2[matrix\_2.col[k]] += temp\_v1[j]*matrix\_2.val[k];}
-\DoxyCodeLine{281          \}}
-\DoxyCodeLine{282       \}}
-\DoxyCodeLine{283       \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < matrix\_2.col\_dim; ++j) \{}
-\DoxyCodeLine{284          \textcolor{keywordflow}{if} (std::abs(temp\_v2[j]) > 0.0) \{}
-\DoxyCodeLine{285             matrix\_out.val.push\_back(temp\_v2[j]);}
-\DoxyCodeLine{286             matrix\_out.col.push\_back(j);}
-\DoxyCodeLine{287          \}}
-\DoxyCodeLine{288       \}}
-\DoxyCodeLine{289       }
-\DoxyCodeLine{290       matrix\_out.row[i + 1] = matrix\_out.col.size();}
-\DoxyCodeLine{291       }
-\DoxyCodeLine{292       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_1.row[i]; j < matrix\_1.row[i + 1]; ++j) \{}
-\DoxyCodeLine{293          temp\_v1[matrix\_1.col[j]] = 0.0;}
-\DoxyCodeLine{294       \}}
-\DoxyCodeLine{295       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_out.row[i]; j < matrix\_out.row[i + 1]; ++j) \{}
-\DoxyCodeLine{296          temp\_v2[matrix\_out.col[j]] = 0.0;}
-\DoxyCodeLine{297       \}}
-\DoxyCodeLine{298    \}}
-\DoxyCodeLine{299    }
-\DoxyCodeLine{300    \textcolor{keywordflow}{if} (matrix\_1.tag == \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dcae05bdf4bb6404aff5e00fb5c3b5eaca0}{CRSTag::NONE}}) \{}
-\DoxyCodeLine{301       matrix\_out.tag = matrix\_2.tag;}
-\DoxyCodeLine{302    \}}
-\DoxyCodeLine{303    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.tag == \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{CRSTag::FERMION}}) \{}
-\DoxyCodeLine{304       \textcolor{keywordflow}{if} (matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dcae05bdf4bb6404aff5e00fb5c3b5eaca0}{CRSTag::NONE}} || matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca05234a42c14cce89b03095163ab5ed42}{CRSTag::BOSON}}) \{}
-\DoxyCodeLine{305          matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{CRSTag::FERMION}};}
-\DoxyCodeLine{306       \}}
-\DoxyCodeLine{307       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{CRSTag::FERMION}}) \{}
-\DoxyCodeLine{308          matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca05234a42c14cce89b03095163ab5ed42}{CRSTag::BOSON}};}
-\DoxyCodeLine{309       \}}
-\DoxyCodeLine{310       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dcab68331254a7c64a63ae149c44bfb74d8}{CRSTag::MIX}}) \{}
-\DoxyCodeLine{311          matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dcab68331254a7c64a63ae149c44bfb74d8}{CRSTag::MIX}};}
-\DoxyCodeLine{312       \}}
-\DoxyCodeLine{313       \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{314          std::stringstream ss;}
-\DoxyCodeLine{315          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
-\DoxyCodeLine{316          ss << \textcolor{stringliteral}{"{}Unknown CRSTag detected."{}};}
-\DoxyCodeLine{317          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
-\DoxyCodeLine{318       \}}
-\DoxyCodeLine{319    \}}
-\DoxyCodeLine{320    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.tag == \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca05234a42c14cce89b03095163ab5ed42}{CRSTag::BOSON}}) \{}
-\DoxyCodeLine{321       \textcolor{keywordflow}{if} (matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{CRSTag::FERMION}} || matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca05234a42c14cce89b03095163ab5ed42}{CRSTag::BOSON}} || matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dcab68331254a7c64a63ae149c44bfb74d8}{CRSTag::MIX}}) \{}
-\DoxyCodeLine{322          matrix\_out.tag = matrix\_2.tag;}
-\DoxyCodeLine{323       \}}
-\DoxyCodeLine{324       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dcae05bdf4bb6404aff5e00fb5c3b5eaca0}{CRSTag::NONE}}) \{}
-\DoxyCodeLine{325          matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca05234a42c14cce89b03095163ab5ed42}{CRSTag::BOSON}};}
-\DoxyCodeLine{326       \}}
-\DoxyCodeLine{327       \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{328          std::stringstream ss;}
-\DoxyCodeLine{329          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
-\DoxyCodeLine{330          ss << \textcolor{stringliteral}{"{}Unknown CRSTag detected."{}};}
-\DoxyCodeLine{331          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
-\DoxyCodeLine{332       \}}
-\DoxyCodeLine{333    \}}
-\DoxyCodeLine{334    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.tag == \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dcab68331254a7c64a63ae149c44bfb74d8}{CRSTag::MIX}}) \{}
-\DoxyCodeLine{335       matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dcab68331254a7c64a63ae149c44bfb74d8}{CRSTag::MIX}};}
-\DoxyCodeLine{336    \}}
-\DoxyCodeLine{337    \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{338       std::stringstream ss;}
-\DoxyCodeLine{339       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
-\DoxyCodeLine{340       ss << \textcolor{stringliteral}{"{}Unknown CRSTag detected."{}};}
-\DoxyCodeLine{341       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
-\DoxyCodeLine{342    \}}
-\DoxyCodeLine{343    }
-\DoxyCodeLine{344    \textcolor{keywordflow}{return} matrix\_out;}
-\DoxyCodeLine{345 \}}
-\DoxyCodeLine{346 }
-\DoxyCodeLine{347 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2, \textcolor{keyword}{typename} T3, \textcolor{keyword}{typename} T4>}
-\DoxyCodeLine{348 \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}+T2\{0\}+T3\{0\}+T4\{0\})> \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_afe9699b31d9d2e37532767c6039a813a}{CalculateMatrixMatrixSum}}(\textcolor{keyword}{const} T1 coeef\_1,}
-\DoxyCodeLine{349                                                                 \textcolor{keyword}{const} CRS<T2> \&matrix\_1,}
-\DoxyCodeLine{350                                                                 \textcolor{keyword}{const} T3 coeef\_2,}
-\DoxyCodeLine{351                                                                 \textcolor{keyword}{const} CRS<T4> \&matrix\_2) \{}
-\DoxyCodeLine{352    }
-\DoxyCodeLine{353    \textcolor{keywordflow}{if} (matrix\_1.row\_dim != matrix\_2.row\_dim || matrix\_1.col\_dim != matrix\_2.col\_dim) \{}
-\DoxyCodeLine{354       std::stringstream ss;}
-\DoxyCodeLine{355       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
-\DoxyCodeLine{356       ss << \textcolor{stringliteral}{"{}The summation of the matrices cannot be defined."{}} << std::endl;}
-\DoxyCodeLine{357       ss << \textcolor{stringliteral}{"{}matrix\_1.row\_dim = "{}} << matrix\_1.row\_dim << \textcolor{stringliteral}{"{}, matrix\_1.col\_dim = "{}} << matrix\_1.col\_dim << std::endl;}
-\DoxyCodeLine{358       ss << \textcolor{stringliteral}{"{}matrix\_2.row\_dim = "{}} << matrix\_2.row\_dim << \textcolor{stringliteral}{"{}, matrix\_2.col\_dim = "{}} << matrix\_2.col\_dim << std::endl;}
-\DoxyCodeLine{359       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{272    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{273    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}}\& \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a5fc60cf81a8120deaaae3d685867bd1b}{operator+=}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS<T>}} rhs) \{}
+\DoxyCodeLine{274       \textcolor{keywordflow}{return} *\textcolor{keyword}{this} = *\textcolor{keyword}{this} + rhs;}
+\DoxyCodeLine{275    \}}
+\DoxyCodeLine{276    }
+\DoxyCodeLine{280    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{281    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}}\& \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a6986b81763637e7dc98a88e2770add44}{operator-\/=}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS<T>}} rhs) \{}
+\DoxyCodeLine{282       \textcolor{keywordflow}{return} *\textcolor{keyword}{this} = *\textcolor{keyword}{this} -\/ rhs;}
+\DoxyCodeLine{283    \}}
+\DoxyCodeLine{284    }
+\DoxyCodeLine{288    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{289    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}}\& \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a09c3243946c0505cf83f025c9b7a6020}{operator*=}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS<T>}} rhs) \{}
+\DoxyCodeLine{290       \textcolor{keywordflow}{return} *\textcolor{keyword}{this} = *\textcolor{keyword}{this} * rhs;}
+\DoxyCodeLine{291    \}}
+\DoxyCodeLine{292    }
+\DoxyCodeLine{293 \};}
+\DoxyCodeLine{294 }
+\DoxyCodeLine{295 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{296 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator overloading-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{297 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{303 \textcolor{comment}{}\textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{304 \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}+T2\{0\})> \textcolor{keyword}{operator}+(\textcolor{keyword}{const} CRS<T1> \&lhs, \textcolor{keyword}{const} CRS<T2> \&rhs) \{}
+\DoxyCodeLine{305    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_aab183cd2077b21a5126d0927d9ac4756}{CalculateMatrixMatrixSum}}(T1\{1\}, lhs, T2\{1\}, rhs);}
+\DoxyCodeLine{306 \}}
+\DoxyCodeLine{307 }
+\DoxyCodeLine{313 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{314 \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}-\/T2\{0\})> \textcolor{keyword}{operator}-\/(\textcolor{keyword}{const} CRS<T1> \&lhs, \textcolor{keyword}{const} CRS<T2> \&rhs) \{}
+\DoxyCodeLine{315    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_aab183cd2077b21a5126d0927d9ac4756}{CalculateMatrixMatrixSum}}(T1\{1\}, lhs, T2\{-\/1\}, rhs);}
+\DoxyCodeLine{316 \}}
+\DoxyCodeLine{317 }
+\DoxyCodeLine{323 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{324 \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\})> \textcolor{keyword}{operator}*(\textcolor{keyword}{const} CRS<T1> \&lhs, \textcolor{keyword}{const} CRS<T2> \&rhs) \{}
+\DoxyCodeLine{325    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_ad4084b7468d3900b83b409da1b0d9254}{CalculateMatrixMatrixProduct}}(T1\{1\}, lhs, rhs);}
+\DoxyCodeLine{326 \}}
+\DoxyCodeLine{327 }
+\DoxyCodeLine{333 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{334 \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\})> \textcolor{keyword}{operator}*(\textcolor{keyword}{const} T1 lhs, \textcolor{keyword}{const} CRS<T2> \&rhs) \{}
+\DoxyCodeLine{335    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_a3d20246b76133046a66537e761e8b5cc}{CalculateScalarMatrixProduct}}(lhs, rhs);}
+\DoxyCodeLine{336 \}}
+\DoxyCodeLine{337 }
+\DoxyCodeLine{343 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{344 \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\})> \textcolor{keyword}{operator}*(\textcolor{keyword}{const} CRS<T1> \&lhs, \textcolor{keyword}{const} T2 rhs) \{}
+\DoxyCodeLine{345    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_a3d20246b76133046a66537e761e8b5cc}{CalculateScalarMatrixProduct}}(rhs, lhs);}
+\DoxyCodeLine{346 \}}
+\DoxyCodeLine{347 }
+\DoxyCodeLine{353 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{354 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_a0ac388bfa253c05504da2301092939bf}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&rhs) \{}
+\DoxyCodeLine{355    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} != rhs.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}) \{}
+\DoxyCodeLine{356       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{357    \}}
+\DoxyCodeLine{358    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}} != rhs.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}}) \{}
+\DoxyCodeLine{359       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
 \DoxyCodeLine{360    \}}
-\DoxyCodeLine{361       }
-\DoxyCodeLine{362    CRS<\textcolor{keyword}{decltype}(T1\{0\}+T2\{0\}+T3\{0\}+T4\{0\})> matrix\_out(matrix\_1.row\_dim, matrix\_1.col\_dim);}
-\DoxyCodeLine{363    }
-\DoxyCodeLine{364    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_1.row\_dim; ++i) \{}
-\DoxyCodeLine{365       }
-\DoxyCodeLine{366       \textcolor{keywordtype}{int} check = 0;}
-\DoxyCodeLine{367       std::int64\_t count\_1 = 0;}
-\DoxyCodeLine{368       std::int64\_t count\_2 = 0;}
-\DoxyCodeLine{369       }
-\DoxyCodeLine{370       \textcolor{keyword}{const} std::int64\_t row\_lower\_1 = matrix\_1.row[  i  ];}
-\DoxyCodeLine{371       \textcolor{keyword}{const} std::int64\_t row\_upper\_1 = matrix\_1.row[i + 1];}
-\DoxyCodeLine{372       \textcolor{keyword}{const} std::int64\_t row\_lower\_2 = matrix\_2.row[  i  ];}
-\DoxyCodeLine{373       \textcolor{keyword}{const} std::int64\_t row\_upper\_2 = matrix\_2.row[i + 1];}
-\DoxyCodeLine{374       }
-\DoxyCodeLine{375       \textcolor{keyword}{const} std::int64\_t m1\_count = row\_upper\_1 -\/ row\_lower\_1;}
-\DoxyCodeLine{376       \textcolor{keyword}{const} std::int64\_t m2\_count = row\_upper\_2 -\/ row\_lower\_2;}
-\DoxyCodeLine{377       }
-\DoxyCodeLine{378       \textcolor{keywordflow}{if} (m1\_count != 0 \&\& m2\_count == 0) \{}
-\DoxyCodeLine{379          \textcolor{keywordflow}{for} (std::int64\_t j = row\_lower\_1; j < row\_upper\_1; ++j) \{}
-\DoxyCodeLine{380             matrix\_out.val.push\_back(coeef\_1*matrix\_1.val[j]);}
-\DoxyCodeLine{381             matrix\_out.col.push\_back(matrix\_1.col[j]);}
-\DoxyCodeLine{382          \}}
-\DoxyCodeLine{383       \}}
-\DoxyCodeLine{384       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (m1\_count == 0 \&\& m2\_count != 0) \{}
-\DoxyCodeLine{385          \textcolor{keywordflow}{for} (std::int64\_t j = row\_lower\_2; j < row\_upper\_2; ++j) \{}
-\DoxyCodeLine{386             matrix\_out.val.push\_back(coeef\_2*matrix\_2.val[j]);}
-\DoxyCodeLine{387             matrix\_out.col.push\_back(matrix\_2.col[j]);}
-\DoxyCodeLine{388          \}}
-\DoxyCodeLine{389       \}}
-\DoxyCodeLine{390       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (m1\_count != 0 \&\& m2\_count != 0) \{}
-\DoxyCodeLine{391          \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < m1\_count + m2\_count; ++j) \{}
-\DoxyCodeLine{392             \textcolor{keywordflow}{if} (matrix\_1.col[row\_lower\_1 + count\_1] < matrix\_2.col[row\_lower\_2 + count\_2]) \{}
-\DoxyCodeLine{393                matrix\_out.val.push\_back(coeef\_1*matrix\_1.val[row\_lower\_1 + count\_1]);}
-\DoxyCodeLine{394                matrix\_out.col.push\_back(matrix\_1.col[row\_lower\_1 + count\_1]);}
-\DoxyCodeLine{395                count\_1++;}
-\DoxyCodeLine{396                \textcolor{keywordflow}{if} (row\_lower\_1 + count\_1 == row\_upper\_1) \{}
-\DoxyCodeLine{397                   check = 1;}
-\DoxyCodeLine{398                   \textcolor{keywordflow}{break};}
-\DoxyCodeLine{399                \}}
-\DoxyCodeLine{400             \}}
-\DoxyCodeLine{401             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.col[row\_lower\_1 + count\_1] == matrix\_2.col[row\_lower\_2 + count\_2]) \{}
-\DoxyCodeLine{402                \textcolor{keyword}{const} \textcolor{keyword}{auto} val = coeef\_1*matrix\_1.val[row\_lower\_1 + count\_1] + coeef\_2*matrix\_2.val[row\_lower\_2 + count\_2];}
-\DoxyCodeLine{403                \textcolor{keywordflow}{if} (std::abs(val) > 0.0) \{}
-\DoxyCodeLine{404                   matrix\_out.val.push\_back(val);}
-\DoxyCodeLine{405                   matrix\_out.col.push\_back(matrix\_1.col[row\_lower\_1 + count\_1]);}
-\DoxyCodeLine{406                   count\_1++;}
-\DoxyCodeLine{407                   count\_2++;}
-\DoxyCodeLine{408                   \textcolor{keyword}{const} std::int64\_t temp\_count\_1 = row\_lower\_1 + count\_1;}
-\DoxyCodeLine{409                   \textcolor{keyword}{const} std::int64\_t temp\_count\_2 = row\_lower\_2 + count\_2;}
-\DoxyCodeLine{410                   \textcolor{keywordflow}{if} (temp\_count\_1 == row\_upper\_1 \&\& temp\_count\_2 < row\_upper\_2) \{}
-\DoxyCodeLine{411                      check = 1;}
-\DoxyCodeLine{412                      \textcolor{keywordflow}{break};}
-\DoxyCodeLine{413                   \}}
-\DoxyCodeLine{414                   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (temp\_count\_1 < row\_upper\_1 \&\& temp\_count\_2 == row\_upper\_2) \{}
-\DoxyCodeLine{415                      check = 2;}
-\DoxyCodeLine{416                      \textcolor{keywordflow}{break};}
-\DoxyCodeLine{417                   \}}
-\DoxyCodeLine{418                   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (temp\_count\_1 == row\_upper\_1 \&\& temp\_count\_2 == row\_upper\_2) \{}
-\DoxyCodeLine{419                      check = 0;}
-\DoxyCodeLine{420                      \textcolor{keywordflow}{break};}
-\DoxyCodeLine{421                   \}}
-\DoxyCodeLine{422                \}}
-\DoxyCodeLine{423                \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{424                   count\_1++;}
-\DoxyCodeLine{425                   count\_2++;}
-\DoxyCodeLine{426                   \textcolor{keyword}{const} std::int64\_t temp\_count\_1 = row\_lower\_1 + count\_1;}
-\DoxyCodeLine{427                   \textcolor{keyword}{const} std::int64\_t temp\_count\_2 = row\_lower\_2 + count\_2;}
-\DoxyCodeLine{428                   \textcolor{keywordflow}{if} (temp\_count\_1 == row\_upper\_1 \&\& temp\_count\_2 < row\_upper\_2) \{}
-\DoxyCodeLine{429                      check = 1;}
-\DoxyCodeLine{430                      \textcolor{keywordflow}{break};}
-\DoxyCodeLine{431                   \}}
-\DoxyCodeLine{432                   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (temp\_count\_1 < row\_upper\_1 \&\& temp\_count\_2 == row\_upper\_2) \{}
-\DoxyCodeLine{433                      check = 2;}
-\DoxyCodeLine{434                      \textcolor{keywordflow}{break};}
-\DoxyCodeLine{435                   \}}
-\DoxyCodeLine{436                   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (temp\_count\_1 == row\_upper\_1 \&\& temp\_count\_2 == row\_upper\_2) \{}
-\DoxyCodeLine{437                      check = 0;}
-\DoxyCodeLine{438                      \textcolor{keywordflow}{break};}
-\DoxyCodeLine{439                   \}}
-\DoxyCodeLine{440                \}}
-\DoxyCodeLine{441             \}}
-\DoxyCodeLine{442             \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{443                matrix\_out.val.push\_back(coeef\_2*matrix\_2.val[row\_lower\_2 + count\_2]);}
-\DoxyCodeLine{444                matrix\_out.col.push\_back(matrix\_2.col[row\_lower\_2 + count\_2]);}
-\DoxyCodeLine{445                count\_2++;}
-\DoxyCodeLine{446                \textcolor{keywordflow}{if} (row\_lower\_2 + count\_2 == row\_upper\_2) \{}
-\DoxyCodeLine{447                   check = 2;}
-\DoxyCodeLine{448                   \textcolor{keywordflow}{break};}
-\DoxyCodeLine{449                \}}
-\DoxyCodeLine{450             \}}
-\DoxyCodeLine{451          \}}
-\DoxyCodeLine{452          \textcolor{keywordflow}{if} (check == 1) \{}
-\DoxyCodeLine{453             \textcolor{keywordflow}{for} (std::int64\_t j = row\_lower\_2 + count\_2; j < row\_upper\_2; ++j) \{}
-\DoxyCodeLine{454                matrix\_out.val.push\_back(coeef\_2*matrix\_2.val[j]);}
-\DoxyCodeLine{455                matrix\_out.col.push\_back(matrix\_2.col[j]);}
-\DoxyCodeLine{456             \}}
-\DoxyCodeLine{457          \}}
-\DoxyCodeLine{458          \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (check == 2) \{}
-\DoxyCodeLine{459             \textcolor{keywordflow}{for} (std::int64\_t j = row\_lower\_1 + count\_1; j < row\_upper\_1; ++j) \{}
-\DoxyCodeLine{460                matrix\_out.val.push\_back(coeef\_1*matrix\_1.val[j]);}
-\DoxyCodeLine{461                matrix\_out.col.push\_back(matrix\_1.col[j]);}
-\DoxyCodeLine{462             \}}
-\DoxyCodeLine{463          \}}
+\DoxyCodeLine{361    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}.size() != rhs.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}.size()) \{}
+\DoxyCodeLine{362       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{363    \}}
+\DoxyCodeLine{364    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aacfa2feb99e5970d2a2d0a07b2528577}{tag}} != rhs.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aacfa2feb99e5970d2a2d0a07b2528577}{tag}}) \{}
+\DoxyCodeLine{365       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{366    \}}
+\DoxyCodeLine{367    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.size() != rhs.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.size()) \{}
+\DoxyCodeLine{368       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{369    \}}
+\DoxyCodeLine{370    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}.size() != rhs.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}.size()) \{}
+\DoxyCodeLine{371       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{372    \}}
+\DoxyCodeLine{373    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < lhs.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}.size(); ++i) \{}
+\DoxyCodeLine{374       \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i] != rhs.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i]) \{}
+\DoxyCodeLine{375          \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{376       \}}
+\DoxyCodeLine{377    \}}
+\DoxyCodeLine{378    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < lhs.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.size(); ++i) \{}
+\DoxyCodeLine{379       \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[i] != rhs.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[i]) \{}
+\DoxyCodeLine{380          \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{381       \}}
+\DoxyCodeLine{382    \}}
+\DoxyCodeLine{383    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < lhs.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}.size(); ++i) \{}
+\DoxyCodeLine{384       \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[i] != rhs.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[i]) \{}
+\DoxyCodeLine{385          \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{386       \}}
+\DoxyCodeLine{387    \}}
+\DoxyCodeLine{388    \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{389 \}}
+\DoxyCodeLine{390 }
+\DoxyCodeLine{396 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{397 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_a6f92334599a209b293d788605d89029f}{operator!=}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&rhs) \{}
+\DoxyCodeLine{398    \textcolor{keywordflow}{return} !(lhs == rhs);}
+\DoxyCodeLine{399 \}}
+\DoxyCodeLine{400 }
+\DoxyCodeLine{401 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{402 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator overloading: I/O Stream-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{403 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{408 \textcolor{comment}{}\textcolor{keyword}{template}<\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{409 std::ostream\& \mbox{\hyperlink{namespacecompnal_1_1type_ab7b08ca40c92cebb1de8b0a804f3795c}{operator<<}}(std::ostream \&os, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS<ValueType>}} \&m) \{}
+\DoxyCodeLine{410    os << std::fixed;}
+\DoxyCodeLine{411    os << std::setprecision(std::numeric\_limits<ValueType>::max\_digits10);}
+\DoxyCodeLine{412    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{413       \textcolor{keywordflow}{for} (std::int64\_t j = m.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}.at(i); j < m.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}.at(i+1); ++j) \{}
+\DoxyCodeLine{414          os << \textcolor{stringliteral}{"{}M["{}};}
+\DoxyCodeLine{415          os << std::noshowpos << std::left << std::setw(3) << i << \textcolor{stringliteral}{"{}]["{}};}
+\DoxyCodeLine{416          os << std::left << std::setw(3) << m.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j] << \textcolor{stringliteral}{"{}]="{}};}
+\DoxyCodeLine{417          os << std::showpos << m.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j] << std::endl;}
+\DoxyCodeLine{418       \}}
+\DoxyCodeLine{419    \}}
+\DoxyCodeLine{420    \textcolor{keywordflow}{return} os;}
+\DoxyCodeLine{421 \}}
+\DoxyCodeLine{422 }
+\DoxyCodeLine{423 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2, \textcolor{keyword}{typename} T3>}
+\DoxyCodeLine{424 \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\}*T3\{0\})> \mbox{\hyperlink{namespacecompnal_1_1type_ad4084b7468d3900b83b409da1b0d9254}{CalculateMatrixMatrixProduct}}(\textcolor{keyword}{const} T1 coeef\_1,}
+\DoxyCodeLine{425                                                               \textcolor{keyword}{const} CRS<T2> \&matrix\_1,}
+\DoxyCodeLine{426                                                               \textcolor{keyword}{const} CRS<T3> \&matrix\_2) \{}
+\DoxyCodeLine{427    }
+\DoxyCodeLine{428    \textcolor{keywordflow}{if} (matrix\_1.col\_dim != matrix\_2.row\_dim) \{}
+\DoxyCodeLine{429       std::stringstream ss;}
+\DoxyCodeLine{430       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{431       ss << \textcolor{stringliteral}{"{}Matrix product cannot be defined"{}} << std::endl;}
+\DoxyCodeLine{432       ss << \textcolor{stringliteral}{"{}matrix\_1.col\_dim = "{}} << matrix\_1.col\_dim << \textcolor{stringliteral}{"{}, matrix\_2.row\_dim = "{}} << matrix\_2.row\_dim << std::endl;}
+\DoxyCodeLine{433       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{434    \}}
+\DoxyCodeLine{435    }
+\DoxyCodeLine{436    CRS<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\}*T3\{0\})> matrix\_out(matrix\_1.row\_dim, matrix\_2.col\_dim);}
+\DoxyCodeLine{437    }
+\DoxyCodeLine{438    std::vector<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\})>       temp\_v1(matrix\_1.col\_dim, 0.0);}
+\DoxyCodeLine{439    std::vector<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\}*T3\{0\})> temp\_v2(matrix\_2.col\_dim, 0.0);}
+\DoxyCodeLine{440    }
+\DoxyCodeLine{441    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_1.row\_dim; ++i) \{}
+\DoxyCodeLine{442       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_1.row[i]; j < matrix\_1.row[i + 1]; ++j) \{}
+\DoxyCodeLine{443          temp\_v1[matrix\_1.col[j]] = coeef\_1*matrix\_1.val[j];}
+\DoxyCodeLine{444       \}}
+\DoxyCodeLine{445       \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < matrix\_1.col\_dim; ++j) \{}
+\DoxyCodeLine{446          \textcolor{keywordflow}{for} (std::int64\_t k = matrix\_2.row[j]; k < matrix\_2.row[j + 1]; ++k) \{}
+\DoxyCodeLine{447             temp\_v2[matrix\_2.col[k]] += temp\_v1[j]*matrix\_2.val[k];}
+\DoxyCodeLine{448          \}}
+\DoxyCodeLine{449       \}}
+\DoxyCodeLine{450       \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < matrix\_2.col\_dim; ++j) \{}
+\DoxyCodeLine{451          \textcolor{keywordflow}{if} (std::abs(temp\_v2[j]) > 0.0) \{}
+\DoxyCodeLine{452             matrix\_out.val.push\_back(temp\_v2[j]);}
+\DoxyCodeLine{453             matrix\_out.col.push\_back(j);}
+\DoxyCodeLine{454          \}}
+\DoxyCodeLine{455       \}}
+\DoxyCodeLine{456       }
+\DoxyCodeLine{457       matrix\_out.row[i + 1] = matrix\_out.col.size();}
+\DoxyCodeLine{458       }
+\DoxyCodeLine{459       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_1.row[i]; j < matrix\_1.row[i + 1]; ++j) \{}
+\DoxyCodeLine{460          temp\_v1[matrix\_1.col[j]] = 0.0;}
+\DoxyCodeLine{461       \}}
+\DoxyCodeLine{462       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_out.row[i]; j < matrix\_out.row[i + 1]; ++j) \{}
+\DoxyCodeLine{463          temp\_v2[matrix\_out.col[j]] = 0.0;}
 \DoxyCodeLine{464       \}}
-\DoxyCodeLine{465       matrix\_out.row[i + 1] = matrix\_out.col.size();}
-\DoxyCodeLine{466    \}}
-\DoxyCodeLine{467    }
-\DoxyCodeLine{468    matrix\_out.tag = matrix\_1.tag;}
-\DoxyCodeLine{469    \textcolor{keywordflow}{return} matrix\_out;}
-\DoxyCodeLine{470 \}}
-\DoxyCodeLine{471 }
-\DoxyCodeLine{472 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{473 \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\})> \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_adbcb79d1f723a5809d308d7073336a8f}{CalculateScalarMatrixProduct}}(\textcolor{keyword}{const} T1 lhs, \textcolor{keyword}{const} CRS<T2> \&rhs) \{}
-\DoxyCodeLine{474    }
-\DoxyCodeLine{475    CRS<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\})> out(rhs.row\_dim, rhs.col\_dim, rhs.tag);}
-\DoxyCodeLine{476    out.col.resize(rhs.col.size());}
-\DoxyCodeLine{477    out.val.resize(rhs.val.size());}
-\DoxyCodeLine{478    }
-\DoxyCodeLine{479 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{480    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < rhs.col.size(); ++i) \{}
-\DoxyCodeLine{481       out.col[i] = rhs.col[i];}
-\DoxyCodeLine{482       out.val[i] = lhs*rhs.val[i];}
-\DoxyCodeLine{483    \}}
-\DoxyCodeLine{484    }
-\DoxyCodeLine{485 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{486    \textcolor{keywordflow}{for} (std::int64\_t i = 1; i <= rhs.row\_dim; ++i) \{}
-\DoxyCodeLine{487       out.row[i] = rhs.row[i];}
-\DoxyCodeLine{488    \}}
-\DoxyCodeLine{489    \textcolor{keywordflow}{return} out;}
-\DoxyCodeLine{490 \}}
-\DoxyCodeLine{491 }
-\DoxyCodeLine{492 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
-\DoxyCodeLine{493 \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS<RealType>}} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_aeb8905fe10ee567358f1e3656ea21eb4}{CalculateTransposedMatrix}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS<RealType>}} \&matrix\_in) \{}
-\DoxyCodeLine{494 }
-\DoxyCodeLine{495    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS<RealType>}} matrix\_out(matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}}, matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}, matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a6e745b9eae6656c2210783e1e9d1d2b7}{tag}});}
-\DoxyCodeLine{496    }
-\DoxyCodeLine{497    std::vector<std::int64\_t> row\_count(matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}});}
-\DoxyCodeLine{498    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}}; ++i) \{}
-\DoxyCodeLine{499       \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++j) \{}
-\DoxyCodeLine{500          \textcolor{keyword}{const} std::int64\_t row = matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[j] + row\_count[j];}
-\DoxyCodeLine{501          \textcolor{keywordflow}{if} (row < matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[j + 1] \&\& matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[row] == i) \{}
-\DoxyCodeLine{502             matrix\_out.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}.push\_back(matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[row]);}
-\DoxyCodeLine{503             matrix\_out.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.push\_back(j);}
-\DoxyCodeLine{504             row\_count[j]++;}
-\DoxyCodeLine{505          \}}
-\DoxyCodeLine{506       \}}
-\DoxyCodeLine{507       matrix\_out.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i + 1] = matrix\_out.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.size();}
-\DoxyCodeLine{508    \}}
-\DoxyCodeLine{509    }
-\DoxyCodeLine{510    \textcolor{keywordflow}{return} matrix\_out;}
-\DoxyCodeLine{511 \}}
-\DoxyCodeLine{512 }
-\DoxyCodeLine{513 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{514 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator overloading-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{515 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{521 \textcolor{comment}{}\textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{522 \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}+T2\{0\})> \textcolor{keyword}{operator}+(\textcolor{keyword}{const} CRS<T1> \&lhs, \textcolor{keyword}{const} CRS<T2> \&rhs) \{}
-\DoxyCodeLine{523    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_afe9699b31d9d2e37532767c6039a813a}{CalculateMatrixMatrixSum}}(T1\{1\}, lhs, T2\{1\}, rhs);}
-\DoxyCodeLine{524 \}}
-\DoxyCodeLine{525 }
-\DoxyCodeLine{531 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{532 \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}-\/T2\{0\})> \textcolor{keyword}{operator}-\/(\textcolor{keyword}{const} CRS<T1> \&lhs, \textcolor{keyword}{const} CRS<T2> \&rhs) \{}
-\DoxyCodeLine{533    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_afe9699b31d9d2e37532767c6039a813a}{CalculateMatrixMatrixSum}}(T1\{1\}, lhs, T2\{-\/1\}, rhs);}
-\DoxyCodeLine{534 \}}
-\DoxyCodeLine{535 }
-\DoxyCodeLine{541 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{542 \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\})> \textcolor{keyword}{operator}*(\textcolor{keyword}{const} CRS<T1> \&lhs, \textcolor{keyword}{const} CRS<T2> \&rhs) \{}
-\DoxyCodeLine{543    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a84aff8ca71e76b722c47c396a0fc16e6}{CalculateMatrixMatrixProduct}}(T1\{1\}, lhs, rhs);}
-\DoxyCodeLine{544 \}}
-\DoxyCodeLine{545 }
-\DoxyCodeLine{551 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{552 \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\})> \textcolor{keyword}{operator}*(\textcolor{keyword}{const} T1 lhs, \textcolor{keyword}{const} CRS<T2> \&rhs) \{}
-\DoxyCodeLine{553    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_adbcb79d1f723a5809d308d7073336a8f}{CalculateScalarMatrixProduct}}(lhs, rhs);}
-\DoxyCodeLine{554 \}}
-\DoxyCodeLine{555 }
-\DoxyCodeLine{561 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{562 \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\})> \textcolor{keyword}{operator}*(\textcolor{keyword}{const} CRS<T1> \&lhs, \textcolor{keyword}{const} T2 rhs) \{}
-\DoxyCodeLine{563    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_adbcb79d1f723a5809d308d7073336a8f}{CalculateScalarMatrixProduct}}(rhs, lhs);}
-\DoxyCodeLine{564 \}}
-\DoxyCodeLine{565 }
-\DoxyCodeLine{571 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{572 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_abb6c59c798c127caa97ce367f9b8be0b}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS<T2>}} \&rhs) \{}
-\DoxyCodeLine{573    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}) \{}
-\DoxyCodeLine{574       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{575    \}}
-\DoxyCodeLine{576    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}} != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}}) \{}
-\DoxyCodeLine{577       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{578    \}}
-\DoxyCodeLine{579    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}.size() != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}.size()) \{}
-\DoxyCodeLine{580       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{581    \}}
-\DoxyCodeLine{582    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a6e745b9eae6656c2210783e1e9d1d2b7}{tag}} != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a6e745b9eae6656c2210783e1e9d1d2b7}{tag}}) \{}
-\DoxyCodeLine{583       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{584    \}}
-\DoxyCodeLine{585    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.size() != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.size()) \{}
-\DoxyCodeLine{586       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{587    \}}
-\DoxyCodeLine{588    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}.size() != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}.size()) \{}
-\DoxyCodeLine{589       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{590    \}}
-\DoxyCodeLine{591    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}.size(); ++i) \{}
-\DoxyCodeLine{592       \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i] != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i]) \{}
-\DoxyCodeLine{593          \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{594       \}}
-\DoxyCodeLine{595    \}}
-\DoxyCodeLine{596    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.size(); ++i) \{}
-\DoxyCodeLine{597       \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[i] != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[i]) \{}
-\DoxyCodeLine{598          \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{599       \}}
-\DoxyCodeLine{600    \}}
-\DoxyCodeLine{601    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}.size(); ++i) \{}
-\DoxyCodeLine{602       \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[i] != rhs.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[i]) \{}
-\DoxyCodeLine{603          \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{604       \}}
-\DoxyCodeLine{605    \}}
-\DoxyCodeLine{606    \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
-\DoxyCodeLine{607 \}}
-\DoxyCodeLine{608 }
-\DoxyCodeLine{614 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{615 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_adcd40a447e73c362f846f73ec7d1be54}{operator!=}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS<T2>}} \&rhs) \{}
-\DoxyCodeLine{616    \textcolor{keywordflow}{return} !(lhs == rhs);}
-\DoxyCodeLine{617 \}}
-\DoxyCodeLine{618 }
-\DoxyCodeLine{619 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{620 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator overloading: I/O Stream-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{621 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{626 \textcolor{comment}{}\textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
-\DoxyCodeLine{627 std::ostream\& \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a1e56b895c1f08b9af47da10a7d2bfb0e}{operator<<}}(std::ostream \&os, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS<RealType>}} \&m) \{}
-\DoxyCodeLine{628    os << std::fixed;}
-\DoxyCodeLine{629    os << std::setprecision(std::numeric\_limits<RealType>::max\_digits10);}
-\DoxyCodeLine{630    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{631       \textcolor{keywordflow}{for} (std::int64\_t j = m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}.at(i); j < m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}.at(i+1); ++j) \{}
-\DoxyCodeLine{632          os << \textcolor{stringliteral}{"{}M["{}};}
-\DoxyCodeLine{633          os << std::noshowpos << std::left << std::setw(3) << i << \textcolor{stringliteral}{"{}]["{}};}
-\DoxyCodeLine{634          os << std::left << std::setw(3) << m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j] << \textcolor{stringliteral}{"{}]="{}};}
-\DoxyCodeLine{635          os << std::showpos << m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j] << std::endl;}
-\DoxyCodeLine{636       \}}
-\DoxyCodeLine{637    \}}
-\DoxyCodeLine{638    \textcolor{keywordflow}{return} os;}
-\DoxyCodeLine{639 \}}
-\DoxyCodeLine{640 }
-\DoxyCodeLine{641 }
-\DoxyCodeLine{642 \} \textcolor{comment}{// namespace sparse\_matrix}}
-\DoxyCodeLine{643 \} \textcolor{comment}{// namespace compnal}}
-\DoxyCodeLine{644 }
-\DoxyCodeLine{645 }
-\DoxyCodeLine{646 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_SPARSE\_MATRIX\_COMPRESSED\_ROW\_STORAGE\_HPP\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{465    \}}
+\DoxyCodeLine{466    }
+\DoxyCodeLine{467    \textcolor{keywordflow}{if} (matrix\_1.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}}) \{}
+\DoxyCodeLine{468       matrix\_out.tag = matrix\_2.tag;}
+\DoxyCodeLine{469    \}}
+\DoxyCodeLine{470    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}}) \{}
+\DoxyCodeLine{471       \textcolor{keywordflow}{if} (matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}} || matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}}) \{}
+\DoxyCodeLine{472          matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}};}
+\DoxyCodeLine{473       \}}
+\DoxyCodeLine{474       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}}) \{}
+\DoxyCodeLine{475          matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}};}
+\DoxyCodeLine{476       \}}
+\DoxyCodeLine{477       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}}) \{}
+\DoxyCodeLine{478          matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}};}
+\DoxyCodeLine{479       \}}
+\DoxyCodeLine{480       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{481          std::stringstream ss;}
+\DoxyCodeLine{482          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{483          ss << \textcolor{stringliteral}{"{}Unknown CRSTag detected."{}};}
+\DoxyCodeLine{484          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{485       \}}
+\DoxyCodeLine{486    \}}
+\DoxyCodeLine{487    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}}) \{}
+\DoxyCodeLine{488       \textcolor{keywordflow}{if} (matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}} || matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}} || matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}}) \{}
+\DoxyCodeLine{489          matrix\_out.tag = matrix\_2.tag;}
+\DoxyCodeLine{490       \}}
+\DoxyCodeLine{491       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}}) \{}
+\DoxyCodeLine{492          matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}};}
+\DoxyCodeLine{493       \}}
+\DoxyCodeLine{494       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{495          std::stringstream ss;}
+\DoxyCodeLine{496          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{497          ss << \textcolor{stringliteral}{"{}Unknown CRSTag detected."{}};}
+\DoxyCodeLine{498          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{499       \}}
+\DoxyCodeLine{500    \}}
+\DoxyCodeLine{501    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}}) \{}
+\DoxyCodeLine{502       matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}};}
+\DoxyCodeLine{503    \}}
+\DoxyCodeLine{504    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{505       std::stringstream ss;}
+\DoxyCodeLine{506       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{507       ss << \textcolor{stringliteral}{"{}Unknown CRSTag detected."{}};}
+\DoxyCodeLine{508       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{509    \}}
+\DoxyCodeLine{510    }
+\DoxyCodeLine{511    \textcolor{keywordflow}{return} matrix\_out;}
+\DoxyCodeLine{512 \}}
+\DoxyCodeLine{513 }
+\DoxyCodeLine{514 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2, \textcolor{keyword}{typename} T3, \textcolor{keyword}{typename} T4>}
+\DoxyCodeLine{515 \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}+T2\{0\}+T3\{0\}+T4\{0\})> \mbox{\hyperlink{namespacecompnal_1_1type_aab183cd2077b21a5126d0927d9ac4756}{CalculateMatrixMatrixSum}}(\textcolor{keyword}{const} T1 coeef\_1,}
+\DoxyCodeLine{516                                                                 \textcolor{keyword}{const} CRS<T2> \&matrix\_1,}
+\DoxyCodeLine{517                                                                 \textcolor{keyword}{const} T3 coeef\_2,}
+\DoxyCodeLine{518                                                                 \textcolor{keyword}{const} CRS<T4> \&matrix\_2) \{}
+\DoxyCodeLine{519    }
+\DoxyCodeLine{520    \textcolor{keywordflow}{if} (matrix\_1.row\_dim != matrix\_2.row\_dim || matrix\_1.col\_dim != matrix\_2.col\_dim) \{}
+\DoxyCodeLine{521       std::stringstream ss;}
+\DoxyCodeLine{522       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{523       ss << \textcolor{stringliteral}{"{}The summation of the matrices cannot be defined."{}} << std::endl;}
+\DoxyCodeLine{524       ss << \textcolor{stringliteral}{"{}matrix\_1.row\_dim = "{}} << matrix\_1.row\_dim << \textcolor{stringliteral}{"{}, matrix\_1.col\_dim = "{}} << matrix\_1.col\_dim << std::endl;}
+\DoxyCodeLine{525       ss << \textcolor{stringliteral}{"{}matrix\_2.row\_dim = "{}} << matrix\_2.row\_dim << \textcolor{stringliteral}{"{}, matrix\_2.col\_dim = "{}} << matrix\_2.col\_dim << std::endl;}
+\DoxyCodeLine{526       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{527    \}}
+\DoxyCodeLine{528       }
+\DoxyCodeLine{529    CRS<\textcolor{keyword}{decltype}(T1\{0\}+T2\{0\}+T3\{0\}+T4\{0\})> matrix\_out(matrix\_1.row\_dim, matrix\_1.col\_dim);}
+\DoxyCodeLine{530    }
+\DoxyCodeLine{531    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_1.row\_dim; ++i) \{}
+\DoxyCodeLine{532       }
+\DoxyCodeLine{533       \textcolor{keywordtype}{int} check = 0;}
+\DoxyCodeLine{534       std::int64\_t count\_1 = 0;}
+\DoxyCodeLine{535       std::int64\_t count\_2 = 0;}
+\DoxyCodeLine{536       }
+\DoxyCodeLine{537       \textcolor{keyword}{const} std::int64\_t row\_lower\_1 = matrix\_1.row[  i  ];}
+\DoxyCodeLine{538       \textcolor{keyword}{const} std::int64\_t row\_upper\_1 = matrix\_1.row[i + 1];}
+\DoxyCodeLine{539       \textcolor{keyword}{const} std::int64\_t row\_lower\_2 = matrix\_2.row[  i  ];}
+\DoxyCodeLine{540       \textcolor{keyword}{const} std::int64\_t row\_upper\_2 = matrix\_2.row[i + 1];}
+\DoxyCodeLine{541       }
+\DoxyCodeLine{542       \textcolor{keyword}{const} std::int64\_t m1\_count = row\_upper\_1 -\/ row\_lower\_1;}
+\DoxyCodeLine{543       \textcolor{keyword}{const} std::int64\_t m2\_count = row\_upper\_2 -\/ row\_lower\_2;}
+\DoxyCodeLine{544       }
+\DoxyCodeLine{545       \textcolor{keywordflow}{if} (m1\_count != 0 \&\& m2\_count == 0) \{}
+\DoxyCodeLine{546          \textcolor{keywordflow}{for} (std::int64\_t j = row\_lower\_1; j < row\_upper\_1; ++j) \{}
+\DoxyCodeLine{547             matrix\_out.val.push\_back(coeef\_1*matrix\_1.val[j]);}
+\DoxyCodeLine{548             matrix\_out.col.push\_back(matrix\_1.col[j]);}
+\DoxyCodeLine{549          \}}
+\DoxyCodeLine{550       \}}
+\DoxyCodeLine{551       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (m1\_count == 0 \&\& m2\_count != 0) \{}
+\DoxyCodeLine{552          \textcolor{keywordflow}{for} (std::int64\_t j = row\_lower\_2; j < row\_upper\_2; ++j) \{}
+\DoxyCodeLine{553             matrix\_out.val.push\_back(coeef\_2*matrix\_2.val[j]);}
+\DoxyCodeLine{554             matrix\_out.col.push\_back(matrix\_2.col[j]);}
+\DoxyCodeLine{555          \}}
+\DoxyCodeLine{556       \}}
+\DoxyCodeLine{557       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (m1\_count != 0 \&\& m2\_count != 0) \{}
+\DoxyCodeLine{558          \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < m1\_count + m2\_count; ++j) \{}
+\DoxyCodeLine{559             \textcolor{keywordflow}{if} (matrix\_1.col[row\_lower\_1 + count\_1] < matrix\_2.col[row\_lower\_2 + count\_2]) \{}
+\DoxyCodeLine{560                matrix\_out.val.push\_back(coeef\_1*matrix\_1.val[row\_lower\_1 + count\_1]);}
+\DoxyCodeLine{561                matrix\_out.col.push\_back(matrix\_1.col[row\_lower\_1 + count\_1]);}
+\DoxyCodeLine{562                count\_1++;}
+\DoxyCodeLine{563                \textcolor{keywordflow}{if} (row\_lower\_1 + count\_1 == row\_upper\_1) \{}
+\DoxyCodeLine{564                   check = 1;}
+\DoxyCodeLine{565                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{566                \}}
+\DoxyCodeLine{567             \}}
+\DoxyCodeLine{568             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.col[row\_lower\_1 + count\_1] == matrix\_2.col[row\_lower\_2 + count\_2]) \{}
+\DoxyCodeLine{569                \textcolor{keyword}{const} \textcolor{keyword}{auto} val = coeef\_1*matrix\_1.val[row\_lower\_1 + count\_1] + coeef\_2*matrix\_2.val[row\_lower\_2 + count\_2];}
+\DoxyCodeLine{570                \textcolor{keywordflow}{if} (std::abs(val) > 0.0) \{}
+\DoxyCodeLine{571                   matrix\_out.val.push\_back(val);}
+\DoxyCodeLine{572                   matrix\_out.col.push\_back(matrix\_1.col[row\_lower\_1 + count\_1]);}
+\DoxyCodeLine{573                   count\_1++;}
+\DoxyCodeLine{574                   count\_2++;}
+\DoxyCodeLine{575                   \textcolor{keyword}{const} std::int64\_t temp\_count\_1 = row\_lower\_1 + count\_1;}
+\DoxyCodeLine{576                   \textcolor{keyword}{const} std::int64\_t temp\_count\_2 = row\_lower\_2 + count\_2;}
+\DoxyCodeLine{577                   \textcolor{keywordflow}{if} (temp\_count\_1 == row\_upper\_1 \&\& temp\_count\_2 < row\_upper\_2) \{}
+\DoxyCodeLine{578                      check = 1;}
+\DoxyCodeLine{579                      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{580                   \}}
+\DoxyCodeLine{581                   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (temp\_count\_1 < row\_upper\_1 \&\& temp\_count\_2 == row\_upper\_2) \{}
+\DoxyCodeLine{582                      check = 2;}
+\DoxyCodeLine{583                      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{584                   \}}
+\DoxyCodeLine{585                   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (temp\_count\_1 == row\_upper\_1 \&\& temp\_count\_2 == row\_upper\_2) \{}
+\DoxyCodeLine{586                      check = 0;}
+\DoxyCodeLine{587                      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{588                   \}}
+\DoxyCodeLine{589                \}}
+\DoxyCodeLine{590                \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{591                   count\_1++;}
+\DoxyCodeLine{592                   count\_2++;}
+\DoxyCodeLine{593                   \textcolor{keyword}{const} std::int64\_t temp\_count\_1 = row\_lower\_1 + count\_1;}
+\DoxyCodeLine{594                   \textcolor{keyword}{const} std::int64\_t temp\_count\_2 = row\_lower\_2 + count\_2;}
+\DoxyCodeLine{595                   \textcolor{keywordflow}{if} (temp\_count\_1 == row\_upper\_1 \&\& temp\_count\_2 < row\_upper\_2) \{}
+\DoxyCodeLine{596                      check = 1;}
+\DoxyCodeLine{597                      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{598                   \}}
+\DoxyCodeLine{599                   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (temp\_count\_1 < row\_upper\_1 \&\& temp\_count\_2 == row\_upper\_2) \{}
+\DoxyCodeLine{600                      check = 2;}
+\DoxyCodeLine{601                      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{602                   \}}
+\DoxyCodeLine{603                   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (temp\_count\_1 == row\_upper\_1 \&\& temp\_count\_2 == row\_upper\_2) \{}
+\DoxyCodeLine{604                      check = 0;}
+\DoxyCodeLine{605                      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{606                   \}}
+\DoxyCodeLine{607                \}}
+\DoxyCodeLine{608             \}}
+\DoxyCodeLine{609             \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{610                matrix\_out.val.push\_back(coeef\_2*matrix\_2.val[row\_lower\_2 + count\_2]);}
+\DoxyCodeLine{611                matrix\_out.col.push\_back(matrix\_2.col[row\_lower\_2 + count\_2]);}
+\DoxyCodeLine{612                count\_2++;}
+\DoxyCodeLine{613                \textcolor{keywordflow}{if} (row\_lower\_2 + count\_2 == row\_upper\_2) \{}
+\DoxyCodeLine{614                   check = 2;}
+\DoxyCodeLine{615                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{616                \}}
+\DoxyCodeLine{617             \}}
+\DoxyCodeLine{618          \}}
+\DoxyCodeLine{619          \textcolor{keywordflow}{if} (check == 1) \{}
+\DoxyCodeLine{620             \textcolor{keywordflow}{for} (std::int64\_t j = row\_lower\_2 + count\_2; j < row\_upper\_2; ++j) \{}
+\DoxyCodeLine{621                matrix\_out.val.push\_back(coeef\_2*matrix\_2.val[j]);}
+\DoxyCodeLine{622                matrix\_out.col.push\_back(matrix\_2.col[j]);}
+\DoxyCodeLine{623             \}}
+\DoxyCodeLine{624          \}}
+\DoxyCodeLine{625          \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (check == 2) \{}
+\DoxyCodeLine{626             \textcolor{keywordflow}{for} (std::int64\_t j = row\_lower\_1 + count\_1; j < row\_upper\_1; ++j) \{}
+\DoxyCodeLine{627                matrix\_out.val.push\_back(coeef\_1*matrix\_1.val[j]);}
+\DoxyCodeLine{628                matrix\_out.col.push\_back(matrix\_1.col[j]);}
+\DoxyCodeLine{629             \}}
+\DoxyCodeLine{630          \}}
+\DoxyCodeLine{631       \}}
+\DoxyCodeLine{632       matrix\_out.row[i + 1] = matrix\_out.col.size();}
+\DoxyCodeLine{633    \}}
+\DoxyCodeLine{634    }
+\DoxyCodeLine{635    matrix\_out.tag = matrix\_1.tag;}
+\DoxyCodeLine{636    \textcolor{keywordflow}{return} matrix\_out;}
+\DoxyCodeLine{637 \}}
+\DoxyCodeLine{638 }
+\DoxyCodeLine{639 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{640 \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\})> \mbox{\hyperlink{namespacecompnal_1_1type_a3d20246b76133046a66537e761e8b5cc}{CalculateScalarMatrixProduct}}(\textcolor{keyword}{const} T1 lhs, \textcolor{keyword}{const} CRS<T2> \&rhs) \{}
+\DoxyCodeLine{641    }
+\DoxyCodeLine{642    CRS<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\})> out(rhs.row\_dim, rhs.col\_dim, rhs.tag);}
+\DoxyCodeLine{643    out.col.resize(rhs.col.size());}
+\DoxyCodeLine{644    out.val.resize(rhs.val.size());}
+\DoxyCodeLine{645    }
+\DoxyCodeLine{646 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{647    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < rhs.col.size(); ++i) \{}
+\DoxyCodeLine{648       out.col[i] = rhs.col[i];}
+\DoxyCodeLine{649       out.val[i] = lhs*rhs.val[i];}
+\DoxyCodeLine{650    \}}
+\DoxyCodeLine{651    }
+\DoxyCodeLine{652 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{653    \textcolor{keywordflow}{for} (std::int64\_t i = 1; i <= rhs.row\_dim; ++i) \{}
+\DoxyCodeLine{654       out.row[i] = rhs.row[i];}
+\DoxyCodeLine{655    \}}
+\DoxyCodeLine{656    \textcolor{keywordflow}{return} out;}
+\DoxyCodeLine{657 \}}
+\DoxyCodeLine{658 }
+\DoxyCodeLine{659 \textcolor{keyword}{template}<\textcolor{keyword}{typename} ValueType>}
+\DoxyCodeLine{660 \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS<ValueType>}} \mbox{\hyperlink{namespacecompnal_1_1type_a5346fac9bf3b703982976a27f440168b}{CalculateTransposedMatrix}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS<ValueType>}} \&matrix\_in) \{}
+\DoxyCodeLine{661 }
+\DoxyCodeLine{662    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS<ValueType>}} matrix\_out(matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}}, matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}, matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aacfa2feb99e5970d2a2d0a07b2528577}{tag}});}
+\DoxyCodeLine{663    }
+\DoxyCodeLine{664    std::vector<std::int64\_t> row\_count(matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}});}
+\DoxyCodeLine{665    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}}; ++i) \{}
+\DoxyCodeLine{666       \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++j) \{}
+\DoxyCodeLine{667          \textcolor{keyword}{const} std::int64\_t row = matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[j] + row\_count[j];}
+\DoxyCodeLine{668          \textcolor{keywordflow}{if} (row < matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[j + 1] \&\& matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[row] == i) \{}
+\DoxyCodeLine{669             matrix\_out.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}.push\_back(matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[row]);}
+\DoxyCodeLine{670             matrix\_out.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.push\_back(j);}
+\DoxyCodeLine{671             row\_count[j]++;}
+\DoxyCodeLine{672          \}}
+\DoxyCodeLine{673       \}}
+\DoxyCodeLine{674       matrix\_out.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i + 1] = matrix\_out.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.size();}
+\DoxyCodeLine{675    \}}
+\DoxyCodeLine{676    }
+\DoxyCodeLine{677    \textcolor{keywordflow}{return} matrix\_out;}
+\DoxyCodeLine{678 \}}
+\DoxyCodeLine{679 }
+\DoxyCodeLine{680 \} \textcolor{comment}{// namespace type}}
+\DoxyCodeLine{681 \} \textcolor{comment}{// namespace compnal}}
+\DoxyCodeLine{682 }
+\DoxyCodeLine{683 }
+\DoxyCodeLine{684 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_TYPE\_COMPRESSED\_ROW\_STORAGE\_HPP\_ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

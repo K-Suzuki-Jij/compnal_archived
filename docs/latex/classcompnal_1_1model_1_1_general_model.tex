@@ -29,40 +29,49 @@ Collaboration diagram for compnal\+::model\+::General\+Model\texorpdfstring{$<$}
 \includegraphics[width=232pt]{classcompnal_1_1model_1_1_general_model__coll__graph}
 \end{center}
 \end{figure}
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa0fe422dcae3a6b7b81bf8ba9046c12a}{Integer\+Type}} = std\+::int64\+\_\+t
+\begin{DoxyCompactList}\small\item\em Alias of integer type. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aaf113170874461235acf8c9a38e7d400}{String\+Type}} = std\+::string
+\begin{DoxyCompactList}\small\item\em Alias of string type. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa7c4327cc0780b93fa797cea4e22e661}{Variant\+Type}} = std\+::variant$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa0fe422dcae3a6b7b81bf8ba9046c12a}{Integer\+Type}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aaf113170874461235acf8c9a38e7d400}{String\+Type}} $>$
+\begin{DoxyCompactList}\small\item\em Alias of variant type as mixture of Integer\+Type and String\+Type. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}} = std\+::variant$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa0fe422dcae3a6b7b81bf8ba9046c12a}{Integer\+Type}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aaf113170874461235acf8c9a38e7d400}{String\+Type}}, std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa7c4327cc0780b93fa797cea4e22e661}{Variant\+Type}} $>$ $>$
+\begin{DoxyCompactList}\small\item\em Alias of index type. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a6909524fa6d5fae94fcbf627de24fbf4}{Onsite\+List\+Type}} = std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}{CRS}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{Hash}} $>$
+\begin{DoxyCompactList}\small\item\em Type for onsite operator lists. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aaaedb359cd2fa167e2ae9865f5d18e4c}{Intersite\+List\+Type}} = std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}}, std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}}, std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}{CRS}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}{CRS}} $>$ $>$, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{Hash}} $>$, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{Hash}} $>$
+\begin{DoxyCompactList}\small\item\em Type for lists of onsite operator pairs. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a306a53addf17b4a49a5c4f979d65e750}{Add\+Potential}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}} \&site, const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}{CRS}} \&m, const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_acab09680bd0d9246de7b7d01fb0be7ea}{Real\+Type}} val=1.\+0)
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a306a53addf17b4a49a5c4f979d65e750}{Add\+Potential}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}} \&site, const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}{CRS}} \&m, const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_acab09680bd0d9246de7b7d01fb0be7ea}{Real\+Type}} val=1.\+0)
 \begin{DoxyCompactList}\small\item\em Add an onsite potential term $ c\hat{O}_{i} $ to the system. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a1cf17d5728570f3598f6444da2d09d7a}{Add\+Interaction}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}} \&site\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}{CRS}} \&m\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}} \&site\+\_\+2, const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}{CRS}} \&m\+\_\+2, const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_acab09680bd0d9246de7b7d01fb0be7ea}{Real\+Type}} val=1.\+0)
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a1cf17d5728570f3598f6444da2d09d7a}{Add\+Interaction}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}} \&site\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}{CRS}} \&m\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}} \&site\+\_\+2, const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}{CRS}} \&m\+\_\+2, const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_acab09680bd0d9246de7b7d01fb0be7ea}{Real\+Type}} val=1.\+0)
 \begin{DoxyCompactList}\small\item\em Add an interaction term $ c\hat{O}_{i}\hat{P}_{j} $ to the system. \end{DoxyCompactList}\item 
 std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab8a710a679276ddb0d5f909201f0ae1c}{Get\+System\+Size}} () const
 \begin{DoxyCompactList}\small\item\em Get the system size. \end{DoxyCompactList}\item 
-const std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{Hash}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aaf6727c8961cba06bfda16f501fca7a4}{Get\+Index\+List}} () const
+const std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{Hash}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aaf6727c8961cba06bfda16f501fca7a4}{Get\+Index\+List}} () const
 \begin{DoxyCompactList}\small\item\em Get the site index list. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a6909524fa6d5fae94fcbf627de24fbf4}{Onsite\+List\+Type}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a36e2760fa49dcd8e853d20a2d1ab53cd}{Get\+Potential\+List}} () const
 \begin{DoxyCompactList}\small\item\em Get onsite potential term list added to the system. \end{DoxyCompactList}\item 
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a0fd799b2f10d89141058f0c43be75891}{Get\+Potential}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}} \&site) const
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a0fd799b2f10d89141058f0c43be75891}{Get\+Potential}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}} \&site) const
 \begin{DoxyCompactList}\small\item\em Get an onsite potential term $ c\hat{O}_{i}$ added to the system. \end{DoxyCompactList}\item 
 const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aaaedb359cd2fa167e2ae9865f5d18e4c}{Intersite\+List\+Type}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a823653e68ea08af7bc13b9c8c6b7487b}{Get\+Interaction\+List}} () const
 \begin{DoxyCompactList}\small\item\em Get interaction term list added to the system. \end{DoxyCompactList}\item 
-const std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}{CRS}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}{CRS}} $>$ $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab8ebb37695bfb6c4245822615e4200cc}{Get\+Interaction}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}} \&site\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}} \&site\+\_\+2) const
+const std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}{CRS}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}{CRS}} $>$ $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab8ebb37695bfb6c4245822615e4200cc}{Get\+Interaction}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}} \&site\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}} \&site\+\_\+2) const
 \begin{DoxyCompactList}\small\item\em Get an interaction term $ c\hat{O}_{i}\hat{P}_{j}$ added to the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Types}
 \begin{DoxyCompactItemize}
 \item 
 using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_acab09680bd0d9246de7b7d01fb0be7ea}{Real\+Type}} = typename Base\+Class\+::\+Value\+Type
 \begin{DoxyCompactList}\small\item\em Alias of Value\+Type. \end{DoxyCompactList}\item 
-using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}{CRS}} = \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{sparse\+\_\+matrix\+::\+CRS}}$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_acab09680bd0d9246de7b7d01fb0be7ea}{Real\+Type}} $>$
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}{CRS}} = \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_acab09680bd0d9246de7b7d01fb0be7ea}{Real\+Type}} $>$
 \begin{DoxyCompactList}\small\item\em Alias of compressed row strage (CRS) with Real\+Type. \end{DoxyCompactList}\item 
-using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}} = std\+::variant$<$ std\+::int64\+\_\+t, std\+::string, std\+::vector$<$ std\+::variant$<$ std\+::int64\+\_\+t, std\+::string $>$ $>$ $>$
-\begin{DoxyCompactList}\small\item\em Alias of variant type. \end{DoxyCompactList}\item 
 using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{Hash}} = \mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash}{utility\+::\+Variant\+Hash}}$<$ std\+::int64\+\_\+t $>$
-\begin{DoxyCompactList}\small\item\em Alias of hash struct for Index\+Type. \end{DoxyCompactList}\item 
-using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a6909524fa6d5fae94fcbf627de24fbf4}{Onsite\+List\+Type}} = std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}{CRS}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{Hash}} $>$
-\begin{DoxyCompactList}\small\item\em Type for onsite operator lists. \end{DoxyCompactList}\item 
-using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aaaedb359cd2fa167e2ae9865f5d18e4c}{Intersite\+List\+Type}} = std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}}, std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}}, std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}{CRS}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}{CRS}} $>$ $>$, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{Hash}} $>$, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{Hash}} $>$
-\begin{DoxyCompactList}\small\item\em Type for lists of onsite operator pairs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Alias of hash struct for Index\+Type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -70,7 +79,7 @@ using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aaaedb359cd2fa167
 \begin{DoxyCompactList}\small\item\em Onsite potential term list added to the system. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aaaedb359cd2fa167e2ae9865f5d18e4c}{Intersite\+List\+Type}} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a32f92db6c157e455268dde147a78d27c}{interaction\+\_\+list\+\_\+}}
 \begin{DoxyCompactList}\small\item\em Interaction term list added to the system. \end{DoxyCompactList}\item 
-std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{Hash}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a7d37d82218483bb044c70de3008d3222}{index\+\_\+list\+\_\+}}
+std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{Hash}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a7d37d82218483bb044c70de3008d3222}{index\+\_\+list\+\_\+}}
 \begin{DoxyCompactList}\small\item\em The site index list. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -87,12 +96,12 @@ The general model class.
 
 
 \doxysubsection{Member Typedef Documentation}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}\label{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}\label{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}} 
 \index{compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}!CRS@{CRS}}
 \index{CRS@{CRS}!compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}}
 \doxysubsubsection{\texorpdfstring{CRS}{CRS}}
 {\footnotesize\ttfamily template$<$class Base\+Class $>$ \\
-using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+CRS =  \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{sparse\+\_\+matrix\+::\+CRS}}$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_acab09680bd0d9246de7b7d01fb0be7ea}{Real\+Type}}$>$\hspace{0.3cm}{\ttfamily [private]}}
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+CRS =  \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_acab09680bd0d9246de7b7d01fb0be7ea}{Real\+Type}}$>$\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
@@ -109,23 +118,34 @@ using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model
 
 Alias of hash struct for Index\+Type. 
 
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}\label{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}\label{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}} 
 \index{compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}!IndexType@{IndexType}}
 \index{IndexType@{IndexType}!compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}}
 \doxysubsubsection{\texorpdfstring{IndexType}{IndexType}}
 {\footnotesize\ttfamily template$<$class Base\+Class $>$ \\
-using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+Index\+Type =  std\+::variant$<$std\+::int64\+\_\+t, std\+::string, std\+::vector$<$std\+::variant$<$std\+::int64\+\_\+t, std\+::string$>$ $>$$>$\hspace{0.3cm}{\ttfamily [private]}}
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+Index\+Type =  std\+::variant$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa0fe422dcae3a6b7b81bf8ba9046c12a}{Integer\+Type}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aaf113170874461235acf8c9a38e7d400}{String\+Type}}, std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa7c4327cc0780b93fa797cea4e22e661}{Variant\+Type}}$>$ $>$}
 
 
 
-Alias of variant type. 
+Alias of index type. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_general_model_aa0fe422dcae3a6b7b81bf8ba9046c12a}\label{classcompnal_1_1model_1_1_general_model_aa0fe422dcae3a6b7b81bf8ba9046c12a}} 
+\index{compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}!IntegerType@{IntegerType}}
+\index{IntegerType@{IntegerType}!compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}}
+\doxysubsubsection{\texorpdfstring{IntegerType}{IntegerType}}
+{\footnotesize\ttfamily template$<$class Base\+Class $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+Integer\+Type =  std\+::int64\+\_\+t}
+
+
+
+Alias of integer type. 
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_general_model_aaaedb359cd2fa167e2ae9865f5d18e4c}\label{classcompnal_1_1model_1_1_general_model_aaaedb359cd2fa167e2ae9865f5d18e4c}} 
 \index{compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}!IntersiteListType@{IntersiteListType}}
 \index{IntersiteListType@{IntersiteListType}!compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}}
 \doxysubsubsection{\texorpdfstring{IntersiteListType}{IntersiteListType}}
 {\footnotesize\ttfamily template$<$class Base\+Class $>$ \\
-using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+Intersite\+List\+Type =  std\+::unordered\+\_\+map$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}}, std\+::unordered\+\_\+map$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}}, std\+::vector$<$std\+::pair$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}{CRS}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}{CRS}}$>$ $>$, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{Hash}}$>$, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{Hash}}$>$\hspace{0.3cm}{\ttfamily [private]}}
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+Intersite\+List\+Type =  std\+::unordered\+\_\+map$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}}, std\+::unordered\+\_\+map$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}}, std\+::vector$<$std\+::pair$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}{CRS}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}{CRS}}$>$ $>$, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{Hash}}$>$, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{Hash}}$>$}
 
 
 
@@ -136,7 +156,7 @@ Type for lists of onsite operator pairs.
 \index{OnsiteListType@{OnsiteListType}!compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}}
 \doxysubsubsection{\texorpdfstring{OnsiteListType}{OnsiteListType}}
 {\footnotesize\ttfamily template$<$class Base\+Class $>$ \\
-using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+Onsite\+List\+Type =  std\+::unordered\+\_\+map$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}{CRS}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{Hash}}$>$\hspace{0.3cm}{\ttfamily [private]}}
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+Onsite\+List\+Type =  std\+::unordered\+\_\+map$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}{CRS}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{Hash}}$>$}
 
 
 
@@ -153,6 +173,28 @@ using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model
 
 Alias of Value\+Type. 
 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_general_model_aaf113170874461235acf8c9a38e7d400}\label{classcompnal_1_1model_1_1_general_model_aaf113170874461235acf8c9a38e7d400}} 
+\index{compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}!StringType@{StringType}}
+\index{StringType@{StringType}!compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}}
+\doxysubsubsection{\texorpdfstring{StringType}{StringType}}
+{\footnotesize\ttfamily template$<$class Base\+Class $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+String\+Type =  std\+::string}
+
+
+
+Alias of string type. 
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_general_model_aa7c4327cc0780b93fa797cea4e22e661}\label{classcompnal_1_1model_1_1_general_model_aa7c4327cc0780b93fa797cea4e22e661}} 
+\index{compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}!VariantType@{VariantType}}
+\index{VariantType@{VariantType}!compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}}
+\doxysubsubsection{\texorpdfstring{VariantType}{VariantType}}
+{\footnotesize\ttfamily template$<$class Base\+Class $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+Variant\+Type =  std\+::variant$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa0fe422dcae3a6b7b81bf8ba9046c12a}{Integer\+Type}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aaf113170874461235acf8c9a38e7d400}{String\+Type}}$>$}
+
+
+
+Alias of variant type as mixture of Integer\+Type and String\+Type. 
+
 
 
 \doxysubsection{Member Function Documentation}
@@ -161,7 +203,7 @@ Alias of Value\+Type.
 \index{AddInteraction@{AddInteraction}!compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}}
 \doxysubsubsection{\texorpdfstring{AddInteraction()}{AddInteraction()}}
 {\footnotesize\ttfamily template$<$class Base\+Class $>$ \\
-void \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+Add\+Interaction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}} \&}]{site\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}{CRS}} \&}]{m\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}} \&}]{site\+\_\+2,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}{CRS}} \&}]{m\+\_\+2,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_acab09680bd0d9246de7b7d01fb0be7ea}{Real\+Type}}}]{val = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+Add\+Interaction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}} \&}]{site\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}{CRS}} \&}]{m\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}} \&}]{site\+\_\+2,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}{CRS}} \&}]{m\+\_\+2,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_acab09680bd0d9246de7b7d01fb0be7ea}{Real\+Type}}}]{val = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -185,7 +227,7 @@ Add an interaction term $ c\hat{O}_{i}\hat{P}_{j} $ to the system.
 \index{AddPotential@{AddPotential}!compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}}
 \doxysubsubsection{\texorpdfstring{AddPotential()}{AddPotential()}}
 {\footnotesize\ttfamily template$<$class Base\+Class $>$ \\
-void \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+Add\+Potential (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}} \&}]{site,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}{CRS}} \&}]{m,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_acab09680bd0d9246de7b7d01fb0be7ea}{Real\+Type}}}]{val = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+Add\+Potential (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}} \&}]{site,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}{CRS}} \&}]{m,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_acab09680bd0d9246de7b7d01fb0be7ea}{Real\+Type}}}]{val = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -205,7 +247,7 @@ Add an onsite potential term $ c\hat{O}_{i} $ to the system.
 \index{GetIndexList@{GetIndexList}!compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}}
 \doxysubsubsection{\texorpdfstring{GetIndexList()}{GetIndexList()}}
 {\footnotesize\ttfamily template$<$class Base\+Class $>$ \\
-const std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{Hash}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+Get\+Index\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{Hash}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+Get\+Index\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -219,7 +261,7 @@ The site index list.
 \index{GetInteraction@{GetInteraction}!compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}}
 \doxysubsubsection{\texorpdfstring{GetInteraction()}{GetInteraction()}}
 {\footnotesize\ttfamily template$<$class Base\+Class $>$ \\
-const std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}{CRS}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}{CRS}} $>$ $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+Get\+Interaction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}} \&}]{site\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}} \&}]{site\+\_\+2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}{CRS}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}{CRS}} $>$ $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+Get\+Interaction (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}} \&}]{site\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}} \&}]{site\+\_\+2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -254,7 +296,7 @@ Interaction term list added to the system.
 \index{GetPotential@{GetPotential}!compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}}
 \doxysubsubsection{\texorpdfstring{GetPotential()}{GetPotential()}}
 {\footnotesize\ttfamily template$<$class Base\+Class $>$ \\
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab28dbd3ff86bc2ea5c2adf32026f33f3}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+Get\+Potential (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}} \&}]{site }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::\+Get\+Potential (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}} \&}]{site }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -304,7 +346,7 @@ The system size.
 \index{index\_list\_@{index\_list\_}!compnal::model::GeneralModel$<$ BaseClass $>$@{compnal::model::GeneralModel$<$ BaseClass $>$}}
 \doxysubsubsection{\texorpdfstring{index\_list\_}{index\_list\_}}
 {\footnotesize\ttfamily template$<$class Base\+Class $>$ \\
-std\+::unordered\+\_\+set$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a33626d4877a81bcd906c726ab31b1ebf}{Index\+Type}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{Hash}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::index\+\_\+list\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+std\+::unordered\+\_\+set$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{Index\+Type}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{Hash}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{compnal\+::model\+::\+General\+Model}}$<$ Base\+Class $>$\+::index\+\_\+list\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
 
 
 

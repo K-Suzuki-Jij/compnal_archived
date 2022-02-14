@@ -31,7 +31,7 @@
 \DoxyCodeLine{33 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
 \DoxyCodeLine{34 \textcolor{keyword}{class }\mbox{\hyperlink{classcompnal_1_1model_1_1_x_x_z__1_d}{XXZ\_1D}}: \textcolor{keyword}{public} BaseU1Spin\_1D<RealType> \{}
 \DoxyCodeLine{35    }
-\DoxyCodeLine{37    \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} = \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{sparse\_matrix::CRS<RealType>}};}
+\DoxyCodeLine{37    \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} = \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}};}
 \DoxyCodeLine{38    }
 \DoxyCodeLine{39 \textcolor{keyword}{public}:}
 \DoxyCodeLine{40    }
@@ -151,23 +151,23 @@
 \DoxyCodeLine{183       std::cout << \textcolor{stringliteral}{"{}Uniaxial Anisotropy for the z-\/direction: D\_z ="{}} << \mbox{\hyperlink{classcompnal_1_1model_1_1_x_x_z__1_d_a6a8b927914bb1fc81430b9d07b48e709}{D\_z\_}} << std::endl;}
 \DoxyCodeLine{184    \}}
 \DoxyCodeLine{185    }
-\DoxyCodeLine{189    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_x_x_z__1_d_a8a42b2808c4ef7a078aefd9b94f32060}{CreateOnsiteOperatorHam}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_spin, \textcolor{keyword}{const} RealType h\_z = 0.0, \textcolor{keyword}{const} RealType D\_z = 0.0) \{}
+\DoxyCodeLine{189    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_x_x_z__1_d_a8a42b2808c4ef7a078aefd9b94f32060}{CreateOnsiteOperatorHam}}(\textcolor{keyword}{const} \textcolor{keywordtype}{double} magnitude\_spin, \textcolor{keyword}{const} RealType h\_z = 0.0, \textcolor{keyword}{const} RealType D\_z = 0.0) \{}
 \DoxyCodeLine{190       \textcolor{keyword}{const} \textcolor{keywordtype}{int} magnitude\_2spin = utility::DoubleHalfInteger(magnitude\_spin);}
 \DoxyCodeLine{191       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite      = magnitude\_2spin + 1;}
-\DoxyCodeLine{192       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
+\DoxyCodeLine{192       \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
 \DoxyCodeLine{193       }
 \DoxyCodeLine{194       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 0; row < dim\_onsite; ++row) \{}
 \DoxyCodeLine{195          \textcolor{keyword}{const} RealType val = h\_z*(magnitude\_spin -\/ row) + D\_z*D\_z*(magnitude\_spin -\/ row);}
 \DoxyCodeLine{196          \textcolor{keywordflow}{if} (val != 0.0) \{}
-\DoxyCodeLine{197             matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}.push\_back(val);}
-\DoxyCodeLine{198             matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.push\_back(row);}
+\DoxyCodeLine{197             matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}.push\_back(val);}
+\DoxyCodeLine{198             matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.push\_back(row);}
 \DoxyCodeLine{199          \}}
-\DoxyCodeLine{200          matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[row + 1] = matrix.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.size();}
+\DoxyCodeLine{200          matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[row + 1] = matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.size();}
 \DoxyCodeLine{201       \}}
 \DoxyCodeLine{202       \textcolor{keywordflow}{return} matrix;}
 \DoxyCodeLine{203    \}}
 \DoxyCodeLine{204    }
-\DoxyCodeLine{208    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_x_x_z__1_d_a7c3fcd38df94b39b391da41ea03b8627}{GetOnsiteOperatorHam}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_x_x_z__1_d_adfebf5d2f20664029e2e01a84a6cdfbc}{onsite\_operator\_ham\_}}; \}}
+\DoxyCodeLine{208    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_x_x_z__1_d_a7c3fcd38df94b39b391da41ea03b8627}{GetOnsiteOperatorHam}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_x_x_z__1_d_adfebf5d2f20664029e2e01a84a6cdfbc}{onsite\_operator\_ham\_}}; \}}
 \DoxyCodeLine{209    }
 \DoxyCodeLine{212    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<RealType> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_x_x_z__1_d_a71c1c6125825d9e1f5140a98acbb89d9}{GetJz}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_x_x_z__1_d_a9df84d61c7bd9677e74da2aef52c94f3}{J\_z\_}} ; \}}
 \DoxyCodeLine{213    }
@@ -184,7 +184,7 @@
 \DoxyCodeLine{238    \textcolor{keyword}{inline} \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49b}{BoundaryCondition}} \mbox{\hyperlink{classcompnal_1_1model_1_1_x_x_z__1_d_a31bd18cad182ab3e56e1160803dc2de4}{GetBoundaryCondition}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_x_x_z__1_d_affd890553abcd5d75b10a15770c32add}{boundary\_condition\_}}; \}}
 \DoxyCodeLine{239    }
 \DoxyCodeLine{240 \textcolor{keyword}{private}:}
-\DoxyCodeLine{243    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_x_x_z__1_d_adfebf5d2f20664029e2e01a84a6cdfbc}{onsite\_operator\_ham\_}};}
+\DoxyCodeLine{243    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_x_x_z__1_d_adfebf5d2f20664029e2e01a84a6cdfbc}{onsite\_operator\_ham\_}};}
 \DoxyCodeLine{244    }
 \DoxyCodeLine{247    \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49b}{BoundaryCondition}} \mbox{\hyperlink{classcompnal_1_1model_1_1_x_x_z__1_d_affd890553abcd5d75b10a15770c32add}{boundary\_condition\_}} = \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49bac7561e5003ce27517940dd2391775b12}{BoundaryCondition::OBC}};}
 \DoxyCodeLine{248    }

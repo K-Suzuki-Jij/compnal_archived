@@ -31,7 +31,7 @@
 \DoxyCodeLine{35 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
 \DoxyCodeLine{36 \textcolor{keyword}{class }\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d}{Hubbard\_1D}}: \textcolor{keyword}{public} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{BaseU1Electron\_1D}}<RealType> \{}
 \DoxyCodeLine{37    }
-\DoxyCodeLine{39    \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} = \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{sparse\_matrix::CRS<RealType>}};}
+\DoxyCodeLine{39    \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} = \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}};}
 \DoxyCodeLine{40    }
 \DoxyCodeLine{41 \textcolor{keyword}{public}:}
 \DoxyCodeLine{42    }
@@ -159,15 +159,15 @@
 \DoxyCodeLine{199       \}}
 \DoxyCodeLine{200    \}}
 \DoxyCodeLine{201    }
-\DoxyCodeLine{205    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a879169d51bdfedd522454e9cf9af42ee}{CreateOnsiteOperatorHam}}(\textcolor{keyword}{const} RealType h\_z = 0.0, \textcolor{keyword}{const} RealType U = 0.0, \textcolor{keyword}{const} RealType mu = 0.0) \{}
-\DoxyCodeLine{206       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} m\_s\_z    = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a5835026708b0d6a101027b0d84c3d3f9}{BaseU1Electron\_1D<RealType>::CreateOnsiteOperatorSz}}();}
-\DoxyCodeLine{207       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} m\_n\_up   = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a3b8fcfdefbef8ade799801c8119e3f04}{BaseU1Electron\_1D<RealType>::CreateOnsiteOperatorNCUp}}();}
-\DoxyCodeLine{208       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} m\_n\_down = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a9fd576d344dc72d5c7b9361a3cad51d9}{BaseU1Electron\_1D<RealType>::CreateOnsiteOperatorNCDown}}();}
-\DoxyCodeLine{209       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} m\_mu     = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aec77c76276610fa623fe1127594bf8e7}{BaseU1Electron\_1D<RealType>::CreateOnsiteOperatorNC}}();}
+\DoxyCodeLine{205    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a879169d51bdfedd522454e9cf9af42ee}{CreateOnsiteOperatorHam}}(\textcolor{keyword}{const} RealType h\_z = 0.0, \textcolor{keyword}{const} RealType U = 0.0, \textcolor{keyword}{const} RealType mu = 0.0) \{}
+\DoxyCodeLine{206       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} m\_s\_z    = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a5835026708b0d6a101027b0d84c3d3f9}{BaseU1Electron\_1D<RealType>::CreateOnsiteOperatorSz}}();}
+\DoxyCodeLine{207       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} m\_n\_up   = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a3b8fcfdefbef8ade799801c8119e3f04}{BaseU1Electron\_1D<RealType>::CreateOnsiteOperatorNCUp}}();}
+\DoxyCodeLine{208       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} m\_n\_down = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a9fd576d344dc72d5c7b9361a3cad51d9}{BaseU1Electron\_1D<RealType>::CreateOnsiteOperatorNCDown}}();}
+\DoxyCodeLine{209       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} m\_mu     = \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aec77c76276610fa623fe1127594bf8e7}{BaseU1Electron\_1D<RealType>::CreateOnsiteOperatorNC}}();}
 \DoxyCodeLine{210       \textcolor{keywordflow}{return} h\_z*m\_s\_z + U*m\_n\_up*m\_n\_down + mu*m\_mu;}
 \DoxyCodeLine{211    \}}
 \DoxyCodeLine{212    }
-\DoxyCodeLine{216    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a36690ef3139f372438941e9ea951ced5}{GetOnsiteOperatorHam}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a09dcf07645d9eb40ff4daddc81eab3f6}{onsite\_operator\_ham\_}}; \}}
+\DoxyCodeLine{216    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a36690ef3139f372438941e9ea951ced5}{GetOnsiteOperatorHam}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a09dcf07645d9eb40ff4daddc81eab3f6}{onsite\_operator\_ham\_}}; \}}
 \DoxyCodeLine{217    }
 \DoxyCodeLine{220    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<RealType> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_ac394b7e36cdd24c59f7b516f13c4582c}{GetHopping}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_ad3ab8c5f909cbbeec29aad22b271f56a}{t\_}} ; \}}
 \DoxyCodeLine{221    }
@@ -186,7 +186,7 @@
 \DoxyCodeLine{249    \textcolor{keyword}{inline} \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49b}{BoundaryCondition}} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a2b552c2cb6d887c1112ef431c22ed508}{GetBoundaryCondition}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a15a6a0cf29c64137858587a92b3d488d}{boundary\_condition\_}}; \}}
 \DoxyCodeLine{250 }
 \DoxyCodeLine{251 \textcolor{keyword}{private}:}
-\DoxyCodeLine{254    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a09dcf07645d9eb40ff4daddc81eab3f6}{onsite\_operator\_ham\_}};}
+\DoxyCodeLine{254    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a09dcf07645d9eb40ff4daddc81eab3f6}{onsite\_operator\_ham\_}};}
 \DoxyCodeLine{255 }
 \DoxyCodeLine{258    \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49b}{BoundaryCondition}} \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d_a15a6a0cf29c64137858587a92b3d488d}{boundary\_condition\_}} = \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49bac7561e5003ce27517940dd2391775b12}{BoundaryCondition::OBC}};}
 \DoxyCodeLine{259 }

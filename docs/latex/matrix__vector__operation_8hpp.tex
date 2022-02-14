@@ -1,24 +1,24 @@
-\hypertarget{matrix__vector__operation_8hpp}{}\doxysection{src/sparse\+\_\+matrix/matrix\+\_\+vector\+\_\+operation.hpp File Reference}
-\label{matrix__vector__operation_8hpp}\index{src/sparse\_matrix/matrix\_vector\_operation.hpp@{src/sparse\_matrix/matrix\_vector\_operation.hpp}}
+\hypertarget{matrix__vector__operation_8hpp}{}\doxysection{src/blas/matrix\+\_\+vector\+\_\+operation.hpp File Reference}
+\label{matrix__vector__operation_8hpp}\index{src/blas/matrix\_vector\_operation.hpp@{src/blas/matrix\_vector\_operation.hpp}}
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
 namespace \mbox{\hyperlink{namespacecompnal}{compnal}}
 \item 
-namespace \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix}{compnal\+::sparse\+\_\+matrix}}
+namespace \mbox{\hyperlink{namespacecompnal_1_1blas}{compnal\+::blas}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab4434cd1f0754845236fda113f33393b}{compnal\+::sparse\+\_\+matrix\+::\+Calculate\+Matrix\+Vector\+Product}} (Braket\+Vector$<$ Real\+Type $>$ $\ast$vector\+\_\+out, const Real\+Type coeef, const CRS$<$ Real\+Type $>$ \&matrix\+\_\+in, const Braket\+Vector$<$ Real\+Type $>$ \&vector\+\_\+in)
+{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1blas_af325cf8275d75278e2758dc1419f86f5}{compnal\+::blas\+::\+Calculate\+Matrix\+Vector\+Product}} (type\+::\+Braket\+Vector$<$ Real\+Type $>$ $\ast$vector\+\_\+out, const Real\+Type coeef, const type\+::\+CRS$<$ Real\+Type $>$ \&matrix\+\_\+in, const type\+::\+Braket\+Vector$<$ Real\+Type $>$ \&vector\+\_\+in)
 \item 
-{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a413b2336cf26abb302f7fd6f2ac5830c}{compnal\+::sparse\+\_\+matrix\+::\+Calculate\+Symmetric\+Matrix\+Vector\+Product}} (Braket\+Vector$<$ Real\+Type $>$ $\ast$vector\+\_\+out, const Real\+Type coeef, const CRS$<$ Real\+Type $>$ \&matrix\+\_\+in, const Braket\+Vector$<$ Real\+Type $>$ \&vector\+\_\+in, std\+::vector$<$ std\+::vector$<$ Real\+Type $>$ $>$ $\ast$vectors\+\_\+work)
+{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1blas_aeeec1b8a9d956be99035a82b732b15b4}{compnal\+::blas\+::\+Calculate\+Symmetric\+Matrix\+Vector\+Product}} (type\+::\+Braket\+Vector$<$ Real\+Type $>$ $\ast$vector\+\_\+out, const Real\+Type coeef, const type\+::\+CRS$<$ Real\+Type $>$ \&matrix\+\_\+in, const type\+::\+Braket\+Vector$<$ Real\+Type $>$ \&vector\+\_\+in, std\+::vector$<$ std\+::vector$<$ Real\+Type $>$ $>$ $\ast$vectors\+\_\+work)
 \item 
-{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a921298b3f9466b07630d3307baee5af1}{compnal\+::sparse\+\_\+matrix\+::\+Calculate\+Symmetric\+Matrix\+Vector\+Product}} (Braket\+Vector$<$ Real\+Type $>$ $\ast$vector\+\_\+out, const Real\+Type coeef, const CRS$<$ Real\+Type $>$ \&matrix\+\_\+in, const Braket\+Vector$<$ Real\+Type $>$ \&vector\+\_\+in)
+{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1blas_a5b3e1586b7800ee66fb6c6612a3db5ef}{compnal\+::blas\+::\+Calculate\+Symmetric\+Matrix\+Vector\+Product}} (type\+::\+Braket\+Vector$<$ Real\+Type $>$ $\ast$vector\+\_\+out, const Real\+Type coeef, const type\+::\+CRS$<$ Real\+Type $>$ \&matrix\+\_\+in, const type\+::\+Braket\+Vector$<$ Real\+Type $>$ \&vector\+\_\+in)
 \item 
-{\footnotesize template$<$typename Real\+Type $>$ }\\Braket\+Vector$<$ Real\+Type $>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a07090032644fc1d985808c6ee89fe359}{compnal\+::sparse\+\_\+matrix\+::\+Calculate\+Matrix\+Vector\+Product}} (const Real\+Type coeef, const CRS$<$ Real\+Type $>$ \&matrix\+\_\+in, const Braket\+Vector$<$ Real\+Type $>$ \&vector\+\_\+in)
+{\footnotesize template$<$typename Real\+Type $>$ }\\type\+::\+Braket\+Vector$<$ Real\+Type $>$ \mbox{\hyperlink{namespacecompnal_1_1blas_a7102eb471402c962a27565b9bcb6e3c9}{compnal\+::blas\+::\+Calculate\+Matrix\+Vector\+Product}} (const Real\+Type coeef, const type\+::\+CRS$<$ Real\+Type $>$ \&matrix\+\_\+in, const type\+::\+Braket\+Vector$<$ Real\+Type $>$ \&vector\+\_\+in)
 \item 
-{\footnotesize template$<$typename Real\+Type $>$ }\\Braket\+Vector$<$ Real\+Type $>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_adee9a61402378974ed29c3220239fe32}{compnal\+::sparse\+\_\+matrix\+::\+Calculate\+Symmetric\+Matrix\+Vector\+Product}} (const Real\+Type coeef, const CRS$<$ Real\+Type $>$ \&matrix\+\_\+in, const Braket\+Vector$<$ Real\+Type $>$ \&vector\+\_\+in, std\+::vector$<$ std\+::vector$<$ Real\+Type $>$ $>$ $\ast$vectors\+\_\+work)
+{\footnotesize template$<$typename Real\+Type $>$ }\\type\+::\+Braket\+Vector$<$ Real\+Type $>$ \mbox{\hyperlink{namespacecompnal_1_1blas_a451ecffdd7816999035e938c48e86669}{compnal\+::blas\+::\+Calculate\+Symmetric\+Matrix\+Vector\+Product}} (const Real\+Type coeef, const type\+::\+CRS$<$ Real\+Type $>$ \&matrix\+\_\+in, const type\+::\+Braket\+Vector$<$ Real\+Type $>$ \&vector\+\_\+in, std\+::vector$<$ std\+::vector$<$ Real\+Type $>$ $>$ $\ast$vectors\+\_\+work)
 \item 
-{\footnotesize template$<$typename Real\+Type $>$ }\\Braket\+Vector$<$ Real\+Type $>$ \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a2f8bc088d76b49229dd4240f10626cde}{compnal\+::sparse\+\_\+matrix\+::\+Calculate\+Symmetric\+Matrix\+Vector\+Product}} (const Real\+Type coeef, const CRS$<$ Real\+Type $>$ \&matrix\+\_\+in, const Braket\+Vector$<$ Real\+Type $>$ \&vector\+\_\+in)
+{\footnotesize template$<$typename Real\+Type $>$ }\\type\+::\+Braket\+Vector$<$ Real\+Type $>$ \mbox{\hyperlink{namespacecompnal_1_1blas_a6a5d23a7342722e87e76a39b8e4cf031}{compnal\+::blas\+::\+Calculate\+Symmetric\+Matrix\+Vector\+Product}} (const Real\+Type coeef, const type\+::\+CRS$<$ Real\+Type $>$ \&matrix\+\_\+in, const type\+::\+Braket\+Vector$<$ Real\+Type $>$ \&vector\+\_\+in)
 \end{DoxyCompactItemize}

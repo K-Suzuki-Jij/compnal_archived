@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>COMPNAL: src/sparse_matrix/lapack.hpp File Reference</title>
+<title>COMPNAL: src/blas/lapack.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_f5ef15774b98e8846613aaefb3c2607c.html">sparse_matrix</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_0b251772e3153bf9148552a8025983e3.html">blas</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -86,26 +86,26 @@ $(function() {
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacecompnal"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal.html">compnal</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:namespacecompnal_1_1sparse__matrix"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1sparse__matrix.html">compnal::sparse_matrix</a></td></tr>
+<tr class="memitem:namespacecompnal_1_1blas"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1blas.html">compnal::blas</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa98cff75f30d8d55bba0810a75d6ee9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1sparse__matrix.html#aa98cff75f30d8d55bba0810a75d6ee9e">compnal::sparse_matrix::dsyev_</a> (const char &amp;JOBZ, const char &amp;UPLO, const int &amp;N, double **A, const int &amp;LDA, double *W, double *work, const int &amp;Lwork, int &amp;INFO)</td></tr>
-<tr class="separator:aa98cff75f30d8d55bba0810a75d6ee9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab84831e2c300392944998bd0b1839af6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1sparse__matrix.html#ab84831e2c300392944998bd0b1839af6">compnal::sparse_matrix::dstev_</a> (const char &amp;JOBZ, const int &amp;N, double *D, double *E, double **Z, const int &amp;LDZ, double *WORK, int &amp;INFO)</td></tr>
-<tr class="separator:ab84831e2c300392944998bd0b1839af6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af18011fe44d52340366af2428a8d9d80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1sparse__matrix.html#af18011fe44d52340366af2428a8d9d80">compnal::sparse_matrix::dspgv_</a> (const int &amp;ITYPE, const char &amp;JOBZ, const char &amp;UPLO, const int &amp;N, double *AP, double *BP, double *W, double **Z, const int &amp;LDZ, double *WORK, int &amp;INFO)</td></tr>
-<tr class="separator:af18011fe44d52340366af2428a8d9d80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b228b82df60b48a8e1b225bf3ec3bf7"><td class="memTemplParams" colspan="2">template&lt;typename RealType &gt; </td></tr>
-<tr class="memitem:a7b228b82df60b48a8e1b225bf3ec3bf7"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1sparse__matrix.html#a7b228b82df60b48a8e1b225bf3ec3bf7">compnal::sparse_matrix::LapackDsyev</a> (RealType *gs_value, std::vector&lt; RealType &gt; *gs_vector, const CRS&lt; RealType &gt; &amp;matrix_in, const int target_level=0)</td></tr>
-<tr class="separator:a7b228b82df60b48a8e1b225bf3ec3bf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2d62a5674340dcaccc874b8a1acbc26"><td class="memTemplParams" colspan="2">template&lt;typename RealType &gt; </td></tr>
-<tr class="memitem:ae2d62a5674340dcaccc874b8a1acbc26"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1sparse__matrix.html#ae2d62a5674340dcaccc874b8a1acbc26">compnal::sparse_matrix::LapackDstev</a> (RealType *gs_value, std::vector&lt; RealType &gt; *gs_vector, const std::vector&lt; RealType &gt; &amp;diag, const std::vector&lt; RealType &gt; &amp;off_diag)</td></tr>
-<tr class="separator:ae2d62a5674340dcaccc874b8a1acbc26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a027e3543114e86368649fd738a2f9f78"><td class="memTemplParams" colspan="2">template&lt;typename RealType &gt; </td></tr>
-<tr class="memitem:a027e3543114e86368649fd738a2f9f78"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1sparse__matrix.html#a027e3543114e86368649fd738a2f9f78">compnal::sparse_matrix::LapackDspgv</a> (std::vector&lt; RealType &gt; *eigenvalues, std::vector&lt; RealType &gt; *eigenvectors, const int i_type, const int dim, const std::vector&lt; RealType &gt; &amp;mat_a, const std::vector&lt; RealType &gt; &amp;mat_b)</td></tr>
-<tr class="separator:a027e3543114e86368649fd738a2f9f78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38372ba49e6890655ba310a1d1016301"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1blas.html#a38372ba49e6890655ba310a1d1016301">compnal::blas::dsyev_</a> (const char &amp;JOBZ, const char &amp;UPLO, const int &amp;N, double **A, const int &amp;LDA, double *W, double *work, const int &amp;Lwork, int &amp;INFO)</td></tr>
+<tr class="separator:a38372ba49e6890655ba310a1d1016301"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0eab548c93d2f1432d8483ae795b54c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1blas.html#a0eab548c93d2f1432d8483ae795b54c0">compnal::blas::dstev_</a> (const char &amp;JOBZ, const int &amp;N, double *D, double *E, double **Z, const int &amp;LDZ, double *WORK, int &amp;INFO)</td></tr>
+<tr class="separator:a0eab548c93d2f1432d8483ae795b54c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebf338c728e6f6803f320d7938f6c9d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1blas.html#aebf338c728e6f6803f320d7938f6c9d5">compnal::blas::dspgv_</a> (const int &amp;ITYPE, const char &amp;JOBZ, const char &amp;UPLO, const int &amp;N, double *AP, double *BP, double *W, double **Z, const int &amp;LDZ, double *WORK, int &amp;INFO)</td></tr>
+<tr class="separator:aebf338c728e6f6803f320d7938f6c9d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad95086714ba0af598315dba0109fc282"><td class="memTemplParams" colspan="2">template&lt;typename RealType &gt; </td></tr>
+<tr class="memitem:ad95086714ba0af598315dba0109fc282"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1blas.html#ad95086714ba0af598315dba0109fc282">compnal::blas::LapackDsyev</a> (RealType *gs_value, std::vector&lt; RealType &gt; *gs_vector, const type::CRS&lt; RealType &gt; &amp;matrix_in, const int target_level=0)</td></tr>
+<tr class="separator:ad95086714ba0af598315dba0109fc282"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c894de4aabbacd7c8730917eb573df5"><td class="memTemplParams" colspan="2">template&lt;typename RealType &gt; </td></tr>
+<tr class="memitem:a8c894de4aabbacd7c8730917eb573df5"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1blas.html#a8c894de4aabbacd7c8730917eb573df5">compnal::blas::LapackDstev</a> (RealType *gs_value, std::vector&lt; RealType &gt; *gs_vector, const std::vector&lt; RealType &gt; &amp;diag, const std::vector&lt; RealType &gt; &amp;off_diag)</td></tr>
+<tr class="separator:a8c894de4aabbacd7c8730917eb573df5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9438b0418e763891a03cbfbcd22f38c"><td class="memTemplParams" colspan="2">template&lt;typename RealType &gt; </td></tr>
+<tr class="memitem:aa9438b0418e763891a03cbfbcd22f38c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacecompnal_1_1blas.html#aa9438b0418e763891a03cbfbcd22f38c">compnal::blas::LapackDspgv</a> (std::vector&lt; RealType &gt; *eigenvalues, std::vector&lt; RealType &gt; *eigenvectors, const int i_type, const int dim, const std::vector&lt; RealType &gt; &amp;mat_a, const std::vector&lt; RealType &gt; &amp;mat_b)</td></tr>
+<tr class="separator:aa9438b0418e763891a03cbfbcd22f38c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

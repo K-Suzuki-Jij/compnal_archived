@@ -14,7 +14,7 @@ Class to represent half-\/integer.
 \item 
 \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a62e84f737809e5553a760992b67cb9dc}{Half\+Int}} ()
 \begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} class. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename Value\+Type $>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a372da04386b481f6a017f84f7c8b64ce}{Half\+Int}} (Value\+Type value)
+{\footnotesize template$<$typename Value\+Type $>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a39642d3ba1c4ea3bc633819d6c580ac1}{Half\+Int}} (const Value\+Type value)
 \begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} class. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{Get\+Integer}} () const
 \begin{DoxyCompactList}\small\item\em Get integer (two times the actual value). \end{DoxyCompactList}\item 
@@ -22,6 +22,14 @@ int \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679c
 \begin{DoxyCompactList}\small\item\em Operator overloading\+: unary plus operator. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_af0f97e998280dd3b405212dee190d97e}{operator-\/}} () const
 \begin{DoxyCompactList}\small\item\em Operator overloading\+: unary negation operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \& \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a5554f53d592b66885a99b4c5eeb41824}{operator+=}} (const Value\+Type rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: compound assignment plus operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \& \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a0a63b29bad569a281fec3f1600e84155}{operator-\/=}} (const Value\+Type rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: compound assignment subtraction operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \& \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a6d37cc23c53a14ae3da6aac4dd829e4f}{operator$\ast$=}} (const Value\+Type rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: compound assignment multiplication operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \& \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_aebb4a5a0de939ee828ccc91a30014518}{operator/=}} (const Value\+Type rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: compound assignment division operator. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename Value\+Type $>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_ac9049ef5c3d906f30acde15f88b1ea8b}{operator Value\+Type}} () const noexcept
 \begin{DoxyCompactList}\small\item\em Operator overloading\+: casting operator to Value\+Type. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Private Attributes}
@@ -45,12 +53,12 @@ Class to represent half-\/integer.
 
 Constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} class. 
 
-\mbox{\Hypertarget{classcompnal_1_1type_1_1_half_int_a372da04386b481f6a017f84f7c8b64ce}\label{classcompnal_1_1type_1_1_half_int_a372da04386b481f6a017f84f7c8b64ce}} 
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_half_int_a39642d3ba1c4ea3bc633819d6c580ac1}\label{classcompnal_1_1type_1_1_half_int_a39642d3ba1c4ea3bc633819d6c580ac1}} 
 \index{compnal::type::HalfInt@{compnal::type::HalfInt}!HalfInt@{HalfInt}}
 \index{HalfInt@{HalfInt}!compnal::type::HalfInt@{compnal::type::HalfInt}}
 \doxysubsubsection{\texorpdfstring{HalfInt()}{HalfInt()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
-compnal\+::type\+::\+Half\+Int\+::\+Half\+Int (\begin{DoxyParamCaption}\item[{Value\+Type}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+compnal\+::type\+::\+Half\+Int\+::\+Half\+Int (\begin{DoxyParamCaption}\item[{const Value\+Type}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -95,6 +103,27 @@ Operator overloading\+: casting operator to Value\+Type.
 {\em Value\+Type} & Value type. \\
 \hline
 \end{DoxyTemplParams}
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_half_int_a6d37cc23c53a14ae3da6aac4dd829e4f}\label{classcompnal_1_1type_1_1_half_int_a6d37cc23c53a14ae3da6aac4dd829e4f}} 
+\index{compnal::type::HalfInt@{compnal::type::HalfInt}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!compnal::type::HalfInt@{compnal::type::HalfInt}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \& compnal\+::type\+::\+Half\+Int\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{const Value\+Type}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Operator overloading\+: compound assignment multiplication operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type of the right-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classcompnal_1_1type_1_1_half_int_ae2ba2deb656867d08da2c5de01e37b3b}\label{classcompnal_1_1type_1_1_half_int_ae2ba2deb656867d08da2c5de01e37b3b}} 
 \index{compnal::type::HalfInt@{compnal::type::HalfInt}!operator+@{operator+}}
 \index{operator+@{operator+}!compnal::type::HalfInt@{compnal::type::HalfInt}}
@@ -105,6 +134,27 @@ Operator overloading\+: casting operator to Value\+Type.
 
 Operator overloading\+: unary plus operator. 
 
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_half_int_a5554f53d592b66885a99b4c5eeb41824}\label{classcompnal_1_1type_1_1_half_int_a5554f53d592b66885a99b4c5eeb41824}} 
+\index{compnal::type::HalfInt@{compnal::type::HalfInt}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!compnal::type::HalfInt@{compnal::type::HalfInt}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \& compnal\+::type\+::\+Half\+Int\+::operator+= (\begin{DoxyParamCaption}\item[{const Value\+Type}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Operator overloading\+: compound assignment plus operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type of the right-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{classcompnal_1_1type_1_1_half_int_af0f97e998280dd3b405212dee190d97e}\label{classcompnal_1_1type_1_1_half_int_af0f97e998280dd3b405212dee190d97e}} 
 \index{compnal::type::HalfInt@{compnal::type::HalfInt}!operator-\/@{operator-\/}}
 \index{operator-\/@{operator-\/}!compnal::type::HalfInt@{compnal::type::HalfInt}}
@@ -115,6 +165,48 @@ Operator overloading\+: unary plus operator.
 
 Operator overloading\+: unary negation operator. 
 
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_half_int_a0a63b29bad569a281fec3f1600e84155}\label{classcompnal_1_1type_1_1_half_int_a0a63b29bad569a281fec3f1600e84155}} 
+\index{compnal::type::HalfInt@{compnal::type::HalfInt}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!compnal::type::HalfInt@{compnal::type::HalfInt}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \& compnal\+::type\+::\+Half\+Int\+::operator-\/= (\begin{DoxyParamCaption}\item[{const Value\+Type}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Operator overloading\+: compound assignment subtraction operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type of the right-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_half_int_aebb4a5a0de939ee828ccc91a30014518}\label{classcompnal_1_1type_1_1_half_int_aebb4a5a0de939ee828ccc91a30014518}} 
+\index{compnal::type::HalfInt@{compnal::type::HalfInt}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!compnal::type::HalfInt@{compnal::type::HalfInt}}
+\doxysubsubsection{\texorpdfstring{operator/=()}{operator/=()}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \& compnal\+::type\+::\+Half\+Int\+::operator/= (\begin{DoxyParamCaption}\item[{const Value\+Type}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Operator overloading\+: compound assignment division operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type of the right-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
 
 
 \doxysubsection{Member Data Documentation}

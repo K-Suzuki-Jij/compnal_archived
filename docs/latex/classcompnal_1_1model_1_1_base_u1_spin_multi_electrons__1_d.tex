@@ -9,6 +9,16 @@ The base class for one-\/dimensional spin-\/multiband-\/electron systems with th
 
 {\ttfamily \#include $<$base\+\_\+u1\+\_\+spin\+\_\+multi\+\_\+electrons\+\_\+1d.\+hpp$>$}
 
+
+
+Collaboration diagram for compnal\+::model\+::Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D\texorpdfstring{$<$}{<} Real\+Type \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=249pt]{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d__coll__graph}
+\end{center}
+\end{figure}
 \doxysubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
@@ -53,11 +63,11 @@ std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_mult
 \begin{DoxyCompactList}\small\item\em Calculate the dimension of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
 std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a95ab6332c30d0c99fe1d08fe22c9d1a8}{Calculate\+Target\+Dim}} (const std\+::vector$<$ int $>$ \&total\+\_\+electron, const double total\+\_\+sz) const
 \begin{DoxyCompactList}\small\item\em Calculate the dimension of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a814f38dd5ba9890697f536042c56a9e9}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \&m\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \&m\+\_\+2) const
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a814f38dd5ba9890697f536042c56a9e9}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \&m\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \&m\+\_\+2) const
 \begin{DoxyCompactList}\small\item\em Calculate the quantum numbers of excited states that appear when calculating the correlation functions. \end{DoxyCompactList}\item 
-std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a430bb6b23e43d1cff8c60a8a2dcc2b76}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \&m\+\_\+1\+\_\+bra, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \&m\+\_\+2\+\_\+ket, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \&m\+\_\+3\+\_\+ket) const
+std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a430bb6b23e43d1cff8c60a8a2dcc2b76}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \&m\+\_\+1\+\_\+bra, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \&m\+\_\+2\+\_\+ket, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \&m\+\_\+3\+\_\+ket) const
 \begin{DoxyCompactList}\small\item\em Calculate the quantum numbers of excited states that appear when calculating the correlation functions. \end{DoxyCompactList}\item 
-std\+::vector$<$ std\+::tuple$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a830ca44fe856aad2dd33980af32ab695}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \&m\+\_\+1\+\_\+bra, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \&m\+\_\+2\+\_\+bra, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \&m\+\_\+3\+\_\+ket, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \&m\+\_\+4\+\_\+ket) const
+std\+::vector$<$ std\+::tuple$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a830ca44fe856aad2dd33980af32ab695}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \&m\+\_\+1\+\_\+bra, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \&m\+\_\+2\+\_\+bra, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \&m\+\_\+3\+\_\+ket, const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \&m\+\_\+4\+\_\+ket) const
 \begin{DoxyCompactList}\small\item\em Calculate the quantum numbers of excited states that appear when calculating the correlation functions. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a484aaf1153f9a0c2cef801eeb9543439}{Generate\+Basis}} ()
 \begin{DoxyCompactList}\small\item\em Generate bases of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
@@ -67,69 +77,69 @@ void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_
 \begin{DoxyCompactList}\small\item\em Generate bases of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a37055055afea88867025e7287eb048d7}{Calculate\+Target\+Quantum\+Number}} (const int row, const int col) const
 \begin{DoxyCompactList}\small\item\em Calculate difference of the number of total electrons and the total sz from the rows and columns in the matrix representation of an onsite operator. \end{DoxyCompactList}\item 
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a99d239a294e73a555df201f0918db9b7}{Get\+Onsite\+Operator\+CUp}} () const
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a99d239a294e73a555df201f0918db9b7}{Get\+Onsite\+Operator\+CUp}} () const
 \item 
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8a54e2bd0487fcaa5f3f727c601e837a}{Get\+Onsite\+Operator\+CDown}} () const
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8a54e2bd0487fcaa5f3f727c601e837a}{Get\+Onsite\+Operator\+CDown}} () const
 \item 
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a59e8d727631f3fa5c3a3f9ba1da668c9}{Get\+Onsite\+Operator\+CUp\+Dagger}} () const
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a59e8d727631f3fa5c3a3f9ba1da668c9}{Get\+Onsite\+Operator\+CUp\+Dagger}} () const
 \item 
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af0008870991c7aadc241beb223daaa68}{Get\+Onsite\+Operator\+CDown\+Dagger}} () const
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af0008870991c7aadc241beb223daaa68}{Get\+Onsite\+Operator\+CDown\+Dagger}} () const
 \item 
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a243117ae46e52aa84fdb4507b77b4532}{Get\+Onsite\+Operator\+NCUp}} () const
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a243117ae46e52aa84fdb4507b77b4532}{Get\+Onsite\+Operator\+NCUp}} () const
 \item 
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ab5bc493d369afa790b504f6c57302142}{Get\+Onsite\+Operator\+NCDown}} () const
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ab5bc493d369afa790b504f6c57302142}{Get\+Onsite\+Operator\+NCDown}} () const
 \item 
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a312eee8f46ac943619a1cfe7395bff1c}{Get\+Onsite\+Operator\+NC}} () const
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a312eee8f46ac943619a1cfe7395bff1c}{Get\+Onsite\+Operator\+NC}} () const
 \item 
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a6a426b25368fef5c50f8165438e1a0f6}{Get\+Onsite\+Operator\+SxC}} () const
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a6a426b25368fef5c50f8165438e1a0f6}{Get\+Onsite\+Operator\+SxC}} () const
 \item 
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae2b6878e8172a0e94d3581af8d2c6554}{Get\+Onsite\+Operatori\+SyC}} () const
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae2b6878e8172a0e94d3581af8d2c6554}{Get\+Onsite\+Operatori\+SyC}} () const
 \item 
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5cf5b90e993fd07e60cb39faddf5f3ae}{Get\+Onsite\+Operator\+SzC}} () const
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5cf5b90e993fd07e60cb39faddf5f3ae}{Get\+Onsite\+Operator\+SzC}} () const
 \item 
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a29e69885d0537a6ae3fedc9a3c8f2aac}{Get\+Onsite\+Operator\+SpC}} () const
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a29e69885d0537a6ae3fedc9a3c8f2aac}{Get\+Onsite\+Operator\+SpC}} () const
 \item 
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad5fc92a7320dc19aaaee31690bd5a0fd}{Get\+Onsite\+Operator\+SmC}} () const
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad5fc92a7320dc19aaaee31690bd5a0fd}{Get\+Onsite\+Operator\+SmC}} () const
 \item 
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a576c62e21e89cf74bf34b0d1fee278b1}{Get\+Onsite\+Operator\+SCSL}} () const
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a576c62e21e89cf74bf34b0d1fee278b1}{Get\+Onsite\+Operator\+SCSL}} () const
 \item 
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ade0bec816c99ea8763fb209753dec77a}{Get\+Onsite\+Operator\+NCTot}} ()
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ade0bec816c99ea8763fb209753dec77a}{Get\+Onsite\+Operator\+NCTot}} ()
 \item 
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae6bcfb5c3d56eaf078ac2acae0d28595}{Get\+Onsite\+Operator\+CUp}} (const int orbital) const
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae6bcfb5c3d56eaf078ac2acae0d28595}{Get\+Onsite\+Operator\+CUp}} (const int orbital) const
 \item 
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4c568306a57d525c3c342977f27dddd8}{Get\+Onsite\+Operator\+CDown}} (const int orbital) const
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4c568306a57d525c3c342977f27dddd8}{Get\+Onsite\+Operator\+CDown}} (const int orbital) const
 \item 
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4eb686df8df2939d8027cf0d1a12aa0e}{Get\+Onsite\+Operator\+CUp\+Dagger}} (const int orbital) const
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4eb686df8df2939d8027cf0d1a12aa0e}{Get\+Onsite\+Operator\+CUp\+Dagger}} (const int orbital) const
 \item 
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af026cf0072dba1ae66e46f91d7e3b3d3}{Get\+Onsite\+Operator\+CDown\+Dagger}} (const int orbital) const
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af026cf0072dba1ae66e46f91d7e3b3d3}{Get\+Onsite\+Operator\+CDown\+Dagger}} (const int orbital) const
 \item 
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8b5e1bcb8527c68b22301e9528629d8c}{Get\+Onsite\+Operator\+NCUp}} (const int orbital) const
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8b5e1bcb8527c68b22301e9528629d8c}{Get\+Onsite\+Operator\+NCUp}} (const int orbital) const
 \item 
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a789d332323d713ce75ddd59d1aa505b7}{Get\+Onsite\+Operator\+NCDown}} (const int orbital) const
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a789d332323d713ce75ddd59d1aa505b7}{Get\+Onsite\+Operator\+NCDown}} (const int orbital) const
 \item 
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_afe415ed9d383486d6eb06ddf4cf52de4}{Get\+Onsite\+Operator\+NC}} (const int orbital) const
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_afe415ed9d383486d6eb06ddf4cf52de4}{Get\+Onsite\+Operator\+NC}} (const int orbital) const
 \item 
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abeb13eb3c535189c88f608f1e61691e9}{Get\+Onsite\+Operator\+SxC}} (const int orbital) const
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abeb13eb3c535189c88f608f1e61691e9}{Get\+Onsite\+Operator\+SxC}} (const int orbital) const
 \item 
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae176458d92d870ab31ab8b53c5007f7f}{Get\+Onsite\+Operatori\+SyC}} (const int orbital) const
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae176458d92d870ab31ab8b53c5007f7f}{Get\+Onsite\+Operatori\+SyC}} (const int orbital) const
 \item 
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa6e0ff75812d22ed39bc64856d834ed2}{Get\+Onsite\+Operator\+SzC}} (const int orbital) const
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa6e0ff75812d22ed39bc64856d834ed2}{Get\+Onsite\+Operator\+SzC}} (const int orbital) const
 \item 
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_acd4cc34fead7a41d18bbfdbeddcc67dc}{Get\+Onsite\+Operator\+SpC}} (const int orbital) const
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_acd4cc34fead7a41d18bbfdbeddcc67dc}{Get\+Onsite\+Operator\+SpC}} (const int orbital) const
 \item 
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a50caf8479a0ae845bce5b06aca814de6}{Get\+Onsite\+Operator\+SmC}} (const int orbital) const
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a50caf8479a0ae845bce5b06aca814de6}{Get\+Onsite\+Operator\+SmC}} (const int orbital) const
 \item 
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa4f1c90f4a0354c89b58691cb2ce2548}{Get\+Onsite\+Operator\+SCSL}} (const int orbital) const
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa4f1c90f4a0354c89b58691cb2ce2548}{Get\+Onsite\+Operator\+SCSL}} (const int orbital) const
 \item 
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a489580f0553dc4de180c0a5ca0e093c0}{Get\+Onsite\+Operator\+SxL}} () const
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a489580f0553dc4de180c0a5ca0e093c0}{Get\+Onsite\+Operator\+SxL}} () const
 \begin{DoxyCompactList}\small\item\em Get the spin-\/ $ S$ operator of the local spin for the x-\/direction $ \hat{S}^{x}$. \end{DoxyCompactList}\item 
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a172ed34aef5de3f60df7c5f8690f8944}{Get\+Onsite\+Operatori\+SyL}} () const
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a172ed34aef5de3f60df7c5f8690f8944}{Get\+Onsite\+Operatori\+SyL}} () const
 \begin{DoxyCompactList}\small\item\em Get the spin-\/ $ S$ operator of the local spin for the y-\/direction $ i\hat{S}^{y}$ with $ i$ being the imaginary unit. \end{DoxyCompactList}\item 
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a7eaa08a6c432e2ebf3eb106b7bdb825d}{Get\+Onsite\+Operator\+SzL}} () const
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a7eaa08a6c432e2ebf3eb106b7bdb825d}{Get\+Onsite\+Operator\+SzL}} () const
 \begin{DoxyCompactList}\small\item\em Get the spin-\/ $ S$ operator of the local spin for the z-\/direction $ \hat{S}^{z}$. \end{DoxyCompactList}\item 
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a096dddc6e4fe7450b8db68e86369efc0}{Get\+Onsite\+Operator\+SpL}} () const
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a096dddc6e4fe7450b8db68e86369efc0}{Get\+Onsite\+Operator\+SpL}} () const
 \begin{DoxyCompactList}\small\item\em Get the spin-\/ $ S$ raising operator of the local spin $ \hat{S}^{+}$. \end{DoxyCompactList}\item 
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abb2f580f9b0bf279b0587dc69721f3e8}{Get\+Onsite\+Operator\+SmL}} () const
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abb2f580f9b0bf279b0587dc69721f3e8}{Get\+Onsite\+Operator\+SmL}} () const
 \begin{DoxyCompactList}\small\item\em Get the spin-\/ $ S$ raising operator of the local spin $ \hat{S}^{-}$. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a766bdca012beb6cb8672cd86a67ce200}{Get\+Dim\+Onsite\+Electron}} () const
 \item 
@@ -166,45 +176,45 @@ const std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$ 
 \item 
 static std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a77b358e0381c6658d61fd2cc78448a03}{Calculate\+Target\+Dim}} (const int system\+\_\+size, const double magnitude\+\_\+lspin, const std\+::vector$<$ int $>$ \&total\+\_\+electron, const double total\+\_\+sz)
 \begin{DoxyCompactList}\small\item\em Calculate the dimension of the target Hilbert space specified by the system size $ N$, the magnitude of the local spin $ S$, the number of the total electrons $ \langle\hat{N}_{\rm e}\rangle$, and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a64eb887ad8446e6fbf72ed8f3bf0f449}{Create\+Onsite\+Operator\+CUp}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a64eb887ad8446e6fbf72ed8f3bf0f449}{Create\+Onsite\+Operator\+CUp}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
 \begin{DoxyCompactList}\small\item\em Generate the annihilation operator for the electrons with the orbital $ \alpha $ and the up spin $ \hat{c}_{\alpha, \uparrow}$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5c22091962c1ce50aa1d975e7f891d3f}{Create\+Onsite\+Operator\+CDown}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5c22091962c1ce50aa1d975e7f891d3f}{Create\+Onsite\+Operator\+CDown}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
 \begin{DoxyCompactList}\small\item\em Generate the annihilation operator for the electrons with the orbital $ \alpha $ and the down spin $ \hat{c}_{\alpha, \downarrow}$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a042fa97ae7f2fd77b6b91a84ce6e287c}{Create\+Onsite\+Operator\+SzL}} (const double magnitude\+\_\+lspin, const int num\+\_\+orbital)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a042fa97ae7f2fd77b6b91a84ce6e287c}{Create\+Onsite\+Operator\+SzL}} (const double magnitude\+\_\+lspin, const int num\+\_\+orbital)
 \begin{DoxyCompactList}\small\item\em Generate the spin-\/ $ S$ operator of the local spin for the z-\/direction $ \hat{S}^{z}$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8cabf7b2fa9505845905e30cfbbfa5fe}{Create\+Onsite\+Operator\+SpL}} (const double magnitude\+\_\+lspin, const int num\+\_\+orbital)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8cabf7b2fa9505845905e30cfbbfa5fe}{Create\+Onsite\+Operator\+SpL}} (const double magnitude\+\_\+lspin, const int num\+\_\+orbital)
 \begin{DoxyCompactList}\small\item\em Generate the spin-\/ $ S$ raising operator of the local spin $ \hat{S}^{+}$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a19bbf84cb3c37496eaa0ee7afec4331f}{Create\+Onsite\+Operator\+CUp\+Dagger}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a19bbf84cb3c37496eaa0ee7afec4331f}{Create\+Onsite\+Operator\+CUp\+Dagger}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
 \begin{DoxyCompactList}\small\item\em Generate the creation operator for the electrons with the orbital $ \alpha $ and the up spin $ \hat{c}^{\dagger}_{\alpha, \uparrow}$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a607eb0a02dd1dc5bb0289b60468bb647}{Create\+Onsite\+Operator\+CDown\+Dagger}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a607eb0a02dd1dc5bb0289b60468bb647}{Create\+Onsite\+Operator\+CDown\+Dagger}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
 \begin{DoxyCompactList}\small\item\em Generate the creation operator for the electrons with the orbital $ \alpha $ and the down spin $ \hat{c}^{\dagger}_{\alpha, \downarrow}$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af690f18f7e70aaf37f3d00b1da0fb8a2}{Create\+Onsite\+Operator\+NCUp}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af690f18f7e70aaf37f3d00b1da0fb8a2}{Create\+Onsite\+Operator\+NCUp}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
 \begin{DoxyCompactList}\small\item\em Generate the number operator for the electrons with the orbital $ \alpha $ and the up spin $ \hat{n}_{\alpha, \uparrow}=\hat{c}^{\dagger}_{\alpha, \uparrow}\hat{c}_{\alpha, \uparrow}$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8a30f80bde37ed238e2574bf7301b84e}{Create\+Onsite\+Operator\+NCDown}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8a30f80bde37ed238e2574bf7301b84e}{Create\+Onsite\+Operator\+NCDown}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
 \begin{DoxyCompactList}\small\item\em Generate the number operator for the electrons with the orbital $ \alpha $ and the down spin $ \hat{n}_{\alpha, \downarrow}=\hat{c}^{\dagger}_{\alpha, \downarrow}\hat{c}_{\alpha, \downarrow}$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a84248fbd8412972f4ff51e6ff7a320d8}{Create\+Onsite\+Operator\+NC}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a84248fbd8412972f4ff51e6ff7a320d8}{Create\+Onsite\+Operator\+NC}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
 \begin{DoxyCompactList}\small\item\em Generate the number operator for the electrons with the orbital $ \alpha $, $ \hat{n}_{\alpha}=\hat{n}_{\alpha, \uparrow} + \hat{n}_{\alpha, \downarrow}$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad2ad35117dd5878ef6debfa0e459502e}{Create\+Onsite\+Operator\+NCTot}} (const double magnitude\+\_\+lspin, const int num\+\_\+orbital)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad2ad35117dd5878ef6debfa0e459502e}{Create\+Onsite\+Operator\+NCTot}} (const double magnitude\+\_\+lspin, const int num\+\_\+orbital)
 \begin{DoxyCompactList}\small\item\em Generate the number operator for the electrons with the orbital $ \alpha $, $ \hat{n}=\sum_{\alpha}\left(\hat{n}_{\alpha, \uparrow} + \hat{n}_{\alpha, \downarrow}\right)$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aafc17ceaa853846b2335569319d04e77}{Create\+Onsite\+Operator\+SxC}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aafc17ceaa853846b2335569319d04e77}{Create\+Onsite\+Operator\+SxC}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
 \begin{DoxyCompactList}\small\item\em Generate the spin operator for the x-\/direction for the electrons with the orbital $ \alpha $, $ \hat{s}^{x}_{\alpha}=\frac{1}{2}(\hat{c}^{\dagger}_{\alpha, \uparrow}\hat{c}_{\alpha, \downarrow} + \hat{c}^{\dagger}_{\alpha, \downarrow}\hat{c}_{\alpha, \uparrow})$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ab4b05b21529cffc2263d7423d9daf79a}{Create\+Onsite\+Operatori\+SyC}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ab4b05b21529cffc2263d7423d9daf79a}{Create\+Onsite\+Operatori\+SyC}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
 \begin{DoxyCompactList}\small\item\em Generate the spin operator for the y-\/direction for the electrons with the orbital $ \alpha $, $ i\hat{s}^{y}_{\alpha}=\frac{1}{2}(\hat{c}^{\dagger}_{\alpha, \uparrow}\hat{c}_{\alpha, \downarrow} - \hat{c}^{\dagger}_{\alpha, \downarrow}\hat{c}_{\alpha, \uparrow})$. Here $ i=\sqrt{-1}$ is the the imaginary unit. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5ae746eed7f08c1b115b720a4b6b480f}{Create\+Onsite\+Operator\+SzC}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5ae746eed7f08c1b115b720a4b6b480f}{Create\+Onsite\+Operator\+SzC}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
 \begin{DoxyCompactList}\small\item\em Generate the spin operator for the z-\/direction for the electrons with the orbital $ \alpha $, $ \hat{s}^{z}_{\alpha}=\frac{1}{2}(\hat{c}^{\dagger}_{\alpha, \uparrow}\hat{c}_{\alpha, \uparrow} - \hat{c}^{\dagger}_{\alpha, \downarrow}\hat{c}_{\alpha, \downarrow})$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8197c2df1595d2342a4632b18e0512ff}{Create\+Onsite\+Operator\+SpC}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8197c2df1595d2342a4632b18e0512ff}{Create\+Onsite\+Operator\+SpC}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
 \begin{DoxyCompactList}\small\item\em Generate the raising operator for spin of the electrons with the orbital $ \alpha $, $ \hat{s}^{+}_{\alpha}=\hat{c}^{\dagger}_{\alpha, \uparrow}\hat{c}_{\alpha, \downarrow}$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae8882522614548811d1008a71b3b612d}{Create\+Onsite\+Operator\+SmC}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae8882522614548811d1008a71b3b612d}{Create\+Onsite\+Operator\+SmC}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
 \begin{DoxyCompactList}\small\item\em Generate the lowering operator for spin of the electrons with the orbital $ \alpha $, $ \hat{s}^{-}_{\alpha}=\hat{c}^{\dagger}_{\alpha, \downarrow}\hat{c}_{\alpha, \uparrow}$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aefe5f033b8b1c8be8f688b04e2b1a24d}{Create\+Onsite\+Operator\+SmL}} (const double magnitude\+\_\+lspin, const int num\+\_\+orbital)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aefe5f033b8b1c8be8f688b04e2b1a24d}{Create\+Onsite\+Operator\+SmL}} (const double magnitude\+\_\+lspin, const int num\+\_\+orbital)
 \begin{DoxyCompactList}\small\item\em Generate the spin-\/ $ S$ raising operator of the local spin $ \hat{S}^{-}$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ab0547e2406c5a37c96a49ee2228ead15}{Create\+Onsite\+Operator\+SxL}} (const double magnitude\+\_\+lspin, const int num\+\_\+orbital)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ab0547e2406c5a37c96a49ee2228ead15}{Create\+Onsite\+Operator\+SxL}} (const double magnitude\+\_\+lspin, const int num\+\_\+orbital)
 \begin{DoxyCompactList}\small\item\em Generate the spin-\/ $ S$ operator of the local spin for the x-\/direction $ \hat{S}^{x}$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a00dbf75844e4206da7aa4b447cf0e083}{Create\+Onsite\+Operatori\+SyL}} (const double magnitude\+\_\+lspin, const int num\+\_\+orbital)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a00dbf75844e4206da7aa4b447cf0e083}{Create\+Onsite\+Operatori\+SyL}} (const double magnitude\+\_\+lspin, const int num\+\_\+orbital)
 \begin{DoxyCompactList}\small\item\em Generate the spin-\/ $ S$ operator of the local spin for the y-\/direction $ i\hat{S}^{y}$ with $ i$ being the imaginary unit. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a0b80406ed5e4830bf7e2fd48f0622335}{Create\+Onsite\+Operator\+SCSL}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a0b80406ed5e4830bf7e2fd48f0622335}{Create\+Onsite\+Operator\+SCSL}} (const double magnitude\+\_\+lspin, const int orbital, const int num\+\_\+orbital)
 \begin{DoxyCompactList}\small\item\em Generate $ \hat{\boldsymbol{s}}_{\alpha}\cdot\hat{\boldsymbol{S}}= \hat{s}^{x}_{\alpha}\hat{S}^{x}+\hat{s}^{y}_{\alpha}\hat{S}^{y}+\hat{s}^{z}_{\alpha}\hat{S}^{z}$. \end{DoxyCompactList}\item 
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ab96b15b44c109f691bbc7ec7b93d4ba6}{Create\+Onsite\+Operator\+SCSLTot}} (const double magnitude\+\_\+lspin, const int num\+\_\+orbital)
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ab96b15b44c109f691bbc7ec7b93d4ba6}{Create\+Onsite\+Operator\+SCSLTot}} (const double magnitude\+\_\+lspin, const int num\+\_\+orbital)
 \begin{DoxyCompactList}\small\item\em Generate $ \hat{\boldsymbol{s}}\cdot\hat{\boldsymbol{S}}= \sum_{\alpha}\left(\hat{s}^{x}_{\alpha}\hat{S}^{x}+\hat{s}^{y}_{\alpha}\hat{S}^{y} +\hat{s}^{z}_{\alpha}\hat{S}^{z}\right)$. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
@@ -229,43 +239,43 @@ static bool \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electr
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aee5456ef719458abd885f28cdeb8b48b}{onsite\+\_\+operator\+\_\+c\+\_\+up\+\_\+}}
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aee5456ef719458abd885f28cdeb8b48b}{onsite\+\_\+operator\+\_\+c\+\_\+up\+\_\+}}
 \begin{DoxyCompactList}\small\item\em The annihilation operator for the electrons with the orbital $ \alpha $ and the up spin, $ \hat{c}_{\alpha, \uparrow}$. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5dd311f2b3cbc774303647c01ae0d77a}{onsite\+\_\+operator\+\_\+c\+\_\+down\+\_\+}}
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a5dd311f2b3cbc774303647c01ae0d77a}{onsite\+\_\+operator\+\_\+c\+\_\+down\+\_\+}}
 \begin{DoxyCompactList}\small\item\em The annihilation operator for the electrons with the orbital $ \alpha $ and the down spin $ \hat{c}_{\alpha, \downarrow}$. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa7df622178ee244bfa5d6407843e60af}{onsite\+\_\+operator\+\_\+c\+\_\+up\+\_\+dagger\+\_\+}}
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa7df622178ee244bfa5d6407843e60af}{onsite\+\_\+operator\+\_\+c\+\_\+up\+\_\+dagger\+\_\+}}
 \begin{DoxyCompactList}\small\item\em The creation operator for the electrons with the orbital $ \alpha $ and the up spin $ \hat{c}^{\dagger}_{\alpha, \uparrow}$. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ac216fa16d421f5b75d7a62e7c2948f22}{onsite\+\_\+operator\+\_\+c\+\_\+down\+\_\+dagger\+\_\+}}
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ac216fa16d421f5b75d7a62e7c2948f22}{onsite\+\_\+operator\+\_\+c\+\_\+down\+\_\+dagger\+\_\+}}
 \begin{DoxyCompactList}\small\item\em The the creation operator for the electrons with the orbital $ \alpha $ and the down spin $ \hat{c}^{\dagger}_{\alpha, \downarrow}$. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a561bcff85556fe1dde7093217722bd9e}{onsite\+\_\+operator\+\_\+nc\+\_\+up\+\_\+}}
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a561bcff85556fe1dde7093217722bd9e}{onsite\+\_\+operator\+\_\+nc\+\_\+up\+\_\+}}
 \begin{DoxyCompactList}\small\item\em The number operator for the electrons with the orbital $ \alpha $ and the up spin, $ \hat{n}_{\alpha, \uparrow}=\hat{c}^{\dagger}_{\alpha, \uparrow}\hat{c}_{\alpha, \uparrow}$. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa1c151c8f51cfa24eb3aeaa05c48efc4}{onsite\+\_\+operator\+\_\+nc\+\_\+down\+\_\+}}
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa1c151c8f51cfa24eb3aeaa05c48efc4}{onsite\+\_\+operator\+\_\+nc\+\_\+down\+\_\+}}
 \begin{DoxyCompactList}\small\item\em The number operator for the electrons with the orbital $ \alpha $ and the down spin, $ \hat{n}_{\alpha, \downarrow}=\hat{c}^{\dagger}_{\alpha, \downarrow}\hat{c}_{\alpha, \downarrow}$. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_acf5411311f76e9f84ed67be2d8ab13a2}{onsite\+\_\+operator\+\_\+nc\+\_\+}}
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_acf5411311f76e9f84ed67be2d8ab13a2}{onsite\+\_\+operator\+\_\+nc\+\_\+}}
 \begin{DoxyCompactList}\small\item\em The number operator for the electrons with the orbital $ \alpha $, $ \hat{n}_{\alpha}=\hat{n}_{\alpha, \uparrow} + \hat{n}_{\alpha, \downarrow}$. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad40c29285f5707337a2bea07ecd9bbc6}{onsite\+\_\+operator\+\_\+nc\+\_\+tot\+\_\+}}
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad40c29285f5707337a2bea07ecd9bbc6}{onsite\+\_\+operator\+\_\+nc\+\_\+tot\+\_\+}}
 \begin{DoxyCompactList}\small\item\em The number operator for the electrons, $ \hat{n}=\sum_{\alpha}\left(\hat{n}_{\alpha, \uparrow} + \hat{n}_{\alpha, \downarrow}\right)$. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ac28a20bceda0539987011c5ab184deeb}{onsite\+\_\+operator\+\_\+sxc\+\_\+}}
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ac28a20bceda0539987011c5ab184deeb}{onsite\+\_\+operator\+\_\+sxc\+\_\+}}
 \begin{DoxyCompactList}\small\item\em The spin operator for the x-\/direction for the electrons with the orbital $ \alpha $, $ \hat{s}^{x}_{\alpha}=\frac{1}{2}(\hat{c}^{\dagger}_{\alpha, \uparrow}\hat{c}_{\alpha, \downarrow} + \hat{c}^{\dagger}_{\alpha, \downarrow}\hat{c}_{\alpha, \uparrow})$. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a09f3be9d4a71133b95706a6dfb876e1e}{onsite\+\_\+operator\+\_\+isyc\+\_\+}}
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a09f3be9d4a71133b95706a6dfb876e1e}{onsite\+\_\+operator\+\_\+isyc\+\_\+}}
 \begin{DoxyCompactList}\small\item\em The spin operator for the y-\/direction for the electrons with the orbital $ \alpha $, $ i\hat{s}^{y}_{\alpha}=\frac{1}{2}(\hat{c}^{\dagger}_{\alpha, \uparrow}\hat{c}_{\alpha, \downarrow} - \hat{c}^{\dagger}_{\alpha, \downarrow}\hat{c}_{\alpha, \uparrow})$. Here $ i=\sqrt{-1}$ is the the imaginary unit. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abf6ffb8ddccae72ca86be88d1dd17ac8}{onsite\+\_\+operator\+\_\+szc\+\_\+}}
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abf6ffb8ddccae72ca86be88d1dd17ac8}{onsite\+\_\+operator\+\_\+szc\+\_\+}}
 \begin{DoxyCompactList}\small\item\em The spin operator for the z-\/direction for the electrons with the orbital $ \alpha $, $ \hat{s}^{z}_{\alpha}=\frac{1}{2}(\hat{c}^{\dagger}_{\alpha, \uparrow}\hat{c}_{\alpha, \uparrow} - \hat{c}^{\dagger}_{\alpha, \downarrow}\hat{c}_{\alpha, \downarrow})$. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af99cfad55fcbb3402a0f452726f659dc}{onsite\+\_\+operator\+\_\+spc\+\_\+}}
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af99cfad55fcbb3402a0f452726f659dc}{onsite\+\_\+operator\+\_\+spc\+\_\+}}
 \begin{DoxyCompactList}\small\item\em The raising operator for spin of the electrons with the orbital $ \alpha $, $ \hat{s}^{+}_{\alpha}=\hat{c}^{\dagger}_{\alpha, \uparrow}\hat{c}_{\alpha, \downarrow}$. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a56cdd1b894a9baab7bb52cc1cdbd503b}{onsite\+\_\+operator\+\_\+smc\+\_\+}}
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a56cdd1b894a9baab7bb52cc1cdbd503b}{onsite\+\_\+operator\+\_\+smc\+\_\+}}
 \begin{DoxyCompactList}\small\item\em The lowering operator for spin of the electrons with the orbital $ \alpha $, $ \hat{s}^{-}_{\alpha}=\hat{c}^{\dagger}_{\alpha, \downarrow}\hat{c}_{\alpha, \uparrow}$. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aede6cf79398fb3e8c5693b971dfd99ad}{onsite\+\_\+operator\+\_\+sxl\+\_\+}}
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aede6cf79398fb3e8c5693b971dfd99ad}{onsite\+\_\+operator\+\_\+sxl\+\_\+}}
 \begin{DoxyCompactList}\small\item\em The spin-\/ $ S$ operator of the local spin for the x-\/direction $ \hat{S}^{x}$. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae6365d3c8797be7f355767f1e389cf86}{onsite\+\_\+operator\+\_\+isyl\+\_\+}}
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae6365d3c8797be7f355767f1e389cf86}{onsite\+\_\+operator\+\_\+isyl\+\_\+}}
 \begin{DoxyCompactList}\small\item\em The spin-\/ $ S$ operator of the local spin for the y-\/direction $ i\hat{S}^{y}$ with $ i$ being the imaginary unit. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a9a1a099bd402df24ff062a486a82c9dd}{onsite\+\_\+operator\+\_\+szl\+\_\+}}
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a9a1a099bd402df24ff062a486a82c9dd}{onsite\+\_\+operator\+\_\+szl\+\_\+}}
 \begin{DoxyCompactList}\small\item\em The spin-\/ $ S$ operator of the local spin for the z-\/direction $ \hat{S}^{z}$. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aba0cdb7f86b96d25ce980e5cfc51ab32}{onsite\+\_\+operator\+\_\+spl\+\_\+}}
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aba0cdb7f86b96d25ce980e5cfc51ab32}{onsite\+\_\+operator\+\_\+spl\+\_\+}}
 \begin{DoxyCompactList}\small\item\em The spin-\/ $ S$ raising operator of the local spin $ \hat{S}^{+}$. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a01aee3febef5dd125382f8e0ac9d895f}{onsite\+\_\+operator\+\_\+sml\+\_\+}}
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a01aee3febef5dd125382f8e0ac9d895f}{onsite\+\_\+operator\+\_\+sml\+\_\+}}
 \begin{DoxyCompactList}\small\item\em The spin-\/ $ S$ raising operator of the local spin $ \hat{S}^{-}$. \end{DoxyCompactList}\item 
-std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae42cc437666ff47f9b04c7ba318000eb}{onsite\+\_\+operator\+\_\+scsl\+\_\+}}
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae42cc437666ff47f9b04c7ba318000eb}{onsite\+\_\+operator\+\_\+scsl\+\_\+}}
 \begin{DoxyCompactList}\small\item\em The correlation between the electron with the orbital $ \alpha $ spin and local spin $ \hat{\boldsymbol{s}}_{\alpha}\cdot\hat{\boldsymbol{S}}= \hat{s}^{x}_{\alpha}\hat{S}^{x}+\hat{s}^{y}_{\alpha}\hat{S}^{y}+\hat{s}^{z}_{\alpha}\hat{S}^{z}$. \end{DoxyCompactList}\item 
 const int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa0c1648165b632ae0ca7f7da5a967f8e}{dim\+\_\+onsite\+\_\+electron\+\_\+}} = 4
 \begin{DoxyCompactList}\small\item\em The dimension of the local Hilbert space for the electrons, 4. \end{DoxyCompactList}\item 
@@ -294,7 +304,7 @@ std\+::unordered\+\_\+map$<$ std\+::pair$<$ std\+::vector$<$ int $>$, int $>$, s
 \doxysubsection*{Private Types}
 \begin{DoxyCompactItemize}
 \item 
-using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} = \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{sparse\+\_\+matrix\+::\+CRS}}$<$ Real\+Type $>$
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} = \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$
 \begin{DoxyCompactList}\small\item\em Alias of compressed row strage (CRS) with Real\+Type. \end{DoxyCompactList}\item 
 using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} = std\+::pair$<$ std\+::vector$<$ int $>$, double $>$
 \begin{DoxyCompactList}\small\item\em Alias of quantum number (total electron list, total sz) pair. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -313,12 +323,12 @@ The base class for one-\/dimensional spin-\/multiband-\/electron systems with th
 
 
 \doxysubsection{Member Typedef Documentation}
-\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}} 
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!CRS@{CRS}}
 \index{CRS@{CRS}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CRS}{CRS}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+CRS =  \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{sparse\+\_\+matrix\+::\+CRS}}$<$Real\+Type$>$\hspace{0.3cm}{\ttfamily [private]}}
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+CRS =  \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$Real\+Type$>$\hspace{0.3cm}{\ttfamily [private]}}
 
 
 
@@ -665,7 +675,7 @@ The differences of the total electron and the total sz.
 \index{CreateOnsiteOperatorCDown@{CreateOnsiteOperatorCDown}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorCDown()}{CreateOnsiteOperatorCDown()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+CDown (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+CDown (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -688,7 +698,7 @@ The matrix of $ \hat{c}_{\alpha, \downarrow}$.
 \index{CreateOnsiteOperatorCDownDagger@{CreateOnsiteOperatorCDownDagger}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorCDownDagger()}{CreateOnsiteOperatorCDownDagger()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+CDown\+Dagger (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+CDown\+Dagger (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -711,7 +721,7 @@ The matrix of $ \hat{c}^{\dagger}_{\alpha, \downarrow}$.
 \index{CreateOnsiteOperatorCUp@{CreateOnsiteOperatorCUp}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorCUp()}{CreateOnsiteOperatorCUp()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+CUp (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+CUp (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -734,7 +744,7 @@ The matrix of $ \hat{c}_{\alpha, \uparrow}$.
 \index{CreateOnsiteOperatorCUpDagger@{CreateOnsiteOperatorCUpDagger}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorCUpDagger()}{CreateOnsiteOperatorCUpDagger()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+CUp\+Dagger (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+CUp\+Dagger (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -757,7 +767,7 @@ The matrix of $ \hat{c}^{\dagger}_{\alpha, \uparrow}$.
 \index{CreateOnsiteOperatoriSyC@{CreateOnsiteOperatoriSyC}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatoriSyC()}{CreateOnsiteOperatoriSyC()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operatori\+SyC (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operatori\+SyC (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -780,7 +790,7 @@ The matrix of $ i\hat{s}^{y}_{\alpha}$.
 \index{CreateOnsiteOperatoriSyL@{CreateOnsiteOperatoriSyL}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatoriSyL()}{CreateOnsiteOperatoriSyL()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operatori\+SyL (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operatori\+SyL (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -801,7 +811,7 @@ The matrix of $ i\hat{S}^{y}$.
 \index{CreateOnsiteOperatorNC@{CreateOnsiteOperatorNC}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorNC()}{CreateOnsiteOperatorNC()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+NC (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+NC (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -824,7 +834,7 @@ The matrix of $ \hat{n}_{\alpha}$.
 \index{CreateOnsiteOperatorNCDown@{CreateOnsiteOperatorNCDown}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorNCDown()}{CreateOnsiteOperatorNCDown()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+NCDown (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+NCDown (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -847,7 +857,7 @@ The matrix of $ \hat{n}_{\alpha, \downarrow}$.
 \index{CreateOnsiteOperatorNCTot@{CreateOnsiteOperatorNCTot}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorNCTot()}{CreateOnsiteOperatorNCTot()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+NCTot (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+NCTot (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -868,7 +878,7 @@ The matrix of $ \sum_{\alpha}\hat{n}_{\alpha}$.
 \index{CreateOnsiteOperatorNCUp@{CreateOnsiteOperatorNCUp}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorNCUp()}{CreateOnsiteOperatorNCUp()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+NCUp (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+NCUp (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -891,7 +901,7 @@ The matrix of $ \hat{n}_{\alpha, \uparrow}$.
 \index{CreateOnsiteOperatorSCSL@{CreateOnsiteOperatorSCSL}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSCSL()}{CreateOnsiteOperatorSCSL()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SCSL (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SCSL (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -914,7 +924,7 @@ The matrix of $ \hat{\boldsymbol{s}}_{\alpha}\cdot\hat{\boldsymbol{S}}$.
 \index{CreateOnsiteOperatorSCSLTot@{CreateOnsiteOperatorSCSLTot}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSCSLTot()}{CreateOnsiteOperatorSCSLTot()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SCSLTot (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SCSLTot (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -935,7 +945,7 @@ The matrix of $ \hat{\boldsymbol{s}}\cdot\hat{\boldsymbol{S}}$.
 \index{CreateOnsiteOperatorSmC@{CreateOnsiteOperatorSmC}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSmC()}{CreateOnsiteOperatorSmC()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SmC (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SmC (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -958,7 +968,7 @@ The matrix of $ \hat{s}^{-}_{\alpha}$.
 \index{CreateOnsiteOperatorSmL@{CreateOnsiteOperatorSmL}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSmL()}{CreateOnsiteOperatorSmL()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SmL (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SmL (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -979,7 +989,7 @@ The matrix of $ \hat{S}^{-}$.
 \index{CreateOnsiteOperatorSpC@{CreateOnsiteOperatorSpC}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSpC()}{CreateOnsiteOperatorSpC()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SpC (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SpC (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -1002,7 +1012,7 @@ The matrix of $ \hat{s}^{+}_{\alpha}$.
 \index{CreateOnsiteOperatorSpL@{CreateOnsiteOperatorSpL}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSpL()}{CreateOnsiteOperatorSpL()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SpL (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SpL (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -1023,7 +1033,7 @@ The matrix of $ \hat{S}^{+}$.
 \index{CreateOnsiteOperatorSxC@{CreateOnsiteOperatorSxC}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSxC()}{CreateOnsiteOperatorSxC()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SxC (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SxC (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -1046,7 +1056,7 @@ The matrix of $ \hat{s}^{x}_{\alpha}$.
 \index{CreateOnsiteOperatorSxL@{CreateOnsiteOperatorSxL}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSxL()}{CreateOnsiteOperatorSxL()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SxL (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SxL (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -1067,7 +1077,7 @@ The matrix of $ \hat{S}^{x}$.
 \index{CreateOnsiteOperatorSzC@{CreateOnsiteOperatorSzC}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSzC()}{CreateOnsiteOperatorSzC()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SzC (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SzC (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{orbital,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -1090,7 +1100,7 @@ The matrix of $ \hat{s}^{z}_{\alpha}$.
 \index{CreateOnsiteOperatorSzL@{CreateOnsiteOperatorSzL}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{CreateOnsiteOperatorSzL()}{CreateOnsiteOperatorSzL()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SzL (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+static \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Create\+Onsite\+Operator\+SzL (\begin{DoxyParamCaption}\item[{const double}]{magnitude\+\_\+lspin,  }\item[{const int}]{num\+\_\+orbital }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
 
 
 
@@ -1163,7 +1173,7 @@ static std\+::vector$<$ std\+::vector$<$ int $>$ $>$ \mbox{\hyperlink{classcompn
 \index{GenerateTargetSector@{GenerateTargetSector}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GenerateTargetSector()}{GenerateTargetSector()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \&}]{m\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \&}]{m\+\_\+2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \&}]{m\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \&}]{m\+\_\+2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -1184,7 +1194,7 @@ The list of quantum numbers.
 \index{GenerateTargetSector@{GenerateTargetSector}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GenerateTargetSector()}{GenerateTargetSector()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$ std\+::tuple$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \&}]{m\+\_\+1\+\_\+bra,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \&}]{m\+\_\+2\+\_\+bra,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \&}]{m\+\_\+3\+\_\+ket,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \&}]{m\+\_\+4\+\_\+ket }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+std\+::vector$<$ std\+::tuple$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \&}]{m\+\_\+1\+\_\+bra,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \&}]{m\+\_\+2\+\_\+bra,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \&}]{m\+\_\+3\+\_\+ket,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \&}]{m\+\_\+4\+\_\+ket }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -1209,7 +1219,7 @@ The list of quantum numbers.
 \index{GenerateTargetSector@{GenerateTargetSector}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GenerateTargetSector()}{GenerateTargetSector()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \&}]{m\+\_\+1\+\_\+bra,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \&}]{m\+\_\+2\+\_\+ket,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \&}]{m\+\_\+3\+\_\+ket }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aac75f90c862054fdeb66d6d4af2ea55f}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \&}]{m\+\_\+1\+\_\+bra,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \&}]{m\+\_\+2\+\_\+ket,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \&}]{m\+\_\+3\+\_\+ket }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -1340,77 +1350,77 @@ int \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d
 \index{GetOnsiteOperatorCDown@{GetOnsiteOperatorCDown}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorCDown()}{GetOnsiteOperatorCDown()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+CDown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+CDown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4c568306a57d525c3c342977f27dddd8}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4c568306a57d525c3c342977f27dddd8}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorCDown@{GetOnsiteOperatorCDown}}
 \index{GetOnsiteOperatorCDown@{GetOnsiteOperatorCDown}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorCDown()}{GetOnsiteOperatorCDown()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+CDown (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+CDown (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af0008870991c7aadc241beb223daaa68}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af0008870991c7aadc241beb223daaa68}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorCDownDagger@{GetOnsiteOperatorCDownDagger}}
 \index{GetOnsiteOperatorCDownDagger@{GetOnsiteOperatorCDownDagger}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorCDownDagger()}{GetOnsiteOperatorCDownDagger()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+CDown\+Dagger (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+CDown\+Dagger (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af026cf0072dba1ae66e46f91d7e3b3d3}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_af026cf0072dba1ae66e46f91d7e3b3d3}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorCDownDagger@{GetOnsiteOperatorCDownDagger}}
 \index{GetOnsiteOperatorCDownDagger@{GetOnsiteOperatorCDownDagger}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorCDownDagger()}{GetOnsiteOperatorCDownDagger()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+CDown\+Dagger (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+CDown\+Dagger (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a99d239a294e73a555df201f0918db9b7}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a99d239a294e73a555df201f0918db9b7}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorCUp@{GetOnsiteOperatorCUp}}
 \index{GetOnsiteOperatorCUp@{GetOnsiteOperatorCUp}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorCUp()}{GetOnsiteOperatorCUp()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+CUp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+CUp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae6bcfb5c3d56eaf078ac2acae0d28595}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae6bcfb5c3d56eaf078ac2acae0d28595}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorCUp@{GetOnsiteOperatorCUp}}
 \index{GetOnsiteOperatorCUp@{GetOnsiteOperatorCUp}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorCUp()}{GetOnsiteOperatorCUp()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+CUp (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+CUp (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a59e8d727631f3fa5c3a3f9ba1da668c9}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a59e8d727631f3fa5c3a3f9ba1da668c9}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorCUpDagger@{GetOnsiteOperatorCUpDagger}}
 \index{GetOnsiteOperatorCUpDagger@{GetOnsiteOperatorCUpDagger}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorCUpDagger()}{GetOnsiteOperatorCUpDagger()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+CUp\+Dagger (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+CUp\+Dagger (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4eb686df8df2939d8027cf0d1a12aa0e}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4eb686df8df2939d8027cf0d1a12aa0e}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorCUpDagger@{GetOnsiteOperatorCUpDagger}}
 \index{GetOnsiteOperatorCUpDagger@{GetOnsiteOperatorCUpDagger}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorCUpDagger()}{GetOnsiteOperatorCUpDagger()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+CUp\+Dagger (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+CUp\+Dagger (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae2b6878e8172a0e94d3581af8d2c6554}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae2b6878e8172a0e94d3581af8d2c6554}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatoriSyC@{GetOnsiteOperatoriSyC}}
 \index{GetOnsiteOperatoriSyC@{GetOnsiteOperatoriSyC}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatoriSyC()}{GetOnsiteOperatoriSyC()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operatori\+SyC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operatori\+SyC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae176458d92d870ab31ab8b53c5007f7f}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ae176458d92d870ab31ab8b53c5007f7f}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatoriSyC@{GetOnsiteOperatoriSyC}}
 \index{GetOnsiteOperatoriSyC@{GetOnsiteOperatoriSyC}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatoriSyC()}{GetOnsiteOperatoriSyC()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operatori\+SyC (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operatori\+SyC (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a172ed34aef5de3f60df7c5f8690f8944}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a172ed34aef5de3f60df7c5f8690f8944}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatoriSyL@{GetOnsiteOperatoriSyL}}
 \index{GetOnsiteOperatoriSyL@{GetOnsiteOperatoriSyL}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatoriSyL()}{GetOnsiteOperatoriSyL()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operatori\+SyL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operatori\+SyL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -1424,84 +1434,84 @@ The matrix of $ i\hat{S}^{y}$.
 \index{GetOnsiteOperatorNC@{GetOnsiteOperatorNC}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorNC()}{GetOnsiteOperatorNC()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+NC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+NC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_afe415ed9d383486d6eb06ddf4cf52de4}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_afe415ed9d383486d6eb06ddf4cf52de4}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorNC@{GetOnsiteOperatorNC}}
 \index{GetOnsiteOperatorNC@{GetOnsiteOperatorNC}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorNC()}{GetOnsiteOperatorNC()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+NC (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+NC (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ab5bc493d369afa790b504f6c57302142}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ab5bc493d369afa790b504f6c57302142}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorNCDown@{GetOnsiteOperatorNCDown}}
 \index{GetOnsiteOperatorNCDown@{GetOnsiteOperatorNCDown}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorNCDown()}{GetOnsiteOperatorNCDown()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+NCDown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+NCDown (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a789d332323d713ce75ddd59d1aa505b7}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a789d332323d713ce75ddd59d1aa505b7}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorNCDown@{GetOnsiteOperatorNCDown}}
 \index{GetOnsiteOperatorNCDown@{GetOnsiteOperatorNCDown}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorNCDown()}{GetOnsiteOperatorNCDown()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+NCDown (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+NCDown (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ade0bec816c99ea8763fb209753dec77a}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ade0bec816c99ea8763fb209753dec77a}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorNCTot@{GetOnsiteOperatorNCTot}}
 \index{GetOnsiteOperatorNCTot@{GetOnsiteOperatorNCTot}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorNCTot()}{GetOnsiteOperatorNCTot()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+NCTot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+NCTot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a243117ae46e52aa84fdb4507b77b4532}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a243117ae46e52aa84fdb4507b77b4532}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorNCUp@{GetOnsiteOperatorNCUp}}
 \index{GetOnsiteOperatorNCUp@{GetOnsiteOperatorNCUp}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorNCUp()}{GetOnsiteOperatorNCUp()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+NCUp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+NCUp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8b5e1bcb8527c68b22301e9528629d8c}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a8b5e1bcb8527c68b22301e9528629d8c}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorNCUp@{GetOnsiteOperatorNCUp}}
 \index{GetOnsiteOperatorNCUp@{GetOnsiteOperatorNCUp}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorNCUp()}{GetOnsiteOperatorNCUp()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+NCUp (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+NCUp (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a576c62e21e89cf74bf34b0d1fee278b1}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a576c62e21e89cf74bf34b0d1fee278b1}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorSCSL@{GetOnsiteOperatorSCSL}}
 \index{GetOnsiteOperatorSCSL@{GetOnsiteOperatorSCSL}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSCSL()}{GetOnsiteOperatorSCSL()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SCSL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SCSL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa4f1c90f4a0354c89b58691cb2ce2548}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa4f1c90f4a0354c89b58691cb2ce2548}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorSCSL@{GetOnsiteOperatorSCSL}}
 \index{GetOnsiteOperatorSCSL@{GetOnsiteOperatorSCSL}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSCSL()}{GetOnsiteOperatorSCSL()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SCSL (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SCSL (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad5fc92a7320dc19aaaee31690bd5a0fd}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_ad5fc92a7320dc19aaaee31690bd5a0fd}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorSmC@{GetOnsiteOperatorSmC}}
 \index{GetOnsiteOperatorSmC@{GetOnsiteOperatorSmC}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSmC()}{GetOnsiteOperatorSmC()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SmC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SmC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a50caf8479a0ae845bce5b06aca814de6}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a50caf8479a0ae845bce5b06aca814de6}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorSmC@{GetOnsiteOperatorSmC}}
 \index{GetOnsiteOperatorSmC@{GetOnsiteOperatorSmC}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSmC()}{GetOnsiteOperatorSmC()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SmC (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SmC (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abb2f580f9b0bf279b0587dc69721f3e8}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abb2f580f9b0bf279b0587dc69721f3e8}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorSmL@{GetOnsiteOperatorSmL}}
 \index{GetOnsiteOperatorSmL@{GetOnsiteOperatorSmL}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSmL()}{GetOnsiteOperatorSmL()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SmL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SmL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -1515,21 +1525,21 @@ The matrix of $ \hat{S}^{-}$.
 \index{GetOnsiteOperatorSpC@{GetOnsiteOperatorSpC}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSpC()}{GetOnsiteOperatorSpC()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SpC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SpC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_acd4cc34fead7a41d18bbfdbeddcc67dc}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_acd4cc34fead7a41d18bbfdbeddcc67dc}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorSpC@{GetOnsiteOperatorSpC}}
 \index{GetOnsiteOperatorSpC@{GetOnsiteOperatorSpC}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSpC()}{GetOnsiteOperatorSpC()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SpC (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SpC (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a096dddc6e4fe7450b8db68e86369efc0}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a096dddc6e4fe7450b8db68e86369efc0}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorSpL@{GetOnsiteOperatorSpL}}
 \index{GetOnsiteOperatorSpL@{GetOnsiteOperatorSpL}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSpL()}{GetOnsiteOperatorSpL()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SpL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SpL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -1543,21 +1553,21 @@ The matrix of $ \hat{S}^{+}$.
 \index{GetOnsiteOperatorSxC@{GetOnsiteOperatorSxC}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSxC()}{GetOnsiteOperatorSxC()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SxC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SxC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abeb13eb3c535189c88f608f1e61691e9}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_abeb13eb3c535189c88f608f1e61691e9}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorSxC@{GetOnsiteOperatorSxC}}
 \index{GetOnsiteOperatorSxC@{GetOnsiteOperatorSxC}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSxC()}{GetOnsiteOperatorSxC()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SxC (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SxC (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a489580f0553dc4de180c0a5ca0e093c0}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a489580f0553dc4de180c0a5ca0e093c0}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorSxL@{GetOnsiteOperatorSxL}}
 \index{GetOnsiteOperatorSxL@{GetOnsiteOperatorSxL}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSxL()}{GetOnsiteOperatorSxL()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SxL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SxL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -1571,21 +1581,21 @@ The matrix of $ \hat{S}^{x}$.
 \index{GetOnsiteOperatorSzC@{GetOnsiteOperatorSzC}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSzC()}{GetOnsiteOperatorSzC()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SzC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SzC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa6e0ff75812d22ed39bc64856d834ed2}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa6e0ff75812d22ed39bc64856d834ed2}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorSzC@{GetOnsiteOperatorSzC}}
 \index{GetOnsiteOperatorSzC@{GetOnsiteOperatorSzC}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSzC()}{GetOnsiteOperatorSzC()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SzC (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SzC (\begin{DoxyParamCaption}\item[{const int}]{orbital }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 \mbox{\Hypertarget{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a7eaa08a6c432e2ebf3eb106b7bdb825d}\label{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a7eaa08a6c432e2ebf3eb106b7bdb825d}} 
 \index{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}!GetOnsiteOperatorSzL@{GetOnsiteOperatorSzL}}
 \index{GetOnsiteOperatorSzL@{GetOnsiteOperatorSzL}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{GetOnsiteOperatorSzL()}{GetOnsiteOperatorSzL()}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SzL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::\+Get\+Onsite\+Operator\+SzL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -1938,7 +1948,7 @@ The number of electron orbitals $ n_{\rm o}$.
 \index{onsite\_operator\_c\_down\_@{onsite\_operator\_c\_down\_}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{onsite\_operator\_c\_down\_}{onsite\_operator\_c\_down\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+c\+\_\+down\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+c\+\_\+down\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -1949,7 +1959,7 @@ The annihilation operator for the electrons with the orbital $ \alpha $ and the 
 \index{onsite\_operator\_c\_down\_dagger\_@{onsite\_operator\_c\_down\_dagger\_}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{onsite\_operator\_c\_down\_dagger\_}{onsite\_operator\_c\_down\_dagger\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+c\+\_\+down\+\_\+dagger\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+c\+\_\+down\+\_\+dagger\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -1960,7 +1970,7 @@ The the creation operator for the electrons with the orbital $ \alpha $ and the 
 \index{onsite\_operator\_c\_up\_@{onsite\_operator\_c\_up\_}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{onsite\_operator\_c\_up\_}{onsite\_operator\_c\_up\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+c\+\_\+up\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+c\+\_\+up\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -1971,7 +1981,7 @@ The annihilation operator for the electrons with the orbital $ \alpha $ and the 
 \index{onsite\_operator\_c\_up\_dagger\_@{onsite\_operator\_c\_up\_dagger\_}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{onsite\_operator\_c\_up\_dagger\_}{onsite\_operator\_c\_up\_dagger\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+c\+\_\+up\+\_\+dagger\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+c\+\_\+up\+\_\+dagger\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -1982,7 +1992,7 @@ The creation operator for the electrons with the orbital $ \alpha $ and the up s
 \index{onsite\_operator\_isyc\_@{onsite\_operator\_isyc\_}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{onsite\_operator\_isyc\_}{onsite\_operator\_isyc\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+isyc\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+isyc\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -1993,7 +2003,7 @@ The spin operator for the y-\/direction for the electrons with the orbital $ \al
 \index{onsite\_operator\_isyl\_@{onsite\_operator\_isyl\_}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{onsite\_operator\_isyl\_}{onsite\_operator\_isyl\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+isyl\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+isyl\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -2004,7 +2014,7 @@ The spin-\/ $ S$ operator of the local spin for the y-\/direction $ i\hat{S}^{y}
 \index{onsite\_operator\_nc\_@{onsite\_operator\_nc\_}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{onsite\_operator\_nc\_}{onsite\_operator\_nc\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+nc\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+nc\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -2015,7 +2025,7 @@ The number operator for the electrons with the orbital $ \alpha $, $ \hat{n}_{\a
 \index{onsite\_operator\_nc\_down\_@{onsite\_operator\_nc\_down\_}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{onsite\_operator\_nc\_down\_}{onsite\_operator\_nc\_down\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+nc\+\_\+down\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+nc\+\_\+down\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -2026,7 +2036,7 @@ The number operator for the electrons with the orbital $ \alpha $ and the down s
 \index{onsite\_operator\_nc\_tot\_@{onsite\_operator\_nc\_tot\_}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{onsite\_operator\_nc\_tot\_}{onsite\_operator\_nc\_tot\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+nc\+\_\+tot\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+nc\+\_\+tot\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -2037,7 +2047,7 @@ The number operator for the electrons, $ \hat{n}=\sum_{\alpha}\left(\hat{n}_{\al
 \index{onsite\_operator\_nc\_up\_@{onsite\_operator\_nc\_up\_}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{onsite\_operator\_nc\_up\_}{onsite\_operator\_nc\_up\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+nc\+\_\+up\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+nc\+\_\+up\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -2048,7 +2058,7 @@ The number operator for the electrons with the orbital $ \alpha $ and the up spi
 \index{onsite\_operator\_scsl\_@{onsite\_operator\_scsl\_}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{onsite\_operator\_scsl\_}{onsite\_operator\_scsl\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+scsl\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+scsl\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -2059,7 +2069,7 @@ The correlation between the electron with the orbital $ \alpha $ spin and local 
 \index{onsite\_operator\_smc\_@{onsite\_operator\_smc\_}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{onsite\_operator\_smc\_}{onsite\_operator\_smc\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+smc\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+smc\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -2070,7 +2080,7 @@ The lowering operator for spin of the electrons with the orbital $ \alpha $, $ \
 \index{onsite\_operator\_sml\_@{onsite\_operator\_sml\_}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{onsite\_operator\_sml\_}{onsite\_operator\_sml\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+sml\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+sml\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -2081,7 +2091,7 @@ The spin-\/ $ S$ raising operator of the local spin $ \hat{S}^{-}$.
 \index{onsite\_operator\_spc\_@{onsite\_operator\_spc\_}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{onsite\_operator\_spc\_}{onsite\_operator\_spc\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+spc\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+spc\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -2092,7 +2102,7 @@ The raising operator for spin of the electrons with the orbital $ \alpha $, $ \h
 \index{onsite\_operator\_spl\_@{onsite\_operator\_spl\_}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{onsite\_operator\_spl\_}{onsite\_operator\_spl\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+spl\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+spl\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -2103,7 +2113,7 @@ The spin-\/ $ S$ raising operator of the local spin $ \hat{S}^{+}$.
 \index{onsite\_operator\_sxc\_@{onsite\_operator\_sxc\_}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{onsite\_operator\_sxc\_}{onsite\_operator\_sxc\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+sxc\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+sxc\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -2114,7 +2124,7 @@ The spin operator for the x-\/direction for the electrons with the orbital $ \al
 \index{onsite\_operator\_sxl\_@{onsite\_operator\_sxl\_}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{onsite\_operator\_sxl\_}{onsite\_operator\_sxl\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+sxl\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+sxl\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -2125,7 +2135,7 @@ The spin-\/ $ S$ operator of the local spin for the x-\/direction $ \hat{S}^{x}$
 \index{onsite\_operator\_szc\_@{onsite\_operator\_szc\_}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{onsite\_operator\_szc\_}{onsite\_operator\_szc\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+szc\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+szc\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 
@@ -2136,7 +2146,7 @@ The spin operator for the z-\/direction for the electrons with the orbital $ \al
 \index{onsite\_operator\_szl\_@{onsite\_operator\_szl\_}!compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$@{compnal::model::BaseU1SpinMultiElectrons\_1D$<$ RealType $>$}}
 \doxysubsubsection{\texorpdfstring{onsite\_operator\_szl\_}{onsite\_operator\_szl\_}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_aa965a550e0bd60f064188dff5dae450b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+szl\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d_a4085dbb994318674cac70e81388a2b3b}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d}{compnal\+::model\+::\+Base\+U1\+Spin\+Multi\+Electrons\+\_\+1D}}$<$ Real\+Type $>$\+::onsite\+\_\+operator\+\_\+szl\+\_\+\hspace{0.3cm}{\ttfamily [protected]}}
 
 
 

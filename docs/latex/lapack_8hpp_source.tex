@@ -1,5 +1,5 @@
 \hypertarget{lapack_8hpp_source}{}\doxysection{lapack.\+hpp}
-\label{lapack_8hpp_source}\index{src/sparse\_matrix/lapack.hpp@{src/sparse\_matrix/lapack.hpp}}
+\label{lapack_8hpp_source}\index{src/blas/lapack.hpp@{src/blas/lapack.hpp}}
 \mbox{\hyperlink{lapack_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
@@ -19,39 +19,39 @@
 \DoxyCodeLine{15 \textcolor{comment}{//  Created by Kohei Suzuki on 2021/05/22.}}
 \DoxyCodeLine{16 \textcolor{comment}{//}}
 \DoxyCodeLine{17 }
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_SPARSE\_MATRIX\_LAPACK\_HPP\_}}
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_SPARSE\_MATRIX\_LAPACK\_HPP\_}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_BLAS\_LAPACK\_HPP\_}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_BLAS\_LAPACK\_HPP\_}}
 \DoxyCodeLine{20 }
-\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{compressed__row__storage_8hpp}{compressed\_row\_storage.hpp}}"{}}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}../type/compressed\_row\_storage.hpp"{}}}
 \DoxyCodeLine{22 \textcolor{preprocessor}{\#include <sstream>}}
 \DoxyCodeLine{23 }
 \DoxyCodeLine{24 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
-\DoxyCodeLine{25 \textcolor{keyword}{namespace }sparse\_matrix \{}
+\DoxyCodeLine{25 \textcolor{keyword}{namespace }blas \{}
 \DoxyCodeLine{26 }
 \DoxyCodeLine{27 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
-\DoxyCodeLine{28 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_aa98cff75f30d8d55bba0810a75d6ee9e}{dsyev\_}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} \&JOBZ, \textcolor{keyword}{const} \textcolor{keywordtype}{char} \&UPLO, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&N, \textcolor{keywordtype}{double} **A, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&LDA, \textcolor{keywordtype}{double} *W, \textcolor{keywordtype}{double} *work, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&Lwork, \textcolor{keywordtype}{int} \&INFO);}
+\DoxyCodeLine{28 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1blas_a38372ba49e6890655ba310a1d1016301}{dsyev\_}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} \&JOBZ, \textcolor{keyword}{const} \textcolor{keywordtype}{char} \&UPLO, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&N, \textcolor{keywordtype}{double} **A, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&LDA, \textcolor{keywordtype}{double} *W, \textcolor{keywordtype}{double} *work, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&Lwork, \textcolor{keywordtype}{int} \&INFO);}
 \DoxyCodeLine{29 \};}
 \DoxyCodeLine{30 }
 \DoxyCodeLine{31 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
-\DoxyCodeLine{32 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab84831e2c300392944998bd0b1839af6}{dstev\_}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} \&JOBZ, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&N, \textcolor{keywordtype}{double} *D, \textcolor{keywordtype}{double} *E, \textcolor{keywordtype}{double} **Z,  \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&LDZ, \textcolor{keywordtype}{double} *WORK, \textcolor{keywordtype}{int} \&INFO);}
+\DoxyCodeLine{32 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1blas_a0eab548c93d2f1432d8483ae795b54c0}{dstev\_}}(\textcolor{keyword}{const} \textcolor{keywordtype}{char} \&JOBZ, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&N, \textcolor{keywordtype}{double} *D, \textcolor{keywordtype}{double} *E, \textcolor{keywordtype}{double} **Z,  \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&LDZ, \textcolor{keywordtype}{double} *WORK, \textcolor{keywordtype}{int} \&INFO);}
 \DoxyCodeLine{33 \};}
 \DoxyCodeLine{34 }
 \DoxyCodeLine{35 \textcolor{keyword}{extern} \textcolor{stringliteral}{"{}C"{}} \{}
-\DoxyCodeLine{36 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_af18011fe44d52340366af2428a8d9d80}{dspgv\_}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&ITYPE,\textcolor{keyword}{const} \textcolor{keywordtype}{char} \&JOBZ, \textcolor{keyword}{const} \textcolor{keywordtype}{char} \&UPLO, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&N, \textcolor{keywordtype}{double} *AP, \textcolor{keywordtype}{double} *BP, \textcolor{keywordtype}{double} *W, \textcolor{keywordtype}{double} **Z, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&LDZ, \textcolor{keywordtype}{double} *WORK, \textcolor{keywordtype}{int} \&INFO);}
+\DoxyCodeLine{36 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1blas_aebf338c728e6f6803f320d7938f6c9d5}{dspgv\_}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&ITYPE,\textcolor{keyword}{const} \textcolor{keywordtype}{char} \&JOBZ, \textcolor{keyword}{const} \textcolor{keywordtype}{char} \&UPLO, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&N, \textcolor{keywordtype}{double} *AP, \textcolor{keywordtype}{double} *BP, \textcolor{keywordtype}{double} *W, \textcolor{keywordtype}{double} **Z, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&LDZ, \textcolor{keywordtype}{double} *WORK, \textcolor{keywordtype}{int} \&INFO);}
 \DoxyCodeLine{37 \};}
 \DoxyCodeLine{38 }
 \DoxyCodeLine{39 \textcolor{keyword}{template} <\textcolor{keyword}{typename} RealType>}
-\DoxyCodeLine{40 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a7b228b82df60b48a8e1b225bf3ec3bf7}{LapackDsyev}}(RealType *gs\_value,}
+\DoxyCodeLine{40 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1blas_ad95086714ba0af598315dba0109fc282}{LapackDsyev}}(RealType *gs\_value,}
 \DoxyCodeLine{41                  std::vector<RealType> *gs\_vector,}
-\DoxyCodeLine{42                  \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS<RealType>}} \&matrix\_in,}
+\DoxyCodeLine{42                  \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}} \&matrix\_in,}
 \DoxyCodeLine{43                  \textcolor{keyword}{const} \textcolor{keywordtype}{int} target\_level = 0}
 \DoxyCodeLine{44                  ) \{}
 \DoxyCodeLine{45    }
-\DoxyCodeLine{46    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} != matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}} || matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} < 1 || matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}} < 1) \{}
+\DoxyCodeLine{46    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} != matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}} || matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} < 1 || matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}} < 1) \{}
 \DoxyCodeLine{47       std::stringstream ss;}
 \DoxyCodeLine{48       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
 \DoxyCodeLine{49       ss << \textcolor{stringliteral}{"{}The input matrix is not a square one"{}} << std::endl;}
-\DoxyCodeLine{50       ss << \textcolor{stringliteral}{"{}row="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} << \textcolor{stringliteral}{"{}, col="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}} << std::endl;}
+\DoxyCodeLine{50       ss << \textcolor{stringliteral}{"{}row="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} << \textcolor{stringliteral}{"{}, col="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}} << std::endl;}
 \DoxyCodeLine{51       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{52    \}}
 \DoxyCodeLine{53    }
@@ -61,33 +61,33 @@
 \DoxyCodeLine{57       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{58    \}}
 \DoxyCodeLine{59    }
-\DoxyCodeLine{60    \textcolor{keywordtype}{double} matrix\_array[matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}][matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}}];}
+\DoxyCodeLine{60    \textcolor{keywordtype}{double} matrix\_array[matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}][matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}}];}
 \DoxyCodeLine{61    }
-\DoxyCodeLine{62    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{63       \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}}; ++j) \{}
+\DoxyCodeLine{62    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{63       \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}}; ++j) \{}
 \DoxyCodeLine{64          matrix\_array[i][j] = 0.0;}
 \DoxyCodeLine{65       \}}
 \DoxyCodeLine{66    \}}
 \DoxyCodeLine{67    }
-\DoxyCodeLine{68    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{69       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i]; j < matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i + 1]; ++j) \{}
-\DoxyCodeLine{70          matrix\_array[i][matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j]] = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j]);}
-\DoxyCodeLine{71          matrix\_array[matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j]][i] = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j]);}
+\DoxyCodeLine{68    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{69       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i]; j < matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{70          matrix\_array[i][matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j]] = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j]);}
+\DoxyCodeLine{71          matrix\_array[matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j]][i] = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j]);}
 \DoxyCodeLine{72       \}}
 \DoxyCodeLine{73    \}}
 \DoxyCodeLine{74    }
 \DoxyCodeLine{75    \textcolor{keywordtype}{int} info;}
-\DoxyCodeLine{76    \textcolor{keywordtype}{double} val\_array[matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}];}
-\DoxyCodeLine{77    \textcolor{keywordtype}{double} work[3 * matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}];}
+\DoxyCodeLine{76    \textcolor{keywordtype}{double} val\_array[matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}];}
+\DoxyCodeLine{77    \textcolor{keywordtype}{double} work[3 * matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}];}
 \DoxyCodeLine{78    }
-\DoxyCodeLine{79    \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_aa98cff75f30d8d55bba0810a75d6ee9e}{dsyev\_}}(\textcolor{charliteral}{'V'}, \textcolor{charliteral}{'L'}, \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}),}
+\DoxyCodeLine{79    \mbox{\hyperlink{namespacecompnal_1_1blas_a38372ba49e6890655ba310a1d1016301}{dsyev\_}}(\textcolor{charliteral}{'V'}, \textcolor{charliteral}{'L'}, \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}),}
 \DoxyCodeLine{80           (\textcolor{keywordtype}{double}**)matrix\_array,}
-\DoxyCodeLine{81           \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}), val\_array, work,}
-\DoxyCodeLine{82           \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(3 * matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}), info);}
+\DoxyCodeLine{81           \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}), val\_array, work,}
+\DoxyCodeLine{82           \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(3 * matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}), info);}
 \DoxyCodeLine{83    }
-\DoxyCodeLine{84    gs\_vector-\/>resize(matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}});}
+\DoxyCodeLine{84    gs\_vector-\/>resize(matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}});}
 \DoxyCodeLine{85    }
-\DoxyCodeLine{86    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{86    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
 \DoxyCodeLine{87        (*gs\_vector)[i] = \textcolor{keyword}{static\_cast<}RealType\textcolor{keyword}{>}(matrix\_array[target\_level][i]);}
 \DoxyCodeLine{88    \}}
 \DoxyCodeLine{89    }
@@ -95,7 +95,7 @@
 \DoxyCodeLine{91 \}}
 \DoxyCodeLine{92 }
 \DoxyCodeLine{93 \textcolor{keyword}{template} <\textcolor{keyword}{typename} RealType>}
-\DoxyCodeLine{94 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ae2d62a5674340dcaccc874b8a1acbc26}{LapackDstev}}(RealType *gs\_value,}
+\DoxyCodeLine{94 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1blas_a8c894de4aabbacd7c8730917eb573df5}{LapackDstev}}(RealType *gs\_value,}
 \DoxyCodeLine{95                  std::vector<RealType> *gs\_vector,}
 \DoxyCodeLine{96                  \textcolor{keyword}{const} std::vector<RealType> \&diag,}
 \DoxyCodeLine{97                  \textcolor{keyword}{const} std::vector<RealType> \&off\_diag) \{}
@@ -123,7 +123,7 @@
 \DoxyCodeLine{119       Lap\_E[i] = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(off\_diag[i]);}
 \DoxyCodeLine{120    \}}
 \DoxyCodeLine{121    }
-\DoxyCodeLine{122    \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab84831e2c300392944998bd0b1839af6}{dstev\_}}(\textcolor{charliteral}{'V'}, dim, Lap\_D, Lap\_E, (\textcolor{keywordtype}{double}**)Lap\_Vec, dim, Lap\_Work, info);}
+\DoxyCodeLine{122    \mbox{\hyperlink{namespacecompnal_1_1blas_a0eab548c93d2f1432d8483ae795b54c0}{dstev\_}}(\textcolor{charliteral}{'V'}, dim, Lap\_D, Lap\_E, (\textcolor{keywordtype}{double}**)Lap\_Vec, dim, Lap\_Work, info);}
 \DoxyCodeLine{123    }
 \DoxyCodeLine{124    gs\_vector-\/>resize(dim);}
 \DoxyCodeLine{125    }
@@ -135,7 +135,7 @@
 \DoxyCodeLine{131 \}}
 \DoxyCodeLine{132 }
 \DoxyCodeLine{133 \textcolor{keyword}{template} <\textcolor{keyword}{typename} RealType>}
-\DoxyCodeLine{134 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a027e3543114e86368649fd738a2f9f78}{LapackDspgv}}(std::vector<RealType> *eigenvalues,}
+\DoxyCodeLine{134 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1blas_aa9438b0418e763891a03cbfbcd22f38c}{LapackDspgv}}(std::vector<RealType> *eigenvalues,}
 \DoxyCodeLine{135                  std::vector<RealType> *eigenvectors,}
 \DoxyCodeLine{136                  \textcolor{keyword}{const} \textcolor{keywordtype}{int} i\_type,}
 \DoxyCodeLine{137                  \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim,}
@@ -163,7 +163,7 @@
 \DoxyCodeLine{159       lap\_bp[i] = mat\_b[i];}
 \DoxyCodeLine{160    \}}
 \DoxyCodeLine{161    }
-\DoxyCodeLine{162    \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_af18011fe44d52340366af2428a8d9d80}{dspgv\_}}(i\_type, \textcolor{charliteral}{'V'}, \textcolor{charliteral}{'U'}, dim, lap\_ap, lap\_bp, lap\_w, (\textcolor{keywordtype}{double}**)lap\_z, lap\_ldz, lap\_work, lap\_info);}
+\DoxyCodeLine{162    \mbox{\hyperlink{namespacecompnal_1_1blas_aebf338c728e6f6803f320d7938f6c9d5}{dspgv\_}}(i\_type, \textcolor{charliteral}{'V'}, \textcolor{charliteral}{'U'}, dim, lap\_ap, lap\_bp, lap\_w, (\textcolor{keywordtype}{double}**)lap\_z, lap\_ldz, lap\_work, lap\_info);}
 \DoxyCodeLine{163    }
 \DoxyCodeLine{164    eigenvalues-\/>resize(dim);}
 \DoxyCodeLine{165    eigenvectors-\/>resize(dim*dim);}
@@ -177,10 +177,9 @@
 \DoxyCodeLine{173    }
 \DoxyCodeLine{174 \}}
 \DoxyCodeLine{175 }
-\DoxyCodeLine{176 \}  \textcolor{comment}{// namespace sparse\_matrix}}
-\DoxyCodeLine{177 \}  \textcolor{comment}{// namespace compnal}}
+\DoxyCodeLine{176 \} \textcolor{comment}{// namespace blas}}
+\DoxyCodeLine{177 \} \textcolor{comment}{// namespace compnel}}
 \DoxyCodeLine{178 }
-\DoxyCodeLine{179 }
-\DoxyCodeLine{180 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_SPARSE\_MATRIX\_LAPACK\_HPP\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{179 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_BLAS\_LAPACK\_HPP\_ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

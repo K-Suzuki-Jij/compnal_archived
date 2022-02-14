@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structcompnal_1_1sparse__matrix_1_1_braket_vector.html" title=" " alt="" coords="5,5,191,47"/>
+<area shape="rect" id="node1" href="$classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html" title="The base class for one&#45;dimensional spin&#45;electron systems with the U(1) symmetry." alt="" coords="5,5,200,47"/>
+<area shape="rect" id="node2" href="$classcompnal_1_1model_1_1_kondo_lattice__1_d.html" title="The class for the one&#45;dimensional Kondo lattice model with the magnitude of the spin ...." alt="" coords="248,5,447,47"/>
 </map>

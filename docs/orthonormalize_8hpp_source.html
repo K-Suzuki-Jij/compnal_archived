@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>COMPNAL: src/sparse_matrix/orthonormalize.hpp Source File</title>
+<title>COMPNAL: src/blas/orthonormalize.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,7 +69,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_f5ef15774b98e8846613aaefb3c2607c.html">sparse_matrix</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_0b251772e3153bf9148552a8025983e3.html">blas</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -93,21 +93,21 @@ $(function() {
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">//  Created by Kohei Suzuki on 2021/12/09.</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">//</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#ifndef COMPNAL_SPARSE_MATRIX_ORTHONORMALIZE_HPP_</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#define COMPNAL_SPARSE_MATRIX_ORTHONORMALIZE_HPP_</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#ifndef COMPNAL_BLAS_ORTHONORMALIZE_HPP_</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#define COMPNAL_BLAS_ORTHONORMALIZE_HPP_</span></div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &quot;<a class="code" href="braket__vector_8hpp.html">braket_vector.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &quot;../type/braket_vector.hpp&quot;</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;sstream&gt;</span></div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacecompnal.html">compnal</a> {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">namespace </span>sparse_matrix {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">namespace </span>blas {</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> RealType&gt;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="namespacecompnal_1_1sparse__matrix.html#ae8cf0493ba9137c8bfe9d1d192402440">   28</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacecompnal_1_1sparse__matrix.html#ae8cf0493ba9137c8bfe9d1d192402440">Orthonormalize</a>(std::vector&lt;<a class="code hl_struct" href="structcompnal_1_1sparse__matrix_1_1_braket_vector.html">BraketVector&lt;RealType&gt;</a>&gt; *vectors) {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="namespacecompnal_1_1blas.html#ae30f924effa78f04d9e973b3525ed4b7">   28</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacecompnal_1_1blas.html#ae30f924effa78f04d9e973b3525ed4b7">Orthonormalize</a>(std::vector&lt;<a class="code hl_struct" href="structcompnal_1_1type_1_1_braket_vector.html">type::BraketVector&lt;RealType&gt;</a>&gt; *vectors) {</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>   <span class="keywordflow">for</span> (std::size_t i = 0; i &lt; vectors-&gt;size(); ++i) {</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>      <span class="keyword">const</span> std::int64_t dim = <span class="keyword">static_cast&lt;</span>std::int64_t<span class="keyword">&gt;</span>(vectors[i]-&gt;size());</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>      <span class="keywordflow">for</span> (std::size_t j = 0; j &lt; i; ++j) {</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>         <span class="keyword">const</span> RealType inner_product = -1.0*<a class="code hl_function" href="namespacecompnal_1_1sparse__matrix.html#ac72eb2d652259d294644b3b00745a9df">CalculateInnerProduct</a>(*vectors[i], (*vectors)[j]);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>         <span class="keyword">const</span> RealType inner_product = -1.0*<a class="code hl_function" href="namespacecompnal_1_1type.html#a31939adf3cd225e389a22c977793b46d">CalculateInnerProduct</a>(*vectors[i], (*vectors)[j]);</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#pragma omp parallel for</span></div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>         <span class="keywordflow">for</span> (std::int64_t k = 0; k &lt; dim; ++k) {</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            vectors[i]-&gt;val[k] += inner_product*vectors[j]-&gt;val[k];</div>
@@ -117,13 +117,13 @@ $(function() {
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>}</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> RealType&gt;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="namespacecompnal_1_1sparse__matrix.html#acc7659e912249aaf5279eaa263311906">   42</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacecompnal_1_1sparse__matrix.html#ae8cf0493ba9137c8bfe9d1d192402440">Orthonormalize</a>(<a class="code hl_struct" href="structcompnal_1_1sparse__matrix_1_1_braket_vector.html">BraketVector&lt;RealType&gt;</a> *target_vector, <span class="keyword">const</span> std::vector&lt;<a class="code hl_struct" href="structcompnal_1_1sparse__matrix_1_1_braket_vector.html">BraketVector&lt;RealType&gt;</a>&gt; &amp;vectors) {</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>   <span class="keyword">const</span> std::int64_t dim = <span class="keyword">static_cast&lt;</span>std::int64_t<span class="keyword">&gt;</span>(target_vector-&gt;<a class="code hl_variable" href="structcompnal_1_1sparse__matrix_1_1_braket_vector.html#ae87a30e388c5e8cbc7617b72d21ee801">val</a>.size());</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="namespacecompnal_1_1blas.html#ae84dc5fa7300de09e82132e364928b7c">   42</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="namespacecompnal_1_1blas.html#ae30f924effa78f04d9e973b3525ed4b7">Orthonormalize</a>(<a class="code hl_struct" href="structcompnal_1_1type_1_1_braket_vector.html">type::BraketVector&lt;RealType&gt;</a> *target_vector, <span class="keyword">const</span> std::vector&lt;<a class="code hl_struct" href="structcompnal_1_1type_1_1_braket_vector.html">type::BraketVector&lt;RealType&gt;</a>&gt; &amp;vectors) {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>   <span class="keyword">const</span> std::int64_t dim = <span class="keyword">static_cast&lt;</span>std::int64_t<span class="keyword">&gt;</span>(target_vector-&gt;<a class="code hl_variable" href="structcompnal_1_1type_1_1_braket_vector.html#aab4cd0a18c00793ee84a2f5b77f81c9e">val</a>.size());</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>   <span class="keywordflow">for</span> (std::size_t i = 0; i &lt; vectors.size(); ++i) {</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>      <span class="keyword">const</span> RealType inner_product = -1.0*<a class="code hl_function" href="namespacecompnal_1_1sparse__matrix.html#ac72eb2d652259d294644b3b00745a9df">CalculateInnerProduct</a>(*target_vector, vectors[i]);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>      <span class="keyword">const</span> RealType inner_product = -1.0*<a class="code hl_function" href="namespacecompnal_1_1type.html#a31939adf3cd225e389a22c977793b46d">CalculateInnerProduct</a>(*target_vector, vectors[i]);</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#pragma omp parallel for</span></div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>      <span class="keywordflow">for</span> (std::int64_t j = 0; j &lt; dim; ++j) {</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>         target_vector-&gt;<a class="code hl_variable" href="structcompnal_1_1sparse__matrix_1_1_braket_vector.html#ae87a30e388c5e8cbc7617b72d21ee801">val</a>[j] += inner_product*vectors[i].val[j];</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>         target_vector-&gt;<a class="code hl_variable" href="structcompnal_1_1type_1_1_braket_vector.html#aab4cd0a18c00793ee84a2f5b77f81c9e">val</a>[j] += inner_product*vectors[i].val[j];</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>      }</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>   }</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}</div>
@@ -132,13 +132,12 @@ $(function() {
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>}  <span class="comment">// namespace compnal</span></div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#endif </span><span class="comment">/* COMPNAL_SPARSE_MATRIX_ORTHONORMALIZE_HPP_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="abraket__vector_8hpp_html"><div class="ttname"><a href="braket__vector_8hpp.html">braket_vector.hpp</a></div></div>
-<div class="ttc" id="anamespacecompnal_1_1sparse__matrix_html_ac72eb2d652259d294644b3b00745a9df"><div class="ttname"><a href="namespacecompnal_1_1sparse__matrix.html#ac72eb2d652259d294644b3b00745a9df">compnal::sparse_matrix::CalculateInnerProduct</a></div><div class="ttdeci">RealType CalculateInnerProduct(const BraketVector&lt; RealType &gt; &amp;braket_vector_1, const BraketVector&lt; RealType &gt; &amp;braket_vector_2)</div><div class="ttdef"><b>Definition:</b> braket_vector.hpp:179</div></div>
-<div class="ttc" id="anamespacecompnal_1_1sparse__matrix_html_ae8cf0493ba9137c8bfe9d1d192402440"><div class="ttname"><a href="namespacecompnal_1_1sparse__matrix.html#ae8cf0493ba9137c8bfe9d1d192402440">compnal::sparse_matrix::Orthonormalize</a></div><div class="ttdeci">void Orthonormalize(std::vector&lt; BraketVector&lt; RealType &gt; &gt; *vectors)</div><div class="ttdef"><b>Definition:</b> orthonormalize.hpp:28</div></div>
-<div class="ttc" id="anamespacecompnal_html"><div class="ttname"><a href="namespacecompnal.html">compnal</a></div><div class="ttdef"><b>Definition:</b> base_u1_electron_1d.hpp:31</div></div>
-<div class="ttc" id="astructcompnal_1_1sparse__matrix_1_1_braket_vector_html"><div class="ttname"><a href="structcompnal_1_1sparse__matrix_1_1_braket_vector.html">compnal::sparse_matrix::BraketVector</a></div><div class="ttdef"><b>Definition:</b> braket_vector.hpp:34</div></div>
-<div class="ttc" id="astructcompnal_1_1sparse__matrix_1_1_braket_vector_html_ae87a30e388c5e8cbc7617b72d21ee801"><div class="ttname"><a href="structcompnal_1_1sparse__matrix_1_1_braket_vector.html#ae87a30e388c5e8cbc7617b72d21ee801">compnal::sparse_matrix::BraketVector::val</a></div><div class="ttdeci">std::vector&lt; RealType &gt; val</div><div class="ttdef"><b>Definition:</b> braket_vector.hpp:36</div></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#endif </span><span class="comment">/* COMPNAL_BLAS_ORTHONORMALIZE_HPP_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="anamespacecompnal_1_1blas_html_ae30f924effa78f04d9e973b3525ed4b7"><div class="ttname"><a href="namespacecompnal_1_1blas.html#ae30f924effa78f04d9e973b3525ed4b7">compnal::blas::Orthonormalize</a></div><div class="ttdeci">void Orthonormalize(std::vector&lt; type::BraketVector&lt; RealType &gt; &gt; *vectors)</div><div class="ttdef"><b>Definition:</b> orthonormalize.hpp:28</div></div>
+<div class="ttc" id="anamespacecompnal_1_1type_html_a31939adf3cd225e389a22c977793b46d"><div class="ttname"><a href="namespacecompnal_1_1type.html#a31939adf3cd225e389a22c977793b46d">compnal::type::CalculateInnerProduct</a></div><div class="ttdeci">RealType CalculateInnerProduct(const BraketVector&lt; RealType &gt; &amp;braket_vector_1, const BraketVector&lt; RealType &gt; &amp;braket_vector_2)</div><div class="ttdef"><b>Definition:</b> braket_vector.hpp:179</div></div>
+<div class="ttc" id="anamespacecompnal_html"><div class="ttname"><a href="namespacecompnal.html">compnal</a></div><div class="ttdef"><b>Definition:</b> conjugate_gradient.hpp:31</div></div>
+<div class="ttc" id="astructcompnal_1_1type_1_1_braket_vector_html"><div class="ttname"><a href="structcompnal_1_1type_1_1_braket_vector.html">compnal::type::BraketVector</a></div><div class="ttdef"><b>Definition:</b> braket_vector.hpp:34</div></div>
+<div class="ttc" id="astructcompnal_1_1type_1_1_braket_vector_html_aab4cd0a18c00793ee84a2f5b77f81c9e"><div class="ttname"><a href="structcompnal_1_1type_1_1_braket_vector.html#aab4cd0a18c00793ee84a2f5b77f81c9e">compnal::type::BraketVector::val</a></div><div class="ttdeci">std::vector&lt; RealType &gt; val</div><div class="ttdef"><b>Definition:</b> braket_vector.hpp:36</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

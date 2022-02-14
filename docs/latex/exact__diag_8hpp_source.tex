@@ -40,9 +40,9 @@
 \DoxyCodeLine{40    }
 \DoxyCodeLine{42    \textcolor{keyword}{using} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a8b50861a822124ea37cf63af26235f98}{QHash}} = \textcolor{keyword}{typename} ModelClass::QHash;}
 \DoxyCodeLine{43    }
-\DoxyCodeLine{45    \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} = \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{sparse\_matrix::CRS<RealType>}};}
+\DoxyCodeLine{45    \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} = \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}};}
 \DoxyCodeLine{46    }
-\DoxyCodeLine{48    \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector}} = \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{sparse\_matrix::BraketVector<RealType>}};}
+\DoxyCodeLine{48    \textcolor{keyword}{using} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}{BraketVector}} = blas::BraketVector<RealType>;}
 \DoxyCodeLine{49       }
 \DoxyCodeLine{50 \textcolor{keyword}{public}:}
 \DoxyCodeLine{51    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
@@ -50,7 +50,7 @@
 \DoxyCodeLine{53    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{55 \textcolor{comment}{}   \textcolor{keyword}{const} ModelClass \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}};}
 \DoxyCodeLine{56    }
-\DoxyCodeLine{58    \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_all}{sparse\_matrix::ParametersAll}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a3df51c8ae6b33c3736a291cc5fd1f439}{params}};}
+\DoxyCodeLine{58    \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_all}{blas::ParametersAll}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a994630e33087810daa87da6b66925127}{params}};}
 \DoxyCodeLine{59    }
 \DoxyCodeLine{61    \mbox{\hyperlink{namespacecompnal_1_1solver_aea9ed4356b9eb3f1e01e43d336026522}{DiagMethod}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a7ebf7d0143bbc123c0cb826ece9e2bf9}{diag\_method\_}} = \mbox{\hyperlink{namespacecompnal_1_1solver_aea9ed4356b9eb3f1e01e43d336026522ac766432e40c81daf2b8104603413196b}{DiagMethod::LANCZOS}};}
 \DoxyCodeLine{62 }
@@ -58,13 +58,13 @@
 \DoxyCodeLine{64    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Constructors-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{65    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{68 \textcolor{comment}{}   \textcolor{keyword}{explicit} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a535e85ef2697a25abb2e128542d65c68}{ExactDiag}}(\textcolor{keyword}{const} ModelClass \&model\_input): \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}(model\_input) \{}
-\DoxyCodeLine{69       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a3df51c8ae6b33c3736a291cc5fd1f439}{params}}.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_all_a784b841d78c62a54161ab569519b2d99}{lanczos}}.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_lanczos_ade8e0723d977e210e29d498039a99675}{flag\_symmetric\_crs}} = \textcolor{keyword}{true};}
-\DoxyCodeLine{70       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a3df51c8ae6b33c3736a291cc5fd1f439}{params}}.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_all_abdff80529ad29e3797baaf430a2f651f}{ii}}.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_i_i_adf10c5e3f66431f46c8ec57610c5b8f7}{cg}}.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_c_g_aec5c0c297f1e3c670b03616e9ebbf544}{flag\_symmetric\_crs}}   = \textcolor{keyword}{true};}
+\DoxyCodeLine{69       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a994630e33087810daa87da6b66925127}{params}}.\mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_all_a55cc7b329133683ae92fe75cb26502b3}{lanczos}}.\mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_lanczos_a967885f43c2e3aba37d695e225397c0a}{flag\_symmetric\_crs}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{70       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a994630e33087810daa87da6b66925127}{params}}.\mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_all_a52361ce96147b9392c76e5181008c29b}{ii}}.\mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_i_i_ae54889fa8be63420b5203905b846f794}{cg}}.\mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_c_g_a09bab3575cbf9e8d9895bbb46fe01a7b}{flag\_symmetric\_crs}}   = \textcolor{keyword}{true};}
 \DoxyCodeLine{71    \}}
 \DoxyCodeLine{72    }
-\DoxyCodeLine{76    \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a2cdd5d5e73ad0ff77578a0dca66fc565}{ExactDiag}}(\textcolor{keyword}{const} ModelClass \&model\_input,}
-\DoxyCodeLine{77              \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_all}{sparse\_matrix::ParametersAll}} \&params\_input): \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{ExactDiag}}(model\_input) \{}
-\DoxyCodeLine{78       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a3df51c8ae6b33c3736a291cc5fd1f439}{params}} = params\_input;}
+\DoxyCodeLine{76    \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a0ee709663871546f51f358face6c6c7c}{ExactDiag}}(\textcolor{keyword}{const} ModelClass \&model\_input,}
+\DoxyCodeLine{77              \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_all}{blas::ParametersAll}} \&params\_input): \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{ExactDiag}}(model\_input) \{}
+\DoxyCodeLine{78       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a994630e33087810daa87da6b66925127}{params}} = params\_input;}
 \DoxyCodeLine{79    \}}
 \DoxyCodeLine{80     }
 \DoxyCodeLine{81    }
@@ -78,7 +78,7 @@
 \DoxyCodeLine{91       }
 \DoxyCodeLine{92       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_aef9f604139cf2607458c7e5d14afae5c}{GenerateBasis}}(\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.GetQNumber(), flag\_display\_info);}
 \DoxyCodeLine{93       }
-\DoxyCodeLine{94       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} ham;}
+\DoxyCodeLine{94       \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} ham;}
 \DoxyCodeLine{95       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_afc68d703f3882d48e3c09445db2994c2}{GenerateHamiltonian}}(\&ham);}
 \DoxyCodeLine{96       }
 \DoxyCodeLine{97       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a08b1c95d031f0b29727039f031480c1d}{eigenvalues\_}}.size() == 0) \{}
@@ -89,10 +89,10 @@
 \DoxyCodeLine{102       \}}
 \DoxyCodeLine{103       }
 \DoxyCodeLine{104       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a7ebf7d0143bbc123c0cb826ece9e2bf9}{diag\_method\_}} == \mbox{\hyperlink{namespacecompnal_1_1solver_aea9ed4356b9eb3f1e01e43d336026522ac766432e40c81daf2b8104603413196b}{DiagMethod::LANCZOS}}) \{}
-\DoxyCodeLine{105          \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab653e2e978de33c4cb8eaa35562e6fdd}{sparse\_matrix::EigenvalueDecompositionLanczos}}(\&\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a08b1c95d031f0b29727039f031480c1d}{eigenvalues\_}}[0], \&\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}{eigenvectors\_}}[0], ham, \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a3df51c8ae6b33c3736a291cc5fd1f439}{params}}.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_all_a784b841d78c62a54161ab569519b2d99}{lanczos}});}
+\DoxyCodeLine{105          \mbox{\hyperlink{namespacecompnal_1_1blas_a41a8fbd0adade2a6702b987c653abf7b}{blas::EigenvalueDecompositionLanczos}}(\&\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a08b1c95d031f0b29727039f031480c1d}{eigenvalues\_}}[0], \&\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}{eigenvectors\_}}[0], ham, \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a994630e33087810daa87da6b66925127}{params}}.\mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_all_a55cc7b329133683ae92fe75cb26502b3}{lanczos}});}
 \DoxyCodeLine{106       \}}
 \DoxyCodeLine{107       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a7ebf7d0143bbc123c0cb826ece9e2bf9}{diag\_method\_}} == \mbox{\hyperlink{namespacecompnal_1_1solver_aea9ed4356b9eb3f1e01e43d336026522a779f87f3b11a08240fd9da58d90071fe}{DiagMethod::LOBPCG}}) \{}
-\DoxyCodeLine{108          \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a7fe5c3d33825a5f1d493f29c61f3c086}{sparse\_matrix::EigenvalueDecompositionLOBPCG}}(\&\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a08b1c95d031f0b29727039f031480c1d}{eigenvalues\_}}[0], \&\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}{eigenvectors\_}}[0], ham, \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a3df51c8ae6b33c3736a291cc5fd1f439}{params}}.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_all_a784b841d78c62a54161ab569519b2d99}{lanczos}});}
+\DoxyCodeLine{108          \mbox{\hyperlink{namespacecompnal_1_1blas_a1f728907b3675c8558f09749abf793af}{blas::EigenvalueDecompositionLOBPCG}}(\&\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a08b1c95d031f0b29727039f031480c1d}{eigenvalues\_}}[0], \&\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}{eigenvectors\_}}[0], ham, \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a994630e33087810daa87da6b66925127}{params}}.\mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_all_a55cc7b329133683ae92fe75cb26502b3}{lanczos}});}
 \DoxyCodeLine{109       \}}
 \DoxyCodeLine{110       \textcolor{keywordflow}{else} \{}
 \DoxyCodeLine{111          std::stringstream ss;}
@@ -101,7 +101,7 @@
 \DoxyCodeLine{114          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{115       \}}
 \DoxyCodeLine{116       }
-\DoxyCodeLine{117       \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a6a27a252e65bad8f004467384383df61}{sparse\_matrix::InverseIteration}}(\&ham, \&\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}{eigenvectors\_}}[0], \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a08b1c95d031f0b29727039f031480c1d}{eigenvalues\_}}[0], \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a3df51c8ae6b33c3736a291cc5fd1f439}{params}}.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_all_abdff80529ad29e3797baaf430a2f651f}{ii}});}
+\DoxyCodeLine{117       \mbox{\hyperlink{namespacecompnal_1_1blas_a145ac10a26aba079daa9fba3af245f89}{blas::InverseIteration}}(\&ham, \&\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}{eigenvectors\_}}[0], \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a08b1c95d031f0b29727039f031480c1d}{eigenvalues\_}}[0], \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a994630e33087810daa87da6b66925127}{params}}.\mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_all_a52361ce96147b9392c76e5181008c29b}{ii}});}
 \DoxyCodeLine{118       }
 \DoxyCodeLine{119       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_affb70f954c79af21f543b0797daba72e}{calculated\_eigenvector\_set\_}}.emplace(0);}
 \DoxyCodeLine{120    \}}
@@ -119,7 +119,7 @@
 \DoxyCodeLine{132       \}}
 \DoxyCodeLine{133       }
 \DoxyCodeLine{134       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.GenerateBasis();}
-\DoxyCodeLine{135       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} ham;}
+\DoxyCodeLine{135       \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} ham;}
 \DoxyCodeLine{136       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_afc68d703f3882d48e3c09445db2994c2}{GenerateHamiltonian}}(\&ham);}
 \DoxyCodeLine{137       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a7ebf7d0143bbc123c0cb826ece9e2bf9}{diag\_method\_}} == \mbox{\hyperlink{namespacecompnal_1_1solver_aea9ed4356b9eb3f1e01e43d336026522ac766432e40c81daf2b8104603413196b}{DiagMethod::LANCZOS}}) \{}
 \DoxyCodeLine{138          \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} sector = 1; sector <= target\_sector; ++sector) \{}
@@ -130,10 +130,10 @@
 \DoxyCodeLine{143                   ss << \textcolor{stringliteral}{"{}sector: "{}} << sector << \textcolor{stringliteral}{"{}, size: "{}} << \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}{eigenvectors\_}}.size() << std::endl;}
 \DoxyCodeLine{144                   \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{145                \}}
-\DoxyCodeLine{146                \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector}} temp\_vector(ham.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}});}
+\DoxyCodeLine{146                \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}{BraketVector}} temp\_vector(ham.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}});}
 \DoxyCodeLine{147                \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} temp\_value = 0.0;}
-\DoxyCodeLine{148                \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab653e2e978de33c4cb8eaa35562e6fdd}{sparse\_matrix::EigenvalueDecompositionLanczos}}(\&temp\_value, \&temp\_vector, ham, sector, \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}{eigenvectors\_}}, \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a3df51c8ae6b33c3736a291cc5fd1f439}{params}}.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_all_a784b841d78c62a54161ab569519b2d99}{lanczos}});}
-\DoxyCodeLine{149                \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a6a27a252e65bad8f004467384383df61}{sparse\_matrix::InverseIteration}}(\&ham, \&temp\_vector, temp\_value, \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a3df51c8ae6b33c3736a291cc5fd1f439}{params}}.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_all_abdff80529ad29e3797baaf430a2f651f}{ii}}, \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}{eigenvectors\_}});}
+\DoxyCodeLine{148                \mbox{\hyperlink{namespacecompnal_1_1blas_a41a8fbd0adade2a6702b987c653abf7b}{blas::EigenvalueDecompositionLanczos}}(\&temp\_value, \&temp\_vector, ham, sector, \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}{eigenvectors\_}}, \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a994630e33087810daa87da6b66925127}{params}}.\mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_all_a55cc7b329133683ae92fe75cb26502b3}{lanczos}});}
+\DoxyCodeLine{149                \mbox{\hyperlink{namespacecompnal_1_1blas_a145ac10a26aba079daa9fba3af245f89}{blas::InverseIteration}}(\&ham, \&temp\_vector, temp\_value, \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a994630e33087810daa87da6b66925127}{params}}.\mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_all_a52361ce96147b9392c76e5181008c29b}{ii}}, \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}{eigenvectors\_}});}
 \DoxyCodeLine{150                \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a08b1c95d031f0b29727039f031480c1d}{eigenvalues\_}}.push\_back(temp\_value);}
 \DoxyCodeLine{151                \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}{eigenvectors\_}}.push\_back(temp\_vector);}
 \DoxyCodeLine{152                \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.SetCalculatedEigenvectorSet(sector);}
@@ -155,7 +155,7 @@
 \DoxyCodeLine{168       }
 \DoxyCodeLine{169    \}}
 \DoxyCodeLine{170    }
-\DoxyCodeLine{171    \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1aafb57ecb9c2dcc044f4a6828cc93e8}{CalculateExpectationValue}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site, \textcolor{keyword}{const} \textcolor{keywordtype}{int} level = 0)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{171    \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1aafb57ecb9c2dcc044f4a6828cc93e8}{CalculateExpectationValue}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site, \textcolor{keyword}{const} \textcolor{keywordtype}{int} level = 0)\textcolor{keyword}{ const }\{}
 \DoxyCodeLine{172       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.GetCalculatedEigenvectorSet().count(level) == 0) \{}
 \DoxyCodeLine{173          std::stringstream ss;}
 \DoxyCodeLine{174          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
@@ -174,9 +174,9 @@
 \DoxyCodeLine{187          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{188       \}}
 \DoxyCodeLine{189       }
-\DoxyCodeLine{190       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}});}
+\DoxyCodeLine{190       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}});}
 \DoxyCodeLine{191       \textcolor{keyword}{const} std::int64\_t site\_constant = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(std::pow(dim\_onsite, site));}
-\DoxyCodeLine{192       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector}} \&eigenvector = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}{eigenvectors\_}}.at(level);}
+\DoxyCodeLine{192       \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}{BraketVector}} \&eigenvector = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}{eigenvectors\_}}.at(level);}
 \DoxyCodeLine{193       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} val = 0.0;}
 \DoxyCodeLine{194       }
 \DoxyCodeLine{195 \textcolor{preprocessor}{\#pragma omp parallel for reduction (+: val)}}
@@ -184,22 +184,22 @@
 \DoxyCodeLine{197          \textcolor{keyword}{const} std::int64\_t global\_basis = basis[i];}
 \DoxyCodeLine{198          \textcolor{keyword}{const} \textcolor{keywordtype}{int}          local\_basis = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a3a0400cf96ee595d5a095cfb1c4f87}{CalculateLocalBasis}}(global\_basis, site, dim\_onsite);}
 \DoxyCodeLine{199          \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} temp\_val = 0.0;}
-\DoxyCodeLine{200          \textcolor{keywordflow}{for} (std::int64\_t j = m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[local\_basis]; j < m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[local\_basis + 1]; ++j)\{}
-\DoxyCodeLine{201             \textcolor{keyword}{const} std::int64\_t a\_basis = global\_basis -\/ (local\_basis -\/ m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j])*site\_constant;}
+\DoxyCodeLine{200          \textcolor{keywordflow}{for} (std::int64\_t j = m.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[local\_basis]; j < m.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[local\_basis + 1]; ++j)\{}
+\DoxyCodeLine{201             \textcolor{keyword}{const} std::int64\_t a\_basis = global\_basis -\/ (local\_basis -\/ m.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j])*site\_constant;}
 \DoxyCodeLine{202             \textcolor{keywordflow}{if} (basis\_inv.count(a\_basis) != 0) \{}
-\DoxyCodeLine{203                temp\_val += eigenvector.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[basis\_inv.at(a\_basis)]*m.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j];}
+\DoxyCodeLine{203                temp\_val += eigenvector.val[basis\_inv.at(a\_basis)]*m.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j];}
 \DoxyCodeLine{204             \}}
 \DoxyCodeLine{205          \}}
-\DoxyCodeLine{206          val += eigenvector.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i]*temp\_val;}
+\DoxyCodeLine{206          val += eigenvector.val[i]*temp\_val;}
 \DoxyCodeLine{207       \}}
 \DoxyCodeLine{208       \textcolor{keywordflow}{return} val;}
 \DoxyCodeLine{209    \}}
 \DoxyCodeLine{210    }
-\DoxyCodeLine{211    \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acd281c111110b09eeeea7a456f5220b5}{CalculateCorrelationFunction}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site, \textcolor{keyword}{const} \textcolor{keywordtype}{int} target\_level = 0)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{211    \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acd281c111110b09eeeea7a456f5220b5}{CalculateCorrelationFunction}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site, \textcolor{keyword}{const} \textcolor{keywordtype}{int} target\_level = 0)\textcolor{keyword}{ const }\{}
 \DoxyCodeLine{212       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1aafb57ecb9c2dcc044f4a6828cc93e8}{CalculateExpectationValue}}(m, site, target\_level);}
 \DoxyCodeLine{213    \}}
 \DoxyCodeLine{214    }
-\DoxyCodeLine{215    \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a490b6895fcfb239a483be3dd2f10134a}{CalculateCorrelationFunction}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_1, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_1, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_2, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_2, \textcolor{keyword}{const} \textcolor{keywordtype}{int} target\_level = 0) \{}
+\DoxyCodeLine{215    \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a490b6895fcfb239a483be3dd2f10134a}{CalculateCorrelationFunction}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_1, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_1, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_2, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_2, \textcolor{keyword}{const} \textcolor{keywordtype}{int} target\_level = 0) \{}
 \DoxyCodeLine{216       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.GetCalculatedEigenvectorSet().count(target\_level) == 0) \{}
 \DoxyCodeLine{217          std::stringstream ss;}
 \DoxyCodeLine{218          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
@@ -207,31 +207,31 @@
 \DoxyCodeLine{220          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{221       \}}
 \DoxyCodeLine{222       }
-\DoxyCodeLine{223       \textcolor{keywordflow}{if} (m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} != m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} || m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} != m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}} || m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} != m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}}) \{}
+\DoxyCodeLine{223       \textcolor{keywordflow}{if} (m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} != m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} || m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} != m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}} || m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} != m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}}) \{}
 \DoxyCodeLine{224          std::stringstream ss;}
 \DoxyCodeLine{225          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
 \DoxyCodeLine{226          ss << \textcolor{stringliteral}{"{}Invalid input of the local operators"{}} << std::endl;}
 \DoxyCodeLine{227          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{228       \}}
 \DoxyCodeLine{229       }
-\DoxyCodeLine{230       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} m1\_dagger = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_aeb8905fe10ee567358f1e3656ea21eb4}{sparse\_matrix::CalculateTransposedMatrix}}(m\_1);}
+\DoxyCodeLine{230       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} m1\_dagger = \mbox{\hyperlink{namespacecompnal_1_1type_a5346fac9bf3b703982976a27f440168b}{blas::CalculateTransposedMatrix}}(m\_1);}
 \DoxyCodeLine{231       }
 \DoxyCodeLine{232       \textcolor{keyword}{const} \textcolor{keyword}{auto} target\_sectors  = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.GenerateTargetSector(m1\_dagger, m\_2);}
 \DoxyCodeLine{233       \textcolor{keyword}{const} \textcolor{keyword}{auto} \&basis\_inv = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.GetTargetBasisInv();}
-\DoxyCodeLine{234       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m1\_dagger.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}});}
+\DoxyCodeLine{234       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m1\_dagger.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}});}
 \DoxyCodeLine{235       \textcolor{keyword}{const} std::int64\_t site\_constant\_m1 = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(std::pow(dim\_onsite, site\_1));}
 \DoxyCodeLine{236       \textcolor{keyword}{const} std::int64\_t site\_constant\_m2 = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(std::pow(dim\_onsite, site\_2));}
-\DoxyCodeLine{237       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector}} \&eigenvector = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}{eigenvectors\_}}.at(target\_level);}
-\DoxyCodeLine{238       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector}} vector\_work\_m1;}
-\DoxyCodeLine{239       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector}} vector\_work\_m2;}
+\DoxyCodeLine{237       \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}{BraketVector}} \&eigenvector = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}{eigenvectors\_}}.at(target\_level);}
+\DoxyCodeLine{238       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}{BraketVector}} vector\_work\_m1;}
+\DoxyCodeLine{239       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}{BraketVector}} vector\_work\_m2;}
 \DoxyCodeLine{240       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} val = 0.0;}
 \DoxyCodeLine{241       }
 \DoxyCodeLine{242       \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&sector: target\_sectors) \{}
 \DoxyCodeLine{243          \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.GenerateBasis(sector);}
 \DoxyCodeLine{244          \textcolor{keyword}{const} \textcolor{keyword}{auto} \&basis = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.GetBasis(sector);}
 \DoxyCodeLine{245          \textcolor{keyword}{const} std::int64\_t dim\_target = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(basis.size());}
-\DoxyCodeLine{246          vector\_work\_m1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.resize(dim\_target);}
-\DoxyCodeLine{247          vector\_work\_m2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.resize(dim\_target);}
+\DoxyCodeLine{246          vector\_work\_m1.val.resize(dim\_target);}
+\DoxyCodeLine{247          vector\_work\_m2.val.resize(dim\_target);}
 \DoxyCodeLine{248 \textcolor{preprocessor}{\#pragma omp parallel for}}
 \DoxyCodeLine{249          \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < dim\_target; ++i) \{}
 \DoxyCodeLine{250             \textcolor{keyword}{const} std::int64\_t global\_basis = basis[i];}
@@ -241,7 +241,7 @@
 \DoxyCodeLine{254             \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} temp\_val\_m2 = 0.0;}
 \DoxyCodeLine{255             }
 \DoxyCodeLine{256             \textcolor{keywordtype}{int} fermion\_sign\_m1 = 1;}
-\DoxyCodeLine{257             \textcolor{keywordflow}{if} (m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a6e745b9eae6656c2210783e1e9d1d2b7}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{sparse\_matrix::CRSTag::FERMION}}) \{}
+\DoxyCodeLine{257             \textcolor{keywordflow}{if} (m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aacfa2feb99e5970d2a2d0a07b2528577}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{type::CRSTag::FERMION}}) \{}
 \DoxyCodeLine{258                \textcolor{keywordtype}{int} num\_electron = 0;}
 \DoxyCodeLine{259                \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} site = 0; site < site\_1; site++) \{}
 \DoxyCodeLine{260                   num\_electron += \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.CalculateNumElectron(\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a3a0400cf96ee595d5a095cfb1c4f87}{CalculateLocalBasis}}(global\_basis, site, dim\_onsite));}
@@ -251,16 +251,16 @@
 \DoxyCodeLine{264                \}}
 \DoxyCodeLine{265             \}}
 \DoxyCodeLine{266             }
-\DoxyCodeLine{267             \textcolor{keywordflow}{for} (std::int64\_t j = m1\_dagger.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[local\_basis\_m1]; j < m1\_dagger.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[local\_basis\_m1 + 1]; ++j)\{}
-\DoxyCodeLine{268                \textcolor{keyword}{const} std::int64\_t a\_basis = global\_basis -\/ (local\_basis\_m1 -\/ m1\_dagger.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j])*site\_constant\_m1;}
+\DoxyCodeLine{267             \textcolor{keywordflow}{for} (std::int64\_t j = m1\_dagger.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[local\_basis\_m1]; j < m1\_dagger.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[local\_basis\_m1 + 1]; ++j)\{}
+\DoxyCodeLine{268                \textcolor{keyword}{const} std::int64\_t a\_basis = global\_basis -\/ (local\_basis\_m1 -\/ m1\_dagger.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j])*site\_constant\_m1;}
 \DoxyCodeLine{269                \textcolor{keywordflow}{if} (basis\_inv.count(a\_basis) != 0) \{}
-\DoxyCodeLine{270                   temp\_val\_m1 += eigenvector.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[basis\_inv.at(a\_basis)]*m1\_dagger.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j];}
+\DoxyCodeLine{270                   temp\_val\_m1 += eigenvector.val[basis\_inv.at(a\_basis)]*m1\_dagger.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j];}
 \DoxyCodeLine{271                \}}
 \DoxyCodeLine{272             \}}
-\DoxyCodeLine{273             vector\_work\_m1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] = temp\_val\_m1*fermion\_sign\_m1;}
+\DoxyCodeLine{273             vector\_work\_m1.val[i] = temp\_val\_m1*fermion\_sign\_m1;}
 \DoxyCodeLine{274             }
 \DoxyCodeLine{275             \textcolor{keywordtype}{int} fermion\_sign\_m2 = 1;}
-\DoxyCodeLine{276             \textcolor{keywordflow}{if} (m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a6e745b9eae6656c2210783e1e9d1d2b7}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{sparse\_matrix::CRSTag::FERMION}}) \{}
+\DoxyCodeLine{276             \textcolor{keywordflow}{if} (m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aacfa2feb99e5970d2a2d0a07b2528577}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{type::CRSTag::FERMION}}) \{}
 \DoxyCodeLine{277                \textcolor{keywordtype}{int} num\_electron = 0;}
 \DoxyCodeLine{278                \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} site = 0; site < site\_2; site++) \{}
 \DoxyCodeLine{279                   num\_electron += \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.CalculateNumElectron(\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a3a0400cf96ee595d5a095cfb1c4f87}{CalculateLocalBasis}}(global\_basis, site, dim\_onsite));}
@@ -270,22 +270,22 @@
 \DoxyCodeLine{283                \}}
 \DoxyCodeLine{284             \}}
 \DoxyCodeLine{285             }
-\DoxyCodeLine{286             \textcolor{keywordflow}{for} (std::int64\_t j = m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[local\_basis\_m2]; j < m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[local\_basis\_m2 + 1]; ++j)\{}
-\DoxyCodeLine{287                \textcolor{keyword}{const} std::int64\_t a\_basis = global\_basis -\/ (local\_basis\_m2 -\/ m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j])*site\_constant\_m2;}
+\DoxyCodeLine{286             \textcolor{keywordflow}{for} (std::int64\_t j = m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[local\_basis\_m2]; j < m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[local\_basis\_m2 + 1]; ++j)\{}
+\DoxyCodeLine{287                \textcolor{keyword}{const} std::int64\_t a\_basis = global\_basis -\/ (local\_basis\_m2 -\/ m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j])*site\_constant\_m2;}
 \DoxyCodeLine{288                \textcolor{keywordflow}{if} (basis\_inv.count(a\_basis) != 0) \{}
-\DoxyCodeLine{289                   temp\_val\_m2 += eigenvector.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[basis\_inv.at(a\_basis)]*m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j];}
+\DoxyCodeLine{289                   temp\_val\_m2 += eigenvector.val[basis\_inv.at(a\_basis)]*m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j];}
 \DoxyCodeLine{290                \}}
 \DoxyCodeLine{291             \}}
-\DoxyCodeLine{292             vector\_work\_m2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] = temp\_val\_m2*fermion\_sign\_m2;}
+\DoxyCodeLine{292             vector\_work\_m2.val[i] = temp\_val\_m2*fermion\_sign\_m2;}
 \DoxyCodeLine{293          \}}
-\DoxyCodeLine{294          val += \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ac72eb2d652259d294644b3b00745a9df}{sparse\_matrix::CalculateInnerProduct}}(vector\_work\_m1, vector\_work\_m2);}
+\DoxyCodeLine{294          val += \mbox{\hyperlink{namespacecompnal_1_1type_a31939adf3cd225e389a22c977793b46d}{blas::CalculateInnerProduct}}(vector\_work\_m1, vector\_work\_m2);}
 \DoxyCodeLine{295       \}}
 \DoxyCodeLine{296       \textcolor{keywordflow}{return} val;}
 \DoxyCodeLine{297    \}}
 \DoxyCodeLine{298    }
-\DoxyCodeLine{299    \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ae5779b9d1389557e8dcf81b91e978507}{CalculateCorrelationFunction}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_1, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_1,}
-\DoxyCodeLine{300                                          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_2, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_2,}
-\DoxyCodeLine{301                                          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_3, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_3,}
+\DoxyCodeLine{299    \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ae5779b9d1389557e8dcf81b91e978507}{CalculateCorrelationFunction}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_1, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_1,}
+\DoxyCodeLine{300                                          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_2, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_2,}
+\DoxyCodeLine{301                                          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_3, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_3,}
 \DoxyCodeLine{302                                          \textcolor{keyword}{const} \textcolor{keywordtype}{int} target\_level = 0) \{}
 \DoxyCodeLine{303       }
 \DoxyCodeLine{304       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.GetCalculatedEigenvectorSet().count(target\_level) == 0) \{}
@@ -295,10 +295,10 @@
 \DoxyCodeLine{308          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{309       \}}
 \DoxyCodeLine{310       }
-\DoxyCodeLine{311       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c1 = (m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} == m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}});}
-\DoxyCodeLine{312       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c2 = (m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} == m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}});}
-\DoxyCodeLine{313       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c3 = (m\_3.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} == m\_3.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}});}
-\DoxyCodeLine{314       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c4 = (m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} == m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} \&\& m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} == m\_3.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}});}
+\DoxyCodeLine{311       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c1 = (m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} == m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}});}
+\DoxyCodeLine{312       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c2 = (m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} == m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}});}
+\DoxyCodeLine{313       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c3 = (m\_3.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} == m\_3.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}});}
+\DoxyCodeLine{314       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c4 = (m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} == m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} \&\& m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} == m\_3.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}});}
 \DoxyCodeLine{315       }
 \DoxyCodeLine{316       \textcolor{keywordflow}{if} (!(c1 \&\& c2 \&\& c3 \&\& c4)) \{}
 \DoxyCodeLine{317          std::stringstream ss;}
@@ -314,18 +314,18 @@
 \DoxyCodeLine{327          \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acd281c111110b09eeeea7a456f5220b5}{CalculateCorrelationFunction}}(m\_1, site\_1, m\_2*m\_3, site\_3, target\_level);}
 \DoxyCodeLine{328       \}}
 \DoxyCodeLine{329       }
-\DoxyCodeLine{330       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}  m1\_dagger      = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_aeb8905fe10ee567358f1e3656ea21eb4}{sparse\_matrix::CalculateTransposedMatrix}}(m\_1);}
+\DoxyCodeLine{330       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}}  m1\_dagger      = \mbox{\hyperlink{namespacecompnal_1_1type_a5346fac9bf3b703982976a27f440168b}{blas::CalculateTransposedMatrix}}(m\_1);}
 \DoxyCodeLine{331       \textcolor{keyword}{const} \textcolor{keyword}{auto} target\_sectors = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.GenerateTargetSector(m1\_dagger, m\_2, m\_3);}
 \DoxyCodeLine{332       }
 \DoxyCodeLine{333       \textcolor{keyword}{const} \textcolor{keyword}{auto} \&basis\_gs\_sector\_inv = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.GetTargetBasisInv();}
-\DoxyCodeLine{334       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m1\_dagger.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}});}
+\DoxyCodeLine{334       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m1\_dagger.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}});}
 \DoxyCodeLine{335       \textcolor{keyword}{const} std::int64\_t site\_constant\_m1 = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(std::pow(dim\_onsite, site\_1));}
 \DoxyCodeLine{336       \textcolor{keyword}{const} std::int64\_t site\_constant\_m2 = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(std::pow(dim\_onsite, site\_2));}
 \DoxyCodeLine{337       \textcolor{keyword}{const} std::int64\_t site\_constant\_m3 = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(std::pow(dim\_onsite, site\_3));}
-\DoxyCodeLine{338       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector}} \&eigenvector = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}{eigenvectors\_}}.at(target\_level);}
-\DoxyCodeLine{339       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector}} vector\_work\_a;}
-\DoxyCodeLine{340       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector}} vector\_work\_b;}
-\DoxyCodeLine{341       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector}} vector\_work\_c;}
+\DoxyCodeLine{338       \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}{BraketVector}} \&eigenvector = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}{eigenvectors\_}}.at(target\_level);}
+\DoxyCodeLine{339       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}{BraketVector}} vector\_work\_a;}
+\DoxyCodeLine{340       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}{BraketVector}} vector\_work\_b;}
+\DoxyCodeLine{341       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}{BraketVector}} vector\_work\_c;}
 \DoxyCodeLine{342       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} val = 0.0;}
 \DoxyCodeLine{343       }
 \DoxyCodeLine{344       \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&it: target\_sectors) \{}
@@ -339,7 +339,7 @@
 \DoxyCodeLine{352          \textcolor{keyword}{const} std::int64\_t dim\_target\_m3 = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(basis\_m3.size());}
 \DoxyCodeLine{353          }
 \DoxyCodeLine{354          \textcolor{comment}{//m3|gs>}}
-\DoxyCodeLine{355          vector\_work\_a.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.resize(dim\_target\_m3);}
+\DoxyCodeLine{355          vector\_work\_a.val.resize(dim\_target\_m3);}
 \DoxyCodeLine{356 \textcolor{preprocessor}{\#pragma omp parallel for}}
 \DoxyCodeLine{357          \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < dim\_target\_m3; ++i) \{}
 \DoxyCodeLine{358             \textcolor{keyword}{const} std::int64\_t global\_basis = basis\_m3[i];}
@@ -347,7 +347,7 @@
 \DoxyCodeLine{360             \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} temp\_val = 0.0;}
 \DoxyCodeLine{361             }
 \DoxyCodeLine{362             \textcolor{keywordtype}{int} fermion\_sign\_m3 = 1;}
-\DoxyCodeLine{363             \textcolor{keywordflow}{if} (m\_3.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a6e745b9eae6656c2210783e1e9d1d2b7}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{sparse\_matrix::CRSTag::FERMION}}) \{}
+\DoxyCodeLine{363             \textcolor{keywordflow}{if} (m\_3.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aacfa2feb99e5970d2a2d0a07b2528577}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{type::CRSTag::FERMION}}) \{}
 \DoxyCodeLine{364                \textcolor{keywordtype}{int} num\_electron = 0;}
 \DoxyCodeLine{365                \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} site = 0; site < site\_1; site++) \{}
 \DoxyCodeLine{366                   num\_electron += \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.CalculateNumElectron(\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a3a0400cf96ee595d5a095cfb1c4f87}{CalculateLocalBasis}}(global\_basis, site, dim\_onsite));}
@@ -357,18 +357,18 @@
 \DoxyCodeLine{370                \}}
 \DoxyCodeLine{371             \}}
 \DoxyCodeLine{372             }
-\DoxyCodeLine{373             \textcolor{keywordflow}{for} (std::int64\_t j = m\_3.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[local\_basis]; j < m\_3.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[local\_basis + 1]; ++j)\{}
-\DoxyCodeLine{374                \textcolor{keyword}{const} std::int64\_t a\_basis = global\_basis -\/ (local\_basis -\/ m\_3.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j])*site\_constant\_m3;}
+\DoxyCodeLine{373             \textcolor{keywordflow}{for} (std::int64\_t j = m\_3.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[local\_basis]; j < m\_3.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[local\_basis + 1]; ++j)\{}
+\DoxyCodeLine{374                \textcolor{keyword}{const} std::int64\_t a\_basis = global\_basis -\/ (local\_basis -\/ m\_3.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j])*site\_constant\_m3;}
 \DoxyCodeLine{375                \textcolor{keywordflow}{if} (basis\_gs\_sector\_inv.count(a\_basis) != 0) \{}
-\DoxyCodeLine{376                   temp\_val += eigenvector.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[basis\_gs\_sector\_inv.at(a\_basis)]*m\_3.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j];}
+\DoxyCodeLine{376                   temp\_val += eigenvector.val[basis\_gs\_sector\_inv.at(a\_basis)]*m\_3.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j];}
 \DoxyCodeLine{377                \}}
 \DoxyCodeLine{378             \}}
-\DoxyCodeLine{379             vector\_work\_a.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] = temp\_val*fermion\_sign\_m3;}
+\DoxyCodeLine{379             vector\_work\_a.val[i] = temp\_val*fermion\_sign\_m3;}
 \DoxyCodeLine{380          \}}
 \DoxyCodeLine{381          }
 \DoxyCodeLine{382          \textcolor{comment}{//m2 * m3|gs> and m1\_dag|gs>}}
-\DoxyCodeLine{383          vector\_work\_b.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.resize(dim\_target\_m1);}
-\DoxyCodeLine{384          vector\_work\_c.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.resize(dim\_target\_m1);}
+\DoxyCodeLine{383          vector\_work\_b.val.resize(dim\_target\_m1);}
+\DoxyCodeLine{384          vector\_work\_c.val.resize(dim\_target\_m1);}
 \DoxyCodeLine{385          \textcolor{keyword}{const} \textcolor{keyword}{auto} \&basis\_m3\_sector\_inv = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.GetBasisInv(sector\_m3);}
 \DoxyCodeLine{386 \textcolor{preprocessor}{\#pragma omp parallel for}}
 \DoxyCodeLine{387          \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < dim\_target\_m1; ++i) \{}
@@ -379,7 +379,7 @@
 \DoxyCodeLine{392             \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} temp\_val\_m2 = 0.0;}
 \DoxyCodeLine{393             }
 \DoxyCodeLine{394             \textcolor{keywordtype}{int} fermion\_sign\_m2 = 1;}
-\DoxyCodeLine{395             \textcolor{keywordflow}{if} (m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a6e745b9eae6656c2210783e1e9d1d2b7}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{sparse\_matrix::CRSTag::FERMION}}) \{}
+\DoxyCodeLine{395             \textcolor{keywordflow}{if} (m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aacfa2feb99e5970d2a2d0a07b2528577}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{type::CRSTag::FERMION}}) \{}
 \DoxyCodeLine{396                \textcolor{keywordtype}{int} num\_electron = 0;}
 \DoxyCodeLine{397                \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} site = 0; site < site\_1; site++) \{}
 \DoxyCodeLine{398                   num\_electron += \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.CalculateNumElectron(\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a3a0400cf96ee595d5a095cfb1c4f87}{CalculateLocalBasis}}(global\_basis, site, dim\_onsite));}
@@ -389,16 +389,16 @@
 \DoxyCodeLine{402                \}}
 \DoxyCodeLine{403             \}}
 \DoxyCodeLine{404             }
-\DoxyCodeLine{405             \textcolor{keywordflow}{for} (std::int64\_t j = m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[local\_basis\_m2]; j < m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[local\_basis\_m2 + 1]; ++j)\{}
-\DoxyCodeLine{406                \textcolor{keyword}{const} std::int64\_t a\_basis = global\_basis -\/ (local\_basis\_m2 -\/ m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j])*site\_constant\_m2;}
+\DoxyCodeLine{405             \textcolor{keywordflow}{for} (std::int64\_t j = m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[local\_basis\_m2]; j < m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[local\_basis\_m2 + 1]; ++j)\{}
+\DoxyCodeLine{406                \textcolor{keyword}{const} std::int64\_t a\_basis = global\_basis -\/ (local\_basis\_m2 -\/ m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j])*site\_constant\_m2;}
 \DoxyCodeLine{407                \textcolor{keywordflow}{if} (basis\_m3\_sector\_inv.count(a\_basis) != 0) \{}
-\DoxyCodeLine{408                   temp\_val\_m2 += vector\_work\_a.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[basis\_m3\_sector\_inv.at(a\_basis)]*m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j];}
+\DoxyCodeLine{408                   temp\_val\_m2 += vector\_work\_a.val[basis\_m3\_sector\_inv.at(a\_basis)]*m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j];}
 \DoxyCodeLine{409                \}}
 \DoxyCodeLine{410             \}}
-\DoxyCodeLine{411             vector\_work\_b.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] = temp\_val\_m2*fermion\_sign\_m2;}
+\DoxyCodeLine{411             vector\_work\_b.val[i] = temp\_val\_m2*fermion\_sign\_m2;}
 \DoxyCodeLine{412             }
 \DoxyCodeLine{413             \textcolor{keywordtype}{int} fermion\_sign\_m1 = 1;}
-\DoxyCodeLine{414             \textcolor{keywordflow}{if} (m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a6e745b9eae6656c2210783e1e9d1d2b7}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{sparse\_matrix::CRSTag::FERMION}}) \{}
+\DoxyCodeLine{414             \textcolor{keywordflow}{if} (m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aacfa2feb99e5970d2a2d0a07b2528577}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{type::CRSTag::FERMION}}) \{}
 \DoxyCodeLine{415                \textcolor{keywordtype}{int} num\_electron = 0;}
 \DoxyCodeLine{416                \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} site = 0; site < site\_1; site++) \{}
 \DoxyCodeLine{417                   num\_electron += \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.CalculateNumElectron(\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a3a0400cf96ee595d5a095cfb1c4f87}{CalculateLocalBasis}}(global\_basis, site, dim\_onsite));}
@@ -408,23 +408,23 @@
 \DoxyCodeLine{421                \}}
 \DoxyCodeLine{422             \}}
 \DoxyCodeLine{423             }
-\DoxyCodeLine{424             \textcolor{keywordflow}{for} (std::int64\_t j = m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[local\_basis\_m1]; j < m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[local\_basis\_m1 + 1]; ++j)\{}
-\DoxyCodeLine{425                \textcolor{keyword}{const} std::int64\_t a\_basis = global\_basis -\/ (local\_basis\_m1 -\/ m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j])*site\_constant\_m1;}
+\DoxyCodeLine{424             \textcolor{keywordflow}{for} (std::int64\_t j = m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[local\_basis\_m1]; j < m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[local\_basis\_m1 + 1]; ++j)\{}
+\DoxyCodeLine{425                \textcolor{keyword}{const} std::int64\_t a\_basis = global\_basis -\/ (local\_basis\_m1 -\/ m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j])*site\_constant\_m1;}
 \DoxyCodeLine{426                \textcolor{keywordflow}{if} (basis\_gs\_sector\_inv.count(a\_basis) != 0) \{}
-\DoxyCodeLine{427                   temp\_val\_m1 += eigenvector.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[basis\_gs\_sector\_inv.at(a\_basis)]*m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j];}
+\DoxyCodeLine{427                   temp\_val\_m1 += eigenvector.val[basis\_gs\_sector\_inv.at(a\_basis)]*m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j];}
 \DoxyCodeLine{428                \}}
 \DoxyCodeLine{429             \}}
-\DoxyCodeLine{430             vector\_work\_c.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] = temp\_val\_m1*fermion\_sign\_m1;}
+\DoxyCodeLine{430             vector\_work\_c.val[i] = temp\_val\_m1*fermion\_sign\_m1;}
 \DoxyCodeLine{431          \}}
-\DoxyCodeLine{432          val += \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ac72eb2d652259d294644b3b00745a9df}{sparse\_matrix::CalculateInnerProduct}}(vector\_work\_b, vector\_work\_c);}
+\DoxyCodeLine{432          val += \mbox{\hyperlink{namespacecompnal_1_1type_a31939adf3cd225e389a22c977793b46d}{blas::CalculateInnerProduct}}(vector\_work\_b, vector\_work\_c);}
 \DoxyCodeLine{433       \}}
 \DoxyCodeLine{434       \textcolor{keywordflow}{return} val;}
 \DoxyCodeLine{435    \}}
 \DoxyCodeLine{436    }
-\DoxyCodeLine{437    \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a7c3c205f875f049444abaa9f17d2faeb}{CalculateCorrelationFunction}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_1, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_1,}
-\DoxyCodeLine{438                                          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_2, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_2,}
-\DoxyCodeLine{439                                          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_3, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_3,}
-\DoxyCodeLine{440                                          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_4, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_4,}
+\DoxyCodeLine{437    \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a7c3c205f875f049444abaa9f17d2faeb}{CalculateCorrelationFunction}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_1, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_1,}
+\DoxyCodeLine{438                                          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_2, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_2,}
+\DoxyCodeLine{439                                          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_3, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_3,}
+\DoxyCodeLine{440                                          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_4, \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_4,}
 \DoxyCodeLine{441                                          \textcolor{keyword}{const} \textcolor{keywordtype}{int} target\_level = 0) \{}
 \DoxyCodeLine{442       }
 \DoxyCodeLine{443       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.GetCalculatedEigenvectorSet().count(target\_level) == 0) \{}
@@ -434,11 +434,11 @@
 \DoxyCodeLine{447          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{448       \}}
 \DoxyCodeLine{449       }
-\DoxyCodeLine{450       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c1 = (m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} == m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}});}
-\DoxyCodeLine{451       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c2 = (m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} == m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}});}
-\DoxyCodeLine{452       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c3 = (m\_3.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} == m\_3.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}});}
-\DoxyCodeLine{453       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c4 = (m\_4.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} == m\_4.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}});}
-\DoxyCodeLine{454       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c5 = (m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} == m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} \&\& m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} == m\_3.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} \&\& m\_3.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} == m\_4.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}});}
+\DoxyCodeLine{450       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c1 = (m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} == m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}});}
+\DoxyCodeLine{451       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c2 = (m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} == m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}});}
+\DoxyCodeLine{452       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c3 = (m\_3.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} == m\_3.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}});}
+\DoxyCodeLine{453       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c4 = (m\_4.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} == m\_4.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}});}
+\DoxyCodeLine{454       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} c5 = (m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} == m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} \&\& m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} == m\_3.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} \&\& m\_3.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} == m\_4.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}});}
 \DoxyCodeLine{455       }
 \DoxyCodeLine{456       \textcolor{keywordflow}{if} (!(c1 \&\& c2 \&\& c3 \&\& c4 \&\& c5)) \{}
 \DoxyCodeLine{457          std::stringstream ss;}
@@ -457,21 +457,21 @@
 \DoxyCodeLine{470          \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acd281c111110b09eeeea7a456f5220b5}{CalculateCorrelationFunction}}(m\_1, site\_1, m\_2, site\_2, m\_3*m\_4, site\_3);}
 \DoxyCodeLine{471       \}}
 \DoxyCodeLine{472       }
-\DoxyCodeLine{473       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}  m1\_dagger = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_aeb8905fe10ee567358f1e3656ea21eb4}{sparse\_matrix::CalculateTransposedMatrix}}(m\_1);}
-\DoxyCodeLine{474       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}}  m2\_dagger = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_aeb8905fe10ee567358f1e3656ea21eb4}{sparse\_matrix::CalculateTransposedMatrix}}(m\_2);}
+\DoxyCodeLine{473       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}}  m1\_dagger = \mbox{\hyperlink{namespacecompnal_1_1type_a5346fac9bf3b703982976a27f440168b}{blas::CalculateTransposedMatrix}}(m\_1);}
+\DoxyCodeLine{474       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}}  m2\_dagger = \mbox{\hyperlink{namespacecompnal_1_1type_a5346fac9bf3b703982976a27f440168b}{blas::CalculateTransposedMatrix}}(m\_2);}
 \DoxyCodeLine{475       \textcolor{keyword}{const} \textcolor{keyword}{auto} target\_sectors = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.GenerateTargetSector(m1\_dagger, m2\_dagger, m\_3, m\_4);}
 \DoxyCodeLine{476       }
 \DoxyCodeLine{477       \textcolor{keyword}{const} \textcolor{keyword}{auto} \&basis\_gs\_sector\_inv = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.GetTargetBasisInv();}
-\DoxyCodeLine{478       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m1\_dagger.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}});}
+\DoxyCodeLine{478       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m1\_dagger.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}});}
 \DoxyCodeLine{479       \textcolor{keyword}{const} std::int64\_t site\_constant\_m1 = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(std::pow(dim\_onsite, site\_1));}
 \DoxyCodeLine{480       \textcolor{keyword}{const} std::int64\_t site\_constant\_m2 = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(std::pow(dim\_onsite, site\_2));}
 \DoxyCodeLine{481       \textcolor{keyword}{const} std::int64\_t site\_constant\_m3 = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(std::pow(dim\_onsite, site\_3));}
 \DoxyCodeLine{482       \textcolor{keyword}{const} std::int64\_t site\_constant\_m4 = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(std::pow(dim\_onsite, site\_4));}
-\DoxyCodeLine{483       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector}} \&eigenvector = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}{eigenvectors\_}}.at(target\_level);}
-\DoxyCodeLine{484       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector}} vector\_work\_m1;}
-\DoxyCodeLine{485       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector}} vector\_work\_m2m1;}
-\DoxyCodeLine{486       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector}} vector\_work\_m4;}
-\DoxyCodeLine{487       \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector}} vector\_work\_m3m4;}
+\DoxyCodeLine{483       \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}{BraketVector}} \&eigenvector = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}{eigenvectors\_}}.at(target\_level);}
+\DoxyCodeLine{484       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}{BraketVector}} vector\_work\_m1;}
+\DoxyCodeLine{485       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}{BraketVector}} vector\_work\_m2m1;}
+\DoxyCodeLine{486       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}{BraketVector}} vector\_work\_m4;}
+\DoxyCodeLine{487       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}{BraketVector}} vector\_work\_m3m4;}
 \DoxyCodeLine{488       \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} val = 0.0;}
 \DoxyCodeLine{489       }
 \DoxyCodeLine{490       \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&it: target\_sectors) \{}
@@ -491,7 +491,7 @@
 \DoxyCodeLine{504          \textcolor{keyword}{const} std::int64\_t dim\_target\_ket\_1 = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(basis\_ket\_1.size());}
 \DoxyCodeLine{505          }
 \DoxyCodeLine{506          \textcolor{comment}{//m4|gs>}}
-\DoxyCodeLine{507          vector\_work\_m4.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.resize(dim\_target\_ket\_1);}
+\DoxyCodeLine{507          vector\_work\_m4.val.resize(dim\_target\_ket\_1);}
 \DoxyCodeLine{508 \textcolor{preprocessor}{\#pragma omp parallel for}}
 \DoxyCodeLine{509          \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < dim\_target\_ket\_1; ++i) \{}
 \DoxyCodeLine{510             \textcolor{keyword}{const} std::int64\_t global\_basis = basis\_ket\_1[i];}
@@ -499,7 +499,7 @@
 \DoxyCodeLine{512             \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} temp\_val = 0.0;}
 \DoxyCodeLine{513             }
 \DoxyCodeLine{514             \textcolor{keywordtype}{int} fermion\_sign\_m4 = 1;}
-\DoxyCodeLine{515             \textcolor{keywordflow}{if} (m\_4.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a6e745b9eae6656c2210783e1e9d1d2b7}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{sparse\_matrix::CRSTag::FERMION}}) \{}
+\DoxyCodeLine{515             \textcolor{keywordflow}{if} (m\_4.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aacfa2feb99e5970d2a2d0a07b2528577}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{type::CRSTag::FERMION}}) \{}
 \DoxyCodeLine{516                \textcolor{keywordtype}{int} num\_electron = 0;}
 \DoxyCodeLine{517                \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} site = 0; site < site\_1; site++) \{}
 \DoxyCodeLine{518                   num\_electron += \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.CalculateNumElectron(\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a3a0400cf96ee595d5a095cfb1c4f87}{CalculateLocalBasis}}(global\_basis, site, dim\_onsite));}
@@ -509,17 +509,17 @@
 \DoxyCodeLine{522                \}}
 \DoxyCodeLine{523             \}}
 \DoxyCodeLine{524             }
-\DoxyCodeLine{525             \textcolor{keywordflow}{for} (std::int64\_t j = m\_4.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[local\_basis]; j < m\_4.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[local\_basis + 1]; ++j)\{}
-\DoxyCodeLine{526                \textcolor{keyword}{const} std::int64\_t a\_basis = global\_basis -\/ (local\_basis -\/ m\_4.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j])*site\_constant\_m4;}
+\DoxyCodeLine{525             \textcolor{keywordflow}{for} (std::int64\_t j = m\_4.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[local\_basis]; j < m\_4.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[local\_basis + 1]; ++j)\{}
+\DoxyCodeLine{526                \textcolor{keyword}{const} std::int64\_t a\_basis = global\_basis -\/ (local\_basis -\/ m\_4.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j])*site\_constant\_m4;}
 \DoxyCodeLine{527                \textcolor{keywordflow}{if} (basis\_gs\_sector\_inv.count(a\_basis) != 0) \{}
-\DoxyCodeLine{528                   temp\_val += eigenvector.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[basis\_gs\_sector\_inv.at(a\_basis)]*m\_4.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j];}
+\DoxyCodeLine{528                   temp\_val += eigenvector.val[basis\_gs\_sector\_inv.at(a\_basis)]*m\_4.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j];}
 \DoxyCodeLine{529                \}}
 \DoxyCodeLine{530             \}}
-\DoxyCodeLine{531             vector\_work\_m4.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] = temp\_val*fermion\_sign\_m4;}
+\DoxyCodeLine{531             vector\_work\_m4.val[i] = temp\_val*fermion\_sign\_m4;}
 \DoxyCodeLine{532          \}}
 \DoxyCodeLine{533          }
 \DoxyCodeLine{534          \textcolor{comment}{//m1\_dag|gs>}}
-\DoxyCodeLine{535          vector\_work\_m1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.resize(dim\_target\_bra\_1);}
+\DoxyCodeLine{535          vector\_work\_m1.val.resize(dim\_target\_bra\_1);}
 \DoxyCodeLine{536 \textcolor{preprocessor}{\#pragma omp parallel for}}
 \DoxyCodeLine{537          \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < dim\_target\_bra\_1; ++i) \{}
 \DoxyCodeLine{538             \textcolor{keyword}{const} std::int64\_t global\_basis = basis\_bra\_1[i];}
@@ -527,7 +527,7 @@
 \DoxyCodeLine{540             \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} temp\_val = 0.0;}
 \DoxyCodeLine{541             }
 \DoxyCodeLine{542             \textcolor{keywordtype}{int} fermion\_sign\_m1 = 1;}
-\DoxyCodeLine{543             \textcolor{keywordflow}{if} (m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a6e745b9eae6656c2210783e1e9d1d2b7}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{sparse\_matrix::CRSTag::FERMION}}) \{}
+\DoxyCodeLine{543             \textcolor{keywordflow}{if} (m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aacfa2feb99e5970d2a2d0a07b2528577}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{type::CRSTag::FERMION}}) \{}
 \DoxyCodeLine{544                \textcolor{keywordtype}{int} num\_electron = 0;}
 \DoxyCodeLine{545                \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} site = 0; site < site\_1; site++) \{}
 \DoxyCodeLine{546                   num\_electron += \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.CalculateNumElectron(\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a3a0400cf96ee595d5a095cfb1c4f87}{CalculateLocalBasis}}(global\_basis, site, dim\_onsite));}
@@ -537,18 +537,18 @@
 \DoxyCodeLine{550                \}}
 \DoxyCodeLine{551             \}}
 \DoxyCodeLine{552             }
-\DoxyCodeLine{553             \textcolor{keywordflow}{for} (std::int64\_t j = m1\_dagger.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[local\_basis]; j < m1\_dagger.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[local\_basis + 1]; ++j)\{}
-\DoxyCodeLine{554                \textcolor{keyword}{const} std::int64\_t a\_basis = global\_basis -\/ (local\_basis -\/ m1\_dagger.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j])*site\_constant\_m1;}
+\DoxyCodeLine{553             \textcolor{keywordflow}{for} (std::int64\_t j = m1\_dagger.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[local\_basis]; j < m1\_dagger.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[local\_basis + 1]; ++j)\{}
+\DoxyCodeLine{554                \textcolor{keyword}{const} std::int64\_t a\_basis = global\_basis -\/ (local\_basis -\/ m1\_dagger.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j])*site\_constant\_m1;}
 \DoxyCodeLine{555                \textcolor{keywordflow}{if} (basis\_gs\_sector\_inv.count(a\_basis) != 0) \{}
-\DoxyCodeLine{556                   temp\_val += eigenvector.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[basis\_gs\_sector\_inv.at(a\_basis)]*m1\_dagger.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j];}
+\DoxyCodeLine{556                   temp\_val += eigenvector.val[basis\_gs\_sector\_inv.at(a\_basis)]*m1\_dagger.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j];}
 \DoxyCodeLine{557                \}}
 \DoxyCodeLine{558             \}}
-\DoxyCodeLine{559             vector\_work\_m1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] = temp\_val*fermion\_sign\_m1;}
+\DoxyCodeLine{559             vector\_work\_m1.val[i] = temp\_val*fermion\_sign\_m1;}
 \DoxyCodeLine{560          \}}
 \DoxyCodeLine{561          }
 \DoxyCodeLine{562          \textcolor{comment}{//m3 * m4|gs> and m2\_dag * m1\_dag|gs>}}
-\DoxyCodeLine{563          vector\_work\_m3m4.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.resize(dim\_target\_bra\_2);}
-\DoxyCodeLine{564          vector\_work\_m2m1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.resize(dim\_target\_bra\_2);}
+\DoxyCodeLine{563          vector\_work\_m3m4.val.resize(dim\_target\_bra\_2);}
+\DoxyCodeLine{564          vector\_work\_m2m1.val.resize(dim\_target\_bra\_2);}
 \DoxyCodeLine{565          }
 \DoxyCodeLine{566 \textcolor{preprocessor}{\#pragma omp parallel for}}
 \DoxyCodeLine{567          \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < dim\_target\_bra\_2; ++i) \{}
@@ -558,7 +558,7 @@
 \DoxyCodeLine{571             \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} temp\_val = 0.0;}
 \DoxyCodeLine{572             }
 \DoxyCodeLine{573             \textcolor{keywordtype}{int} fermion\_sign\_m3 = 1;}
-\DoxyCodeLine{574             \textcolor{keywordflow}{if} (m\_3.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a6e745b9eae6656c2210783e1e9d1d2b7}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{sparse\_matrix::CRSTag::FERMION}}) \{}
+\DoxyCodeLine{574             \textcolor{keywordflow}{if} (m\_3.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aacfa2feb99e5970d2a2d0a07b2528577}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{type::CRSTag::FERMION}}) \{}
 \DoxyCodeLine{575                \textcolor{keywordtype}{int} num\_electron = 0;}
 \DoxyCodeLine{576                \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} site = 0; site < site\_1; site++) \{}
 \DoxyCodeLine{577                   num\_electron += \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.CalculateNumElectron(\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a3a0400cf96ee595d5a095cfb1c4f87}{CalculateLocalBasis}}(global\_basis, site, dim\_onsite));}
@@ -568,18 +568,18 @@
 \DoxyCodeLine{581                \}}
 \DoxyCodeLine{582             \}}
 \DoxyCodeLine{583             }
-\DoxyCodeLine{584             \textcolor{keywordflow}{for} (std::int64\_t j = m\_3.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[local\_basis\_m3]; j < m\_3.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[local\_basis\_m3 + 1]; ++j)\{}
-\DoxyCodeLine{585                \textcolor{keyword}{const} std::int64\_t a\_basis = global\_basis -\/ (local\_basis\_m3 -\/ m\_3.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j])*site\_constant\_m3;}
+\DoxyCodeLine{584             \textcolor{keywordflow}{for} (std::int64\_t j = m\_3.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[local\_basis\_m3]; j < m\_3.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[local\_basis\_m3 + 1]; ++j)\{}
+\DoxyCodeLine{585                \textcolor{keyword}{const} std::int64\_t a\_basis = global\_basis -\/ (local\_basis\_m3 -\/ m\_3.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j])*site\_constant\_m3;}
 \DoxyCodeLine{586                \textcolor{keywordflow}{if} (basis\_ket\_1\_inv.count(a\_basis) != 0) \{}
-\DoxyCodeLine{587                   temp\_val += vector\_work\_m4.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[basis\_ket\_1\_inv.at(a\_basis)]*m\_3.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j];}
+\DoxyCodeLine{587                   temp\_val += vector\_work\_m4.val[basis\_ket\_1\_inv.at(a\_basis)]*m\_3.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j];}
 \DoxyCodeLine{588                \}}
 \DoxyCodeLine{589             \}}
-\DoxyCodeLine{590             vector\_work\_m3m4.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] = temp\_val*fermion\_sign\_m3;}
+\DoxyCodeLine{590             vector\_work\_m3m4.val[i] = temp\_val*fermion\_sign\_m3;}
 \DoxyCodeLine{591             }
 \DoxyCodeLine{592             temp\_val = 0.0;}
 \DoxyCodeLine{593             }
 \DoxyCodeLine{594             \textcolor{keywordtype}{int} fermion\_sign\_m2 = 1;}
-\DoxyCodeLine{595             \textcolor{keywordflow}{if} (m\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a6e745b9eae6656c2210783e1e9d1d2b7}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab956f5ab317ec175be8c3b3d709880dca5607eb17709d701c2f5eed55b61bd68c}{sparse\_matrix::CRSTag::FERMION}}) \{}
+\DoxyCodeLine{595             \textcolor{keywordflow}{if} (m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aacfa2feb99e5970d2a2d0a07b2528577}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{type::CRSTag::FERMION}}) \{}
 \DoxyCodeLine{596                \textcolor{keywordtype}{int} num\_electron = 0;}
 \DoxyCodeLine{597                \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} site = 0; site < site\_1; site++) \{}
 \DoxyCodeLine{598                   num\_electron += \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.CalculateNumElectron(\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a3a0400cf96ee595d5a095cfb1c4f87}{CalculateLocalBasis}}(global\_basis, site, dim\_onsite));}
@@ -589,15 +589,15 @@
 \DoxyCodeLine{602                \}}
 \DoxyCodeLine{603             \}}
 \DoxyCodeLine{604             }
-\DoxyCodeLine{605             \textcolor{keywordflow}{for} (std::int64\_t j = m2\_dagger.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[local\_basis\_m2]; j < m2\_dagger.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[local\_basis\_m2 + 1]; ++j)\{}
-\DoxyCodeLine{606                \textcolor{keyword}{const} std::int64\_t a\_basis = global\_basis -\/ (local\_basis\_m2 -\/ m2\_dagger.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j])*site\_constant\_m2;}
+\DoxyCodeLine{605             \textcolor{keywordflow}{for} (std::int64\_t j = m2\_dagger.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[local\_basis\_m2]; j < m2\_dagger.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[local\_basis\_m2 + 1]; ++j)\{}
+\DoxyCodeLine{606                \textcolor{keyword}{const} std::int64\_t a\_basis = global\_basis -\/ (local\_basis\_m2 -\/ m2\_dagger.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j])*site\_constant\_m2;}
 \DoxyCodeLine{607                \textcolor{keywordflow}{if} (basis\_bra\_1\_inv.count(a\_basis) != 0) \{}
-\DoxyCodeLine{608                   temp\_val += vector\_work\_m1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[basis\_bra\_1\_inv.at(a\_basis)]*m2\_dagger.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j];}
+\DoxyCodeLine{608                   temp\_val += vector\_work\_m1.val[basis\_bra\_1\_inv.at(a\_basis)]*m2\_dagger.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j];}
 \DoxyCodeLine{609                \}}
 \DoxyCodeLine{610             \}}
-\DoxyCodeLine{611             vector\_work\_m2m1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] = temp\_val*fermion\_sign\_m2;}
+\DoxyCodeLine{611             vector\_work\_m2m1.val[i] = temp\_val*fermion\_sign\_m2;}
 \DoxyCodeLine{612          \}}
-\DoxyCodeLine{613          val += \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ac72eb2d652259d294644b3b00745a9df}{sparse\_matrix::CalculateInnerProduct}}(vector\_work\_m2m1, vector\_work\_m3m4);}
+\DoxyCodeLine{613          val += \mbox{\hyperlink{namespacecompnal_1_1type_a31939adf3cd225e389a22c977793b46d}{blas::CalculateInnerProduct}}(vector\_work\_m2m1, vector\_work\_m3m4);}
 \DoxyCodeLine{614       \}}
 \DoxyCodeLine{615       \textcolor{keywordflow}{return} val;}
 \DoxyCodeLine{616    \}}
@@ -621,19 +621,19 @@
 \DoxyCodeLine{639    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{640    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Private Member Functions-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{641    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{642    std::unordered\_set<QType> \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a4255610b274890174bf7a295e507b4}{GenerateTargetSector}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_1) \{}
+\DoxyCodeLine{642    std::unordered\_set<QType> \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a4255610b274890174bf7a295e507b4}{GenerateTargetSector}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_1) \{}
 \DoxyCodeLine{643       std::unordered\_set<QType> target\_q\_set;}
-\DoxyCodeLine{644       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{645          \textcolor{keywordflow}{for} (std::int64\_t j = m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i]; j < m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[i + 1]; ++j) \{}
-\DoxyCodeLine{646             \textcolor{keywordflow}{if} (m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[j] != 0.0) \{}
-\DoxyCodeLine{647                target\_q\_set.emplace(\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.CalculateQNumber(i, m\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[j]));}
+\DoxyCodeLine{644       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{645          \textcolor{keywordflow}{for} (std::int64\_t j = m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i]; j < m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{646             \textcolor{keywordflow}{if} (m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j] != 0.0) \{}
+\DoxyCodeLine{647                target\_q\_set.emplace(\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}.CalculateQNumber(i, m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j]));}
 \DoxyCodeLine{648             \}}
 \DoxyCodeLine{649          \}}
 \DoxyCodeLine{650       \}}
 \DoxyCodeLine{651       \textcolor{keywordflow}{return} target\_q\_set;}
 \DoxyCodeLine{652    \}}
 \DoxyCodeLine{653    }
-\DoxyCodeLine{658    std::vector<QType> \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a5cc7ea84e576863cd2ab55ef61e75e30}{GenerateTargetSector}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_1, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_2)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{658    std::vector<QType> \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a5cc7ea84e576863cd2ab55ef61e75e30}{GenerateTargetSector}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_1, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_2)\textcolor{keyword}{ const }\{}
 \DoxyCodeLine{659       std::unordered\_set<QType, QHash> q\_set\_m1 = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a4255610b274890174bf7a295e507b4}{GenerateTargetSector}}(m\_1);}
 \DoxyCodeLine{660       std::unordered\_set<QType, QHash> q\_set\_m2 = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a4255610b274890174bf7a295e507b4}{GenerateTargetSector}}(m\_2);}
 \DoxyCodeLine{661       }
@@ -647,7 +647,7 @@
 \DoxyCodeLine{669       \textcolor{keywordflow}{return} target\_q\_set;}
 \DoxyCodeLine{670    \}}
 \DoxyCodeLine{671    }
-\DoxyCodeLine{677    std::vector<std::vector<QType>> \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ac1fd4a4602fcf9af48101c8d8ac46d47}{GenerateTargetSector}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_1\_bra, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_2\_ket, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_3\_ket)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{677    std::vector<std::vector<QType>> \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ac1fd4a4602fcf9af48101c8d8ac46d47}{GenerateTargetSector}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_1\_bra, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_2\_ket, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_3\_ket)\textcolor{keyword}{ const }\{}
 \DoxyCodeLine{678       std::unordered\_set<QType, QHash> q\_set\_m1\_bra = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a4255610b274890174bf7a295e507b4}{GenerateTargetSector}}(m\_1\_bra);}
 \DoxyCodeLine{679       std::unordered\_set<QType, QHash> q\_set\_m2\_ket = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a4255610b274890174bf7a295e507b4}{GenerateTargetSector}}(m\_2\_ket);}
 \DoxyCodeLine{680       std::unordered\_set<QType, QHash> q\_set\_m3\_ket = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a4255610b274890174bf7a295e507b4}{GenerateTargetSector}}(m\_3\_ket);}
@@ -673,10 +673,10 @@
 \DoxyCodeLine{700       \textcolor{keywordflow}{return} target\_q\_set;}
 \DoxyCodeLine{701    \}}
 \DoxyCodeLine{702    }
-\DoxyCodeLine{709    std::vector<std::vector<QType>> \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a6c393215396e23e56985ad8ca6b5b551}{GenerateTargetSector}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_1\_bra,}
-\DoxyCodeLine{710                                                         \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_2\_bra,}
-\DoxyCodeLine{711                                                         \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_3\_ket,}
-\DoxyCodeLine{712                                                         \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&m\_4\_ket)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{709    std::vector<std::vector<QType>> \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a6c393215396e23e56985ad8ca6b5b551}{GenerateTargetSector}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_1\_bra,}
+\DoxyCodeLine{710                                                         \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_2\_bra,}
+\DoxyCodeLine{711                                                         \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_3\_ket,}
+\DoxyCodeLine{712                                                         \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_4\_ket)\textcolor{keyword}{ const }\{}
 \DoxyCodeLine{713       std::unordered\_set<QType, QHash> q\_set\_m1\_bra = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a4255610b274890174bf7a295e507b4}{GenerateTargetSector}}(m\_1\_bra);}
 \DoxyCodeLine{714       std::unordered\_set<QType, QHash> q\_set\_m2\_bra = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a4255610b274890174bf7a295e507b4}{GenerateTargetSector}}(m\_2\_bra);}
 \DoxyCodeLine{715       std::unordered\_set<QType, QHash> q\_set\_m3\_ket = \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a4255610b274890174bf7a295e507b4}{GenerateTargetSector}}(m\_3\_ket);}
@@ -733,7 +733,7 @@
 \DoxyCodeLine{766    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a0b18fac0aecdc44c9c3309c8e8a7dfc8}{GenerateMatrixComponentsOnsite}}(\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components}{ExactDiagMatrixComponents<RealType>}} *edmc,}
 \DoxyCodeLine{767                                        \textcolor{keyword}{const} std::int64\_t basis,}
 \DoxyCodeLine{768                                        \textcolor{keyword}{const} \textcolor{keywordtype}{int} site,}
-\DoxyCodeLine{769                                        \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&matrix\_onsite,}
+\DoxyCodeLine{769                                        \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&matrix\_onsite,}
 \DoxyCodeLine{770                                        \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} coeef)\textcolor{keyword}{ const }\{}
 \DoxyCodeLine{771       }
 \DoxyCodeLine{772       \textcolor{keywordflow}{if} (std::abs(coeef) <= edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a4c81b233063eedecf43f9a44c78ee01e}{zero\_precision}}) \{}
@@ -743,15 +743,15 @@
 \DoxyCodeLine{776       \textcolor{keyword}{const} \textcolor{keywordtype}{int}          basis\_onsite  = edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a7329695bd8377ce171a1774a1ecb36a9}{basis\_onsite}}[site];}
 \DoxyCodeLine{777       \textcolor{keyword}{const} std::int64\_t site\_constant = edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a7fee3db2da4ed6a4d750c3390327b642}{site\_constant}}[site];}
 \DoxyCodeLine{778       }
-\DoxyCodeLine{779       \textcolor{keywordflow}{for} (std::int64\_t i = matrix\_onsite.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[basis\_onsite]; i < matrix\_onsite.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[basis\_onsite + 1]; ++i) \{}
-\DoxyCodeLine{780          \textcolor{keyword}{const} std::int64\_t a\_basis = basis + (matrix\_onsite.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[i] -\/ basis\_onsite)*site\_constant;}
+\DoxyCodeLine{779       \textcolor{keywordflow}{for} (std::int64\_t i = matrix\_onsite.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[basis\_onsite]; i < matrix\_onsite.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[basis\_onsite + 1]; ++i) \{}
+\DoxyCodeLine{780          \textcolor{keyword}{const} std::int64\_t a\_basis = basis + (matrix\_onsite.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[i] -\/ basis\_onsite)*site\_constant;}
 \DoxyCodeLine{781          \textcolor{keywordflow}{if} (edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a253673ab20bc51bc09af60c5daccf531}{inv\_basis\_affected}}.count(a\_basis) == 0) \{}
 \DoxyCodeLine{782             edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a253673ab20bc51bc09af60c5daccf531}{inv\_basis\_affected}}[a\_basis] = edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a5a060bd6aa290ed87ceaa581399e21ba}{basis\_affected}}.size();}
-\DoxyCodeLine{783             edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a2aa3acff1c3ac82a96a1713a0c26b260}{val}}.push\_back(coeef*matrix\_onsite.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[i]);}
+\DoxyCodeLine{783             edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a2aa3acff1c3ac82a96a1713a0c26b260}{val}}.push\_back(coeef*matrix\_onsite.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[i]);}
 \DoxyCodeLine{784             edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a5a060bd6aa290ed87ceaa581399e21ba}{basis\_affected}}.push\_back(a\_basis);}
 \DoxyCodeLine{785          \}}
 \DoxyCodeLine{786          \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{787             edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a2aa3acff1c3ac82a96a1713a0c26b260}{val}}[edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a253673ab20bc51bc09af60c5daccf531}{inv\_basis\_affected}}.at(a\_basis)] += coeef*matrix\_onsite.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[i];}
+\DoxyCodeLine{787             edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a2aa3acff1c3ac82a96a1713a0c26b260}{val}}[edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a253673ab20bc51bc09af60c5daccf531}{inv\_basis\_affected}}.at(a\_basis)] += coeef*matrix\_onsite.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[i];}
 \DoxyCodeLine{788          \}}
 \DoxyCodeLine{789       \}}
 \DoxyCodeLine{790    \}}
@@ -759,9 +759,9 @@
 \DoxyCodeLine{792    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_aedb25e4c8e244da2a95c38f855d0c5d1}{GenerateMatrixComponentsIntersite}}(\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components}{ExactDiagMatrixComponents<RealType>}} *edmc,}
 \DoxyCodeLine{793                                           \textcolor{keyword}{const} std::int64\_t basis,}
 \DoxyCodeLine{794                                           \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_1,}
-\DoxyCodeLine{795                                           \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&matrix\_onsite\_1,}
+\DoxyCodeLine{795                                           \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&matrix\_onsite\_1,}
 \DoxyCodeLine{796                                           \textcolor{keyword}{const} \textcolor{keywordtype}{int} site\_2,}
-\DoxyCodeLine{797                                           \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} \&matrix\_onsite\_2,}
+\DoxyCodeLine{797                                           \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&matrix\_onsite\_2,}
 \DoxyCodeLine{798                                           \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}} coeef,}
 \DoxyCodeLine{799                                           \textcolor{keyword}{const} \textcolor{keywordtype}{int} fermion\_sign = 1.0)\textcolor{keyword}{ const }\{}
 \DoxyCodeLine{800       }
@@ -774,24 +774,24 @@
 \DoxyCodeLine{807       \textcolor{keyword}{const} std::int64\_t site\_constant\_1 = edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a7fee3db2da4ed6a4d750c3390327b642}{site\_constant}}[site\_1];}
 \DoxyCodeLine{808       \textcolor{keyword}{const} std::int64\_t site\_constant\_2 = edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a7fee3db2da4ed6a4d750c3390327b642}{site\_constant}}[site\_2];}
 \DoxyCodeLine{809       }
-\DoxyCodeLine{810       \textcolor{keywordflow}{for} (std::int64\_t i1 = matrix\_onsite\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[basis\_onsite\_1]; i1 < matrix\_onsite\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[basis\_onsite\_1 + 1]; ++i1) \{}
-\DoxyCodeLine{811          \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}}     val\_1 = matrix\_onsite\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[i1];}
-\DoxyCodeLine{812          \textcolor{keyword}{const} std::int64\_t col\_1 = matrix\_onsite\_1.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[i1];}
-\DoxyCodeLine{813          \textcolor{keywordflow}{for} (std::int64\_t i2 = matrix\_onsite\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[basis\_onsite\_2]; i2 < matrix\_onsite\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[basis\_onsite\_2 + 1]; ++i2) \{}
-\DoxyCodeLine{814             \textcolor{keyword}{const} std::int64\_t a\_basis = basis + (col\_1 -\/ basis\_onsite\_1)*site\_constant\_1 + (matrix\_onsite\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[i2] -\/ basis\_onsite\_2)*site\_constant\_2;}
+\DoxyCodeLine{810       \textcolor{keywordflow}{for} (std::int64\_t i1 = matrix\_onsite\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[basis\_onsite\_1]; i1 < matrix\_onsite\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[basis\_onsite\_1 + 1]; ++i1) \{}
+\DoxyCodeLine{811          \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{RealType}}     val\_1 = matrix\_onsite\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[i1];}
+\DoxyCodeLine{812          \textcolor{keyword}{const} std::int64\_t col\_1 = matrix\_onsite\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[i1];}
+\DoxyCodeLine{813          \textcolor{keywordflow}{for} (std::int64\_t i2 = matrix\_onsite\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[basis\_onsite\_2]; i2 < matrix\_onsite\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[basis\_onsite\_2 + 1]; ++i2) \{}
+\DoxyCodeLine{814             \textcolor{keyword}{const} std::int64\_t a\_basis = basis + (col\_1 -\/ basis\_onsite\_1)*site\_constant\_1 + (matrix\_onsite\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[i2] -\/ basis\_onsite\_2)*site\_constant\_2;}
 \DoxyCodeLine{815             \textcolor{keywordflow}{if} (edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a253673ab20bc51bc09af60c5daccf531}{inv\_basis\_affected}}.count(a\_basis) == 0) \{}
 \DoxyCodeLine{816                edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a253673ab20bc51bc09af60c5daccf531}{inv\_basis\_affected}}[a\_basis] = edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a5a060bd6aa290ed87ceaa581399e21ba}{basis\_affected}}.size();}
-\DoxyCodeLine{817                edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a2aa3acff1c3ac82a96a1713a0c26b260}{val}}.push\_back(fermion\_sign*coeef*val\_1*matrix\_onsite\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[i2]);}
+\DoxyCodeLine{817                edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a2aa3acff1c3ac82a96a1713a0c26b260}{val}}.push\_back(fermion\_sign*coeef*val\_1*matrix\_onsite\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[i2]);}
 \DoxyCodeLine{818                edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a5a060bd6aa290ed87ceaa581399e21ba}{basis\_affected}}.push\_back(a\_basis);}
 \DoxyCodeLine{819             \}}
 \DoxyCodeLine{820             \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{821                edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a2aa3acff1c3ac82a96a1713a0c26b260}{val}}[edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a253673ab20bc51bc09af60c5daccf531}{inv\_basis\_affected}}.at(a\_basis)] += fermion\_sign*coeef*val\_1*matrix\_onsite\_2.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[i2];}
+\DoxyCodeLine{821                edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a2aa3acff1c3ac82a96a1713a0c26b260}{val}}[edmc-\/>\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a253673ab20bc51bc09af60c5daccf531}{inv\_basis\_affected}}.at(a\_basis)] += fermion\_sign*coeef*val\_1*matrix\_onsite\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[i2];}
 \DoxyCodeLine{822             \}}
 \DoxyCodeLine{823          \}}
 \DoxyCodeLine{824       \}}
 \DoxyCodeLine{825    \}}
 \DoxyCodeLine{826    }
-\DoxyCodeLine{827    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_afc68d703f3882d48e3c09445db2994c2}{GenerateHamiltonian}}(\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS}} *ham)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{827    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_afc68d703f3882d48e3c09445db2994c2}{GenerateHamiltonian}}(\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} *ham)\textcolor{keyword}{ const }\{}
 \DoxyCodeLine{828       \textcolor{keyword}{const} \textcolor{keyword}{auto} start = std::chrono::system\_clock::now();}
 \DoxyCodeLine{829       std::cout << \textcolor{stringliteral}{"{}Generating Hamiltonian..."{}} << std::flush;}
 \DoxyCodeLine{830       }
@@ -848,9 +848,9 @@
 \DoxyCodeLine{881          num\_row\_element[row + 1] += num\_row\_element[row];}
 \DoxyCodeLine{882       \}}
 \DoxyCodeLine{883       }
-\DoxyCodeLine{884       ham-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}.resize(dim\_target + 1);}
-\DoxyCodeLine{885       ham-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.resize(num\_total\_elements);}
-\DoxyCodeLine{886       ham-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}.resize(num\_total\_elements);}
+\DoxyCodeLine{884       ham-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}.resize(dim\_target + 1);}
+\DoxyCodeLine{885       ham-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.resize(num\_total\_elements);}
+\DoxyCodeLine{886       ham-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}.resize(num\_total\_elements);}
 \DoxyCodeLine{887       }
 \DoxyCodeLine{888 \textcolor{preprocessor}{\#pragma omp parallel for}}
 \DoxyCodeLine{889       \textcolor{keywordflow}{for} (std::int64\_t row = 0; row < dim\_target; ++row) \{}
@@ -863,13 +863,13 @@
 \DoxyCodeLine{896             \textcolor{keywordflow}{if} (basis\_inv.count(a\_basis) > 0) \{}
 \DoxyCodeLine{897                \textcolor{keyword}{const} std::int64\_t inv = basis\_inv.at(a\_basis);}
 \DoxyCodeLine{898                \textcolor{keywordflow}{if} ((inv < row \&\& std::abs(val) > components[thread\_num].zero\_precision) || inv == row) \{}
-\DoxyCodeLine{899                   ham-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[num\_row\_element[row]] = inv;}
-\DoxyCodeLine{900                   ham-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[num\_row\_element[row]] = val;}
+\DoxyCodeLine{899                   ham-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[num\_row\_element[row]] = inv;}
+\DoxyCodeLine{900                   ham-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[num\_row\_element[row]] = val;}
 \DoxyCodeLine{901                   num\_row\_element[row]++;}
 \DoxyCodeLine{902                \}}
 \DoxyCodeLine{903             \}}
 \DoxyCodeLine{904          \}}
-\DoxyCodeLine{905          ham-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[row + 1] = num\_row\_element[row];}
+\DoxyCodeLine{905          ham-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[row + 1] = num\_row\_element[row];}
 \DoxyCodeLine{906          components[thread\_num].val.clear();}
 \DoxyCodeLine{907          components[thread\_num].basis\_affected.clear();}
 \DoxyCodeLine{908          components[thread\_num].inv\_basis\_affected.clear();}
@@ -913,9 +913,9 @@
 \DoxyCodeLine{946          num\_row\_element[row + 1] += num\_row\_element[row];}
 \DoxyCodeLine{947       \}}
 \DoxyCodeLine{948       }
-\DoxyCodeLine{949       ham-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}.resize(dim\_target + 1);}
-\DoxyCodeLine{950       ham-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.resize(num\_total\_elements);}
-\DoxyCodeLine{951       ham-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}.resize(num\_total\_elements);}
+\DoxyCodeLine{949       ham-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}.resize(dim\_target + 1);}
+\DoxyCodeLine{950       ham-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.resize(num\_total\_elements);}
+\DoxyCodeLine{951       ham-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}.resize(num\_total\_elements);}
 \DoxyCodeLine{952       }
 \DoxyCodeLine{953       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 0; row < dim\_target; ++row) \{}
 \DoxyCodeLine{954          \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab88d4c67d3ca70815a43a7961c9080af}{GenerateMatrixComponents}}(\&components, basis[row], \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}});}
@@ -926,35 +926,35 @@
 \DoxyCodeLine{959             \textcolor{keywordflow}{if} (basis\_inv.count(a\_basis) > 0) \{}
 \DoxyCodeLine{960                \textcolor{keyword}{const} std::int64\_t inv = basis\_inv.at(a\_basis);}
 \DoxyCodeLine{961                \textcolor{keywordflow}{if} ((inv <= row \&\& std::abs(val) > components.zero\_precision) || inv == row) \{}
-\DoxyCodeLine{962                   ham-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}[num\_row\_element[row]] = inv;}
-\DoxyCodeLine{963                   ham-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}[num\_row\_element[row]] = val;}
+\DoxyCodeLine{962                   ham-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[num\_row\_element[row]] = inv;}
+\DoxyCodeLine{963                   ham-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[num\_row\_element[row]] = val;}
 \DoxyCodeLine{964                   num\_row\_element[row]++;}
 \DoxyCodeLine{965                \}}
 \DoxyCodeLine{966             \}}
 \DoxyCodeLine{967          \}}
-\DoxyCodeLine{968          ham-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[row + 1] = num\_row\_element[row];}
+\DoxyCodeLine{968          ham-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[row + 1] = num\_row\_element[row];}
 \DoxyCodeLine{969          components.val.clear();}
 \DoxyCodeLine{970          components.basis\_affected.clear();}
 \DoxyCodeLine{971          components.inv\_basis\_affected.clear();}
 \DoxyCodeLine{972       \}}
 \DoxyCodeLine{973 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{974       }
-\DoxyCodeLine{975       ham-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} = dim\_target;}
-\DoxyCodeLine{976       ham-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}} = dim\_target;}
+\DoxyCodeLine{975       ham-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} = dim\_target;}
+\DoxyCodeLine{976       ham-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}} = dim\_target;}
 \DoxyCodeLine{977       }
-\DoxyCodeLine{978       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} flag\_check\_1 = (ham-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a7c3c574b5fe94de93551f90ae9017cf0}{row}}[dim\_target] != num\_total\_elements);}
-\DoxyCodeLine{979       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} flag\_check\_2 = (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(ham-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_aa1ac4274734dffa2a97dd9b4a12f7302}{col}}.size()) != num\_total\_elements);}
-\DoxyCodeLine{980       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} flag\_check\_3 = (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(ham-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_ad7d38a64390cfa0a645d635d396660ed}{val}}.size()) != num\_total\_elements);}
+\DoxyCodeLine{978       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} flag\_check\_1 = (ham-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[dim\_target] != num\_total\_elements);}
+\DoxyCodeLine{979       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} flag\_check\_2 = (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(ham-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.size()) != num\_total\_elements);}
+\DoxyCodeLine{980       \textcolor{keyword}{const} \textcolor{keywordtype}{bool} flag\_check\_3 = (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(ham-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}.size()) != num\_total\_elements);}
 \DoxyCodeLine{981       }
 \DoxyCodeLine{982       \textcolor{keywordflow}{if} (flag\_check\_1 || flag\_check\_2 || flag\_check\_3) \{}
 \DoxyCodeLine{983          std::stringstream ss;}
 \DoxyCodeLine{984          ss << \textcolor{stringliteral}{"{}Unknown error detected in "{}} << \_\_FUNCTION\_\_ << \textcolor{stringliteral}{"{} at "{}} << \_\_LINE\_\_  << std::endl;}
 \DoxyCodeLine{985          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{986       \}}
-\DoxyCodeLine{987       ham-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a461f3df023c6215768aca60b9743fe0c}{SortCol}}();}
+\DoxyCodeLine{987       ham-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa8519157c209179f8e84e3b18dd9faa8}{SortCol}}();}
 \DoxyCodeLine{988       }
 \DoxyCodeLine{989       \textcolor{keyword}{const} \textcolor{keyword}{auto}   time\_count = std::chrono::duration\_cast<std::chrono::microseconds>(std::chrono::system\_clock::now() -\/ start).count();}
-\DoxyCodeLine{990       \textcolor{keyword}{const} \textcolor{keywordtype}{double} time\_sec   = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(time\_count)/\mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_abc3cda835ae580805bef02651b4a7fbd}{sparse\_matrix::TIME\_UNIT\_CONSTANT}};}
+\DoxyCodeLine{990       \textcolor{keyword}{const} \textcolor{keywordtype}{double} time\_sec   = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(time\_count)/\mbox{\hyperlink{namespacecompnal_1_1blas_aa1196aeb106e923cc2ad6c17fea58f26}{blas::TIME\_UNIT\_CONSTANT}};}
 \DoxyCodeLine{991       std::cout << \textcolor{stringliteral}{"{}\(\backslash\)rElapsed time of generating Hamiltonian:"{}} << time\_sec << \textcolor{stringliteral}{"{}[sec]"{}} << std::endl;}
 \DoxyCodeLine{992       }
 \DoxyCodeLine{993    \}}

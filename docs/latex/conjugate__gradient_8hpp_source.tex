@@ -1,5 +1,5 @@
 \hypertarget{conjugate__gradient_8hpp_source}{}\doxysection{conjugate\+\_\+gradient.\+hpp}
-\label{conjugate__gradient_8hpp_source}\index{src/sparse\_matrix/conjugate\_gradient.hpp@{src/sparse\_matrix/conjugate\_gradient.hpp}}
+\label{conjugate__gradient_8hpp_source}\index{src/blas/conjugate\_gradient.hpp@{src/blas/conjugate\_gradient.hpp}}
 \mbox{\hyperlink{conjugate__gradient_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{1 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
@@ -19,39 +19,39 @@
 \DoxyCodeLine{15 \textcolor{comment}{//  Created by Kohei Suzuki on 2021/11/12.}}
 \DoxyCodeLine{16 \textcolor{comment}{//}}
 \DoxyCodeLine{17 }
-\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_SPARSE\_MATRIX\_CONJUGATE\_GRADIENT\_HPP\_}}
-\DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_SPARSE\_MATRIX\_CONJUGATE\_GRADIENT\_HPP\_}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_BLAS\_CONJUGATE\_GRADIENT\_HPP\_}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_BLAS\_CONJUGATE\_GRADIENT\_HPP\_}}
 \DoxyCodeLine{20 }
-\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <vector>}}
-\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <random>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}../type/compressed\_row\_storage.hpp"{}}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include "{}../type/braket\_vector.hpp"{}}}
 \DoxyCodeLine{23 }
-\DoxyCodeLine{24 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{compressed__row__storage_8hpp}{compressed\_row\_storage.hpp}}"{}}}
-\DoxyCodeLine{25 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{braket__vector_8hpp}{braket\_vector.hpp}}"{}}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include <random>}}
 \DoxyCodeLine{26 }
 \DoxyCodeLine{27 \textcolor{preprocessor}{\#ifdef \_OPENMP}}
 \DoxyCodeLine{28 \textcolor{preprocessor}{\#include <omp.h>}}
 \DoxyCodeLine{29 \textcolor{preprocessor}{\#endif}}
 \DoxyCodeLine{30 }
 \DoxyCodeLine{31 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
-\DoxyCodeLine{32 \textcolor{keyword}{namespace }sparse\_matrix \{}
+\DoxyCodeLine{32 \textcolor{keyword}{namespace }blas \{}
 \DoxyCodeLine{33 }
 \DoxyCodeLine{34 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
-\DoxyCodeLine{35 std::pair<int, double> \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a5542adf7c191075452c4b94070fee14e}{ConjugateGradient}}(\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector<RealType>}} *vec\_out,}
-\DoxyCodeLine{36                                          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s}{CRS<RealType>}}    \&matrix\_in,}
-\DoxyCodeLine{37                                          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector<RealType>}} \&vec\_in,}
-\DoxyCodeLine{38                                          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_c_g}{ParametersCG}} \&params = \mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_parameters_c_g}{ParametersCG}}(),}
-\DoxyCodeLine{39                                          \textcolor{keyword}{const} std::vector<\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector}{BraketVector<RealType>}}> \&subspace\_vectors = \{\}}
+\DoxyCodeLine{35 std::pair<int, double> \mbox{\hyperlink{namespacecompnal_1_1blas_aada41a4581ddc0dc68722f8c5dc3ae5e}{ConjugateGradient}}(\mbox{\hyperlink{structcompnal_1_1type_1_1_braket_vector}{type::BraketVector<RealType>}} *vec\_out,}
+\DoxyCodeLine{36                                          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}}    \&matrix\_in,}
+\DoxyCodeLine{37                                          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_braket_vector}{type::BraketVector<RealType>}} \&vec\_in,}
+\DoxyCodeLine{38                                          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_c_g}{ParametersCG}} \&params = \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_c_g}{ParametersCG}}(),}
+\DoxyCodeLine{39                                          \textcolor{keyword}{const} std::vector<\mbox{\hyperlink{structcompnal_1_1type_1_1_braket_vector}{type::BraketVector<RealType>}}> \&subspace\_vectors = \{\}}
 \DoxyCodeLine{40                                          ) \{}
 \DoxyCodeLine{41    }
-\DoxyCodeLine{42    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} != matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}}) \{}
+\DoxyCodeLine{42    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} != matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}}) \{}
 \DoxyCodeLine{43       std::stringstream ss;}
 \DoxyCodeLine{44       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
 \DoxyCodeLine{45       ss << \textcolor{stringliteral}{"{}The input matrix is not a square one"{}} << std::endl;}
-\DoxyCodeLine{46       ss << \textcolor{stringliteral}{"{}row="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}} << \textcolor{stringliteral}{"{}, col="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_af44d3f5b32bfe8204854cf9bd70349ee}{col\_dim}} << std::endl;}
+\DoxyCodeLine{46       ss << \textcolor{stringliteral}{"{}row="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} << \textcolor{stringliteral}{"{}, col="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}} << std::endl;}
 \DoxyCodeLine{47       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{48    \}}
 \DoxyCodeLine{49    }
-\DoxyCodeLine{50    \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(vec\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size()) != matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}}) \{}
+\DoxyCodeLine{50    \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(vec\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_braket_vector_aab4cd0a18c00793ee84a2f5b77f81c9e}{val}}.size()) != matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}) \{}
 \DoxyCodeLine{51       std::stringstream ss;}
 \DoxyCodeLine{52       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
 \DoxyCodeLine{53       ss << \textcolor{stringliteral}{"{}Matrix vector product (Ax=b) cannot be defined."{}} << std::endl;}
@@ -59,10 +59,10 @@
 \DoxyCodeLine{55    \}}
 \DoxyCodeLine{56    }
 \DoxyCodeLine{57    \textcolor{keyword}{const} \textcolor{keyword}{auto} start = std::chrono::system\_clock::now();}
-\DoxyCodeLine{58    \textcolor{keyword}{const} std::int64\_t dim = matrix\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_c_r_s_a4fb8bf6ab46de248b22f7f56ce3298ba}{row\_dim}};}
-\DoxyCodeLine{59    BraketVector<RealType> rrr(dim);}
-\DoxyCodeLine{60    BraketVector<RealType> ppp(dim);}
-\DoxyCodeLine{61    BraketVector<RealType> yyy(dim);}
+\DoxyCodeLine{58    \textcolor{keyword}{const} std::int64\_t dim = matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}};}
+\DoxyCodeLine{59    type::BraketVector<RealType> rrr(dim);}
+\DoxyCodeLine{60    type::BraketVector<RealType> ppp(dim);}
+\DoxyCodeLine{61    type::BraketVector<RealType> yyy(dim);}
 \DoxyCodeLine{62    std::vector<std::vector<RealType>> vectors\_work;}
 \DoxyCodeLine{63    }
 \DoxyCodeLine{64    \textcolor{keywordflow}{if} (params.flag\_symmetric\_crs) \{}
@@ -72,7 +72,7 @@
 \DoxyCodeLine{68    \}}
 \DoxyCodeLine{69    }
 \DoxyCodeLine{70    \textcolor{keywordflow}{if} (params.flag\_use\_initial\_vec) \{}
-\DoxyCodeLine{71       \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(vec\_out-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.size()) != dim) \{}
+\DoxyCodeLine{71       \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(vec\_out-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_braket_vector_aab4cd0a18c00793ee84a2f5b77f81c9e}{val}}.size()) != dim) \{}
 \DoxyCodeLine{72          std::stringstream ss;}
 \DoxyCodeLine{73          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
 \DoxyCodeLine{74          ss << \textcolor{stringliteral}{"{}The dimension of the initial vector is not equal to that of the input matrix."{}} << std::endl;}
@@ -83,52 +83,52 @@
 \DoxyCodeLine{79       std::uniform\_real\_distribution<RealType> uniform\_rand(-\/1, 1);}
 \DoxyCodeLine{80       std::mt19937 random\_number\_engine;}
 \DoxyCodeLine{81       random\_number\_engine.seed(std::random\_device()());}
-\DoxyCodeLine{82       vec\_out-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}.resize(dim);}
+\DoxyCodeLine{82       vec\_out-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_braket_vector_aab4cd0a18c00793ee84a2f5b77f81c9e}{val}}.resize(dim);}
 \DoxyCodeLine{83       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < dim; ++i) \{}
-\DoxyCodeLine{84          vec\_out-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] = uniform\_rand(random\_number\_engine);}
+\DoxyCodeLine{84          vec\_out-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_braket_vector_aab4cd0a18c00793ee84a2f5b77f81c9e}{val}}[i] = uniform\_rand(random\_number\_engine);}
 \DoxyCodeLine{85       \}}
 \DoxyCodeLine{86    \}}
-\DoxyCodeLine{87    \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ae8cf0493ba9137c8bfe9d1d192402440}{Orthonormalize}}(vec\_out, subspace\_vectors);}
-\DoxyCodeLine{88    vec\_out-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae74e77fff5c779f264238f0b4bf0bdb6}{Normalize}}();}
+\DoxyCodeLine{87    \mbox{\hyperlink{namespacecompnal_1_1blas_ae30f924effa78f04d9e973b3525ed4b7}{Orthonormalize}}(vec\_out, subspace\_vectors);}
+\DoxyCodeLine{88    vec\_out-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_braket_vector_a44a1b92b698487487b53f400c8e0a1e4}{Normalize}}();}
 \DoxyCodeLine{89    \textcolor{keywordflow}{if} (params.flag\_symmetric\_crs) \{}
-\DoxyCodeLine{90       \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a413b2336cf26abb302f7fd6f2ac5830c}{CalculateSymmetricMatrixVectorProduct}}(\&rrr, 1.0, matrix\_in, *vec\_out, \&vectors\_work);}
+\DoxyCodeLine{90       \mbox{\hyperlink{namespacecompnal_1_1blas_aeeec1b8a9d956be99035a82b732b15b4}{CalculateSymmetricMatrixVectorProduct}}(\&rrr, 1.0, matrix\_in, *vec\_out, \&vectors\_work);}
 \DoxyCodeLine{91    \}}
 \DoxyCodeLine{92    \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{93       \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab4434cd1f0754845236fda113f33393b}{CalculateMatrixVectorProduct}}(\&rrr, 1.0, matrix\_in, *vec\_out);}
+\DoxyCodeLine{93       \mbox{\hyperlink{namespacecompnal_1_1blas_af325cf8275d75278e2758dc1419f86f5}{CalculateMatrixVectorProduct}}(\&rrr, 1.0, matrix\_in, *vec\_out);}
 \DoxyCodeLine{94    \}}
 \DoxyCodeLine{95    }
 \DoxyCodeLine{96 \textcolor{preprocessor}{\#pragma omp parallel for}}
 \DoxyCodeLine{97    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < dim; ++i) \{}
-\DoxyCodeLine{98       rrr.val[i] = vec\_in.\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] -\/ rrr.val[i];}
+\DoxyCodeLine{98       rrr.val[i] = vec\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_braket_vector_aab4cd0a18c00793ee84a2f5b77f81c9e}{val}}[i] -\/ rrr.val[i];}
 \DoxyCodeLine{99       ppp.val[i] = rrr.val[i];}
 \DoxyCodeLine{100    \}}
 \DoxyCodeLine{101    }
-\DoxyCodeLine{102    \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ae8cf0493ba9137c8bfe9d1d192402440}{Orthonormalize}}(\&rrr, subspace\_vectors);}
-\DoxyCodeLine{103    \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ae8cf0493ba9137c8bfe9d1d192402440}{Orthonormalize}}(\&ppp, subspace\_vectors);}
+\DoxyCodeLine{102    \mbox{\hyperlink{namespacecompnal_1_1blas_ae30f924effa78f04d9e973b3525ed4b7}{Orthonormalize}}(\&rrr, subspace\_vectors);}
+\DoxyCodeLine{103    \mbox{\hyperlink{namespacecompnal_1_1blas_ae30f924effa78f04d9e973b3525ed4b7}{Orthonormalize}}(\&ppp, subspace\_vectors);}
 \DoxyCodeLine{104    }
 \DoxyCodeLine{105    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} step = 0; step < params.max\_step; ++step) \{}
 \DoxyCodeLine{106       \textcolor{keywordflow}{if} (params.flag\_symmetric\_crs) \{}
-\DoxyCodeLine{107          \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_a413b2336cf26abb302f7fd6f2ac5830c}{CalculateSymmetricMatrixVectorProduct}}(\&yyy, 1.0, matrix\_in, ppp, \&vectors\_work);}
+\DoxyCodeLine{107          \mbox{\hyperlink{namespacecompnal_1_1blas_aeeec1b8a9d956be99035a82b732b15b4}{CalculateSymmetricMatrixVectorProduct}}(\&yyy, 1.0, matrix\_in, ppp, \&vectors\_work);}
 \DoxyCodeLine{108       \}}
 \DoxyCodeLine{109       \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{110          \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ab4434cd1f0754845236fda113f33393b}{CalculateMatrixVectorProduct}}(\&yyy, 1.0, matrix\_in, ppp);}
+\DoxyCodeLine{110          \mbox{\hyperlink{namespacecompnal_1_1blas_af325cf8275d75278e2758dc1419f86f5}{CalculateMatrixVectorProduct}}(\&yyy, 1.0, matrix\_in, ppp);}
 \DoxyCodeLine{111       \}}
 \DoxyCodeLine{112       }
-\DoxyCodeLine{113       \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ae8cf0493ba9137c8bfe9d1d192402440}{Orthonormalize}}(\&yyy, subspace\_vectors);}
+\DoxyCodeLine{113       \mbox{\hyperlink{namespacecompnal_1_1blas_ae30f924effa78f04d9e973b3525ed4b7}{Orthonormalize}}(\&yyy, subspace\_vectors);}
 \DoxyCodeLine{114       }
-\DoxyCodeLine{115       \textcolor{keyword}{const} RealType inner\_prod = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ac72eb2d652259d294644b3b00745a9df}{CalculateInnerProduct}}(rrr, rrr);}
-\DoxyCodeLine{116       \textcolor{keyword}{const} RealType alpha      = inner\_prod/\mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ac72eb2d652259d294644b3b00745a9df}{CalculateInnerProduct}}(ppp, yyy);}
+\DoxyCodeLine{115       \textcolor{keyword}{const} RealType inner\_prod = \mbox{\hyperlink{namespacecompnal_1_1type_a31939adf3cd225e389a22c977793b46d}{CalculateInnerProduct}}(rrr, rrr);}
+\DoxyCodeLine{116       \textcolor{keyword}{const} RealType alpha      = inner\_prod/\mbox{\hyperlink{namespacecompnal_1_1type_a31939adf3cd225e389a22c977793b46d}{CalculateInnerProduct}}(ppp, yyy);}
 \DoxyCodeLine{117       }
 \DoxyCodeLine{118 \textcolor{preprocessor}{\#pragma omp parallel for}}
 \DoxyCodeLine{119       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < dim; ++i) \{}
-\DoxyCodeLine{120          vec\_out-\/>\mbox{\hyperlink{structcompnal_1_1sparse__matrix_1_1_braket_vector_ae87a30e388c5e8cbc7617b72d21ee801}{val}}[i] += alpha*ppp.val[i];}
+\DoxyCodeLine{120          vec\_out-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_braket_vector_aab4cd0a18c00793ee84a2f5b77f81c9e}{val}}[i] += alpha*ppp.val[i];}
 \DoxyCodeLine{121          rrr.val[i]      -\/= alpha*yyy.val[i];}
 \DoxyCodeLine{122       \}}
 \DoxyCodeLine{123       }
-\DoxyCodeLine{124       \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ae8cf0493ba9137c8bfe9d1d192402440}{Orthonormalize}}(vec\_out, subspace\_vectors);}
-\DoxyCodeLine{125       \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ae8cf0493ba9137c8bfe9d1d192402440}{Orthonormalize}}(\&rrr    , subspace\_vectors);}
+\DoxyCodeLine{124       \mbox{\hyperlink{namespacecompnal_1_1blas_ae30f924effa78f04d9e973b3525ed4b7}{Orthonormalize}}(vec\_out, subspace\_vectors);}
+\DoxyCodeLine{125       \mbox{\hyperlink{namespacecompnal_1_1blas_ae30f924effa78f04d9e973b3525ed4b7}{Orthonormalize}}(\&rrr    , subspace\_vectors);}
 \DoxyCodeLine{126       }
-\DoxyCodeLine{127       \textcolor{keyword}{const} RealType residual\_error = \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ac72eb2d652259d294644b3b00745a9df}{CalculateInnerProduct}}(rrr, rrr);}
+\DoxyCodeLine{127       \textcolor{keyword}{const} RealType residual\_error = \mbox{\hyperlink{namespacecompnal_1_1type_a31939adf3cd225e389a22c977793b46d}{CalculateInnerProduct}}(rrr, rrr);}
 \DoxyCodeLine{128       }
 \DoxyCodeLine{129       \textcolor{keywordflow}{if} (params.flag\_output\_info) \{}
 \DoxyCodeLine{130          std::cout << \textcolor{stringliteral}{"{}\(\backslash\)rCG\_Step["{}} << step << \textcolor{stringliteral}{"{}]="{}} << std::scientific << std::setprecision(1);}
@@ -137,7 +137,7 @@
 \DoxyCodeLine{133       }
 \DoxyCodeLine{134       \textcolor{keywordflow}{if} (residual\_error < params.acc) \{}
 \DoxyCodeLine{135          \textcolor{keyword}{const} \textcolor{keyword}{auto}   time\_count = std::chrono::duration\_cast<std::chrono::microseconds>(std::chrono::system\_clock::now() -\/ start).count();}
-\DoxyCodeLine{136          \textcolor{keyword}{const} \textcolor{keywordtype}{double} time\_sec   = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(time\_count)/\mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_abc3cda835ae580805bef02651b4a7fbd}{TIME\_UNIT\_CONSTANT}};}
+\DoxyCodeLine{136          \textcolor{keyword}{const} \textcolor{keywordtype}{double} time\_sec   = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(time\_count)/\mbox{\hyperlink{namespacecompnal_1_1blas_aa1196aeb106e923cc2ad6c17fea58f26}{TIME\_UNIT\_CONSTANT}};}
 \DoxyCodeLine{137          std::cout << std::defaultfloat << std::setprecision(8) << \textcolor{stringliteral}{"{}\(\backslash\)rElapsed time of conjugate\_gradient:"{}} << time\_sec << \textcolor{stringliteral}{"{}[sec]"{}};}
 \DoxyCodeLine{138          std::cout << \textcolor{stringliteral}{"{} ("{}} << residual\_error << \textcolor{stringliteral}{"{})"{}} << std::flush;}
 \DoxyCodeLine{139          std::cout << std::endl;}
@@ -150,7 +150,7 @@
 \DoxyCodeLine{146       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < dim; ++i) \{}
 \DoxyCodeLine{147          ppp.val[i] = rrr.val[i] + beta*ppp.val[i];}
 \DoxyCodeLine{148       \}}
-\DoxyCodeLine{149       \mbox{\hyperlink{namespacecompnal_1_1sparse__matrix_ae8cf0493ba9137c8bfe9d1d192402440}{Orthonormalize}}(\&ppp, subspace\_vectors);}
+\DoxyCodeLine{149       \mbox{\hyperlink{namespacecompnal_1_1blas_ae30f924effa78f04d9e973b3525ed4b7}{Orthonormalize}}(\&ppp, subspace\_vectors);}
 \DoxyCodeLine{150    \}}
 \DoxyCodeLine{151    }
 \DoxyCodeLine{152    std::stringstream ss;}
@@ -160,9 +160,9 @@
 \DoxyCodeLine{156    }
 \DoxyCodeLine{157 \}}
 \DoxyCodeLine{158 }
-\DoxyCodeLine{159 \}}
-\DoxyCodeLine{160 \}}
+\DoxyCodeLine{159 \} \textcolor{comment}{// namespace blas}}
+\DoxyCodeLine{160 \} \textcolor{comment}{// namespace compnel}}
 \DoxyCodeLine{161 }
-\DoxyCodeLine{162 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_SPARSE\_MATRIX\_CONJUGATE\_GRADIENT\_HPP\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{162 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_BLAS\_CONJUGATE\_GRADIENT\_HPP\_ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}
