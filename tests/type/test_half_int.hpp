@@ -24,11 +24,363 @@
 namespace compnal {
 namespace test {
 
-TEST(TypeHalfInt, Basic) {
-   type::HalfInt x = 1.5;
-   EXPECT_THROW(x += 2.1, std::runtime_error);
+TEST(TypeHalfInt, Addition) {
+   using type::HalfInt;
+   EXPECT_EQ(HalfInt{0.5} + static_cast<HalfInt>    (1.0), 1.5);
+   EXPECT_EQ(HalfInt{0.5} + static_cast<long double>(1.0), 1.5);
+   EXPECT_EQ(HalfInt{0.5} + static_cast<double>     (1.0), 1.5);
+   EXPECT_EQ(HalfInt{0.5} + static_cast<float>      (1.0), 1.5);
+   EXPECT_EQ(HalfInt{0.5} + static_cast<long long>  (1.0), 1.5);
+   EXPECT_EQ(HalfInt{0.5} + static_cast<long>       (1.0), 1.5);
+   EXPECT_EQ(HalfInt{0.5} + static_cast<int>        (1.0), 1.5);
+   EXPECT_EQ(HalfInt{0.5} + static_cast<short>      (1.0), 1.5);
+   EXPECT_EQ(HalfInt{0.5} + static_cast<char>       (1.0), 1.5);
+   
+   EXPECT_EQ(static_cast<HalfInt>    (1.0) + HalfInt{0.5}, 1.5);
+   EXPECT_EQ(static_cast<long double>(1.0) + HalfInt{0.5}, 1.5);
+   EXPECT_EQ(static_cast<double>     (1.0) + HalfInt{0.5}, 1.5);
+   EXPECT_EQ(static_cast<float>      (1.0) + HalfInt{0.5}, 1.5);
+   EXPECT_EQ(static_cast<long long>  (1.0) + HalfInt{0.5}, 1.5);
+   EXPECT_EQ(static_cast<long>       (1.0) + HalfInt{0.5}, 1.5);
+   EXPECT_EQ(static_cast<int>        (1.0) + HalfInt{0.5}, 1.5);
+   EXPECT_EQ(static_cast<short>      (1.0) + HalfInt{0.5}, 1.5);
+   EXPECT_EQ(static_cast<char>       (1.0) + HalfInt{0.5}, 1.5);
+   
+   EXPECT_EQ(HalfInt{0.5} + static_cast<long double>(1.3), 1.8);
+   EXPECT_EQ(HalfInt{0.5} + static_cast<double>     (1.3), 1.8);
+   EXPECT_EQ(HalfInt{0.5} + static_cast<float>      (1.3), 1.8f);
+   
+   EXPECT_EQ(static_cast<long double>(1.3) + HalfInt{0.5}, 1.8);
+   EXPECT_EQ(static_cast<double>     (1.3) + HalfInt{0.5}, 1.8);
+   EXPECT_EQ(static_cast<float>      (1.3) + HalfInt{0.5}, 1.8f);
 }
 
+TEST(TypeHalfInt, Subtraction) {
+   using type::HalfInt;
+   EXPECT_EQ(HalfInt{0.5} - static_cast<HalfInt>    (1.0), -0.5);
+   EXPECT_EQ(HalfInt{0.5} - static_cast<long double>(1.0), -0.5);
+   EXPECT_EQ(HalfInt{0.5} - static_cast<double>     (1.0), -0.5);
+   EXPECT_EQ(HalfInt{0.5} - static_cast<float>      (1.0), -0.5);
+   EXPECT_EQ(HalfInt{0.5} - static_cast<long long>  (1.0), -0.5);
+   EXPECT_EQ(HalfInt{0.5} - static_cast<long>       (1.0), -0.5);
+   EXPECT_EQ(HalfInt{0.5} - static_cast<int>        (1.0), -0.5);
+   EXPECT_EQ(HalfInt{0.5} - static_cast<short>      (1.0), -0.5);
+   EXPECT_EQ(HalfInt{0.5} - static_cast<char>       (1.0), -0.5);
+   
+   EXPECT_EQ(static_cast<HalfInt>    (1.0) - HalfInt{0.5}, 0.5);
+   EXPECT_EQ(static_cast<long double>(1.0) - HalfInt{0.5}, 0.5);
+   EXPECT_EQ(static_cast<double>     (1.0) - HalfInt{0.5}, 0.5);
+   EXPECT_EQ(static_cast<float>      (1.0) - HalfInt{0.5}, 0.5);
+   EXPECT_EQ(static_cast<long long>  (1.0) - HalfInt{0.5}, 0.5);
+   EXPECT_EQ(static_cast<long>       (1.0) - HalfInt{0.5}, 0.5);
+   EXPECT_EQ(static_cast<int>        (1.0) - HalfInt{0.5}, 0.5);
+   EXPECT_EQ(static_cast<short>      (1.0) - HalfInt{0.5}, 0.5);
+   EXPECT_EQ(static_cast<char>       (1.0) - HalfInt{0.5}, 0.5);
+   
+   EXPECT_EQ(HalfInt{0.5} - static_cast<long double>(1.3), -0.8);
+   EXPECT_EQ(HalfInt{0.5} - static_cast<double>     (1.3), -0.8);
+   EXPECT_NEAR(HalfInt{0.5} - static_cast<float>    (1.3), -0.8, std::pow(10, -7));
+   
+   EXPECT_EQ(static_cast<long double>(1.3) - HalfInt{0.5}, 0.8);
+   EXPECT_EQ(static_cast<double>     (1.3) - HalfInt{0.5}, 0.8);
+   EXPECT_NEAR(static_cast<float>    (1.3) - HalfInt{0.5}, 0.8, std::pow(10, -7));
+}
+
+TEST(TypeHalfInt, Multiplication) {
+   using type::HalfInt;
+   EXPECT_EQ(HalfInt{0.5} * static_cast<HalfInt>    (1.0), 0.5);
+   EXPECT_EQ(HalfInt{0.5} * static_cast<long double>(1.0), 0.5);
+   EXPECT_EQ(HalfInt{0.5} * static_cast<double>     (1.0), 0.5);
+   EXPECT_EQ(HalfInt{0.5} * static_cast<float>      (1.0), 0.5);
+   EXPECT_EQ(HalfInt{0.5} * static_cast<long long>  (1.0), 0.5);
+   EXPECT_EQ(HalfInt{0.5} * static_cast<long>       (1.0), 0.5);
+   EXPECT_EQ(HalfInt{0.5} * static_cast<int>        (1.0), 0.5);
+   EXPECT_EQ(HalfInt{0.5} * static_cast<short>      (1.0), 0.5);
+   EXPECT_EQ(HalfInt{0.5} * static_cast<char>       (1.0), 0.5);
+   
+   EXPECT_EQ(static_cast<HalfInt>    (1.0) * HalfInt{0.5}, 0.5);
+   EXPECT_EQ(static_cast<long double>(1.0) * HalfInt{0.5}, 0.5);
+   EXPECT_EQ(static_cast<double>     (1.0) * HalfInt{0.5}, 0.5);
+   EXPECT_EQ(static_cast<float>      (1.0) * HalfInt{0.5}, 0.5);
+   EXPECT_EQ(static_cast<long long>  (1.0) * HalfInt{0.5}, 0.5);
+   EXPECT_EQ(static_cast<long>       (1.0) * HalfInt{0.5}, 0.5);
+   EXPECT_EQ(static_cast<int>        (1.0) * HalfInt{0.5}, 0.5);
+   EXPECT_EQ(static_cast<short>      (1.0) * HalfInt{0.5}, 0.5);
+   EXPECT_EQ(static_cast<char>       (1.0) * HalfInt{0.5}, 0.5);
+   
+   EXPECT_EQ(HalfInt{0.5} * static_cast<long double>(1.3), 0.65);
+   EXPECT_EQ(HalfInt{0.5} * static_cast<double>     (1.3), 0.65);
+   EXPECT_NEAR(HalfInt{0.5} * static_cast<float>    (1.3), 0.65, std::pow(10, -7));
+   
+   EXPECT_EQ(static_cast<long double>(1.3) * HalfInt{0.5}, 0.65);
+   EXPECT_EQ(static_cast<double>     (1.3) * HalfInt{0.5}, 0.65);
+   EXPECT_NEAR(static_cast<float>    (1.3) * HalfInt{0.5}, 0.65, std::pow(10, -7));
+}
+
+TEST(TypeHalfInt, Division) {
+   using type::HalfInt;
+   EXPECT_EQ(HalfInt{0.5} / static_cast<HalfInt>    (1.0), 0.5);
+   EXPECT_EQ(HalfInt{0.5} / static_cast<long double>(1.0), 0.5);
+   EXPECT_EQ(HalfInt{0.5} / static_cast<double>     (1.0), 0.5);
+   EXPECT_EQ(HalfInt{0.5} / static_cast<float>      (1.0), 0.5);
+   EXPECT_EQ(HalfInt{0.5} / static_cast<long long>  (1.0), 0.5);
+   EXPECT_EQ(HalfInt{0.5} / static_cast<long>       (1.0), 0.5);
+   EXPECT_EQ(HalfInt{0.5} / static_cast<int>        (1.0), 0.5);
+   EXPECT_EQ(HalfInt{0.5} / static_cast<short>      (1.0), 0.5);
+   EXPECT_EQ(HalfInt{0.5} / static_cast<char>       (1.0), 0.5);
+   
+   EXPECT_EQ(static_cast<HalfInt>    (1.0) / HalfInt{0.5}, 2.0);
+   EXPECT_EQ(static_cast<long double>(1.0) / HalfInt{0.5}, 2.0);
+   EXPECT_EQ(static_cast<double>     (1.0) / HalfInt{0.5}, 2.0);
+   EXPECT_EQ(static_cast<float>      (1.0) / HalfInt{0.5}, 2.0);
+   EXPECT_EQ(static_cast<long long>  (1.0) / HalfInt{0.5}, 2.0);
+   EXPECT_EQ(static_cast<long>       (1.0) / HalfInt{0.5}, 2.0);
+   EXPECT_EQ(static_cast<int>        (1.0) / HalfInt{0.5}, 2.0);
+   EXPECT_EQ(static_cast<short>      (1.0) / HalfInt{0.5}, 2.0);
+   EXPECT_EQ(static_cast<char>       (1.0) / HalfInt{0.5}, 2.0);
+   
+   EXPECT_EQ(  HalfInt{0.5} / static_cast<long double>(1.3), static_cast<long double>(0.5)/1.3);
+   EXPECT_EQ(  HalfInt{0.5} / static_cast<double>     (1.3), 0.5/1.3);
+   EXPECT_NEAR(HalfInt{0.5} / static_cast<float>      (1.3), 0.5/1.3, std::pow(10, -7));
+   
+   EXPECT_EQ(static_cast<long double>(1.3) / HalfInt{0.5}, 2.6);
+   EXPECT_EQ(static_cast<double>     (1.3) / HalfInt{0.5}, 2.6);
+   EXPECT_NEAR(static_cast<float>    (1.3) / HalfInt{0.5}, 2.6, std::pow(10, -7));
+}
+
+TEST(TypeHalfInt, Equality) {
+   using type::HalfInt;
+   EXPECT_TRUE(HalfInt{0.5} == static_cast<HalfInt>    (0.5));
+   EXPECT_TRUE(HalfInt{0.5} == static_cast<long double>(0.5));
+   EXPECT_TRUE(HalfInt{0.5} == static_cast<double>     (0.5));
+   EXPECT_TRUE(HalfInt{0.5} == static_cast<float>      (0.5));
+   EXPECT_TRUE(HalfInt{1.0} == static_cast<long long>  (1.0));
+   EXPECT_TRUE(HalfInt{1.0} == static_cast<long>       (1.0));
+   EXPECT_TRUE(HalfInt{1.0} == static_cast<int>        (1.0));
+   EXPECT_TRUE(HalfInt{1.0} == static_cast<short>      (1.0));
+   EXPECT_TRUE(HalfInt{1.0} == static_cast<char>       (1.0));
+   
+   EXPECT_TRUE(static_cast<HalfInt>    (0.5) == HalfInt{0.5});
+   EXPECT_TRUE(static_cast<long double>(0.5) == HalfInt{0.5});
+   EXPECT_TRUE(static_cast<double>     (0.5) == HalfInt{0.5});
+   EXPECT_TRUE(static_cast<float>      (0.5) == HalfInt{0.5});
+   EXPECT_TRUE(static_cast<long long>  (1.0) == HalfInt{1.0});
+   EXPECT_TRUE(static_cast<long>       (1.0) == HalfInt{1.0});
+   EXPECT_TRUE(static_cast<int>        (1.0) == HalfInt{1.0});
+   EXPECT_TRUE(static_cast<short>      (1.0) == HalfInt{1.0});
+   EXPECT_TRUE(static_cast<char>       (1.0) == HalfInt{1.0});
+   
+   EXPECT_FALSE(HalfInt{0.5} == static_cast<long double>(1.3));
+   EXPECT_FALSE(HalfInt{0.5} == static_cast<double>     (1.3));
+   EXPECT_FALSE(HalfInt{0.5} == static_cast<float>      (1.3));
+   
+   EXPECT_FALSE(static_cast<long double>(1.3) == HalfInt{0.5});
+   EXPECT_FALSE(static_cast<double>     (1.3) == HalfInt{0.5});
+   EXPECT_FALSE(static_cast<float>      (1.3) == HalfInt{0.5});
+}
+
+TEST(TypeHalfInt, Inequality) {
+   using type::HalfInt;
+   EXPECT_FALSE(HalfInt{0.5} != static_cast<HalfInt>    (0.5));
+   EXPECT_FALSE(HalfInt{0.5} != static_cast<long double>(0.5));
+   EXPECT_FALSE(HalfInt{0.5} != static_cast<double>     (0.5));
+   EXPECT_FALSE(HalfInt{0.5} != static_cast<float>      (0.5));
+   EXPECT_FALSE(HalfInt{1.0} != static_cast<long long>  (1.0));
+   EXPECT_FALSE(HalfInt{1.0} != static_cast<long>       (1.0));
+   EXPECT_FALSE(HalfInt{1.0} != static_cast<int>        (1.0));
+   EXPECT_FALSE(HalfInt{1.0} != static_cast<short>      (1.0));
+   EXPECT_FALSE(HalfInt{1.0} != static_cast<char>       (1.0));
+   
+   EXPECT_FALSE(static_cast<HalfInt>    (0.5) != HalfInt{0.5});
+   EXPECT_FALSE(static_cast<long double>(0.5) != HalfInt{0.5});
+   EXPECT_FALSE(static_cast<double>     (0.5) != HalfInt{0.5});
+   EXPECT_FALSE(static_cast<float>      (0.5) != HalfInt{0.5});
+   EXPECT_FALSE(static_cast<long long>  (1.0) != HalfInt{1.0});
+   EXPECT_FALSE(static_cast<long>       (1.0) != HalfInt{1.0});
+   EXPECT_FALSE(static_cast<int>        (1.0) != HalfInt{1.0});
+   EXPECT_FALSE(static_cast<short>      (1.0) != HalfInt{1.0});
+   EXPECT_FALSE(static_cast<char>       (1.0) != HalfInt{1.0});
+   
+   EXPECT_TRUE(HalfInt{0.5} != static_cast<long double>(1.3));
+   EXPECT_TRUE(HalfInt{0.5} != static_cast<double>     (1.3));
+   EXPECT_TRUE(HalfInt{0.5} != static_cast<float>      (1.3));
+   
+   EXPECT_TRUE(static_cast<long double>(1.3) != HalfInt{0.5});
+   EXPECT_TRUE(static_cast<double>     (1.3) != HalfInt{0.5});
+   EXPECT_TRUE(static_cast<float>      (1.3) != HalfInt{0.5});
+}
+
+TEST(TypeHalfInt, ComparisonLessThan) {
+   using type::HalfInt;
+   EXPECT_TRUE(HalfInt{0.5} < static_cast<HalfInt>    (1.5));
+   EXPECT_TRUE(HalfInt{0.5} < static_cast<long double>(1.5));
+   EXPECT_TRUE(HalfInt{0.5} < static_cast<double>     (1.5));
+   EXPECT_TRUE(HalfInt{0.5} < static_cast<float>      (1.5));
+   EXPECT_TRUE(HalfInt{1.0} < static_cast<long long>  (2.0));
+   EXPECT_TRUE(HalfInt{1.0} < static_cast<long>       (2.0));
+   EXPECT_TRUE(HalfInt{1.0} < static_cast<int>        (2.0));
+   EXPECT_TRUE(HalfInt{1.0} < static_cast<short>      (2.0));
+   EXPECT_TRUE(HalfInt{1.0} < static_cast<char>       (2.0));
+   
+   EXPECT_TRUE(static_cast<HalfInt>    (0.5) < HalfInt{1.5});
+   EXPECT_TRUE(static_cast<long double>(0.5) < HalfInt{1.5});
+   EXPECT_TRUE(static_cast<double>     (0.5) < HalfInt{1.5});
+   EXPECT_TRUE(static_cast<float>      (0.5) < HalfInt{1.5});
+   EXPECT_TRUE(static_cast<long long>  (1.0) < HalfInt{2.0});
+   EXPECT_TRUE(static_cast<long>       (1.0) < HalfInt{2.0});
+   EXPECT_TRUE(static_cast<int>        (1.0) < HalfInt{2.0});
+   EXPECT_TRUE(static_cast<short>      (1.0) < HalfInt{2.0});
+   EXPECT_TRUE(static_cast<char>       (1.0) < HalfInt{2.0});
+   
+   EXPECT_FALSE(HalfInt{0.5} < static_cast<HalfInt>    (0.5));
+   EXPECT_FALSE(HalfInt{0.5} < static_cast<long double>(0.5));
+   EXPECT_FALSE(HalfInt{0.5} < static_cast<double>     (0.5));
+   EXPECT_FALSE(HalfInt{0.5} < static_cast<float>      (0.5));
+   EXPECT_FALSE(HalfInt{1.0} < static_cast<long long>  (1.0));
+   EXPECT_FALSE(HalfInt{1.0} < static_cast<long>       (1.0));
+   EXPECT_FALSE(HalfInt{1.0} < static_cast<int>        (1.0));
+   EXPECT_FALSE(HalfInt{1.0} < static_cast<short>      (1.0));
+   EXPECT_FALSE(HalfInt{1.0} < static_cast<char>       (1.0));
+   
+   EXPECT_FALSE(static_cast<HalfInt>    (0.5) < HalfInt{0.5});
+   EXPECT_FALSE(static_cast<long double>(0.5) < HalfInt{0.5});
+   EXPECT_FALSE(static_cast<double>     (0.5) < HalfInt{0.5});
+   EXPECT_FALSE(static_cast<float>      (0.5) < HalfInt{0.5});
+   EXPECT_FALSE(static_cast<long long>  (1.0) < HalfInt{1.0});
+   EXPECT_FALSE(static_cast<long>       (1.0) < HalfInt{1.0});
+   EXPECT_FALSE(static_cast<int>        (1.0) < HalfInt{1.0});
+   EXPECT_FALSE(static_cast<short>      (1.0) < HalfInt{1.0});
+   EXPECT_FALSE(static_cast<char>       (1.0) < HalfInt{1.0});
+}
+
+TEST(TypeHalfInt, ComparisonGreaterThan) {
+   using type::HalfInt;
+   EXPECT_TRUE(HalfInt{1.5} > static_cast<HalfInt>    (0.5));
+   EXPECT_TRUE(HalfInt{1.5} > static_cast<long double>(0.5));
+   EXPECT_TRUE(HalfInt{1.5} > static_cast<double>     (0.5));
+   EXPECT_TRUE(HalfInt{1.5} > static_cast<float>      (0.5));
+   EXPECT_TRUE(HalfInt{2.0} > static_cast<long long>  (1.0));
+   EXPECT_TRUE(HalfInt{2.0} > static_cast<long>       (1.0));
+   EXPECT_TRUE(HalfInt{2.0} > static_cast<int>        (1.0));
+   EXPECT_TRUE(HalfInt{2.0} > static_cast<short>      (1.0));
+   EXPECT_TRUE(HalfInt{2.0} > static_cast<char>       (1.0));
+   
+   EXPECT_TRUE(static_cast<HalfInt>    (1.5) > HalfInt{0.5});
+   EXPECT_TRUE(static_cast<long double>(1.5) > HalfInt{0.5});
+   EXPECT_TRUE(static_cast<double>     (1.5) > HalfInt{0.5});
+   EXPECT_TRUE(static_cast<float>      (1.5) > HalfInt{0.5});
+   EXPECT_TRUE(static_cast<long long>  (2.0) > HalfInt{1.0});
+   EXPECT_TRUE(static_cast<long>       (2.0) > HalfInt{1.0});
+   EXPECT_TRUE(static_cast<int>        (2.0) > HalfInt{1.0});
+   EXPECT_TRUE(static_cast<short>      (2.0) > HalfInt{1.0});
+   EXPECT_TRUE(static_cast<char>       (2.0) > HalfInt{1.0});
+   
+   EXPECT_FALSE(HalfInt{0.5} > static_cast<HalfInt>    (0.5));
+   EXPECT_FALSE(HalfInt{0.5} > static_cast<long double>(0.5));
+   EXPECT_FALSE(HalfInt{0.5} > static_cast<double>     (0.5));
+   EXPECT_FALSE(HalfInt{0.5} > static_cast<float>      (0.5));
+   EXPECT_FALSE(HalfInt{1.0} > static_cast<long long>  (1.0));
+   EXPECT_FALSE(HalfInt{1.0} > static_cast<long>       (1.0));
+   EXPECT_FALSE(HalfInt{1.0} > static_cast<int>        (1.0));
+   EXPECT_FALSE(HalfInt{1.0} > static_cast<short>      (1.0));
+   EXPECT_FALSE(HalfInt{1.0} > static_cast<char>       (1.0));
+   
+   EXPECT_FALSE(static_cast<HalfInt>    (0.5) > HalfInt{0.5});
+   EXPECT_FALSE(static_cast<long double>(0.5) > HalfInt{0.5});
+   EXPECT_FALSE(static_cast<double>     (0.5) > HalfInt{0.5});
+   EXPECT_FALSE(static_cast<float>      (0.5) > HalfInt{0.5});
+   EXPECT_FALSE(static_cast<long long>  (1.0) > HalfInt{1.0});
+   EXPECT_FALSE(static_cast<long>       (1.0) > HalfInt{1.0});
+   EXPECT_FALSE(static_cast<int>        (1.0) > HalfInt{1.0});
+   EXPECT_FALSE(static_cast<short>      (1.0) > HalfInt{1.0});
+   EXPECT_FALSE(static_cast<char>       (1.0) > HalfInt{1.0});
+}
+
+TEST(TypeHalfInt, ComparisonLessThanOrEqual) {
+   using type::HalfInt;
+   EXPECT_TRUE(HalfInt{0.5} <= static_cast<HalfInt>    (1.5));
+   EXPECT_TRUE(HalfInt{0.5} <= static_cast<long double>(1.5));
+   EXPECT_TRUE(HalfInt{0.5} <= static_cast<double>     (1.5));
+   EXPECT_TRUE(HalfInt{0.5} <= static_cast<float>      (1.5));
+   EXPECT_TRUE(HalfInt{1.0} <= static_cast<long long>  (2.0));
+   EXPECT_TRUE(HalfInt{1.0} <= static_cast<long>       (2.0));
+   EXPECT_TRUE(HalfInt{1.0} <= static_cast<int>        (2.0));
+   EXPECT_TRUE(HalfInt{1.0} <= static_cast<short>      (2.0));
+   EXPECT_TRUE(HalfInt{1.0} <= static_cast<char>       (2.0));
+   
+   EXPECT_TRUE(static_cast<HalfInt>    (0.5) <= HalfInt{1.5});
+   EXPECT_TRUE(static_cast<long double>(0.5) <= HalfInt{1.5});
+   EXPECT_TRUE(static_cast<double>     (0.5) <= HalfInt{1.5});
+   EXPECT_TRUE(static_cast<float>      (0.5) <= HalfInt{1.5});
+   EXPECT_TRUE(static_cast<long long>  (1.0) <= HalfInt{2.0});
+   EXPECT_TRUE(static_cast<long>       (1.0) <= HalfInt{2.0});
+   EXPECT_TRUE(static_cast<int>        (1.0) <= HalfInt{2.0});
+   EXPECT_TRUE(static_cast<short>      (1.0) <= HalfInt{2.0});
+   EXPECT_TRUE(static_cast<char>       (1.0) <= HalfInt{2.0});
+   
+   EXPECT_TRUE(HalfInt{0.5} <= static_cast<HalfInt>    (0.5));
+   EXPECT_TRUE(HalfInt{0.5} <= static_cast<long double>(0.5));
+   EXPECT_TRUE(HalfInt{0.5} <= static_cast<double>     (0.5));
+   EXPECT_TRUE(HalfInt{0.5} <= static_cast<float>      (0.5));
+   EXPECT_TRUE(HalfInt{1.0} <= static_cast<long long>  (1.0));
+   EXPECT_TRUE(HalfInt{1.0} <= static_cast<long>       (1.0));
+   EXPECT_TRUE(HalfInt{1.0} <= static_cast<int>        (1.0));
+   EXPECT_TRUE(HalfInt{1.0} <= static_cast<short>      (1.0));
+   EXPECT_TRUE(HalfInt{1.0} <= static_cast<char>       (1.0));
+   
+   EXPECT_TRUE(static_cast<HalfInt>    (0.5) <= HalfInt{0.5});
+   EXPECT_TRUE(static_cast<long double>(0.5) <= HalfInt{0.5});
+   EXPECT_TRUE(static_cast<double>     (0.5) <= HalfInt{0.5});
+   EXPECT_TRUE(static_cast<float>      (0.5) <= HalfInt{0.5});
+   EXPECT_TRUE(static_cast<long long>  (1.0) <= HalfInt{1.0});
+   EXPECT_TRUE(static_cast<long>       (1.0) <= HalfInt{1.0});
+   EXPECT_TRUE(static_cast<int>        (1.0) <= HalfInt{1.0});
+   EXPECT_TRUE(static_cast<short>      (1.0) <= HalfInt{1.0});
+   EXPECT_TRUE(static_cast<char>       (1.0) <= HalfInt{1.0});
+}
+
+TEST(TypeHalfInt, ComparisonGreaterThanOrEqual) {
+   using type::HalfInt;
+   EXPECT_TRUE(HalfInt{1.5} >= static_cast<HalfInt>    (0.5));
+   EXPECT_TRUE(HalfInt{1.5} >= static_cast<long double>(0.5));
+   EXPECT_TRUE(HalfInt{1.5} >= static_cast<double>     (0.5));
+   EXPECT_TRUE(HalfInt{1.5} >= static_cast<float>      (0.5));
+   EXPECT_TRUE(HalfInt{2.0} >= static_cast<long long>  (1.0));
+   EXPECT_TRUE(HalfInt{2.0} >= static_cast<long>       (1.0));
+   EXPECT_TRUE(HalfInt{2.0} >= static_cast<int>        (1.0));
+   EXPECT_TRUE(HalfInt{2.0} >= static_cast<short>      (1.0));
+   EXPECT_TRUE(HalfInt{2.0} >= static_cast<char>       (1.0));
+   
+   EXPECT_TRUE(static_cast<HalfInt>    (1.5) >= HalfInt{0.5});
+   EXPECT_TRUE(static_cast<long double>(1.5) >= HalfInt{0.5});
+   EXPECT_TRUE(static_cast<double>     (1.5) >= HalfInt{0.5});
+   EXPECT_TRUE(static_cast<float>      (1.5) >= HalfInt{0.5});
+   EXPECT_TRUE(static_cast<long long>  (2.0) >= HalfInt{1.0});
+   EXPECT_TRUE(static_cast<long>       (2.0) >= HalfInt{1.0});
+   EXPECT_TRUE(static_cast<int>        (2.0) >= HalfInt{1.0});
+   EXPECT_TRUE(static_cast<short>      (2.0) >= HalfInt{1.0});
+   EXPECT_TRUE(static_cast<char>       (2.0) >= HalfInt{1.0});
+   
+   EXPECT_TRUE(HalfInt{0.5} >= static_cast<HalfInt>    (0.5));
+   EXPECT_TRUE(HalfInt{0.5} >= static_cast<long double>(0.5));
+   EXPECT_TRUE(HalfInt{0.5} >= static_cast<double>     (0.5));
+   EXPECT_TRUE(HalfInt{0.5} >= static_cast<float>      (0.5));
+   EXPECT_TRUE(HalfInt{1.0} >= static_cast<long long>  (1.0));
+   EXPECT_TRUE(HalfInt{1.0} >= static_cast<long>       (1.0));
+   EXPECT_TRUE(HalfInt{1.0} >= static_cast<int>        (1.0));
+   EXPECT_TRUE(HalfInt{1.0} >= static_cast<short>      (1.0));
+   EXPECT_TRUE(HalfInt{1.0} >= static_cast<char>       (1.0));
+   
+   EXPECT_TRUE(static_cast<HalfInt>    (0.5) >= HalfInt{0.5});
+   EXPECT_TRUE(static_cast<long double>(0.5) >= HalfInt{0.5});
+   EXPECT_TRUE(static_cast<double>     (0.5) >= HalfInt{0.5});
+   EXPECT_TRUE(static_cast<float>      (0.5) >= HalfInt{0.5});
+   EXPECT_TRUE(static_cast<long long>  (1.0) >= HalfInt{1.0});
+   EXPECT_TRUE(static_cast<long>       (1.0) >= HalfInt{1.0});
+   EXPECT_TRUE(static_cast<int>        (1.0) >= HalfInt{1.0});
+   EXPECT_TRUE(static_cast<short>      (1.0) >= HalfInt{1.0});
+   EXPECT_TRUE(static_cast<char>       (1.0) >= HalfInt{1.0});
+}
 
 } //namespace test
 } //namespace compnal
