@@ -632,6 +632,23 @@ CRS<decltype(T1{0}+T2{0}+T3{0}+T4{0})> CalculateMatrixMatrixSum(const T1 coeef_1
       matrix_out.row[i + 1] = matrix_out.col.size();
    }
    
+   if (matrix_1.tag == CRSTag::NONE) {
+      matrix_out.tag = matrix_2.tag;
+   }
+   else if (matrix_1.tag == CRSTag::FERMION) {
+      if (matrix_2.tag == CRSTag::NONE || matrix_2.tag == CRSTag::FERMION) {
+         matrix_out.tag = CRSTag::FERMION;
+      }
+      else if (matrix_2.tag == CRSTag::BOSON || matrix_2.tag == CRSTag::MIX) {
+         
+      }
+      else {
+         std::stringstream ss;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+         ss << "Unknown CRSTag detected.";
+         throw std::runtime_error(ss.str());
+      }
+   }
    matrix_out.tag = matrix_1.tag;
    return matrix_out;
 }
