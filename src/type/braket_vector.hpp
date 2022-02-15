@@ -36,6 +36,7 @@ struct BraketVector {
    std::vector<ValueType> val;
    
    BraketVector() {};
+   
    explicit BraketVector(const std::vector<ValueType> &vector) {
       Assign(vector);
    }
@@ -220,6 +221,21 @@ bool operator==(const BraketVector<T1> &lhs, const BraketVector<T2> &rhs) {
    return true;
 }
 
+//! @brief Operator overloading: output operator.
+//! @param os Ostream object.
+//! @param v BraketVector.
+template<typename ValueType>
+std::ostream& operator<<(std::ostream &os, const BraketVector<ValueType> &v) {
+   os << std::fixed;
+   os << std::setprecision(std::numeric_limits<ValueType>::max_digits10);
+   for (std::size_t i = 0; i < v.val.size(); ++i) {
+      os << "v[";
+      os << std::noshowpos << std::left << std::setw(3) << i << "]=";
+      os << std::showpos << v.val[i] << std::endl;
+   }
+   return os;
+}
+
 
 template<typename T1, typename T2, typename T3, typename T4>
 BraketVector<decltype(T1{0}*T2{0}+T3{0}*T4{0})> CalculateVectorVectorSum(const T1 coeef_1,
@@ -264,7 +280,7 @@ template<typename T1, typename T2>
 BraketVector<decltype(T1{0}*T2{0})> CalculateScalarVectorProduct(const T1 value,
                                                                  const BraketVector<T2> &braket_vector) {
    
-   const BraketVector<decltype(T1{0}*T2{0})> out;
+   BraketVector<decltype(T1{0}*T2{0})> out;
    out.val.resize(braket_vector.val.size());
 #pragma omp parallel for
    for (std::size_t i = 0; i < braket_vector.val.size(); ++i) {
