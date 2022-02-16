@@ -30,14 +30,16 @@
 namespace compnal {
 namespace type {
 
-template<typename ValueType>
-struct BraketVector {
+template<typename ElementType>
+class BraketVector {
    
-   std::vector<ValueType> val;
+public:
+   using ValueType = ElementType;
+   
    
    BraketVector() {};
    
-   explicit BraketVector(const std::vector<ValueType> &vector) {
+   explicit BraketVector(const std::vector<ElementType> &vector) {
       Assign(vector);
    }
    
@@ -53,33 +55,33 @@ struct BraketVector {
    template<typename T>
    void Fill(const T value) {
 #pragma omp parallel for
-      for (std::size_t i = 0; i < this->val.size(); ++i) {
-         this->val[i] = value;
+      for (std::size_t i = 0; i < value_.size(); ++i) {
+         value_[i] = value;
       }
    }
    
    void Free() {
-      std::vector<ValueType>().swap(this->val);
+      std::vector<ElementType>().swap(value_);
    }
    
    void Clear() {
-      this->val.clear();
+      value_.clear();
    }
    
    void Assign(const BraketVector &vector) {
-      this->val.resize(vector.val.size());
+      value_.resize(vector.Size());
 #pragma omp parallel for
-      for (std::size_t i = 0; i < vector.val.size(); ++i) {
-         this->val[i] = vector.val[i];
+      for (std::size_t i = 0; i < value_.size(); ++i) {
+         value_[i] = vector.Val(i);
       }
    }
    
    template<typename T>
    void Assign(const std::vector<T> &vector) {
-      this->val.resize(vector.size());
+      value_.resize(vector.size());
 #pragma omp parallel for
       for (std::size_t i = 0; i < vector.size(); ++i) {
-         this->val[i] = vector[i];
+         value_[i] = vector[i];
       }
    }
    
@@ -98,36 +100,52 @@ struct BraketVector {
    template<typename T>
    void MultiplyByScalar(const T coeef) {
 #pragma omp parallel for
-      for (std::size_t i = 0; i < this->val.size(); ++i) {
-         this->val[i] *= coeef;
+      for (std::size_t i = 0; i < value_.size(); ++i) {
+         value_[i] *= coeef;
       }
    }
    
    auto L1Norm() const {
-      if constexpr (std::is_floating_point<ValueType>::value) {
-         return L1Norm<ValueType>(this->val);
+      if constexpr (std::is_floating_point<ElementType>::value) {
+         return L1Norm<ElementType>(value_);
       }
       else {
-         return L1Norm<double>(this->val);
+         return L1Norm<double>(value_);
       }
    }
    
    auto L2Norm() const {
-      if constexpr (std::is_floating_point<ValueType>::value) {
-         return L2Norm<ValueType>(this->val);
+      if constexpr (std::is_floating_point<ElementType>::value) {
+         return L2Norm<ElementType>(value_);
       }
       else {
-         return L2Norm<double>(this->val);
+         return L2Norm<double>(value_);
       }
    }
    
    void Print(const std::string display_name = "BraketVector") const {
-      for (std::size_t i = 0; i < this->val.size(); i++) {
-         std::cout << display_name << "[" << i << "]=" << this->val[i] << std::endl;
+      for (std::size_t i = 0; i < value_.size(); i++) {
+         std::cout << display_name << "[" << i << "]=" << value_[i] << std::endl;
       }
    }
    
+   inline std::int64_t Size() const { return static_cast<std::int64_t>(value_.size()); }
+   
+   template<typename T>
+   inline const ElementType &Val(const T i) const { return value_[i]; }
+   
+   template<typename T>
+   inline ElementType &Val(const T i) { return value_[i]; }
+   
+   template<typename T>
+   inline void Resize(const T n) {
+      value_.resize(n);
+   }
+   
 private:
+   std::vector<ElementType> value_;
+   
+   
    template<typename ReturnType, typename T>
    ReturnType L1Norm(const std::vector<T> &vec) const {
       ReturnType norm = 0.0;
@@ -210,11 +228,11 @@ BraketVector<decltype(T1{0}*T2{0})> operator*(const BraketVector<T1> &lhs, const
 //! @param rhs The value of the right-hand side.
 template<typename T1, typename T2>
 bool operator==(const BraketVector<T1> &lhs, const BraketVector<T2> &rhs) {
-   if (lhs.val.size() != rhs.val.size()) {
+   if (lhs.Size() != rhs.Size()) {
       return false;
    }
-   for (std::size_t i = 0; i < lhs.val.size(); ++i) {
-      if (lhs.val[i] != rhs.val[i]) {
+   for (std::int64_t i = 0; i < lhs.Size(); ++i) {
+      if (lhs.Val(i) != rhs.Val(i)) {
          return false;
       }
    }
@@ -222,16 +240,17 @@ bool operator==(const BraketVector<T1> &lhs, const BraketVector<T2> &rhs) {
 }
 
 //! @brief Operator overloading: output operator.
+//! @tparam T Type of BraketVector.
 //! @param os Ostream object.
 //! @param v BraketVector.
-template<typename ValueType>
-std::ostream& operator<<(std::ostream &os, const BraketVector<ValueType> &v) {
+template<typename T>
+std::ostream& operator<<(std::ostream &os, const BraketVector<T> &v) {
    os << std::fixed;
-   os << std::setprecision(std::numeric_limits<ValueType>::max_digits10);
-   for (std::size_t i = 0; i < v.val.size(); ++i) {
+   os << std::setprecision(std::numeric_limits<T>::max_digits10);
+   for (std::int64_t i = 0; i < v.Size(); ++i) {
       os << "v[";
       os << std::noshowpos << std::left << std::setw(3) << i << "]=";
-      os << std::showpos << v.val[i] << std::endl;
+      os << std::showpos << v.Val(i) << std::endl;
    }
    return os;
 }
@@ -242,18 +261,18 @@ BraketVector<decltype(T1{0}*T2{0}+T3{0}*T4{0})> CalculateVectorVectorSum(const T
                                                                          const BraketVector<T2> &braket_vector_1,
                                                                          const T3 coeef_2,
                                                                          const BraketVector<T4> &braket_vector_2) {
-   if (braket_vector_1.val.size() != braket_vector_2.val.size()) {
+   if (braket_vector_1.Size() != braket_vector_2.Size()) {
       std::stringstream ss;
       ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
       ss << "BraketVector types do not match each other" << std::endl;
-      ss << "dim_1 = " << braket_vector_1.val.size() << ", dim_2 = " << braket_vector_2.val.size() << std::endl;
+      ss << "dim_1 = " << braket_vector_1.Size() << ", dim_2 = " << braket_vector_2.Size() << std::endl;
       throw std::runtime_error(ss.str());
    }
    BraketVector<decltype(T1{0}*T2{0}+T3{0}*T4{0})> vector_out;
-   vector_out.val.resize(braket_vector_1.val.size());
+   vector_out.Resize(braket_vector_1.Size());
 #pragma omp parallel for
-   for (std::size_t i = 0; i < braket_vector_1.val.size(); ++i) {
-      vector_out.val[i] = coeef_1*braket_vector_1.val[i] + coeef_2*braket_vector_2.val[i];
+   for (std::int64_t i = 0; i < braket_vector_1.Size(); ++i) {
+      vector_out.Val(i) = coeef_1*braket_vector_1.Val(i) + coeef_2*braket_vector_2.Val(i);
    }
    return vector_out;
 }
@@ -261,17 +280,17 @@ BraketVector<decltype(T1{0}*T2{0}+T3{0}*T4{0})> CalculateVectorVectorSum(const T
 template<typename T1, typename T2>
 decltype(T1{0}*T2{0}) CalculateVectorVectorProduct(const BraketVector<T1> &braket_vector_1,
                                                    const BraketVector<T2> &braket_vector_2) {
-   if (braket_vector_1.val.size() != braket_vector_2.val.size()) {
+   if (braket_vector_1.Size() != braket_vector_2.Size()) {
       std::stringstream ss;
       ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
       ss << "BraketVector types do not match each other" << std::endl;
-      ss << "dim_1 = " << braket_vector_1.val.size() << ", dim_2 = " << braket_vector_2.val.size() << std::endl;
+      ss << "dim_1 = " << braket_vector_1.Size() << ", dim_2 = " << braket_vector_2.Size() << std::endl;
       throw std::runtime_error(ss.str());
    }
    decltype(T1{0}*T2{0}) val_out = 0.0;
 #pragma omp parallel for reduction (+: val_out)
-   for (std::size_t i = 0; i < braket_vector_1.val.size(); ++i) {
-      val_out += braket_vector_1.val[i]*braket_vector_2.val[i];
+   for (std::int64_t i = 0; i < braket_vector_1.Size(); ++i) {
+      val_out += braket_vector_1.Val(i)*braket_vector_2.Val(i);
    }
    return val_out;
 }
@@ -281,10 +300,10 @@ BraketVector<decltype(T1{0}*T2{0})> CalculateScalarVectorProduct(const T1 value,
                                                                  const BraketVector<T2> &braket_vector) {
    
    BraketVector<decltype(T1{0}*T2{0})> out;
-   out.val.resize(braket_vector.val.size());
+   out.Resize(braket_vector.Size());
 #pragma omp parallel for
-   for (std::size_t i = 0; i < braket_vector.val.size(); ++i) {
-      out.val[i] = value*braket_vector.val[i];
+   for (std::int64_t i = 0; i < braket_vector.Size(); ++i) {
+      out.Val(i) = value*braket_vector.Val(i);
    }
    return out;
 }
@@ -296,18 +315,18 @@ decltype(T1{0}*T2{0}-T3{0}*T4{0}) CalculateL1Norm(const T1 coeef_1,
                                                   const BraketVector<T4> &braket_vector_2
                                                   ) {
    
-   if (braket_vector_1.val.size() != braket_vector_2.val.size()) {
+   if (braket_vector_1.Size() != braket_vector_2.Size()) {
       std::stringstream ss;
       ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
       ss << "BraketVector types do not match each other" << std::endl;
-      ss << "dim_1 = " << braket_vector_1.val.size() << ", dim_2 = " << braket_vector_2.val.size() << std::endl;
+      ss << "dim_1 = " << braket_vector_1.Size() << ", dim_2 = " << braket_vector_2.Size() << std::endl;
       throw std::runtime_error(ss.str());
    }
    
    decltype(T1{0}*T2{0}-T3{0}*T4{0}) val_out = 0.0;
 #pragma omp parallel for reduction (+: val_out)
-   for (std::size_t i = 0; i < braket_vector_1.val.size(); ++i) {
-      val_out += std::abs(coeef_1*braket_vector_1.val[i] - coeef_2*braket_vector_2.val[i]);
+   for (std::size_t i = 0; i < braket_vector_1.Size(); ++i) {
+      val_out += std::abs(coeef_1*braket_vector_1.Val(i) - coeef_2*braket_vector_2.Val(i));
    }
    return val_out;
 }
