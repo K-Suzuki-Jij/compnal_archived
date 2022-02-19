@@ -1,0 +1,62 @@
+\hypertarget{braket__vector_8hpp}{}\doxysection{src/type/braket\+\_\+vector.hpp File Reference}
+\label{braket__vector_8hpp}\index{src/type/braket\_vector.hpp@{src/type/braket\_vector.hpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+Include dependency graph for braket\+\_\+vector.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=328pt]{d4/df6/braket__vector_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d6d/braket__vector_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector$<$ Element\+Type $>$}}
+\begin{DoxyCompactList}\small\item\em The wrapper class of std\+::vector to represent braket. Note that there is no difference of \texorpdfstring{$<$}{<}bra$\vert$ and $\vert$ket\texorpdfstring{$>$}{>}, since the template parameter Element\+Type cannot accept Complex type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecompnal}{compnal}}
+\item 
+namespace \mbox{\hyperlink{namespacecompnal_1_1type}{compnal\+::type}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\Braket\+Vector$<$ decltype(T1\{0\}+T2\{0\})$>$ \mbox{\hyperlink{namespacecompnal_1_1type_a5e566719062dfe7b69e5e59675856dd6}{compnal\+::type\+::operator+}} (const Braket\+Vector$<$ T1 $>$ \&lhs, const Braket\+Vector$<$ T2 $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: addition operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\Braket\+Vector$<$ decltype(T1\{0\}-\/T2\{0\})$>$ \mbox{\hyperlink{namespacecompnal_1_1type_a83312c3b6eee85136713f87534425a84}{compnal\+::type\+::operator-\/}} (const Braket\+Vector$<$ T1 $>$ \&lhs, const Braket\+Vector$<$ T2 $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: subtraction operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\Braket\+Vector$<$ decltype(T1\{0\} $\ast$T2\{0\})$>$ \mbox{\hyperlink{namespacecompnal_1_1type_aac272e6495f1f14431361fc982b77aaf}{compnal\+::type\+::operator$\ast$}} (const T1 lhs, const Braket\+Vector$<$ T2 $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: multiplication operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\Braket\+Vector$<$ decltype(T1\{0\} $\ast$T2\{0\})$>$ \mbox{\hyperlink{namespacecompnal_1_1type_ac284ebdfe33092f6f0fb3b9d890fa8d2}{compnal\+::type\+::operator$\ast$}} (const Braket\+Vector$<$ T1 $>$ \&lhs, const T2 rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: multiplication operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1type_abb6429171e978e71a1fbd6682875ca56}{compnal\+::type\+::operator==}} (const Braket\+Vector$<$ T1 $>$ \&lhs, const Braket\+Vector$<$ T2 $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: equality operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::ostream \& \mbox{\hyperlink{namespacecompnal_1_1type_ab565f905bc0e0a4cdea7cbee1b5c0da1}{compnal\+::type\+::operator$<$$<$}} (std\+::ostream \&os, const Braket\+Vector$<$ T $>$ \&v)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: output operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 , typename T3 , typename T4 $>$ }\\Braket\+Vector$<$ decltype(T1\{0\} $\ast$T2\{0\}+T3\{0\} $\ast$T4\{0\})$>$ \mbox{\hyperlink{namespacecompnal_1_1type_af370eed9d59d4940e0106c0214d13eee}{compnal\+::type\+::\+Calculate\+Vector\+Vector\+Sum}} (const T1 coeef\+\_\+1, const Braket\+Vector$<$ T2 $>$ \&braket\+\_\+vector\+\_\+1, const T3 coeef\+\_\+2, const Braket\+Vector$<$ T4 $>$ \&braket\+\_\+vector\+\_\+2)
+\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\Braket\+Vector$<$ decltype(T1\{0\} $\ast$T2\{0\})$>$ \mbox{\hyperlink{namespacecompnal_1_1type_a1b91ff252168ce956bbaa1ed33c70e5b}{compnal\+::type\+::\+Calculate\+Scalar\+Vector\+Product}} (const T1 value, const Braket\+Vector$<$ T2 $>$ \&braket\+\_\+vector)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\decltype(T1\{0\} $\ast$T2\{0\} \mbox{\hyperlink{namespacecompnal_1_1type_ae27a2680eeeec62e4ca1d3bc86bf33fb}{compnal\+::type\+::operator$\ast$}} )(const Braket\+Vector$<$ T1 $>$ \&lhs, const Braket\+Vector$<$ T2 $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: multiplication operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\decltype(T1\{0\} $\ast$T2\{0\} \mbox{\hyperlink{namespacecompnal_1_1type_aaaf838f72b30bcaed763ba281930d4fc}{compnal\+::type\+::\+Calculate\+Vector\+Vector\+Product}} )(const Braket\+Vector$<$ T1 $>$ \&braket\+\_\+vector\+\_\+1, const Braket\+Vector$<$ T2 $>$ \&braket\+\_\+vector\+\_\+2)
+\item 
+{\footnotesize template$<$typename T1 , typename T2 , typename T3 , typename T4 $>$ }\\decltype(T1\{0\} $\ast$T2\{0\}-\/T3\{0\} $\ast$T4\{0\} \mbox{\hyperlink{namespacecompnal_1_1type_ab49a65d909b602c117220d4c79519603}{compnal\+::type\+::\+Calculate\+L1\+Norm}} )(const T1 coeef\+\_\+1, const Braket\+Vector$<$ T2 $>$ \&braket\+\_\+vector\+\_\+1, const T3 coeef\+\_\+2, const Braket\+Vector$<$ T4 $>$ \&braket\+\_\+vector\+\_\+2)
+\end{DoxyCompactItemize}

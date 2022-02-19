@@ -1,0 +1,56 @@
+\hypertarget{eigendecomposition_8hpp}{}\doxysection{src/blas/eigendecomposition.hpp File Reference}
+\label{eigendecomposition_8hpp}\index{src/blas/eigendecomposition.hpp@{src/blas/eigendecomposition.hpp}}
+{\ttfamily \#include \char`\"{}../type/compressed\+\_\+row\+\_\+storage.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../type/braket\+\_\+vector.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}lapack.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}orthonormalize.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$random$>$}\newline
+Include dependency graph for eigendecomposition.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d27/eigendecomposition_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{de/d6f/eigendecomposition_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_lanczos}{compnal\+::blas\+::\+Parameters\+Lanczos}}
+\item 
+struct \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_c_g}{compnal\+::blas\+::\+Parameters\+CG}}
+\item 
+struct \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_i_i}{compnal\+::blas\+::\+Parameters\+II}}
+\item 
+struct \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_all}{compnal\+::blas\+::\+Parameters\+All}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecompnal}{compnal}}
+\item 
+namespace \mbox{\hyperlink{namespacecompnal_1_1blas}{compnal\+::blas}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\std\+::pair$<$ int, double $>$ \mbox{\hyperlink{namespacecompnal_1_1blas_a41a8fbd0adade2a6702b987c653abf7b}{compnal\+::blas\+::\+Eigenvalue\+Decomposition\+Lanczos}} (Real\+Type $\ast$target\+\_\+value\+\_\+out, type\+::\+Braket\+Vector$<$ Real\+Type $>$ $\ast$target\+\_\+vector\+\_\+out, const type\+::\+CRS$<$ Real\+Type $>$ \&matrix\+\_\+in, const int target\+\_\+level, const std\+::vector$<$ type\+::\+Braket\+Vector$<$ Real\+Type $>$ $>$ \&subspace\+\_\+vectors, const Parameters\+Lanczos \&params=Parameters\+Lanczos())
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\std\+::pair$<$ int, double $>$ \mbox{\hyperlink{namespacecompnal_1_1blas_ac83d4397d2ebb218b629cb5a1c37c6a2}{compnal\+::blas\+::\+Eigenvalue\+Decomposition\+Lanczos}} (Real\+Type $\ast$gs\+\_\+value\+\_\+out, type\+::\+Braket\+Vector$<$ Real\+Type $>$ $\ast$gs\+\_\+vector\+\_\+out, const type\+::\+CRS$<$ Real\+Type $>$ \&matrix\+\_\+in, const Parameters\+Lanczos \&params=Parameters\+Lanczos())
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\std\+::pair$<$ int, double $>$ \mbox{\hyperlink{namespacecompnal_1_1blas_a1f728907b3675c8558f09749abf793af}{compnal\+::blas\+::\+Eigenvalue\+Decomposition\+LOBPCG}} (Real\+Type $\ast$gs\+\_\+value\+\_\+out, type\+::\+Braket\+Vector$<$ Real\+Type $>$ $\ast$gs\+\_\+vector\+\_\+out, const type\+::\+CRS$<$ Real\+Type $>$ \&matrix\+\_\+in, const Parameters\+Lanczos \&params=Parameters\+Lanczos())
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int \mbox{\hyperlink{namespacecompnal_1_1blas_aa1196aeb106e923cc2ad6c17fea58f26}{compnal\+::blas\+::\+TIME\+\_\+\+UNIT\+\_\+\+CONSTANT}} = 1000$\ast$1000
+\end{DoxyCompactItemize}
