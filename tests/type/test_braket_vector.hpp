@@ -27,7 +27,9 @@ namespace compnal {
 namespace test {
 
 TEST(BraketVector, Fill) {
-   
+   using type::BraketVector;
+   auto x = BraketVector<long double>({1.3L});
+   auto vec = static_cast<std::vector<double>>(x);
 }
 
 TEST(BraketVector, Free) {
@@ -64,14 +66,14 @@ TEST(BraketVector, CalculateL1Norm) {
 
 TEST(BraketVector, Addition) {
    auto check = [](const auto &v1, const auto &v2, const auto &prec, const auto &line) {
-      EXPECT_EQ(v1.value_list.size(), v2.value_list.size());
+      EXPECT_EQ(v1.Size(), v2.Size());
       const bool c1 = std::is_integral<typename std::remove_cvref<decltype(v1)>::type::ValueType>::value;
       const bool c2 = std::is_integral<typename std::remove_cvref<decltype(v2)>::type::ValueType>::value;
       if (c1 && c2) {
          EXPECT_EQ(v1, v2);
       }
       else {
-         for (std::int64_t i = 0; i < v1.value_list.size(); ++i) {
+         for (std::int64_t i = 0; i < v1.Size(); ++i) {
             const auto lhs = std::abs(v1.value_list[i] - v2.value_list[i]);
             const auto rhs = 4*prec;
             EXPECT_TRUE(lhs <= rhs) << lhs << " !<= " << rhs << " at " << line;
@@ -155,14 +157,14 @@ TEST(BraketVector, Addition) {
 
 TEST(BraketVector, Subtraction) {
    auto check = [](const auto &v1, const auto &v2, const auto &prec, const auto &line) {
-      EXPECT_EQ(v1.value_list.size(), v2.value_list.size());
+      EXPECT_EQ(v1.Size(), v2.Size());
       const bool c1 = std::is_integral<typename std::remove_cvref<decltype(v1)>::type::ValueType>::value;
       const bool c2 = std::is_integral<typename std::remove_cvref<decltype(v2)>::type::ValueType>::value;
       if (c1 && c2) {
          EXPECT_EQ(v1, v2);
       }
       else {
-         for (std::int64_t i = 0; i < v1.value_list.size(); ++i) {
+         for (std::int64_t i = 0; i < v1.Size(); ++i) {
             const auto lhs = std::abs(v1.value_list[i] - v2.value_list[i]);
             const auto rhs = 4*prec;
             EXPECT_TRUE(lhs <= rhs) << lhs << " !<= " << rhs << " at " << line;
@@ -333,14 +335,14 @@ TEST(BraketVector, MultiplicationVectorVector) {
 
 TEST(BraketVector, MultiplicationVectorScalar) {
    auto check = [](const auto &v1, const auto &v2, const auto &prec, const auto &line) {
-      EXPECT_EQ(v1.value_list.size(), v2.value_list.size());
+      EXPECT_EQ(v1.Size(), v2.Size());
       const bool c1 = std::is_integral<typename std::remove_cvref<decltype(v1)>::type::ValueType>::value;
       const bool c2 = std::is_integral<typename std::remove_cvref<decltype(v2)>::type::ValueType>::value;
       if (c1 && c2) {
          EXPECT_EQ(v1, v2);
       }
       else {
-         for (std::int64_t i = 0; i < v1.value_list.size(); ++i) {
+         for (std::int64_t i = 0; i < v1.Size(); ++i) {
             const auto lhs = std::abs(v1.value_list[i] - v2.value_list[i]);
             const auto rhs = 4*prec;
             EXPECT_TRUE(lhs <= rhs) << lhs << " !<= " << rhs << " at " << line;
@@ -423,14 +425,14 @@ TEST(BraketVector, MultiplicationVectorScalar) {
 
 TEST(BraketVector, MultiplicationScalarVector) {
    auto check = [](const auto &v1, const auto &v2, const auto &prec, const auto &line) {
-      EXPECT_EQ(v1.value_list.size(), v2.value_list.size());
+      EXPECT_EQ(v1.Size(), v2.Size());
       const bool c1 = std::is_integral<typename std::remove_cvref<decltype(v1)>::type::ValueType>::value;
       const bool c2 = std::is_integral<typename std::remove_cvref<decltype(v2)>::type::ValueType>::value;
       if (c1 && c2) {
          EXPECT_EQ(v1, v2);
       }
       else {
-         for (std::int64_t i = 0; i < v1.value_list.size(); ++i) {
+         for (std::int64_t i = 0; i < v1.Size(); ++i) {
             const auto lhs = std::abs(v1.value_list[i] - v2.value_list[i]);
             const auto rhs = 4*prec;
             EXPECT_TRUE(lhs <= rhs) << lhs << " !<= " << rhs << " at " << line;
