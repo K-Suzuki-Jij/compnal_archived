@@ -237,7 +237,7 @@ $(function() {
 <div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>      }</div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>   }</div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>   <a class="code hl_function" href="../../d4/ded/namespacecompnal_1_1blas.html#ae30f924effa78f04d9e973b3525ed4b7">Orthonormalize</a>(&amp;vector_0, subspace_vectors);</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>   vector_0.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ae1f11ab8bb2cad20bd9dbe8c3f20c93a">Normalize</a>();</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>   vector_0.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a6dcac49ab1ca9eec9a0703a09b39e933">Normalize</a>();</div>
 <div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>   </div>
 <div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>   <span class="keywordflow">if</span> (params.flag_store_vec) {</div>
 <div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>      rits_vector.push_back(vector_0.val);</div>
@@ -256,9 +256,9 @@ $(function() {
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>   </div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>   <span class="keywordflow">for</span> (<span class="keywordtype">int</span> step = 0; step &lt; params.max_step; ++step) {</div>
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>      vector_2.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ad5d0d469065d6ee4b821e567941efe2e">Assign</a>(vector_1);</div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>      off_diagonal_value.push_back(vector_2.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#aa0300aaa326f59492ff1bb0d0f209b8f">L2Norm</a>());</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>      off_diagonal_value.push_back(vector_2.L2Norm());</div>
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>      <a class="code hl_function" href="../../d4/ded/namespacecompnal_1_1blas.html#ae30f924effa78f04d9e973b3525ed4b7">Orthonormalize</a>(&amp;vector_2, subspace_vectors);</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>      vector_2.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ae1f11ab8bb2cad20bd9dbe8c3f20c93a">Normalize</a>();</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>      vector_2.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a6dcac49ab1ca9eec9a0703a09b39e933">Normalize</a>();</div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>      </div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>      <span class="keywordflow">if</span> (params.flag_store_vec) {</div>
 <div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>         rits_vector.push_back(vector_2.val);</div>
@@ -313,7 +313,7 @@ $(function() {
 <div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>         }</div>
 <div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>         target_vector_out-&gt;val[i] = temp_val;</div>
 <div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>      }</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>      target_vector_out-&gt;<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ae1f11ab8bb2cad20bd9dbe8c3f20c93a">Normalize</a>();</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>      target_vector_out-&gt;<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a6dcac49ab1ca9eec9a0703a09b39e933">Normalize</a>();</div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>   }</div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>   <span class="keywordflow">else</span> {</div>
 <div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>      <span class="keywordflow">if</span> (params.flag_use_initial_vec) {</div>
@@ -331,7 +331,7 @@ $(function() {
 <div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>      }</div>
 <div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>      </div>
 <div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>      <a class="code hl_function" href="../../d4/ded/namespacecompnal_1_1blas.html#ae30f924effa78f04d9e973b3525ed4b7">Orthonormalize</a>(&amp;vector_0, subspace_vectors);</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>      vector_0.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ae1f11ab8bb2cad20bd9dbe8c3f20c93a">Normalize</a>();</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>      vector_0.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a6dcac49ab1ca9eec9a0703a09b39e933">Normalize</a>();</div>
 <div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
 <div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>      CalculateVectorSum(target_vector_out, 1.0, *target_vector_out, krylov_eigen_vector[0], vector_0);</div>
 <div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>      <span class="keywordflow">if</span> (params.flag_symmetric_crs) {</div>
@@ -346,7 +346,7 @@ $(function() {
 <div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> step = 1; step &lt;= converge_step_number; ++step) {</div>
 <div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>         vector_2.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ad5d0d469065d6ee4b821e567941efe2e">Assign</a>(vector_1);</div>
 <div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>         <a class="code hl_function" href="../../d4/ded/namespacecompnal_1_1blas.html#ae30f924effa78f04d9e973b3525ed4b7">Orthonormalize</a>(&amp;vector_2, subspace_vectors);</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>         vector_2.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ae1f11ab8bb2cad20bd9dbe8c3f20c93a">Normalize</a>();</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>         vector_2.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a6dcac49ab1ca9eec9a0703a09b39e933">Normalize</a>();</div>
 <div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>         CalculateVectorSum(target_vector_out, 1.0, *target_vector_out, krylov_eigen_vector[step], vector_2);</div>
 <div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>         </div>
 <div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>         <span class="keywordflow">if</span> (params.flag_symmetric_crs) {</div>
@@ -365,7 +365,7 @@ $(function() {
 <div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;\rLanczos_Vec_Step:&quot;</span> &lt;&lt; step &lt;&lt; <span class="stringliteral">&quot;/&quot;</span> &lt;&lt; converge_step_number &lt;&lt; std::string(5, <span class="charliteral">&#39; &#39;</span>) &lt;&lt; std::flush;</div>
 <div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>         }</div>
 <div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>      }</div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>      target_vector_out-&gt;<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ae1f11ab8bb2cad20bd9dbe8c3f20c93a">Normalize</a>();</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>      target_vector_out-&gt;<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a6dcac49ab1ca9eec9a0703a09b39e933">Normalize</a>();</div>
 <div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>   }</div>
 <div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>   </div>
 <div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>   <span class="keyword">const</span> <span class="keyword">auto</span>   time_count = std::chrono::duration_cast&lt;std::chrono::microseconds&gt;(std::chrono::system_clock::now() - start).count();</div>
@@ -455,7 +455,7 @@ $(function() {
 <div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>      }</div>
 <div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>   }</div>
 <div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>   </div>
-<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>   vector_0.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ae1f11ab8bb2cad20bd9dbe8c3f20c93a">Normalize</a>();</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>   vector_0.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a6dcac49ab1ca9eec9a0703a09b39e933">Normalize</a>();</div>
 <div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>   </div>
 <div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>   <span class="keywordflow">if</span> (params.flag_store_vec) {</div>
 <div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>      rits_vector.push_back(vector_0.val);</div>
@@ -474,8 +474,8 @@ $(function() {
 <div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span>      </div>
 <div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>   <span class="keywordflow">for</span> (<span class="keywordtype">int</span> step = 0; step &lt; params.max_step; ++step) {</div>
 <div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>      vector_2.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ad5d0d469065d6ee4b821e567941efe2e">Assign</a>(vector_1);</div>
-<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>      off_diagonal_value.push_back(vector_2.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#aa0300aaa326f59492ff1bb0d0f209b8f">L2Norm</a>());</div>
-<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>      vector_2.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ae1f11ab8bb2cad20bd9dbe8c3f20c93a">Normalize</a>();</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>      off_diagonal_value.push_back(vector_2.L2Norm());</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>      vector_2.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a6dcac49ab1ca9eec9a0703a09b39e933">Normalize</a>();</div>
 <div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>      </div>
 <div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>      <span class="keywordflow">if</span> (params.flag_store_vec) {</div>
 <div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>         rits_vector.push_back(vector_2.val);</div>
@@ -530,7 +530,7 @@ $(function() {
 <div class="line"><a id="l00452" name="l00452"></a><span class="lineno">  452</span>         }</div>
 <div class="line"><a id="l00453" name="l00453"></a><span class="lineno">  453</span>         gs_vector_out-&gt;val[i] = temp_val;</div>
 <div class="line"><a id="l00454" name="l00454"></a><span class="lineno">  454</span>      }</div>
-<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>      gs_vector_out-&gt;<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ae1f11ab8bb2cad20bd9dbe8c3f20c93a">Normalize</a>();</div>
+<div class="line"><a id="l00455" name="l00455"></a><span class="lineno">  455</span>      gs_vector_out-&gt;<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a6dcac49ab1ca9eec9a0703a09b39e933">Normalize</a>();</div>
 <div class="line"><a id="l00456" name="l00456"></a><span class="lineno">  456</span>   }</div>
 <div class="line"><a id="l00457" name="l00457"></a><span class="lineno">  457</span>   <span class="keywordflow">else</span> {</div>
 <div class="line"><a id="l00458" name="l00458"></a><span class="lineno">  458</span>      <span class="keywordflow">if</span> (params.flag_use_initial_vec) {</div>
@@ -547,7 +547,7 @@ $(function() {
 <div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span>         }</div>
 <div class="line"><a id="l00470" name="l00470"></a><span class="lineno">  470</span>      }</div>
 <div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span>      </div>
-<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span>      vector_0.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ae1f11ab8bb2cad20bd9dbe8c3f20c93a">Normalize</a>();</div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno">  472</span>      vector_0.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a6dcac49ab1ca9eec9a0703a09b39e933">Normalize</a>();</div>
 <div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span>      CalculateVectorSum(gs_vector_out, 1.0, *gs_vector_out, krylov_eigen_vector[0], vector_0);</div>
 <div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span>      <span class="keywordflow">if</span> (params.flag_symmetric_crs) {</div>
 <div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span>         <a class="code hl_function" href="../../d4/ded/namespacecompnal_1_1blas.html#aeeec1b8a9d956be99035a82b732b15b4">CalculateSymmetricMatrixVectorProduct</a>(&amp;vector_1, 1.0, matrix_in, vector_0, &amp;vectors_work);</div>
@@ -560,7 +560,7 @@ $(function() {
 <div class="line"><a id="l00482" name="l00482"></a><span class="lineno">  482</span>      </div>
 <div class="line"><a id="l00483" name="l00483"></a><span class="lineno">  483</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> step = 1; step &lt;= converge_step_number; ++step) {</div>
 <div class="line"><a id="l00484" name="l00484"></a><span class="lineno">  484</span>         vector_2.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ad5d0d469065d6ee4b821e567941efe2e">Assign</a>(vector_1);</div>
-<div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span>         vector_2.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ae1f11ab8bb2cad20bd9dbe8c3f20c93a">Normalize</a>();</div>
+<div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span>         vector_2.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a6dcac49ab1ca9eec9a0703a09b39e933">Normalize</a>();</div>
 <div class="line"><a id="l00486" name="l00486"></a><span class="lineno">  486</span>         CalculateVectorSum(gs_vector_out, 1.0, *gs_vector_out, krylov_eigen_vector[step], vector_2);</div>
 <div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span>         </div>
 <div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span>         <span class="keywordflow">if</span> (params.flag_symmetric_crs) {</div>
@@ -579,7 +579,7 @@ $(function() {
 <div class="line"><a id="l00501" name="l00501"></a><span class="lineno">  501</span>            std::cout &lt;&lt; <span class="stringliteral">&quot;\rLanczos_Vec_Step:&quot;</span> &lt;&lt; step &lt;&lt; <span class="stringliteral">&quot;/&quot;</span> &lt;&lt; converge_step_number &lt;&lt; std::string(5, <span class="charliteral">&#39; &#39;</span>) &lt;&lt; std::flush;</div>
 <div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span>         }</div>
 <div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span>      }</div>
-<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span>      gs_vector_out-&gt;<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ae1f11ab8bb2cad20bd9dbe8c3f20c93a">Normalize</a>();</div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span>      gs_vector_out-&gt;<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a6dcac49ab1ca9eec9a0703a09b39e933">Normalize</a>();</div>
 <div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span>   }</div>
 <div class="line"><a id="l00506" name="l00506"></a><span class="lineno">  506</span>   </div>
 <div class="line"><a id="l00507" name="l00507"></a><span class="lineno">  507</span>   <span class="keyword">const</span> <span class="keyword">auto</span>   time_count = std::chrono::duration_cast&lt;std::chrono::microseconds&gt;(std::chrono::system_clock::now() - start).count();</div>
@@ -661,7 +661,7 @@ $(function() {
 <div class="line"><a id="l00583" name="l00583"></a><span class="lineno">  583</span>      }</div>
 <div class="line"><a id="l00584" name="l00584"></a><span class="lineno">  584</span>   }</div>
 <div class="line"><a id="l00585" name="l00585"></a><span class="lineno">  585</span>   </div>
-<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>   v0.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ae1f11ab8bb2cad20bd9dbe8c3f20c93a">Normalize</a>();</div>
+<div class="line"><a id="l00586" name="l00586"></a><span class="lineno">  586</span>   v0.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a6dcac49ab1ca9eec9a0703a09b39e933">Normalize</a>();</div>
 <div class="line"><a id="l00587" name="l00587"></a><span class="lineno">  587</span>   </div>
 <div class="line"><a id="l00588" name="l00588"></a><span class="lineno">  588</span>   <span class="keywordflow">if</span> (params.flag_symmetric_crs) {</div>
 <div class="line"><a id="l00589" name="l00589"></a><span class="lineno">  589</span>      <a class="code hl_function" href="../../d4/ded/namespacecompnal_1_1blas.html#aeeec1b8a9d956be99035a82b732b15b4">CalculateSymmetricMatrixVectorProduct</a>(&amp;w0, 1.0, matrix_in, v0, &amp;vectors_work);</div>
@@ -734,7 +734,7 @@ $(function() {
 <div class="line"><a id="l00656" name="l00656"></a><span class="lineno">  656</span>         <span class="keywordflow">for</span> (std::int64_t i = 0; i &lt; dim; ++i) {</div>
 <div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span>            gs_vector_out-&gt;val[i] = k_e_vec[0]*w0.val[i] + k_e_vec[1]*w1.val[i] + k_e_vec[2]*w2.val[i];</div>
 <div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span>         }</div>
-<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span>         gs_vector_out-&gt;<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ae1f11ab8bb2cad20bd9dbe8c3f20c93a">Normalize</a>();</div>
+<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span>         gs_vector_out-&gt;<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a6dcac49ab1ca9eec9a0703a09b39e933">Normalize</a>();</div>
 <div class="line"><a id="l00660" name="l00660"></a><span class="lineno">  660</span>         <span class="keyword">const</span> <span class="keyword">auto</span>   time_count = std::chrono::duration_cast&lt;std::chrono::microseconds&gt;(std::chrono::system_clock::now() - start).count();</div>
 <div class="line"><a id="l00661" name="l00661"></a><span class="lineno">  661</span>         <span class="keyword">const</span> <span class="keywordtype">double</span> time_sec   = <span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(time_count)/<a class="code hl_variable" href="../../d4/ded/namespacecompnal_1_1blas.html#aa1196aeb106e923cc2ad6c17fea58f26">TIME_UNIT_CONSTANT</a>;</div>
 <div class="line"><a id="l00662" name="l00662"></a><span class="lineno">  662</span>         std::cout &lt;&lt; std::defaultfloat &lt;&lt; std::setprecision(8) &lt;&lt; <span class="stringliteral">&quot;\rElapsed time of diagonalization:&quot;</span> &lt;&lt; time_sec &lt;&lt; <span class="stringliteral">&quot;[sec]&quot;</span> &lt;&lt; std::flush;</div>
@@ -753,12 +753,12 @@ $(function() {
 <div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span>      RealType alpha = 1.0/CalculateInnerProduct(v0, v0);</div>
 <div class="line"><a id="l00676" name="l00676"></a><span class="lineno">  676</span>      RealType beta  = CalculateInnerProduct(v2, v2);</div>
 <div class="line"><a id="l00677" name="l00677"></a><span class="lineno">  677</span>            </div>
-<div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span>      v0.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ae1f11ab8bb2cad20bd9dbe8c3f20c93a">Normalize</a>();</div>
-<div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span>      v1.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ae1f11ab8bb2cad20bd9dbe8c3f20c93a">Normalize</a>();</div>
+<div class="line"><a id="l00678" name="l00678"></a><span class="lineno">  678</span>      v0.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a6dcac49ab1ca9eec9a0703a09b39e933">Normalize</a>();</div>
+<div class="line"><a id="l00679" name="l00679"></a><span class="lineno">  679</span>      v1.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a6dcac49ab1ca9eec9a0703a09b39e933">Normalize</a>();</div>
 <div class="line"><a id="l00680" name="l00680"></a><span class="lineno">  680</span>      </div>
 <div class="line"><a id="l00681" name="l00681"></a><span class="lineno">  681</span>      <span class="keywordflow">if</span> (beta &gt; 0) {</div>
 <div class="line"><a id="l00682" name="l00682"></a><span class="lineno">  682</span>         beta = 1.0/std::sqrt(beta);</div>
-<div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span>         v2.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ae1f11ab8bb2cad20bd9dbe8c3f20c93a">Normalize</a>();</div>
+<div class="line"><a id="l00683" name="l00683"></a><span class="lineno">  683</span>         v2.<a class="code hl_function" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a6dcac49ab1ca9eec9a0703a09b39e933">Normalize</a>();</div>
 <div class="line"><a id="l00684" name="l00684"></a><span class="lineno">  684</span>      }</div>
 <div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span>      <span class="keywordflow">else</span> {</div>
 <div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span>         beta = 0.0;</div>
@@ -791,9 +791,8 @@ $(function() {
 <div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span> </div>
 <div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span><span class="preprocessor">#endif </span><span class="comment">/* COMPNAL_BLAS_EIGENDECOMPOSITION_HPP_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aclasscompnal_1_1type_1_1_braket_vector_html"><div class="ttname"><a href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">compnal::type::BraketVector</a></div><div class="ttdoc">The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...</div><div class="ttdef"><b>Definition:</b> braket_vector.hpp:34</div></div>
-<div class="ttc" id="aclasscompnal_1_1type_1_1_braket_vector_html_aa0300aaa326f59492ff1bb0d0f209b8f"><div class="ttname"><a href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#aa0300aaa326f59492ff1bb0d0f209b8f">compnal::type::BraketVector::L2Norm</a></div><div class="ttdeci">auto L2Norm() const</div><div class="ttdef"><b>Definition:</b> braket_vector.hpp:146</div></div>
-<div class="ttc" id="aclasscompnal_1_1type_1_1_braket_vector_html_ad5d0d469065d6ee4b821e567941efe2e"><div class="ttname"><a href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ad5d0d469065d6ee4b821e567941efe2e">compnal::type::BraketVector::Assign</a></div><div class="ttdeci">void Assign(const BraketVector&lt; T &gt; &amp;vector)</div><div class="ttdoc">Assign BraketVector.</div><div class="ttdef"><b>Definition:</b> braket_vector.hpp:94</div></div>
-<div class="ttc" id="aclasscompnal_1_1type_1_1_braket_vector_html_ae1f11ab8bb2cad20bd9dbe8c3f20c93a"><div class="ttname"><a href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ae1f11ab8bb2cad20bd9dbe8c3f20c93a">compnal::type::BraketVector::Normalize</a></div><div class="ttdeci">void Normalize(const T normalization_factor=1)</div><div class="ttdoc">Noemalize BraketVector.</div><div class="ttdef"><b>Definition:</b> braket_vector.hpp:118</div></div>
+<div class="ttc" id="aclasscompnal_1_1type_1_1_braket_vector_html_a6dcac49ab1ca9eec9a0703a09b39e933"><div class="ttname"><a href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a6dcac49ab1ca9eec9a0703a09b39e933">compnal::type::BraketVector::Normalize</a></div><div class="ttdeci">void Normalize(const T normalization_factor=T{1.0})</div><div class="ttdoc">Noemalize BraketVector.</div><div class="ttdef"><b>Definition:</b> braket_vector.hpp:122</div></div>
+<div class="ttc" id="aclasscompnal_1_1type_1_1_braket_vector_html_ad5d0d469065d6ee4b821e567941efe2e"><div class="ttname"><a href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#ad5d0d469065d6ee4b821e567941efe2e">compnal::type::BraketVector::Assign</a></div><div class="ttdeci">void Assign(const BraketVector&lt; T &gt; &amp;vector)</div><div class="ttdoc">Assign BraketVector.</div><div class="ttdef"><b>Definition:</b> braket_vector.hpp:98</div></div>
 <div class="ttc" id="alapack_8hpp_html"><div class="ttname"><a href="../../df/dd2/lapack_8hpp.html">lapack.hpp</a></div></div>
 <div class="ttc" id="anamespacecompnal_1_1blas_html_a1f728907b3675c8558f09749abf793af"><div class="ttname"><a href="../../d4/ded/namespacecompnal_1_1blas.html#a1f728907b3675c8558f09749abf793af">compnal::blas::EigenvalueDecompositionLOBPCG</a></div><div class="ttdeci">std::pair&lt; int, double &gt; EigenvalueDecompositionLOBPCG(RealType *gs_value_out, type::BraketVector&lt; RealType &gt; *gs_vector_out, const type::CRS&lt; RealType &gt; &amp;matrix_in, const ParametersLanczos &amp;params=ParametersLanczos())</div><div class="ttdef"><b>Definition:</b> eigendecomposition.hpp:516</div></div>
 <div class="ttc" id="anamespacecompnal_1_1blas_html_a41a8fbd0adade2a6702b987c653abf7b"><div class="ttname"><a href="../../d4/ded/namespacecompnal_1_1blas.html#a41a8fbd0adade2a6702b987c653abf7b">compnal::blas::EigenvalueDecompositionLanczos</a></div><div class="ttdeci">std::pair&lt; int, double &gt; EigenvalueDecompositionLanczos(RealType *target_value_out, type::BraketVector&lt; RealType &gt; *target_vector_out, const type::CRS&lt; RealType &gt; &amp;matrix_in, const int target_level, const std::vector&lt; type::BraketVector&lt; RealType &gt; &gt; &amp;subspace_vectors, const ParametersLanczos &amp;params=ParametersLanczos())</div><div class="ttdef"><b>Definition:</b> eigendecomposition.hpp:75</div></div>

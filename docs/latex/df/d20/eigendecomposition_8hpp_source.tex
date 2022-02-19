@@ -163,7 +163,7 @@
 \DoxyCodeLine{159       \}}
 \DoxyCodeLine{160    \}}
 \DoxyCodeLine{161    \mbox{\hyperlink{namespacecompnal_1_1blas_ae30f924effa78f04d9e973b3525ed4b7}{Orthonormalize}}(\&vector\_0, subspace\_vectors);}
-\DoxyCodeLine{162    vector\_0.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ae1f11ab8bb2cad20bd9dbe8c3f20c93a}{Normalize}}();}
+\DoxyCodeLine{162    vector\_0.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a6dcac49ab1ca9eec9a0703a09b39e933}{Normalize}}();}
 \DoxyCodeLine{163    }
 \DoxyCodeLine{164    \textcolor{keywordflow}{if} (params.flag\_store\_vec) \{}
 \DoxyCodeLine{165       rits\_vector.push\_back(vector\_0.val);}
@@ -182,9 +182,9 @@
 \DoxyCodeLine{178    }
 \DoxyCodeLine{179    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} step = 0; step < params.max\_step; ++step) \{}
 \DoxyCodeLine{180       vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ad5d0d469065d6ee4b821e567941efe2e}{Assign}}(vector\_1);}
-\DoxyCodeLine{181       off\_diagonal\_value.push\_back(vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_aa0300aaa326f59492ff1bb0d0f209b8f}{L2Norm}}());}
+\DoxyCodeLine{181       off\_diagonal\_value.push\_back(vector\_2.L2Norm());}
 \DoxyCodeLine{182       \mbox{\hyperlink{namespacecompnal_1_1blas_ae30f924effa78f04d9e973b3525ed4b7}{Orthonormalize}}(\&vector\_2, subspace\_vectors);}
-\DoxyCodeLine{183       vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ae1f11ab8bb2cad20bd9dbe8c3f20c93a}{Normalize}}();}
+\DoxyCodeLine{183       vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a6dcac49ab1ca9eec9a0703a09b39e933}{Normalize}}();}
 \DoxyCodeLine{184       }
 \DoxyCodeLine{185       \textcolor{keywordflow}{if} (params.flag\_store\_vec) \{}
 \DoxyCodeLine{186          rits\_vector.push\_back(vector\_2.val);}
@@ -239,7 +239,7 @@
 \DoxyCodeLine{235          \}}
 \DoxyCodeLine{236          target\_vector\_out-\/>val[i] = temp\_val;}
 \DoxyCodeLine{237       \}}
-\DoxyCodeLine{238       target\_vector\_out-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ae1f11ab8bb2cad20bd9dbe8c3f20c93a}{Normalize}}();}
+\DoxyCodeLine{238       target\_vector\_out-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a6dcac49ab1ca9eec9a0703a09b39e933}{Normalize}}();}
 \DoxyCodeLine{239    \}}
 \DoxyCodeLine{240    \textcolor{keywordflow}{else} \{}
 \DoxyCodeLine{241       \textcolor{keywordflow}{if} (params.flag\_use\_initial\_vec) \{}
@@ -257,7 +257,7 @@
 \DoxyCodeLine{253       \}}
 \DoxyCodeLine{254       }
 \DoxyCodeLine{255       \mbox{\hyperlink{namespacecompnal_1_1blas_ae30f924effa78f04d9e973b3525ed4b7}{Orthonormalize}}(\&vector\_0, subspace\_vectors);}
-\DoxyCodeLine{256       vector\_0.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ae1f11ab8bb2cad20bd9dbe8c3f20c93a}{Normalize}}();}
+\DoxyCodeLine{256       vector\_0.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a6dcac49ab1ca9eec9a0703a09b39e933}{Normalize}}();}
 \DoxyCodeLine{257 }
 \DoxyCodeLine{258       CalculateVectorSum(target\_vector\_out, 1.0, *target\_vector\_out, krylov\_eigen\_vector[0], vector\_0);}
 \DoxyCodeLine{259       \textcolor{keywordflow}{if} (params.flag\_symmetric\_crs) \{}
@@ -272,7 +272,7 @@
 \DoxyCodeLine{268       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} step = 1; step <= converge\_step\_number; ++step) \{}
 \DoxyCodeLine{269          vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ad5d0d469065d6ee4b821e567941efe2e}{Assign}}(vector\_1);}
 \DoxyCodeLine{270          \mbox{\hyperlink{namespacecompnal_1_1blas_ae30f924effa78f04d9e973b3525ed4b7}{Orthonormalize}}(\&vector\_2, subspace\_vectors);}
-\DoxyCodeLine{271          vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ae1f11ab8bb2cad20bd9dbe8c3f20c93a}{Normalize}}();}
+\DoxyCodeLine{271          vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a6dcac49ab1ca9eec9a0703a09b39e933}{Normalize}}();}
 \DoxyCodeLine{272          CalculateVectorSum(target\_vector\_out, 1.0, *target\_vector\_out, krylov\_eigen\_vector[step], vector\_2);}
 \DoxyCodeLine{273          }
 \DoxyCodeLine{274          \textcolor{keywordflow}{if} (params.flag\_symmetric\_crs) \{}
@@ -291,7 +291,7 @@
 \DoxyCodeLine{287             std::cout << \textcolor{stringliteral}{"{}\(\backslash\)rLanczos\_Vec\_Step:"{}} << step << \textcolor{stringliteral}{"{}/"{}} << converge\_step\_number << std::string(5, \textcolor{charliteral}{' '}) << std::flush;}
 \DoxyCodeLine{288          \}}
 \DoxyCodeLine{289       \}}
-\DoxyCodeLine{290       target\_vector\_out-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ae1f11ab8bb2cad20bd9dbe8c3f20c93a}{Normalize}}();}
+\DoxyCodeLine{290       target\_vector\_out-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a6dcac49ab1ca9eec9a0703a09b39e933}{Normalize}}();}
 \DoxyCodeLine{291    \}}
 \DoxyCodeLine{292    }
 \DoxyCodeLine{293    \textcolor{keyword}{const} \textcolor{keyword}{auto}   time\_count = std::chrono::duration\_cast<std::chrono::microseconds>(std::chrono::system\_clock::now() -\/ start).count();}
@@ -381,7 +381,7 @@
 \DoxyCodeLine{377       \}}
 \DoxyCodeLine{378    \}}
 \DoxyCodeLine{379    }
-\DoxyCodeLine{380    vector\_0.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ae1f11ab8bb2cad20bd9dbe8c3f20c93a}{Normalize}}();}
+\DoxyCodeLine{380    vector\_0.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a6dcac49ab1ca9eec9a0703a09b39e933}{Normalize}}();}
 \DoxyCodeLine{381    }
 \DoxyCodeLine{382    \textcolor{keywordflow}{if} (params.flag\_store\_vec) \{}
 \DoxyCodeLine{383       rits\_vector.push\_back(vector\_0.val);}
@@ -400,8 +400,8 @@
 \DoxyCodeLine{396       }
 \DoxyCodeLine{397    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} step = 0; step < params.max\_step; ++step) \{}
 \DoxyCodeLine{398       vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ad5d0d469065d6ee4b821e567941efe2e}{Assign}}(vector\_1);}
-\DoxyCodeLine{399       off\_diagonal\_value.push\_back(vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_aa0300aaa326f59492ff1bb0d0f209b8f}{L2Norm}}());}
-\DoxyCodeLine{400       vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ae1f11ab8bb2cad20bd9dbe8c3f20c93a}{Normalize}}();}
+\DoxyCodeLine{399       off\_diagonal\_value.push\_back(vector\_2.L2Norm());}
+\DoxyCodeLine{400       vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a6dcac49ab1ca9eec9a0703a09b39e933}{Normalize}}();}
 \DoxyCodeLine{401       }
 \DoxyCodeLine{402       \textcolor{keywordflow}{if} (params.flag\_store\_vec) \{}
 \DoxyCodeLine{403          rits\_vector.push\_back(vector\_2.val);}
@@ -456,7 +456,7 @@
 \DoxyCodeLine{452          \}}
 \DoxyCodeLine{453          gs\_vector\_out-\/>val[i] = temp\_val;}
 \DoxyCodeLine{454       \}}
-\DoxyCodeLine{455       gs\_vector\_out-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ae1f11ab8bb2cad20bd9dbe8c3f20c93a}{Normalize}}();}
+\DoxyCodeLine{455       gs\_vector\_out-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a6dcac49ab1ca9eec9a0703a09b39e933}{Normalize}}();}
 \DoxyCodeLine{456    \}}
 \DoxyCodeLine{457    \textcolor{keywordflow}{else} \{}
 \DoxyCodeLine{458       \textcolor{keywordflow}{if} (params.flag\_use\_initial\_vec) \{}
@@ -473,7 +473,7 @@
 \DoxyCodeLine{469          \}}
 \DoxyCodeLine{470       \}}
 \DoxyCodeLine{471       }
-\DoxyCodeLine{472       vector\_0.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ae1f11ab8bb2cad20bd9dbe8c3f20c93a}{Normalize}}();}
+\DoxyCodeLine{472       vector\_0.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a6dcac49ab1ca9eec9a0703a09b39e933}{Normalize}}();}
 \DoxyCodeLine{473       CalculateVectorSum(gs\_vector\_out, 1.0, *gs\_vector\_out, krylov\_eigen\_vector[0], vector\_0);}
 \DoxyCodeLine{474       \textcolor{keywordflow}{if} (params.flag\_symmetric\_crs) \{}
 \DoxyCodeLine{475          \mbox{\hyperlink{namespacecompnal_1_1blas_aeeec1b8a9d956be99035a82b732b15b4}{CalculateSymmetricMatrixVectorProduct}}(\&vector\_1, 1.0, matrix\_in, vector\_0, \&vectors\_work);}
@@ -486,7 +486,7 @@
 \DoxyCodeLine{482       }
 \DoxyCodeLine{483       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} step = 1; step <= converge\_step\_number; ++step) \{}
 \DoxyCodeLine{484          vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ad5d0d469065d6ee4b821e567941efe2e}{Assign}}(vector\_1);}
-\DoxyCodeLine{485          vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ae1f11ab8bb2cad20bd9dbe8c3f20c93a}{Normalize}}();}
+\DoxyCodeLine{485          vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a6dcac49ab1ca9eec9a0703a09b39e933}{Normalize}}();}
 \DoxyCodeLine{486          CalculateVectorSum(gs\_vector\_out, 1.0, *gs\_vector\_out, krylov\_eigen\_vector[step], vector\_2);}
 \DoxyCodeLine{487          }
 \DoxyCodeLine{488          \textcolor{keywordflow}{if} (params.flag\_symmetric\_crs) \{}
@@ -505,7 +505,7 @@
 \DoxyCodeLine{501             std::cout << \textcolor{stringliteral}{"{}\(\backslash\)rLanczos\_Vec\_Step:"{}} << step << \textcolor{stringliteral}{"{}/"{}} << converge\_step\_number << std::string(5, \textcolor{charliteral}{' '}) << std::flush;}
 \DoxyCodeLine{502          \}}
 \DoxyCodeLine{503       \}}
-\DoxyCodeLine{504       gs\_vector\_out-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ae1f11ab8bb2cad20bd9dbe8c3f20c93a}{Normalize}}();}
+\DoxyCodeLine{504       gs\_vector\_out-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a6dcac49ab1ca9eec9a0703a09b39e933}{Normalize}}();}
 \DoxyCodeLine{505    \}}
 \DoxyCodeLine{506    }
 \DoxyCodeLine{507    \textcolor{keyword}{const} \textcolor{keyword}{auto}   time\_count = std::chrono::duration\_cast<std::chrono::microseconds>(std::chrono::system\_clock::now() -\/ start).count();}
@@ -587,7 +587,7 @@
 \DoxyCodeLine{583       \}}
 \DoxyCodeLine{584    \}}
 \DoxyCodeLine{585    }
-\DoxyCodeLine{586    v0.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ae1f11ab8bb2cad20bd9dbe8c3f20c93a}{Normalize}}();}
+\DoxyCodeLine{586    v0.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a6dcac49ab1ca9eec9a0703a09b39e933}{Normalize}}();}
 \DoxyCodeLine{587    }
 \DoxyCodeLine{588    \textcolor{keywordflow}{if} (params.flag\_symmetric\_crs) \{}
 \DoxyCodeLine{589       \mbox{\hyperlink{namespacecompnal_1_1blas_aeeec1b8a9d956be99035a82b732b15b4}{CalculateSymmetricMatrixVectorProduct}}(\&w0, 1.0, matrix\_in, v0, \&vectors\_work);}
@@ -660,7 +660,7 @@
 \DoxyCodeLine{656          \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < dim; ++i) \{}
 \DoxyCodeLine{657             gs\_vector\_out-\/>val[i] = k\_e\_vec[0]*w0.val[i] + k\_e\_vec[1]*w1.val[i] + k\_e\_vec[2]*w2.val[i];}
 \DoxyCodeLine{658          \}}
-\DoxyCodeLine{659          gs\_vector\_out-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ae1f11ab8bb2cad20bd9dbe8c3f20c93a}{Normalize}}();}
+\DoxyCodeLine{659          gs\_vector\_out-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a6dcac49ab1ca9eec9a0703a09b39e933}{Normalize}}();}
 \DoxyCodeLine{660          \textcolor{keyword}{const} \textcolor{keyword}{auto}   time\_count = std::chrono::duration\_cast<std::chrono::microseconds>(std::chrono::system\_clock::now() -\/ start).count();}
 \DoxyCodeLine{661          \textcolor{keyword}{const} \textcolor{keywordtype}{double} time\_sec   = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(time\_count)/\mbox{\hyperlink{namespacecompnal_1_1blas_aa1196aeb106e923cc2ad6c17fea58f26}{TIME\_UNIT\_CONSTANT}};}
 \DoxyCodeLine{662          std::cout << std::defaultfloat << std::setprecision(8) << \textcolor{stringliteral}{"{}\(\backslash\)rElapsed time of diagonalization:"{}} << time\_sec << \textcolor{stringliteral}{"{}[sec]"{}} << std::flush;}
@@ -679,12 +679,12 @@
 \DoxyCodeLine{675       RealType alpha = 1.0/CalculateInnerProduct(v0, v0);}
 \DoxyCodeLine{676       RealType beta  = CalculateInnerProduct(v2, v2);}
 \DoxyCodeLine{677             }
-\DoxyCodeLine{678       v0.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ae1f11ab8bb2cad20bd9dbe8c3f20c93a}{Normalize}}();}
-\DoxyCodeLine{679       v1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ae1f11ab8bb2cad20bd9dbe8c3f20c93a}{Normalize}}();}
+\DoxyCodeLine{678       v0.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a6dcac49ab1ca9eec9a0703a09b39e933}{Normalize}}();}
+\DoxyCodeLine{679       v1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a6dcac49ab1ca9eec9a0703a09b39e933}{Normalize}}();}
 \DoxyCodeLine{680       }
 \DoxyCodeLine{681       \textcolor{keywordflow}{if} (beta > 0) \{}
 \DoxyCodeLine{682          beta = 1.0/std::sqrt(beta);}
-\DoxyCodeLine{683          v2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ae1f11ab8bb2cad20bd9dbe8c3f20c93a}{Normalize}}();}
+\DoxyCodeLine{683          v2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a6dcac49ab1ca9eec9a0703a09b39e933}{Normalize}}();}
 \DoxyCodeLine{684       \}}
 \DoxyCodeLine{685       \textcolor{keywordflow}{else} \{}
 \DoxyCodeLine{686          beta = 0.0;}
