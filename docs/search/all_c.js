@@ -8,5 +8,5 @@ var searchData=
   ['mix_5',['MIX',['../d4/df8/namespacecompnal_1_1type.html#aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647',1,'compnal::type']]],
   ['model_6',['model',['../de/d7d/classcompnal_1_1solver_1_1_exact_diag.html#a4bb54cc68b058aa00720b0931c21736a',1,'compnal::solver::ExactDiag']]],
   ['mu_5f_7',['mu_',['../d9/d7b/classcompnal_1_1model_1_1_hubbard__1_d.html#ae31b371c7fa400ff47b5ba46d18ddff2',1,'compnal::model::Hubbard_1D']]],
-  ['multiplybyscalar_8',['MultiplyByScalar',['../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a0846b3f5d190b2d3e9c7d3703b22fc3d',1,'compnal::type::BraketVector::MultiplyByScalar()'],['../de/d15/structcompnal_1_1type_1_1_c_r_s.html#a318f4f77bbe19e1e082c2c5710afe60c',1,'compnal::type::CRS::MultiplyByScalar()']]]
+  ['multiplybyscalar_8',['MultiplyByScalar',['../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a5f9df72b25fd7df92422ba30a3ae4362',1,'compnal::type::BraketVector::MultiplyByScalar()'],['../de/d15/structcompnal_1_1type_1_1_c_r_s.html#a318f4f77bbe19e1e082c2c5710afe60c',1,'compnal::type::CRS::MultiplyByScalar()']]]
 ];

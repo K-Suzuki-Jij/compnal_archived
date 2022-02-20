@@ -30,6 +30,7 @@ MathJax.Hub.Config({
   <td id="projectalign">
    <div id="projectname">compnal<span id="projectnumber">&#160;0.1.0</span>
    </div>
+   <div id="projectbrief">COndensed Matter Physics Numerical Analytics Library</div>
   </td>
  </tr>
  </tbody>
@@ -126,10 +127,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6dcac49ab1ca9eec9a0703a09b39e933"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a6dcac49ab1ca9eec9a0703a09b39e933">Normalize</a> (const T normalization_factor=T{1.0})</td></tr>
 <tr class="memdesc:a6dcac49ab1ca9eec9a0703a09b39e933"><td class="mdescLeft">&#160;</td><td class="mdescRight">Noemalize <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a>.  <a href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a6dcac49ab1ca9eec9a0703a09b39e933">More...</a><br /></td></tr>
 <tr class="separator:a6dcac49ab1ca9eec9a0703a09b39e933"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0846b3f5d190b2d3e9c7d3703b22fc3d"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:a0846b3f5d190b2d3e9c7d3703b22fc3d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a0846b3f5d190b2d3e9c7d3703b22fc3d">MultiplyByScalar</a> (const T coeef)</td></tr>
-<tr class="memdesc:a0846b3f5d190b2d3e9c7d3703b22fc3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiply by scalar to the elements.  <a href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a0846b3f5d190b2d3e9c7d3703b22fc3d">More...</a><br /></td></tr>
-<tr class="separator:a0846b3f5d190b2d3e9c7d3703b22fc3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f9df72b25fd7df92422ba30a3ae4362"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a5f9df72b25fd7df92422ba30a3ae4362"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a5f9df72b25fd7df92422ba30a3ae4362">MultiplyByScalar</a> (const T coeff)</td></tr>
+<tr class="memdesc:a5f9df72b25fd7df92422ba30a3ae4362"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiply by scalar to the elements.  <a href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a5f9df72b25fd7df92422ba30a3ae4362">More...</a><br /></td></tr>
+<tr class="separator:a5f9df72b25fd7df92422ba30a3ae4362"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1993ee07062625f8b03aec25e58e8694"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a1993ee07062625f8b03aec25e58e8694">CalculateL1Norm</a> () const</td></tr>
 <tr class="memdesc:a1993ee07062625f8b03aec25e58e8694"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate L1 norm.  <a href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a1993ee07062625f8b03aec25e58e8694">More...</a><br /></td></tr>
 <tr class="separator:a1993ee07062625f8b03aec25e58e8694"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -629,8 +630,8 @@ template&lt;typename ElementType &gt; </div>
 
 </div>
 </div>
-<a id="a0846b3f5d190b2d3e9c7d3703b22fc3d" name="a0846b3f5d190b2d3e9c7d3703b22fc3d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0846b3f5d190b2d3e9c7d3703b22fc3d">&#9670;&nbsp;</a></span>MultiplyByScalar()</h2>
+<a id="a5f9df72b25fd7df92422ba30a3ae4362" name="a5f9df72b25fd7df92422ba30a3ae4362"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f9df72b25fd7df92422ba30a3ae4362">&#9670;&nbsp;</a></span>MultiplyByScalar()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -646,7 +647,7 @@ template&lt;typename T &gt; </div>
           <td class="memname">void <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">compnal::type::BraketVector</a>&lt; ElementType &gt;::MultiplyByScalar </td>
           <td>(</td>
           <td class="paramtype">const T&#160;</td>
-          <td class="paramname"><em>coeef</em></td><td>)</td>
+          <td class="paramname"><em>coeff</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -666,7 +667,7 @@ template&lt;typename T &gt; </div>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">coeef</td><td>The value to be multiplied. </td></tr>
+    <tr><td class="paramname">coeff</td><td>The value to be multiplied. </td></tr>
   </table>
   </dd>
 </dl>
