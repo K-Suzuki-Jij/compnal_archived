@@ -47,7 +47,7 @@ public:
    //! @brief The elements of BraketVector
    std::vector<ElementType> value_list;
    
-
+   
    //------------------------------------------------------------------
    //---------------------------Constructors---------------------------
    //------------------------------------------------------------------
@@ -69,7 +69,7 @@ public:
    BraketVector(const BraketVector<T> &vector) {
       Assign(vector);
    }
-    
+   
    
    //------------------------------------------------------------------
    //----------------------Public Member Functions---------------------
@@ -132,12 +132,12 @@ public:
    
    //! @brief Multiply by scalar to the elements.
    //! @tparam T Value type.
-   //! @param coeef The value to be multiplied.
+   //! @param coeff The value to be multiplied.
    template<typename T>
-   void MultiplyByScalar(const T coeef) {
+   void MultiplyByScalar(const T coeff) {
 #pragma omp parallel for
       for (std::size_t i = 0; i < this->value_list.size(); ++i) {
-         this->value_list[i] *= coeef;
+         this->value_list[i] *= coeff;
       }
    }
    
@@ -272,10 +272,11 @@ private:
 //! @brief Operator overloading: addition operator.
 //! @tparam T1 Value type of the left-hand side.
 //! @tparam T2 Value type of the right-hand side.
-//! @param lhs The value of the left-hand side.
-//! @param rhs The value of the right-hand side.
+//! @param lhs The value of the left-hand side, \f$ \boldsymbol{v}_1 \f$.
+//! @param rhs The value of the right-hand side, \f$ \boldsymbol{v}_2 \f$.
+//! @return The sum of BraketVector and BraketVector, \f$ \boldsymbol{v}_1 + \boldsymbol{v}_2\f$.
 template<typename T1, typename T2>
-BraketVector<decltype(T1{0}+T2{0})> operator+(const BraketVector<T1> &lhs, const BraketVector<T2> &rhs) {
+auto operator+(const BraketVector<T1> &lhs, const BraketVector<T2> &rhs) {
    return CalculateVectorVectorSum(T1{1}, lhs, T2{1}, rhs);
 }
 
@@ -285,7 +286,7 @@ BraketVector<decltype(T1{0}+T2{0})> operator+(const BraketVector<T1> &lhs, const
 //! @param lhs The value of the left-hand side.
 //! @param rhs The value of the right-hand side.
 template<typename T1, typename T2>
-BraketVector<decltype(T1{0}-T2{0})> operator-(const BraketVector<T1> &lhs, const BraketVector<T2> &rhs) {
+auto operator-(const BraketVector<T1> &lhs, const BraketVector<T2> &rhs) {
    return CalculateVectorVectorSum(T1{1}, lhs, T2{-1}, rhs);
 }
 
@@ -295,7 +296,7 @@ BraketVector<decltype(T1{0}-T2{0})> operator-(const BraketVector<T1> &lhs, const
 //! @param lhs The value of the left-hand side.
 //! @param rhs The value of the right-hand side.
 template<typename T1, typename T2>
-decltype(T1{0}*T2{0}) operator*(const BraketVector<T1> &lhs, const BraketVector<T2> &rhs) {
+auto operator*(const BraketVector<T1> &lhs, const BraketVector<T2> &rhs) {
    return CalculateVectorVectorProduct(lhs, rhs);
 }
 
@@ -305,7 +306,7 @@ decltype(T1{0}*T2{0}) operator*(const BraketVector<T1> &lhs, const BraketVector<
 //! @param lhs The value of the left-hand side.
 //! @param rhs The value of the right-hand side.
 template<typename T1, typename T2>
-BraketVector<decltype(T1{0}*T2{0})> operator*(const T1 lhs, const BraketVector<T2> &rhs) {
+auto operator*(const T1 lhs, const BraketVector<T2> &rhs) {
    return CalculateScalarVectorProduct(lhs, rhs);
 }
 
@@ -315,7 +316,7 @@ BraketVector<decltype(T1{0}*T2{0})> operator*(const T1 lhs, const BraketVector<T
 //! @param lhs The value of the left-hand side.
 //! @param rhs The value of the right-hand side.
 template<typename T1, typename T2>
-BraketVector<decltype(T1{0}*T2{0})> operator*(const BraketVector<T1> &lhs, const T2 rhs) {
+auto operator*(const BraketVector<T1> &lhs, const T2 rhs) {
    return CalculateScalarVectorProduct(rhs, lhs);
 }
 
@@ -354,12 +355,21 @@ std::ostream& operator<<(std::ostream &os, const BraketVector<T> &v) {
    return os;
 }
 
-
+//! @brief Calculate BraketVector summation (\f$ c_1\boldsymbol{v}_1 + c_2\boldsymbol{v}_2 \f$).
+//! @tparam T1 Value type of coeff_1.
+//! @tparam T2 Value type of braket_vector_1.
+//! @tparam T3 Value type of coeff_2.
+//! @tparam T4 Value type of braket_vector_2.
+//! @param coeff_1 The coefficient \f$ c_1 \f$.
+//! @param braket_vector_1 BraketVector \f$ \boldsymbol{v}_1\f$.
+//! @param coeff_2 The coefficient \f$ c_2 \f$.
+//! @param braket_vector_2 BraketVector \f$ \boldsymbol{v}_2\f$.
+//! @return BraketVector summation \f$ c_1\boldsymbol{v}_1 + c_2\boldsymbol{v}_2 \f$.
 template<typename T1, typename T2, typename T3, typename T4>
-BraketVector<decltype(T1{0}*T2{0}+T3{0}*T4{0})> CalculateVectorVectorSum(const T1 coeef_1,
-                                                                         const BraketVector<T2> &braket_vector_1,
-                                                                         const T3 coeef_2,
-                                                                         const BraketVector<T4> &braket_vector_2) {
+auto CalculateVectorVectorSum(const T1 coeff_1,
+                              const BraketVector<T2> &braket_vector_1,
+                              const T3 coeff_2,
+                              const BraketVector<T4> &braket_vector_2) {
    if (braket_vector_1.value_list.size() != braket_vector_2.value_list.size()) {
       std::stringstream ss;
       ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
@@ -372,14 +382,20 @@ BraketVector<decltype(T1{0}*T2{0}+T3{0}*T4{0})> CalculateVectorVectorSum(const T
    const std::int64_t size = braket_vector_1.value_list.size();
 #pragma omp parallel for
    for (std::int64_t i = 0; i < size; ++i) {
-      vector_out.value_list[i] = coeef_1*braket_vector_1.value_list[i] + coeef_2*braket_vector_2.value_list[i];
+      vector_out.value_list[i] = coeff_1*braket_vector_1.value_list[i] + coeff_2*braket_vector_2.value_list[i];
    }
    return vector_out;
 }
 
+//! @brief Calculate BraketVector innner product (\f$ \boldsymbol{v}_1\cdot\boldsymbol{v}_2 \f$).
+//! @tparam T1 Value type of braket_vector_1.
+//! @tparam T2 Value type of braket_vector_2.
+//! @param braket_vector_1 BraketVector \f$ \boldsymbol{v}_1\f$.
+//! @param braket_vector_2 BraketVector \f$ \boldsymbol{v}_2\f$.
+//! @return BraketVector inner product \f$ \boldsymbol{v}_1\cdot\boldsymbol{v}_2 \f$.
 template<typename T1, typename T2>
-decltype(T1{0}*T2{0}) CalculateVectorVectorProduct(const BraketVector<T1> &braket_vector_1,
-                                                   const BraketVector<T2> &braket_vector_2) {
+auto CalculateVectorVectorProduct(const BraketVector<T1> &braket_vector_1,
+                                  const BraketVector<T2> &braket_vector_2) {
    if (braket_vector_1.value_list.size() != braket_vector_2.value_list.size()) {
       std::stringstream ss;
       ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
@@ -396,9 +412,15 @@ decltype(T1{0}*T2{0}) CalculateVectorVectorProduct(const BraketVector<T1> &brake
    return val_out;
 }
 
+//! @brief Calculate scalar BraketVector product (\f$ c\boldsymbol{v} \f$).
+//! @tparam T1 Value type of value.
+//! @tparam T2 Value type of braket_vector_1.
+//! @param value The coefficient \f$ c\f$
+//! @param braket_vector BraketVector \f$ \boldsymbol{v}\f$.
+//! @return Scalar BraketVector product \f$ c\boldsymbol{v} \f$.
 template<typename T1, typename T2>
-BraketVector<decltype(T1{0}*T2{0})> CalculateScalarVectorProduct(const T1 value,
-                                                                 const BraketVector<T2> &braket_vector) {
+auto CalculateScalarVectorProduct(const T1 value,
+                                  const BraketVector<T2> &braket_vector) {
    
    BraketVector<decltype(T1{0}*T2{0})> out;
    out.Resize(braket_vector.value_list.size());
@@ -410,12 +432,23 @@ BraketVector<decltype(T1{0}*T2{0})> CalculateScalarVectorProduct(const T1 value,
    return out;
 }
 
+//! @brief Calculate L1Norm between two BraketVector, aka Manhattan distance.
+//! (\f$ \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\|_1=\sum_{i}\|c_1v_{1,i} - c_2v_{2,i}\| \f$).
+//! @tparam T1 Value type of coeff_1.
+//! @tparam T2 Value type of braket_vector_1.
+//! @tparam T3 Value type of coeff_2.
+//! @tparam T4 Value type of braket_vector_2.
+//! @param coeff_1 The coefficient \f$ c_1 \f$.
+//! @param braket_vector_1 BraketVector \f$ \boldsymbol{v}_1\f$.
+//! @param coeff_2 The coefficient \f$ c_2 \f$.
+//! @param braket_vector_2 BraketVector \f$ \boldsymbol{v}_2\f$.
+//! @return L1Norm \f$ \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\|_1 \f$.
 template<typename T1, typename T2, typename T3, typename T4>
-decltype(T1{0}*T2{0}-T3{0}*T4{0}) CalculateL1Norm(const T1 coeef_1,
-                                                  const BraketVector<T2> &braket_vector_1,
-                                                  const T3 coeef_2,
-                                                  const BraketVector<T4> &braket_vector_2
-                                                  ) {
+auto CalculateL1Norm(const T1 coeff_1,
+                     const BraketVector<T2> &braket_vector_1,
+                     const T3 coeff_2,
+                     const BraketVector<T4> &braket_vector_2
+                     ) {
    
    if (braket_vector_1.value_list.size() != braket_vector_2.value_list.size()) {
       std::stringstream ss;
@@ -426,11 +459,47 @@ decltype(T1{0}*T2{0}-T3{0}*T4{0}) CalculateL1Norm(const T1 coeef_1,
    }
    
    decltype(T1{0}*T2{0}-T3{0}*T4{0}) val_out = 0.0;
+   const std::int64_t size = braket_vector_1.value_list.size();
 #pragma omp parallel for reduction (+: val_out)
-   for (std::size_t i = 0; i < braket_vector_1.value_list.size(); ++i) {
-      val_out += std::abs(coeef_1*braket_vector_1.value_list[i] - coeef_2*braket_vector_2.value_list[i]);
+   for (std::int64_t i = 0; i < size; ++i) {
+      val_out += std::abs(coeff_1*braket_vector_1.value_list[i] - coeff_2*braket_vector_2.value_list[i]);
    }
    return val_out;
+}
+
+//! @brief Calculate L2Norm, aka Euclidean distance (\f$ \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\| \f$).
+//! @tparam T1 Value type of coeff_1.
+//! @tparam T2 Value type of braket_vector_1.
+//! @tparam T3 Value type of coeff_2.
+//! @tparam T4 Value type of braket_vector_2.
+//! @param coeff_1 The coefficient \f$ c_1 \f$.
+//! @param braket_vector_1 BraketVector \f$ \boldsymbol{v}_1\f$.
+//! @param coeff_2 The coefficient \f$ c_2 \f$.
+//! @param braket_vector_2 BraketVector \f$ \boldsymbol{v}_2\f$.
+//! @return L2Norm \f$ \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\| \f$.
+template<typename T1, typename T2, typename T3, typename T4>
+auto CalculateL2Norm(const T1 coeff_1,
+                     const BraketVector<T2> &braket_vector_1,
+                     const T3 coeff_2,
+                     const BraketVector<T4> &braket_vector_2
+                     ) {
+   
+   if (braket_vector_1.value_list.size() != braket_vector_2.value_list.size()) {
+      std::stringstream ss;
+      ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+      ss << "BraketVector types do not match each other" << std::endl;
+      ss << "dim_1 = " << braket_vector_1.value_list.size() << ", dim_2 = " << braket_vector_2.value_list.size() << std::endl;
+      throw std::runtime_error(ss.str());
+   }
+   
+   decltype(T1{0}*T2{0}-T3{0}*T4{0}) val_out = 0.0;
+   const std::int64_t size = braket_vector_1.value_list.size();
+#pragma omp parallel for reduction (+: val_out)
+   for (std::int64_t i = 0; i < size; ++i) {
+      const auto v = coeff_1*braket_vector_1.value_list[i] - coeff_2*braket_vector_2.value_list[i];
+      val_out += v*v;
+   }
+   return std::sqrt(val_out);
 }
 
 } // namespace type
