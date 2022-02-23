@@ -1,8 +1,0 @@
-digraph "compnal::type::CRS&lt; ValueType &gt;"
-{
- // INTERACTIVE_SVG=YES
- // LATEX_PDF_SIZE
-  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
-  node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="{compnal::type::CRS\l\< ValueType \>\n|+ col\l+ col_dim\l+ row\l+ row_dim\l+ tag\l+ val\l|+ Assign()\l+ Clear()\l+ CRS()\l+ CRS()\l+ CRS()\l+ DiagonalScaling()\l+ Free()\l+ isSymmetric()\l+ MultiplyByScalar()\l+ operator*=()\land 8 more...\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Sparse matrix classs (Compressed Row Strage: CRS)."];
-}
