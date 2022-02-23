@@ -1,0 +1,9 @@
+digraph "Graphical Class Hierarchy"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="compnal::type::CRS\l\< ValueType \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d15/structcompnal_1_1type_1_1_c_r_s.html",tooltip="Sparse matrix classs (Compressed Row Strage: CRS)."];
+}

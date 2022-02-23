@@ -1,0 +1,11 @@
+digraph "compnal::model::BaseU1Electron_1D::CreateOnsiteOperatorNCDown"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="compnal::model::BaseU1Electron\l_1D::CreateOnsiteOperatorNCDown",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Generate the number operator for the electrons with the down spin ."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="compnal::type::Calculate\lMatrixMatrixProduct",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d4/df8/namespacecompnal_1_1type.html#ad4084b7468d3900b83b409da1b0d9254",tooltip=" "];
+}

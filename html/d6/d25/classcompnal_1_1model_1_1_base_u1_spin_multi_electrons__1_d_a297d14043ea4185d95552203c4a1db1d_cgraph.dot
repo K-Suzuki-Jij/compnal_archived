@@ -1,0 +1,11 @@
+digraph "compnal::model::BaseU1SpinMultiElectrons_1D::BaseU1SpinMultiElectrons_1D"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::BaseU1SpinMulti\lElectrons_1D",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Constructor of BaseU1Electron_1D class."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::SetTotalSz",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d25/classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#aec496e23ad07aecf03219a9d266dc13d",tooltip="Set target Hilbert space specified by the total sz to be diagonalized."];
+}

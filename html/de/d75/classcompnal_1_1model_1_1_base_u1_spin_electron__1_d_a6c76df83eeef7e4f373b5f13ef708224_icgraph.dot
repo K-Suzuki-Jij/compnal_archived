@@ -1,0 +1,14 @@
+digraph "compnal::model::BaseU1SpinElectron_1D::CalculateTargetDim"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="compnal::model::BaseU1Spin\lElectron_1D::CalculateTargetDim",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Calculate the dimension of the target Hilbert space specified by the system size ,..."];
+  Node1 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="compnal::model::BaseU1Spin\lElectron_1D::GenerateBasis",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d75/classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a4584edb50a1940eeda09d1ce654c9bc0",tooltip="Generate bases of the target Hilbert space specified by the system size , the magnitude of the local ..."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="compnal::model::KondoLattice\l_1D::PrintInfo",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/d89/classcompnal_1_1model_1_1_kondo_lattice__1_d.html#aa800a6c89a40b7f52fd0e68177410fd7",tooltip="Print information about this class."];
+}

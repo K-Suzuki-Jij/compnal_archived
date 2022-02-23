@@ -1,0 +1,43 @@
+digraph "compnal::model::BaseU1SpinElectron_1D::CreateOnsiteOperatorSpC"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="compnal::model::BaseU1Spin\lElectron_1D::CreateOnsiteOperatorSpC",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Generate the raising operator for spin of the electrons ."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="compnal::model::KondoLattice\l_1D::CreateOnsiteOperatorHam",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/d89/classcompnal_1_1model_1_1_kondo_lattice__1_d.html#a8aa204ed680f83dc5b019d753c279b74",tooltip="Create the onsite Hamiltonian."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="compnal::model::KondoLattice\l_1D::CreateOnsiteOperatorHam",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/d89/classcompnal_1_1model_1_1_kondo_lattice__1_d.html#ae555464e673a16e4845b7ebd2b039d7a",tooltip="Create the onsite Hamiltonian."];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="compnal::model::KondoLattice\l_1D::KondoLattice_1D",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/d89/classcompnal_1_1model_1_1_kondo_lattice__1_d.html#a438af116c62d9acf3cb85ecdb3cb597a",tooltip="Constructor of KondoLattice_1D."];
+  Node2 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="compnal::model::KondoLattice\l_1D::SetDz",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/d89/classcompnal_1_1model_1_1_kondo_lattice__1_d.html#a78e66c74774aa14500200df9328cb99e",tooltip="Set the uniaxial anisotropy to the z-direction ."];
+  Node2 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="compnal::model::KondoLattice\l_1D::SetHz",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/d89/classcompnal_1_1model_1_1_kondo_lattice__1_d.html#a6e57deed8aa7c2aab00e760d4ea353f3",tooltip="Set the magnetic fields for the z-direction."];
+  Node2 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="compnal::model::KondoLattice\l_1D::SetJxy",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/d89/classcompnal_1_1model_1_1_kondo_lattice__1_d.html#ad7fcb6d909257d2eaaa76f5a35b42d5e",tooltip="Set the Kondo exchange coupling along the x, y-direction ."];
+  Node7 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="compnal::model::KondoLattice\l_1D::SetJ",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/d89/classcompnal_1_1model_1_1_kondo_lattice__1_d.html#ac230631d37c5ce264ba86d5787e622dc",tooltip="Set the Kondo exchange coupling along the z-direction  and the x, y-direction ."];
+  Node2 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="compnal::model::KondoLattice\l_1D::SetJz",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d1/d89/classcompnal_1_1model_1_1_kondo_lattice__1_d.html#a32def5292209d1afc774b7d26808cb21",tooltip="Set the Kondo exchange coupling along the z-direction ."];
+  Node9 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="compnal::model::BaseU1Spin\lElectron_1D::CreateOnsiteOperatoriSyC",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d75/classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a2655d8d78f7eaf41ace9ce5a9c8ac90d",tooltip="Generate the spin operator for the y-direction for the electrons . Here  is the the imaginary unit."];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="compnal::model::BaseU1Spin\lElectron_1D::SetOnsiteOperator",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d75/classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a3b7543af8237ac54917e92bd20811f23",tooltip="Set onsite operators."];
+  Node11 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="compnal::model::BaseU1Spin\lElectron_1D::BaseU1SpinElectron_1D",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d75/classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#ace952a54f1c61f82eab2c93be8254409",tooltip="Constructor of BaseU1SpinElectron_1D class."];
+  Node11 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="compnal::model::BaseU1Spin\lElectron_1D::SetMagnitudeLSpin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d75/classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#ada273807b072a3a3a12062de109413aa",tooltip="Set the magnitude of the spin ."];
+  Node13 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="compnal::model::BaseU1Spin\lElectron_1D::BaseU1SpinElectron_1D",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d75/classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a679ded7b05555a3a8ac29859bb172b99",tooltip="Constructor of BaseU1SpinElectron_1D class."];
+  Node1 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="compnal::model::BaseU1Spin\lElectron_1D::CreateOnsiteOperatorSCSL",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d75/classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a2c054874201636966a39102673b8a452",tooltip="Generate ."];
+  Node15 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="compnal::model::BaseU1Spin\lElectron_1D::CreateOnsiteOperatorSxC",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d75/classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#abab0b145dc1e793803578d48b9a66bd0",tooltip="Generate the spin operator for the x-direction for the electrons ."];
+  Node16 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

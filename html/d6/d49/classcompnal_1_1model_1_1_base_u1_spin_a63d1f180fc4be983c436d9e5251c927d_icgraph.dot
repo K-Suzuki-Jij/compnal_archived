@@ -1,0 +1,17 @@
+digraph "compnal::model::BaseU1Spin::CreateOnsiteOperatorSz"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="compnal::model::BaseU1Spin\l::CreateOnsiteOperatorSz",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Generate the spin-  operator for the z-direction ."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="compnal::model::BaseU1Spin\l::SetOnsiteOperator",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d49/classcompnal_1_1model_1_1_base_u1_spin.html#a55509590c0fe917c47ba022acbabcb2c",tooltip="Set onsite operators."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="compnal::model::BaseU1Spin\l::BaseU1Spin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d49/classcompnal_1_1model_1_1_base_u1_spin.html#a99932d800811ad7bacbdd124620e97a2",tooltip="Constructor of BaseU1Spin class."];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="compnal::model::BaseU1Spin\l::SetMagnitudeSpin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d49/classcompnal_1_1model_1_1_base_u1_spin.html#a569a6978dc3b834ff3875534cf4761ab",tooltip="Set the magnitude of the spin ."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="compnal::model::BaseU1Spin\l::BaseU1Spin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d49/classcompnal_1_1model_1_1_base_u1_spin.html#a90d8388c7feec9f08bcf9253583e222b",tooltip="Constructor of BaseU1Spin class."];
+}

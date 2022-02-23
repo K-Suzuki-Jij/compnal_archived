@@ -1,0 +1,35 @@
+digraph "compnal::model::BaseU1SpinMultiElectrons_1D::CreateOnsiteOperatorNCUp"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::CreateOnsite\lOperatorNCUp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Generate the number operator for the electrons with the orbital  and the up spin ."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::CreateOnsite\lOperatorNC",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d25/classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a84248fbd8412972f4ff51e6ff7a320d8",tooltip="Generate the number operator for the electrons with the orbital , ."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::CreateOnsite\lOperatorNCTot",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d25/classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#ad2ad35117dd5878ef6debfa0e459502e",tooltip="Generate the number operator for the electrons with the orbital , ."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::SetOnsiteOperator",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d25/classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a4e56bb2b6493a742b5b06b3bfd8986a1",tooltip="Set onsite operators."];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::BaseU1SpinMulti\lElectrons_1D",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d25/classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a4359dad8dd513b330165945751b9661e",tooltip="Constructor of BaseU1SpinMultiElectrons_1D class."];
+  Node4 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::SetMagnitudeLSpin",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d25/classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#ae0fee27b35940b27fa0b26ddf23c3f1a",tooltip="Set the magnitude of the spin ."];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::BaseU1SpinMulti\lElectrons_1D",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d25/classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#af5146e35331f0720223a7c00ae011ede",tooltip="Constructor of BaseU1SpinMultiElectrons_1D class."];
+  Node4 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::SetTotalElectron",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d25/classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#aa8de474777ff3fd902d18820dad5ff12",tooltip="Set the number of total electrons."];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::BaseU1SpinMulti\lElectrons_1D",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d25/classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a0e733e395381b4ef97ca3ec9eb26105a",tooltip="Constructor of BaseU1SpinMultiElectrons_1D class."];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::CreateOnsite\lOperatorSzC",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d25/classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a5ae746eed7f08c1b115b720a4b6b480f",tooltip="Generate the spin operator for the z-direction for the electrons with the orbital ,..."];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::CreateOnsite\lOperatorSCSL",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d25/classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a0b80406ed5e4830bf7e2fd48f0622335",tooltip="Generate ."];
+  Node11 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::CreateOnsite\lOperatorSCSLTot",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d25/classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#ab96b15b44c109f691bbc7ec7b93d4ba6",tooltip="Generate ."];
+  Node10 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

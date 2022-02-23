@@ -1,0 +1,11 @@
+digraph "compnal::model::BaseU1SpinElectron_1D::BaseU1SpinElectron_1D"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="compnal::model::BaseU1Spin\lElectron_1D::BaseU1SpinElectron_1D",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Constructor of BaseU1SpinElectron_1D class."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="compnal::model::BaseU1Spin\lElectron_1D::SetSystemSize",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d75/classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#ab9884d700d7ec30f306d8c6d2bd726b3",tooltip="Set system size."];
+}

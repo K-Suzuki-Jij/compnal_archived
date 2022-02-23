@@ -1,0 +1,14 @@
+digraph "compnal::utility::CalculateNumPermutation"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="compnal::utility::Calculate\lNumPermutation",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Calculate the number of permutations from list.   For example, all the possible permutations for {1,..."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="compnal::model::BaseU1Spin\l::GenerateBasis",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d49/classcompnal_1_1model_1_1_base_u1_spin.html#ae922d2e4aefb5457a485d6433318ed16",tooltip="Generate basis of the target Hilbert space specified by the system size , the magnitude of the spin ,..."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="compnal::utility::Generate\lNthPermutation",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/db7/namespacecompnal_1_1utility.html#a7e59d7a03bcbd9fb222fd52300d29fd7",tooltip="Calculate  -th permutation of the list.   For example, all the possible permutations for {1,..."];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

@@ -82,7 +82,7 @@
 \DoxyCodeLine{90    }
 \DoxyCodeLine{92    std::int64\_t \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} = 0;}
 \DoxyCodeLine{93    }
-\DoxyCodeLine{95    std::vector<std::int64\_t> \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}};}
+\DoxyCodeLine{95    std::vector<std::int64\_t> \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}} = \{0\};}
 \DoxyCodeLine{96    }
 \DoxyCodeLine{98    std::vector<std::int64\_t> \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}};}
 \DoxyCodeLine{99    }
@@ -95,629 +95,669 @@
 \DoxyCodeLine{109    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{110    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Constructors-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{111    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{116 \textcolor{comment}{}   \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_af104ae77088437d9b17eb44ff2b226a5}{CRS}}(\textcolor{keyword}{const} std::int64\_t row\_dim\_in = 0, \textcolor{keyword}{const} std::int64\_t col\_dim\_in = 0, \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}} tag\_in = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}}) \{}
-\DoxyCodeLine{117       }
-\DoxyCodeLine{118       this-\/>row\_dim = row\_dim\_in;}
-\DoxyCodeLine{119       this-\/>col\_dim = col\_dim\_in;}
-\DoxyCodeLine{120       this-\/>row.resize(row\_dim\_in + 1);}
-\DoxyCodeLine{121 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{122       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i <= row\_dim\_in; ++i) \{}
-\DoxyCodeLine{123          this-\/>row[i] = 0;}
-\DoxyCodeLine{124       \}}
-\DoxyCodeLine{125       this-\/>tag = tag\_in;}
-\DoxyCodeLine{126    \}}
-\DoxyCodeLine{127    }
-\DoxyCodeLine{132    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T=ElementType>}
-\DoxyCodeLine{133    \textcolor{keyword}{explicit} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a5025f416b1ed779c591da43d30df2edb}{CRS}}(\textcolor{keyword}{const} std::vector<std::vector<T>> \&mat\_vec, \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}} tag\_in = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}}) \{}
-\DoxyCodeLine{134       this-\/>row\_dim = mat\_vec.size();}
-\DoxyCodeLine{135       this-\/>col\_dim = 0;}
-\DoxyCodeLine{136       this-\/>row.resize(this-\/>row\_dim + 1);}
-\DoxyCodeLine{137       this-\/>row[0] = 0;}
-\DoxyCodeLine{138       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{139          \textcolor{keyword}{const} std::int64\_t size = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(mat\_vec[i].size());}
-\DoxyCodeLine{140          \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < size;++j) \{}
-\DoxyCodeLine{141             \textcolor{keywordflow}{if} (mat\_vec[i][j] != 0.0) \{}
-\DoxyCodeLine{142                this-\/>col.push\_back(j);}
-\DoxyCodeLine{143                this-\/>val.push\_back(mat\_vec[i][j]);}
-\DoxyCodeLine{144             \}}
-\DoxyCodeLine{145             \textcolor{keywordflow}{if} (this-\/>col\_dim < j + 1) \{}
-\DoxyCodeLine{146                this-\/>col\_dim = j + 1;}
+\DoxyCodeLine{113 \textcolor{comment}{}   \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a76dae7aa62d63f21ecfa49eb3a73b721}{CRS}}() \{\};}
+\DoxyCodeLine{114       }
+\DoxyCodeLine{119    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a717531e4c418f1da4ee500ff751b154a}{CRS}}(\textcolor{keyword}{const} std::int64\_t row\_dim\_in, \textcolor{keyword}{const} std::int64\_t col\_dim\_in, \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}} tag\_in = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}}) \{}
+\DoxyCodeLine{120       }
+\DoxyCodeLine{121       this-\/>row\_dim = row\_dim\_in;}
+\DoxyCodeLine{122       this-\/>col\_dim = col\_dim\_in;}
+\DoxyCodeLine{123       this-\/>row.resize(row\_dim\_in + 1);}
+\DoxyCodeLine{124 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{125       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i <= row\_dim\_in; ++i) \{}
+\DoxyCodeLine{126          this-\/>row[i] = 0;}
+\DoxyCodeLine{127       \}}
+\DoxyCodeLine{128       this-\/>tag = tag\_in;}
+\DoxyCodeLine{129    \}}
+\DoxyCodeLine{130    }
+\DoxyCodeLine{135    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T=ElementType>}
+\DoxyCodeLine{136    \textcolor{keyword}{explicit} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a5025f416b1ed779c591da43d30df2edb}{CRS}}(\textcolor{keyword}{const} std::vector<std::vector<T>> \&mat\_vec, \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}} tag\_in = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}}) \{}
+\DoxyCodeLine{137       this-\/>row\_dim = mat\_vec.size();}
+\DoxyCodeLine{138       this-\/>col\_dim = 0;}
+\DoxyCodeLine{139       this-\/>row.resize(this-\/>row\_dim + 1);}
+\DoxyCodeLine{140       this-\/>row[0] = 0;}
+\DoxyCodeLine{141       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{142          \textcolor{keyword}{const} std::int64\_t size = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(mat\_vec[i].size());}
+\DoxyCodeLine{143          \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < size;++j) \{}
+\DoxyCodeLine{144             \textcolor{keywordflow}{if} (mat\_vec[i][j] != 0.0) \{}
+\DoxyCodeLine{145                this-\/>col.push\_back(j);}
+\DoxyCodeLine{146                this-\/>val.push\_back(mat\_vec[i][j]);}
 \DoxyCodeLine{147             \}}
-\DoxyCodeLine{148          \}}
-\DoxyCodeLine{149          this-\/>row[i + 1] = this-\/>col.size();}
-\DoxyCodeLine{150       \}}
-\DoxyCodeLine{151       this-\/>tag = tag\_in;}
-\DoxyCodeLine{152    \}}
-\DoxyCodeLine{153    }
-\DoxyCodeLine{156    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6e7c3ecb8c4f282abb84e23f098927ac}{CRS}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&matrix) \{}
-\DoxyCodeLine{157       \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac4696f6f7423080adbdbc490d49f0b0a}{Assign}}(matrix);}
-\DoxyCodeLine{158    \}}
-\DoxyCodeLine{159    }
-\DoxyCodeLine{160    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{161    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Public Member Functions-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{162    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{164 \textcolor{comment}{}   \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a1ff94881b52233a2903d369e398e907a}{Free}}() \{}
-\DoxyCodeLine{165       this-\/>row\_dim = 0;}
-\DoxyCodeLine{166       this-\/>col\_dim = 0;}
-\DoxyCodeLine{167       std::vector<std::int64\_t>().swap(this-\/>row);}
-\DoxyCodeLine{168       std::vector<std::int64\_t>().swap(this-\/>col);}
-\DoxyCodeLine{169       std::vector<ElementType>().swap(this-\/>val);}
-\DoxyCodeLine{170       this-\/>row.push\_back(0);}
-\DoxyCodeLine{171       this-\/>tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}};}
-\DoxyCodeLine{172       this-\/>name = \textcolor{stringliteral}{"{}"{}};}
-\DoxyCodeLine{173    \}}
-\DoxyCodeLine{174    }
-\DoxyCodeLine{178    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{179    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac4696f6f7423080adbdbc490d49f0b0a}{Assign}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} \&matrix) \{}
-\DoxyCodeLine{180       this-\/>row\_dim = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}};}
-\DoxyCodeLine{181       this-\/>col\_dim = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}};}
-\DoxyCodeLine{182       this-\/>row.resize(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} + 1);}
-\DoxyCodeLine{183       }
-\DoxyCodeLine{184       this-\/>col.resize(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size());}
-\DoxyCodeLine{185       this-\/>val.resize(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size());}
-\DoxyCodeLine{186       }
-\DoxyCodeLine{187 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{188       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i <= matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{189          this-\/>row[i] = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i];}
-\DoxyCodeLine{190       \}}
+\DoxyCodeLine{148             \textcolor{keywordflow}{if} (this-\/>col\_dim < j + 1) \{}
+\DoxyCodeLine{149                this-\/>col\_dim = j + 1;}
+\DoxyCodeLine{150             \}}
+\DoxyCodeLine{151          \}}
+\DoxyCodeLine{152          this-\/>row[i + 1] = this-\/>col.size();}
+\DoxyCodeLine{153       \}}
+\DoxyCodeLine{154       this-\/>tag = tag\_in;}
+\DoxyCodeLine{155    \}}
+\DoxyCodeLine{156    }
+\DoxyCodeLine{160    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{161    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a794c0b1737646f1aba58f923c1d19070}{CRS}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} \&matrix) \{}
+\DoxyCodeLine{162       \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac4696f6f7423080adbdbc490d49f0b0a}{Assign}}(matrix);}
+\DoxyCodeLine{163    \}}
+\DoxyCodeLine{164    }
+\DoxyCodeLine{165    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{166    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Public Member Functions-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{167    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{169 \textcolor{comment}{}   \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a1ff94881b52233a2903d369e398e907a}{Free}}() \{}
+\DoxyCodeLine{170       this-\/>row\_dim = 0;}
+\DoxyCodeLine{171       this-\/>col\_dim = 0;}
+\DoxyCodeLine{172       std::vector<std::int64\_t>().swap(this-\/>row);}
+\DoxyCodeLine{173       std::vector<std::int64\_t>().swap(this-\/>col);}
+\DoxyCodeLine{174       std::vector<ElementType>().swap(this-\/>val);}
+\DoxyCodeLine{175       this-\/>row.push\_back(0);}
+\DoxyCodeLine{176       this-\/>tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}};}
+\DoxyCodeLine{177       this-\/>name = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{178    \}}
+\DoxyCodeLine{179    }
+\DoxyCodeLine{183    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{184    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac4696f6f7423080adbdbc490d49f0b0a}{Assign}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} \&matrix) \{}
+\DoxyCodeLine{185       this-\/>row\_dim = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}};}
+\DoxyCodeLine{186       this-\/>col\_dim = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}};}
+\DoxyCodeLine{187       this-\/>row.resize(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} + 1);}
+\DoxyCodeLine{188       }
+\DoxyCodeLine{189       this-\/>col.resize(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size());}
+\DoxyCodeLine{190       this-\/>val.resize(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size());}
 \DoxyCodeLine{191       }
 \DoxyCodeLine{192 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{193       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size(); ++i) \{}
-\DoxyCodeLine{194          this-\/>col[i] = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[i];}
-\DoxyCodeLine{195          this-\/>val[i] = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[i];}
-\DoxyCodeLine{196       \}}
-\DoxyCodeLine{197       this-\/>tag = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}};}
-\DoxyCodeLine{198       this-\/>name = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8ff961838014a2146c4e570ebbb85840}{name}};}
-\DoxyCodeLine{199    \}}
-\DoxyCodeLine{200    }
-\DoxyCodeLine{204    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{205    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a1ce10267ddf6fd06620f57bc9b0a7e43}{MultiplyByScalar}}(\textcolor{keyword}{const} T coeff) \{}
-\DoxyCodeLine{206       \textcolor{keywordflow}{if} (coeff == 0.0) \{}
-\DoxyCodeLine{207 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{208          \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{209             this-\/>row[i + 1] = 0;}
-\DoxyCodeLine{210          \}}
-\DoxyCodeLine{211          this-\/>col.clear();}
-\DoxyCodeLine{212          this-\/>val.clear();}
-\DoxyCodeLine{213       \}}
-\DoxyCodeLine{214       \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{215 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{216          \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>col.size(); ++i) \{}
-\DoxyCodeLine{217             this-\/>val[i] *= coeff;}
-\DoxyCodeLine{218          \}}
-\DoxyCodeLine{219       \}}
-\DoxyCodeLine{220    \}}
-\DoxyCodeLine{221    }
-\DoxyCodeLine{225    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{226    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_aa7c4b4d33b18686e7da7ccdae4b94733}{AddDiagonalElements}}(\textcolor{keyword}{const} T diag\_add) \{}
-\DoxyCodeLine{227       \textcolor{keywordflow}{if} (this-\/>row\_dim != this-\/>col\_dim) \{}
-\DoxyCodeLine{228          std::stringstream ss;}
-\DoxyCodeLine{229          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
-\DoxyCodeLine{230          ss << \textcolor{stringliteral}{"{}The matrix is not a square matrix."{}} << std::endl;}
-\DoxyCodeLine{231          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
-\DoxyCodeLine{232       \}}
-\DoxyCodeLine{233       }
-\DoxyCodeLine{234       \textcolor{keywordtype}{bool} flag = \textcolor{keyword}{false};}
-\DoxyCodeLine{235 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{236       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{237          \textcolor{keywordtype}{bool} temp\_flag = \textcolor{keyword}{true};}
-\DoxyCodeLine{238          \textcolor{keywordflow}{for} (std::int64\_t j = this-\/>row[i]; j < this-\/>row[i + 1]; ++j) \{}
-\DoxyCodeLine{239             \textcolor{keywordflow}{if} (i == this-\/>col[j]) \{}
-\DoxyCodeLine{240                this-\/>val[j] += diag\_add;}
-\DoxyCodeLine{241                temp\_flag = \textcolor{keyword}{false};}
-\DoxyCodeLine{242                \textcolor{keywordflow}{break};}
-\DoxyCodeLine{243             \}}
-\DoxyCodeLine{244          \}}
-\DoxyCodeLine{245          \textcolor{keywordflow}{if} (temp\_flag) \{}
-\DoxyCodeLine{246             flag = \textcolor{keyword}{true};}
-\DoxyCodeLine{247          \}}
-\DoxyCodeLine{248       \}}
-\DoxyCodeLine{249       \textcolor{keywordflow}{if} (flag) \{}
-\DoxyCodeLine{250          \textcolor{comment}{//Restore the diagonal elements.}}
-\DoxyCodeLine{251 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{252          \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{253             \textcolor{keywordtype}{bool} temp\_flag = \textcolor{keyword}{true};}
-\DoxyCodeLine{254             \textcolor{keywordflow}{for} (std::int64\_t j = this-\/>row[i]; j < this-\/>row[i + 1]; ++j) \{}
-\DoxyCodeLine{255                \textcolor{keywordflow}{if} (i == this-\/>col[j]) \{}
-\DoxyCodeLine{256                   this-\/>val[j] -\/= diag\_add;}
-\DoxyCodeLine{257                   temp\_flag = \textcolor{keyword}{false};}
-\DoxyCodeLine{258                   \textcolor{keywordflow}{break};}
-\DoxyCodeLine{259                \}}
-\DoxyCodeLine{260             \}}
-\DoxyCodeLine{261          \}}
-\DoxyCodeLine{262          std::stringstream ss;}
-\DoxyCodeLine{263          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
-\DoxyCodeLine{264          ss << \textcolor{stringliteral}{"{}Could not add the value to the diagonal elements."{}} << std::endl;}
-\DoxyCodeLine{265          ss << \textcolor{stringliteral}{"{}The matrix need to have all the diagonal elements even if they are zero."{}} << std::endl;}
-\DoxyCodeLine{266          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
-\DoxyCodeLine{267       \}}
-\DoxyCodeLine{268    \}}
-\DoxyCodeLine{269    }
-\DoxyCodeLine{271    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a7fd21b0a2b0c525b831cf03e896fa525}{SortCol}}() \{}
-\DoxyCodeLine{272       \textcolor{keyword}{auto} compare = [\textcolor{keyword}{this}](\textcolor{keyword}{auto} \&a, \textcolor{keyword}{auto} \&b) \{}
-\DoxyCodeLine{273          \textcolor{keywordflow}{if} (b > a) \{}
-\DoxyCodeLine{274             std::swap(this-\/>val[std::distance(\&this-\/>col[0], \&a)],}
-\DoxyCodeLine{275                       this-\/>val[std::distance(\&this-\/>col[0], \&b)]);}
-\DoxyCodeLine{276             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{277          \}}
-\DoxyCodeLine{278          \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{279             \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
-\DoxyCodeLine{280          \}}
-\DoxyCodeLine{281       \};}
-\DoxyCodeLine{282       }
-\DoxyCodeLine{283 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{284       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{285          std::sort(\&this-\/>col[this-\/>row[i]], \&this-\/>col[this-\/>row[i + 1]], compare);}
-\DoxyCodeLine{286       \}}
-\DoxyCodeLine{287    \}}
-\DoxyCodeLine{288    }
-\DoxyCodeLine{290    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ab43150585915445e3b8745cf9ff1924c}{Print}}(\textcolor{keyword}{const} std::string display\_name = \textcolor{stringliteral}{"{}"{}})\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{291       \textcolor{keywordflow}{if} (this-\/>name != \textcolor{stringliteral}{"{}"{}}) \{}
-\DoxyCodeLine{292          std::cout << \textcolor{stringliteral}{"{}Name: "{}} << this-\/>name << std::endl;}
-\DoxyCodeLine{293       \}}
-\DoxyCodeLine{294       std::cout << this-\/>tag << std::endl;}
-\DoxyCodeLine{295       std::cout << std::fixed;}
-\DoxyCodeLine{296       std::cout << std::setprecision(std::numeric\_limits<ElementType>::max\_digits10);}
-\DoxyCodeLine{297       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{298          \textcolor{keywordflow}{for} (std::int64\_t j = this-\/>row.at(i); j < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}.at(i+1); ++j) \{}
-\DoxyCodeLine{299             std::cout << display\_name << \textcolor{stringliteral}{"{}["{}};}
-\DoxyCodeLine{300             std::cout << std::noshowpos << std::left << std::setw(3) << i << \textcolor{stringliteral}{"{}]["{}};}
-\DoxyCodeLine{301             std::cout << std::left << std::setw(3) << this-\/>col[j] << \textcolor{stringliteral}{"{}]="{}};}
-\DoxyCodeLine{302             std::cout << std::showpos << this-\/>val[j] << std::endl;}
-\DoxyCodeLine{303          \}}
-\DoxyCodeLine{304       \}}
-\DoxyCodeLine{305       std::cout << std::noshowpos;}
-\DoxyCodeLine{306    \}}
-\DoxyCodeLine{307    }
-\DoxyCodeLine{309    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a7cd67a00d8952a69b7563343d79de2fc}{PrintInfo}}(\textcolor{keyword}{const} std::string display\_name = \textcolor{stringliteral}{"{}Matrix"{}})\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{310       std::cout << std::fixed;}
-\DoxyCodeLine{311       std::cout << std::setprecision(std::numeric\_limits<ElementType>::max\_digits10);}
-\DoxyCodeLine{312       std::cout << \textcolor{stringliteral}{"{}Print information about CRS: "{}} << display\_name << std::endl;}
-\DoxyCodeLine{313       std::cout << this-\/>tag << std::endl;}
-\DoxyCodeLine{314       std::cout << \textcolor{stringliteral}{"{}row\_dim = "{}} << this-\/>row\_dim << std::endl;}
-\DoxyCodeLine{315       std::cout << \textcolor{stringliteral}{"{}col\_dim = "{}} << this-\/>col\_dim << std::endl;}
-\DoxyCodeLine{316       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>row.size(); ++i) \{}
-\DoxyCodeLine{317          std::cout << \textcolor{stringliteral}{"{}row["{}} << i << \textcolor{stringliteral}{"{}] = "{}} << this-\/>row.at(i) << std::endl;}
-\DoxyCodeLine{318       \}}
-\DoxyCodeLine{319       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>col.size(); ++i) \{}
-\DoxyCodeLine{320          std::cout << \textcolor{stringliteral}{"{}col["{}} << i << \textcolor{stringliteral}{"{}] = "{}} << this-\/>col.at(i) << std::endl;}
-\DoxyCodeLine{321       \}}
-\DoxyCodeLine{322       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>val.size(); ++i) \{}
-\DoxyCodeLine{323          std::cout << \textcolor{stringliteral}{"{}val["{}} << i << \textcolor{stringliteral}{"{}] = "{}} << this-\/>val.at(i) << std::endl;}
-\DoxyCodeLine{324       \}}
-\DoxyCodeLine{325    \}}
-\DoxyCodeLine{326    }
-\DoxyCodeLine{330    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a62f526c40c6e65d482d95a1dd18f6fcc}{CheckSymmetric}}(\textcolor{keyword}{const} ElementType threshold = 0.000000000000001\textcolor{comment}{/*pow(10,-\/15)*/})\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{331       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{332          \textcolor{keywordflow}{for} (std::int64\_t j = this-\/>row[i]; j < this-\/>row[i + 1]; ++j) \{}
-\DoxyCodeLine{333             \textcolor{keyword}{const} \textcolor{keyword}{auto} iter\_begin = this-\/>col.begin() + this-\/>row[\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j]];}
-\DoxyCodeLine{334             \textcolor{keyword}{const} \textcolor{keyword}{auto} iter\_end   = this-\/>col.begin() + this-\/>row[\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j] + 1];}
-\DoxyCodeLine{335             \textcolor{keyword}{const} \textcolor{keyword}{auto} iter\_find  = std::lower\_bound(iter\_begin, iter\_end, i);}
-\DoxyCodeLine{336             \textcolor{keywordflow}{if} (iter\_find == iter\_end || *iter\_find != i) \{}
-\DoxyCodeLine{337                std::cout << \textcolor{stringliteral}{"{}The input matrix is not symmetric."{}} << std::endl;}
-\DoxyCodeLine{338                std::cout << \textcolor{stringliteral}{"{}Corresponding element does not exist."{}} << std::endl;}
-\DoxyCodeLine{339                std::cout << \textcolor{stringliteral}{"{}row="{}} << i << \textcolor{stringliteral}{"{}, col="{}} << \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j] << \textcolor{stringliteral}{"{}, val="{}} << \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j] << std::endl;}
-\DoxyCodeLine{340                \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{341             \}}
-\DoxyCodeLine{342             \textcolor{keyword}{const} \textcolor{keyword}{auto} inv = std::distance(iter\_begin, iter\_find);}
-\DoxyCodeLine{343             \textcolor{keywordflow}{if} (std::abs(this-\/>val[j] -\/ this-\/>val[inv]) > threshold) \{}
-\DoxyCodeLine{344                std::cout << \textcolor{stringliteral}{"{}The input matrix is not symmetric."{}} << std::endl;}
-\DoxyCodeLine{345                std::cout << \textcolor{stringliteral}{"{}M["{}} << i << \textcolor{stringliteral}{"{}]["{}} << this-\/>col[j] << \textcolor{stringliteral}{"{}]="{}} << this-\/>val[j] << \textcolor{stringliteral}{"{}, "{}} << this-\/>val[inv] << \textcolor{stringliteral}{"{}=M["{}} << this-\/>col[j] << \textcolor{stringliteral}{"{}]["{}} << i << \textcolor{stringliteral}{"{}]"{}} << std::endl;}
-\DoxyCodeLine{346                \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{347             \}}
-\DoxyCodeLine{348          \}}
-\DoxyCodeLine{349       \}}
-\DoxyCodeLine{350       \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
-\DoxyCodeLine{351    \}}
-\DoxyCodeLine{352    }
-\DoxyCodeLine{353    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{354    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator Overloading-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{355    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{358 \textcolor{comment}{}   \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_abcfc5d5e087b26264f1225949304f2ee}{operator+}}()\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{359       \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
-\DoxyCodeLine{360    \}}
-\DoxyCodeLine{361    }
-\DoxyCodeLine{364    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_aa02cc0d2b9d8dd67514abe11e52b7bbf}{operator-\/}}()\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{365       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_adeb3713e2d793237d6a8509cd17fb010}{CalculateScalarMatrixProduct}}(-\/1, *\textcolor{keyword}{this});}
-\DoxyCodeLine{366    \}}
-\DoxyCodeLine{367    }
-\DoxyCodeLine{372    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{373    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}\& \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a878cede5b8041d4cf1cabf5bc809fdd0}{operator+=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} rhs) \{}
-\DoxyCodeLine{374       \textcolor{keywordflow}{return} *\textcolor{keyword}{this} = *\textcolor{keyword}{this} + rhs;}
-\DoxyCodeLine{375    \}}
-\DoxyCodeLine{376    }
-\DoxyCodeLine{381    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{382    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}\& \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a04ea5951e267780634957ac36f2fbaf2}{operator-\/=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} rhs) \{}
-\DoxyCodeLine{383       \textcolor{keywordflow}{return} *\textcolor{keyword}{this} = *\textcolor{keyword}{this} -\/ rhs;}
-\DoxyCodeLine{384    \}}
-\DoxyCodeLine{385    }
-\DoxyCodeLine{390    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{391    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}\& \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a3dbeb14b8c90fc4f0439ce7e9edab126}{operator*=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} rhs) \{}
-\DoxyCodeLine{392       \textcolor{keywordflow}{return} *\textcolor{keyword}{this} = *\textcolor{keyword}{this} * rhs;}
+\DoxyCodeLine{193       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i <= matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{194          this-\/>row[i] = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i];}
+\DoxyCodeLine{195       \}}
+\DoxyCodeLine{196       }
+\DoxyCodeLine{197 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{198       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size(); ++i) \{}
+\DoxyCodeLine{199          this-\/>col[i] = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[i];}
+\DoxyCodeLine{200          this-\/>val[i] = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[i];}
+\DoxyCodeLine{201       \}}
+\DoxyCodeLine{202       this-\/>tag = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}};}
+\DoxyCodeLine{203       this-\/>name = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8ff961838014a2146c4e570ebbb85840}{name}};}
+\DoxyCodeLine{204    \}}
+\DoxyCodeLine{205    }
+\DoxyCodeLine{209    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{210    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a1ce10267ddf6fd06620f57bc9b0a7e43}{MultiplyByScalar}}(\textcolor{keyword}{const} T coeff) \{}
+\DoxyCodeLine{211       \textcolor{keywordflow}{if} (coeff == 0.0) \{}
+\DoxyCodeLine{212 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{213          \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{214             this-\/>row[i + 1] = 0;}
+\DoxyCodeLine{215          \}}
+\DoxyCodeLine{216          this-\/>col.clear();}
+\DoxyCodeLine{217          this-\/>val.clear();}
+\DoxyCodeLine{218       \}}
+\DoxyCodeLine{219       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{220 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{221          \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>col.size(); ++i) \{}
+\DoxyCodeLine{222             this-\/>val[i] *= coeff;}
+\DoxyCodeLine{223          \}}
+\DoxyCodeLine{224       \}}
+\DoxyCodeLine{225    \}}
+\DoxyCodeLine{226    }
+\DoxyCodeLine{230    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{231    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_aa7c4b4d33b18686e7da7ccdae4b94733}{AddDiagonalElements}}(\textcolor{keyword}{const} T diag\_add) \{}
+\DoxyCodeLine{232       \textcolor{keywordflow}{if} (this-\/>row\_dim != this-\/>col\_dim) \{}
+\DoxyCodeLine{233          std::stringstream ss;}
+\DoxyCodeLine{234          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{235          ss << \textcolor{stringliteral}{"{}The matrix is not a square matrix."{}} << std::endl;}
+\DoxyCodeLine{236          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{237       \}}
+\DoxyCodeLine{238       }
+\DoxyCodeLine{239       \textcolor{keywordtype}{bool} flag = \textcolor{keyword}{false};}
+\DoxyCodeLine{240 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{241       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{242          \textcolor{keywordtype}{bool} temp\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{243          \textcolor{keywordflow}{for} (std::int64\_t j = this-\/>row[i]; j < this-\/>row[i + 1]; ++j) \{}
+\DoxyCodeLine{244             \textcolor{keywordflow}{if} (i == this-\/>col[j]) \{}
+\DoxyCodeLine{245                this-\/>val[j] += diag\_add;}
+\DoxyCodeLine{246                temp\_flag = \textcolor{keyword}{false};}
+\DoxyCodeLine{247                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{248             \}}
+\DoxyCodeLine{249          \}}
+\DoxyCodeLine{250          \textcolor{keywordflow}{if} (temp\_flag) \{}
+\DoxyCodeLine{251 \textcolor{preprocessor}{\#pragma omp critical}}
+\DoxyCodeLine{252             \{}
+\DoxyCodeLine{253             flag = temp\_flag;}
+\DoxyCodeLine{254             \}}
+\DoxyCodeLine{255          \}}
+\DoxyCodeLine{256       \}}
+\DoxyCodeLine{257       \textcolor{keywordflow}{if} (flag) \{}
+\DoxyCodeLine{258          \textcolor{comment}{//Restore the diagonal elements.}}
+\DoxyCodeLine{259 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{260          \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{261             \textcolor{keywordtype}{bool} temp\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{262             \textcolor{keywordflow}{for} (std::int64\_t j = this-\/>row[i]; j < this-\/>row[i + 1]; ++j) \{}
+\DoxyCodeLine{263                \textcolor{keywordflow}{if} (i == this-\/>col[j]) \{}
+\DoxyCodeLine{264                   this-\/>val[j] -\/= diag\_add;}
+\DoxyCodeLine{265                   temp\_flag = \textcolor{keyword}{false};}
+\DoxyCodeLine{266                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{267                \}}
+\DoxyCodeLine{268             \}}
+\DoxyCodeLine{269          \}}
+\DoxyCodeLine{270          std::stringstream ss;}
+\DoxyCodeLine{271          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{272          ss << \textcolor{stringliteral}{"{}Could not add the value to the diagonal elements."{}} << std::endl;}
+\DoxyCodeLine{273          ss << \textcolor{stringliteral}{"{}The matrix need to have all the diagonal elements even if they are zero."{}} << std::endl;}
+\DoxyCodeLine{274          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{275       \}}
+\DoxyCodeLine{276    \}}
+\DoxyCodeLine{277    }
+\DoxyCodeLine{279    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a7fd21b0a2b0c525b831cf03e896fa525}{SortCol}}() \{}
+\DoxyCodeLine{280       \textcolor{keyword}{auto} compare = [\textcolor{keyword}{this}](\textcolor{keyword}{auto} \&a, \textcolor{keyword}{auto} \&b) \{}
+\DoxyCodeLine{281          \textcolor{keywordflow}{if} (a > b) \{}
+\DoxyCodeLine{282             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{283          \}}
+\DoxyCodeLine{284          \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{285             std::swap(this-\/>val[std::distance(\&this-\/>col[0], \&a)],}
+\DoxyCodeLine{286                       this-\/>val[std::distance(\&this-\/>col[0], \&b)]);}
+\DoxyCodeLine{287             \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{288          \}}
+\DoxyCodeLine{289       \};}
+\DoxyCodeLine{290       }
+\DoxyCodeLine{291 \textcolor{preprocessor}{\#pragma omp parallel for schedule(guided)}}
+\DoxyCodeLine{292       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{293          std::sort(\&this-\/>col[this-\/>row[i]], \&this-\/>col[this-\/>row[i + 1]], compare);}
+\DoxyCodeLine{294       \}}
+\DoxyCodeLine{295    \}}
+\DoxyCodeLine{296    }
+\DoxyCodeLine{298    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ab43150585915445e3b8745cf9ff1924c}{Print}}(\textcolor{keyword}{const} std::string display\_name = \textcolor{stringliteral}{"{}"{}})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{299       \textcolor{keywordflow}{if} (this-\/>name != \textcolor{stringliteral}{"{}"{}}) \{}
+\DoxyCodeLine{300          std::cout << \textcolor{stringliteral}{"{}Name: "{}} << this-\/>name << std::endl;}
+\DoxyCodeLine{301       \}}
+\DoxyCodeLine{302       std::cout << this-\/>tag << std::endl;}
+\DoxyCodeLine{303       std::cout << std::fixed;}
+\DoxyCodeLine{304       std::cout << std::setprecision(std::numeric\_limits<ElementType>::max\_digits10);}
+\DoxyCodeLine{305       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{306          \textcolor{keywordflow}{for} (std::int64\_t j = this-\/>row.at(i); j < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}.at(i+1); ++j) \{}
+\DoxyCodeLine{307             std::cout << display\_name << \textcolor{stringliteral}{"{}["{}};}
+\DoxyCodeLine{308             std::cout << std::noshowpos << std::left << std::setw(3) << i << \textcolor{stringliteral}{"{}]["{}};}
+\DoxyCodeLine{309             std::cout << std::left << std::setw(3) << this-\/>col[j] << \textcolor{stringliteral}{"{}]="{}};}
+\DoxyCodeLine{310             std::cout << std::showpos << this-\/>val[j] << std::endl;}
+\DoxyCodeLine{311          \}}
+\DoxyCodeLine{312       \}}
+\DoxyCodeLine{313       std::cout << std::noshowpos;}
+\DoxyCodeLine{314    \}}
+\DoxyCodeLine{315    }
+\DoxyCodeLine{317    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a7cd67a00d8952a69b7563343d79de2fc}{PrintInfo}}(\textcolor{keyword}{const} std::string display\_name = \textcolor{stringliteral}{"{}Matrix"{}})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{318       std::cout << std::fixed;}
+\DoxyCodeLine{319       std::cout << std::setprecision(std::numeric\_limits<ElementType>::max\_digits10);}
+\DoxyCodeLine{320       std::cout << \textcolor{stringliteral}{"{}Print information about CRS: "{}} << display\_name << std::endl;}
+\DoxyCodeLine{321       std::cout << this-\/>tag << std::endl;}
+\DoxyCodeLine{322       std::cout << \textcolor{stringliteral}{"{}row\_dim = "{}} << this-\/>row\_dim << std::endl;}
+\DoxyCodeLine{323       std::cout << \textcolor{stringliteral}{"{}col\_dim = "{}} << this-\/>col\_dim << std::endl;}
+\DoxyCodeLine{324       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>row.size(); ++i) \{}
+\DoxyCodeLine{325          std::cout << \textcolor{stringliteral}{"{}row["{}} << i << \textcolor{stringliteral}{"{}] = "{}} << this-\/>row.at(i) << std::endl;}
+\DoxyCodeLine{326       \}}
+\DoxyCodeLine{327       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>col.size(); ++i) \{}
+\DoxyCodeLine{328          std::cout << \textcolor{stringliteral}{"{}col["{}} << i << \textcolor{stringliteral}{"{}] = "{}} << this-\/>col.at(i) << std::endl;}
+\DoxyCodeLine{329       \}}
+\DoxyCodeLine{330       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>val.size(); ++i) \{}
+\DoxyCodeLine{331          std::cout << \textcolor{stringliteral}{"{}val["{}} << i << \textcolor{stringliteral}{"{}] = "{}} << this-\/>val.at(i) << std::endl;}
+\DoxyCodeLine{332       \}}
+\DoxyCodeLine{333    \}}
+\DoxyCodeLine{334    }
+\DoxyCodeLine{339    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_accd09f748ee88f6b50816cb5da91c68d}{CheckSymmetric}}(\textcolor{keyword}{const} ElementType threshold = 0.000000000000001\textcolor{comment}{/*pow(10,-\/15)*/}, \textcolor{keyword}{const} \textcolor{keywordtype}{bool} flag\_display\_info = \textcolor{keyword}{false})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{340       \textcolor{keywordflow}{if} (this-\/>row\_dim != this-\/>col\_dim) \{}
+\DoxyCodeLine{341          std::stringstream ss;}
+\DoxyCodeLine{342          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{343          ss << \textcolor{stringliteral}{"{}The matrix is not square one."{}} << std::endl;}
+\DoxyCodeLine{344          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{345       \}}
+\DoxyCodeLine{346       \textcolor{comment}{// Check sorted}}
+\DoxyCodeLine{347       \textcolor{keywordtype}{bool} flag\_sorted = \textcolor{keyword}{false};}
+\DoxyCodeLine{348 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{349       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{350          \textcolor{keywordtype}{bool} temp\_flag = \textcolor{keyword}{false};}
+\DoxyCodeLine{351          \textcolor{keywordflow}{for} (std::int64\_t j = this-\/>row[i]; j < this-\/>row[i + 1] -\/ 1; ++j) \{}
+\DoxyCodeLine{352             \textcolor{keywordflow}{if} (this-\/>col[j] >= this-\/>col[j + 1]) \{}
+\DoxyCodeLine{353                temp\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{354             \}}
+\DoxyCodeLine{355          \}}
+\DoxyCodeLine{356          \textcolor{keywordflow}{if} (temp\_flag) \{}
+\DoxyCodeLine{357 \textcolor{preprocessor}{\#pragma omp critical}}
+\DoxyCodeLine{358             \{}
+\DoxyCodeLine{359                flag\_sorted = temp\_flag;}
+\DoxyCodeLine{360             \}}
+\DoxyCodeLine{361          \}}
+\DoxyCodeLine{362       \}}
+\DoxyCodeLine{363       \textcolor{keywordflow}{if} (flag\_sorted) \{}
+\DoxyCodeLine{364          std::stringstream ss;}
+\DoxyCodeLine{365          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{366          ss << \textcolor{stringliteral}{"{}The colmun indexes of the matrix is not sorted."{}} << std::endl;}
+\DoxyCodeLine{367          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{368       \}}
+\DoxyCodeLine{369       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{370          \textcolor{keywordflow}{for} (std::int64\_t j = this-\/>row[i]; j < this-\/>row[i + 1]; ++j) \{}
+\DoxyCodeLine{371             \textcolor{keyword}{const} \textcolor{keyword}{auto} iter\_begin = this-\/>col.begin() + this-\/>row[this-\/>col[j]];}
+\DoxyCodeLine{372             \textcolor{keyword}{const} \textcolor{keyword}{auto} iter\_end   = this-\/>col.begin() + this-\/>row[this-\/>col[j] + 1];}
+\DoxyCodeLine{373             \textcolor{keyword}{const} \textcolor{keyword}{auto} iter\_find  = std::lower\_bound(iter\_begin, iter\_end, i);}
+\DoxyCodeLine{374             \textcolor{keywordflow}{if} (iter\_find == iter\_end || *iter\_find != i) \{}
+\DoxyCodeLine{375                \textcolor{keywordflow}{if} (flag\_display\_info) \{}
+\DoxyCodeLine{376                   std::cout << \textcolor{stringliteral}{"{}The input matrix is not symmetric."{}} << std::endl;}
+\DoxyCodeLine{377                   std::cout << \textcolor{stringliteral}{"{}Corresponding element does not exist."{}} << std::endl;}
+\DoxyCodeLine{378                   std::cout << \textcolor{stringliteral}{"{}row="{}} << i << \textcolor{stringliteral}{"{}, col="{}} << \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j] << \textcolor{stringliteral}{"{}, val="{}} << \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j] << std::endl;}
+\DoxyCodeLine{379                \}}
+\DoxyCodeLine{380                \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{381             \}}
+\DoxyCodeLine{382             \textcolor{keyword}{const} \textcolor{keyword}{auto} inv = std::distance(this-\/>col.begin(), iter\_find);}
+\DoxyCodeLine{383             \textcolor{keywordflow}{if} (std::abs(this-\/>val[j] -\/ this-\/>val[inv]) > threshold) \{}
+\DoxyCodeLine{384                \textcolor{keywordflow}{if} (flag\_display\_info) \{}
+\DoxyCodeLine{385                   std::cout << \textcolor{stringliteral}{"{}The input matrix is not symmetric."{}} << std::endl;}
+\DoxyCodeLine{386                   std::cout << \textcolor{stringliteral}{"{}M["{}} << i << \textcolor{stringliteral}{"{}]["{}} << this-\/>col[j] << \textcolor{stringliteral}{"{}]="{}} << this-\/>val[j] << \textcolor{stringliteral}{"{}, "{}} << this-\/>val[inv] << \textcolor{stringliteral}{"{}=M["{}} << this-\/>col[j] << \textcolor{stringliteral}{"{}]["{}} << i << \textcolor{stringliteral}{"{}]"{}} << std::endl;}
+\DoxyCodeLine{387                \}}
+\DoxyCodeLine{388                \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{389             \}}
+\DoxyCodeLine{390          \}}
+\DoxyCodeLine{391       \}}
+\DoxyCodeLine{392       \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
 \DoxyCodeLine{393    \}}
 \DoxyCodeLine{394    }
-\DoxyCodeLine{398    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a89c316a47b24fe2bc9a3824d316de601}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&matrix) \& \{}
-\DoxyCodeLine{399       \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac4696f6f7423080adbdbc490d49f0b0a}{Assign}}(matrix);}
-\DoxyCodeLine{400       \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
-\DoxyCodeLine{401    \}}
-\DoxyCodeLine{402    }
-\DoxyCodeLine{403 \};}
-\DoxyCodeLine{404 }
-\DoxyCodeLine{405 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{406 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator overloading-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{407 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{414 \textcolor{comment}{}\textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{415 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_a4a4e992db8a5b87ec24cced3bea23d6f}{operator+}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&rhs) \{}
-\DoxyCodeLine{416    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_a52ce548d226d24916074a27f88b3e400}{CalculateMatrixMatrixSum}}(T1\{1\}, lhs, T2\{1\}, rhs);}
-\DoxyCodeLine{417 \}}
-\DoxyCodeLine{418 }
-\DoxyCodeLine{425 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{426 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_a61ab692722d7345f2badc279b2e4147b}{operator-\/}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&rhs) \{}
-\DoxyCodeLine{427    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_a52ce548d226d24916074a27f88b3e400}{CalculateMatrixMatrixSum}}(T1\{1\}, lhs, T2\{-\/1\}, rhs);}
-\DoxyCodeLine{428 \}}
-\DoxyCodeLine{429 }
-\DoxyCodeLine{436 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{437 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_aa6fad03b5399841392dddeb7bdc33347}{operator*}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&rhs) \{}
-\DoxyCodeLine{438    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_aa09c6703ea13c46c2bb89531b7c85a75}{CalculateMatrixMatrixProduct}}(T1\{1\}, lhs, rhs);}
-\DoxyCodeLine{439 \}}
-\DoxyCodeLine{440 }
-\DoxyCodeLine{447 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{448 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_aa6fad03b5399841392dddeb7bdc33347}{operator*}}(\textcolor{keyword}{const} T1 lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&rhs) \{}
-\DoxyCodeLine{449    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_adeb3713e2d793237d6a8509cd17fb010}{CalculateScalarMatrixProduct}}(lhs, rhs);}
-\DoxyCodeLine{450 \}}
-\DoxyCodeLine{451 }
-\DoxyCodeLine{458 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{459 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_aa6fad03b5399841392dddeb7bdc33347}{operator*}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} T2 rhs) \{}
-\DoxyCodeLine{460    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_adeb3713e2d793237d6a8509cd17fb010}{CalculateScalarMatrixProduct}}(rhs, lhs);}
+\DoxyCodeLine{395    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{396    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator Overloading-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{397    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{400 \textcolor{comment}{}   \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_abcfc5d5e087b26264f1225949304f2ee}{operator+}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{401       \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{402    \}}
+\DoxyCodeLine{403    }
+\DoxyCodeLine{406    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_aa02cc0d2b9d8dd67514abe11e52b7bbf}{operator-\/}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{407       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_adeb3713e2d793237d6a8509cd17fb010}{CalculateScalarMatrixProduct}}(-\/1, *\textcolor{keyword}{this});}
+\DoxyCodeLine{408    \}}
+\DoxyCodeLine{409    }
+\DoxyCodeLine{414    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{415    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}\& \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a878cede5b8041d4cf1cabf5bc809fdd0}{operator+=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} rhs) \{}
+\DoxyCodeLine{416       \textcolor{keywordflow}{return} *\textcolor{keyword}{this} = *\textcolor{keyword}{this} + rhs;}
+\DoxyCodeLine{417    \}}
+\DoxyCodeLine{418    }
+\DoxyCodeLine{423    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{424    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}\& \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a04ea5951e267780634957ac36f2fbaf2}{operator-\/=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} rhs) \{}
+\DoxyCodeLine{425       \textcolor{keywordflow}{return} *\textcolor{keyword}{this} = *\textcolor{keyword}{this} -\/ rhs;}
+\DoxyCodeLine{426    \}}
+\DoxyCodeLine{427    }
+\DoxyCodeLine{432    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{433    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}\& \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a3dbeb14b8c90fc4f0439ce7e9edab126}{operator*=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} rhs) \{}
+\DoxyCodeLine{434       \textcolor{keywordflow}{return} *\textcolor{keyword}{this} = *\textcolor{keyword}{this} * rhs;}
+\DoxyCodeLine{435    \}}
+\DoxyCodeLine{436    }
+\DoxyCodeLine{441    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{442    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a7621f2369023bfd850e0908482f3f07f}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} \&matrix) \& \{}
+\DoxyCodeLine{443       \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac4696f6f7423080adbdbc490d49f0b0a}{Assign}}(matrix);}
+\DoxyCodeLine{444       \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{445    \}}
+\DoxyCodeLine{446    }
+\DoxyCodeLine{447 \};}
+\DoxyCodeLine{448 }
+\DoxyCodeLine{449 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{450 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator overloading-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{451 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{458 \textcolor{comment}{}\textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{459 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_a4a4e992db8a5b87ec24cced3bea23d6f}{operator+}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&rhs) \{}
+\DoxyCodeLine{460    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_a52ce548d226d24916074a27f88b3e400}{CalculateMatrixMatrixSum}}(T1\{1\}, lhs, T2\{1\}, rhs);}
 \DoxyCodeLine{461 \}}
 \DoxyCodeLine{462 }
 \DoxyCodeLine{469 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{470 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_abb6429171e978e71a1fbd6682875ca56}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&rhs) \{}
-\DoxyCodeLine{471    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}) \{}
-\DoxyCodeLine{472       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{473    \}}
-\DoxyCodeLine{474    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}) \{}
-\DoxyCodeLine{475       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{476    \}}
-\DoxyCodeLine{477    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}.size() != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}.size()) \{}
-\DoxyCodeLine{478       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{479    \}}
-\DoxyCodeLine{480    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}}) \{}
-\DoxyCodeLine{481       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{482    \}}
-\DoxyCodeLine{483    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size() != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size()) \{}
-\DoxyCodeLine{484       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{485    \}}
-\DoxyCodeLine{486    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.size() != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.size()) \{}
-\DoxyCodeLine{487       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{488    \}}
-\DoxyCodeLine{489    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8ff961838014a2146c4e570ebbb85840}{name}} != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8ff961838014a2146c4e570ebbb85840}{name}}) \{}
-\DoxyCodeLine{490       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{491    \}}
-\DoxyCodeLine{492    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}.size(); ++i) \{}
-\DoxyCodeLine{493       \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i] != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i]) \{}
-\DoxyCodeLine{494          \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{495       \}}
-\DoxyCodeLine{496    \}}
-\DoxyCodeLine{497    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size(); ++i) \{}
-\DoxyCodeLine{498       \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[i] != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[i]) \{}
-\DoxyCodeLine{499          \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{500       \}}
-\DoxyCodeLine{501    \}}
-\DoxyCodeLine{502    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.size(); ++i) \{}
-\DoxyCodeLine{503       \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[i] != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[i]) \{}
-\DoxyCodeLine{504          \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{505       \}}
-\DoxyCodeLine{506    \}}
-\DoxyCodeLine{507    \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
-\DoxyCodeLine{508 \}}
-\DoxyCodeLine{509 }
-\DoxyCodeLine{516 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{517 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_a2ef017632e376f62ac6a249c5b291b9c}{operator!=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&rhs) \{}
-\DoxyCodeLine{518    \textcolor{keywordflow}{return} !(lhs == rhs);}
-\DoxyCodeLine{519 \}}
-\DoxyCodeLine{520 }
-\DoxyCodeLine{521 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{522 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator overloading: I/O Stream-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{523 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{528 \textcolor{comment}{}\textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{529 std::ostream\& \mbox{\hyperlink{namespacecompnal_1_1type_ab565f905bc0e0a4cdea7cbee1b5c0da1}{operator<<}}(std::ostream \&os, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} \&m) \{}
-\DoxyCodeLine{530    os << m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} << std::endl;}
-\DoxyCodeLine{531    os << std::fixed;}
-\DoxyCodeLine{532    os << std::setprecision(std::numeric\_limits<T>::max\_digits10);}
-\DoxyCodeLine{533    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{534       \textcolor{keywordflow}{for} (std::int64\_t j = m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}.at(i); j < m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}.at(i+1); ++j) \{}
-\DoxyCodeLine{535          os << m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8ff961838014a2146c4e570ebbb85840}{name}};}
-\DoxyCodeLine{536          os << \textcolor{stringliteral}{"{}["{}};}
-\DoxyCodeLine{537          os << std::noshowpos << std::left << std::setw(3) << i << \textcolor{stringliteral}{"{}]["{}};}
-\DoxyCodeLine{538          os << std::left << std::setw(3) << m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j] << \textcolor{stringliteral}{"{}]="{}};}
-\DoxyCodeLine{539          os << std::showpos << m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j] << std::endl;}
-\DoxyCodeLine{540       \}}
-\DoxyCodeLine{541    \}}
-\DoxyCodeLine{542    \textcolor{keywordflow}{return} os;}
-\DoxyCodeLine{543 \}}
-\DoxyCodeLine{544 }
-\DoxyCodeLine{545 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{546 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Global Functions-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{547 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{558 \textcolor{comment}{}\textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2, \textcolor{keyword}{typename} T3, \textcolor{keyword}{typename} T4>}
-\DoxyCodeLine{559 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_a52ce548d226d24916074a27f88b3e400}{CalculateMatrixMatrixSum}}(\textcolor{keyword}{const} T1 coeff\_1,}
-\DoxyCodeLine{560                               \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&matrix\_1,}
-\DoxyCodeLine{561                               \textcolor{keyword}{const} T3 coeff\_2,}
-\DoxyCodeLine{562                               \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T4>}} \&matrix\_2) \{}
-\DoxyCodeLine{563    }
-\DoxyCodeLine{564    \textcolor{keywordflow}{if} (matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} != matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} || matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} != matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}) \{}
-\DoxyCodeLine{565       std::stringstream ss;}
-\DoxyCodeLine{566       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
-\DoxyCodeLine{567       ss << \textcolor{stringliteral}{"{}The summation of the matrices cannot be defined."{}} << std::endl;}
-\DoxyCodeLine{568       ss << \textcolor{stringliteral}{"{}matrix\_1.row\_dim = "{}} << matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} << \textcolor{stringliteral}{"{}, matrix\_1.col\_dim = "{}} << matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} << std::endl;}
-\DoxyCodeLine{569       ss << \textcolor{stringliteral}{"{}matrix\_2.row\_dim = "{}} << matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} << \textcolor{stringliteral}{"{}, matrix\_2.col\_dim = "{}} << matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} << std::endl;}
-\DoxyCodeLine{570       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
-\DoxyCodeLine{571    \}}
-\DoxyCodeLine{572    }
-\DoxyCodeLine{573    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}+T2\{0\}+T3\{0\}+T4\{0\})> matrix\_out(matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}, matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}});}
-\DoxyCodeLine{574    }
-\DoxyCodeLine{575    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{576       }
-\DoxyCodeLine{577       \textcolor{keywordtype}{int} check = 0;}
-\DoxyCodeLine{578       std::int64\_t count\_1 = 0;}
-\DoxyCodeLine{579       std::int64\_t count\_2 = 0;}
-\DoxyCodeLine{580       }
-\DoxyCodeLine{581       \textcolor{keyword}{const} std::int64\_t row\_lower\_1 = matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[  i  ];}
-\DoxyCodeLine{582       \textcolor{keyword}{const} std::int64\_t row\_upper\_1 = matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1];}
-\DoxyCodeLine{583       \textcolor{keyword}{const} std::int64\_t row\_lower\_2 = matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[  i  ];}
-\DoxyCodeLine{584       \textcolor{keyword}{const} std::int64\_t row\_upper\_2 = matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1];}
-\DoxyCodeLine{585       }
-\DoxyCodeLine{586       \textcolor{keyword}{const} std::int64\_t m1\_count = row\_upper\_1 -\/ row\_lower\_1;}
-\DoxyCodeLine{587       \textcolor{keyword}{const} std::int64\_t m2\_count = row\_upper\_2 -\/ row\_lower\_2;}
-\DoxyCodeLine{588       }
-\DoxyCodeLine{589       \textcolor{keywordflow}{if} (m1\_count != 0 \&\& m2\_count == 0) \{}
-\DoxyCodeLine{590          \textcolor{keywordflow}{for} (std::int64\_t j = row\_lower\_1; j < row\_upper\_1; ++j) \{}
-\DoxyCodeLine{591             matrix\_out.val.push\_back(coeff\_1*matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j]);}
-\DoxyCodeLine{592             matrix\_out.col.push\_back(matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j]);}
-\DoxyCodeLine{593          \}}
-\DoxyCodeLine{594       \}}
-\DoxyCodeLine{595       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (m1\_count == 0 \&\& m2\_count != 0) \{}
-\DoxyCodeLine{596          \textcolor{keywordflow}{for} (std::int64\_t j = row\_lower\_2; j < row\_upper\_2; ++j) \{}
-\DoxyCodeLine{597             matrix\_out.val.push\_back(coeff\_2*matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j]);}
-\DoxyCodeLine{598             matrix\_out.col.push\_back(matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j]);}
-\DoxyCodeLine{599          \}}
-\DoxyCodeLine{600       \}}
-\DoxyCodeLine{601       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (m1\_count != 0 \&\& m2\_count != 0) \{}
-\DoxyCodeLine{602          \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < m1\_count + m2\_count; ++j) \{}
-\DoxyCodeLine{603             \textcolor{keywordflow}{if} (matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[row\_lower\_1 + count\_1] < matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[row\_lower\_2 + count\_2]) \{}
-\DoxyCodeLine{604                matrix\_out.val.push\_back(coeff\_1*matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[row\_lower\_1 + count\_1]);}
-\DoxyCodeLine{605                matrix\_out.col.push\_back(matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[row\_lower\_1 + count\_1]);}
-\DoxyCodeLine{606                count\_1++;}
-\DoxyCodeLine{607                \textcolor{keywordflow}{if} (row\_lower\_1 + count\_1 == row\_upper\_1) \{}
-\DoxyCodeLine{608                   check = 1;}
-\DoxyCodeLine{609                   \textcolor{keywordflow}{break};}
-\DoxyCodeLine{610                \}}
-\DoxyCodeLine{611             \}}
-\DoxyCodeLine{612             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[row\_lower\_1 + count\_1] == matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[row\_lower\_2 + count\_2]) \{}
-\DoxyCodeLine{613                \textcolor{keyword}{const} \textcolor{keyword}{auto} val = coeff\_1*matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[row\_lower\_1 + count\_1] + coeff\_2*matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[row\_lower\_2 + count\_2];}
-\DoxyCodeLine{614                \textcolor{keywordflow}{if} (std::abs(val) > 0.0) \{}
-\DoxyCodeLine{615                   matrix\_out.val.push\_back(val);}
-\DoxyCodeLine{616                   matrix\_out.col.push\_back(matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[row\_lower\_1 + count\_1]);}
-\DoxyCodeLine{617                   count\_1++;}
-\DoxyCodeLine{618                   count\_2++;}
-\DoxyCodeLine{619                   \textcolor{keyword}{const} std::int64\_t temp\_count\_1 = row\_lower\_1 + count\_1;}
-\DoxyCodeLine{620                   \textcolor{keyword}{const} std::int64\_t temp\_count\_2 = row\_lower\_2 + count\_2;}
-\DoxyCodeLine{621                   \textcolor{keywordflow}{if} (temp\_count\_1 == row\_upper\_1 \&\& temp\_count\_2 < row\_upper\_2) \{}
-\DoxyCodeLine{622                      check = 1;}
-\DoxyCodeLine{623                      \textcolor{keywordflow}{break};}
-\DoxyCodeLine{624                   \}}
-\DoxyCodeLine{625                   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (temp\_count\_1 < row\_upper\_1 \&\& temp\_count\_2 == row\_upper\_2) \{}
-\DoxyCodeLine{626                      check = 2;}
-\DoxyCodeLine{627                      \textcolor{keywordflow}{break};}
-\DoxyCodeLine{628                   \}}
-\DoxyCodeLine{629                   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (temp\_count\_1 == row\_upper\_1 \&\& temp\_count\_2 == row\_upper\_2) \{}
-\DoxyCodeLine{630                      check = 0;}
-\DoxyCodeLine{631                      \textcolor{keywordflow}{break};}
-\DoxyCodeLine{632                   \}}
-\DoxyCodeLine{633                \}}
-\DoxyCodeLine{634                \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{635                   count\_1++;}
-\DoxyCodeLine{636                   count\_2++;}
-\DoxyCodeLine{637                   \textcolor{keyword}{const} std::int64\_t temp\_count\_1 = row\_lower\_1 + count\_1;}
-\DoxyCodeLine{638                   \textcolor{keyword}{const} std::int64\_t temp\_count\_2 = row\_lower\_2 + count\_2;}
-\DoxyCodeLine{639                   \textcolor{keywordflow}{if} (temp\_count\_1 == row\_upper\_1 \&\& temp\_count\_2 < row\_upper\_2) \{}
-\DoxyCodeLine{640                      check = 1;}
-\DoxyCodeLine{641                      \textcolor{keywordflow}{break};}
-\DoxyCodeLine{642                   \}}
-\DoxyCodeLine{643                   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (temp\_count\_1 < row\_upper\_1 \&\& temp\_count\_2 == row\_upper\_2) \{}
-\DoxyCodeLine{644                      check = 2;}
-\DoxyCodeLine{645                      \textcolor{keywordflow}{break};}
-\DoxyCodeLine{646                   \}}
-\DoxyCodeLine{647                   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (temp\_count\_1 == row\_upper\_1 \&\& temp\_count\_2 == row\_upper\_2) \{}
-\DoxyCodeLine{648                      check = 0;}
-\DoxyCodeLine{649                      \textcolor{keywordflow}{break};}
-\DoxyCodeLine{650                   \}}
-\DoxyCodeLine{651                \}}
-\DoxyCodeLine{652             \}}
-\DoxyCodeLine{653             \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{654                matrix\_out.val.push\_back(coeff\_2*matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[row\_lower\_2 + count\_2]);}
-\DoxyCodeLine{655                matrix\_out.col.push\_back(matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[row\_lower\_2 + count\_2]);}
-\DoxyCodeLine{656                count\_2++;}
-\DoxyCodeLine{657                \textcolor{keywordflow}{if} (row\_lower\_2 + count\_2 == row\_upper\_2) \{}
-\DoxyCodeLine{658                   check = 2;}
-\DoxyCodeLine{659                   \textcolor{keywordflow}{break};}
-\DoxyCodeLine{660                \}}
-\DoxyCodeLine{661             \}}
-\DoxyCodeLine{662          \}}
-\DoxyCodeLine{663          \textcolor{keywordflow}{if} (check == 1) \{}
-\DoxyCodeLine{664             \textcolor{keywordflow}{for} (std::int64\_t j = row\_lower\_2 + count\_2; j < row\_upper\_2; ++j) \{}
-\DoxyCodeLine{665                matrix\_out.val.push\_back(coeff\_2*matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j]);}
-\DoxyCodeLine{666                matrix\_out.col.push\_back(matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j]);}
-\DoxyCodeLine{667             \}}
-\DoxyCodeLine{668          \}}
-\DoxyCodeLine{669          \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (check == 2) \{}
-\DoxyCodeLine{670             \textcolor{keywordflow}{for} (std::int64\_t j = row\_lower\_1 + count\_1; j < row\_upper\_1; ++j) \{}
-\DoxyCodeLine{671                matrix\_out.val.push\_back(coeff\_1*matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j]);}
-\DoxyCodeLine{672                matrix\_out.col.push\_back(matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j]);}
-\DoxyCodeLine{673             \}}
-\DoxyCodeLine{674          \}}
-\DoxyCodeLine{675       \}}
-\DoxyCodeLine{676       matrix\_out.row[i + 1] = matrix\_out.col.size();}
-\DoxyCodeLine{677    \}}
-\DoxyCodeLine{678    }
-\DoxyCodeLine{679    \textcolor{keywordflow}{if} (matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}}) \{}
-\DoxyCodeLine{680       matrix\_out.tag = matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}};}
-\DoxyCodeLine{681    \}}
-\DoxyCodeLine{682    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}}) \{}
-\DoxyCodeLine{683       \textcolor{keywordflow}{if} (matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}} || matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}}) \{}
-\DoxyCodeLine{684          matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}};}
-\DoxyCodeLine{685       \}}
-\DoxyCodeLine{686       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}} || matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}}) \{}
-\DoxyCodeLine{687          }
-\DoxyCodeLine{688       \}}
-\DoxyCodeLine{689       \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{690          std::stringstream ss;}
-\DoxyCodeLine{691          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
-\DoxyCodeLine{692          ss << \textcolor{stringliteral}{"{}Unknown CRSTag detected."{}};}
-\DoxyCodeLine{693          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
-\DoxyCodeLine{694       \}}
-\DoxyCodeLine{695    \}}
-\DoxyCodeLine{696    matrix\_out.tag = matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}};}
-\DoxyCodeLine{697    \textcolor{keywordflow}{return} matrix\_out;}
-\DoxyCodeLine{698 \}}
-\DoxyCodeLine{699 }
-\DoxyCodeLine{708 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2, \textcolor{keyword}{typename} T3>}
-\DoxyCodeLine{709 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_aa09c6703ea13c46c2bb89531b7c85a75}{CalculateMatrixMatrixProduct}}(\textcolor{keyword}{const} T1 coeff\_1,}
-\DoxyCodeLine{710                                   \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&matrix\_1,}
-\DoxyCodeLine{711                                   \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T3>}} \&matrix\_2) \{}
-\DoxyCodeLine{712    }
-\DoxyCodeLine{713    \textcolor{keywordflow}{if} (matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} != matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}) \{}
-\DoxyCodeLine{714       std::stringstream ss;}
-\DoxyCodeLine{715       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
-\DoxyCodeLine{716       ss << \textcolor{stringliteral}{"{}Matrix product cannot be defined"{}} << std::endl;}
-\DoxyCodeLine{717       ss << \textcolor{stringliteral}{"{}matrix\_1.col\_dim = "{}} << matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} << \textcolor{stringliteral}{"{}, matrix\_2.row\_dim = "{}} << matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} << std::endl;}
-\DoxyCodeLine{718       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
-\DoxyCodeLine{719    \}}
-\DoxyCodeLine{720    }
-\DoxyCodeLine{721    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\}*T3\{0\})> matrix\_out(matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}, matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}});}
+\DoxyCodeLine{470 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_a61ab692722d7345f2badc279b2e4147b}{operator-\/}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&rhs) \{}
+\DoxyCodeLine{471    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_a52ce548d226d24916074a27f88b3e400}{CalculateMatrixMatrixSum}}(T1\{1\}, lhs, T2\{-\/1\}, rhs);}
+\DoxyCodeLine{472 \}}
+\DoxyCodeLine{473 }
+\DoxyCodeLine{480 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{481 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_aa6fad03b5399841392dddeb7bdc33347}{operator*}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&rhs) \{}
+\DoxyCodeLine{482    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_aa09c6703ea13c46c2bb89531b7c85a75}{CalculateMatrixMatrixProduct}}(T1\{1\}, lhs, rhs);}
+\DoxyCodeLine{483 \}}
+\DoxyCodeLine{484 }
+\DoxyCodeLine{491 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{492 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_aa6fad03b5399841392dddeb7bdc33347}{operator*}}(\textcolor{keyword}{const} T1 lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&rhs) \{}
+\DoxyCodeLine{493    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_adeb3713e2d793237d6a8509cd17fb010}{CalculateScalarMatrixProduct}}(lhs, rhs);}
+\DoxyCodeLine{494 \}}
+\DoxyCodeLine{495 }
+\DoxyCodeLine{502 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{503 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_aa6fad03b5399841392dddeb7bdc33347}{operator*}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} T2 rhs) \{}
+\DoxyCodeLine{504    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_adeb3713e2d793237d6a8509cd17fb010}{CalculateScalarMatrixProduct}}(rhs, lhs);}
+\DoxyCodeLine{505 \}}
+\DoxyCodeLine{506 }
+\DoxyCodeLine{513 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{514 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_abb6429171e978e71a1fbd6682875ca56}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&rhs) \{}
+\DoxyCodeLine{515    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}) \{}
+\DoxyCodeLine{516       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{517    \}}
+\DoxyCodeLine{518    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}) \{}
+\DoxyCodeLine{519       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{520    \}}
+\DoxyCodeLine{521    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}.size() != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}.size()) \{}
+\DoxyCodeLine{522       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{523    \}}
+\DoxyCodeLine{524    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}}) \{}
+\DoxyCodeLine{525       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{526    \}}
+\DoxyCodeLine{527    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size() != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size()) \{}
+\DoxyCodeLine{528       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{529    \}}
+\DoxyCodeLine{530    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.size() != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.size()) \{}
+\DoxyCodeLine{531       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{532    \}}
+\DoxyCodeLine{533    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8ff961838014a2146c4e570ebbb85840}{name}} != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8ff961838014a2146c4e570ebbb85840}{name}}) \{}
+\DoxyCodeLine{534       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{535    \}}
+\DoxyCodeLine{536    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}.size(); ++i) \{}
+\DoxyCodeLine{537       \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i] != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i]) \{}
+\DoxyCodeLine{538          \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{539       \}}
+\DoxyCodeLine{540    \}}
+\DoxyCodeLine{541    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size(); ++i) \{}
+\DoxyCodeLine{542       \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[i] != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[i]) \{}
+\DoxyCodeLine{543          \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{544       \}}
+\DoxyCodeLine{545    \}}
+\DoxyCodeLine{546    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.size(); ++i) \{}
+\DoxyCodeLine{547       \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[i] != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[i]) \{}
+\DoxyCodeLine{548          \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{549       \}}
+\DoxyCodeLine{550    \}}
+\DoxyCodeLine{551    \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{552 \}}
+\DoxyCodeLine{553 }
+\DoxyCodeLine{560 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{561 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_a2ef017632e376f62ac6a249c5b291b9c}{operator!=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&rhs) \{}
+\DoxyCodeLine{562    \textcolor{keywordflow}{return} !(lhs == rhs);}
+\DoxyCodeLine{563 \}}
+\DoxyCodeLine{564 }
+\DoxyCodeLine{565 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{566 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator overloading: I/O Stream-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{567 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{572 \textcolor{comment}{}\textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{573 std::ostream\& \mbox{\hyperlink{namespacecompnal_1_1type_ab565f905bc0e0a4cdea7cbee1b5c0da1}{operator<<}}(std::ostream \&os, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} \&m) \{}
+\DoxyCodeLine{574    os << m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} << std::endl;}
+\DoxyCodeLine{575    os << std::fixed;}
+\DoxyCodeLine{576    os << std::setprecision(std::numeric\_limits<T>::max\_digits10);}
+\DoxyCodeLine{577    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{578       \textcolor{keywordflow}{for} (std::int64\_t j = m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}.at(i); j < m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}.at(i+1); ++j) \{}
+\DoxyCodeLine{579          os << m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8ff961838014a2146c4e570ebbb85840}{name}};}
+\DoxyCodeLine{580          os << \textcolor{stringliteral}{"{}["{}};}
+\DoxyCodeLine{581          os << std::noshowpos << std::left << std::setw(3) << i << \textcolor{stringliteral}{"{}]["{}};}
+\DoxyCodeLine{582          os << std::left << std::setw(3) << m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j] << \textcolor{stringliteral}{"{}]="{}};}
+\DoxyCodeLine{583          os << std::showpos << m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j] << std::endl;}
+\DoxyCodeLine{584       \}}
+\DoxyCodeLine{585    \}}
+\DoxyCodeLine{586    \textcolor{keywordflow}{return} os;}
+\DoxyCodeLine{587 \}}
+\DoxyCodeLine{588 }
+\DoxyCodeLine{589 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{590 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Global Functions-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{591 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{602 \textcolor{comment}{}\textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2, \textcolor{keyword}{typename} T3, \textcolor{keyword}{typename} T4>}
+\DoxyCodeLine{603 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_a52ce548d226d24916074a27f88b3e400}{CalculateMatrixMatrixSum}}(\textcolor{keyword}{const} T1 coeff\_1,}
+\DoxyCodeLine{604                               \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&matrix\_1,}
+\DoxyCodeLine{605                               \textcolor{keyword}{const} T3 coeff\_2,}
+\DoxyCodeLine{606                               \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T4>}} \&matrix\_2) \{}
+\DoxyCodeLine{607    }
+\DoxyCodeLine{608    \textcolor{keywordflow}{if} (matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} != matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} || matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} != matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}) \{}
+\DoxyCodeLine{609       std::stringstream ss;}
+\DoxyCodeLine{610       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{611       ss << \textcolor{stringliteral}{"{}The summation of the matrices cannot be defined."{}} << std::endl;}
+\DoxyCodeLine{612       ss << \textcolor{stringliteral}{"{}matrix\_1.row\_dim = "{}} << matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} << \textcolor{stringliteral}{"{}, matrix\_1.col\_dim = "{}} << matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} << std::endl;}
+\DoxyCodeLine{613       ss << \textcolor{stringliteral}{"{}matrix\_2.row\_dim = "{}} << matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} << \textcolor{stringliteral}{"{}, matrix\_2.col\_dim = "{}} << matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} << std::endl;}
+\DoxyCodeLine{614       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{615    \}}
+\DoxyCodeLine{616    }
+\DoxyCodeLine{617    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}+T2\{0\}+T3\{0\}+T4\{0\})> matrix\_out(matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}, matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}});}
+\DoxyCodeLine{618    }
+\DoxyCodeLine{619    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{620       }
+\DoxyCodeLine{621       \textcolor{keywordtype}{int} check = 0;}
+\DoxyCodeLine{622       std::int64\_t count\_1 = 0;}
+\DoxyCodeLine{623       std::int64\_t count\_2 = 0;}
+\DoxyCodeLine{624       }
+\DoxyCodeLine{625       \textcolor{keyword}{const} std::int64\_t row\_lower\_1 = matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[  i  ];}
+\DoxyCodeLine{626       \textcolor{keyword}{const} std::int64\_t row\_upper\_1 = matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1];}
+\DoxyCodeLine{627       \textcolor{keyword}{const} std::int64\_t row\_lower\_2 = matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[  i  ];}
+\DoxyCodeLine{628       \textcolor{keyword}{const} std::int64\_t row\_upper\_2 = matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1];}
+\DoxyCodeLine{629       }
+\DoxyCodeLine{630       \textcolor{keyword}{const} std::int64\_t m1\_count = row\_upper\_1 -\/ row\_lower\_1;}
+\DoxyCodeLine{631       \textcolor{keyword}{const} std::int64\_t m2\_count = row\_upper\_2 -\/ row\_lower\_2;}
+\DoxyCodeLine{632       }
+\DoxyCodeLine{633       \textcolor{keywordflow}{if} (m1\_count != 0 \&\& m2\_count == 0) \{}
+\DoxyCodeLine{634          \textcolor{keywordflow}{for} (std::int64\_t j = row\_lower\_1; j < row\_upper\_1; ++j) \{}
+\DoxyCodeLine{635             matrix\_out.val.push\_back(coeff\_1*matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j]);}
+\DoxyCodeLine{636             matrix\_out.col.push\_back(matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j]);}
+\DoxyCodeLine{637          \}}
+\DoxyCodeLine{638       \}}
+\DoxyCodeLine{639       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (m1\_count == 0 \&\& m2\_count != 0) \{}
+\DoxyCodeLine{640          \textcolor{keywordflow}{for} (std::int64\_t j = row\_lower\_2; j < row\_upper\_2; ++j) \{}
+\DoxyCodeLine{641             matrix\_out.val.push\_back(coeff\_2*matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j]);}
+\DoxyCodeLine{642             matrix\_out.col.push\_back(matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j]);}
+\DoxyCodeLine{643          \}}
+\DoxyCodeLine{644       \}}
+\DoxyCodeLine{645       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (m1\_count != 0 \&\& m2\_count != 0) \{}
+\DoxyCodeLine{646          \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < m1\_count + m2\_count; ++j) \{}
+\DoxyCodeLine{647             \textcolor{keywordflow}{if} (matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[row\_lower\_1 + count\_1] < matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[row\_lower\_2 + count\_2]) \{}
+\DoxyCodeLine{648                matrix\_out.val.push\_back(coeff\_1*matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[row\_lower\_1 + count\_1]);}
+\DoxyCodeLine{649                matrix\_out.col.push\_back(matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[row\_lower\_1 + count\_1]);}
+\DoxyCodeLine{650                count\_1++;}
+\DoxyCodeLine{651                \textcolor{keywordflow}{if} (row\_lower\_1 + count\_1 == row\_upper\_1) \{}
+\DoxyCodeLine{652                   check = 1;}
+\DoxyCodeLine{653                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{654                \}}
+\DoxyCodeLine{655             \}}
+\DoxyCodeLine{656             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[row\_lower\_1 + count\_1] == matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[row\_lower\_2 + count\_2]) \{}
+\DoxyCodeLine{657                \textcolor{keyword}{const} \textcolor{keyword}{auto} val = coeff\_1*matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[row\_lower\_1 + count\_1] + coeff\_2*matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[row\_lower\_2 + count\_2];}
+\DoxyCodeLine{658                \textcolor{keywordflow}{if} (std::abs(val) > 0.0) \{}
+\DoxyCodeLine{659                   matrix\_out.val.push\_back(val);}
+\DoxyCodeLine{660                   matrix\_out.col.push\_back(matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[row\_lower\_1 + count\_1]);}
+\DoxyCodeLine{661                   count\_1++;}
+\DoxyCodeLine{662                   count\_2++;}
+\DoxyCodeLine{663                   \textcolor{keyword}{const} std::int64\_t temp\_count\_1 = row\_lower\_1 + count\_1;}
+\DoxyCodeLine{664                   \textcolor{keyword}{const} std::int64\_t temp\_count\_2 = row\_lower\_2 + count\_2;}
+\DoxyCodeLine{665                   \textcolor{keywordflow}{if} (temp\_count\_1 == row\_upper\_1 \&\& temp\_count\_2 < row\_upper\_2) \{}
+\DoxyCodeLine{666                      check = 1;}
+\DoxyCodeLine{667                      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{668                   \}}
+\DoxyCodeLine{669                   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (temp\_count\_1 < row\_upper\_1 \&\& temp\_count\_2 == row\_upper\_2) \{}
+\DoxyCodeLine{670                      check = 2;}
+\DoxyCodeLine{671                      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{672                   \}}
+\DoxyCodeLine{673                   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (temp\_count\_1 == row\_upper\_1 \&\& temp\_count\_2 == row\_upper\_2) \{}
+\DoxyCodeLine{674                      check = 0;}
+\DoxyCodeLine{675                      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{676                   \}}
+\DoxyCodeLine{677                \}}
+\DoxyCodeLine{678                \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{679                   count\_1++;}
+\DoxyCodeLine{680                   count\_2++;}
+\DoxyCodeLine{681                   \textcolor{keyword}{const} std::int64\_t temp\_count\_1 = row\_lower\_1 + count\_1;}
+\DoxyCodeLine{682                   \textcolor{keyword}{const} std::int64\_t temp\_count\_2 = row\_lower\_2 + count\_2;}
+\DoxyCodeLine{683                   \textcolor{keywordflow}{if} (temp\_count\_1 == row\_upper\_1 \&\& temp\_count\_2 < row\_upper\_2) \{}
+\DoxyCodeLine{684                      check = 1;}
+\DoxyCodeLine{685                      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{686                   \}}
+\DoxyCodeLine{687                   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (temp\_count\_1 < row\_upper\_1 \&\& temp\_count\_2 == row\_upper\_2) \{}
+\DoxyCodeLine{688                      check = 2;}
+\DoxyCodeLine{689                      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{690                   \}}
+\DoxyCodeLine{691                   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (temp\_count\_1 == row\_upper\_1 \&\& temp\_count\_2 == row\_upper\_2) \{}
+\DoxyCodeLine{692                      check = 0;}
+\DoxyCodeLine{693                      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{694                   \}}
+\DoxyCodeLine{695                \}}
+\DoxyCodeLine{696             \}}
+\DoxyCodeLine{697             \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{698                matrix\_out.val.push\_back(coeff\_2*matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[row\_lower\_2 + count\_2]);}
+\DoxyCodeLine{699                matrix\_out.col.push\_back(matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[row\_lower\_2 + count\_2]);}
+\DoxyCodeLine{700                count\_2++;}
+\DoxyCodeLine{701                \textcolor{keywordflow}{if} (row\_lower\_2 + count\_2 == row\_upper\_2) \{}
+\DoxyCodeLine{702                   check = 2;}
+\DoxyCodeLine{703                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{704                \}}
+\DoxyCodeLine{705             \}}
+\DoxyCodeLine{706          \}}
+\DoxyCodeLine{707          \textcolor{keywordflow}{if} (check == 1) \{}
+\DoxyCodeLine{708             \textcolor{keywordflow}{for} (std::int64\_t j = row\_lower\_2 + count\_2; j < row\_upper\_2; ++j) \{}
+\DoxyCodeLine{709                matrix\_out.val.push\_back(coeff\_2*matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j]);}
+\DoxyCodeLine{710                matrix\_out.col.push\_back(matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j]);}
+\DoxyCodeLine{711             \}}
+\DoxyCodeLine{712          \}}
+\DoxyCodeLine{713          \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (check == 2) \{}
+\DoxyCodeLine{714             \textcolor{keywordflow}{for} (std::int64\_t j = row\_lower\_1 + count\_1; j < row\_upper\_1; ++j) \{}
+\DoxyCodeLine{715                matrix\_out.val.push\_back(coeff\_1*matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j]);}
+\DoxyCodeLine{716                matrix\_out.col.push\_back(matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j]);}
+\DoxyCodeLine{717             \}}
+\DoxyCodeLine{718          \}}
+\DoxyCodeLine{719       \}}
+\DoxyCodeLine{720       matrix\_out.row[i + 1] = matrix\_out.col.size();}
+\DoxyCodeLine{721    \}}
 \DoxyCodeLine{722    }
-\DoxyCodeLine{723    std::vector<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\})>       temp\_v1(matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}, 0.0);}
-\DoxyCodeLine{724    std::vector<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\}*T3\{0\})> temp\_v2(matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}, 0.0);}
-\DoxyCodeLine{725    }
-\DoxyCodeLine{726    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{727       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i]; j < matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1]; ++j) \{}
-\DoxyCodeLine{728          temp\_v1[matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j]] = coeff\_1*matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j];}
+\DoxyCodeLine{723    \textcolor{keywordflow}{if} (matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}}) \{}
+\DoxyCodeLine{724       matrix\_out.tag = matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}};}
+\DoxyCodeLine{725    \}}
+\DoxyCodeLine{726    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}}) \{}
+\DoxyCodeLine{727       \textcolor{keywordflow}{if} (matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}} || matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}}) \{}
+\DoxyCodeLine{728          matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}};}
 \DoxyCodeLine{729       \}}
-\DoxyCodeLine{730       \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}; ++j) \{}
-\DoxyCodeLine{731          \textcolor{keywordflow}{for} (std::int64\_t k = matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[j]; k < matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[j + 1]; ++k) \{}
-\DoxyCodeLine{732             temp\_v2[matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[k]] += temp\_v1[j]*matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[k];}
-\DoxyCodeLine{733          \}}
-\DoxyCodeLine{734       \}}
-\DoxyCodeLine{735       \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}; ++j) \{}
-\DoxyCodeLine{736          \textcolor{keywordflow}{if} (std::abs(temp\_v2[j]) > 0.0) \{}
-\DoxyCodeLine{737             matrix\_out.val.push\_back(temp\_v2[j]);}
-\DoxyCodeLine{738             matrix\_out.col.push\_back(j);}
-\DoxyCodeLine{739          \}}
-\DoxyCodeLine{740       \}}
-\DoxyCodeLine{741       }
-\DoxyCodeLine{742       matrix\_out.row[i + 1] = matrix\_out.col.size();}
-\DoxyCodeLine{743       }
-\DoxyCodeLine{744       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i]; j < matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1]; ++j) \{}
-\DoxyCodeLine{745          temp\_v1[matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j]] = 0.0;}
-\DoxyCodeLine{746       \}}
-\DoxyCodeLine{747       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_out.row[i]; j < matrix\_out.row[i + 1]; ++j) \{}
-\DoxyCodeLine{748          temp\_v2[matrix\_out.col[j]] = 0.0;}
-\DoxyCodeLine{749       \}}
-\DoxyCodeLine{750    \}}
-\DoxyCodeLine{751    }
-\DoxyCodeLine{752    \textcolor{keywordflow}{if} (matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}}) \{}
-\DoxyCodeLine{753       matrix\_out.tag = matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}};}
-\DoxyCodeLine{754    \}}
-\DoxyCodeLine{755    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}}) \{}
-\DoxyCodeLine{756       \textcolor{keywordflow}{if} (matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}} || matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}}) \{}
-\DoxyCodeLine{757          matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}};}
-\DoxyCodeLine{758       \}}
-\DoxyCodeLine{759       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}}) \{}
-\DoxyCodeLine{760          matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}};}
-\DoxyCodeLine{761       \}}
-\DoxyCodeLine{762       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}}) \{}
-\DoxyCodeLine{763          matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}};}
-\DoxyCodeLine{764       \}}
-\DoxyCodeLine{765       \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{766          std::stringstream ss;}
-\DoxyCodeLine{767          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
-\DoxyCodeLine{768          ss << \textcolor{stringliteral}{"{}Unknown CRSTag detected."{}};}
-\DoxyCodeLine{769          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
-\DoxyCodeLine{770       \}}
-\DoxyCodeLine{771    \}}
-\DoxyCodeLine{772    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}}) \{}
-\DoxyCodeLine{773       \textcolor{keywordflow}{if} (matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}} || matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}} || matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}}) \{}
-\DoxyCodeLine{774          matrix\_out.tag = matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}};}
-\DoxyCodeLine{775       \}}
-\DoxyCodeLine{776       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}}) \{}
-\DoxyCodeLine{777          matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}};}
+\DoxyCodeLine{730       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}} || matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}}) \{}
+\DoxyCodeLine{731          }
+\DoxyCodeLine{732       \}}
+\DoxyCodeLine{733       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{734          std::stringstream ss;}
+\DoxyCodeLine{735          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{736          ss << \textcolor{stringliteral}{"{}Unknown CRSTag detected."{}};}
+\DoxyCodeLine{737          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{738       \}}
+\DoxyCodeLine{739    \}}
+\DoxyCodeLine{740    matrix\_out.tag = matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}};}
+\DoxyCodeLine{741    \textcolor{keywordflow}{return} matrix\_out;}
+\DoxyCodeLine{742 \}}
+\DoxyCodeLine{743 }
+\DoxyCodeLine{752 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2, \textcolor{keyword}{typename} T3>}
+\DoxyCodeLine{753 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_aa09c6703ea13c46c2bb89531b7c85a75}{CalculateMatrixMatrixProduct}}(\textcolor{keyword}{const} T1 coeff\_1,}
+\DoxyCodeLine{754                                   \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&matrix\_1,}
+\DoxyCodeLine{755                                   \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T3>}} \&matrix\_2) \{}
+\DoxyCodeLine{756    }
+\DoxyCodeLine{757    \textcolor{keywordflow}{if} (matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} != matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}) \{}
+\DoxyCodeLine{758       std::stringstream ss;}
+\DoxyCodeLine{759       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{760       ss << \textcolor{stringliteral}{"{}Matrix product cannot be defined"{}} << std::endl;}
+\DoxyCodeLine{761       ss << \textcolor{stringliteral}{"{}matrix\_1.col\_dim = "{}} << matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} << \textcolor{stringliteral}{"{}, matrix\_2.row\_dim = "{}} << matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} << std::endl;}
+\DoxyCodeLine{762       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{763    \}}
+\DoxyCodeLine{764    }
+\DoxyCodeLine{765    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\}*T3\{0\})> matrix\_out(matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}, matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}});}
+\DoxyCodeLine{766    }
+\DoxyCodeLine{767    std::vector<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\})>       temp\_v1(matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}, 0.0);}
+\DoxyCodeLine{768    std::vector<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\}*T3\{0\})> temp\_v2(matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}, 0.0);}
+\DoxyCodeLine{769    }
+\DoxyCodeLine{770    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{771       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i]; j < matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{772          temp\_v1[matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j]] = coeff\_1*matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j];}
+\DoxyCodeLine{773       \}}
+\DoxyCodeLine{774       \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}; ++j) \{}
+\DoxyCodeLine{775          \textcolor{keywordflow}{for} (std::int64\_t k = matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[j]; k < matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[j + 1]; ++k) \{}
+\DoxyCodeLine{776             temp\_v2[matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[k]] += temp\_v1[j]*matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[k];}
+\DoxyCodeLine{777          \}}
 \DoxyCodeLine{778       \}}
-\DoxyCodeLine{779       \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{780          std::stringstream ss;}
-\DoxyCodeLine{781          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
-\DoxyCodeLine{782          ss << \textcolor{stringliteral}{"{}Unknown CRSTag detected."{}};}
-\DoxyCodeLine{783          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{779       \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}; ++j) \{}
+\DoxyCodeLine{780          \textcolor{keywordflow}{if} (std::abs(temp\_v2[j]) > 0.0) \{}
+\DoxyCodeLine{781             matrix\_out.val.push\_back(temp\_v2[j]);}
+\DoxyCodeLine{782             matrix\_out.col.push\_back(j);}
+\DoxyCodeLine{783          \}}
 \DoxyCodeLine{784       \}}
-\DoxyCodeLine{785    \}}
-\DoxyCodeLine{786    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}}) \{}
-\DoxyCodeLine{787       matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}};}
-\DoxyCodeLine{788    \}}
-\DoxyCodeLine{789    \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{790       std::stringstream ss;}
-\DoxyCodeLine{791       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
-\DoxyCodeLine{792       ss << \textcolor{stringliteral}{"{}Unknown CRSTag detected."{}};}
-\DoxyCodeLine{793       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{785       }
+\DoxyCodeLine{786       matrix\_out.row[i + 1] = matrix\_out.col.size();}
+\DoxyCodeLine{787       }
+\DoxyCodeLine{788       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i]; j < matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{789          temp\_v1[matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j]] = 0.0;}
+\DoxyCodeLine{790       \}}
+\DoxyCodeLine{791       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_out.row[i]; j < matrix\_out.row[i + 1]; ++j) \{}
+\DoxyCodeLine{792          temp\_v2[matrix\_out.col[j]] = 0.0;}
+\DoxyCodeLine{793       \}}
 \DoxyCodeLine{794    \}}
 \DoxyCodeLine{795    }
-\DoxyCodeLine{796    \textcolor{keywordflow}{return} matrix\_out;}
-\DoxyCodeLine{797 \}}
-\DoxyCodeLine{798 }
-\DoxyCodeLine{805 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{806 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_adeb3713e2d793237d6a8509cd17fb010}{CalculateScalarMatrixProduct}}(\textcolor{keyword}{const} T1 coeff, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&matrix) \{}
-\DoxyCodeLine{807    }
-\DoxyCodeLine{808    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\})> out(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}, matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}, matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}});}
-\DoxyCodeLine{809    out.col.resize(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size());}
-\DoxyCodeLine{810    out.val.resize(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.size());}
-\DoxyCodeLine{811    }
-\DoxyCodeLine{812 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{813    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size(); ++i) \{}
-\DoxyCodeLine{814       out.col[i] = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[i];}
-\DoxyCodeLine{815       out.val[i] = coeff*matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[i];}
-\DoxyCodeLine{816    \}}
-\DoxyCodeLine{817    }
-\DoxyCodeLine{818 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{819    \textcolor{keywordflow}{for} (std::int64\_t i = 1; i <= matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{820       out.row[i] = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i];}
-\DoxyCodeLine{821    \}}
-\DoxyCodeLine{822    \textcolor{keywordflow}{return} out;}
-\DoxyCodeLine{823 \}}
-\DoxyCodeLine{824 }
-\DoxyCodeLine{829 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{830 \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} \mbox{\hyperlink{namespacecompnal_1_1type_a59fb41af50a085e7de7640b31b6fd240}{CalculateTransposedMatrix}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} \&matrix) \{}
-\DoxyCodeLine{831    }
-\DoxyCodeLine{832    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} matrix\_out(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}, matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}, matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}});}
-\DoxyCodeLine{833    }
-\DoxyCodeLine{834    std::vector<std::int64\_t> row\_count(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}});}
-\DoxyCodeLine{835    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}; ++i) \{}
-\DoxyCodeLine{836       \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++j) \{}
-\DoxyCodeLine{837          \textcolor{keyword}{const} std::int64\_t row = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[j] + row\_count[j];}
-\DoxyCodeLine{838          \textcolor{keywordflow}{if} (row < matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[j + 1] \&\& matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[row] == i) \{}
-\DoxyCodeLine{839             matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.push\_back(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[row]);}
-\DoxyCodeLine{840             matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.push\_back(j);}
-\DoxyCodeLine{841             row\_count[j]++;}
-\DoxyCodeLine{842          \}}
-\DoxyCodeLine{843       \}}
-\DoxyCodeLine{844       matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1] = matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size();}
-\DoxyCodeLine{845    \}}
-\DoxyCodeLine{846    }
-\DoxyCodeLine{847    \textcolor{keywordflow}{return} matrix\_out;}
-\DoxyCodeLine{848 \}}
-\DoxyCodeLine{849 }
-\DoxyCodeLine{850 \} \textcolor{comment}{// namespace type}}
-\DoxyCodeLine{851 \} \textcolor{comment}{// namespace compnal}}
-\DoxyCodeLine{852 }
-\DoxyCodeLine{853 }
-\DoxyCodeLine{854 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_TYPE\_COMPRESSED\_ROW\_STORAGE\_HPP\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{796    \textcolor{keywordflow}{if} (matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}}) \{}
+\DoxyCodeLine{797       matrix\_out.tag = matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}};}
+\DoxyCodeLine{798    \}}
+\DoxyCodeLine{799    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}}) \{}
+\DoxyCodeLine{800       \textcolor{keywordflow}{if} (matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}} || matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}}) \{}
+\DoxyCodeLine{801          matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}};}
+\DoxyCodeLine{802       \}}
+\DoxyCodeLine{803       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}}) \{}
+\DoxyCodeLine{804          matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}};}
+\DoxyCodeLine{805       \}}
+\DoxyCodeLine{806       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}}) \{}
+\DoxyCodeLine{807          matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}};}
+\DoxyCodeLine{808       \}}
+\DoxyCodeLine{809       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{810          std::stringstream ss;}
+\DoxyCodeLine{811          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{812          ss << \textcolor{stringliteral}{"{}Unknown CRSTag detected."{}};}
+\DoxyCodeLine{813          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{814       \}}
+\DoxyCodeLine{815    \}}
+\DoxyCodeLine{816    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}}) \{}
+\DoxyCodeLine{817       \textcolor{keywordflow}{if} (matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}} || matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}} || matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}}) \{}
+\DoxyCodeLine{818          matrix\_out.tag = matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}};}
+\DoxyCodeLine{819       \}}
+\DoxyCodeLine{820       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}}) \{}
+\DoxyCodeLine{821          matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}};}
+\DoxyCodeLine{822       \}}
+\DoxyCodeLine{823       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{824          std::stringstream ss;}
+\DoxyCodeLine{825          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{826          ss << \textcolor{stringliteral}{"{}Unknown CRSTag detected."{}};}
+\DoxyCodeLine{827          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{828       \}}
+\DoxyCodeLine{829    \}}
+\DoxyCodeLine{830    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}}) \{}
+\DoxyCodeLine{831       matrix\_out.tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}};}
+\DoxyCodeLine{832    \}}
+\DoxyCodeLine{833    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{834       std::stringstream ss;}
+\DoxyCodeLine{835       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{836       ss << \textcolor{stringliteral}{"{}Unknown CRSTag detected."{}};}
+\DoxyCodeLine{837       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{838    \}}
+\DoxyCodeLine{839    }
+\DoxyCodeLine{840    \textcolor{keywordflow}{return} matrix\_out;}
+\DoxyCodeLine{841 \}}
+\DoxyCodeLine{842 }
+\DoxyCodeLine{849 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{850 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_adeb3713e2d793237d6a8509cd17fb010}{CalculateScalarMatrixProduct}}(\textcolor{keyword}{const} T1 coeff, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&matrix) \{}
+\DoxyCodeLine{851    }
+\DoxyCodeLine{852    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\})> out(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}, matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}, matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}});}
+\DoxyCodeLine{853    out.col.resize(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size());}
+\DoxyCodeLine{854    out.val.resize(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.size());}
+\DoxyCodeLine{855    }
+\DoxyCodeLine{856 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{857    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size(); ++i) \{}
+\DoxyCodeLine{858       out.col[i] = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[i];}
+\DoxyCodeLine{859       out.val[i] = coeff*matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[i];}
+\DoxyCodeLine{860    \}}
+\DoxyCodeLine{861    }
+\DoxyCodeLine{862 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{863    \textcolor{keywordflow}{for} (std::int64\_t i = 1; i <= matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{864       out.row[i] = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i];}
+\DoxyCodeLine{865    \}}
+\DoxyCodeLine{866    \textcolor{keywordflow}{return} out;}
+\DoxyCodeLine{867 \}}
+\DoxyCodeLine{868 }
+\DoxyCodeLine{873 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{874 \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} \mbox{\hyperlink{namespacecompnal_1_1type_a59fb41af50a085e7de7640b31b6fd240}{CalculateTransposedMatrix}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} \&matrix) \{}
+\DoxyCodeLine{875    }
+\DoxyCodeLine{876    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} matrix\_out(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}, matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}, matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}});}
+\DoxyCodeLine{877    }
+\DoxyCodeLine{878    std::vector<std::int64\_t> row\_count(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}});}
+\DoxyCodeLine{879    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}; ++i) \{}
+\DoxyCodeLine{880       \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++j) \{}
+\DoxyCodeLine{881          \textcolor{keyword}{const} std::int64\_t row = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[j] + row\_count[j];}
+\DoxyCodeLine{882          \textcolor{keywordflow}{if} (row < matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[j + 1] \&\& matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[row] == i) \{}
+\DoxyCodeLine{883             matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.push\_back(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[row]);}
+\DoxyCodeLine{884             matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.push\_back(j);}
+\DoxyCodeLine{885             row\_count[j]++;}
+\DoxyCodeLine{886          \}}
+\DoxyCodeLine{887       \}}
+\DoxyCodeLine{888       matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1] = matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size();}
+\DoxyCodeLine{889    \}}
+\DoxyCodeLine{890    }
+\DoxyCodeLine{891    \textcolor{keywordflow}{return} matrix\_out;}
+\DoxyCodeLine{892 \}}
+\DoxyCodeLine{893 }
+\DoxyCodeLine{894 \} \textcolor{comment}{// namespace type}}
+\DoxyCodeLine{895 \} \textcolor{comment}{// namespace compnal}}
+\DoxyCodeLine{896 }
+\DoxyCodeLine{897 }
+\DoxyCodeLine{898 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_TYPE\_COMPRESSED\_ROW\_STORAGE\_HPP\_ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

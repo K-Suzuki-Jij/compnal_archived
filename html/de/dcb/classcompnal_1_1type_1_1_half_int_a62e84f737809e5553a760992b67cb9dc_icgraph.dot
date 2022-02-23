@@ -1,0 +1,11 @@
+digraph "compnal::type::HalfInt::HalfInt"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="compnal::type::HalfInt\l::HalfInt",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Constructor of HalfInt class."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="compnal::type::HalfInt\l::operator-",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/dcb/classcompnal_1_1type_1_1_half_int.html#af0f97e998280dd3b405212dee190d97e",tooltip="Operator overloading: unary negation operator."];
+}

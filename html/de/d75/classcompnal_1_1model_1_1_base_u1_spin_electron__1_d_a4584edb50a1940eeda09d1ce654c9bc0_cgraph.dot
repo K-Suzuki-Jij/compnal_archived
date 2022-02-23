@@ -1,0 +1,17 @@
+digraph "compnal::model::BaseU1SpinElectron_1D::GenerateBasis"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="compnal::model::BaseU1Spin\lElectron_1D::GenerateBasis",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Generate bases of the target Hilbert space specified by the system size , the magnitude of the local ..."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="compnal::model::BaseU1Spin\lElectron_1D::CalculateTargetDim",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d75/classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a6c76df83eeef7e4f373b5f13ef708224",tooltip="Calculate the dimension of the target Hilbert space specified by the system size ,..."];
+  Node2 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="compnal::utility::Generate\lIntegerPartition",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/db7/namespacecompnal_1_1utility.html#a19f7e6247e080cfaf331019133ae80cd",tooltip="Generate partitions of a positive integer."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="compnal::model::BaseU1Spin\lElectron_1D::isValidQNumber",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$de/d75/classcompnal_1_1model_1_1_base_u1_spin_electron__1_d.html#a7a6bc26a9343fa46fad1455869d78da3",tooltip="Check if there is a subspace specified by the input quantum numbers."];
+  Node4 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

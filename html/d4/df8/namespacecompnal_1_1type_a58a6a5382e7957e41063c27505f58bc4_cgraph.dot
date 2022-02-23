@@ -1,0 +1,13 @@
+digraph "compnal::type::operator*"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="compnal::type::operator*",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Operator overloading: multiplication operator."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="compnal::type::Calculate\lScalarVectorProduct",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d4/df8/namespacecompnal_1_1type.html#ab01076b32cfaad46dd5bb2ef798ab868",tooltip="Calculate scalar BraketVector product ( )."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="compnal::type::BraketVector\l::Resize",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a34ad810a17b62d18223238c973b068bc",tooltip="Resize BraketVector."];
+}

@@ -1,0 +1,32 @@
+digraph "compnal::model::BaseU1SpinMultiElectrons_1D::CreateOnsiteOperatorSxC"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::CreateOnsite\lOperatorSxC",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Generate the spin operator for the x-direction for the electrons with the orbital ,..."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::CreateOnsite\lOperatorSmC",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d25/classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#ae8882522614548811d1008a71b3b612d",tooltip="Generate the lowering operator for spin of the electrons with the orbital , ."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::CreateOnsite\lOperatorCDownDagger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d25/classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a607eb0a02dd1dc5bb0289b60468bb647",tooltip="Generate the creation operator for the electrons with the orbital  and the down spin ."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="compnal::type::Calculate\lTransposedMatrix",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d4/df8/namespacecompnal_1_1type.html#a5346fac9bf3b703982976a27f440168b",tooltip=" "];
+  Node3 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::CreateOnsite\lOperatorCDown",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d25/classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a5c22091962c1ce50aa1d975e7f891d3f",tooltip="Generate the annihilation operator for the electrons with the orbital  and the down spin ."];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::CalculateBasis\lOnsiteElectron",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d25/classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a3d5150384f28ce59aa15473581322e96",tooltip="Calculate onsite basis for the electrons from an onsite basis."];
+  Node5 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::CalculateNum\lElectronFromElectronBasis",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d25/classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#ad94f55ffb42f8e61248a2e611366b124",tooltip="Calculate the number of electrons from the onsite electron basis."];
+  Node2 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::CreateOnsite\lOperatorCUp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d25/classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a64eb887ad8446e6fbf72ed8f3bf0f449",tooltip="Generate the annihilation operator for the electrons with the orbital  and the up spin ."];
+  Node8 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::CreateOnsite\lOperatorSpC",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d25/classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a8197c2df1595d2342a4632b18e0512ff",tooltip="Generate the raising operator for spin of the electrons with the orbital , ."];
+  Node9 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="compnal::model::BaseU1Spin\lMultiElectrons_1D::CreateOnsite\lOperatorCUpDagger",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d25/classcompnal_1_1model_1_1_base_u1_spin_multi_electrons__1_d.html#a19bbf84cb3c37496eaa0ee7afec4331f",tooltip="Generate the creation operator for the electrons with the orbital  and the up spin ."];
+  Node10 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

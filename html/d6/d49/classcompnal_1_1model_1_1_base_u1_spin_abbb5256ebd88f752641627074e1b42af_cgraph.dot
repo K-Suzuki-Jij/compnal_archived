@@ -1,0 +1,12 @@
+digraph "compnal::model::BaseU1Spin::CalculateTargetDim"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="compnal::model::BaseU1Spin\l::CalculateTargetDim",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Calculate dimension of the target Hilbert space specified by the system size , the magnitude of the s..."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="compnal::model::BaseU1Spin\l::ValidateQNumber",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d49/classcompnal_1_1model_1_1_base_u1_spin.html#af88354bb24146bcdde2372acb6fefa77",tooltip="Check if there is a subspace specified by the input quantum numbers."];
+  Node2 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

@@ -1,0 +1,28 @@
+digraph "compnal::type::CalculateMatrixMatrixProduct"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="compnal::type::Calculate\lMatrixMatrixProduct",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="compnal::model::BaseU1Electron\l_1D::CreateOnsiteOperatorNCDown",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/dc0/classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a9fd576d344dc72d5c7b9361a3cad51d9",tooltip="Generate the number operator for the electrons with the down spin ."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="compnal::model::Hubbard\l_1D::CreateOnsiteOperatorHam",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d9/d7b/classcompnal_1_1model_1_1_hubbard__1_d.html#a879169d51bdfedd522454e9cf9af42ee",tooltip="Create the onsite Hamiltonian."];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="compnal::model::Hubbard\l_1D::Hubbard_1D",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d9/d7b/classcompnal_1_1model_1_1_hubbard__1_d.html#a3d421777171753d4388c9c6e545a5f27",tooltip="Constructor of Hubbard_1D class."];
+  Node3 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="compnal::model::Hubbard\l_1D::SetChemicalPotential",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d9/d7b/classcompnal_1_1model_1_1_hubbard__1_d.html#aba696ed51bc3a98aeb35e8d3d9206639",tooltip="Set the chemical potential."];
+  Node3 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="compnal::model::Hubbard\l_1D::SetMagneticField",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d9/d7b/classcompnal_1_1model_1_1_hubbard__1_d.html#abcf228a598e68e3c787c5f91ec61fd5b",tooltip="Set the magnetic fields for the z-direction."];
+  Node3 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="compnal::model::Hubbard\l_1D::SetOnsiteCoulomb",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d9/d7b/classcompnal_1_1model_1_1_hubbard__1_d.html#a2e8dbb3e07b92f31092b7c8d5f849b57",tooltip="Set the onsite density interactions."];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="compnal::model::BaseU1Electron\l_1D::CreateOnsiteOperatorNCUp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/dc0/classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a3b8fcfdefbef8ade799801c8119e3f04",tooltip="Generate the number operator for the electrons with the up spin ."];
+  Node8 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="compnal::model::BaseU1Electron\l_1D::CreateOnsiteOperatorSm",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/dc0/classcompnal_1_1model_1_1_base_u1_electron__1_d.html#aa22882e9e45d96221f3a9ca2dcfc6dfd",tooltip="Generate the lowering operator for spin of the electrons ."];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="compnal::model::BaseU1Electron\l_1D::CreateOnsiteOperatorSp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/dc0/classcompnal_1_1model_1_1_base_u1_electron__1_d.html#a74e428afd2ae4c3a29c23d187d472729",tooltip="Generate the raising operator for spin of the electrons ."];
+}

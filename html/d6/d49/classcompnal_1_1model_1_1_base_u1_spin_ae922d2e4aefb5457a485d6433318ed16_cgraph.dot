@@ -1,0 +1,24 @@
+digraph "compnal::model::BaseU1Spin::GenerateBasis"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="compnal::model::BaseU1Spin\l::GenerateBasis",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Generate basis of the target Hilbert space specified by the system size , the magnitude of the spin ,..."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="compnal::utility::Calculate\lNumPermutation",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/db7/namespacecompnal_1_1utility.html#aee9ff806431adb586e95bc9d77516915",tooltip="Calculate the number of permutations from list.   For example, all the possible permutations for {1,..."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="compnal::utility::Calculate\lBinomialCoefficient",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/db7/namespacecompnal_1_1utility.html#ad5998331a6095cfe0d7e1c4d3e9de658",tooltip="Calculate binomial coefficient."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="compnal::model::BaseU1Spin\l::CalculateTargetDim",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d49/classcompnal_1_1model_1_1_base_u1_spin.html#a2d55d47c1494ea84e91892b1a5d94aac",tooltip="Calculate dimension of the target Hilbert space specified by the system size , the magnitude of the s..."];
+  Node4 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="compnal::utility::Generate\lIntegerPartition",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/db7/namespacecompnal_1_1utility.html#a19f7e6247e080cfaf331019133ae80cd",tooltip="Generate partitions of a positive integer."];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="compnal::utility::Generate\lNthPermutation",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d8/db7/namespacecompnal_1_1utility.html#a7e59d7a03bcbd9fb222fd52300d29fd7",tooltip="Calculate  -th permutation of the list.   For example, all the possible permutations for {1,..."];
+  Node6 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="compnal::model::BaseU1Spin\l::ValidateQNumber",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d6/d49/classcompnal_1_1model_1_1_base_u1_spin.html#af88354bb24146bcdde2372acb6fefa77",tooltip="Check if there is a subspace specified by the input quantum numbers."];
+  Node7 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

@@ -1,0 +1,10 @@
+digraph "compnal::model::XXZ_1D&lt; RealType &gt;"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{compnal::model::XXZ\l_1D\< RealType \>\n|- boundary_condition_\l- D_z_\l- h_z_\l- J_xy_\l- J_z_\l- onsite_operator_ham_\l|+ GetBoundaryCondition()\l+ GetDz()\l+ GetHz()\l+ GetJxy()\l+ GetJxy()\l+ GetJz()\l+ GetJz()\l+ GetOnsiteOperatorHam()\l+ PrintInfo()\l+ SetBoundaryCondition()\land 11 more...\l+ CreateOnsiteOperatorHam()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="The class for the one-dimensional XXZ model with the magnitude of the spin . The Hamiltonian reads."];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal",fontname="Helvetica"];
+  Node2 [label="{BaseU1Spin_1D\< RealType \>\n||}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",tooltip=" "];
+}

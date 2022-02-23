@@ -1,0 +1,8 @@
+digraph "compnal::type::BraketVector&lt; ElementType &gt;"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{compnal::type::BraketVector\l\< ElementType \>\n|+ value_list\l|+ Assign()\l+ Assign()\l+ BraketVector()\l+ BraketVector()\l+ BraketVector()\l+ CalculateL1Norm()\l+ CalculateL2Norm()\l+ Fill()\l+ Free()\l+ MultiplyByScalar()\land 10 more...\l- CalculateL1Norm()\l- CalculateL2Norm()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="The wrapper class of std::vector to represent braket. Note that there is no difference of <bra| and |..."];
+}
