@@ -155,8 +155,10 @@ public:
    }
    
    //! @brief Copy constructor of CRS class.
+   //! @tparam T Value type of the matrix elements.
    //! @param matrix The matrix.
-   CRS(const CRS &matrix) {
+   template<typename T>
+   CRS(const CRS<T> &matrix) {
       Assign(matrix);
    }
    
@@ -175,7 +177,7 @@ public:
       this->name = "";
    }
    
-   //! @brief Assign CRS.
+   //! @brief Assign CRS object.
    //! @tparam T Value type of the matrix elements.
    //! @param matrix The matrix.
    template<typename T>
@@ -246,7 +248,10 @@ public:
             }
          }
          if (temp_flag) {
-            flag = true;
+#pragma omp critical
+            {
+            flag = temp_flag;
+            }
          }
       }
       if (flag) {
@@ -273,17 +278,17 @@ public:
    //! @brief Sort column indexes.
    void SortCol() {
       auto compare = [this](auto &a, auto &b) {
-         if (b > a) {
-            std::swap(this->val[std::distance(&this->col[0], &a)],
-                      this->val[std::distance(&this->col[0], &b)]);
+         if (a > b) {
             return false;
          }
          else {
+            std::swap(this->val[std::distance(&this->col[0], &a)],
+                      this->val[std::distance(&this->col[0], &b)]);
             return true;
          }
       };
       
-#pragma omp parallel for
+#pragma omp parallel for schedule(guided)
       for (std::int64_t i = 0; i < this->row_dim; ++i) {
          std::sort(&this->col[this->row[i]], &this->col[this->row[i + 1]], compare);
       }
@@ -329,23 +334,57 @@ public:
    
    //! @brief Check if the matrix is symmetric or not within the threshold.
    //! @param threshold The threshold. Defaults to 10^-15.
+   //! @param flag_display_info Display information if the matrix is not symmetric.
    //! @return Return true if the matrix is symmetric, otherwise false.
-   bool CheckSymmetric(const ElementType threshold = 0.000000000000001/*pow(10,-15)*/) const {
+   bool CheckSymmetric(const ElementType threshold = 0.000000000000001/*pow(10,-15)*/, const bool flag_display_info = false) const {
+      if (this->row_dim != this->col_dim) {
+         std::stringstream ss;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+         ss << "The matrix is not square one." << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      // Check sorted
+      bool flag_sorted = false;
+#pragma omp parallel for
+      for (std::int64_t i = 0; i < this->row_dim; ++i) {
+         bool temp_flag = false;
+         for (std::int64_t j = this->row[i]; j < this->row[i + 1] - 1; ++j) {
+            if (this->col[j] >= this->col[j + 1]) {
+               temp_flag = true;
+            }
+         }
+         if (temp_flag) {
+#pragma omp critical
+            {
+               flag_sorted = temp_flag;
+            }
+         }
+      }
+      if (flag_sorted) {
+         std::stringstream ss;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+         ss << "The colmun indexes of the matrix is not sorted." << std::endl;
+         throw std::runtime_error(ss.str());
+      }
       for (std::int64_t i = 0; i < this->row_dim; ++i) {
          for (std::int64_t j = this->row[i]; j < this->row[i + 1]; ++j) {
-            const auto iter_begin = this->col.begin() + this->row[col[j]];
-            const auto iter_end   = this->col.begin() + this->row[col[j] + 1];
+            const auto iter_begin = this->col.begin() + this->row[this->col[j]];
+            const auto iter_end   = this->col.begin() + this->row[this->col[j] + 1];
             const auto iter_find  = std::lower_bound(iter_begin, iter_end, i);
             if (iter_find == iter_end || *iter_find != i) {
-               std::cout << "The input matrix is not symmetric." << std::endl;
-               std::cout << "Corresponding element does not exist." << std::endl;
-               std::cout << "row=" << i << ", col=" << col[j] << ", val=" << val[j] << std::endl;
+               if (flag_display_info) {
+                  std::cout << "The input matrix is not symmetric." << std::endl;
+                  std::cout << "Corresponding element does not exist." << std::endl;
+                  std::cout << "row=" << i << ", col=" << col[j] << ", val=" << val[j] << std::endl;
+               }
                return false;
             }
-            const auto inv = std::distance(iter_begin, iter_find);
+            const auto inv = std::distance(this->col.begin(), iter_find);
             if (std::abs(this->val[j] - this->val[inv]) > threshold) {
-               std::cout << "The input matrix is not symmetric." << std::endl;
-               std::cout << "M[" << i << "][" << this->col[j] << "]=" << this->val[j] << ", " << this->val[inv] << "=M[" << this->col[j] << "][" << i << "]" << std::endl;
+               if (flag_display_info) {
+                  std::cout << "The input matrix is not symmetric." << std::endl;
+                  std::cout << "M[" << i << "][" << this->col[j] << "]=" << this->val[j] << ", " << this->val[inv] << "=M[" << this->col[j] << "][" << i << "]" << std::endl;
+               }
                return false;
             }
          }
@@ -396,9 +435,11 @@ public:
    }
    
    //! @brief Operator overloading: assignment operator.
+   //! @tparam T Value type of the matrix elements.
    //! @param matrix The CRS object to be assigned.
    //! @return The CRS object.
-   CRS &operator=(const CRS &matrix) & {
+   template<typename T>
+   CRS &operator=(const CRS<T> &matrix) & {
       Assign(matrix);
       return *this;
    }

@@ -24,6 +24,123 @@
 namespace compnal {
 namespace test {
 
+TEST(CRS, Constructors) {
+   EXPECT_NO_THROW(type::CRS<double>());
+   EXPECT_NO_THROW(type::CRS<double>(3, 4));
+   EXPECT_NO_THROW(type::CRS<double>(3, 4, type::CRSTag::FERMION));
+   EXPECT_NO_THROW(type::CRS<double>({{1, 2.0}, {3.1}, {-1}}));
+   EXPECT_NO_THROW(type::CRS<double>({{1, 2.0}, {3.1}, {-1}}, type::CRSTag::FERMION));
+   EXPECT_NO_THROW(type::CRS<double>(std::vector<std::vector<int>>{{1,2,3}, {-1,-2}}));
+   EXPECT_NO_THROW(type::CRS<int>());
+   EXPECT_NO_THROW(type::CRS<int>(3, 4));
+   EXPECT_NO_THROW(type::CRS<int>(3, 4, type::CRSTag::FERMION));
+   EXPECT_NO_THROW(type::CRS<int>({{1, 2}, {3}, {-1}}));
+   EXPECT_NO_THROW(type::CRS<int>({{1, 2}, {3}, {-1}}, type::CRSTag::FERMION));
+   EXPECT_NO_THROW(type::CRS<int>(std::vector<std::vector<int>>{{1,2,3}, {-1,-2}}));
+   EXPECT_EQ(type::CRS<int>({{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}), type::CRS<int>(3, 3));
+}
+
+TEST(CRS, Free) {
+   type::CRS<int> m({{1, 2}, {3}, {-1}}, type::CRSTag::FERMION);
+   m.name = "Matrix";
+   m.Free();
+   EXPECT_EQ(m, type::CRS<int>());
+}
+
+TEST(CRS, Assign) {
+   type::CRS<int> m_int({{1, 2}, {3}, {-1}}, type::CRSTag::BOSON);
+   
+   type::CRS<double> m_d_1 = m_int;
+   EXPECT_EQ(m_d_1, m_int);
+   
+   type::CRS<double> m_d_2;
+   m_d_2 = m_int;
+   EXPECT_EQ(m_d_2, m_int);
+   
+   type::CRS<double> m_d_3;
+   m_d_3.Assign(m_int);
+   EXPECT_EQ(m_d_3, m_int);
+}
+
+TEST(CRS, MultiplyByScalar) {
+   type::CRS<double> m_d({{1.0, 2.0}, {3.0}, {-2.0}});
+   m_d.MultiplyByScalar(2);
+   EXPECT_EQ(m_d, type::CRS<double>({{2.0, 4.0}, {6.0}, {-4.0}}));
+   
+   type::CRS<int> m_int({{1, 3}, {3}, {-1}});
+   m_int.MultiplyByScalar(2);
+   EXPECT_EQ(m_int, type::CRS<int>({{2, 6}, {6}, {-2}}));
+}
+
+TEST(CRS, AddDiagonalElements) {
+   type::CRS<double> m_d({{1.0, 2.0}, {3.0, -2.0}});
+   m_d.AddDiagonalElements(1);
+   EXPECT_EQ(m_d, type::CRS<double>({{2.0, 2.0}, {3.0, -1.0}}));
+   
+   type::CRS<double> m_d_2({{0.0, 2.0}, {3.0, -2.0}});
+   EXPECT_THROW(m_d_2.AddDiagonalElements(0.00000001), std::runtime_error);
+   
+   type::CRS<double> m_d_3({{1.0, 2.0}, {3.0, -2.0}, {3.0, -2.0}});
+   EXPECT_THROW(m_d_3.AddDiagonalElements(0.00000001), std::runtime_error);
+}
+
+TEST(CRS, SortCol) {
+   type::CRS<int> m_d(3, 3);
+   m_d.col.resize(8);
+   m_d.val.resize(8);
+   m_d.row[1] = 2;
+   m_d.row[2] = 5;
+   m_d.row[3] = 8;
+   m_d.col[0] = 2;
+   m_d.col[1] = 1;
+   m_d.col[2] = 1;
+   m_d.col[3] = 2;
+   m_d.col[4] = 0;
+   m_d.col[5] = 2;
+   m_d.col[6] = 0;
+   m_d.col[7] = 1;
+   m_d.val[0] = 2;
+   m_d.val[1] = 1;
+   m_d.val[2] = 3;
+   m_d.val[3] = 4;
+   m_d.val[4] = 2;
+   m_d.val[5] = 7;
+   m_d.val[6] = 5;
+   m_d.val[7] = 6;
+   EXPECT_FALSE(m_d == type::CRS<int>({{0, 1, 2}, {2, 3, 4}, {5, 6, 7}}));
+   m_d.SortCol();
+   EXPECT_TRUE(m_d == type::CRS<int>({{0, 1, 2}, {2, 3, 4}, {5, 6, 7}}));
+}
+
+TEST(CRS, CheckSymmetric) {
+   type::CRS<double> m_d_1({{1.0, 2.0}, {3.0, -2.0}});
+   EXPECT_FALSE(m_d_1.CheckSymmetric());
+
+   type::CRS<double> m_d_2({{1.0, 2.0}, {-2.0}, {3.0, -2.0}});
+   EXPECT_THROW(m_d_2.CheckSymmetric(), std::runtime_error);
+   
+   type::CRS<double> m_d_3({{1.0, 2.0}, {2.0, 1.0}});
+   EXPECT_TRUE(m_d_3.CheckSymmetric());
+}
+
+TEST(CRS, UnaryOperators) {
+   type::CRS<double> m_d({{1.0, 2.0}, {-2.0}, {3.0, -2.0}});
+   EXPECT_EQ(+m_d, type::CRS<double>({{1.0, 2.0}, {-2.0}, {3.0, -2.0}}));
+   EXPECT_EQ(-m_d, type::CRS<double>({{-1.0, -2.0}, {2.0}, {-3.0, 2.0}}));
+}
+
+TEST(CRS, CompoundAssignmentOperators) {
+   type::CRS<int> m_d_1({{+1, +2}, {+2, +1}});
+   type::CRS<int> m_d_2({{-3, +1}, {-2, -2}});
+   type::CRS<int> m_d_3 = m_d_1 + m_d_2;
+   m_d_1 += m_d_2;
+   EXPECT_EQ(m_d_1, m_d_3);
+   m_d_1 -= m_d_2;
+   EXPECT_EQ(m_d_1, m_d_3 - m_d_2);
+   m_d_1 *= m_d_2;
+   EXPECT_EQ(m_d_1, type::CRS<int>({{+1, +2}, {+2, +1}})*m_d_2);
+}
+
 TEST(CRS, Addition) {
    auto expect_crs_eq = [](const auto &lhs, const auto &rhs, const auto &prec, const auto &line) {
       const bool c1 = std::is_integral<typename std::remove_cvref<decltype(lhs)>::type::ValueType>::value;
