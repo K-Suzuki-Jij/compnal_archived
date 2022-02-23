@@ -78,7 +78,7 @@ The wrapper class of std\+::vector to represent braket. Note that there is no di
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em Element\+Type} & The value type of the vector elemtns. \\
+{\em Element\+Type} & The value type of the vector elements. \\
 \hline
 \end{DoxyTemplParams}
 
@@ -373,6 +373,9 @@ Operator overloading\+: casting operator to std\+::vector$<$\+T$>$.
 
 Operator overloading\+: unary plus operator. 
 
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} object, $ +\boldsymbol{v} $. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_aceb28352617074c741fe187614d5799e}\label{classcompnal_1_1type_1_1_braket_vector_aceb28352617074c741fe187614d5799e}} 
 \index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!operator+=@{operator+=}}
 \index{operator+=@{operator+=}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
@@ -387,14 +390,17 @@ Operator overloading\+: compound assignment plus operator.
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Value type of the right-\/hand side. \\
+{\em T} & Value type of the right-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
 \hline
 \end{DoxyTemplParams}
 
 \begin{DoxyParams}{Parameters}
-{\em rhs} & The value of the right-\/hand side. \\
+{\em rhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} of the right-\/hand side, $ \boldsymbol{v}_{\rm rhs} $. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} object, $ \boldsymbol{v} + \boldsymbol{v}_{\rm rhs}$. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_a795d202f847252dd4d097e90ee1718ba}\label{classcompnal_1_1type_1_1_braket_vector_a795d202f847252dd4d097e90ee1718ba}} 
 \index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!operator-\/@{operator-\/}}
 \index{operator-\/@{operator-\/}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
@@ -406,6 +412,9 @@ Operator overloading\+: compound assignment plus operator.
 
 Operator overloading\+: unary negation operator. 
 
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} object, $ -\boldsymbol{v} $. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_a452aabf044b58542d605a5a1d9e90967}\label{classcompnal_1_1type_1_1_braket_vector_a452aabf044b58542d605a5a1d9e90967}} 
 \index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!operator-\/=@{operator-\/=}}
 \index{operator-\/=@{operator-\/=}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
@@ -420,14 +429,17 @@ Operator overloading\+: compound assignment plus operator.
 
 
 \begin{DoxyTemplParams}{Template Parameters}
-{\em T} & Value type of the right-\/hand side. \\
+{\em T} & Value type of the right-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
 \hline
 \end{DoxyTemplParams}
 
 \begin{DoxyParams}{Parameters}
-{\em rhs} & The value of the right-\/hand side. \\
+{\em rhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} of the right-\/hand side, $ \boldsymbol{v}_{\rm rhs} $. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} object, $ \boldsymbol{v} - \boldsymbol{v}_{\rm rhs}$. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_ada5ca48bf12bf3424c64408c430807c5}\label{classcompnal_1_1type_1_1_braket_vector_ada5ca48bf12bf3424c64408c430807c5}} 
 \index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!operator=@{operator=}}
 \index{operator=@{operator=}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
@@ -444,6 +456,9 @@ Operator overloading\+: assignment operator.
 {\em vector} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} to be assigned. \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} object. 
+\end{DoxyReturn}
 \mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_a40b286720fc4ee9269c21981ad15b52a}\label{classcompnal_1_1type_1_1_braket_vector_a40b286720fc4ee9269c21981ad15b52a}} 
 \index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!Print@{Print}}
 \index{Print@{Print}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}

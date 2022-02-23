@@ -148,233 +148,235 @@
 \DoxyCodeLine{183    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{184    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator Overloading-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{185    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{187 \textcolor{comment}{}   \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector}} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a54d6b1e85225c536bb20f44de181687f}{operator+}}()\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{188       \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
-\DoxyCodeLine{189    \}}
-\DoxyCodeLine{190    }
-\DoxyCodeLine{192    \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector}} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a795d202f847252dd4d097e90ee1718ba}{operator-\/}}()\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{193       \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector}} out;}
-\DoxyCodeLine{194       out.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.resize(this-\/>value\_list.size());}
-\DoxyCodeLine{195 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{196       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < out.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size(); ++i) \{}
-\DoxyCodeLine{197          out.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i] = -\/1*this-\/>value\_list[i];}
-\DoxyCodeLine{198       \}}
-\DoxyCodeLine{199       \textcolor{keywordflow}{return} out;}
-\DoxyCodeLine{200    \}}
-\DoxyCodeLine{201    }
-\DoxyCodeLine{205    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{206    \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector}}\& \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_aceb28352617074c741fe187614d5799e}{operator+=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T>}} \&rhs) \{}
-\DoxyCodeLine{207       \textcolor{keywordflow}{return} *\textcolor{keyword}{this} = *\textcolor{keyword}{this} + rhs;}
-\DoxyCodeLine{208    \}}
-\DoxyCodeLine{209    }
-\DoxyCodeLine{213    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{214    \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector}}\& \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a452aabf044b58542d605a5a1d9e90967}{operator-\/=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T>}} \&rhs) \{}
-\DoxyCodeLine{215       \textcolor{keywordflow}{return} *\textcolor{keyword}{this} = *\textcolor{keyword}{this} -\/ rhs;}
-\DoxyCodeLine{216    \}}
-\DoxyCodeLine{217    }
-\DoxyCodeLine{220    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{221    \textcolor{keyword}{operator} std::vector<T>() const noexcept \{}
-\DoxyCodeLine{222       std::vector<T> out(this-\/>value\_list.size());}
-\DoxyCodeLine{223 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{224       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < out.size(); ++i) \{}
-\DoxyCodeLine{225          out[i] = \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(this-\/>value\_list[i]);}
-\DoxyCodeLine{226       \}}
-\DoxyCodeLine{227       \textcolor{keywordflow}{return} out;}
-\DoxyCodeLine{228    \}}
-\DoxyCodeLine{229    }
-\DoxyCodeLine{232    \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector}} \&\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ada5ca48bf12bf3424c64408c430807c5}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector}} \&vector) \& \{}
-\DoxyCodeLine{233       \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ad5d0d469065d6ee4b821e567941efe2e}{Assign}}(vector);}
-\DoxyCodeLine{234       \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
-\DoxyCodeLine{235    \}}
-\DoxyCodeLine{236    }
-\DoxyCodeLine{237 \textcolor{keyword}{private}:}
-\DoxyCodeLine{238    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{239    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Private Member Functions-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{240    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{244 \textcolor{comment}{}   \textcolor{keyword}{template}<\textcolor{keyword}{typename} ReturnType>}
-\DoxyCodeLine{245    ReturnType \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ab300071e85901749211872ee07e3e924}{CalculateL1Norm}}()\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{246       ReturnType norm = 0.0;}
-\DoxyCodeLine{247 \textcolor{preprocessor}{\#pragma omp parallel for reduction (+:norm)}}
-\DoxyCodeLine{248       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>value\_list.size(); ++i) \{}
-\DoxyCodeLine{249          norm += std::abs(this-\/>value\_list[i]);}
-\DoxyCodeLine{250       \}}
-\DoxyCodeLine{251       \textcolor{keywordflow}{return} norm;}
-\DoxyCodeLine{252    \}}
-\DoxyCodeLine{253    }
-\DoxyCodeLine{257    \textcolor{keyword}{template}<\textcolor{keyword}{typename} ReturnType>}
-\DoxyCodeLine{258    ReturnType \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ad3932c0ab7811b7cb339314a887b737a}{CalculateL2Norm}}()\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{259       ReturnType inner\_product = 0.0;}
-\DoxyCodeLine{260 \textcolor{preprocessor}{\#pragma omp parallel for reduction (+:inner\_product)}}
-\DoxyCodeLine{261       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>value\_list.size(); ++i) \{}
-\DoxyCodeLine{262          inner\_product += this-\/>value\_list[i]*this-\/>value\_list[i];}
-\DoxyCodeLine{263       \}}
-\DoxyCodeLine{264       \textcolor{keywordflow}{return} std::sqrt(inner\_product);}
-\DoxyCodeLine{265    \}}
-\DoxyCodeLine{266    }
-\DoxyCodeLine{267 \};}
-\DoxyCodeLine{268 }
-\DoxyCodeLine{269 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{270 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator overloading-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{271 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
-\DoxyCodeLine{278 \textcolor{comment}{}\textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{279 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_a4a4e992db8a5b87ec24cced3bea23d6f}{operator+}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T2>}} \&rhs) \{}
-\DoxyCodeLine{280    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_a506bbc662bfe7fb2043eb43fefd47c4f}{CalculateVectorVectorSum}}(T1\{1\}, lhs, T2\{1\}, rhs);}
-\DoxyCodeLine{281 \}}
-\DoxyCodeLine{282 }
+\DoxyCodeLine{188 \textcolor{comment}{}   \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector}} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a54d6b1e85225c536bb20f44de181687f}{operator+}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{189       \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{190    \}}
+\DoxyCodeLine{191    }
+\DoxyCodeLine{194    \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector}} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a795d202f847252dd4d097e90ee1718ba}{operator-\/}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{195       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_ab01076b32cfaad46dd5bb2ef798ab868}{CalculateScalarVectorProduct}}(-\/1, *\textcolor{keyword}{this});}
+\DoxyCodeLine{196    \}}
+\DoxyCodeLine{197    }
+\DoxyCodeLine{202    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{203    \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector}}\& \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_aceb28352617074c741fe187614d5799e}{operator+=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T>}} \&rhs) \{}
+\DoxyCodeLine{204       \textcolor{keywordflow}{return} *\textcolor{keyword}{this} = *\textcolor{keyword}{this} + rhs;}
+\DoxyCodeLine{205    \}}
+\DoxyCodeLine{206    }
+\DoxyCodeLine{211    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{212    \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector}}\& \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a452aabf044b58542d605a5a1d9e90967}{operator-\/=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T>}} \&rhs) \{}
+\DoxyCodeLine{213       \textcolor{keywordflow}{return} *\textcolor{keyword}{this} = *\textcolor{keyword}{this} -\/ rhs;}
+\DoxyCodeLine{214    \}}
+\DoxyCodeLine{215    }
+\DoxyCodeLine{218    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{219    \textcolor{keyword}{operator} std::vector<T>() const noexcept \{}
+\DoxyCodeLine{220       std::vector<T> out(this-\/>value\_list.size());}
+\DoxyCodeLine{221 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{222       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < out.size(); ++i) \{}
+\DoxyCodeLine{223          out[i] = \textcolor{keyword}{static\_cast<}T\textcolor{keyword}{>}(this-\/>value\_list[i]);}
+\DoxyCodeLine{224       \}}
+\DoxyCodeLine{225       \textcolor{keywordflow}{return} out;}
+\DoxyCodeLine{226    \}}
+\DoxyCodeLine{227    }
+\DoxyCodeLine{231    \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector}} \&\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ada5ca48bf12bf3424c64408c430807c5}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector}} \&vector) \& \{}
+\DoxyCodeLine{232       \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ad5d0d469065d6ee4b821e567941efe2e}{Assign}}(vector);}
+\DoxyCodeLine{233       \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{234    \}}
+\DoxyCodeLine{235    }
+\DoxyCodeLine{236 \textcolor{keyword}{private}:}
+\DoxyCodeLine{237    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{238    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Private Member Functions-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{239    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{243 \textcolor{comment}{}   \textcolor{keyword}{template}<\textcolor{keyword}{typename} ReturnType>}
+\DoxyCodeLine{244    ReturnType \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ab300071e85901749211872ee07e3e924}{CalculateL1Norm}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{245       ReturnType norm = 0.0;}
+\DoxyCodeLine{246 \textcolor{preprocessor}{\#pragma omp parallel for reduction (+:norm)}}
+\DoxyCodeLine{247       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>value\_list.size(); ++i) \{}
+\DoxyCodeLine{248          norm += std::abs(this-\/>value\_list[i]);}
+\DoxyCodeLine{249       \}}
+\DoxyCodeLine{250       \textcolor{keywordflow}{return} norm;}
+\DoxyCodeLine{251    \}}
+\DoxyCodeLine{252    }
+\DoxyCodeLine{256    \textcolor{keyword}{template}<\textcolor{keyword}{typename} ReturnType>}
+\DoxyCodeLine{257    ReturnType \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ad3932c0ab7811b7cb339314a887b737a}{CalculateL2Norm}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{258       ReturnType inner\_product = 0.0;}
+\DoxyCodeLine{259 \textcolor{preprocessor}{\#pragma omp parallel for reduction (+:inner\_product)}}
+\DoxyCodeLine{260       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>value\_list.size(); ++i) \{}
+\DoxyCodeLine{261          inner\_product += this-\/>value\_list[i]*this-\/>value\_list[i];}
+\DoxyCodeLine{262       \}}
+\DoxyCodeLine{263       \textcolor{keywordflow}{return} std::sqrt(inner\_product);}
+\DoxyCodeLine{264    \}}
+\DoxyCodeLine{265    }
+\DoxyCodeLine{266 \};}
+\DoxyCodeLine{267 }
+\DoxyCodeLine{268 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{269 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator overloading-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{270 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{277 \textcolor{comment}{}\textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{278 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_a4a4e992db8a5b87ec24cced3bea23d6f}{operator+}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T2>}} \&rhs) \{}
+\DoxyCodeLine{279    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_a506bbc662bfe7fb2043eb43fefd47c4f}{CalculateVectorVectorSum}}(T1\{1\}, lhs, T2\{1\}, rhs);}
+\DoxyCodeLine{280 \}}
+\DoxyCodeLine{281 }
 \DoxyCodeLine{288 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
 \DoxyCodeLine{289 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_a61ab692722d7345f2badc279b2e4147b}{operator-\/}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T2>}} \&rhs) \{}
 \DoxyCodeLine{290    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_a506bbc662bfe7fb2043eb43fefd47c4f}{CalculateVectorVectorSum}}(T1\{1\}, lhs, T2\{-\/1\}, rhs);}
 \DoxyCodeLine{291 \}}
 \DoxyCodeLine{292 }
-\DoxyCodeLine{298 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{299 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_aa6fad03b5399841392dddeb7bdc33347}{operator*}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T2>}} \&rhs) \{}
-\DoxyCodeLine{300    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_af28fbb4db785006c8b917e50aa7b5969}{CalculateVectorVectorProduct}}(lhs, rhs);}
-\DoxyCodeLine{301 \}}
-\DoxyCodeLine{302 }
-\DoxyCodeLine{308 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{309 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_aa6fad03b5399841392dddeb7bdc33347}{operator*}}(\textcolor{keyword}{const} T1 lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T2>}} \&rhs) \{}
-\DoxyCodeLine{310    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_ab01076b32cfaad46dd5bb2ef798ab868}{CalculateScalarVectorProduct}}(lhs, rhs);}
-\DoxyCodeLine{311 \}}
-\DoxyCodeLine{312 }
-\DoxyCodeLine{318 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{319 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_aa6fad03b5399841392dddeb7bdc33347}{operator*}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T1>}} \&lhs, \textcolor{keyword}{const} T2 rhs) \{}
-\DoxyCodeLine{320    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_ab01076b32cfaad46dd5bb2ef798ab868}{CalculateScalarVectorProduct}}(rhs, lhs);}
-\DoxyCodeLine{321 \}}
-\DoxyCodeLine{322 }
-\DoxyCodeLine{328 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{329 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_abb6429171e978e71a1fbd6682875ca56}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T2>}} \&rhs) \{}
-\DoxyCodeLine{330    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a5253d2f4d72befbcaf32fa943e47c27b}{Size}}() != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a5253d2f4d72befbcaf32fa943e47c27b}{Size}}()) \{}
-\DoxyCodeLine{331       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{332    \}}
-\DoxyCodeLine{333    \textcolor{keyword}{const} std::int64\_t size = lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a5253d2f4d72befbcaf32fa943e47c27b}{Size}}();}
-\DoxyCodeLine{334    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < size; ++i) \{}
-\DoxyCodeLine{335       \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i] != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i]) \{}
-\DoxyCodeLine{336          \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{337       \}}
-\DoxyCodeLine{338    \}}
-\DoxyCodeLine{339    \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
-\DoxyCodeLine{340 \}}
-\DoxyCodeLine{341 }
-\DoxyCodeLine{346 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
-\DoxyCodeLine{347 std::ostream\& \mbox{\hyperlink{namespacecompnal_1_1type_ab565f905bc0e0a4cdea7cbee1b5c0da1}{operator<<}}(std::ostream \&os, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T>}} \&v) \{}
-\DoxyCodeLine{348    os << std::fixed;}
-\DoxyCodeLine{349    os << std::setprecision(std::numeric\_limits<T>::max\_digits10);}
-\DoxyCodeLine{350    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < v.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size(); ++i) \{}
-\DoxyCodeLine{351       os << \textcolor{stringliteral}{"{}v["{}};}
-\DoxyCodeLine{352       os << std::noshowpos << std::left << std::setw(3) << i << \textcolor{stringliteral}{"{}]="{}};}
-\DoxyCodeLine{353       os << std::showpos << v.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i] << std::endl;}
-\DoxyCodeLine{354    \}}
-\DoxyCodeLine{355    \textcolor{keywordflow}{return} os;}
-\DoxyCodeLine{356 \}}
-\DoxyCodeLine{357 }
-\DoxyCodeLine{368 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2, \textcolor{keyword}{typename} T3, \textcolor{keyword}{typename} T4>}
-\DoxyCodeLine{369 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_a506bbc662bfe7fb2043eb43fefd47c4f}{CalculateVectorVectorSum}}(\textcolor{keyword}{const} T1 coeff\_1,}
-\DoxyCodeLine{370                               \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T2>}} \&braket\_vector\_1,}
-\DoxyCodeLine{371                               \textcolor{keyword}{const} T3 coeff\_2,}
-\DoxyCodeLine{372                               \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T4>}} \&braket\_vector\_2) \{}
-\DoxyCodeLine{373    \textcolor{keywordflow}{if} (braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() != braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size()) \{}
-\DoxyCodeLine{374       std::stringstream ss;}
-\DoxyCodeLine{375       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
-\DoxyCodeLine{376       ss << \textcolor{stringliteral}{"{}BraketVector types do not match each other"{}} << std::endl;}
-\DoxyCodeLine{377       ss << \textcolor{stringliteral}{"{}dim\_1 = "{}} << braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() << \textcolor{stringliteral}{"{}, dim\_2 = "{}} << braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() << std::endl;}
-\DoxyCodeLine{378       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
-\DoxyCodeLine{379    \}}
-\DoxyCodeLine{380    \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector}}<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\}+T3\{0\}*T4\{0\})> vector\_out;}
-\DoxyCodeLine{381    vector\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a34ad810a17b62d18223238c973b068bc}{Resize}}(braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size());}
-\DoxyCodeLine{382    \textcolor{keyword}{const} std::int64\_t size = braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size();}
-\DoxyCodeLine{383 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{384    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < size; ++i) \{}
-\DoxyCodeLine{385       vector\_out.value\_list[i] = coeff\_1*braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i] + coeff\_2*braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i];}
-\DoxyCodeLine{386    \}}
-\DoxyCodeLine{387    \textcolor{keywordflow}{return} vector\_out;}
-\DoxyCodeLine{388 \}}
-\DoxyCodeLine{389 }
-\DoxyCodeLine{396 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{397 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_af28fbb4db785006c8b917e50aa7b5969}{CalculateVectorVectorProduct}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T1>}} \&braket\_vector\_1,}
-\DoxyCodeLine{398                                   \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T2>}} \&braket\_vector\_2) \{}
-\DoxyCodeLine{399    \textcolor{keywordflow}{if} (braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() != braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size()) \{}
-\DoxyCodeLine{400       std::stringstream ss;}
-\DoxyCodeLine{401       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
-\DoxyCodeLine{402       ss << \textcolor{stringliteral}{"{}BraketVector types do not match each other"{}} << std::endl;}
-\DoxyCodeLine{403       ss << \textcolor{stringliteral}{"{}dim\_1 = "{}} << braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() << \textcolor{stringliteral}{"{}, dim\_2 = "{}} << braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() << std::endl;}
-\DoxyCodeLine{404       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
-\DoxyCodeLine{405    \}}
-\DoxyCodeLine{406    \textcolor{keyword}{decltype}(T1\{0\}*T2\{0\}) val\_out = 0.0;}
-\DoxyCodeLine{407    \textcolor{keyword}{const} std::int64\_t size = braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size();}
-\DoxyCodeLine{408 \textcolor{preprocessor}{\#pragma omp parallel for reduction (+: val\_out)}}
-\DoxyCodeLine{409    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < size; ++i) \{}
-\DoxyCodeLine{410       val\_out += braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i]*braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i];}
-\DoxyCodeLine{411    \}}
-\DoxyCodeLine{412    \textcolor{keywordflow}{return} val\_out;}
-\DoxyCodeLine{413 \}}
-\DoxyCodeLine{414 }
-\DoxyCodeLine{421 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
-\DoxyCodeLine{422 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_ab01076b32cfaad46dd5bb2ef798ab868}{CalculateScalarVectorProduct}}(\textcolor{keyword}{const} T1 value,}
-\DoxyCodeLine{423                                   \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T2>}} \&braket\_vector) \{}
-\DoxyCodeLine{424    }
-\DoxyCodeLine{425    \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector}}<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\})> out;}
-\DoxyCodeLine{426    out.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a34ad810a17b62d18223238c973b068bc}{Resize}}(braket\_vector.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size());}
-\DoxyCodeLine{427    \textcolor{keyword}{const} std::int64\_t size = braket\_vector.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size();}
-\DoxyCodeLine{428 \textcolor{preprocessor}{\#pragma omp parallel for}}
-\DoxyCodeLine{429    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < size; ++i) \{}
-\DoxyCodeLine{430       out.value\_list[i] = value*braket\_vector.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i];}
-\DoxyCodeLine{431    \}}
-\DoxyCodeLine{432    \textcolor{keywordflow}{return} out;}
-\DoxyCodeLine{433 \}}
-\DoxyCodeLine{434 }
-\DoxyCodeLine{446 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2, \textcolor{keyword}{typename} T3, \textcolor{keyword}{typename} T4>}
-\DoxyCodeLine{447 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_a49a46e2c0dff11c5ef25b7d1325d64e0}{CalculateL1Norm}}(\textcolor{keyword}{const} T1 coeff\_1,}
-\DoxyCodeLine{448                      \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T2>}} \&braket\_vector\_1,}
-\DoxyCodeLine{449                      \textcolor{keyword}{const} T3 coeff\_2,}
-\DoxyCodeLine{450                      \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T4>}} \&braket\_vector\_2}
-\DoxyCodeLine{451                      ) \{}
-\DoxyCodeLine{452    }
-\DoxyCodeLine{453    \textcolor{keywordflow}{if} (braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() != braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size()) \{}
-\DoxyCodeLine{454       std::stringstream ss;}
-\DoxyCodeLine{455       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
-\DoxyCodeLine{456       ss << \textcolor{stringliteral}{"{}BraketVector types do not match each other"{}} << std::endl;}
-\DoxyCodeLine{457       ss << \textcolor{stringliteral}{"{}dim\_1 = "{}} << braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() << \textcolor{stringliteral}{"{}, dim\_2 = "{}} << braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() << std::endl;}
-\DoxyCodeLine{458       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
-\DoxyCodeLine{459    \}}
-\DoxyCodeLine{460    }
-\DoxyCodeLine{461    \textcolor{keyword}{decltype}(T1\{0\}*T2\{0\}-\/T3\{0\}*T4\{0\}) val\_out = 0.0;}
-\DoxyCodeLine{462    \textcolor{keyword}{const} std::int64\_t size = braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size();}
-\DoxyCodeLine{463 \textcolor{preprocessor}{\#pragma omp parallel for reduction (+: val\_out)}}
-\DoxyCodeLine{464    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < size; ++i) \{}
-\DoxyCodeLine{465       val\_out += std::abs(coeff\_1*braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i] -\/ coeff\_2*braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i]);}
-\DoxyCodeLine{466    \}}
-\DoxyCodeLine{467    \textcolor{keywordflow}{return} val\_out;}
-\DoxyCodeLine{468 \}}
-\DoxyCodeLine{469 }
-\DoxyCodeLine{480 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2, \textcolor{keyword}{typename} T3, \textcolor{keyword}{typename} T4>}
-\DoxyCodeLine{481 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_a86438c32f811bde5b0e955e05ced0b81}{CalculateL2Norm}}(\textcolor{keyword}{const} T1 coeff\_1,}
-\DoxyCodeLine{482                      \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T2>}} \&braket\_vector\_1,}
-\DoxyCodeLine{483                      \textcolor{keyword}{const} T3 coeff\_2,}
-\DoxyCodeLine{484                      \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T4>}} \&braket\_vector\_2}
-\DoxyCodeLine{485                      ) \{}
-\DoxyCodeLine{486    }
-\DoxyCodeLine{487    \textcolor{keywordflow}{if} (braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() != braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size()) \{}
-\DoxyCodeLine{488       std::stringstream ss;}
-\DoxyCodeLine{489       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
-\DoxyCodeLine{490       ss << \textcolor{stringliteral}{"{}BraketVector types do not match each other"{}} << std::endl;}
-\DoxyCodeLine{491       ss << \textcolor{stringliteral}{"{}dim\_1 = "{}} << braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() << \textcolor{stringliteral}{"{}, dim\_2 = "{}} << braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() << std::endl;}
-\DoxyCodeLine{492       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
-\DoxyCodeLine{493    \}}
-\DoxyCodeLine{494    }
-\DoxyCodeLine{495    \textcolor{keyword}{decltype}(T1\{0\}*T2\{0\}-\/T3\{0\}*T4\{0\}) val\_out = 0.0;}
-\DoxyCodeLine{496    \textcolor{keyword}{const} std::int64\_t size = braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size();}
-\DoxyCodeLine{497 \textcolor{preprocessor}{\#pragma omp parallel for reduction (+: val\_out)}}
-\DoxyCodeLine{498    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < size; ++i) \{}
-\DoxyCodeLine{499       \textcolor{keyword}{const} \textcolor{keyword}{auto} v = coeff\_1*braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i] -\/ coeff\_2*braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i];}
-\DoxyCodeLine{500       val\_out += v*v;}
-\DoxyCodeLine{501    \}}
-\DoxyCodeLine{502    \textcolor{keywordflow}{return} std::sqrt(val\_out);}
-\DoxyCodeLine{503 \}}
-\DoxyCodeLine{504 }
-\DoxyCodeLine{505 \} \textcolor{comment}{// namespace type}}
-\DoxyCodeLine{506 \} \textcolor{comment}{// namespace compnal}}
-\DoxyCodeLine{507 }
-\DoxyCodeLine{508 }
-\DoxyCodeLine{509 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_TYPE\_BRAKET\_VECTOR\_HPP\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{299 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{300 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_aa6fad03b5399841392dddeb7bdc33347}{operator*}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T2>}} \&rhs) \{}
+\DoxyCodeLine{301    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_af28fbb4db785006c8b917e50aa7b5969}{CalculateVectorVectorProduct}}(lhs, rhs);}
+\DoxyCodeLine{302 \}}
+\DoxyCodeLine{303 }
+\DoxyCodeLine{310 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{311 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_aa6fad03b5399841392dddeb7bdc33347}{operator*}}(\textcolor{keyword}{const} T1 lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T2>}} \&rhs) \{}
+\DoxyCodeLine{312    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_ab01076b32cfaad46dd5bb2ef798ab868}{CalculateScalarVectorProduct}}(lhs, rhs);}
+\DoxyCodeLine{313 \}}
+\DoxyCodeLine{314 }
+\DoxyCodeLine{321 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{322 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_aa6fad03b5399841392dddeb7bdc33347}{operator*}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T1>}} \&lhs, \textcolor{keyword}{const} T2 rhs) \{}
+\DoxyCodeLine{323    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_ab01076b32cfaad46dd5bb2ef798ab868}{CalculateScalarVectorProduct}}(rhs, lhs);}
+\DoxyCodeLine{324 \}}
+\DoxyCodeLine{325 }
+\DoxyCodeLine{332 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{333 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_abb6429171e978e71a1fbd6682875ca56}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T2>}} \&rhs) \{}
+\DoxyCodeLine{334    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a5253d2f4d72befbcaf32fa943e47c27b}{Size}}() != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a5253d2f4d72befbcaf32fa943e47c27b}{Size}}()) \{}
+\DoxyCodeLine{335       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{336    \}}
+\DoxyCodeLine{337    \textcolor{keyword}{const} std::int64\_t size = lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a5253d2f4d72befbcaf32fa943e47c27b}{Size}}();}
+\DoxyCodeLine{338    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < size; ++i) \{}
+\DoxyCodeLine{339       \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i] != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i]) \{}
+\DoxyCodeLine{340          \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{341       \}}
+\DoxyCodeLine{342    \}}
+\DoxyCodeLine{343    \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{344 \}}
+\DoxyCodeLine{345 }
+\DoxyCodeLine{352 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{353 \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_a2ef017632e376f62ac6a249c5b291b9c}{operator!=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T2>}} \&rhs) \{}
+\DoxyCodeLine{354    \textcolor{keywordflow}{return} !(lhs == rhs);}
+\DoxyCodeLine{355 \}}
+\DoxyCodeLine{356 }
+\DoxyCodeLine{361 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{362 std::ostream\& \mbox{\hyperlink{namespacecompnal_1_1type_ab565f905bc0e0a4cdea7cbee1b5c0da1}{operator<<}}(std::ostream \&os, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T>}} \&v) \{}
+\DoxyCodeLine{363    os << std::fixed;}
+\DoxyCodeLine{364    os << std::setprecision(std::numeric\_limits<T>::max\_digits10);}
+\DoxyCodeLine{365    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < v.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size(); ++i) \{}
+\DoxyCodeLine{366       os << \textcolor{stringliteral}{"{}v["{}};}
+\DoxyCodeLine{367       os << std::noshowpos << std::left << std::setw(3) << i << \textcolor{stringliteral}{"{}]="{}};}
+\DoxyCodeLine{368       os << std::showpos << v.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i] << std::endl;}
+\DoxyCodeLine{369    \}}
+\DoxyCodeLine{370    \textcolor{keywordflow}{return} os;}
+\DoxyCodeLine{371 \}}
+\DoxyCodeLine{372 }
+\DoxyCodeLine{373 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{374 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Global Functions-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{375 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{386 \textcolor{comment}{}\textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2, \textcolor{keyword}{typename} T3, \textcolor{keyword}{typename} T4>}
+\DoxyCodeLine{387 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_a506bbc662bfe7fb2043eb43fefd47c4f}{CalculateVectorVectorSum}}(\textcolor{keyword}{const} T1 coeff\_1,}
+\DoxyCodeLine{388                               \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T2>}} \&braket\_vector\_1,}
+\DoxyCodeLine{389                               \textcolor{keyword}{const} T3 coeff\_2,}
+\DoxyCodeLine{390                               \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T4>}} \&braket\_vector\_2) \{}
+\DoxyCodeLine{391    \textcolor{keywordflow}{if} (braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() != braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size()) \{}
+\DoxyCodeLine{392       std::stringstream ss;}
+\DoxyCodeLine{393       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{394       ss << \textcolor{stringliteral}{"{}BraketVector types do not match each other"{}} << std::endl;}
+\DoxyCodeLine{395       ss << \textcolor{stringliteral}{"{}dim\_1 = "{}} << braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() << \textcolor{stringliteral}{"{}, dim\_2 = "{}} << braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() << std::endl;}
+\DoxyCodeLine{396       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{397    \}}
+\DoxyCodeLine{398    \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector}}<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\}+T3\{0\}*T4\{0\})> vector\_out;}
+\DoxyCodeLine{399    vector\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a34ad810a17b62d18223238c973b068bc}{Resize}}(braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size());}
+\DoxyCodeLine{400    \textcolor{keyword}{const} std::int64\_t size = braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size();}
+\DoxyCodeLine{401 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{402    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < size; ++i) \{}
+\DoxyCodeLine{403       vector\_out.value\_list[i] = coeff\_1*braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i] + coeff\_2*braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i];}
+\DoxyCodeLine{404    \}}
+\DoxyCodeLine{405    \textcolor{keywordflow}{return} vector\_out;}
+\DoxyCodeLine{406 \}}
+\DoxyCodeLine{407 }
+\DoxyCodeLine{414 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{415 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_af28fbb4db785006c8b917e50aa7b5969}{CalculateVectorVectorProduct}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T1>}} \&braket\_vector\_1,}
+\DoxyCodeLine{416                                   \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T2>}} \&braket\_vector\_2) \{}
+\DoxyCodeLine{417    \textcolor{keywordflow}{if} (braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() != braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size()) \{}
+\DoxyCodeLine{418       std::stringstream ss;}
+\DoxyCodeLine{419       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{420       ss << \textcolor{stringliteral}{"{}BraketVector types do not match each other"{}} << std::endl;}
+\DoxyCodeLine{421       ss << \textcolor{stringliteral}{"{}dim\_1 = "{}} << braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() << \textcolor{stringliteral}{"{}, dim\_2 = "{}} << braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() << std::endl;}
+\DoxyCodeLine{422       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{423    \}}
+\DoxyCodeLine{424    \textcolor{keyword}{decltype}(T1\{0\}*T2\{0\}) val\_out = 0.0;}
+\DoxyCodeLine{425    \textcolor{keyword}{const} std::int64\_t size = braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size();}
+\DoxyCodeLine{426 \textcolor{preprocessor}{\#pragma omp parallel for reduction (+: val\_out)}}
+\DoxyCodeLine{427    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < size; ++i) \{}
+\DoxyCodeLine{428       val\_out += braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i]*braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i];}
+\DoxyCodeLine{429    \}}
+\DoxyCodeLine{430    \textcolor{keywordflow}{return} val\_out;}
+\DoxyCodeLine{431 \}}
+\DoxyCodeLine{432 }
+\DoxyCodeLine{439 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{440 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_ab01076b32cfaad46dd5bb2ef798ab868}{CalculateScalarVectorProduct}}(\textcolor{keyword}{const} T1 value,}
+\DoxyCodeLine{441                                   \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T2>}} \&braket\_vector) \{}
+\DoxyCodeLine{442    }
+\DoxyCodeLine{443    \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector}}<\textcolor{keyword}{decltype}(T1\{0\}*T2\{0\})> out;}
+\DoxyCodeLine{444    out.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a34ad810a17b62d18223238c973b068bc}{Resize}}(braket\_vector.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size());}
+\DoxyCodeLine{445    \textcolor{keyword}{const} std::int64\_t size = braket\_vector.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size();}
+\DoxyCodeLine{446 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{447    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < size; ++i) \{}
+\DoxyCodeLine{448       out.value\_list[i] = value*braket\_vector.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i];}
+\DoxyCodeLine{449    \}}
+\DoxyCodeLine{450    \textcolor{keywordflow}{return} out;}
+\DoxyCodeLine{451 \}}
+\DoxyCodeLine{452 }
+\DoxyCodeLine{464 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2, \textcolor{keyword}{typename} T3, \textcolor{keyword}{typename} T4>}
+\DoxyCodeLine{465 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_a49a46e2c0dff11c5ef25b7d1325d64e0}{CalculateL1Norm}}(\textcolor{keyword}{const} T1 coeff\_1,}
+\DoxyCodeLine{466                      \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T2>}} \&braket\_vector\_1,}
+\DoxyCodeLine{467                      \textcolor{keyword}{const} T3 coeff\_2,}
+\DoxyCodeLine{468                      \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T4>}} \&braket\_vector\_2}
+\DoxyCodeLine{469                      ) \{}
+\DoxyCodeLine{470    }
+\DoxyCodeLine{471    \textcolor{keywordflow}{if} (braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() != braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size()) \{}
+\DoxyCodeLine{472       std::stringstream ss;}
+\DoxyCodeLine{473       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{474       ss << \textcolor{stringliteral}{"{}BraketVector types do not match each other"{}} << std::endl;}
+\DoxyCodeLine{475       ss << \textcolor{stringliteral}{"{}dim\_1 = "{}} << braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() << \textcolor{stringliteral}{"{}, dim\_2 = "{}} << braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() << std::endl;}
+\DoxyCodeLine{476       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{477    \}}
+\DoxyCodeLine{478    }
+\DoxyCodeLine{479    \textcolor{keyword}{decltype}(T1\{0\}*T2\{0\}-\/T3\{0\}*T4\{0\}) val\_out = 0.0;}
+\DoxyCodeLine{480    \textcolor{keyword}{const} std::int64\_t size = braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size();}
+\DoxyCodeLine{481 \textcolor{preprocessor}{\#pragma omp parallel for reduction (+: val\_out)}}
+\DoxyCodeLine{482    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < size; ++i) \{}
+\DoxyCodeLine{483       val\_out += std::abs(coeff\_1*braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i] -\/ coeff\_2*braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i]);}
+\DoxyCodeLine{484    \}}
+\DoxyCodeLine{485    \textcolor{keywordflow}{return} val\_out;}
+\DoxyCodeLine{486 \}}
+\DoxyCodeLine{487 }
+\DoxyCodeLine{498 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2, \textcolor{keyword}{typename} T3, \textcolor{keyword}{typename} T4>}
+\DoxyCodeLine{499 \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_a86438c32f811bde5b0e955e05ced0b81}{CalculateL2Norm}}(\textcolor{keyword}{const} T1 coeff\_1,}
+\DoxyCodeLine{500                      \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T2>}} \&braket\_vector\_1,}
+\DoxyCodeLine{501                      \textcolor{keyword}{const} T3 coeff\_2,}
+\DoxyCodeLine{502                      \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{BraketVector<T4>}} \&braket\_vector\_2}
+\DoxyCodeLine{503                      ) \{}
+\DoxyCodeLine{504    }
+\DoxyCodeLine{505    \textcolor{keywordflow}{if} (braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() != braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size()) \{}
+\DoxyCodeLine{506       std::stringstream ss;}
+\DoxyCodeLine{507       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{508       ss << \textcolor{stringliteral}{"{}BraketVector types do not match each other"{}} << std::endl;}
+\DoxyCodeLine{509       ss << \textcolor{stringliteral}{"{}dim\_1 = "{}} << braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() << \textcolor{stringliteral}{"{}, dim\_2 = "{}} << braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size() << std::endl;}
+\DoxyCodeLine{510       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{511    \}}
+\DoxyCodeLine{512    }
+\DoxyCodeLine{513    \textcolor{keyword}{decltype}(T1\{0\}*T2\{0\}-\/T3\{0\}*T4\{0\}) val\_out = 0.0;}
+\DoxyCodeLine{514    \textcolor{keyword}{const} std::int64\_t size = braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}.size();}
+\DoxyCodeLine{515 \textcolor{preprocessor}{\#pragma omp parallel for reduction (+: val\_out)}}
+\DoxyCodeLine{516    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < size; ++i) \{}
+\DoxyCodeLine{517       \textcolor{keyword}{const} \textcolor{keyword}{auto} v = coeff\_1*braket\_vector\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i] -\/ coeff\_2*braket\_vector\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\_list}}[i];}
+\DoxyCodeLine{518       val\_out += v*v;}
+\DoxyCodeLine{519    \}}
+\DoxyCodeLine{520    \textcolor{keywordflow}{return} std::sqrt(val\_out);}
+\DoxyCodeLine{521 \}}
+\DoxyCodeLine{522 }
+\DoxyCodeLine{523 \} \textcolor{comment}{// namespace type}}
+\DoxyCodeLine{524 \} \textcolor{comment}{// namespace compnal}}
+\DoxyCodeLine{525 }
+\DoxyCodeLine{526 }
+\DoxyCodeLine{527 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_TYPE\_BRAKET\_VECTOR\_HPP\_ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

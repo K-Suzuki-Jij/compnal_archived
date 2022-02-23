@@ -29,28 +29,28 @@
 \DoxyCodeLine{25 \textcolor{keyword}{namespace }blas \{}
 \DoxyCodeLine{26 }
 \DoxyCodeLine{27 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
-\DoxyCodeLine{28 std::pair<int, double> \mbox{\hyperlink{namespacecompnal_1_1blas_a145ac10a26aba079daa9fba3af245f89}{InverseIteration}}(\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}}          *matrix\_in,}
+\DoxyCodeLine{28 std::pair<int, double> \mbox{\hyperlink{namespacecompnal_1_1blas_a145ac10a26aba079daa9fba3af245f89}{InverseIteration}}(\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}}          *matrix\_in,}
 \DoxyCodeLine{29                                         \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type::BraketVector<RealType>}} *eigenvector,}
 \DoxyCodeLine{30                                         \textcolor{keyword}{const} RealType         eigenvalue,}
 \DoxyCodeLine{31                                         \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_i_i}{ParametersII}}     \&params = \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_i_i}{ParametersII}}(),}
 \DoxyCodeLine{32                                         \textcolor{keyword}{const} std::vector<\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type::BraketVector<RealType>}}> \&subspace\_vectors = \{\}}
 \DoxyCodeLine{33                                         ) \{}
 \DoxyCodeLine{34    }
-\DoxyCodeLine{35    \textcolor{keywordflow}{if} (matrix\_in-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} != matrix\_in-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}}) \{}
+\DoxyCodeLine{35    \textcolor{keywordflow}{if} (matrix\_in-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} != matrix\_in-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}) \{}
 \DoxyCodeLine{36       std::stringstream ss;}
 \DoxyCodeLine{37       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
 \DoxyCodeLine{38       ss << \textcolor{stringliteral}{"{}The input matrix is not a square one"{}} << std::endl;}
-\DoxyCodeLine{39       ss << \textcolor{stringliteral}{"{}row="{}} << matrix\_in-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} << \textcolor{stringliteral}{"{}, col="{}} << matrix\_in-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}} << std::endl;}
+\DoxyCodeLine{39       ss << \textcolor{stringliteral}{"{}row="{}} << matrix\_in-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} << \textcolor{stringliteral}{"{}, col="{}} << matrix\_in-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} << std::endl;}
 \DoxyCodeLine{40       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{41    \}}
 \DoxyCodeLine{42    }
 \DoxyCodeLine{43    \textcolor{keyword}{const} \textcolor{keyword}{auto} start = std::chrono::system\_clock::now();}
 \DoxyCodeLine{44    }
 \DoxyCodeLine{45    type::BraketVector<RealType> improved\_eigenvector;}
-\DoxyCodeLine{46    type::BraketVector<RealType> vectors\_work(matrix\_in-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}});}
+\DoxyCodeLine{46    type::BraketVector<RealType> vectors\_work(matrix\_in-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}});}
 \DoxyCodeLine{47    }
 \DoxyCodeLine{48    \textcolor{keywordflow}{if} (params.cg.flag\_use\_initial\_vec) \{}
-\DoxyCodeLine{49       \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(eigenvector-\/>val.size()) != matrix\_in-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}) \{}
+\DoxyCodeLine{49       \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(eigenvector-\/>val.size()) != matrix\_in-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}) \{}
 \DoxyCodeLine{50          std::stringstream ss;}
 \DoxyCodeLine{51          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
 \DoxyCodeLine{52          ss << \textcolor{stringliteral}{"{}The dimension of the initial vector is not equal to that of the input matrix."{}} << std::endl;}
@@ -59,7 +59,7 @@
 \DoxyCodeLine{55       improved\_eigenvector = *eigenvector;}
 \DoxyCodeLine{56    \}}
 \DoxyCodeLine{57 }
-\DoxyCodeLine{58    matrix\_in-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aeaa037a9aeb2896778db4f00f4fc1ad9}{DiagonalScaling}}(params.diag\_add -\/ eigenvalue);}
+\DoxyCodeLine{58    matrix\_in-\/>DiagonalScaling(params.diag\_add -\/ eigenvalue);}
 \DoxyCodeLine{59    }
 \DoxyCodeLine{60    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} step = 0; step < params.max\_step; ++step) \{}
 \DoxyCodeLine{61       \textcolor{keywordflow}{if} (params.cg.flag\_symmetric\_crs) \{}
@@ -76,7 +76,7 @@
 \DoxyCodeLine{72       \}}
 \DoxyCodeLine{73       }
 \DoxyCodeLine{74       \textcolor{keywordflow}{if} (residual\_error < params.acc) \{}
-\DoxyCodeLine{75          matrix\_in-\/>\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aeaa037a9aeb2896778db4f00f4fc1ad9}{DiagonalScaling}}(-\/(params.diag\_add -\/ eigenvalue));}
+\DoxyCodeLine{75          matrix\_in-\/>DiagonalScaling(-\/(params.diag\_add -\/ eigenvalue));}
 \DoxyCodeLine{76          \textcolor{keyword}{const} \textcolor{keyword}{auto}   time\_count = std::chrono::duration\_cast<std::chrono::microseconds>(std::chrono::system\_clock::now() -\/ start).count();}
 \DoxyCodeLine{77          \textcolor{keyword}{const} \textcolor{keywordtype}{double} time\_sec   = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(time\_count)/\mbox{\hyperlink{namespacecompnal_1_1blas_aa1196aeb106e923cc2ad6c17fea58f26}{TIME\_UNIT\_CONSTANT}};}
 \DoxyCodeLine{78          std::cout << std::defaultfloat << std::setprecision(8) << \textcolor{stringliteral}{"{}\(\backslash\)rElapsed time of inverse iteration:"{}} << time\_sec << \textcolor{stringliteral}{"{}[sec]"{}};}

@@ -43,15 +43,15 @@
 \DoxyCodeLine{39 \textcolor{keyword}{template} <\textcolor{keyword}{typename} RealType>}
 \DoxyCodeLine{40 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1blas_ad95086714ba0af598315dba0109fc282}{LapackDsyev}}(RealType *gs\_value,}
 \DoxyCodeLine{41                  std::vector<RealType> *gs\_vector,}
-\DoxyCodeLine{42                  \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}} \&matrix\_in,}
+\DoxyCodeLine{42                  \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}} \&matrix\_in,}
 \DoxyCodeLine{43                  \textcolor{keyword}{const} \textcolor{keywordtype}{int} target\_level = 0}
 \DoxyCodeLine{44                  ) \{}
 \DoxyCodeLine{45    }
-\DoxyCodeLine{46    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} != matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}} || matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} < 1 || matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}} < 1) \{}
+\DoxyCodeLine{46    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} != matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} || matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} < 1 || matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} < 1) \{}
 \DoxyCodeLine{47       std::stringstream ss;}
 \DoxyCodeLine{48       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
 \DoxyCodeLine{49       ss << \textcolor{stringliteral}{"{}The input matrix is not a square one"{}} << std::endl;}
-\DoxyCodeLine{50       ss << \textcolor{stringliteral}{"{}row="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} << \textcolor{stringliteral}{"{}, col="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}} << std::endl;}
+\DoxyCodeLine{50       ss << \textcolor{stringliteral}{"{}row="{}} << matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} << \textcolor{stringliteral}{"{}, col="{}} << matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} << std::endl;}
 \DoxyCodeLine{51       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{52    \}}
 \DoxyCodeLine{53    }
@@ -61,33 +61,33 @@
 \DoxyCodeLine{57       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{58    \}}
 \DoxyCodeLine{59    }
-\DoxyCodeLine{60    \textcolor{keywordtype}{double} matrix\_array[matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}][matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}}];}
+\DoxyCodeLine{60    \textcolor{keywordtype}{double} matrix\_array[matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}][matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}];}
 \DoxyCodeLine{61    }
-\DoxyCodeLine{62    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{63       \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}}; ++j) \{}
+\DoxyCodeLine{62    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{63       \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}; ++j) \{}
 \DoxyCodeLine{64          matrix\_array[i][j] = 0.0;}
 \DoxyCodeLine{65       \}}
 \DoxyCodeLine{66    \}}
 \DoxyCodeLine{67    }
-\DoxyCodeLine{68    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{69       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i]; j < matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i + 1]; ++j) \{}
-\DoxyCodeLine{70          matrix\_array[i][matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j]] = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j]);}
-\DoxyCodeLine{71          matrix\_array[matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j]][i] = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j]);}
+\DoxyCodeLine{68    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{69       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i]; j < matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{70          matrix\_array[i][matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j]] = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j]);}
+\DoxyCodeLine{71          matrix\_array[matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j]][i] = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j]);}
 \DoxyCodeLine{72       \}}
 \DoxyCodeLine{73    \}}
 \DoxyCodeLine{74    }
 \DoxyCodeLine{75    \textcolor{keywordtype}{int} info;}
-\DoxyCodeLine{76    \textcolor{keywordtype}{double} val\_array[matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}];}
-\DoxyCodeLine{77    \textcolor{keywordtype}{double} work[3 * matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}];}
+\DoxyCodeLine{76    \textcolor{keywordtype}{double} val\_array[matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}];}
+\DoxyCodeLine{77    \textcolor{keywordtype}{double} work[3 * matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}];}
 \DoxyCodeLine{78    }
-\DoxyCodeLine{79    \mbox{\hyperlink{namespacecompnal_1_1blas_a38372ba49e6890655ba310a1d1016301}{dsyev\_}}(\textcolor{charliteral}{'V'}, \textcolor{charliteral}{'L'}, \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}),}
+\DoxyCodeLine{79    \mbox{\hyperlink{namespacecompnal_1_1blas_a38372ba49e6890655ba310a1d1016301}{dsyev\_}}(\textcolor{charliteral}{'V'}, \textcolor{charliteral}{'L'}, \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}),}
 \DoxyCodeLine{80           (\textcolor{keywordtype}{double}**)matrix\_array,}
-\DoxyCodeLine{81           \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}), val\_array, work,}
-\DoxyCodeLine{82           \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(3 * matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}), info);}
+\DoxyCodeLine{81           \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}), val\_array, work,}
+\DoxyCodeLine{82           \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(3 * matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}), info);}
 \DoxyCodeLine{83    }
-\DoxyCodeLine{84    gs\_vector-\/>resize(matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}});}
+\DoxyCodeLine{84    gs\_vector-\/>resize(matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}});}
 \DoxyCodeLine{85    }
-\DoxyCodeLine{86    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{86    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
 \DoxyCodeLine{87        (*gs\_vector)[i] = \textcolor{keyword}{static\_cast<}RealType\textcolor{keyword}{>}(matrix\_array[target\_level][i]);}
 \DoxyCodeLine{88    \}}
 \DoxyCodeLine{89    }

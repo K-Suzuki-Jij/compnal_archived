@@ -78,7 +78,7 @@
 \DoxyCodeLine{74 \textcolor{keyword}{template} <\textcolor{keyword}{typename} RealType>}
 \DoxyCodeLine{75 std::pair<int, double> \mbox{\hyperlink{namespacecompnal_1_1blas_a41a8fbd0adade2a6702b987c653abf7b}{EigenvalueDecompositionLanczos}}(RealType                *target\_value\_out,}
 \DoxyCodeLine{76                                                       \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type::BraketVector<RealType>}}  *target\_vector\_out,}
-\DoxyCodeLine{77                                                       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}}     \&matrix\_in,}
+\DoxyCodeLine{77                                                       \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}}     \&matrix\_in,}
 \DoxyCodeLine{78                                                       \textcolor{keyword}{const} \textcolor{keywordtype}{int}               target\_level,}
 \DoxyCodeLine{79                                                       \textcolor{keyword}{const} std::vector<\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type::BraketVector<RealType>}}> \&subspace\_vectors,}
 \DoxyCodeLine{80                                                       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_lanczos}{ParametersLanczos}} \&params = \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_lanczos}{ParametersLanczos}}()}
@@ -97,15 +97,15 @@
 \DoxyCodeLine{93    }
 \DoxyCodeLine{94    \textcolor{keyword}{const} \textcolor{keyword}{auto} start = std::chrono::system\_clock::now();}
 \DoxyCodeLine{95    }
-\DoxyCodeLine{96    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} != matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}}) \{}
+\DoxyCodeLine{96    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} != matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}) \{}
 \DoxyCodeLine{97       std::stringstream ss;}
 \DoxyCodeLine{98       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
 \DoxyCodeLine{99       ss << \textcolor{stringliteral}{"{}The input matrix is not a square one"{}} << std::endl;}
-\DoxyCodeLine{100       ss << \textcolor{stringliteral}{"{}row="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} << \textcolor{stringliteral}{"{}, col="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}} << std::endl;}
+\DoxyCodeLine{100       ss << \textcolor{stringliteral}{"{}row="{}} << matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} << \textcolor{stringliteral}{"{}, col="{}} << matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} << std::endl;}
 \DoxyCodeLine{101       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{102    \}}
 \DoxyCodeLine{103    }
-\DoxyCodeLine{104    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} == 0) \{}
+\DoxyCodeLine{104    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} == 0) \{}
 \DoxyCodeLine{105       *target\_value\_out = 0.0;}
 \DoxyCodeLine{106       target\_vector\_out-\/>Clear();}
 \DoxyCodeLine{107       \textcolor{keyword}{const} \textcolor{keyword}{auto}   time\_count = std::chrono::duration\_cast<std::chrono::microseconds>(std::chrono::system\_clock::now() -\/ start).count();}
@@ -113,7 +113,7 @@
 \DoxyCodeLine{109       \textcolor{keywordflow}{return} \{0, time\_sec\};}
 \DoxyCodeLine{110    \}}
 \DoxyCodeLine{111    }
-\DoxyCodeLine{112    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} <= 1000) \{}
+\DoxyCodeLine{112    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} <= 1000) \{}
 \DoxyCodeLine{113       std::vector<RealType> temp\_gs\_vector\_out;}
 \DoxyCodeLine{114       \mbox{\hyperlink{namespacecompnal_1_1blas_ad95086714ba0af598315dba0109fc282}{LapackDsyev}}(target\_value\_out, \&temp\_gs\_vector\_out, matrix\_in, target\_level);}
 \DoxyCodeLine{115       target\_vector\_out-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ad5d0d469065d6ee4b821e567941efe2e}{Assign}}(temp\_gs\_vector\_out);}
@@ -130,7 +130,7 @@
 \DoxyCodeLine{126    \}}
 \DoxyCodeLine{127    }
 \DoxyCodeLine{128    \textcolor{keywordtype}{int} converge\_step\_number = 0;}
-\DoxyCodeLine{129    \textcolor{keyword}{const} std::int64\_t dim = matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}};}
+\DoxyCodeLine{129    \textcolor{keyword}{const} std::int64\_t dim = matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}};}
 \DoxyCodeLine{130    RealType residual\_error\_final = 0.0;}
 \DoxyCodeLine{131    \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type::BraketVector<RealType>}} vector\_0(dim);}
 \DoxyCodeLine{132    \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type::BraketVector<RealType>}} vector\_1(dim);}
@@ -306,21 +306,21 @@
 \DoxyCodeLine{302 \textcolor{keyword}{template} <\textcolor{keyword}{typename} RealType>}
 \DoxyCodeLine{303 std::pair<int, double> \mbox{\hyperlink{namespacecompnal_1_1blas_a41a8fbd0adade2a6702b987c653abf7b}{EigenvalueDecompositionLanczos}}(RealType                *gs\_value\_out,}
 \DoxyCodeLine{304                                                       \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type::BraketVector<RealType>}}  *gs\_vector\_out,}
-\DoxyCodeLine{305                                                       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}}     \&matrix\_in,}
+\DoxyCodeLine{305                                                       \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}}     \&matrix\_in,}
 \DoxyCodeLine{306                                                       \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_lanczos}{ParametersLanczos}} \&params = \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_lanczos}{ParametersLanczos}}()}
 \DoxyCodeLine{307                                                       ) \{}
 \DoxyCodeLine{308    }
-\DoxyCodeLine{309    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} != matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}}) \{}
+\DoxyCodeLine{309    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} != matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}) \{}
 \DoxyCodeLine{310       std::stringstream ss;}
 \DoxyCodeLine{311       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
 \DoxyCodeLine{312       ss << \textcolor{stringliteral}{"{}The input matrix is not a square one"{}} << std::endl;}
-\DoxyCodeLine{313       ss << \textcolor{stringliteral}{"{}row="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} << \textcolor{stringliteral}{"{}, col="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}} << std::endl;}
+\DoxyCodeLine{313       ss << \textcolor{stringliteral}{"{}row="{}} << matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} << \textcolor{stringliteral}{"{}, col="{}} << matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} << std::endl;}
 \DoxyCodeLine{314       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{315    \}}
 \DoxyCodeLine{316    }
 \DoxyCodeLine{317    \textcolor{keyword}{const} \textcolor{keyword}{auto} start = std::chrono::system\_clock::now();}
 \DoxyCodeLine{318    }
-\DoxyCodeLine{319    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} == 0) \{}
+\DoxyCodeLine{319    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} == 0) \{}
 \DoxyCodeLine{320       *gs\_value\_out = 0.0;}
 \DoxyCodeLine{321       gs\_vector\_out-\/>Clear();}
 \DoxyCodeLine{322       \textcolor{keyword}{const} \textcolor{keyword}{auto}   time\_count = std::chrono::duration\_cast<std::chrono::microseconds>(std::chrono::system\_clock::now() -\/ start).count();}
@@ -328,8 +328,8 @@
 \DoxyCodeLine{324       \textcolor{keywordflow}{return} \{0, time\_sec\};}
 \DoxyCodeLine{325    \}}
 \DoxyCodeLine{326    }
-\DoxyCodeLine{327    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} == 1) \{}
-\DoxyCodeLine{328       *gs\_value\_out = matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[0];}
+\DoxyCodeLine{327    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} == 1) \{}
+\DoxyCodeLine{328       *gs\_value\_out = matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[0];}
 \DoxyCodeLine{329       gs\_vector\_out-\/>val.resize(1);}
 \DoxyCodeLine{330       gs\_vector\_out-\/>val[0] = 1.0;}
 \DoxyCodeLine{331       \textcolor{keyword}{const} \textcolor{keyword}{auto}   time\_count = std::chrono::duration\_cast<std::chrono::microseconds>(std::chrono::system\_clock::now() -\/ start).count();}
@@ -337,7 +337,7 @@
 \DoxyCodeLine{333       \textcolor{keywordflow}{return} \{0, time\_sec\};}
 \DoxyCodeLine{334    \}}
 \DoxyCodeLine{335    }
-\DoxyCodeLine{336    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} <= 1000) \{}
+\DoxyCodeLine{336    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} <= 1000) \{}
 \DoxyCodeLine{337       std::vector<RealType> temp\_gs\_vector\_out;}
 \DoxyCodeLine{338       \mbox{\hyperlink{namespacecompnal_1_1blas_ad95086714ba0af598315dba0109fc282}{LapackDsyev}}(gs\_value\_out, \&temp\_gs\_vector\_out, matrix\_in);}
 \DoxyCodeLine{339       gs\_vector\_out-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ad5d0d469065d6ee4b821e567941efe2e}{Assign}}(temp\_gs\_vector\_out);}
@@ -347,7 +347,7 @@
 \DoxyCodeLine{343    \}}
 \DoxyCodeLine{344    }
 \DoxyCodeLine{345    \textcolor{keywordtype}{int} converge\_step\_number = 0;}
-\DoxyCodeLine{346    \textcolor{keyword}{const} std::int64\_t dim = matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}};}
+\DoxyCodeLine{346    \textcolor{keyword}{const} std::int64\_t dim = matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}};}
 \DoxyCodeLine{347    RealType residual\_error\_final = 0.0;}
 \DoxyCodeLine{348    \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type::BraketVector<RealType>}} vector\_0(dim);}
 \DoxyCodeLine{349    \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type::BraketVector<RealType>}} vector\_1(dim);}
@@ -519,20 +519,20 @@
 \DoxyCodeLine{515 \textcolor{keyword}{template} <\textcolor{keyword}{typename} RealType>}
 \DoxyCodeLine{516 std::pair<int, double> \mbox{\hyperlink{namespacecompnal_1_1blas_a1f728907b3675c8558f09749abf793af}{EigenvalueDecompositionLOBPCG}}(RealType                *gs\_value\_out,}
 \DoxyCodeLine{517                                                      \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type::BraketVector<RealType>}}  *gs\_vector\_out,}
-\DoxyCodeLine{518                                                      \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}}     \&matrix\_in,}
+\DoxyCodeLine{518                                                      \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}}     \&matrix\_in,}
 \DoxyCodeLine{519                                                      \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_lanczos}{ParametersLanczos}} \&params = \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_lanczos}{ParametersLanczos}}()) \{}
 \DoxyCodeLine{520    }
-\DoxyCodeLine{521    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} != matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}}) \{}
+\DoxyCodeLine{521    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} != matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}) \{}
 \DoxyCodeLine{522       std::stringstream ss;}
 \DoxyCodeLine{523       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
 \DoxyCodeLine{524       ss << \textcolor{stringliteral}{"{}The input matrix is not a square one"{}} << std::endl;}
-\DoxyCodeLine{525       ss << \textcolor{stringliteral}{"{}row="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} << \textcolor{stringliteral}{"{}, col="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}} << std::endl;}
+\DoxyCodeLine{525       ss << \textcolor{stringliteral}{"{}row="{}} << matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} << \textcolor{stringliteral}{"{}, col="{}} << matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} << std::endl;}
 \DoxyCodeLine{526       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{527    \}}
 \DoxyCodeLine{528    }
 \DoxyCodeLine{529    \textcolor{keyword}{const} \textcolor{keyword}{auto} start = std::chrono::system\_clock::now();}
 \DoxyCodeLine{530    }
-\DoxyCodeLine{531    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} == 0) \{}
+\DoxyCodeLine{531    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} == 0) \{}
 \DoxyCodeLine{532       *gs\_value\_out = 0.0;}
 \DoxyCodeLine{533       gs\_vector\_out-\/>Clear();}
 \DoxyCodeLine{534       \textcolor{keyword}{const} \textcolor{keyword}{auto}   time\_count = std::chrono::duration\_cast<std::chrono::microseconds>(std::chrono::system\_clock::now() -\/ start).count();}
@@ -540,8 +540,8 @@
 \DoxyCodeLine{536       \textcolor{keywordflow}{return} \{0, time\_sec\};}
 \DoxyCodeLine{537    \}}
 \DoxyCodeLine{538    }
-\DoxyCodeLine{539    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} == 1) \{}
-\DoxyCodeLine{540       *gs\_value\_out = matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[0];}
+\DoxyCodeLine{539    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} == 1) \{}
+\DoxyCodeLine{540       *gs\_value\_out = matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[0];}
 \DoxyCodeLine{541       gs\_vector\_out-\/>val.resize(1);}
 \DoxyCodeLine{542       gs\_vector\_out-\/>val[0] = 1.0;}
 \DoxyCodeLine{543       \textcolor{keyword}{const} \textcolor{keyword}{auto}   time\_count = std::chrono::duration\_cast<std::chrono::microseconds>(std::chrono::system\_clock::now() -\/ start).count();}
@@ -549,7 +549,7 @@
 \DoxyCodeLine{545       \textcolor{keywordflow}{return} \{0, time\_sec\};}
 \DoxyCodeLine{546    \}}
 \DoxyCodeLine{547    }
-\DoxyCodeLine{548    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} <= 1000) \{}
+\DoxyCodeLine{548    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} <= 1000) \{}
 \DoxyCodeLine{549       std::vector<RealType> temp\_gs\_vector\_out;}
 \DoxyCodeLine{550       \mbox{\hyperlink{namespacecompnal_1_1blas_ad95086714ba0af598315dba0109fc282}{LapackDsyev}}(gs\_value\_out, \&temp\_gs\_vector\_out, matrix\_in);}
 \DoxyCodeLine{551       gs\_vector\_out-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ad5d0d469065d6ee4b821e567941efe2e}{Assign}}(temp\_gs\_vector\_out);}
@@ -558,7 +558,7 @@
 \DoxyCodeLine{554       \textcolor{keywordflow}{return} \{0, time\_sec\};}
 \DoxyCodeLine{555    \}}
 \DoxyCodeLine{556    }
-\DoxyCodeLine{557    \textcolor{keyword}{const} std::int64\_t dim = matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}};}
+\DoxyCodeLine{557    \textcolor{keyword}{const} std::int64\_t dim = matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}};}
 \DoxyCodeLine{558    \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type::BraketVector<RealType>}} v0(dim);}
 \DoxyCodeLine{559    \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type::BraketVector<RealType>}} v1(dim);}
 \DoxyCodeLine{560    \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type::BraketVector<RealType>}} v2(dim);}

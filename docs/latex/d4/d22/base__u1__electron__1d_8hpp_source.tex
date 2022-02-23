@@ -38,7 +38,7 @@
 \DoxyCodeLine{36 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
 \DoxyCodeLine{37 \textcolor{keyword}{class }\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d}{BaseU1Electron\_1D}} \{}
 \DoxyCodeLine{38    }
-\DoxyCodeLine{40    \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} = \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}};}
+\DoxyCodeLine{40    \textcolor{keyword}{using} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} = \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}};}
 \DoxyCodeLine{41    }
 \DoxyCodeLine{43    \textcolor{keyword}{using} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} = std::pair<int, double>;}
 \DoxyCodeLine{44    }
@@ -300,20 +300,20 @@
 \DoxyCodeLine{352       std::cout << \textcolor{stringliteral}{"{}\(\backslash\)rElapsed time of generating basis:"{}} << time\_sec << \textcolor{stringliteral}{"{}[sec]"{}} << std::endl;}
 \DoxyCodeLine{353    \}}
 \DoxyCodeLine{354    }
-\DoxyCodeLine{359    std::vector<QType> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a4b4774a67ebb600f15fd49976a1b8df7}{GenerateTargetSector}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_1, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_2)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{359    std::vector<QType> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a4b4774a67ebb600f15fd49976a1b8df7}{GenerateTargetSector}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_1, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_2)\textcolor{keyword}{ const }\{}
 \DoxyCodeLine{360       std::unordered\_set<QType, utility::PairHash> delta\_sector\_set\_m1;}
 \DoxyCodeLine{361       std::unordered\_set<QType, utility::PairHash> delta\_sector\_set\_m2;}
-\DoxyCodeLine{362       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{363          \textcolor{keywordflow}{for} (std::int64\_t j = m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i]; j < m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i + 1]; ++j) \{}
-\DoxyCodeLine{364             \textcolor{keywordflow}{if} (m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j] != 0.0) \{}
-\DoxyCodeLine{365                delta\_sector\_set\_m1.emplace(CalculateQuntumNumberDifference(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(i), \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_1.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j])));}
+\DoxyCodeLine{362       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{363          \textcolor{keywordflow}{for} (std::int64\_t j = m\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i]; j < m\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{364             \textcolor{keywordflow}{if} (m\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j] != 0.0) \{}
+\DoxyCodeLine{365                delta\_sector\_set\_m1.emplace(CalculateQuntumNumberDifference(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(i), \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j])));}
 \DoxyCodeLine{366             \}}
 \DoxyCodeLine{367          \}}
 \DoxyCodeLine{368       \}}
-\DoxyCodeLine{369       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{370          \textcolor{keywordflow}{for} (std::int64\_t j = m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i]; j < m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i + 1]; ++j) \{}
-\DoxyCodeLine{371             \textcolor{keywordflow}{if} (m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j] != 0.0) \{}
-\DoxyCodeLine{372                delta\_sector\_set\_m2.emplace(CalculateQuntumNumberDifference(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(i), \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_2.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j])));}
+\DoxyCodeLine{369       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{370          \textcolor{keywordflow}{for} (std::int64\_t j = m\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i]; j < m\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{371             \textcolor{keywordflow}{if} (m\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j] != 0.0) \{}
+\DoxyCodeLine{372                delta\_sector\_set\_m2.emplace(CalculateQuntumNumberDifference(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(i), \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j])));}
 \DoxyCodeLine{373             \}}
 \DoxyCodeLine{374          \}}
 \DoxyCodeLine{375       \}}
@@ -331,31 +331,31 @@
 \DoxyCodeLine{387       \textcolor{keywordflow}{return} target\_sector\_set;}
 \DoxyCodeLine{388    \}}
 \DoxyCodeLine{389    }
-\DoxyCodeLine{395    std::vector<std::pair<QType, QType>> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a3481d7f1ed4b6b1a07f363851a7704cd}{GenerateTargetSector}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_1\_bra, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_2\_ket, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_3\_ket)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{395    std::vector<std::pair<QType, QType>> \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a3481d7f1ed4b6b1a07f363851a7704cd}{GenerateTargetSector}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_1\_bra, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_2\_ket, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_3\_ket)\textcolor{keyword}{ const }\{}
 \DoxyCodeLine{396       std::unordered\_set<QType, utility::PairHash> delta\_sector\_set\_m1;}
 \DoxyCodeLine{397       std::unordered\_set<QType, utility::PairHash> delta\_sector\_set\_m2;}
 \DoxyCodeLine{398       std::unordered\_set<QType, utility::PairHash> delta\_sector\_set\_m3;}
 \DoxyCodeLine{399       }
-\DoxyCodeLine{400       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_1\_bra.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{401          \textcolor{keywordflow}{for} (std::int64\_t j = m\_1\_bra.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i]; j < m\_1\_bra.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i + 1]; ++j) \{}
-\DoxyCodeLine{402             \textcolor{keywordflow}{if} (m\_1\_bra.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j] != 0.0) \{}
-\DoxyCodeLine{403                delta\_sector\_set\_m1.emplace(CalculateQuntumNumberDifference(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(i), \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_1\_bra.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j])));}
+\DoxyCodeLine{400       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_1\_bra.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{401          \textcolor{keywordflow}{for} (std::int64\_t j = m\_1\_bra.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i]; j < m\_1\_bra.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{402             \textcolor{keywordflow}{if} (m\_1\_bra.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j] != 0.0) \{}
+\DoxyCodeLine{403                delta\_sector\_set\_m1.emplace(CalculateQuntumNumberDifference(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(i), \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_1\_bra.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j])));}
 \DoxyCodeLine{404             \}}
 \DoxyCodeLine{405          \}}
 \DoxyCodeLine{406       \}}
 \DoxyCodeLine{407       }
-\DoxyCodeLine{408       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_2\_ket.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{409          \textcolor{keywordflow}{for} (std::int64\_t j = m\_2\_ket.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i]; j < m\_2\_ket.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i + 1]; ++j) \{}
-\DoxyCodeLine{410             \textcolor{keywordflow}{if} (m\_2\_ket.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j] != 0.0) \{}
-\DoxyCodeLine{411                delta\_sector\_set\_m2.emplace(CalculateQuntumNumberDifference(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(i), \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_2\_ket.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j])));}
+\DoxyCodeLine{408       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_2\_ket.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{409          \textcolor{keywordflow}{for} (std::int64\_t j = m\_2\_ket.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i]; j < m\_2\_ket.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{410             \textcolor{keywordflow}{if} (m\_2\_ket.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j] != 0.0) \{}
+\DoxyCodeLine{411                delta\_sector\_set\_m2.emplace(CalculateQuntumNumberDifference(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(i), \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_2\_ket.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j])));}
 \DoxyCodeLine{412             \}}
 \DoxyCodeLine{413          \}}
 \DoxyCodeLine{414       \}}
 \DoxyCodeLine{415       }
-\DoxyCodeLine{416       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_3\_ket.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{417          \textcolor{keywordflow}{for} (std::int64\_t j = m\_3\_ket.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i]; j < m\_3\_ket.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i + 1]; ++j) \{}
-\DoxyCodeLine{418             \textcolor{keywordflow}{if} (m\_3\_ket.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j] != 0.0) \{}
-\DoxyCodeLine{419                delta\_sector\_set\_m3.emplace(CalculateQuntumNumberDifference(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(i), \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_3\_ket.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j])));}
+\DoxyCodeLine{416       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_3\_ket.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{417          \textcolor{keywordflow}{for} (std::int64\_t j = m\_3\_ket.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i]; j < m\_3\_ket.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{418             \textcolor{keywordflow}{if} (m\_3\_ket.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j] != 0.0) \{}
+\DoxyCodeLine{419                delta\_sector\_set\_m3.emplace(CalculateQuntumNumberDifference(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(i), \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_3\_ket.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j])));}
 \DoxyCodeLine{420             \}}
 \DoxyCodeLine{421          \}}
 \DoxyCodeLine{422       \}}
@@ -383,40 +383,40 @@
 \DoxyCodeLine{444    \}}
 \DoxyCodeLine{445    }
 \DoxyCodeLine{452    std::vector<std::tuple<QType, QType, QType>>}
-\DoxyCodeLine{453    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a06b84fcba1019019aefac574ff4a4423}{GenerateTargetSector}}(\textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_1\_bra, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_2\_bra, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_3\_ket, \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_4\_ket)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{453    \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a06b84fcba1019019aefac574ff4a4423}{GenerateTargetSector}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_1\_bra, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_2\_bra, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_3\_ket, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_4\_ket)\textcolor{keyword}{ const }\{}
 \DoxyCodeLine{454       std::unordered\_set<QType, utility::PairHash> delta\_sector\_set\_m1;}
 \DoxyCodeLine{455       std::unordered\_set<QType, utility::PairHash> delta\_sector\_set\_m2;}
 \DoxyCodeLine{456       std::unordered\_set<QType, utility::PairHash> delta\_sector\_set\_m3;}
 \DoxyCodeLine{457       std::unordered\_set<QType, utility::PairHash> delta\_sector\_set\_m4;}
 \DoxyCodeLine{458       }
-\DoxyCodeLine{459       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_1\_bra.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{460          \textcolor{keywordflow}{for} (std::int64\_t j = m\_1\_bra.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i]; j < m\_1\_bra.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i + 1]; ++j) \{}
-\DoxyCodeLine{461             \textcolor{keywordflow}{if} (m\_1\_bra.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j] != 0.0) \{}
-\DoxyCodeLine{462                delta\_sector\_set\_m1.emplace(CalculateQuntumNumberDifference(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(i), \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_1\_bra.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j])));}
+\DoxyCodeLine{459       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_1\_bra.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{460          \textcolor{keywordflow}{for} (std::int64\_t j = m\_1\_bra.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i]; j < m\_1\_bra.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{461             \textcolor{keywordflow}{if} (m\_1\_bra.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j] != 0.0) \{}
+\DoxyCodeLine{462                delta\_sector\_set\_m1.emplace(CalculateQuntumNumberDifference(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(i), \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_1\_bra.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j])));}
 \DoxyCodeLine{463             \}}
 \DoxyCodeLine{464          \}}
 \DoxyCodeLine{465       \}}
 \DoxyCodeLine{466       }
-\DoxyCodeLine{467       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_2\_bra.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{468          \textcolor{keywordflow}{for} (std::int64\_t j = m\_2\_bra.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i]; j < m\_2\_bra.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i + 1]; ++j) \{}
-\DoxyCodeLine{469             \textcolor{keywordflow}{if} (m\_2\_bra.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j] != 0.0) \{}
-\DoxyCodeLine{470                delta\_sector\_set\_m2.emplace(CalculateQuntumNumberDifference(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(i), \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_2\_bra.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j])));}
+\DoxyCodeLine{467       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_2\_bra.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{468          \textcolor{keywordflow}{for} (std::int64\_t j = m\_2\_bra.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i]; j < m\_2\_bra.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{469             \textcolor{keywordflow}{if} (m\_2\_bra.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j] != 0.0) \{}
+\DoxyCodeLine{470                delta\_sector\_set\_m2.emplace(CalculateQuntumNumberDifference(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(i), \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_2\_bra.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j])));}
 \DoxyCodeLine{471             \}}
 \DoxyCodeLine{472          \}}
 \DoxyCodeLine{473       \}}
 \DoxyCodeLine{474       }
-\DoxyCodeLine{475       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_3\_ket.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{476          \textcolor{keywordflow}{for} (std::int64\_t j = m\_3\_ket.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i]; j < m\_3\_ket.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i + 1]; ++j) \{}
-\DoxyCodeLine{477             \textcolor{keywordflow}{if} (m\_3\_ket.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j] != 0.0) \{}
-\DoxyCodeLine{478                delta\_sector\_set\_m3.emplace(CalculateQuntumNumberDifference(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(i), \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_3\_ket.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j])));}
+\DoxyCodeLine{475       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_3\_ket.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{476          \textcolor{keywordflow}{for} (std::int64\_t j = m\_3\_ket.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i]; j < m\_3\_ket.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{477             \textcolor{keywordflow}{if} (m\_3\_ket.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j] != 0.0) \{}
+\DoxyCodeLine{478                delta\_sector\_set\_m3.emplace(CalculateQuntumNumberDifference(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(i), \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_3\_ket.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j])));}
 \DoxyCodeLine{479             \}}
 \DoxyCodeLine{480          \}}
 \DoxyCodeLine{481       \}}
 \DoxyCodeLine{482       }
-\DoxyCodeLine{483       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_4\_ket.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}; ++i) \{}
-\DoxyCodeLine{484          \textcolor{keywordflow}{for} (std::int64\_t j = m\_4\_ket.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i]; j < m\_4\_ket.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[i + 1]; ++j) \{}
-\DoxyCodeLine{485             \textcolor{keywordflow}{if} (m\_4\_ket.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}[j] != 0.0) \{}
-\DoxyCodeLine{486                delta\_sector\_set\_m4.emplace(CalculateQuntumNumberDifference(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(i), \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_4\_ket.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}[j])));}
+\DoxyCodeLine{483       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m\_4\_ket.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{484          \textcolor{keywordflow}{for} (std::int64\_t j = m\_4\_ket.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i]; j < m\_4\_ket.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{485             \textcolor{keywordflow}{if} (m\_4\_ket.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j] != 0.0) \{}
+\DoxyCodeLine{486                delta\_sector\_set\_m4.emplace(CalculateQuntumNumberDifference(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(i), \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(m\_4\_ket.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j])));}
 \DoxyCodeLine{487             \}}
 \DoxyCodeLine{488          \}}
 \DoxyCodeLine{489       \}}
@@ -481,7 +481,7 @@
 \DoxyCodeLine{558       \textcolor{keywordflow}{return} dim;}
 \DoxyCodeLine{559    \}}
 \DoxyCodeLine{560    }
-\DoxyCodeLine{563    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a51b7f7b843cf925e4fd86c768e6abd90}{CreateOnsiteOperatorCUp}}() \{}
+\DoxyCodeLine{563    \textcolor{keyword}{static} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a51b7f7b843cf925e4fd86c768e6abd90}{CreateOnsiteOperatorCUp}}() \{}
 \DoxyCodeLine{564       }
 \DoxyCodeLine{565       \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{566       \textcolor{comment}{// \# <-\/>  [Cherge  ] -\/-\/ (N,  2*sz)}}
@@ -492,23 +492,23 @@
 \DoxyCodeLine{571       \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{572       }
 \DoxyCodeLine{573       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite = 4;}
-\DoxyCodeLine{574       \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
+\DoxyCodeLine{574       \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
 \DoxyCodeLine{575       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 0; row < dim\_onsite; row++) \{}
 \DoxyCodeLine{576          \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} col = 0; col < dim\_onsite; col++) \{}
 \DoxyCodeLine{577             \textcolor{keywordflow}{if} ((col == 1 \&\& row == 0) || (col == 3 \&\& row == 2)) \{}
-\DoxyCodeLine{578                matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.push\_back(col);}
-\DoxyCodeLine{579                matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}.push\_back(1.0);}
+\DoxyCodeLine{578                matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.push\_back(col);}
+\DoxyCodeLine{579                matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.push\_back(1.0);}
 \DoxyCodeLine{580             \}}
 \DoxyCodeLine{581          \}}
-\DoxyCodeLine{582          matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[row + 1] = matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.size();}
+\DoxyCodeLine{582          matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[row + 1] = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size();}
 \DoxyCodeLine{583       \}}
 \DoxyCodeLine{584       }
-\DoxyCodeLine{585       matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aacfa2feb99e5970d2a2d0a07b2528577}{tag}} = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{type::CRSTag::FERMION}};}
+\DoxyCodeLine{585       matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{type::CRSTag::FERMION}};}
 \DoxyCodeLine{586       }
 \DoxyCodeLine{587       \textcolor{keywordflow}{return} matrix;}
 \DoxyCodeLine{588    \}}
 \DoxyCodeLine{589    }
-\DoxyCodeLine{592    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ab395758624dddcb8d1488ab6efb7e0b7}{CreateOnsiteOperatorCDown}}() \{}
+\DoxyCodeLine{592    \textcolor{keyword}{static} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ab395758624dddcb8d1488ab6efb7e0b7}{CreateOnsiteOperatorCDown}}() \{}
 \DoxyCodeLine{593       }
 \DoxyCodeLine{594       \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{595       \textcolor{comment}{// \# <-\/>  [Cherge  ] -\/-\/ (N,  2*sz)}}
@@ -519,64 +519,64 @@
 \DoxyCodeLine{600       \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
 \DoxyCodeLine{601       }
 \DoxyCodeLine{602       \textcolor{keyword}{const} \textcolor{keywordtype}{int} dim\_onsite = 4;}
-\DoxyCodeLine{603       \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
+\DoxyCodeLine{603       \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} matrix(dim\_onsite, dim\_onsite);}
 \DoxyCodeLine{604       \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} row = 0; row < dim\_onsite; row++) \{}
 \DoxyCodeLine{605          \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} col = 0; col < dim\_onsite; col++) \{}
 \DoxyCodeLine{606             \textcolor{keywordflow}{if} (col == 2 \&\& row == 0) \{}
-\DoxyCodeLine{607                matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.push\_back(col);}
-\DoxyCodeLine{608                matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}.push\_back(1.0);}
+\DoxyCodeLine{607                matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.push\_back(col);}
+\DoxyCodeLine{608                matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.push\_back(1.0);}
 \DoxyCodeLine{609             \}}
 \DoxyCodeLine{610             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (col == 3 \&\& row == 1) \{}
-\DoxyCodeLine{611                matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.push\_back(col);}
-\DoxyCodeLine{612                matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aa03a45f3e001a06d1df4b8362a0464eb}{val}}.push\_back(-\/1.0);}
+\DoxyCodeLine{611                matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.push\_back(col);}
+\DoxyCodeLine{612                matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.push\_back(-\/1.0);}
 \DoxyCodeLine{613             \}}
 \DoxyCodeLine{614          \}}
-\DoxyCodeLine{615          matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a88ad5393f23fb80095433cf1e0e08e95}{row}}[row + 1] = matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a06588e369b2a6cd56586ec3f50735950}{col}}.size();}
+\DoxyCodeLine{615          matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[row + 1] = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size();}
 \DoxyCodeLine{616       \}}
 \DoxyCodeLine{617       }
-\DoxyCodeLine{618       matrix.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_aacfa2feb99e5970d2a2d0a07b2528577}{tag}} = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{type::CRSTag::FERMION}};}
+\DoxyCodeLine{618       matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{type::CRSTag::FERMION}};}
 \DoxyCodeLine{619 }
 \DoxyCodeLine{620       \textcolor{keywordflow}{return} matrix;}
 \DoxyCodeLine{621    \}}
 \DoxyCodeLine{622    }
-\DoxyCodeLine{626    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a063b1f41011709867e97df0ade5e5739}{CreateOnsiteOperatorCUpDagger}}() \{}
-\DoxyCodeLine{627       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_a5346fac9bf3b703982976a27f440168b}{blas::CalculateTransposedMatrix}}(CreateOnsiteOperatorCUp());}
+\DoxyCodeLine{626    \textcolor{keyword}{static} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a063b1f41011709867e97df0ade5e5739}{CreateOnsiteOperatorCUpDagger}}() \{}
+\DoxyCodeLine{627       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_a59fb41af50a085e7de7640b31b6fd240}{blas::CalculateTransposedMatrix}}(CreateOnsiteOperatorCUp());}
 \DoxyCodeLine{628    \}}
 \DoxyCodeLine{629    }
-\DoxyCodeLine{633    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_afa19a276a4a0e96c781556ba53905a85}{CreateOnsiteOperatorCDownDagger}}() \{}
-\DoxyCodeLine{634       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_a5346fac9bf3b703982976a27f440168b}{blas::CalculateTransposedMatrix}}(CreateOnsiteOperatorCDown());}
+\DoxyCodeLine{633    \textcolor{keyword}{static} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_afa19a276a4a0e96c781556ba53905a85}{CreateOnsiteOperatorCDownDagger}}() \{}
+\DoxyCodeLine{634       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_a59fb41af50a085e7de7640b31b6fd240}{blas::CalculateTransposedMatrix}}(CreateOnsiteOperatorCDown());}
 \DoxyCodeLine{635    \}}
 \DoxyCodeLine{636    }
-\DoxyCodeLine{640    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a3b8fcfdefbef8ade799801c8119e3f04}{CreateOnsiteOperatorNCUp}}() \{}
-\DoxyCodeLine{641       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_ad4084b7468d3900b83b409da1b0d9254}{blas::CalculateMatrixMatrixProduct}}(1.0, CreateOnsiteOperatorCUpDagger(), 1.0, CreateOnsiteOperatorCUp());}
+\DoxyCodeLine{640    \textcolor{keyword}{static} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a3b8fcfdefbef8ade799801c8119e3f04}{CreateOnsiteOperatorNCUp}}() \{}
+\DoxyCodeLine{641       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_aa09c6703ea13c46c2bb89531b7c85a75}{blas::CalculateMatrixMatrixProduct}}(1.0, CreateOnsiteOperatorCUpDagger(), 1.0, CreateOnsiteOperatorCUp());}
 \DoxyCodeLine{642    \}}
 \DoxyCodeLine{643    }
-\DoxyCodeLine{647    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a9fd576d344dc72d5c7b9361a3cad51d9}{CreateOnsiteOperatorNCDown}}() \{}
-\DoxyCodeLine{648       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_ad4084b7468d3900b83b409da1b0d9254}{blas::CalculateMatrixMatrixProduct}}(1.0, CreateOnsiteOperatorCDownDagger(), 1.0, CreateOnsiteOperatorCDown());}
+\DoxyCodeLine{647    \textcolor{keyword}{static} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a9fd576d344dc72d5c7b9361a3cad51d9}{CreateOnsiteOperatorNCDown}}() \{}
+\DoxyCodeLine{648       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_aa09c6703ea13c46c2bb89531b7c85a75}{blas::CalculateMatrixMatrixProduct}}(1.0, CreateOnsiteOperatorCDownDagger(), 1.0, CreateOnsiteOperatorCDown());}
 \DoxyCodeLine{649    \}}
 \DoxyCodeLine{650    }
-\DoxyCodeLine{654    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aec77c76276610fa623fe1127594bf8e7}{CreateOnsiteOperatorNC}}() \{}
-\DoxyCodeLine{655       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_aab183cd2077b21a5126d0927d9ac4756}{blas::CalculateMatrixMatrixSum}}(1.0, CreateOnsiteOperatorNCUp(), 1.0, CreateOnsiteOperatorNCDown());}
+\DoxyCodeLine{654    \textcolor{keyword}{static} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aec77c76276610fa623fe1127594bf8e7}{CreateOnsiteOperatorNC}}() \{}
+\DoxyCodeLine{655       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_a52ce548d226d24916074a27f88b3e400}{blas::CalculateMatrixMatrixSum}}(1.0, CreateOnsiteOperatorNCUp(), 1.0, CreateOnsiteOperatorNCDown());}
 \DoxyCodeLine{656    \}}
 \DoxyCodeLine{657    }
-\DoxyCodeLine{661    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a78088b3950053826909b7c70b08d1724}{CreateOnsiteOperatorSx}}() \{}
-\DoxyCodeLine{662       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_aab183cd2077b21a5126d0927d9ac4756}{blas::CalculateMatrixMatrixSum}}(0.5, CreateOnsiteOperatorSp(), 0.5, CreateOnsiteOperatorSm());}
+\DoxyCodeLine{661    \textcolor{keyword}{static} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a78088b3950053826909b7c70b08d1724}{CreateOnsiteOperatorSx}}() \{}
+\DoxyCodeLine{662       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_a52ce548d226d24916074a27f88b3e400}{blas::CalculateMatrixMatrixSum}}(0.5, CreateOnsiteOperatorSp(), 0.5, CreateOnsiteOperatorSm());}
 \DoxyCodeLine{663    \}}
 \DoxyCodeLine{664    }
-\DoxyCodeLine{669    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ad1b145ffc9fc740d52bc16a24dc17726}{CreateOnsiteOperatoriSy}}() \{}
-\DoxyCodeLine{670       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_aab183cd2077b21a5126d0927d9ac4756}{blas::CalculateMatrixMatrixSum}}(0.5, CreateOnsiteOperatorSp(), -\/0.5, CreateOnsiteOperatorSm());}
+\DoxyCodeLine{669    \textcolor{keyword}{static} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ad1b145ffc9fc740d52bc16a24dc17726}{CreateOnsiteOperatoriSy}}() \{}
+\DoxyCodeLine{670       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_a52ce548d226d24916074a27f88b3e400}{blas::CalculateMatrixMatrixSum}}(0.5, CreateOnsiteOperatorSp(), -\/0.5, CreateOnsiteOperatorSm());}
 \DoxyCodeLine{671    \}}
 \DoxyCodeLine{672    }
-\DoxyCodeLine{676    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a5835026708b0d6a101027b0d84c3d3f9}{CreateOnsiteOperatorSz}}() \{}
-\DoxyCodeLine{677       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_aab183cd2077b21a5126d0927d9ac4756}{blas::CalculateMatrixMatrixSum}}(0.5, CreateOnsiteOperatorNCUp(), -\/0.5,CreateOnsiteOperatorNCDown());}
+\DoxyCodeLine{676    \textcolor{keyword}{static} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a5835026708b0d6a101027b0d84c3d3f9}{CreateOnsiteOperatorSz}}() \{}
+\DoxyCodeLine{677       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_a52ce548d226d24916074a27f88b3e400}{blas::CalculateMatrixMatrixSum}}(0.5, CreateOnsiteOperatorNCUp(), -\/0.5,CreateOnsiteOperatorNCDown());}
 \DoxyCodeLine{678    \}}
 \DoxyCodeLine{679    }
-\DoxyCodeLine{683    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a74e428afd2ae4c3a29c23d187d472729}{CreateOnsiteOperatorSp}}() \{}
-\DoxyCodeLine{684       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_ad4084b7468d3900b83b409da1b0d9254}{blas::CalculateMatrixMatrixProduct}}(1.0, CreateOnsiteOperatorCUpDagger(), 1.0, CreateOnsiteOperatorCDown());}
+\DoxyCodeLine{683    \textcolor{keyword}{static} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a74e428afd2ae4c3a29c23d187d472729}{CreateOnsiteOperatorSp}}() \{}
+\DoxyCodeLine{684       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_aa09c6703ea13c46c2bb89531b7c85a75}{blas::CalculateMatrixMatrixProduct}}(1.0, CreateOnsiteOperatorCUpDagger(), 1.0, CreateOnsiteOperatorCDown());}
 \DoxyCodeLine{685    \}}
 \DoxyCodeLine{686    }
-\DoxyCodeLine{690    \textcolor{keyword}{static} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa22882e9e45d96221f3a9ca2dcfc6dfd}{CreateOnsiteOperatorSm}}() \{}
-\DoxyCodeLine{691       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_ad4084b7468d3900b83b409da1b0d9254}{blas::CalculateMatrixMatrixProduct}}(1.0, CreateOnsiteOperatorCDownDagger(), 1.0, CreateOnsiteOperatorCUp());}
+\DoxyCodeLine{690    \textcolor{keyword}{static} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_aa22882e9e45d96221f3a9ca2dcfc6dfd}{CreateOnsiteOperatorSm}}() \{}
+\DoxyCodeLine{691       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_aa09c6703ea13c46c2bb89531b7c85a75}{blas::CalculateMatrixMatrixProduct}}(1.0, CreateOnsiteOperatorCDownDagger(), 1.0, CreateOnsiteOperatorCUp());}
 \DoxyCodeLine{692    \}}
 \DoxyCodeLine{693    }
 \DoxyCodeLine{699    \textcolor{keyword}{static} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a8f0a590290a48392b0b3a3ebdb7e2ab2}{QType}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a7eeaeb64c183a9be7d49d2dea7ade5ef}{CalculateQuntumNumberDifference}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} row, \textcolor{keyword}{const} \textcolor{keywordtype}{int} col) \{}
@@ -635,29 +635,29 @@
 \DoxyCodeLine{758    }
 \DoxyCodeLine{761    \textcolor{keyword}{inline} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ac3cee2826343874981ca15b2dd383514}{GetTotalElectron}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} total\_electron\_; \}}
 \DoxyCodeLine{762    }
-\DoxyCodeLine{765    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a15fe38d996c2d23748a2eb254807b882}{GetOnsiteOperatorCUp}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_c\_up\_;   \}}
+\DoxyCodeLine{765    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a15fe38d996c2d23748a2eb254807b882}{GetOnsiteOperatorCUp}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_c\_up\_;   \}}
 \DoxyCodeLine{766    }
-\DoxyCodeLine{769    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a4dfc489bed6324d3d4092e3ae215c224}{GetOnsiteOperatorCDown}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_c\_down\_; \}}
+\DoxyCodeLine{769    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a4dfc489bed6324d3d4092e3ae215c224}{GetOnsiteOperatorCDown}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_c\_down\_; \}}
 \DoxyCodeLine{770    }
-\DoxyCodeLine{774    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a7a2de63620d20978d0d2d39c722222fd}{GetOnsiteOperatorCUpDagger}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_c\_up\_dagger\_; \}}
+\DoxyCodeLine{774    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a7a2de63620d20978d0d2d39c722222fd}{GetOnsiteOperatorCUpDagger}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_c\_up\_dagger\_; \}}
 \DoxyCodeLine{775    }
-\DoxyCodeLine{779    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a4892fdee7d5a231b434a6b0335c0cedd}{GetOnsiteOperatorCDownDagger}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_c\_down\_dagger\_; \}}
+\DoxyCodeLine{779    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a4892fdee7d5a231b434a6b0335c0cedd}{GetOnsiteOperatorCDownDagger}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_c\_down\_dagger\_; \}}
 \DoxyCodeLine{780    }
-\DoxyCodeLine{784    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a18f85301715137e29a9efe55d293b680}{GetOnsiteOperatorNCUp}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_nc\_up\_; \}}
+\DoxyCodeLine{784    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a18f85301715137e29a9efe55d293b680}{GetOnsiteOperatorNCUp}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_nc\_up\_; \}}
 \DoxyCodeLine{785    }
-\DoxyCodeLine{789    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a568630fdde2d69ae8166d0f4c5230034}{GetOnsiteOperatorNCDown}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_nc\_down\_; \}}
+\DoxyCodeLine{789    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a568630fdde2d69ae8166d0f4c5230034}{GetOnsiteOperatorNCDown}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_nc\_down\_; \}}
 \DoxyCodeLine{790    }
-\DoxyCodeLine{794    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ae4807dc416a3b14a3a6eddfcfa155463}{GetOnsiteOperatorNC}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_nc\_; \}}
+\DoxyCodeLine{794    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ae4807dc416a3b14a3a6eddfcfa155463}{GetOnsiteOperatorNC}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_nc\_; \}}
 \DoxyCodeLine{795    }
-\DoxyCodeLine{799    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a804fcc953f4094c743ff7a090c5c5648}{GetOnsiteOperatorSx}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_sx\_ ; \}}
+\DoxyCodeLine{799    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a804fcc953f4094c743ff7a090c5c5648}{GetOnsiteOperatorSx}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_sx\_ ; \}}
 \DoxyCodeLine{800    }
-\DoxyCodeLine{805    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a93994944b367d1dda1fd5086c3b39160}{GetOnsiteOperatoriSy}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_isy\_; \}}
+\DoxyCodeLine{805    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a93994944b367d1dda1fd5086c3b39160}{GetOnsiteOperatoriSy}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_isy\_; \}}
 \DoxyCodeLine{806    }
-\DoxyCodeLine{810    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a4d101c612f474f7f1360e01fb2e11458}{GetOnsiteOperatorSz}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_sz\_ ; \}}
+\DoxyCodeLine{810    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a4d101c612f474f7f1360e01fb2e11458}{GetOnsiteOperatorSz}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_sz\_ ; \}}
 \DoxyCodeLine{811    }
-\DoxyCodeLine{815    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ad0a789379520130e320c9db5c17bd187}{GetOnsiteOperatorSp}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_sp\_ ; \}}
+\DoxyCodeLine{815    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ad0a789379520130e320c9db5c17bd187}{GetOnsiteOperatorSp}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_sp\_ ; \}}
 \DoxyCodeLine{816    }
-\DoxyCodeLine{820    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ae52e204919ad16ced312da56529b69fb}{GetOnsiteOperatorSm}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_sm\_ ; \}}
+\DoxyCodeLine{820    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ae52e204919ad16ced312da56529b69fb}{GetOnsiteOperatorSm}} ()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} onsite\_operator\_sm\_ ; \}}
 \DoxyCodeLine{821    }
 \DoxyCodeLine{824    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::unordered\_set<int> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_acf692080230871d5262686508a87620d}{GetCalculatedEigenvectorSet}}()\textcolor{keyword}{ const }\{}
 \DoxyCodeLine{825       \textcolor{keywordflow}{return} calculated\_eigenvector\_set\_;}
@@ -688,29 +688,29 @@
 \DoxyCodeLine{866    \}}
 \DoxyCodeLine{867    }
 \DoxyCodeLine{868 \textcolor{keyword}{protected}:}
-\DoxyCodeLine{870    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a80ce3f95ed41479a23b48beaa97f9dc8}{onsite\_operator\_c\_up\_}};}
+\DoxyCodeLine{870    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a80ce3f95ed41479a23b48beaa97f9dc8}{onsite\_operator\_c\_up\_}};}
 \DoxyCodeLine{871    }
-\DoxyCodeLine{873    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_afd210bc73eb8edea115ca6047e2e8dbe}{onsite\_operator\_c\_down\_}};}
+\DoxyCodeLine{873    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_afd210bc73eb8edea115ca6047e2e8dbe}{onsite\_operator\_c\_down\_}};}
 \DoxyCodeLine{874    }
-\DoxyCodeLine{877    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a94f04fbce3a0534df21565ab36084e52}{onsite\_operator\_c\_up\_dagger\_}};}
+\DoxyCodeLine{877    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a94f04fbce3a0534df21565ab36084e52}{onsite\_operator\_c\_up\_dagger\_}};}
 \DoxyCodeLine{878    }
-\DoxyCodeLine{881    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a27cbc9f82f413f94d626123485e34ce8}{onsite\_operator\_c\_down\_dagger\_}};}
+\DoxyCodeLine{881    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a27cbc9f82f413f94d626123485e34ce8}{onsite\_operator\_c\_down\_dagger\_}};}
 \DoxyCodeLine{882    }
-\DoxyCodeLine{885    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a2ee108993d5d6e18643705073af3c71a}{onsite\_operator\_nc\_up\_}};}
+\DoxyCodeLine{885    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a2ee108993d5d6e18643705073af3c71a}{onsite\_operator\_nc\_up\_}};}
 \DoxyCodeLine{886    }
-\DoxyCodeLine{889    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a2ed9eed4ec767decefd586405a602901}{onsite\_operator\_nc\_down\_}};}
+\DoxyCodeLine{889    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a2ed9eed4ec767decefd586405a602901}{onsite\_operator\_nc\_down\_}};}
 \DoxyCodeLine{890    }
-\DoxyCodeLine{893    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ac4b973da5fe608fa25bc4109661ebb10}{onsite\_operator\_nc\_}};}
+\DoxyCodeLine{893    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_ac4b973da5fe608fa25bc4109661ebb10}{onsite\_operator\_nc\_}};}
 \DoxyCodeLine{894    }
-\DoxyCodeLine{897    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a6a7e825a56be5ba28dfbdb755f0501f3}{onsite\_operator\_sx\_}};}
+\DoxyCodeLine{897    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a6a7e825a56be5ba28dfbdb755f0501f3}{onsite\_operator\_sx\_}};}
 \DoxyCodeLine{898    }
-\DoxyCodeLine{902    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a5660d6dd3578e59266896709f6b8d7e8}{onsite\_operator\_isy\_}};}
+\DoxyCodeLine{902    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a5660d6dd3578e59266896709f6b8d7e8}{onsite\_operator\_isy\_}};}
 \DoxyCodeLine{903    }
-\DoxyCodeLine{906    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a1862e467bab408d0bdce9a74fa26a52d}{onsite\_operator\_sz\_}};}
+\DoxyCodeLine{906    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a1862e467bab408d0bdce9a74fa26a52d}{onsite\_operator\_sz\_}};}
 \DoxyCodeLine{907    }
-\DoxyCodeLine{910    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a954dcd2609b8833568d884317423a619}{onsite\_operator\_sp\_}};}
+\DoxyCodeLine{910    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a954dcd2609b8833568d884317423a619}{onsite\_operator\_sp\_}};}
 \DoxyCodeLine{911    }
-\DoxyCodeLine{914    \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a61a6fd3082cd225e600d4d65a6bc5282}{onsite\_operator\_sm\_}};}
+\DoxyCodeLine{914    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_u1_electron__1_d_a61a6fd3082cd225e600d4d65a6bc5282}{onsite\_operator\_sm\_}};}
 \DoxyCodeLine{915    }
 \DoxyCodeLine{917    \textcolor{keywordtype}{int} system\_size\_ = 0;}
 \DoxyCodeLine{918    }

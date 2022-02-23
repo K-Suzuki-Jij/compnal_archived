@@ -87,8 +87,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">BraketVector</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |ket&gt;, since the template parameter ElementType cannot accept Complex type.  <a href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sparse matrix classs (Compressed Row Strage: <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a>).  <a href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sparse matrix classs (Compressed Row Strage: <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a>).  <a href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dcb/classcompnal_1_1type_1_1_half_int.html">HalfInt</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class to represent half-integer.  <a href="../../de/dcb/classcompnal_1_1type_1_1_half_int.html#details">More...</a><br /></td></tr>
@@ -101,7 +101,7 @@ Enumerations</h2></td></tr>
 , <a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de">BOSON</a> = 2
 , <a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647">MIX</a> = 3
  }</td></tr>
-<tr class="memdesc:aa249dd69b73057aa6d2d501c0825e11b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type to represent Fermion or not.  <a href="../../d4/df8/namespacecompnal_1_1type.html#aa249dd69b73057aa6d2d501c0825e11b">More...</a><br /></td></tr>
+<tr class="memdesc:aa249dd69b73057aa6d2d501c0825e11b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enumerated type to represent Fermion, Boson, etc..  <a href="../../d4/df8/namespacecompnal_1_1type.html#aa249dd69b73057aa6d2d501c0825e11b">More...</a><br /></td></tr>
 <tr class="separator:aa249dd69b73057aa6d2d501c0825e11b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -130,74 +130,85 @@ Functions</h2></td></tr>
 <tr class="memitem:abb6429171e978e71a1fbd6682875ca56"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#abb6429171e978e71a1fbd6682875ca56">operator==</a> (const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; T1 &gt; &amp;lhs, const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; T2 &gt; &amp;rhs)</td></tr>
 <tr class="memdesc:abb6429171e978e71a1fbd6682875ca56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: equality operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#abb6429171e978e71a1fbd6682875ca56">More...</a><br /></td></tr>
 <tr class="separator:abb6429171e978e71a1fbd6682875ca56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ef017632e376f62ac6a249c5b291b9c"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:a2ef017632e376f62ac6a249c5b291b9c"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a2ef017632e376f62ac6a249c5b291b9c">operator!=</a> (const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; T1 &gt; &amp;lhs, const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; T2 &gt; &amp;rhs)</td></tr>
+<tr class="memdesc:a2ef017632e376f62ac6a249c5b291b9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: equality operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#a2ef017632e376f62ac6a249c5b291b9c">More...</a><br /></td></tr>
+<tr class="separator:a2ef017632e376f62ac6a249c5b291b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab565f905bc0e0a4cdea7cbee1b5c0da1"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:ab565f905bc0e0a4cdea7cbee1b5c0da1"><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#ab565f905bc0e0a4cdea7cbee1b5c0da1">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; T &gt; &amp;v)</td></tr>
 <tr class="memdesc:ab565f905bc0e0a4cdea7cbee1b5c0da1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: output operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#ab565f905bc0e0a4cdea7cbee1b5c0da1">More...</a><br /></td></tr>
 <tr class="separator:ab565f905bc0e0a4cdea7cbee1b5c0da1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a506bbc662bfe7fb2043eb43fefd47c4f"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </td></tr>
 <tr class="memitem:a506bbc662bfe7fb2043eb43fefd47c4f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a506bbc662bfe7fb2043eb43fefd47c4f">CalculateVectorVectorSum</a> (const T1 coeff_1, const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; T2 &gt; &amp;braket_vector_1, const T3 coeff_2, const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; T4 &gt; &amp;braket_vector_2)</td></tr>
-<tr class="memdesc:a506bbc662bfe7fb2043eb43fefd47c4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> summation ( \( c_1\boldsymbol{v}_1 + c_2\boldsymbol{v}_2 \)).  <a href="../../d4/df8/namespacecompnal_1_1type.html#a506bbc662bfe7fb2043eb43fefd47c4f">More...</a><br /></td></tr>
+<tr class="memdesc:a506bbc662bfe7fb2043eb43fefd47c4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> summation, \( c_1\boldsymbol{v}_1 + c_2\boldsymbol{v}_2 \).  <a href="../../d4/df8/namespacecompnal_1_1type.html#a506bbc662bfe7fb2043eb43fefd47c4f">More...</a><br /></td></tr>
 <tr class="separator:a506bbc662bfe7fb2043eb43fefd47c4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af28fbb4db785006c8b917e50aa7b5969"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
 <tr class="memitem:af28fbb4db785006c8b917e50aa7b5969"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#af28fbb4db785006c8b917e50aa7b5969">CalculateVectorVectorProduct</a> (const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; T1 &gt; &amp;braket_vector_1, const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; T2 &gt; &amp;braket_vector_2)</td></tr>
-<tr class="memdesc:af28fbb4db785006c8b917e50aa7b5969"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> innner product ( \( \boldsymbol{v}_1\cdot\boldsymbol{v}_2 \)).  <a href="../../d4/df8/namespacecompnal_1_1type.html#af28fbb4db785006c8b917e50aa7b5969">More...</a><br /></td></tr>
+<tr class="memdesc:af28fbb4db785006c8b917e50aa7b5969"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> innner product, \( \boldsymbol{v}_1\cdot\boldsymbol{v}_2 \).  <a href="../../d4/df8/namespacecompnal_1_1type.html#af28fbb4db785006c8b917e50aa7b5969">More...</a><br /></td></tr>
 <tr class="separator:af28fbb4db785006c8b917e50aa7b5969"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab01076b32cfaad46dd5bb2ef798ab868"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
 <tr class="memitem:ab01076b32cfaad46dd5bb2ef798ab868"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#ab01076b32cfaad46dd5bb2ef798ab868">CalculateScalarVectorProduct</a> (const T1 value, const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; T2 &gt; &amp;braket_vector)</td></tr>
-<tr class="memdesc:ab01076b32cfaad46dd5bb2ef798ab868"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate scalar <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> product ( \( c\boldsymbol{v} \)).  <a href="../../d4/df8/namespacecompnal_1_1type.html#ab01076b32cfaad46dd5bb2ef798ab868">More...</a><br /></td></tr>
+<tr class="memdesc:ab01076b32cfaad46dd5bb2ef798ab868"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate scalar <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> product, \( c\boldsymbol{v} \).  <a href="../../d4/df8/namespacecompnal_1_1type.html#ab01076b32cfaad46dd5bb2ef798ab868">More...</a><br /></td></tr>
 <tr class="separator:ab01076b32cfaad46dd5bb2ef798ab868"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49a46e2c0dff11c5ef25b7d1325d64e0"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </td></tr>
 <tr class="memitem:a49a46e2c0dff11c5ef25b7d1325d64e0"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a49a46e2c0dff11c5ef25b7d1325d64e0">CalculateL1Norm</a> (const T1 coeff_1, const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; T2 &gt; &amp;braket_vector_1, const T3 coeff_2, const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; T4 &gt; &amp;braket_vector_2)</td></tr>
-<tr class="memdesc:a49a46e2c0dff11c5ef25b7d1325d64e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate L1Norm between two <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a>, aka Manhattan distance. ( \( \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\|_1=\sum_{i}\|c_1v_{1,i} - c_2v_{2,i}\| \)).  <a href="../../d4/df8/namespacecompnal_1_1type.html#a49a46e2c0dff11c5ef25b7d1325d64e0">More...</a><br /></td></tr>
+<tr class="memdesc:a49a46e2c0dff11c5ef25b7d1325d64e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate L1Norm between two <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a>, aka Manhattan distance, \( \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\|_1=\sum_{i}\|c_1v_{1,i} - c_2v_{2,i}\| \).  <a href="../../d4/df8/namespacecompnal_1_1type.html#a49a46e2c0dff11c5ef25b7d1325d64e0">More...</a><br /></td></tr>
 <tr class="separator:a49a46e2c0dff11c5ef25b7d1325d64e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86438c32f811bde5b0e955e05ced0b81"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </td></tr>
 <tr class="memitem:a86438c32f811bde5b0e955e05ced0b81"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a86438c32f811bde5b0e955e05ced0b81">CalculateL2Norm</a> (const T1 coeff_1, const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; T2 &gt; &amp;braket_vector_1, const T3 coeff_2, const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; T4 &gt; &amp;braket_vector_2)</td></tr>
-<tr class="memdesc:a86438c32f811bde5b0e955e05ced0b81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate L2Norm, aka Euclidean distance ( \( \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\| \)).  <a href="../../d4/df8/namespacecompnal_1_1type.html#a86438c32f811bde5b0e955e05ced0b81">More...</a><br /></td></tr>
+<tr class="memdesc:a86438c32f811bde5b0e955e05ced0b81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate L2Norm, aka Euclidean distance, \( \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\| \).  <a href="../../d4/df8/namespacecompnal_1_1type.html#a86438c32f811bde5b0e955e05ced0b81">More...</a><br /></td></tr>
 <tr class="separator:a86438c32f811bde5b0e955e05ced0b81"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c13be3bb08671eb44f5c810c9d0eeda"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr class="memitem:a1c13be3bb08671eb44f5c810c9d0eeda"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0}+T2{0})&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a1c13be3bb08671eb44f5c810c9d0eeda">operator+</a> (const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;lhs, const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;rhs)</td></tr>
-<tr class="memdesc:a1c13be3bb08671eb44f5c810c9d0eeda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: addition operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#a1c13be3bb08671eb44f5c810c9d0eeda">More...</a><br /></td></tr>
-<tr class="separator:a1c13be3bb08671eb44f5c810c9d0eeda"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f3ebb23a90eca3caa4c0bdf9a81370c"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr class="memitem:a9f3ebb23a90eca3caa4c0bdf9a81370c"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0}-T2{0})&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a9f3ebb23a90eca3caa4c0bdf9a81370c">operator-</a> (const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;lhs, const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;rhs)</td></tr>
-<tr class="memdesc:a9f3ebb23a90eca3caa4c0bdf9a81370c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: subtraction operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#a9f3ebb23a90eca3caa4c0bdf9a81370c">More...</a><br /></td></tr>
-<tr class="separator:a9f3ebb23a90eca3caa4c0bdf9a81370c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3177a46aa55e8ad7a088f050cabaffc"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr class="memitem:aa3177a46aa55e8ad7a088f050cabaffc"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0} *T2{0})&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#aa3177a46aa55e8ad7a088f050cabaffc">operator*</a> (const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;lhs, const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;rhs)</td></tr>
-<tr class="memdesc:aa3177a46aa55e8ad7a088f050cabaffc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: multiplication operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#aa3177a46aa55e8ad7a088f050cabaffc">More...</a><br /></td></tr>
-<tr class="separator:aa3177a46aa55e8ad7a088f050cabaffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af66199bcd7917a046615dfb2aee2ef70"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr class="memitem:af66199bcd7917a046615dfb2aee2ef70"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0} *T2{0})&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#af66199bcd7917a046615dfb2aee2ef70">operator*</a> (const T1 lhs, const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;rhs)</td></tr>
-<tr class="memdesc:af66199bcd7917a046615dfb2aee2ef70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: multiplication operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#af66199bcd7917a046615dfb2aee2ef70">More...</a><br /></td></tr>
-<tr class="separator:af66199bcd7917a046615dfb2aee2ef70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd654d7409c5c26fca3df1982822cc9d"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr class="memitem:afd654d7409c5c26fca3df1982822cc9d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0} *T2{0})&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#afd654d7409c5c26fca3df1982822cc9d">operator*</a> (const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;lhs, const T2 rhs)</td></tr>
-<tr class="memdesc:afd654d7409c5c26fca3df1982822cc9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: multiplication operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#afd654d7409c5c26fca3df1982822cc9d">More...</a><br /></td></tr>
-<tr class="separator:afd654d7409c5c26fca3df1982822cc9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bfd3c989f30d42f945cb38a0cc873ad"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a6bfd3c989f30d42f945cb38a0cc873ad">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#aa249dd69b73057aa6d2d501c0825e11b">CRSTag</a> &amp;tag)</td></tr>
+<tr class="memdesc:a6bfd3c989f30d42f945cb38a0cc873ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: output operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#a6bfd3c989f30d42f945cb38a0cc873ad">More...</a><br /></td></tr>
+<tr class="separator:a6bfd3c989f30d42f945cb38a0cc873ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe470174f2d566d1518f331a79a77b64"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:abe470174f2d566d1518f331a79a77b64"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#abe470174f2d566d1518f331a79a77b64">operator+</a> (const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;lhs, const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;rhs)</td></tr>
+<tr class="memdesc:abe470174f2d566d1518f331a79a77b64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: addition operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#abe470174f2d566d1518f331a79a77b64">More...</a><br /></td></tr>
+<tr class="separator:abe470174f2d566d1518f331a79a77b64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fbc45e1afeb2f2376030e780f509581"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:a9fbc45e1afeb2f2376030e780f509581"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a9fbc45e1afeb2f2376030e780f509581">operator-</a> (const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;lhs, const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;rhs)</td></tr>
+<tr class="memdesc:a9fbc45e1afeb2f2376030e780f509581"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: subtraction operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#a9fbc45e1afeb2f2376030e780f509581">More...</a><br /></td></tr>
+<tr class="separator:a9fbc45e1afeb2f2376030e780f509581"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fe10a352d8d3269d700c7c8ee70473c"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:a5fe10a352d8d3269d700c7c8ee70473c"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a5fe10a352d8d3269d700c7c8ee70473c">operator*</a> (const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;lhs, const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;rhs)</td></tr>
+<tr class="memdesc:a5fe10a352d8d3269d700c7c8ee70473c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: multiplication operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#a5fe10a352d8d3269d700c7c8ee70473c">More...</a><br /></td></tr>
+<tr class="separator:a5fe10a352d8d3269d700c7c8ee70473c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30f4bf61f4b8ea31dde999efe3856517"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:a30f4bf61f4b8ea31dde999efe3856517"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a30f4bf61f4b8ea31dde999efe3856517">operator*</a> (const T1 lhs, const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;rhs)</td></tr>
+<tr class="memdesc:a30f4bf61f4b8ea31dde999efe3856517"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: multiplication operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#a30f4bf61f4b8ea31dde999efe3856517">More...</a><br /></td></tr>
+<tr class="separator:a30f4bf61f4b8ea31dde999efe3856517"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e537fa85ed9e3cf85debefe720a9ad8"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:a0e537fa85ed9e3cf85debefe720a9ad8"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a0e537fa85ed9e3cf85debefe720a9ad8">operator*</a> (const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;lhs, const T2 rhs)</td></tr>
+<tr class="memdesc:a0e537fa85ed9e3cf85debefe720a9ad8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: multiplication operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#a0e537fa85ed9e3cf85debefe720a9ad8">More...</a><br /></td></tr>
+<tr class="separator:a0e537fa85ed9e3cf85debefe720a9ad8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ac388bfa253c05504da2301092939bf"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr class="memitem:a0ac388bfa253c05504da2301092939bf"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a0ac388bfa253c05504da2301092939bf">operator==</a> (const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;lhs, const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;rhs)</td></tr>
+<tr class="memitem:a0ac388bfa253c05504da2301092939bf"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a0ac388bfa253c05504da2301092939bf">operator==</a> (const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;lhs, const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;rhs)</td></tr>
 <tr class="memdesc:a0ac388bfa253c05504da2301092939bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: equality operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#a0ac388bfa253c05504da2301092939bf">More...</a><br /></td></tr>
 <tr class="separator:a0ac388bfa253c05504da2301092939bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f92334599a209b293d788605d89029f"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr class="memitem:a6f92334599a209b293d788605d89029f"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a6f92334599a209b293d788605d89029f">operator!=</a> (const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;lhs, const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;rhs)</td></tr>
-<tr class="memdesc:a6f92334599a209b293d788605d89029f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: inequality operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#a6f92334599a209b293d788605d89029f">More...</a><br /></td></tr>
+<tr class="memitem:a6f92334599a209b293d788605d89029f"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a6f92334599a209b293d788605d89029f">operator!=</a> (const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;lhs, const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;rhs)</td></tr>
+<tr class="memdesc:a6f92334599a209b293d788605d89029f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: equality operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#a6f92334599a209b293d788605d89029f">More...</a><br /></td></tr>
 <tr class="separator:a6f92334599a209b293d788605d89029f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7b08ca40c92cebb1de8b0a804f3795c"><td class="memTemplParams" colspan="2">template&lt;typename ValueType &gt; </td></tr>
-<tr class="memitem:ab7b08ca40c92cebb1de8b0a804f3795c"><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#ab7b08ca40c92cebb1de8b0a804f3795c">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; ValueType &gt; &amp;m)</td></tr>
-<tr class="memdesc:ab7b08ca40c92cebb1de8b0a804f3795c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: output operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#ab7b08ca40c92cebb1de8b0a804f3795c">More...</a><br /></td></tr>
-<tr class="separator:ab7b08ca40c92cebb1de8b0a804f3795c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4084b7468d3900b83b409da1b0d9254"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename T3 &gt; </td></tr>
-<tr class="memitem:ad4084b7468d3900b83b409da1b0d9254"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0} *T2{0} *T3{0})&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#ad4084b7468d3900b83b409da1b0d9254">CalculateMatrixMatrixProduct</a> (const T1 coeef_1, const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;matrix_1, const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T3 &gt; &amp;matrix_2)</td></tr>
-<tr class="separator:ad4084b7468d3900b83b409da1b0d9254"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab183cd2077b21a5126d0927d9ac4756"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </td></tr>
-<tr class="memitem:aab183cd2077b21a5126d0927d9ac4756"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0}+T2{0}+T3{0}+T4{0})&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#aab183cd2077b21a5126d0927d9ac4756">CalculateMatrixMatrixSum</a> (const T1 coeef_1, const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;matrix_1, const T3 coeef_2, const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T4 &gt; &amp;matrix_2)</td></tr>
-<tr class="separator:aab183cd2077b21a5126d0927d9ac4756"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d20246b76133046a66537e761e8b5cc"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr class="memitem:a3d20246b76133046a66537e761e8b5cc"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0} *T2{0})&gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a3d20246b76133046a66537e761e8b5cc">CalculateScalarMatrixProduct</a> (const T1 lhs, const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;rhs)</td></tr>
-<tr class="separator:a3d20246b76133046a66537e761e8b5cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5346fac9bf3b703982976a27f440168b"><td class="memTemplParams" colspan="2">template&lt;typename ValueType &gt; </td></tr>
-<tr class="memitem:a5346fac9bf3b703982976a27f440168b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; ValueType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a5346fac9bf3b703982976a27f440168b">CalculateTransposedMatrix</a> (const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; ValueType &gt; &amp;matrix_in)</td></tr>
-<tr class="separator:a5346fac9bf3b703982976a27f440168b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad27c1cf5a9b467bdbdcc0d72d743c5a0"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ad27c1cf5a9b467bdbdcc0d72d743c5a0"><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#ad27c1cf5a9b467bdbdcc0d72d743c5a0">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T &gt; &amp;m)</td></tr>
+<tr class="memdesc:ad27c1cf5a9b467bdbdcc0d72d743c5a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: output operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#ad27c1cf5a9b467bdbdcc0d72d743c5a0">More...</a><br /></td></tr>
+<tr class="separator:ad27c1cf5a9b467bdbdcc0d72d743c5a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52ce548d226d24916074a27f88b3e400"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </td></tr>
+<tr class="memitem:a52ce548d226d24916074a27f88b3e400"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a52ce548d226d24916074a27f88b3e400">CalculateMatrixMatrixSum</a> (const T1 coeff_1, const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;matrix_1, const T3 coeff_2, const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T4 &gt; &amp;matrix_2)</td></tr>
+<tr class="memdesc:a52ce548d226d24916074a27f88b3e400"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate matrix summation, \( c_{1}\hat{M}_{1} + c_{2}\hat{M}_{2}\).  <a href="../../d4/df8/namespacecompnal_1_1type.html#a52ce548d226d24916074a27f88b3e400">More...</a><br /></td></tr>
+<tr class="separator:a52ce548d226d24916074a27f88b3e400"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa09c6703ea13c46c2bb89531b7c85a75"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename T3 &gt; </td></tr>
+<tr class="memitem:aa09c6703ea13c46c2bb89531b7c85a75"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#aa09c6703ea13c46c2bb89531b7c85a75">CalculateMatrixMatrixProduct</a> (const T1 coeff_1, const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;matrix_1, const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T3 &gt; &amp;matrix_2)</td></tr>
+<tr class="memdesc:aa09c6703ea13c46c2bb89531b7c85a75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate matrix product, \( c_{1}\hat{M}_{1}\hat{M}_{2}\).  <a href="../../d4/df8/namespacecompnal_1_1type.html#aa09c6703ea13c46c2bb89531b7c85a75">More...</a><br /></td></tr>
+<tr class="separator:aa09c6703ea13c46c2bb89531b7c85a75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adeb3713e2d793237d6a8509cd17fb010"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:adeb3713e2d793237d6a8509cd17fb010"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#adeb3713e2d793237d6a8509cd17fb010">CalculateScalarMatrixProduct</a> (const T1 coeff, const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;matrix)</td></tr>
+<tr class="memdesc:adeb3713e2d793237d6a8509cd17fb010"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate scalar <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> product, \( c\hat{M}\).  <a href="../../d4/df8/namespacecompnal_1_1type.html#adeb3713e2d793237d6a8509cd17fb010">More...</a><br /></td></tr>
+<tr class="separator:adeb3713e2d793237d6a8509cd17fb010"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59fb41af50a085e7de7640b31b6fd240"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a59fb41af50a085e7de7640b31b6fd240"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a59fb41af50a085e7de7640b31b6fd240">CalculateTransposedMatrix</a> (const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T &gt; &amp;matrix)</td></tr>
+<tr class="memdesc:a59fb41af50a085e7de7640b31b6fd240"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate transposed matrix, \( \hat{M}^{\dagger}\).  <a href="../../d4/df8/namespacecompnal_1_1type.html#a59fb41af50a085e7de7640b31b6fd240">More...</a><br /></td></tr>
+<tr class="separator:a59fb41af50a085e7de7640b31b6fd240"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9b08cd1cc210f7313ca403293d702166"><td class="memTemplParams" colspan="2">template&lt;typename ValueType &gt; </td></tr>
 <tr class="memitem:a9b08cd1cc210f7313ca403293d702166"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a9b08cd1cc210f7313ca403293d702166">operator+</a> (const ValueType lhs, const <a class="el" href="../../de/dcb/classcompnal_1_1type_1_1_half_int.html">HalfInt</a> &amp;rhs)</td></tr>
 <tr class="memdesc:a9b08cd1cc210f7313ca403293d702166"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: addition operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#a9b08cd1cc210f7313ca403293d702166">More...</a><br /></td></tr>
@@ -325,7 +336,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Enumerated type to represent Fermion or not. </p>
+<p>Enumerated type to represent Fermion, Boson, etc.. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987" name="aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987"></a>NONE&#160;</td><td class="fielddoc"><p >No taged. </p>
 </td></tr>
@@ -380,7 +391,7 @@ template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Calculate L1Norm between two <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a>, aka Manhattan distance. ( \( \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\|_1=\sum_{i}\|c_1v_{1,i} - c_2v_{2,i}\| \)). </p>
+<p>Calculate L1Norm between two <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a>, aka Manhattan distance, \( \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\|_1=\sum_{i}\|c_1v_{1,i} - c_2v_{2,i}\| \). </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T1</td><td>Value type of coeff_1. </td></tr>
@@ -443,7 +454,7 @@ template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Calculate L2Norm, aka Euclidean distance ( \( \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\| \)). </p>
+<p>Calculate L2Norm, aka Euclidean distance, \( \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\| \). </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T1</td><td>Value type of coeff_1. </td></tr>
@@ -466,8 +477,8 @@ template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </div>
 
 </div>
 </div>
-<a id="ad4084b7468d3900b83b409da1b0d9254" name="ad4084b7468d3900b83b409da1b0d9254"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4084b7468d3900b83b409da1b0d9254">&#9670;&nbsp;</a></span>CalculateMatrixMatrixProduct()</h2>
+<a id="aa09c6703ea13c46c2bb89531b7c85a75" name="aa09c6703ea13c46c2bb89531b7c85a75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa09c6703ea13c46c2bb89531b7c85a75">&#9670;&nbsp;</a></span>CalculateMatrixMatrixProduct()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -475,21 +486,21 @@ template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </div>
 template&lt;typename T1 , typename T2 , typename T3 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0} *T2{0} *T3{0})&gt; compnal::type::CalculateMatrixMatrixProduct </td>
+          <td class="memname">auto compnal::type::CalculateMatrixMatrixProduct </td>
           <td>(</td>
           <td class="paramtype">const T1&#160;</td>
-          <td class="paramname"><em>coeef_1</em>, </td>
+          <td class="paramname"><em>coeff_1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
           <td class="paramname"><em>matrix_1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T3 &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T3 &gt; &amp;&#160;</td>
           <td class="paramname"><em>matrix_2</em>&#160;</td>
         </tr>
         <tr>
@@ -500,10 +511,29 @@ template&lt;typename T1 , typename T2 , typename T3 &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Calculate matrix product, \( c_{1}\hat{M}_{1}\hat{M}_{2}\). </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td>Value type of coeff_1. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of matrix_1. </td></tr>
+    <tr><td class="paramname">T3</td><td>Value type of matrix_2. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coeff_1</td><td>The coefficient \( c_1 \). </td></tr>
+    <tr><td class="paramname">matrix_1</td><td>The <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object of the left-hand side, \( \hat{M}_{1} \). </td></tr>
+    <tr><td class="paramname">matrix_2</td><td>The <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object of the right-hand side, \( \hat{M}_{2} \). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object, \( c_1\hat{M}_{1}\hat{M}_{2}\) </dd></dl>
+
 </div>
 </div>
-<a id="aab183cd2077b21a5126d0927d9ac4756" name="aab183cd2077b21a5126d0927d9ac4756"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab183cd2077b21a5126d0927d9ac4756">&#9670;&nbsp;</a></span>CalculateMatrixMatrixSum()</h2>
+<a id="a52ce548d226d24916074a27f88b3e400" name="a52ce548d226d24916074a27f88b3e400"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52ce548d226d24916074a27f88b3e400">&#9670;&nbsp;</a></span>CalculateMatrixMatrixSum()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -511,27 +541,27 @@ template&lt;typename T1 , typename T2 , typename T3 &gt; </div>
 template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0}+T2{0}+T3{0}+T4{0})&gt; compnal::type::CalculateMatrixMatrixSum </td>
+          <td class="memname">auto compnal::type::CalculateMatrixMatrixSum </td>
           <td>(</td>
           <td class="paramtype">const T1&#160;</td>
-          <td class="paramname"><em>coeef_1</em>, </td>
+          <td class="paramname"><em>coeff_1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
           <td class="paramname"><em>matrix_1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const T3&#160;</td>
-          <td class="paramname"><em>coeef_2</em>, </td>
+          <td class="paramname"><em>coeff_2</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T4 &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T4 &gt; &amp;&#160;</td>
           <td class="paramname"><em>matrix_2</em>&#160;</td>
         </tr>
         <tr>
@@ -542,10 +572,31 @@ template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Calculate matrix summation, \( c_{1}\hat{M}_{1} + c_{2}\hat{M}_{2}\). </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td>Value type of coeff_1. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of matrix_1. </td></tr>
+    <tr><td class="paramname">T3</td><td>Value type of coeff_2. </td></tr>
+    <tr><td class="paramname">T4</td><td>Value type of matrix_2. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coeff_1</td><td>The coefficient \( c_1 \). </td></tr>
+    <tr><td class="paramname">matrix_1</td><td>The <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object of the left-hand side, \( \hat{M}_{1} \). </td></tr>
+    <tr><td class="paramname">coeff_2</td><td>The coefficient \( c_2 \). </td></tr>
+    <tr><td class="paramname">matrix_2</td><td>The <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object of the right-hand side, \( \hat{M}_{2} \). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object, \( c_{1}\hat{M}_{1} + c_{2}\hat{M}_{2}\) </dd></dl>
+
 </div>
 </div>
-<a id="a3d20246b76133046a66537e761e8b5cc" name="a3d20246b76133046a66537e761e8b5cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3d20246b76133046a66537e761e8b5cc">&#9670;&nbsp;</a></span>CalculateScalarMatrixProduct()</h2>
+<a id="adeb3713e2d793237d6a8509cd17fb010" name="adeb3713e2d793237d6a8509cd17fb010"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adeb3713e2d793237d6a8509cd17fb010">&#9670;&nbsp;</a></span>CalculateScalarMatrixProduct()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -553,16 +604,16 @@ template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </div>
 template&lt;typename T1 , typename T2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0} *T2{0})&gt; compnal::type::CalculateScalarMatrixProduct </td>
+          <td class="memname">auto compnal::type::CalculateScalarMatrixProduct </td>
           <td>(</td>
           <td class="paramtype">const T1&#160;</td>
-          <td class="paramname"><em>lhs</em>, </td>
+          <td class="paramname"><em>coeff</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
-          <td class="paramname"><em>rhs</em>&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -571,6 +622,23 @@ template&lt;typename T1 , typename T2 &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Calculate scalar <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> product, \( c\hat{M}\). </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td>Value type of coeff. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of matrix. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coeff</td><td>The coefficient \( c\) </td></tr>
+    <tr><td class="paramname">matrix</td><td><a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object \( \hat{M}\). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object \( c\hat{M} \). </dd></dl>
 
 </div>
 </div>
@@ -602,7 +670,7 @@ template&lt;typename T1 , typename T2 &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Calculate scalar <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> product ( \( c\boldsymbol{v} \)). </p>
+<p>Calculate scalar <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> product, \( c\boldsymbol{v} \). </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T1</td><td>Value type of value. </td></tr>
@@ -617,27 +685,42 @@ template&lt;typename T1 , typename T2 &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Scalar <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> product \( c\boldsymbol{v} \). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> object \( c\boldsymbol{v} \). </dd></dl>
 
 </div>
 </div>
-<a id="a5346fac9bf3b703982976a27f440168b" name="a5346fac9bf3b703982976a27f440168b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5346fac9bf3b703982976a27f440168b">&#9670;&nbsp;</a></span>CalculateTransposedMatrix()</h2>
+<a id="a59fb41af50a085e7de7640b31b6fd240" name="a59fb41af50a085e7de7640b31b6fd240"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59fb41af50a085e7de7640b31b6fd240">&#9670;&nbsp;</a></span>CalculateTransposedMatrix()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename ValueType &gt; </div>
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; ValueType &gt; compnal::type::CalculateTransposedMatrix </td>
+          <td class="memname"><a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T &gt; compnal::type::CalculateTransposedMatrix </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; ValueType &gt; &amp;&#160;</td>
-          <td class="paramname"><em>matrix_in</em></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Calculate transposed matrix, \( \hat{M}^{\dagger}\). </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td>Value type of </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">matrix</td><td><a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object \( \hat{M}\). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object \( \hat{M}^{\dagger} \). </dd></dl>
 
 </div>
 </div>
@@ -669,7 +752,7 @@ template&lt;typename T1 , typename T2 &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Calculate <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> innner product ( \( \boldsymbol{v}_1\cdot\boldsymbol{v}_2 \)). </p>
+<p>Calculate <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> innner product, \( \boldsymbol{v}_1\cdot\boldsymbol{v}_2 \). </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T1</td><td>Value type of braket_vector_1. </td></tr>
@@ -684,7 +767,7 @@ template&lt;typename T1 , typename T2 &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> inner product \( \boldsymbol{v}_1\cdot\boldsymbol{v}_2 \). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Inner product \( \boldsymbol{v}_1\cdot\boldsymbol{v}_2 \). </dd></dl>
 
 </div>
 </div>
@@ -728,7 +811,7 @@ template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Calculate <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> summation ( \( c_1\boldsymbol{v}_1 + c_2\boldsymbol{v}_2 \)). </p>
+<p>Calculate <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> summation, \( c_1\boldsymbol{v}_1 + c_2\boldsymbol{v}_2 \). </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T1</td><td>Value type of coeff_1. </td></tr>
@@ -747,12 +830,12 @@ template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> summation \( c_1\boldsymbol{v}_1 + c_2\boldsymbol{v}_2 \). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> object, \( c_1\boldsymbol{v}_{1} + c_2\boldsymbol{v}_{2}\). </dd></dl>
 
 </div>
 </div>
-<a id="a6f92334599a209b293d788605d89029f" name="a6f92334599a209b293d788605d89029f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f92334599a209b293d788605d89029f">&#9670;&nbsp;</a></span>operator!=() <span class="overload">[1/4]</span></h2>
+<a id="a2ef017632e376f62ac6a249c5b291b9c" name="a2ef017632e376f62ac6a249c5b291b9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ef017632e376f62ac6a249c5b291b9c">&#9670;&nbsp;</a></span>operator!=() <span class="overload">[1/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -762,13 +845,13 @@ template&lt;typename T1 , typename T2 &gt; </div>
         <tr>
           <td class="memname">bool compnal::type::operator!= </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; T1 &gt; &amp;&#160;</td>
           <td class="paramname"><em>lhs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">BraketVector</a>&lt; T2 &gt; &amp;&#160;</td>
           <td class="paramname"><em>rhs</em>&#160;</td>
         </tr>
         <tr>
@@ -779,26 +862,74 @@ template&lt;typename T1 , typename T2 &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Operator overloading: inequality operator. </p>
+<p>Operator overloading: equality operator. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T1</td><td>Value type of the left-hand side. </td></tr>
-    <tr><td class="paramname">T2</td><td>Value type of the right-hand side. </td></tr>
+    <tr><td class="paramname">T1</td><td>Value type of the left-hand side <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a>. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of the right-hand side <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a>. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lhs</td><td>The value of the left-hand side. </td></tr>
-    <tr><td class="paramname">rhs</td><td>The value of the right-hand side. </td></tr>
+    <tr><td class="paramname">lhs</td><td>The <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> of the left-hand side, \( \boldsymbol{v}_{\rm lhs} \). </td></tr>
+    <tr><td class="paramname">rhs</td><td>The <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> of the right-hand side, \( \boldsymbol{v}_{\rm rhs} \). </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Return true if \( \boldsymbol{v}_{\rm lhs}\neq\boldsymbol{v}_{\rm rhs}\), otherwise false. </dd></dl>
+
+</div>
+</div>
+<a id="a6f92334599a209b293d788605d89029f" name="a6f92334599a209b293d788605d89029f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f92334599a209b293d788605d89029f">&#9670;&nbsp;</a></span>operator!=() <span class="overload">[2/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T1 , typename T2 &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool compnal::type::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Operator overloading: equality operator. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T1</td><td>Value type of the left-hand side <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of the right-hand side <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td>The <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object of the left-hand side, \( \hat{M}_{\rm lhs} \). </td></tr>
+    <tr><td class="paramname">rhs</td><td>The <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object of the right-hand side, \( \hat{M}_{\rm rhs} \). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return true if \( \hat{M}_{\rm lhs}\neq\hat{M}_{\rm rhs}\), otherwise false. </dd></dl>
 
 </div>
 </div>
 <a id="abba320b8a3de0a5f85d02ed14f12100e" name="abba320b8a3de0a5f85d02ed14f12100e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abba320b8a3de0a5f85d02ed14f12100e">&#9670;&nbsp;</a></span>operator!=() <span class="overload">[2/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abba320b8a3de0a5f85d02ed14f12100e">&#9670;&nbsp;</a></span>operator!=() <span class="overload">[3/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -835,7 +966,7 @@ template&lt;typename T1 , typename T2 &gt; </div>
 </div>
 </div>
 <a id="a5544ff679f24a79b2ea11f016b063679" name="a5544ff679f24a79b2ea11f016b063679"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5544ff679f24a79b2ea11f016b063679">&#9670;&nbsp;</a></span>operator!=() <span class="overload">[3/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5544ff679f24a79b2ea11f016b063679">&#9670;&nbsp;</a></span>operator!=() <span class="overload">[4/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -880,7 +1011,7 @@ template&lt;typename ValueType &gt; </div>
 </div>
 </div>
 <a id="a677ed82ce1151398ee1b2b9cb3c34204" name="a677ed82ce1151398ee1b2b9cb3c34204"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a677ed82ce1151398ee1b2b9cb3c34204">&#9670;&nbsp;</a></span>operator!=() <span class="overload">[4/4]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a677ed82ce1151398ee1b2b9cb3c34204">&#9670;&nbsp;</a></span>operator!=() <span class="overload">[5/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -955,18 +1086,19 @@ template&lt;typename T1 , typename T2 &gt; </div>
 <p>Operator overloading: multiplication operator. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T1</td><td>Value type of the left-hand side. </td></tr>
-    <tr><td class="paramname">T2</td><td>Value type of the right-hand side. </td></tr>
+    <tr><td class="paramname">T1</td><td>Value type of the left-hand side <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a>. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of the right-hand side <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a>. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lhs</td><td>The value of the left-hand side. </td></tr>
-    <tr><td class="paramname">rhs</td><td>The value of the right-hand side. </td></tr>
+    <tr><td class="paramname">lhs</td><td>The <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> of the left-hand side, \( \boldsymbol{v}_{\rm lhs} \). </td></tr>
+    <tr><td class="paramname">rhs</td><td>The <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> of the right-hand side, \( \boldsymbol{v}_{\rm rhs} \). </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Inner product, \( \boldsymbol{v}_{\rm lhs}\cdot\boldsymbol{v}_{\rm rhs}\). </dd></dl>
 
 </div>
 </div>
@@ -1001,23 +1133,24 @@ template&lt;typename T1 , typename T2 &gt; </div>
 <p>Operator overloading: multiplication operator. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T1</td><td>Value type of the left-hand side. </td></tr>
+    <tr><td class="paramname">T1</td><td>Value type of the left-hand side <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a>. </td></tr>
     <tr><td class="paramname">T2</td><td>Value type of the right-hand side. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lhs</td><td>The value of the left-hand side. </td></tr>
-    <tr><td class="paramname">rhs</td><td>The value of the right-hand side. </td></tr>
+    <tr><td class="paramname">lhs</td><td>The <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> of the left-hand side, \( \boldsymbol{v}_{\rm lhs} \). </td></tr>
+    <tr><td class="paramname">rhs</td><td>The value of the right-hand side, \( c_{\rm rhs}\). </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> object, \( \boldsymbol{v}_{\rm lhs}c_{\rm rhs} = c_{\rm rhs}\boldsymbol{v}_{\rm lhs}\). </dd></dl>
 
 </div>
 </div>
-<a id="aa3177a46aa55e8ad7a088f050cabaffc" name="aa3177a46aa55e8ad7a088f050cabaffc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa3177a46aa55e8ad7a088f050cabaffc">&#9670;&nbsp;</a></span>operator*() <span class="overload">[3/9]</span></h2>
+<a id="a5fe10a352d8d3269d700c7c8ee70473c" name="a5fe10a352d8d3269d700c7c8ee70473c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fe10a352d8d3269d700c7c8ee70473c">&#9670;&nbsp;</a></span>operator*() <span class="overload">[3/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1025,15 +1158,15 @@ template&lt;typename T1 , typename T2 &gt; </div>
 template&lt;typename T1 , typename T2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0} *T2{0})&gt; compnal::type::operator* </td>
+          <td class="memname">auto compnal::type::operator* </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;&#160;</td>
           <td class="paramname"><em>lhs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
           <td class="paramname"><em>rhs</em>&#160;</td>
         </tr>
         <tr>
@@ -1047,23 +1180,24 @@ template&lt;typename T1 , typename T2 &gt; </div>
 <p>Operator overloading: multiplication operator. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T1</td><td>Value type of the left-hand side. </td></tr>
-    <tr><td class="paramname">T2</td><td>Value type of the right-hand side. </td></tr>
+    <tr><td class="paramname">T1</td><td>Value type of the left-hand side <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of the right-hand side <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lhs</td><td>The value of the left-hand side. </td></tr>
-    <tr><td class="paramname">rhs</td><td>The value of the right-hand side. </td></tr>
+    <tr><td class="paramname">lhs</td><td>The <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object of the left-hand side, \( \hat{M}_{\rm lhs} \). </td></tr>
+    <tr><td class="paramname">rhs</td><td>The <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object of the right-hand side, \( \hat{M}_{\rm rhs} \). </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object, \( \hat{M}_{\rm lhs}\hat{M}_{\rm rhs}\) </dd></dl>
 
 </div>
 </div>
-<a id="afd654d7409c5c26fca3df1982822cc9d" name="afd654d7409c5c26fca3df1982822cc9d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd654d7409c5c26fca3df1982822cc9d">&#9670;&nbsp;</a></span>operator*() <span class="overload">[4/9]</span></h2>
+<a id="a0e537fa85ed9e3cf85debefe720a9ad8" name="a0e537fa85ed9e3cf85debefe720a9ad8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e537fa85ed9e3cf85debefe720a9ad8">&#9670;&nbsp;</a></span>operator*() <span class="overload">[4/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1071,9 +1205,9 @@ template&lt;typename T1 , typename T2 &gt; </div>
 template&lt;typename T1 , typename T2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0} *T2{0})&gt; compnal::type::operator* </td>
+          <td class="memname">auto compnal::type::operator* </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;&#160;</td>
           <td class="paramname"><em>lhs</em>, </td>
         </tr>
         <tr>
@@ -1093,18 +1227,19 @@ template&lt;typename T1 , typename T2 &gt; </div>
 <p>Operator overloading: multiplication operator. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T1</td><td>Value type of the left-hand side. </td></tr>
+    <tr><td class="paramname">T1</td><td>Value type of the left-hand side <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object. </td></tr>
     <tr><td class="paramname">T2</td><td>Value type of the right-hand side. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lhs</td><td>The value of the left-hand side. </td></tr>
-    <tr><td class="paramname">rhs</td><td>The value of the right-hand side. </td></tr>
+    <tr><td class="paramname">lhs</td><td>The <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object of the left-hand side, \( \hat{M}_{\rm lhs} \). </td></tr>
+    <tr><td class="paramname">rhs</td><td>The value of the right-hand side, \( c_{\rm rhs}\) </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object, \( \hat{M}_{\rm lhs}c_{\rm rhs}=c_{\rm rhs}\hat{M}_{\rm lhs}\) </dd></dl>
 
 </div>
 </div>
@@ -1222,22 +1357,23 @@ template&lt;typename T1 , typename T2 &gt; </div>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T1</td><td>Value type of the left-hand side. </td></tr>
-    <tr><td class="paramname">T2</td><td>Value type of the right-hand side. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of the right-hand side <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a>. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lhs</td><td>The value of the left-hand side. </td></tr>
-    <tr><td class="paramname">rhs</td><td>The value of the right-hand side. </td></tr>
+    <tr><td class="paramname">lhs</td><td>The value of the left-hand side, \( c_{\rm lhs}\). </td></tr>
+    <tr><td class="paramname">rhs</td><td>The <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> of the right-hand side, \( \boldsymbol{v}_{\rm rhs} \). </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> object, \( c_{\rm lhs}\boldsymbol{v}_{\rm rhs}\). </dd></dl>
 
 </div>
 </div>
-<a id="af66199bcd7917a046615dfb2aee2ef70" name="af66199bcd7917a046615dfb2aee2ef70"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af66199bcd7917a046615dfb2aee2ef70">&#9670;&nbsp;</a></span>operator*() <span class="overload">[8/9]</span></h2>
+<a id="a30f4bf61f4b8ea31dde999efe3856517" name="a30f4bf61f4b8ea31dde999efe3856517"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30f4bf61f4b8ea31dde999efe3856517">&#9670;&nbsp;</a></span>operator*() <span class="overload">[8/9]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1245,7 +1381,7 @@ template&lt;typename T1 , typename T2 &gt; </div>
 template&lt;typename T1 , typename T2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0} *T2{0})&gt; compnal::type::operator* </td>
+          <td class="memname">auto compnal::type::operator* </td>
           <td>(</td>
           <td class="paramtype">const T1&#160;</td>
           <td class="paramname"><em>lhs</em>, </td>
@@ -1253,7 +1389,7 @@ template&lt;typename T1 , typename T2 &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
           <td class="paramname"><em>rhs</em>&#160;</td>
         </tr>
         <tr>
@@ -1268,17 +1404,18 @@ template&lt;typename T1 , typename T2 &gt; </div>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T1</td><td>Value type of the left-hand side. </td></tr>
-    <tr><td class="paramname">T2</td><td>Value type of the right-hand side. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of the right-hand side <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lhs</td><td>The value of the left-hand side. </td></tr>
-    <tr><td class="paramname">rhs</td><td>The value of the right-hand side. </td></tr>
+    <tr><td class="paramname">lhs</td><td>The value of the left-hand side, \( c_{\rm lhs}\) </td></tr>
+    <tr><td class="paramname">rhs</td><td>The <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object of the right-hand side, \( \hat{M}_{\rm rhs} \). </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object, \( c_{\rm lhs}\hat{M}_{\rm rhs}\) </dd></dl>
 
 </div>
 </div>
@@ -1358,24 +1495,24 @@ template&lt;typename T1 , typename T2 &gt; </div>
 <p>Operator overloading: addition operator. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T1</td><td>Value type of the left-hand side. </td></tr>
-    <tr><td class="paramname">T2</td><td>Value type of the right-hand side. </td></tr>
+    <tr><td class="paramname">T1</td><td>Value type of the left-hand side <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a>. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of the right-hand side <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a>. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lhs</td><td>The value of the left-hand side, \( \boldsymbol{v}_1 \). </td></tr>
-    <tr><td class="paramname">rhs</td><td>The value of the right-hand side, \( \boldsymbol{v}_2 \). </td></tr>
+    <tr><td class="paramname">lhs</td><td>The <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> of the left-hand side, \( \boldsymbol{v}_{\rm lhs} \). </td></tr>
+    <tr><td class="paramname">rhs</td><td>The <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> of the right-hand side, \( \boldsymbol{v}_{\rm rhs} \). </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The sum of <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> and <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a>, \( \boldsymbol{v}_1 + \boldsymbol{v}_2\). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> object, \( \boldsymbol{v}_{\rm lhs} + \boldsymbol{v}_{\rm rhs}\). </dd></dl>
 
 </div>
 </div>
-<a id="a1c13be3bb08671eb44f5c810c9d0eeda" name="a1c13be3bb08671eb44f5c810c9d0eeda"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c13be3bb08671eb44f5c810c9d0eeda">&#9670;&nbsp;</a></span>operator+() <span class="overload">[2/5]</span></h2>
+<a id="abe470174f2d566d1518f331a79a77b64" name="abe470174f2d566d1518f331a79a77b64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe470174f2d566d1518f331a79a77b64">&#9670;&nbsp;</a></span>operator+() <span class="overload">[2/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1383,15 +1520,15 @@ template&lt;typename T1 , typename T2 &gt; </div>
 template&lt;typename T1 , typename T2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0}+T2{0})&gt; compnal::type::operator+ </td>
+          <td class="memname">auto compnal::type::operator+ </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;&#160;</td>
           <td class="paramname"><em>lhs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
           <td class="paramname"><em>rhs</em>&#160;</td>
         </tr>
         <tr>
@@ -1405,18 +1542,19 @@ template&lt;typename T1 , typename T2 &gt; </div>
 <p>Operator overloading: addition operator. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T1</td><td>Value type of the left-hand side. </td></tr>
-    <tr><td class="paramname">T2</td><td>Value type of the right-hand side. </td></tr>
+    <tr><td class="paramname">T1</td><td>Value type of the left-hand side <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of the right-hand side <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lhs</td><td>The value of the left-hand side. </td></tr>
-    <tr><td class="paramname">rhs</td><td>The value of the right-hand side. </td></tr>
+    <tr><td class="paramname">lhs</td><td>The <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object of the left-hand side, \( \hat{M}_{\rm lhs} \). </td></tr>
+    <tr><td class="paramname">rhs</td><td>The <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object of the right-hand side, \( \hat{M}_{\rm rhs} \). </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object, \( \hat{M}_{\rm lhs} + \hat{M}_{\rm rhs}\) </dd></dl>
 
 </div>
 </div>
@@ -1578,23 +1716,24 @@ template&lt;typename T1 , typename T2 &gt; </div>
 <p>Operator overloading: subtraction operator. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T1</td><td>Value type of the left-hand side. </td></tr>
-    <tr><td class="paramname">T2</td><td>Value type of the right-hand side. </td></tr>
+    <tr><td class="paramname">T1</td><td>Value type of the left-hand side <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a>. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of the right-hand side <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a>. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lhs</td><td>The value of the left-hand side. </td></tr>
-    <tr><td class="paramname">rhs</td><td>The value of the right-hand side. </td></tr>
+    <tr><td class="paramname">lhs</td><td>The <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> of the left-hand side, \( \boldsymbol{v}_{\rm lhs} \). </td></tr>
+    <tr><td class="paramname">rhs</td><td>The <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> of the right-hand side, \( \boldsymbol{v}_{\rm rhs} \). </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> object, \( \boldsymbol{v}_{\rm lhs} - \boldsymbol{v}_{\rm rhs}\). </dd></dl>
 
 </div>
 </div>
-<a id="a9f3ebb23a90eca3caa4c0bdf9a81370c" name="a9f3ebb23a90eca3caa4c0bdf9a81370c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9f3ebb23a90eca3caa4c0bdf9a81370c">&#9670;&nbsp;</a></span>operator-() <span class="overload">[2/5]</span></h2>
+<a id="a9fbc45e1afeb2f2376030e780f509581" name="a9fbc45e1afeb2f2376030e780f509581"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fbc45e1afeb2f2376030e780f509581">&#9670;&nbsp;</a></span>operator-() <span class="overload">[2/5]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1602,15 +1741,15 @@ template&lt;typename T1 , typename T2 &gt; </div>
 template&lt;typename T1 , typename T2 &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; decltype(T1{0}-T2{0})&gt; compnal::type::operator- </td>
+          <td class="memname">auto compnal::type::operator- </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;&#160;</td>
           <td class="paramname"><em>lhs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
           <td class="paramname"><em>rhs</em>&#160;</td>
         </tr>
         <tr>
@@ -1624,18 +1763,19 @@ template&lt;typename T1 , typename T2 &gt; </div>
 <p>Operator overloading: subtraction operator. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T1</td><td>Value type of the left-hand side. </td></tr>
-    <tr><td class="paramname">T2</td><td>Value type of the right-hand side. </td></tr>
+    <tr><td class="paramname">T1</td><td>Value type of the left-hand side <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of the right-hand side <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lhs</td><td>The value of the left-hand side. </td></tr>
-    <tr><td class="paramname">rhs</td><td>The value of the right-hand side. </td></tr>
+    <tr><td class="paramname">lhs</td><td>The <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object of the left-hand side, \( \hat{M}_{\rm lhs} \). </td></tr>
+    <tr><td class="paramname">rhs</td><td>The <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object of the right-hand side, \( \hat{M}_{\rm rhs} \). </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object, \( \hat{M}_{\rm lhs} - \hat{M}_{\rm rhs}\) </dd></dl>
 
 </div>
 </div>
@@ -2021,7 +2161,7 @@ template&lt;typename ValueType &gt; </div>
 </div>
 </div>
 <a id="ab565f905bc0e0a4cdea7cbee1b5c0da1" name="ab565f905bc0e0a4cdea7cbee1b5c0da1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab565f905bc0e0a4cdea7cbee1b5c0da1">&#9670;&nbsp;</a></span>operator&lt;&lt;() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab565f905bc0e0a4cdea7cbee1b5c0da1">&#9670;&nbsp;</a></span>operator&lt;&lt;() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2065,13 +2205,13 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="ab7b08ca40c92cebb1de8b0a804f3795c" name="ab7b08ca40c92cebb1de8b0a804f3795c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab7b08ca40c92cebb1de8b0a804f3795c">&#9670;&nbsp;</a></span>operator&lt;&lt;() <span class="overload">[2/3]</span></h2>
+<a id="ad27c1cf5a9b467bdbdcc0d72d743c5a0" name="ad27c1cf5a9b467bdbdcc0d72d743c5a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad27c1cf5a9b467bdbdcc0d72d743c5a0">&#9670;&nbsp;</a></span>operator&lt;&lt;() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename ValueType &gt; </div>
+template&lt;typename T &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">std::ostream &amp; compnal::type::operator&lt;&lt; </td>
@@ -2082,7 +2222,7 @@ template&lt;typename ValueType &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; ValueType &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T &gt; &amp;&#160;</td>
           <td class="paramname"><em>m</em>&#160;</td>
         </tr>
         <tr>
@@ -2096,14 +2236,51 @@ template&lt;typename ValueType &gt; </div>
 <p>Operator overloading: output operator. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">ValueType</td><td>Value type <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> matrix. </td></tr>
+    <tr><td class="paramname">T</td><td>Value type of <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> matrix. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">os</td><td>Ostream object. </td></tr>
-    <tr><td class="paramname">m</td><td>The matrix as <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> form. </td></tr>
+    <tr><td class="paramname">m</td><td>The matrix as <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> form. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6bfd3c989f30d42f945cb38a0cc873ad" name="a6bfd3c989f30d42f945cb38a0cc873ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bfd3c989f30d42f945cb38a0cc873ad">&#9670;&nbsp;</a></span>operator&lt;&lt;() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; compnal::type::operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#aa249dd69b73057aa6d2d501c0825e11b">CRSTag</a> &amp;&#160;</td>
+          <td class="paramname"><em>tag</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Operator overloading: output operator. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">os</td><td>Ostream object. </td></tr>
+    <tr><td class="paramname">tag</td><td>CRSTag </td></tr>
   </table>
   </dd>
 </dl>
@@ -2111,7 +2288,7 @@ template&lt;typename ValueType &gt; </div>
 </div>
 </div>
 <a id="a704bbed72ad19e842995cedefbc09f87" name="a704bbed72ad19e842995cedefbc09f87"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a704bbed72ad19e842995cedefbc09f87">&#9670;&nbsp;</a></span>operator&lt;&lt;() <span class="overload">[3/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a704bbed72ad19e842995cedefbc09f87">&#9670;&nbsp;</a></span>operator&lt;&lt;() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2305,18 +2482,19 @@ template&lt;typename T1 , typename T2 &gt; </div>
 <p>Operator overloading: equality operator. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T1</td><td>Value type of the left-hand side. </td></tr>
-    <tr><td class="paramname">T2</td><td>Value type of the right-hand side. </td></tr>
+    <tr><td class="paramname">T1</td><td>Value type of the left-hand side <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a>. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of the right-hand side <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a>. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lhs</td><td>The value of the left-hand side. </td></tr>
-    <tr><td class="paramname">rhs</td><td>The value of the right-hand side. </td></tr>
+    <tr><td class="paramname">lhs</td><td>The <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> of the left-hand side, \( \boldsymbol{v}_{\rm lhs} \). </td></tr>
+    <tr><td class="paramname">rhs</td><td>The <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> of the right-hand side, \( \boldsymbol{v}_{\rm rhs} \). </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Return true if \( \boldsymbol{v}_{\rm lhs}=\boldsymbol{v}_{\rm rhs}\), otherwise false. </dd></dl>
 
 </div>
 </div>
@@ -2331,13 +2509,13 @@ template&lt;typename T1 , typename T2 &gt; </div>
         <tr>
           <td class="memname">bool compnal::type::operator== </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T1 &gt; &amp;&#160;</td>
           <td class="paramname"><em>lhs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="../../de/d15/structcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">CRS</a>&lt; T2 &gt; &amp;&#160;</td>
           <td class="paramname"><em>rhs</em>&#160;</td>
         </tr>
         <tr>
@@ -2351,18 +2529,19 @@ template&lt;typename T1 , typename T2 &gt; </div>
 <p>Operator overloading: equality operator. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T1</td><td>Value type of the left-hand side. </td></tr>
-    <tr><td class="paramname">T2</td><td>Value type of the right-hand side. </td></tr>
+    <tr><td class="paramname">T1</td><td>Value type of the left-hand side <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object. </td></tr>
+    <tr><td class="paramname">T2</td><td>Value type of the right-hand side <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lhs</td><td>The value of the left-hand side. </td></tr>
-    <tr><td class="paramname">rhs</td><td>The value of the right-hand side. </td></tr>
+    <tr><td class="paramname">lhs</td><td>The <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object of the left-hand side, \( \hat{M}_{\rm lhs} \). </td></tr>
+    <tr><td class="paramname">rhs</td><td>The <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title="Sparse matrix classs (Compressed Row Strage: CRS).">CRS</a> object of the right-hand side, \( \hat{M}_{\rm rhs} \). </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Return true if \( hat{M}_{\rm lhs}=\hat{M}_{\rm rhs}\), otherwise false. </dd></dl>
 
 </div>
 </div>

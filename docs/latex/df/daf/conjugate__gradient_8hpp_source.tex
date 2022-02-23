@@ -37,21 +37,21 @@
 \DoxyCodeLine{33 }
 \DoxyCodeLine{34 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
 \DoxyCodeLine{35 std::pair<int, double> \mbox{\hyperlink{namespacecompnal_1_1blas_aada41a4581ddc0dc68722f8c5dc3ae5e}{ConjugateGradient}}(\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type::BraketVector<RealType>}} *vec\_out,}
-\DoxyCodeLine{36                                          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}}    \&matrix\_in,}
+\DoxyCodeLine{36                                          \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}}    \&matrix\_in,}
 \DoxyCodeLine{37                                          \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type::BraketVector<RealType>}} \&vec\_in,}
 \DoxyCodeLine{38                                          \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_c_g}{ParametersCG}} \&params = \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_c_g}{ParametersCG}}(),}
 \DoxyCodeLine{39                                          \textcolor{keyword}{const} std::vector<\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type::BraketVector<RealType>}}> \&subspace\_vectors = \{\}}
 \DoxyCodeLine{40                                          ) \{}
 \DoxyCodeLine{41    }
-\DoxyCodeLine{42    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} != matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}}) \{}
+\DoxyCodeLine{42    \textcolor{keywordflow}{if} (matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} != matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}) \{}
 \DoxyCodeLine{43       std::stringstream ss;}
 \DoxyCodeLine{44       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
 \DoxyCodeLine{45       ss << \textcolor{stringliteral}{"{}The input matrix is not a square one"{}} << std::endl;}
-\DoxyCodeLine{46       ss << \textcolor{stringliteral}{"{}row="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}} << \textcolor{stringliteral}{"{}, col="{}} << matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a9a125a4c12ea266d0a72e8744a513903}{col\_dim}} << std::endl;}
+\DoxyCodeLine{46       ss << \textcolor{stringliteral}{"{}row="{}} << matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} << \textcolor{stringliteral}{"{}, col="{}} << matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} << std::endl;}
 \DoxyCodeLine{47       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
 \DoxyCodeLine{48    \}}
 \DoxyCodeLine{49    }
-\DoxyCodeLine{50    \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(vec\_in.val.size()) != matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}}) \{}
+\DoxyCodeLine{50    \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(vec\_in.val.size()) != matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}) \{}
 \DoxyCodeLine{51       std::stringstream ss;}
 \DoxyCodeLine{52       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
 \DoxyCodeLine{53       ss << \textcolor{stringliteral}{"{}Matrix vector product (Ax=b) cannot be defined."{}} << std::endl;}
@@ -59,7 +59,7 @@
 \DoxyCodeLine{55    \}}
 \DoxyCodeLine{56    }
 \DoxyCodeLine{57    \textcolor{keyword}{const} \textcolor{keyword}{auto} start = std::chrono::system\_clock::now();}
-\DoxyCodeLine{58    \textcolor{keyword}{const} std::int64\_t dim = matrix\_in.\mbox{\hyperlink{structcompnal_1_1type_1_1_c_r_s_a10b5bb820d0d37d577a0696bd5b62040}{row\_dim}};}
+\DoxyCodeLine{58    \textcolor{keyword}{const} std::int64\_t dim = matrix\_in.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}};}
 \DoxyCodeLine{59    type::BraketVector<RealType> rrr(dim);}
 \DoxyCodeLine{60    type::BraketVector<RealType> ppp(dim);}
 \DoxyCodeLine{61    type::BraketVector<RealType> yyy(dim);}
