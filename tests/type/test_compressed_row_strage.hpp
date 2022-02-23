@@ -40,8 +40,14 @@ TEST(CRS, Addition) {
    EXPECT_EQ(i + j, CRS<long double>({{0, 2.0}, {2.0, 0.0}}));
    
    
+   CRS<int> x ({
+      {0, 1},
+      {1, 0}
+   });
    
-   
+   x.SortCol();
+   x.name = "s";
+   std::cout << x << std::endl;
 }
 
 

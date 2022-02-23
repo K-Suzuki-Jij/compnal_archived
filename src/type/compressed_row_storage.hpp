@@ -18,8 +18,6 @@
 #ifndef COMPNAL_TYPE_COMPRESSED_ROW_STORAGE_HPP_
 #define COMPNAL_TYPE_COMPRESSED_ROW_STORAGE_HPP_
 
-#include "../utility/sort.hpp"
-
 #include <iostream>
 #include <cstdint>
 #include <vector>
@@ -29,7 +27,7 @@
 namespace compnal {
 namespace type {
 
-//! @brief Enumerated type to represent Fermion or not.
+//! @brief Enumerated type to represent Fermion, Boson, etc..
 enum CRSTag {
    
    //! @brief No taged.
@@ -45,23 +43,76 @@ enum CRSTag {
    MIX = 3
 };
 
+//! @brief Operator overloading: output operator.
+//! @param os Ostream object.
+//! @param tag CRSTag
+std::ostream& operator<<(std::ostream &os, const CRSTag &tag) {
+   if (tag == CRSTag::NONE) {
+      os << "CRSTag::NONE";
+   }
+   else if (tag == CRSTag::FERMION) {
+      os << "CRSTag::FERMION";
+   }
+   else if (tag == CRSTag::BOSON) {
+      os << "CRSTag::BOSON";
+   }
+   else if (tag == CRSTag::MIX) {
+      os << "CRSTag::MIX";
+   }
+   else {
+      std::stringstream ss;
+      ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+      ss << "Unknown CRSTag detected.";
+      throw std::runtime_error(ss.str());
+   }
+   return os;
+}
+
+
 //! @brief Sparse matrix classs (Compressed Row Strage: CRS).
-//! @tparam ValueType Value type.
-template<typename ValueType>
-struct CRS {
+//! @tparam ElementType The value type of the matrix elements.
+template<typename ElementType>
+class CRS {
+   
+public:
+   //------------------------------------------------------------------
+   //------------------------Public Type Alias-------------------------
+   //------------------------------------------------------------------
+   //! @brief Alias of ElementType.
+   using ValueType = ElementType;
+   
+   
    //------------------------------------------------------------------
    //----------------------Public Member Variables---------------------
    //------------------------------------------------------------------
+   //! @brief The dimension of the row.
    std::int64_t row_dim = 0;
+   
+   //! @brief The dimension of the colmun.
    std::int64_t col_dim = 0;
+   
+   //! @brief The locations in the val vector that start a row.
    std::vector<std::int64_t> row;
+   
+   //! @brief The column indexes of the elements in the val vector.
    std::vector<std::int64_t> col;
-   std::vector<ValueType> val;
+   
+   //! @brief The values of the nonzero elements of the matrix.
+   std::vector<ElementType> val;
+   
+   //! @brief Type of the the matrix.
    CRSTag tag = CRSTag::NONE;
-
+   
+   //! @brief Matrix name.
+   std::string name = "";
+   
    //------------------------------------------------------------------
    //---------------------------Constructors---------------------------
    //------------------------------------------------------------------
+   //! @brief Constructor of CRS class.
+   //! @param row_dim_in The dimension of the row.
+   //! @param col_dim_in The dimension of the colmun.
+   //! @param tag_in Type of the the matrix. Defaults to CRSTag::NONE.
    CRS(const std::int64_t row_dim_in = 0, const std::int64_t col_dim_in = 0, const CRSTag tag_in = CRSTag::NONE) {
       
       this->row_dim = row_dim_in;
@@ -74,7 +125,12 @@ struct CRS {
       this->tag = tag_in;
    }
    
-   explicit CRS(const std::vector<std::vector<ValueType>> &mat_vec, const CRSTag tag_in = CRSTag::NONE) {
+   //! @brief Constructor of CRS class.
+   //! @tparam T The value type of the vector elements.
+   //! @param mat_vec The matrix of two dimensional vectors.
+   //! @param tag_in Type of the the matrix. Defaults to CRSTag::NONE.
+   template<typename T=ElementType>
+   explicit CRS(const std::vector<std::vector<T>> &mat_vec, const CRSTag tag_in = CRSTag::NONE) {
       this->row_dim = mat_vec.size();
       this->col_dim = 0;
       this->row.resize(this->row_dim + 1);
@@ -95,19 +151,32 @@ struct CRS {
       this->tag = tag_in;
    }
    
+   //! @brief Copy constructor of CRS class.
+   //! @param matrix The matrix.
    CRS(const CRS &matrix) {
       Assign(matrix);
    }
    
-   CRS &operator=(const CRS &matrix) & {
-      Assign(matrix);
-      return *this;
-   }
-      
    //------------------------------------------------------------------
    //----------------------Public Member Functions---------------------
    //------------------------------------------------------------------
-   void Assign(const CRS &matrix) {
+   //! @brief Clear the elements and free memory.
+   void Free() {
+      this->row_dim = 0;
+      this->col_dim = 0;
+      std::vector<std::int64_t>().swap(this->row);
+      std::vector<std::int64_t>().swap(this->col);
+      std::vector<ElementType>().swap(this->val);
+      this->row.push_back(0);
+      this->tag = CRSTag::NONE;
+      this->name = "";
+   }
+   
+   //! @brief Assign CRS.
+   //! @tparam T Value type of the matrix elements.
+   //! @param matrix The matrix.
+   template<typename T>
+   void Assign(const CRS<T> &matrix) {
       this->row_dim = matrix.row_dim;
       this->col_dim = matrix.col_dim;
       this->row.resize(matrix.row_dim + 1);
@@ -126,10 +195,15 @@ struct CRS {
          this->val[i] = matrix.val[i];
       }
       this->tag = matrix.tag;
+      this->name = matrix.name;
    }
    
-   void MultiplyByScalar(const ValueType coeef) {
-      if (coeef == 0.0) {
+   //! @brief Multiply by scalar to the elements.
+   //! @tparam T Value type.
+   //! @param coeff The value to be multiplied.
+   template<typename T>
+   void MultiplyByScalar(const T coeff) {
+      if (coeff == 0.0) {
 #pragma omp parallel for
          for (std::int64_t i = 0; i < this->row_dim; ++i) {
             this->row[i + 1] = 0;
@@ -140,67 +214,86 @@ struct CRS {
       else {
 #pragma omp parallel for
          for (std::size_t i = 0; i < this->col.size(); ++i) {
-            this->val[i] *= coeef;
+            this->val[i] *= coeff;
          }
       }
    }
-      
-   void DiagonalScaling(const ValueType diag_add) {
+   
+   //! @brief Add a value to the diagonal elements.
+   //! @tparam T Value type.
+   //! @param diag_add The value to be added to the diagonal elements.
+   template<typename T>
+   void AddDiagonalElements(const T diag_add) {
       if (this->row_dim != this->col_dim) {
          std::stringstream ss;
-         ss << "Error in " << __func__ << std::endl;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
          ss << "The matrix is not a square matrix." << std::endl;
          throw std::runtime_error(ss.str());
       }
+      
+      bool flag = false;
 #pragma omp parallel for
       for (std::int64_t i = 0; i < this->row_dim; ++i) {
-         bool flag = true;
+         bool temp_flag = true;
          for (std::int64_t j = this->row[i]; j < this->row[i + 1]; ++j) {
             if (i == this->col[j]) {
                this->val[j] += diag_add;
-               flag = false;
+               temp_flag = false;
                break;
             }
          }
-         if (flag) {
-            std::stringstream ss;
-            ss << "Error in " << __func__ << std::endl;
-            ss << "Some of the diagonal components are not registered." << std::endl;
-            throw std::runtime_error(ss.str());
+         if (temp_flag) {
+            flag = true;
          }
       }
-   }
-   
-   void Free() {
-      this->row_dim = 0;
-      this->col_dim = 0;
-      std::vector<std::int64_t>().swap(this->row);
-      std::vector<std::int64_t>().swap(this->col);
-      std::vector<ValueType>().swap(this->val);
-      this->row.push_back(0);
-      this->tag = CRSTag::NONE;
-   }
-   
-   void Clear() {
-      this->row_dim = 0;
-      this->col_dim = 0;
-      this->row.clear();
-      this->col.clear();
-      this->val.clear();
-      this->row.push_back(0);
-      this->tag = CRSTag::NONE;
-   }
-      
-   void SortCol() {
-#pragma omp parallel for schedule (guided)
-      for (std::int64_t i = 0; i < this->row_dim; ++i) {
-         utility::QuickSort<std::int64_t, ValueType>(&this->col, &this->val, this->row[i], this->row[i + 1]);
+      if (flag) {
+         //Restore the diagonal elements.
+#pragma omp parallel for
+         for (std::int64_t i = 0; i < this->row_dim; ++i) {
+            bool temp_flag = true;
+            for (std::int64_t j = this->row[i]; j < this->row[i + 1]; ++j) {
+               if (i == this->col[j]) {
+                  this->val[j] -= diag_add;
+                  temp_flag = false;
+                  break;
+               }
+            }
+         }
+         std::stringstream ss;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+         ss << "Could not add the value to the diagonal elements." << std::endl;
+         ss << "The matrix need to have all the diagonal elements even if they are zero." << std::endl;
+         throw std::runtime_error(ss.str());
       }
    }
    
-   void Print(const std::string display_name = "Matrix") const {
+   //! @brief Sort column indexes.
+   void SortCol() {
+      auto compare = [this](auto &a, auto &b) {
+         if (b > a) {
+            std::swap(this->val[std::distance(&this->col[0], &a)],
+                      this->val[std::distance(&this->col[0], &b)]);
+            return false;
+         }
+         else {
+            return true;
+         }
+      };
+      
+#pragma omp parallel for
+      for (std::int64_t i = 0; i < this->row_dim; ++i) {
+         std::sort(&this->col[this->row[i]], &this->col[this->row[i + 1]], compare);
+      }
+   }
+   
+   //! @brief Print the matrix.
+   void Print(const std::string display_name = "") const {
+      if (this->name != "") {
+         std::cout << "Name: " << this->name << std::endl;
+      }
+      std::cout << this->tag << std::endl;
       std::cout << std::fixed;
-      std::cout << std::setprecision(std::numeric_limits<ValueType>::max_digits10);
+      std::cout << std::setprecision(std::numeric_limits<ElementType>::max_digits10);
       for (std::int64_t i = 0; i < this->row_dim; ++i) {
          for (std::int64_t j = this->row.at(i); j < this->row.at(i+1); ++j) {
             std::cout << display_name << "[";
@@ -212,10 +305,12 @@ struct CRS {
       std::cout << std::noshowpos;
    }
    
+   //! @brief Print the information about the matrix.
    void PrintInfo(const std::string display_name = "Matrix") const {
       std::cout << std::fixed;
-      std::cout << std::setprecision(std::numeric_limits<ValueType>::max_digits10);
+      std::cout << std::setprecision(std::numeric_limits<ElementType>::max_digits10);
       std::cout << "Print information about CRS: " << display_name << std::endl;
+      std::cout << this->tag << std::endl;
       std::cout << "row_dim = " << this->row_dim << std::endl;
       std::cout << "col_dim = " << this->col_dim << std::endl;
       for (std::size_t i = 0; i < this->row.size(); ++i) {
@@ -229,7 +324,10 @@ struct CRS {
       }
    }
    
-   bool isSymmetric(const ValueType threshold = 0.000000000000001/*pow(10,-15)*/) const {
+   //! @brief Check if the matrix is symmetric or not within the threshold.
+   //! @param threshold The threshold. Defaults to 10^-15.
+   //! @return Return true if the matrix is symmetric, otherwise false.
+   bool CheckSymmetric(const ElementType threshold = 0.000000000000001/*pow(10,-15)*/) const {
       for (std::int64_t i = 0; i < this->row_dim; ++i) {
          for (std::int64_t j = this->row[i]; j < this->row[i + 1]; ++j) {
             const auto iter_begin = this->col.begin() + this->row[col[j]];
@@ -256,19 +354,21 @@ struct CRS {
    //-----------------------Operator Overloading-----------------------
    //------------------------------------------------------------------
    //! @brief Operator overloading: unary plus operator.
+   //! @return CRS object, \f$ +\hat{M} \f$.
    CRS operator+() const {
       return *this;
    }
    
    //! @brief Operator overloading: unary negation operator.
+   //! @return CRS object, \f$ -\hat{M} \f$.
    CRS operator-() const {
-      MultiplyByScalar(ValueType{-1.0});
-      return *this;
+      return CalculateScalarMatrixProduct(-1, *this);
    }
    
    //! @brief Operator overloading: compound assignment plus operator.
    //! @tparam T Value type of the right-hand side.
-   //! @param rhs The value of the right-hand side.
+   //! @param rhs The CRS object of the right-hand side, \f$ \hat{M}_{\rm rhs}\f$.
+   //! @return CRS object, \f$ \hat{M} + \hat{M}_{\rm rhs} \f$.
    template<typename T>
    CRS& operator+=(const CRS<T> rhs) {
       return *this = *this + rhs;
@@ -276,7 +376,8 @@ struct CRS {
    
    //! @brief Operator overloading: compound assignment subtraction operator.
    //! @tparam T Value type of the right-hand side.
-   //! @param rhs The value of the right-hand side.
+   //! @param rhs The CRS object of the right-hand side, \f$ \hat{M}_{\rm rhs}\f$.
+   //! @return CRS object, \f$ \hat{M} - \hat{M}_{\rm rhs} \f$.
    template<typename T>
    CRS& operator-=(const CRS<T> rhs) {
       return *this = *this - rhs;
@@ -284,10 +385,19 @@ struct CRS {
    
    //! @brief Operator overloading: compound assignment multiplication operator.
    //! @tparam T Value type of the right-hand side.
-   //! @param rhs The value of the right-hand side.
+   //! @param rhs The CRS object of the right-hand side, \f$ \hat{M}_{\rm rhs}\f$.
+   //! @return CRS object, \f$ \hat{M}\hat{M}_{\rm rhs} \f$.
    template<typename T>
    CRS& operator*=(const CRS<T> rhs) {
       return *this = *this * rhs;
+   }
+   
+   //! @brief Operator overloading: assignment operator.
+   //! @param matrix The CRS object to be assigned.
+   //! @return The CRS object.
+   CRS &operator=(const CRS &matrix) & {
+      Assign(matrix);
+      return *this;
    }
    
 };
@@ -296,60 +406,66 @@ struct CRS {
 //----------------------Operator overloading------------------------
 //------------------------------------------------------------------
 //! @brief Operator overloading: addition operator.
-//! @tparam T1 Value type of the left-hand side.
-//! @tparam T2 Value type of the right-hand side.
-//! @param lhs The value of the left-hand side.
-//! @param rhs The value of the right-hand side.
+//! @tparam T1 Value type of the left-hand side CRS object.
+//! @tparam T2 Value type of the right-hand side CRS object.
+//! @param lhs The CRS object of the left-hand side, \f$ \hat{M}_{\rm lhs} \f$.
+//! @param rhs The CRS object of the right-hand side, \f$ \hat{M}_{\rm rhs} \f$.
+//! @return CRS object, \f$ \hat{M}_{\rm lhs} + \hat{M}_{\rm rhs}\f$
 template<typename T1, typename T2>
-CRS<decltype(T1{0}+T2{0})> operator+(const CRS<T1> &lhs, const CRS<T2> &rhs) {
+auto operator+(const CRS<T1> &lhs, const CRS<T2> &rhs) {
    return CalculateMatrixMatrixSum(T1{1}, lhs, T2{1}, rhs);
 }
 
 //! @brief Operator overloading: subtraction operator.
-//! @tparam T1 Value type of the left-hand side.
-//! @tparam T2 Value type of the right-hand side.
-//! @param lhs The value of the left-hand side.
-//! @param rhs The value of the right-hand side.
+//! @tparam T1 Value type of the left-hand side CRS object.
+//! @tparam T2 Value type of the right-hand side CRS object.
+//! @param lhs The CRS object of the left-hand side, \f$ \hat{M}_{\rm lhs} \f$.
+//! @param rhs The CRS object of the right-hand side, \f$ \hat{M}_{\rm rhs} \f$.
+//! @return CRS object, \f$ \hat{M}_{\rm lhs} - \hat{M}_{\rm rhs}\f$
 template<typename T1, typename T2>
-CRS<decltype(T1{0}-T2{0})> operator-(const CRS<T1> &lhs, const CRS<T2> &rhs) {
+auto operator-(const CRS<T1> &lhs, const CRS<T2> &rhs) {
    return CalculateMatrixMatrixSum(T1{1}, lhs, T2{-1}, rhs);
 }
 
 //! @brief Operator overloading: multiplication operator.
-//! @tparam T1 Value type of the left-hand side.
-//! @tparam T2 Value type of the right-hand side.
-//! @param lhs The value of the left-hand side.
-//! @param rhs The value of the right-hand side.
+//! @tparam T1 Value type of the left-hand side CRS object.
+//! @tparam T2 Value type of the right-hand side CRS object.
+//! @param lhs The CRS object of the left-hand side, \f$ \hat{M}_{\rm lhs} \f$.
+//! @param rhs The CRS object of the right-hand side, \f$ \hat{M}_{\rm rhs} \f$.
+//! @return CRS object, \f$ \hat{M}_{\rm lhs}\hat{M}_{\rm rhs}\f$
 template<typename T1, typename T2>
-CRS<decltype(T1{0}*T2{0})> operator*(const CRS<T1> &lhs, const CRS<T2> &rhs) {
+auto operator*(const CRS<T1> &lhs, const CRS<T2> &rhs) {
    return CalculateMatrixMatrixProduct(T1{1}, lhs, rhs);
 }
 
 //! @brief Operator overloading: multiplication operator.
 //! @tparam T1 Value type of the left-hand side.
-//! @tparam T2 Value type of the right-hand side.
-//! @param lhs The value of the left-hand side.
-//! @param rhs The value of the right-hand side.
+//! @tparam T2 Value type of the right-hand side CRS object.
+//! @param lhs The value of the left-hand side, \f$ c_{\rm lhs}\f$
+//! @param rhs The CRS object of the right-hand side, \f$ \hat{M}_{\rm rhs} \f$.
+//! @return CRS object, \f$ c_{\rm lhs}\hat{M}_{\rm rhs}\f$
 template<typename T1, typename T2>
-CRS<decltype(T1{0}*T2{0})> operator*(const T1 lhs, const CRS<T2> &rhs) {
+auto operator*(const T1 lhs, const CRS<T2> &rhs) {
    return CalculateScalarMatrixProduct(lhs, rhs);
 }
 
 //! @brief Operator overloading: multiplication operator.
-//! @tparam T1 Value type of the left-hand side.
+//! @tparam T1 Value type of the left-hand side CRS object.
 //! @tparam T2 Value type of the right-hand side.
-//! @param lhs The value of the left-hand side.
-//! @param rhs The value of the right-hand side.
+//! @param lhs The CRS object of the left-hand side, \f$ \hat{M}_{\rm lhs} \f$.
+//! @param rhs The value of the right-hand side, \f$ c_{\rm rhs}\f$
+//! @return CRS object, \f$ \hat{M}_{\rm lhs}c_{\rm rhs}=c_{\rm rhs}\hat{M}_{\rm lhs}\f$
 template<typename T1, typename T2>
-CRS<decltype(T1{0}*T2{0})> operator*(const CRS<T1> &lhs, const T2 rhs) {
+auto operator*(const CRS<T1> &lhs, const T2 rhs) {
    return CalculateScalarMatrixProduct(rhs, lhs);
 }
 
 //! @brief Operator overloading: equality operator.
-//! @tparam T1 Value type of the left-hand side.
-//! @tparam T2 Value type of the right-hand side.
-//! @param lhs The value of the left-hand side.
-//! @param rhs The value of the right-hand side.
+//! @tparam T1 Value type of the left-hand side CRS object.
+//! @tparam T2 Value type of the right-hand side CRS object.
+//! @param lhs The CRS object of the left-hand side, \f$ \hat{M}_{\rm lhs} \f$.
+//! @param rhs The CRS object of the right-hand side, \f$ \hat{M}_{\rm rhs} \f$.
+//! @return Return true if \f$ hat{M}_{\rm lhs}=\hat{M}_{\rm rhs}\f$, otherwise false.
 template<typename T1, typename T2>
 bool operator==(const CRS<T1> &lhs, const CRS<T2> &rhs) {
    if (lhs.row_dim != rhs.row_dim) {
@@ -370,6 +486,9 @@ bool operator==(const CRS<T1> &lhs, const CRS<T2> &rhs) {
    if (lhs.val.size() != rhs.val.size()) {
       return false;
    }
+   if (lhs.name != rhs.name) {
+      return false;
+   }
    for (std::size_t i = 0; i < lhs.row.size(); ++i) {
       if (lhs.row[i] != rhs.row[i]) {
          return false;
@@ -388,11 +507,12 @@ bool operator==(const CRS<T1> &lhs, const CRS<T2> &rhs) {
    return true;
 }
 
-//! @brief Operator overloading: inequality operator.
-//! @tparam T1 Value type of the left-hand side.
-//! @tparam T2 Value type of the right-hand side.
-//! @param lhs The value of the left-hand side.
-//! @param rhs The value of the right-hand side.
+//! @brief Operator overloading: equality operator.
+//! @tparam T1 Value type of the left-hand side CRS object.
+//! @tparam T2 Value type of the right-hand side CRS object.
+//! @param lhs The CRS object of the left-hand side, \f$ \hat{M}_{\rm lhs} \f$.
+//! @param rhs The CRS object of the right-hand side, \f$ \hat{M}_{\rm rhs} \f$.
+//! @return Return true if \f$ \hat{M}_{\rm lhs}\neq\hat{M}_{\rm rhs}\f$, otherwise false.
 template<typename T1, typename T2>
 bool operator!=(const CRS<T1> &lhs, const CRS<T2> &rhs) {
    return !(lhs == rhs);
@@ -402,16 +522,18 @@ bool operator!=(const CRS<T1> &lhs, const CRS<T2> &rhs) {
 //----------------Operator overloading: I/O Stream------------------
 //------------------------------------------------------------------
 //! @brief Operator overloading: output operator.
-//! @tparam ValueType Value type CRS matrix.
+//! @tparam T Value type of CRS matrix.
 //! @param os Ostream object.
 //! @param m The matrix as CRS form.
-template<typename ValueType>
-std::ostream& operator<<(std::ostream &os, const CRS<ValueType> &m) {
+template<typename T>
+std::ostream& operator<<(std::ostream &os, const CRS<T> &m) {
+   os << m.tag << std::endl;
    os << std::fixed;
-   os << std::setprecision(std::numeric_limits<ValueType>::max_digits10);
+   os << std::setprecision(std::numeric_limits<T>::max_digits10);
    for (std::int64_t i = 0; i < m.row_dim; ++i) {
       for (std::int64_t j = m.row.at(i); j < m.row.at(i+1); ++j) {
-         os << "M[";
+         os << m.name;
+         os << "[";
          os << std::noshowpos << std::left << std::setw(3) << i << "][";
          os << std::left << std::setw(3) << m.col[j] << "]=";
          os << std::showpos << m.val[j] << std::endl;
@@ -420,10 +542,173 @@ std::ostream& operator<<(std::ostream &os, const CRS<ValueType> &m) {
    return os;
 }
 
+//------------------------------------------------------------------
+//------------------------Global Functions--------------------------
+//------------------------------------------------------------------
+//! @brief Calculate matrix summation, \f$ c_{1}\hat{M}_{1} + c_{2}\hat{M}_{2}\f$
+//! @tparam T1 Value type of coeff_1.
+//! @tparam T2 Value type of matrix_1.
+//! @tparam T3 Value type of coeff_2.
+//! @tparam T4 Value type of matrix_2.
+//! @param coeff_1 The coefficient \f$ c_1 \f$.
+//! @param matrix_1 The CRS object of the left-hand side, \f$ \hat{M}_{1} \f$.
+//! @param coeff_2 The coefficient \f$ c_2 \f$.
+//! @param matrix_2 The CRS object of the right-hand side, \f$ \hat{M}_{2} \f$.
+//! @return CRS object, \f$ c_{1}\hat{M}_{1} + c_{2}\hat{M}_{2}\f$
+template<typename T1, typename T2, typename T3, typename T4>
+auto CalculateMatrixMatrixSum(const T1 coeff_1,
+                              const CRS<T2> &matrix_1,
+                              const T3 coeff_2,
+                              const CRS<T4> &matrix_2) {
+   
+   if (matrix_1.row_dim != matrix_2.row_dim || matrix_1.col_dim != matrix_2.col_dim) {
+      std::stringstream ss;
+      ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+      ss << "The summation of the matrices cannot be defined." << std::endl;
+      ss << "matrix_1.row_dim = " << matrix_1.row_dim << ", matrix_1.col_dim = " << matrix_1.col_dim << std::endl;
+      ss << "matrix_2.row_dim = " << matrix_2.row_dim << ", matrix_2.col_dim = " << matrix_2.col_dim << std::endl;
+      throw std::runtime_error(ss.str());
+   }
+   
+   CRS<decltype(T1{0}+T2{0}+T3{0}+T4{0})> matrix_out(matrix_1.row_dim, matrix_1.col_dim);
+   
+   for (std::int64_t i = 0; i < matrix_1.row_dim; ++i) {
+      
+      int check = 0;
+      std::int64_t count_1 = 0;
+      std::int64_t count_2 = 0;
+      
+      const std::int64_t row_lower_1 = matrix_1.row[  i  ];
+      const std::int64_t row_upper_1 = matrix_1.row[i + 1];
+      const std::int64_t row_lower_2 = matrix_2.row[  i  ];
+      const std::int64_t row_upper_2 = matrix_2.row[i + 1];
+      
+      const std::int64_t m1_count = row_upper_1 - row_lower_1;
+      const std::int64_t m2_count = row_upper_2 - row_lower_2;
+      
+      if (m1_count != 0 && m2_count == 0) {
+         for (std::int64_t j = row_lower_1; j < row_upper_1; ++j) {
+            matrix_out.val.push_back(coeff_1*matrix_1.val[j]);
+            matrix_out.col.push_back(matrix_1.col[j]);
+         }
+      }
+      else if (m1_count == 0 && m2_count != 0) {
+         for (std::int64_t j = row_lower_2; j < row_upper_2; ++j) {
+            matrix_out.val.push_back(coeff_2*matrix_2.val[j]);
+            matrix_out.col.push_back(matrix_2.col[j]);
+         }
+      }
+      else if (m1_count != 0 && m2_count != 0) {
+         for (std::int64_t j = 0; j < m1_count + m2_count; ++j) {
+            if (matrix_1.col[row_lower_1 + count_1] < matrix_2.col[row_lower_2 + count_2]) {
+               matrix_out.val.push_back(coeff_1*matrix_1.val[row_lower_1 + count_1]);
+               matrix_out.col.push_back(matrix_1.col[row_lower_1 + count_1]);
+               count_1++;
+               if (row_lower_1 + count_1 == row_upper_1) {
+                  check = 1;
+                  break;
+               }
+            }
+            else if (matrix_1.col[row_lower_1 + count_1] == matrix_2.col[row_lower_2 + count_2]) {
+               const auto val = coeff_1*matrix_1.val[row_lower_1 + count_1] + coeff_2*matrix_2.val[row_lower_2 + count_2];
+               if (std::abs(val) > 0.0) {
+                  matrix_out.val.push_back(val);
+                  matrix_out.col.push_back(matrix_1.col[row_lower_1 + count_1]);
+                  count_1++;
+                  count_2++;
+                  const std::int64_t temp_count_1 = row_lower_1 + count_1;
+                  const std::int64_t temp_count_2 = row_lower_2 + count_2;
+                  if (temp_count_1 == row_upper_1 && temp_count_2 < row_upper_2) {
+                     check = 1;
+                     break;
+                  }
+                  else if (temp_count_1 < row_upper_1 && temp_count_2 == row_upper_2) {
+                     check = 2;
+                     break;
+                  }
+                  else if (temp_count_1 == row_upper_1 && temp_count_2 == row_upper_2) {
+                     check = 0;
+                     break;
+                  }
+               }
+               else {
+                  count_1++;
+                  count_2++;
+                  const std::int64_t temp_count_1 = row_lower_1 + count_1;
+                  const std::int64_t temp_count_2 = row_lower_2 + count_2;
+                  if (temp_count_1 == row_upper_1 && temp_count_2 < row_upper_2) {
+                     check = 1;
+                     break;
+                  }
+                  else if (temp_count_1 < row_upper_1 && temp_count_2 == row_upper_2) {
+                     check = 2;
+                     break;
+                  }
+                  else if (temp_count_1 == row_upper_1 && temp_count_2 == row_upper_2) {
+                     check = 0;
+                     break;
+                  }
+               }
+            }
+            else {
+               matrix_out.val.push_back(coeff_2*matrix_2.val[row_lower_2 + count_2]);
+               matrix_out.col.push_back(matrix_2.col[row_lower_2 + count_2]);
+               count_2++;
+               if (row_lower_2 + count_2 == row_upper_2) {
+                  check = 2;
+                  break;
+               }
+            }
+         }
+         if (check == 1) {
+            for (std::int64_t j = row_lower_2 + count_2; j < row_upper_2; ++j) {
+               matrix_out.val.push_back(coeff_2*matrix_2.val[j]);
+               matrix_out.col.push_back(matrix_2.col[j]);
+            }
+         }
+         else if (check == 2) {
+            for (std::int64_t j = row_lower_1 + count_1; j < row_upper_1; ++j) {
+               matrix_out.val.push_back(coeff_1*matrix_1.val[j]);
+               matrix_out.col.push_back(matrix_1.col[j]);
+            }
+         }
+      }
+      matrix_out.row[i + 1] = matrix_out.col.size();
+   }
+   
+   if (matrix_1.tag == CRSTag::NONE) {
+      matrix_out.tag = matrix_2.tag;
+   }
+   else if (matrix_1.tag == CRSTag::FERMION) {
+      if (matrix_2.tag == CRSTag::NONE || matrix_2.tag == CRSTag::FERMION) {
+         matrix_out.tag = CRSTag::FERMION;
+      }
+      else if (matrix_2.tag == CRSTag::BOSON || matrix_2.tag == CRSTag::MIX) {
+         
+      }
+      else {
+         std::stringstream ss;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+         ss << "Unknown CRSTag detected.";
+         throw std::runtime_error(ss.str());
+      }
+   }
+   matrix_out.tag = matrix_1.tag;
+   return matrix_out;
+}
+
+//! @brief Calculate matrix product, \f$ c_{1}\hat{M}_{1}\hat{M}_{2}\f$
+//! @tparam T1 Value type of coeff_1.
+//! @tparam T2 Value type of matrix_1.
+//! @tparam T3 Value type of matrix_2.
+//! @param coeff_1 The coefficient \f$ c_1 \f$.
+//! @param matrix_1 The CRS object of the left-hand side, \f$ \hat{M}_{1} \f$.
+//! @param matrix_2 The CRS object of the right-hand side, \f$ \hat{M}_{2} \f$.
+//! @return CRS object, \f$ c_1\hat{M}_{1}\hat{M}_{2}\f$
 template<typename T1, typename T2, typename T3>
-CRS<decltype(T1{0}*T2{0}*T3{0})> CalculateMatrixMatrixProduct(const T1 coeef_1,
-                                                              const CRS<T2> &matrix_1,
-                                                              const CRS<T3> &matrix_2) {
+auto CalculateMatrixMatrixProduct(const T1 coeff_1,
+                                  const CRS<T2> &matrix_1,
+                                  const CRS<T3> &matrix_2) {
    
    if (matrix_1.col_dim != matrix_2.row_dim) {
       std::stringstream ss;
@@ -440,7 +725,7 @@ CRS<decltype(T1{0}*T2{0}*T3{0})> CalculateMatrixMatrixProduct(const T1 coeef_1,
    
    for (std::int64_t i = 0; i < matrix_1.row_dim; ++i) {
       for (std::int64_t j = matrix_1.row[i]; j < matrix_1.row[i + 1]; ++j) {
-         temp_v1[matrix_1.col[j]] = coeef_1*matrix_1.val[j];
+         temp_v1[matrix_1.col[j]] = coeff_1*matrix_1.val[j];
       }
       for (std::int64_t j = 0; j < matrix_1.col_dim; ++j) {
          for (std::int64_t k = matrix_2.row[j]; k < matrix_2.row[j + 1]; ++k) {
@@ -511,179 +796,47 @@ CRS<decltype(T1{0}*T2{0}*T3{0})> CalculateMatrixMatrixProduct(const T1 coeef_1,
    return matrix_out;
 }
 
-template<typename T1, typename T2, typename T3, typename T4>
-CRS<decltype(T1{0}+T2{0}+T3{0}+T4{0})> CalculateMatrixMatrixSum(const T1 coeef_1,
-                                                                const CRS<T2> &matrix_1,
-                                                                const T3 coeef_2,
-                                                                const CRS<T4> &matrix_2) {
-   
-   if (matrix_1.row_dim != matrix_2.row_dim || matrix_1.col_dim != matrix_2.col_dim) {
-      std::stringstream ss;
-      ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
-      ss << "The summation of the matrices cannot be defined." << std::endl;
-      ss << "matrix_1.row_dim = " << matrix_1.row_dim << ", matrix_1.col_dim = " << matrix_1.col_dim << std::endl;
-      ss << "matrix_2.row_dim = " << matrix_2.row_dim << ", matrix_2.col_dim = " << matrix_2.col_dim << std::endl;
-      throw std::runtime_error(ss.str());
-   }
-      
-   CRS<decltype(T1{0}+T2{0}+T3{0}+T4{0})> matrix_out(matrix_1.row_dim, matrix_1.col_dim);
-   
-   for (std::int64_t i = 0; i < matrix_1.row_dim; ++i) {
-      
-      int check = 0;
-      std::int64_t count_1 = 0;
-      std::int64_t count_2 = 0;
-      
-      const std::int64_t row_lower_1 = matrix_1.row[  i  ];
-      const std::int64_t row_upper_1 = matrix_1.row[i + 1];
-      const std::int64_t row_lower_2 = matrix_2.row[  i  ];
-      const std::int64_t row_upper_2 = matrix_2.row[i + 1];
-      
-      const std::int64_t m1_count = row_upper_1 - row_lower_1;
-      const std::int64_t m2_count = row_upper_2 - row_lower_2;
-      
-      if (m1_count != 0 && m2_count == 0) {
-         for (std::int64_t j = row_lower_1; j < row_upper_1; ++j) {
-            matrix_out.val.push_back(coeef_1*matrix_1.val[j]);
-            matrix_out.col.push_back(matrix_1.col[j]);
-         }
-      }
-      else if (m1_count == 0 && m2_count != 0) {
-         for (std::int64_t j = row_lower_2; j < row_upper_2; ++j) {
-            matrix_out.val.push_back(coeef_2*matrix_2.val[j]);
-            matrix_out.col.push_back(matrix_2.col[j]);
-         }
-      }
-      else if (m1_count != 0 && m2_count != 0) {
-         for (std::int64_t j = 0; j < m1_count + m2_count; ++j) {
-            if (matrix_1.col[row_lower_1 + count_1] < matrix_2.col[row_lower_2 + count_2]) {
-               matrix_out.val.push_back(coeef_1*matrix_1.val[row_lower_1 + count_1]);
-               matrix_out.col.push_back(matrix_1.col[row_lower_1 + count_1]);
-               count_1++;
-               if (row_lower_1 + count_1 == row_upper_1) {
-                  check = 1;
-                  break;
-               }
-            }
-            else if (matrix_1.col[row_lower_1 + count_1] == matrix_2.col[row_lower_2 + count_2]) {
-               const auto val = coeef_1*matrix_1.val[row_lower_1 + count_1] + coeef_2*matrix_2.val[row_lower_2 + count_2];
-               if (std::abs(val) > 0.0) {
-                  matrix_out.val.push_back(val);
-                  matrix_out.col.push_back(matrix_1.col[row_lower_1 + count_1]);
-                  count_1++;
-                  count_2++;
-                  const std::int64_t temp_count_1 = row_lower_1 + count_1;
-                  const std::int64_t temp_count_2 = row_lower_2 + count_2;
-                  if (temp_count_1 == row_upper_1 && temp_count_2 < row_upper_2) {
-                     check = 1;
-                     break;
-                  }
-                  else if (temp_count_1 < row_upper_1 && temp_count_2 == row_upper_2) {
-                     check = 2;
-                     break;
-                  }
-                  else if (temp_count_1 == row_upper_1 && temp_count_2 == row_upper_2) {
-                     check = 0;
-                     break;
-                  }
-               }
-               else {
-                  count_1++;
-                  count_2++;
-                  const std::int64_t temp_count_1 = row_lower_1 + count_1;
-                  const std::int64_t temp_count_2 = row_lower_2 + count_2;
-                  if (temp_count_1 == row_upper_1 && temp_count_2 < row_upper_2) {
-                     check = 1;
-                     break;
-                  }
-                  else if (temp_count_1 < row_upper_1 && temp_count_2 == row_upper_2) {
-                     check = 2;
-                     break;
-                  }
-                  else if (temp_count_1 == row_upper_1 && temp_count_2 == row_upper_2) {
-                     check = 0;
-                     break;
-                  }
-               }
-            }
-            else {
-               matrix_out.val.push_back(coeef_2*matrix_2.val[row_lower_2 + count_2]);
-               matrix_out.col.push_back(matrix_2.col[row_lower_2 + count_2]);
-               count_2++;
-               if (row_lower_2 + count_2 == row_upper_2) {
-                  check = 2;
-                  break;
-               }
-            }
-         }
-         if (check == 1) {
-            for (std::int64_t j = row_lower_2 + count_2; j < row_upper_2; ++j) {
-               matrix_out.val.push_back(coeef_2*matrix_2.val[j]);
-               matrix_out.col.push_back(matrix_2.col[j]);
-            }
-         }
-         else if (check == 2) {
-            for (std::int64_t j = row_lower_1 + count_1; j < row_upper_1; ++j) {
-               matrix_out.val.push_back(coeef_1*matrix_1.val[j]);
-               matrix_out.col.push_back(matrix_1.col[j]);
-            }
-         }
-      }
-      matrix_out.row[i + 1] = matrix_out.col.size();
-   }
-   
-   if (matrix_1.tag == CRSTag::NONE) {
-      matrix_out.tag = matrix_2.tag;
-   }
-   else if (matrix_1.tag == CRSTag::FERMION) {
-      if (matrix_2.tag == CRSTag::NONE || matrix_2.tag == CRSTag::FERMION) {
-         matrix_out.tag = CRSTag::FERMION;
-      }
-      else if (matrix_2.tag == CRSTag::BOSON || matrix_2.tag == CRSTag::MIX) {
-         
-      }
-      else {
-         std::stringstream ss;
-         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
-         ss << "Unknown CRSTag detected.";
-         throw std::runtime_error(ss.str());
-      }
-   }
-   matrix_out.tag = matrix_1.tag;
-   return matrix_out;
-}
-
+//! @brief Calculate scalar BraketVector product, \f$ c\hat{M}\f$.
+//! @tparam T1 Value type of coeff.
+//! @tparam T2 Value type of matrix.
+//! @param coeff The coefficient \f$ c\f$
+//! @param matrix CRS object \f$ \hat{M}\f$.
+//! @return CRS object \f$ c\hat{M} \f$.
 template<typename T1, typename T2>
-CRS<decltype(T1{0}*T2{0})> CalculateScalarMatrixProduct(const T1 lhs, const CRS<T2> &rhs) {
+auto CalculateScalarMatrixProduct(const T1 coeff, const CRS<T2> &matrix) {
    
-   CRS<decltype(T1{0}*T2{0})> out(rhs.row_dim, rhs.col_dim, rhs.tag);
-   out.col.resize(rhs.col.size());
-   out.val.resize(rhs.val.size());
+   CRS<decltype(T1{0}*T2{0})> out(matrix.row_dim, matrix.col_dim, matrix.tag);
+   out.col.resize(matrix.col.size());
+   out.val.resize(matrix.val.size());
    
 #pragma omp parallel for
-   for (std::size_t i = 0; i < rhs.col.size(); ++i) {
-      out.col[i] = rhs.col[i];
-      out.val[i] = lhs*rhs.val[i];
+   for (std::size_t i = 0; i < matrix.col.size(); ++i) {
+      out.col[i] = matrix.col[i];
+      out.val[i] = coeff*matrix.val[i];
    }
    
 #pragma omp parallel for
-   for (std::int64_t i = 1; i <= rhs.row_dim; ++i) {
-      out.row[i] = rhs.row[i];
+   for (std::int64_t i = 1; i <= matrix.row_dim; ++i) {
+      out.row[i] = matrix.row[i];
    }
    return out;
 }
 
-template<typename ValueType>
-CRS<ValueType> CalculateTransposedMatrix(const CRS<ValueType> &matrix_in) {
-
-   CRS<ValueType> matrix_out(matrix_in.col_dim, matrix_in.row_dim, matrix_in.tag);
+//! @brief Calculate transposed matrix, \f$ \hat{M}^{\dagger}\f$.
+//! @tparam T Value type of
+//! @param matrix CRS object \f$ \hat{M}\f$.
+//! @return CRS object \f$ \hat{M}^{\dagger} \f$.
+template<typename T>
+CRS<T> CalculateTransposedMatrix(const CRS<T> &matrix) {
    
-   std::vector<std::int64_t> row_count(matrix_in.row_dim);
-   for (std::int64_t i = 0; i < matrix_in.col_dim; ++i) {
-      for (std::int64_t j = 0; j < matrix_in.row_dim; ++j) {
-         const std::int64_t row = matrix_in.row[j] + row_count[j];
-         if (row < matrix_in.row[j + 1] && matrix_in.col[row] == i) {
-            matrix_out.val.push_back(matrix_in.val[row]);
+   CRS<T> matrix_out(matrix.col_dim, matrix.row_dim, matrix.tag);
+   
+   std::vector<std::int64_t> row_count(matrix.row_dim);
+   for (std::int64_t i = 0; i < matrix.col_dim; ++i) {
+      for (std::int64_t j = 0; j < matrix.row_dim; ++j) {
+         const std::int64_t row = matrix.row[j] + row_count[j];
+         if (row < matrix.row[j + 1] && matrix.col[row] == i) {
+            matrix_out.val.push_back(matrix.val[row]);
             matrix_out.col.push_back(j);
             row_count[j]++;
          }
