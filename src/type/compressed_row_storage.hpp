@@ -92,7 +92,7 @@ public:
    std::int64_t col_dim = 0;
    
    //! @brief The locations in the val vector that start a row.
-   std::vector<std::int64_t> row;
+   std::vector<std::int64_t> row = {0};
    
    //! @brief The column indexes of the elements in the val vector.
    std::vector<std::int64_t> col;
@@ -110,10 +110,13 @@ public:
    //---------------------------Constructors---------------------------
    //------------------------------------------------------------------
    //! @brief Constructor of CRS class.
+   CRS() {};
+      
+   //! @brief Constructor of CRS class.
    //! @param row_dim_in The dimension of the row.
    //! @param col_dim_in The dimension of the colmun.
    //! @param tag_in Type of the the matrix. Defaults to CRSTag::NONE.
-   CRS(const std::int64_t row_dim_in = 0, const std::int64_t col_dim_in = 0, const CRSTag tag_in = CRSTag::NONE) {
+   CRS(const std::int64_t row_dim_in, const std::int64_t col_dim_in, const CRSTag tag_in = CRSTag::NONE) {
       
       this->row_dim = row_dim_in;
       this->col_dim = col_dim_in;

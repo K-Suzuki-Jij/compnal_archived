@@ -368,14 +368,14 @@ TEST(BraketVector, MultiplicationVectorScalar) {
    check(BraketVector<double>({1.3}) * static_cast<short      >(1   ), BraketVector<double>({1.3  }), DBL_EPSILON, __LINE__);
    check(BraketVector<double>({1.3}) * static_cast<char       >(1   ), BraketVector<double>({1.3  }), DBL_EPSILON, __LINE__);
    
-   check(BraketVector<float>({1.3F}) * static_cast<long double>(1.4L), BraketVector<double>({1.82F}), FLT_EPSILON, __LINE__);
-   check(BraketVector<float>({1.3F}) * static_cast<double     >(1.4 ), BraketVector<double>({1.82F}), FLT_EPSILON, __LINE__);
-   check(BraketVector<float>({1.3F}) * static_cast<float      >(1.4F), BraketVector<float >({1.82F}), FLT_EPSILON, __LINE__);
-   check(BraketVector<float>({1.3F}) * static_cast<long long  >(1LL ), BraketVector<double>({1.3F }), FLT_EPSILON, __LINE__);
-   check(BraketVector<float>({1.3F}) * static_cast<long       >(1L  ), BraketVector<double>({1.3F }), FLT_EPSILON, __LINE__);
-   check(BraketVector<float>({1.3F}) * static_cast<int        >(1   ), BraketVector<double>({1.3F }), FLT_EPSILON, __LINE__);
-   check(BraketVector<float>({1.3F}) * static_cast<short      >(1   ), BraketVector<double>({1.3F }), FLT_EPSILON, __LINE__);
-   check(BraketVector<float>({1.3F}) * static_cast<char       >(1   ), BraketVector<double>({1.3F }), FLT_EPSILON, __LINE__);
+   check(BraketVector<float>({1.3F}) * static_cast<long double>(1.4L), BraketVector<float>({1.82F}), FLT_EPSILON, __LINE__);
+   check(BraketVector<float>({1.3F}) * static_cast<double     >(1.4 ), BraketVector<float>({1.82F}), FLT_EPSILON, __LINE__);
+   check(BraketVector<float>({1.3F}) * static_cast<float      >(1.4F), BraketVector<float>({1.82F}), FLT_EPSILON, __LINE__);
+   check(BraketVector<float>({1.3F}) * static_cast<long long  >(1LL ), BraketVector<float>({1.3F }), FLT_EPSILON, __LINE__);
+   check(BraketVector<float>({1.3F}) * static_cast<long       >(1L  ), BraketVector<float>({1.3F }), FLT_EPSILON, __LINE__);
+   check(BraketVector<float>({1.3F}) * static_cast<int        >(1   ), BraketVector<float>({1.3F }), FLT_EPSILON, __LINE__);
+   check(BraketVector<float>({1.3F}) * static_cast<short      >(1   ), BraketVector<float>({1.3F }), FLT_EPSILON, __LINE__);
+   check(BraketVector<float>({1.3F}) * static_cast<char       >(1   ), BraketVector<float>({1.3F }), FLT_EPSILON, __LINE__);
    
    check(BraketVector<long long>({1LL}) * static_cast<long double>(1.4L), BraketVector<long double>({1.4L}), LDBL_EPSILON, __LINE__);
    check(BraketVector<long long>({1LL}) * static_cast<double     >(1.4 ), BraketVector<double     >({1.4 }), DBL_EPSILON , __LINE__);
