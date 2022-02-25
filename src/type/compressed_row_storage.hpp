@@ -456,7 +456,8 @@ public:
 //! @param rhs The CRS object of the right-hand side, \f$ \hat{M}_{\rm rhs} \f$.
 //! @return CRS object, \f$ \hat{M}_{\rm lhs} + \hat{M}_{\rm rhs}\f$
 template<typename T1, typename T2>
-auto operator+(const CRS<T1> &lhs, const CRS<T2> &rhs) {
+auto operator+(const CRS<T1> &lhs, const CRS<T2> &rhs) ->
+CRS<decltype(std::declval<T1>() + std::declval<T2>())> {
    return CalculateMatrixMatrixSum(T1{1}, lhs, T2{1}, rhs);
 }
 
@@ -467,7 +468,8 @@ auto operator+(const CRS<T1> &lhs, const CRS<T2> &rhs) {
 //! @param rhs The CRS object of the right-hand side, \f$ \hat{M}_{\rm rhs} \f$.
 //! @return CRS object, \f$ \hat{M}_{\rm lhs} - \hat{M}_{\rm rhs}\f$
 template<typename T1, typename T2>
-auto operator-(const CRS<T1> &lhs, const CRS<T2> &rhs) {
+auto operator-(const CRS<T1> &lhs, const CRS<T2> &rhs) ->
+CRS<decltype(std::declval<T1>() - std::declval<T2>())> {
    return CalculateMatrixMatrixSum(T1{1}, lhs, T2{-1}, rhs);
 }
 
@@ -478,7 +480,8 @@ auto operator-(const CRS<T1> &lhs, const CRS<T2> &rhs) {
 //! @param rhs The CRS object of the right-hand side, \f$ \hat{M}_{\rm rhs} \f$.
 //! @return CRS object, \f$ \hat{M}_{\rm lhs}\hat{M}_{\rm rhs}\f$
 template<typename T1, typename T2>
-auto operator*(const CRS<T1> &lhs, const CRS<T2> &rhs) {
+auto operator*(const CRS<T1> &lhs, const CRS<T2> &rhs) ->
+CRS<decltype(std::declval<T1>()*std::declval<T2>())> {
    return CalculateMatrixMatrixProduct(T1{1}, lhs, rhs);
 }
 
@@ -489,7 +492,8 @@ auto operator*(const CRS<T1> &lhs, const CRS<T2> &rhs) {
 //! @param rhs The CRS object of the right-hand side, \f$ \hat{M}_{\rm rhs} \f$.
 //! @return CRS object, \f$ c_{\rm lhs}\hat{M}_{\rm rhs}\f$
 template<typename T1, typename T2>
-auto operator*(const T1 lhs, const CRS<T2> &rhs) {
+auto operator*(const T1 lhs, const CRS<T2> &rhs) ->
+CRS<decltype(std::declval<T1>()*std::declval<T2>())> {
    return CalculateScalarMatrixProduct(lhs, rhs);
 }
 
@@ -500,7 +504,8 @@ auto operator*(const T1 lhs, const CRS<T2> &rhs) {
 //! @param rhs The value of the right-hand side, \f$ c_{\rm rhs}\f$
 //! @return CRS object, \f$ \hat{M}_{\rm lhs}c_{\rm rhs}=c_{\rm rhs}\hat{M}_{\rm lhs}\f$
 template<typename T1, typename T2>
-auto operator*(const CRS<T1> &lhs, const T2 rhs) {
+auto operator*(const CRS<T1> &lhs, const T2 rhs) ->
+CRS<decltype(std::declval<T1>()*std::declval<T2>())> {
    return CalculateScalarMatrixProduct(rhs, lhs);
 }
 
@@ -603,7 +608,8 @@ template<typename T1, typename T2, typename T3, typename T4>
 auto CalculateMatrixMatrixSum(const T1 coeff_1,
                               const CRS<T2> &matrix_1,
                               const T3 coeff_2,
-                              const CRS<T4> &matrix_2) {
+                              const CRS<T4> &matrix_2) ->
+CRS<decltype(std::declval<T1>()*std::declval<T2>() + std::declval<T3>()*std::declval<T4>())> {
    
    if (matrix_1.row_dim != matrix_2.row_dim || matrix_1.col_dim != matrix_2.col_dim) {
       std::stringstream ss;
@@ -614,7 +620,12 @@ auto CalculateMatrixMatrixSum(const T1 coeff_1,
       throw std::runtime_error(ss.str());
    }
    
-   CRS<decltype(T1{0}+T2{0}+T3{0}+T4{0})> matrix_out(matrix_1.row_dim, matrix_1.col_dim);
+   using T1T2T3T4 = decltype(std::declval<T1>() *
+                             std::declval<T2>() +
+                             std::declval<T3>() *
+                             std::declval<T4>());
+   
+   CRS<T1T2T3T4> matrix_out(matrix_1.row_dim, matrix_1.col_dim);
    
    for (std::int64_t i = 0; i < matrix_1.row_dim; ++i) {
       
@@ -752,7 +763,8 @@ auto CalculateMatrixMatrixSum(const T1 coeff_1,
 template<typename T1, typename T2, typename T3>
 auto CalculateMatrixMatrixProduct(const T1 coeff_1,
                                   const CRS<T2> &matrix_1,
-                                  const CRS<T3> &matrix_2) {
+                                  const CRS<T3> &matrix_2) ->
+CRS<decltype(std::declval<T1>()*std::declval<T2>()*std::declval<T3>())> {
    
    if (matrix_1.col_dim != matrix_2.row_dim) {
       std::stringstream ss;
@@ -762,10 +774,13 @@ auto CalculateMatrixMatrixProduct(const T1 coeff_1,
       throw std::runtime_error(ss.str());
    }
    
-   CRS<decltype(T1{0}*T2{0}*T3{0})> matrix_out(matrix_1.row_dim, matrix_2.col_dim);
+   using T1T2   = decltype(std::declval<T1>()*std::declval<T2>());
+   using T1T2T3 = decltype(std::declval<T1>()*std::declval<T2>()*std::declval<T3>());
+
+   CRS<T1T2T3> matrix_out(matrix_1.row_dim, matrix_2.col_dim);
    
-   std::vector<decltype(T1{0}*T2{0})>       temp_v1(matrix_1.col_dim, 0.0);
-   std::vector<decltype(T1{0}*T2{0}*T3{0})> temp_v2(matrix_2.col_dim, 0.0);
+   std::vector<T1T2>   temp_v1(matrix_1.col_dim, 0.0);
+   std::vector<T1T2T3> temp_v2(matrix_2.col_dim, 0.0);
    
    for (std::int64_t i = 0; i < matrix_1.row_dim; ++i) {
       for (std::int64_t j = matrix_1.row[i]; j < matrix_1.row[i + 1]; ++j) {
@@ -847,9 +862,11 @@ auto CalculateMatrixMatrixProduct(const T1 coeff_1,
 //! @param matrix CRS object \f$ \hat{M}\f$.
 //! @return CRS object \f$ c\hat{M} \f$.
 template<typename T1, typename T2>
-auto CalculateScalarMatrixProduct(const T1 coeff, const CRS<T2> &matrix) {
+auto CalculateScalarMatrixProduct(const T1 coeff, const CRS<T2> &matrix) ->
+CRS<decltype(std::declval<T1>()*std::declval<T2>())> {
    
-   CRS<decltype(T1{0}*T2{0})> out(matrix.row_dim, matrix.col_dim, matrix.tag);
+   using T1T2 = decltype(std::declval<T1>()*std::declval<T2>());
+   CRS<T1T2> out(matrix.row_dim, matrix.col_dim, matrix.tag);
    out.col.resize(matrix.col.size());
    out.val.resize(matrix.val.size());
    

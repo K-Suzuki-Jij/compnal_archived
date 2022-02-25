@@ -275,7 +275,8 @@ private:
 //! @param rhs The BraketVector of the right-hand side, \f$ \boldsymbol{v}_{\rm rhs} \f$.
 //! @return BraketVector object, \f$ \boldsymbol{v}_{\rm lhs} + \boldsymbol{v}_{\rm rhs}\f$.
 template<typename T1, typename T2>
-auto operator+(const BraketVector<T1> &lhs, const BraketVector<T2> &rhs) {
+auto operator+(const BraketVector<T1> &lhs, const BraketVector<T2> &rhs) ->
+BraketVector<decltype(std::declval<T1>() + std::declval<T2>())> {
    return CalculateVectorVectorSum(T1{1}, lhs, T2{1}, rhs);
 }
 
@@ -286,7 +287,8 @@ auto operator+(const BraketVector<T1> &lhs, const BraketVector<T2> &rhs) {
 //! @param rhs The BraketVector of the right-hand side, \f$ \boldsymbol{v}_{\rm rhs} \f$.
 //! @return BraketVector object, \f$ \boldsymbol{v}_{\rm lhs} - \boldsymbol{v}_{\rm rhs}\f$.
 template<typename T1, typename T2>
-auto operator-(const BraketVector<T1> &lhs, const BraketVector<T2> &rhs) {
+auto operator-(const BraketVector<T1> &lhs, const BraketVector<T2> &rhs) ->
+BraketVector<decltype(std::declval<T1>() - std::declval<T2>())> {
    return CalculateVectorVectorSum(T1{1}, lhs, T2{-1}, rhs);
 }
 
@@ -297,7 +299,8 @@ auto operator-(const BraketVector<T1> &lhs, const BraketVector<T2> &rhs) {
 //! @param rhs The BraketVector of the right-hand side, \f$ \boldsymbol{v}_{\rm rhs} \f$.
 //! @return Inner product, \f$ \boldsymbol{v}_{\rm lhs}\cdot\boldsymbol{v}_{\rm rhs}\f$.
 template<typename T1, typename T2>
-auto operator*(const BraketVector<T1> &lhs, const BraketVector<T2> &rhs) {
+auto operator*(const BraketVector<T1> &lhs, const BraketVector<T2> &rhs) ->
+decltype(std::declval<T1>()*std::declval<T2>()) {
    return CalculateVectorVectorProduct(lhs, rhs);
 }
 
@@ -308,7 +311,8 @@ auto operator*(const BraketVector<T1> &lhs, const BraketVector<T2> &rhs) {
 //! @param rhs The BraketVector of the right-hand side, \f$ \boldsymbol{v}_{\rm rhs} \f$.
 //! @return BraketVector object, \f$ c_{\rm lhs}\boldsymbol{v}_{\rm rhs}\f$.
 template<typename T1, typename T2>
-auto operator*(const T1 lhs, const BraketVector<T2> &rhs) {
+auto operator*(const T1 lhs, const BraketVector<T2> &rhs) ->
+BraketVector<decltype(std::declval<T1>()*std::declval<T2>())> {
    return CalculateScalarVectorProduct(lhs, rhs);
 }
 
@@ -319,7 +323,8 @@ auto operator*(const T1 lhs, const BraketVector<T2> &rhs) {
 //! @param rhs The value of the right-hand side, \f$ c_{\rm rhs}\f$.
 //! @return BraketVector object, \f$ \boldsymbol{v}_{\rm lhs}c_{\rm rhs} = c_{\rm rhs}\boldsymbol{v}_{\rm lhs}\f$.
 template<typename T1, typename T2>
-auto operator*(const BraketVector<T1> &lhs, const T2 rhs) {
+auto operator*(const BraketVector<T1> &lhs, const T2 rhs) ->
+BraketVector<decltype(std::declval<T1>()*std::declval<T2>())> {
    return CalculateScalarVectorProduct(rhs, lhs);
 }
 
@@ -387,7 +392,8 @@ template<typename T1, typename T2, typename T3, typename T4>
 auto CalculateVectorVectorSum(const T1 coeff_1,
                               const BraketVector<T2> &braket_vector_1,
                               const T3 coeff_2,
-                              const BraketVector<T4> &braket_vector_2) {
+                              const BraketVector<T4> &braket_vector_2) ->
+BraketVector<decltype(std::declval<T1>()*std::declval<T2>() + std::declval<T3>()*std::declval<T4>())> {
    if (braket_vector_1.value_list.size() != braket_vector_2.value_list.size()) {
       std::stringstream ss;
       ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
@@ -395,7 +401,10 @@ auto CalculateVectorVectorSum(const T1 coeff_1,
       ss << "dim_1 = " << braket_vector_1.value_list.size() << ", dim_2 = " << braket_vector_2.value_list.size() << std::endl;
       throw std::runtime_error(ss.str());
    }
-   BraketVector<decltype(T1{0}*T2{0}+T3{0}*T4{0})> vector_out;
+   
+   using T1T2T3T4 = decltype(std::declval<T1>()*std::declval<T2>() + std::declval<T3>()*std::declval<T4>());
+   BraketVector<T1T2T3T4> vector_out;
+   
    vector_out.Resize(braket_vector_1.value_list.size());
    const std::int64_t size = braket_vector_1.value_list.size();
 #pragma omp parallel for
@@ -413,7 +422,8 @@ auto CalculateVectorVectorSum(const T1 coeff_1,
 //! @return Inner product \f$ \boldsymbol{v}_1\cdot\boldsymbol{v}_2 \f$.
 template<typename T1, typename T2>
 auto CalculateVectorVectorProduct(const BraketVector<T1> &braket_vector_1,
-                                  const BraketVector<T2> &braket_vector_2) {
+                                  const BraketVector<T2> &braket_vector_2) ->
+decltype(std::declval<T1>()*std::declval<T2>()) {
    if (braket_vector_1.value_list.size() != braket_vector_2.value_list.size()) {
       std::stringstream ss;
       ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
@@ -421,7 +431,9 @@ auto CalculateVectorVectorProduct(const BraketVector<T1> &braket_vector_1,
       ss << "dim_1 = " << braket_vector_1.value_list.size() << ", dim_2 = " << braket_vector_2.value_list.size() << std::endl;
       throw std::runtime_error(ss.str());
    }
-   decltype(T1{0}*T2{0}) val_out = 0.0;
+   
+   using T1T2 = decltype(std::declval<T1>()*std::declval<T2>());
+   T1T2 val_out = 0.0;
    const std::int64_t size = braket_vector_1.value_list.size();
 #pragma omp parallel for reduction (+: val_out)
    for (std::int64_t i = 0; i < size; ++i) {
@@ -438,9 +450,11 @@ auto CalculateVectorVectorProduct(const BraketVector<T1> &braket_vector_1,
 //! @return BraketVector object \f$ c\boldsymbol{v} \f$.
 template<typename T1, typename T2>
 auto CalculateScalarVectorProduct(const T1 value,
-                                  const BraketVector<T2> &braket_vector) {
+                                  const BraketVector<T2> &braket_vector) ->
+BraketVector<decltype(std::declval<T1>()*std::declval<T2>())> {
    
-   BraketVector<decltype(T1{0}*T2{0})> out;
+   using T1T2 = decltype(std::declval<T1>()*std::declval<T2>());
+   BraketVector<T1T2> out;
    out.Resize(braket_vector.value_list.size());
    const std::int64_t size = braket_vector.value_list.size();
 #pragma omp parallel for
@@ -466,7 +480,8 @@ auto CalculateL1Norm(const T1 coeff_1,
                      const BraketVector<T2> &braket_vector_1,
                      const T3 coeff_2,
                      const BraketVector<T4> &braket_vector_2
-                     ) {
+                     ) ->
+decltype(std::declval<T1>()*std::declval<T2>() - std::declval<T3>()*std::declval<T4>()) {
    
    if (braket_vector_1.value_list.size() != braket_vector_2.value_list.size()) {
       std::stringstream ss;
@@ -476,7 +491,9 @@ auto CalculateL1Norm(const T1 coeff_1,
       throw std::runtime_error(ss.str());
    }
    
-   decltype(T1{0}*T2{0}-T3{0}*T4{0}) val_out = 0.0;
+   using T1T2T3T4 = decltype(std::declval<T1>()*std::declval<T2>() - std::declval<T3>()*std::declval<T4>());
+   T1T2T3T4 val_out = 0.0;
+
    const std::int64_t size = braket_vector_1.value_list.size();
 #pragma omp parallel for reduction (+: val_out)
    for (std::int64_t i = 0; i < size; ++i) {
@@ -500,7 +517,8 @@ auto CalculateL2Norm(const T1 coeff_1,
                      const BraketVector<T2> &braket_vector_1,
                      const T3 coeff_2,
                      const BraketVector<T4> &braket_vector_2
-                     ) {
+                     ) ->
+decltype(std::declval<T1>()*std::declval<T2>() - std::declval<T3>()*std::declval<T4>()) {
    
    if (braket_vector_1.value_list.size() != braket_vector_2.value_list.size()) {
       std::stringstream ss;
@@ -510,11 +528,13 @@ auto CalculateL2Norm(const T1 coeff_1,
       throw std::runtime_error(ss.str());
    }
    
-   decltype(T1{0}*T2{0}-T3{0}*T4{0}) val_out = 0.0;
+   using T1T2T3T4 = decltype(std::declval<T1>()*std::declval<T2>() - std::declval<T3>()*std::declval<T4>());
+   T1T2T3T4 val_out = 0.0;
+   
    const std::int64_t size = braket_vector_1.value_list.size();
 #pragma omp parallel for reduction (+: val_out)
    for (std::int64_t i = 0; i < size; ++i) {
-      const auto v = coeff_1*braket_vector_1.value_list[i] - coeff_2*braket_vector_2.value_list[i];
+      const T1T2T3T4 v = coeff_1*braket_vector_1.value_list[i] - coeff_2*braket_vector_2.value_list[i];
       val_out += v*v;
    }
    return std::sqrt(val_out);
