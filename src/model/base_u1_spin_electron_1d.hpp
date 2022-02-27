@@ -39,7 +39,7 @@ template<typename RealType>
 class BaseU1SpinElectron_1D {
       
    //! @brief Alias of compressed row strage (CRS) with RealType.
-   using CRS = sparse_matrix::CRS<RealType>;
+   using CRS = type::CRS<RealType>;
    
    //! @brief Alias of quantum number (total electron, total sz) pair.
    using QType = std::pair<int, double>;
@@ -458,7 +458,7 @@ public:
          throw std::runtime_error(ss.str());
       }
       const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
-      const double time_sec   = static_cast<double>(time_count)/sparse_matrix::TIME_UNIT_CONSTANT;
+      const double time_sec   = static_cast<double>(time_count)/blas::TIME_UNIT_CONSTANT;
       std::cout << "\rElapsed time of generating basis:" << time_sec << "[sec]" << std::endl;
 
    }
@@ -714,7 +714,7 @@ public:
       for (int element = 0; element < dim_onsite_lspin; ++element) {
          matrix.row[element + 1 + 3*dim_onsite_lspin] = matrix.col.size();
       }
-      matrix.tag = sparse_matrix::CRSTag::FERMION;
+      matrix.tag = type::CRSTag::FERMION;
       return matrix;
    }
    
@@ -753,7 +753,7 @@ public:
       for (int element = 0; element < dim_onsite_lspin; ++element) {
          matrix.row[element + 1 + 3*dim_onsite_lspin] = matrix.col.size();
       }
-      matrix.tag = sparse_matrix::CRSTag::FERMION;
+      matrix.tag = type::CRSTag::FERMION;
       return matrix;
    }
    
@@ -916,7 +916,7 @@ public:
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{c}^{\dagger}_{\uparrow}\f$.
    static CRS CreateOnsiteOperatorCUpDagger(const double magnitude_lspin) {
-      return sparse_matrix::CalculateTransposedMatrix(CreateOnsiteOperatorCUp(magnitude_lspin));
+      return blas::CalculateTransposedMatrix(CreateOnsiteOperatorCUp(magnitude_lspin));
    }
    
    //! @brief Generate the creation operator for the electrons with the down spin
@@ -924,7 +924,7 @@ public:
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{c}^{\dagger}_{\downarrow}\f$.
    static CRS CreateOnsiteOperatorCDownDagger(const double magnitude_lspin) {
-      return sparse_matrix::CalculateTransposedMatrix(CreateOnsiteOperatorCDown(magnitude_lspin));
+      return blas::CalculateTransposedMatrix(CreateOnsiteOperatorCDown(magnitude_lspin));
    }
    
    //! @brief Generate the number operator for the electrons with the up spin

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['row_0',['row',['../structcompnal_1_1sparse__matrix_1_1_c_r_s.html#a7c3c574b5fe94de93551f90ae9017cf0',1,'compnal::sparse_matrix::CRS']]],
-  ['row_5fdim_1',['row_dim',['../structcompnal_1_1sparse__matrix_1_1_c_r_s.html#a4fb8bf6ab46de248b22f7f56ce3298ba',1,'compnal::sparse_matrix::CRS']]]
+  ['row_0',['row',['../dd/da8/classcompnal_1_1type_1_1_c_r_s.html#a6a151570fadeaab5b9a5b74da39294ff',1,'compnal::type::CRS']]],
+  ['row_5fdim_1',['row_dim',['../dd/da8/classcompnal_1_1type_1_1_c_r_s.html#ac790fec841b1ca31157753797fba985d',1,'compnal::type::CRS']]]
 ];

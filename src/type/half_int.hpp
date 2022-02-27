@@ -38,12 +38,13 @@ public:
    //! @tparam ValueType Value type.
    //! @param value The value to be assigned. It must be half-integer.
    template<typename ValueType>
-   HalfInt(ValueType value) {
-      value = 2*value;
-      if (std::floor(value) != value) {
-         throw std::runtime_error("The input number is not half-integer");
+   HalfInt(const ValueType value) {
+      if (std::floor(2*value) != 2*value) {
+         std::stringstream ss;
+         ss << "The input number " << value <<  " is not half-integer." << std::endl;
+         throw std::runtime_error(ss.str());
       }
-      integer_ = static_cast<int>(value);
+      integer_ = static_cast<int>(2*value);
    };
    
    //------------------------------------------------------------------
@@ -64,7 +65,39 @@ public:
    
    //! @brief Operator overloading: unary negation operator.
    HalfInt operator-() const {
-      return HalfInt(-0.5*this->integer_);
+      return HalfInt(-0.5*integer_);
+   }
+   
+   //! @brief Operator overloading: compound assignment plus operator.
+   //! @tparam ValueType Value type of the right-hand side.
+   //! @param rhs The value of the right-hand side.
+   template<typename ValueType>
+   HalfInt& operator+=(const ValueType rhs) {
+      return *this = *this + rhs;
+   }
+   
+   //! @brief Operator overloading: compound assignment subtraction operator.
+   //! @tparam ValueType Value type of the right-hand side.
+   //! @param rhs The value of the right-hand side.
+   template<typename ValueType>
+   HalfInt& operator-=(const ValueType rhs) {
+      return *this = *this - rhs;
+   }
+   
+   //! @brief Operator overloading: compound assignment multiplication operator.
+   //! @tparam ValueType Value type of the right-hand side.
+   //! @param rhs The value of the right-hand side.
+   template<typename ValueType>
+   HalfInt& operator*=(const ValueType rhs) {
+      return *this = *this * rhs;
+   }
+   
+   //! @brief Operator overloading: compound assignment division operator.
+   //! @tparam ValueType Value type of the right-hand side.
+   //! @param rhs The value of the right-hand side.
+   template<typename ValueType>
+   HalfInt& operator/=(const ValueType rhs) {
+      return *this = *this / rhs;
    }
       
    //! @brief Operator overloading: casting operator to ValueType.

@@ -1,0 +1,112 @@
+\hypertarget{hash_8hpp_source}{}\doxysection{hash.\+hpp}
+\label{hash_8hpp_source}\index{src/utility/hash.hpp@{src/utility/hash.hpp}}
+\mbox{\hyperlink{hash_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00001}00001 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00002}00002 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00003}00003 \textcolor{comment}{//  Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00004}00004 \textcolor{comment}{//  you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00005}00005 \textcolor{comment}{//  You may obtain a copy of the License at}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00006}00006 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00007}00007 \textcolor{comment}{//      http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00008}00008 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00009}00009 \textcolor{comment}{//  Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00010}00010 \textcolor{comment}{//  distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00011}00011 \textcolor{comment}{//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00012}00012 \textcolor{comment}{//  See the License for the specific language governing permissions and}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00013}00013 \textcolor{comment}{//  limitations under the License.}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00014}00014 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00015}00015 \textcolor{comment}{//  Created by Kohei Suzuki on 2022/01/25.}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00016}00016 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00018}00018 \textcolor{preprocessor}{\#ifndef COMPNAL\_UTILITY\_HASH\_HPP\_}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00019}00019 \textcolor{preprocessor}{\#define COMPNAL\_UTILITY\_HASH\_HPP\_}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00021}00021 \textcolor{preprocessor}{\#include "{}../type/half\_int.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00022}00022 \textcolor{preprocessor}{\#include <variant>}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00024}00024 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00025}00025 \textcolor{keyword}{namespace }utility \{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00028}\mbox{\hyperlink{structcompnal_1_1utility_1_1_half_int_hash}{00028}} \textcolor{keyword}{struct }\mbox{\hyperlink{structcompnal_1_1utility_1_1_half_int_hash}{HalfIntHash}} \{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00029}\mbox{\hyperlink{structcompnal_1_1utility_1_1_half_int_hash_a76500bfb29914d9dce1a104a34e94190}{00029}}    std::size\_t \mbox{\hyperlink{structcompnal_1_1utility_1_1_half_int_hash_a76500bfb29914d9dce1a104a34e94190}{operator() }}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{type::HalfInt}} \&half\_int)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00030}00030       \textcolor{keywordflow}{return} std::hash<int>()(half\_int.\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int_a162dc898dcc953635192679cf3b6d020}{GetInteger}}());}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00031}00031    \}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00032}00032 \};}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00033}00033 }
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00035}\mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash}{00035}} \textcolor{keyword}{struct }\mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash}{PairHash}} \{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00036}00036    \textcolor{keyword}{template}<\textcolor{keyword}{class} T1, \textcolor{keyword}{class} T2>}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00037}\mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash_a84d86428351acf249bd5c880e1bb5b54}{00037}}    std::size\_t \mbox{\hyperlink{structcompnal_1_1utility_1_1_pair_hash_a84d86428351acf249bd5c880e1bb5b54}{operator() }}(\textcolor{keyword}{const} std::pair<T1, T2>\& p)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00038}00038       std::size\_t lhs = std::hash<T1>()(p.first), rhs = std::hash<T2>()(p.second);}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00039}00039       \textcolor{keywordflow}{return} lhs\string^(rhs + 0x9e3779b9 + (lhs << 6) + (lhs >> 2));}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00040}00040    \}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00041}00041 \};}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00044}\mbox{\hyperlink{structcompnal_1_1utility_1_1_vec_hash}{00044}} \textcolor{keyword}{struct }\mbox{\hyperlink{structcompnal_1_1utility_1_1_vec_hash}{VecHash}} \{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00045}00045    \textcolor{keyword}{template}<\textcolor{keyword}{class} T>}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00046}\mbox{\hyperlink{structcompnal_1_1utility_1_1_vec_hash_ad1834f38cff7289df12b99e63e0e80dd}{00046}}    std::size\_t \mbox{\hyperlink{structcompnal_1_1utility_1_1_vec_hash_ad1834f38cff7289df12b99e63e0e80dd}{operator() }}(\textcolor{keyword}{const} std::vector<T> \&V)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00047}00047       std::size\_t hash = V.size();}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00048}00048       \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} \&i : V) \{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00049}00049          hash \string^= std::hash<T>()(i) + 0x9e3779b9 + (hash << 6) + (hash >> 2);}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00050}00050       \}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00051}00051       \textcolor{keywordflow}{return} hash;}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00052}00052    \}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00053}00053 \};}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00057}00057 \textcolor{keyword}{template}<\textcolor{keyword}{typename} IntegerType>}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00058}\mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash}{00058}} \textcolor{keyword}{struct }\mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash}{VariantHash}} \{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00059}00059    \textcolor{keyword}{static\_assert}(std::is\_integral<IntegerType>::value, \textcolor{stringliteral}{"{}Template parameter IntegerType must be integer type"{}});}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00060}00060    }
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00061}\mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash_a8bd6d0503b78d7aa77a1b068b414b858}{00061}}    \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash_a8bd6d0503b78d7aa77a1b068b414b858}{VariantVecType}} = std::vector<std::variant<IntegerType, std::string>>;}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00062}00062    }
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00063}00063    \textcolor{keyword}{template}<\textcolor{keyword}{class}... Types>}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00064}\mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash_a65d6baf7936c364ff373de4c17379fb2}{00064}}    std::size\_t \mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash_a65d6baf7936c364ff373de4c17379fb2}{operator() }}(\textcolor{keyword}{const} std::variant<Types...> \&v)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00065}00065       \textcolor{keywordflow}{if} (std::holds\_alternative<IntegerType>(v)) \{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00066}00066          \textcolor{keywordflow}{return} std::hash<IntegerType>()(std::get<IntegerType>(v));}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00067}00067       \}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00068}00068       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (std::holds\_alternative<std::string>(v)) \{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00069}00069          \textcolor{keywordflow}{return} std::hash<std::string>()(std::get<std::string>(v));}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00070}00070       \}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00071}00071       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (std::holds\_alternative<VariantVecType>(v)) \{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00072}00072          \textcolor{keyword}{const} \textcolor{keyword}{auto} \&variant\_vec = std::get<VariantVecType>(v);}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00073}00073          std::size\_t hash = variant\_vec.size();}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00074}00074          \textcolor{keywordflow}{for} (\textcolor{keyword}{const} \textcolor{keyword}{auto} \&i : variant\_vec) \{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00075}00075             \textcolor{keywordflow}{if} (std::holds\_alternative<IntegerType>(i)) \{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00076}00076                hash \string^= std::hash<IntegerType>()(std::get<IntegerType>(i)) + 0x9e3779b9 + (hash << 6) + (hash >> 2);}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00077}00077             \}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00078}00078             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (std::holds\_alternative<std::string>(i)) \{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00079}00079                hash \string^= std::hash<std::string>()(std::get<std::string>(i)) + 0x9e3779b9 + (hash << 6) + (hash >> 2);}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00080}00080             \}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00081}00081             \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00082}00082                \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Invalid template parameters"{}});}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00083}00083             \}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00084}00084          \}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00085}00085          \textcolor{keywordflow}{return} hash;}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00086}00086       \}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00087}00087       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00088}00088          \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Invalid template parameters"{}});}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00089}00089       \}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00090}00090    \}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00091}00091 \};}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00092}00092 }
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00094}\mbox{\hyperlink{structcompnal_1_1utility_1_1_vec_int_hash}{00094}} \textcolor{keyword}{struct }\mbox{\hyperlink{structcompnal_1_1utility_1_1_vec_int_hash}{VecIntHash}} \{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00095}00095    \textcolor{keyword}{template}<\textcolor{keyword}{class} T1, \textcolor{keyword}{class} T2>}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00096}\mbox{\hyperlink{structcompnal_1_1utility_1_1_vec_int_hash_a08ac76d14974c9d6a82de51f8b3dbea8}{00096}}    std::size\_t \mbox{\hyperlink{structcompnal_1_1utility_1_1_vec_int_hash_a08ac76d14974c9d6a82de51f8b3dbea8}{operator() }}(\textcolor{keyword}{const} std::pair<std::vector<T1>, T2>\& p)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00097}00097       std::size\_t hash = p.first.size();}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00098}00098       \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} \&i: p.first) \{}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00099}00099          hash \string^= std::hash<T1>()(i) + 0x9e3779b9 + (hash << 6) + (hash >> 2);}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00100}00100       \}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00101}00101       std::size\_t lhs = std::hash<T2>()(p.second);}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00102}00102       hash \string^= lhs\string^(0x9e3779b9 + (lhs << 6));}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00103}00103       \textcolor{keywordflow}{return} hash;}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00104}00104    \}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00105}00105 \};}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00106}00106 }
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00107}00107 }
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00108}00108 \}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00109}00109 \}}
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00110}00110 }
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00111}00111 }
+\DoxyCodeLine{\Hypertarget{hash_8hpp_source_l00112}00112 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_UTILITY\_HASH\_HPP\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

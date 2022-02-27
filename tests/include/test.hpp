@@ -82,7 +82,7 @@ void ExpectNear(const std::unordered_map<IndexType, ValueType> &lhs, const std::
 }
 
 template<typename RealType>
-void ExpectNear(const compnal::sparse_matrix::CRS<RealType> &lhs, const compnal::sparse_matrix::CRS<RealType> &rhs, const RealType threshold) {
+void ExpectNear(const compnal::type::CRS<RealType> &lhs, const compnal::type::CRS<RealType> &rhs, const RealType threshold) {
    if (lhs.row_dim != rhs.row_dim) {
       FAIL();
    }

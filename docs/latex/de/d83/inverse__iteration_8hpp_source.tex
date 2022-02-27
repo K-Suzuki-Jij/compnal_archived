@@ -1,0 +1,105 @@
+\hypertarget{inverse__iteration_8hpp_source}{}\doxysection{inverse\+\_\+iteration.\+hpp}
+\label{inverse__iteration_8hpp_source}\index{src/blas/inverse\_iteration.hpp@{src/blas/inverse\_iteration.hpp}}
+\mbox{\hyperlink{inverse__iteration_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00001}00001 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00002}00002 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00003}00003 \textcolor{comment}{//  Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00004}00004 \textcolor{comment}{//  you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00005}00005 \textcolor{comment}{//  You may obtain a copy of the License at}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00006}00006 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00007}00007 \textcolor{comment}{//      http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00008}00008 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00009}00009 \textcolor{comment}{//  Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00010}00010 \textcolor{comment}{//  distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00011}00011 \textcolor{comment}{//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00012}00012 \textcolor{comment}{//  See the License for the specific language governing permissions and}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00013}00013 \textcolor{comment}{//  limitations under the License.}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00014}00014 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00015}00015 \textcolor{comment}{//  Created by Kohei Suzuki on 2021/11/12.}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00016}00016 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00018}00018 \textcolor{preprocessor}{\#ifndef COMPNAL\_BLAS\_INVERSE\_ITERATION\_HPP\_}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00019}00019 \textcolor{preprocessor}{\#define COMPNAL\_BLAS\_INVERSE\_ITERATION\_HPP\_}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00021}00021 \textcolor{preprocessor}{\#include "{}../type/compressed\_row\_storage.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00022}00022 \textcolor{preprocessor}{\#include "{}../type/braket\_vector.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00024}00024 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00025}00025 \textcolor{keyword}{namespace }blas \{}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00027}00027 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00028}\mbox{\hyperlink{namespacecompnal_1_1blas_a145ac10a26aba079daa9fba3af245f89}{00028}} std::pair<int, double> \mbox{\hyperlink{namespacecompnal_1_1blas_a145ac10a26aba079daa9fba3af245f89}{InverseIteration}}(\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}}          *matrix\_in,}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00029}00029                                         \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type::BraketVector<RealType>}} *eigenvector,}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00030}00030                                         \textcolor{keyword}{const} RealType         eigenvalue,}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00031}00031                                         \textcolor{keyword}{const} \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_i_i}{ParametersII}}     \&params = \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_i_i}{ParametersII}}(),}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00032}00032                                         \textcolor{keyword}{const} std::vector<\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type::BraketVector<RealType>}}> \&subspace\_vectors = \{\}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00033}00033                                         ) \{}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00034}00034    }
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00035}00035    \textcolor{keywordflow}{if} (matrix\_in-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} != matrix\_in-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}) \{}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00036}00036       std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00037}00037       ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00038}00038       ss << \textcolor{stringliteral}{"{}The input matrix is not a square one"{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00039}00039       ss << \textcolor{stringliteral}{"{}row="{}} << matrix\_in-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} << \textcolor{stringliteral}{"{}, col="{}} << matrix\_in-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00040}00040       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00041}00041    \}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00042}00042    }
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00043}00043    \textcolor{keyword}{const} \textcolor{keyword}{auto} start = std::chrono::system\_clock::now();}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00044}00044    }
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00045}00045    type::BraketVector<RealType> improved\_eigenvector;}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00046}00046    type::BraketVector<RealType> vectors\_work(matrix\_in-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}});}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00047}00047    }
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00048}00048    \textcolor{keywordflow}{if} (params.cg.flag\_use\_initial\_vec) \{}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00049}00049       \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(eigenvector-\/>val.size()) != matrix\_in-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}) \{}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00050}00050          std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00051}00051          ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00052}00052          ss << \textcolor{stringliteral}{"{}The dimension of the initial vector is not equal to that of the input matrix."{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00053}00053          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00054}00054       \}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00055}00055       improved\_eigenvector = *eigenvector;}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00056}00056    \}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00057}00057 }
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00058}00058    matrix\_in-\/>DiagonalScaling(params.diag\_add -\/ eigenvalue);}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00059}00059    }
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00060}00060    \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} step = 0; step < params.max\_step; ++step) \{}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00061}00061       \textcolor{keywordflow}{if} (params.cg.flag\_symmetric\_crs) \{}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00062}00062          \mbox{\hyperlink{namespacecompnal_1_1blas_aeeec1b8a9d956be99035a82b732b15b4}{CalculateSymmetricMatrixVectorProduct}}(\&vectors\_work, 1.0, *matrix\_in, *eigenvector);}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00063}00063       \}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00064}00064       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00065}00065          \mbox{\hyperlink{namespacecompnal_1_1blas_af325cf8275d75278e2758dc1419f86f5}{CalculateMatrixVectorProduct}}(\&vectors\_work, 1.0, *matrix\_in, *eigenvector);}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00066}00066       \}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00067}00067       \textcolor{keyword}{const} RealType residual\_error = CalculateL1Norm(params.diag\_add, *eigenvector, 1.0, vectors\_work);}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00068}00068       }
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00069}00069       \textcolor{keywordflow}{if} (params.flag\_output\_info) \{}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00070}00070          std::cout << \textcolor{stringliteral}{"{}\(\backslash\)rII\_Step["{}} << step << \textcolor{stringliteral}{"{}]="{}} << std::scientific << std::setprecision(1);}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00071}00071          std::cout << residual\_error << std::flush;}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00072}00072       \}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00073}00073       }
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00074}00074       \textcolor{keywordflow}{if} (residual\_error < params.acc) \{}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00075}00075          matrix\_in-\/>DiagonalScaling(-\/(params.diag\_add -\/ eigenvalue));}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00076}00076          \textcolor{keyword}{const} \textcolor{keyword}{auto}   time\_count = std::chrono::duration\_cast<std::chrono::microseconds>(std::chrono::system\_clock::now() -\/ start).count();}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00077}00077          \textcolor{keyword}{const} \textcolor{keywordtype}{double} time\_sec   = \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(time\_count)/\mbox{\hyperlink{namespacecompnal_1_1blas_aa1196aeb106e923cc2ad6c17fea58f26}{TIME\_UNIT\_CONSTANT}};}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00078}00078          std::cout << std::defaultfloat << std::setprecision(8) << \textcolor{stringliteral}{"{}\(\backslash\)rElapsed time of inverse iteration:"{}} << time\_sec << \textcolor{stringliteral}{"{}[sec]"{}};}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00079}00079          std::cout << \textcolor{stringliteral}{"{} ("{}} << residual\_error << \textcolor{stringliteral}{"{})"{}} << std::flush;}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00080}00080          std::cout << std::endl;}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00081}00081          \textcolor{keywordflow}{return} \{step, time\_sec\};}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00082}00082       \}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00083}00083 }
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00084}00084       \mbox{\hyperlink{namespacecompnal_1_1blas_aada41a4581ddc0dc68722f8c5dc3ae5e}{ConjugateGradient}}(\&improved\_eigenvector, *matrix\_in, *eigenvector, params.cg, subspace\_vectors);}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00085}00085       improved\_eigenvector.Normalize();}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00086}00086       eigenvector-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ad5d0d469065d6ee4b821e567941efe2e}{Assign}}(improved\_eigenvector);}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00087}00087    \}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00088}00088    }
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00089}00089    std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00090}00090    ss << \textcolor{stringliteral}{"{}Error in "{}} << \_\_func\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00091}00091    ss << \textcolor{stringliteral}{"{}Does not converge"{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00092}00092    \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00093}00093    }
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00094}00094 \}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00095}00095 }
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00096}00096 \} \textcolor{comment}{// namespace blas}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00097}00097 \} \textcolor{comment}{// namespace compnel}}
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00098}00098 }
+\DoxyCodeLine{\Hypertarget{inverse__iteration_8hpp_source_l00099}00099 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_BLAS\_INVERSE\_ITERATION\_HPP\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

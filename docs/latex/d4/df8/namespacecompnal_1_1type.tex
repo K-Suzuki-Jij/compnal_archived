@@ -1,0 +1,1789 @@
+\hypertarget{namespacecompnal_1_1type}{}\doxysection{compnal\+::type Namespace Reference}
+\label{namespacecompnal_1_1type}\index{compnal::type@{compnal::type}}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}
+\begin{DoxyCompactList}\small\item\em The wrapper class of std\+::vector to represent braket. Note that there is no difference of \texorpdfstring{$<$}{<}bra$\vert$ and $\vert$ket\texorpdfstring{$>$}{>}, since the template parameter Element\+Type cannot accept Complex type. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}
+\begin{DoxyCompactList}\small\item\em Sparse matrix classs (Compressed Row Strage\+: \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}). \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}}
+\begin{DoxyCompactList}\small\item\em Class to represent half-\/integer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}} \{ \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{NONE}} = 0
+, \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{FERMION}} = 1
+, \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{BOSON}} = 2
+, \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{MIX}} = 3
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerated type to represent Fermion, Boson, etc.. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a40da0ddd6d39a53f8064c31f523560ca}{operator+}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T1 $>$ \&lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&rhs) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ decltype(std\+::declval$<$ T1 $>$()+std\+::declval$<$ T2 $>$())$>$
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: addition operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_afae823b533de3a1b9d269b9b30d7e388}{operator-\/}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T1 $>$ \&lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&rhs) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ decltype(std\+::declval$<$ T1 $>$() -\/ std\+::declval$<$ T2 $>$())$>$
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: subtraction operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_af68e0fefdd6f8dc9bc3c0c97be663a98}{operator$\ast$}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T1 $>$ \&lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&rhs) -\/$>$ decltype(std\+::declval$<$ T1 $>$() $\ast$std\+::declval$<$ T2 $>$())
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: multiplication operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a8e98a516cb8626c2693fc5b488fcc538}{operator$\ast$}} (const T1 lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&rhs) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ decltype(std\+::declval$<$ T1 $>$() $\ast$std\+::declval$<$ T2 $>$())$>$
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: multiplication operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_af13df11371b54e6a617c8447536e6ddf}{operator$\ast$}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T1 $>$ \&lhs, const T2 rhs) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ decltype(std\+::declval$<$ T1 $>$() $\ast$std\+::declval$<$ T2 $>$())$>$
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: multiplication operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1type_abb6429171e978e71a1fbd6682875ca56}{operator==}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T1 $>$ \&lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: equality operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1type_a2ef017632e376f62ac6a249c5b291b9c}{operator!=}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T1 $>$ \&lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: equality operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::ostream \& \mbox{\hyperlink{namespacecompnal_1_1type_ab565f905bc0e0a4cdea7cbee1b5c0da1}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T $>$ \&v)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: output operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 , typename T3 , typename T4 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a8af5e9e1992abb8fdbb92fdd759d57c5}{Calculate\+Vector\+Vector\+Sum}} (const T1 coeff\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&braket\+\_\+vector\+\_\+1, const T3 coeff\+\_\+2, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T4 $>$ \&braket\+\_\+vector\+\_\+2) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ decltype(std\+::declval$<$ T1 $>$() $\ast$std\+::declval$<$ T2 $>$()+std\+::declval$<$ T3 $>$() $\ast$std\+::declval$<$ T4 $>$())$>$
+\begin{DoxyCompactList}\small\item\em Calculate \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} summation, $ c_1\boldsymbol{v}_1 + c_2\boldsymbol{v}_2 $. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_acf3e8409776c307949c3e1fe254ff377}{Calculate\+Vector\+Vector\+Product}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T1 $>$ \&braket\+\_\+vector\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&braket\+\_\+vector\+\_\+2) -\/$>$ decltype(std\+::declval$<$ T1 $>$() $\ast$std\+::declval$<$ T2 $>$())
+\begin{DoxyCompactList}\small\item\em Calculate \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} innner product, $ \boldsymbol{v}_1\cdot\boldsymbol{v}_2 $. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_ae0f6d134554665bcce4747cb9d3efaf5}{Calculate\+Scalar\+Vector\+Product}} (const T1 value, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&braket\+\_\+vector) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ decltype(std\+::declval$<$ T1 $>$() $\ast$std\+::declval$<$ T2 $>$())$>$
+\begin{DoxyCompactList}\small\item\em Calculate scalar \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} product, $ c\boldsymbol{v} $. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 , typename T3 , typename T4 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a17052d79b206c32762146cbf191b374f}{Calculate\+L1\+Distance}} (const T1 coeff\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&braket\+\_\+vector\+\_\+1, const T3 coeff\+\_\+2, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T4 $>$ \&braket\+\_\+vector\+\_\+2) -\/$>$ decltype(std\+::declval$<$ T1 $>$() $\ast$std\+::declval$<$ T2 $>$() -\/ std\+::declval$<$ T3 $>$() $\ast$std\+::declval$<$ T4 $>$())
+\begin{DoxyCompactList}\small\item\em Calculate L1 distance, aka Manhattan distance, $ \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\|_1=\sum_{i}\|c_1v_{1,i} - c_2v_{2,i}\| $. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 , typename T3 , typename T4 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_ad1d77d463fb467111dce5c14cca2e2d5}{Calculate\+L2\+Distance}} (const T1 coeff\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&braket\+\_\+vector\+\_\+1, const T3 coeff\+\_\+2, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T4 $>$ \&braket\+\_\+vector\+\_\+2) -\/$>$ decltype(std\+::declval$<$ T1 $>$() $\ast$std\+::declval$<$ T2 $>$() -\/ std\+::declval$<$ T3 $>$() $\ast$std\+::declval$<$ T4 $>$())
+\begin{DoxyCompactList}\small\item\em Calculate L2 distance, aka Euclidean distance, $ \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\| $. \end{DoxyCompactList}\item 
+std\+::ostream \& \mbox{\hyperlink{namespacecompnal_1_1type_a6bfd3c989f30d42f945cb38a0cc873ad}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}} \&tag)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: output operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_adaf3ae4cec90114f1175e6ef52a9d9e0}{operator+}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&rhs) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ decltype(std\+::declval$<$ T1 $>$()+std\+::declval$<$ T2 $>$())$>$
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: addition operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a21eff381a9be0b72a6ffa32839dcc597}{operator-\/}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&rhs) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ decltype(std\+::declval$<$ T1 $>$() -\/ std\+::declval$<$ T2 $>$())$>$
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: subtraction operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_ab39e117226ed18d191c9fb40101caa9f}{operator$\ast$}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&rhs) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ decltype(std\+::declval$<$ T1 $>$() $\ast$std\+::declval$<$ T2 $>$())$>$
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: multiplication operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a76222be2181f3ff7599d3fa724b18864}{operator$\ast$}} (const T1 lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&rhs) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ decltype(std\+::declval$<$ T1 $>$() $\ast$std\+::declval$<$ T2 $>$())$>$
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: multiplication operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a3ca00cf9e2e8afadf942fb299a2cca9d}{operator$\ast$}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&lhs, const T2 rhs) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ decltype(std\+::declval$<$ T1 $>$() $\ast$std\+::declval$<$ T2 $>$())$>$
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: multiplication operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1type_a0ac388bfa253c05504da2301092939bf}{operator==}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: equality operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1type_a6f92334599a209b293d788605d89029f}{operator!=}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: equality operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::ostream \& \mbox{\hyperlink{namespacecompnal_1_1type_ad27c1cf5a9b467bdbdcc0d72d743c5a0}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T $>$ \&m)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: output operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 , typename T3 , typename T4 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_add38fc1fb1f7babb20b058653d949687}{Calculate\+Matrix\+Matrix\+Sum}} (const T1 coeff\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&matrix\+\_\+1, const T3 coeff\+\_\+2, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T4 $>$ \&matrix\+\_\+2) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ decltype(std\+::declval$<$ T1 $>$() $\ast$std\+::declval$<$ T2 $>$()+std\+::declval$<$ T3 $>$() $\ast$std\+::declval$<$ T4 $>$())$>$
+\begin{DoxyCompactList}\small\item\em Calculate matrix summation, $ c_{1}\hat{M}_{1} + c_{2}\hat{M}_{2}$. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 , typename T3 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a9180334d20402ec5bd10f8b982c8d069}{Calculate\+Matrix\+Matrix\+Product}} (const T1 coeff\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&matrix\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T3 $>$ \&matrix\+\_\+2) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ decltype(std\+::declval$<$ T1 $>$() $\ast$std\+::declval$<$ T2 $>$() $\ast$std\+::declval$<$ T3 $>$())$>$
+\begin{DoxyCompactList}\small\item\em Calculate matrix product, $ c_{1}\hat{M}_{1}\hat{M}_{2}$. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a75e2fe84321e8bdb8853194f74451c3b}{Calculate\+Scalar\+Matrix\+Product}} (const T1 coeff, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&matrix) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ decltype(std\+::declval$<$ T1 $>$() $\ast$std\+::declval$<$ T2 $>$())$>$
+\begin{DoxyCompactList}\small\item\em Calculate scalar \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} product, $ c\hat{M}$. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T $>$ \mbox{\hyperlink{namespacecompnal_1_1type_a59fb41af50a085e7de7640b31b6fd240}{Calculate\+Transposed\+Matrix}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T $>$ \&matrix)
+\begin{DoxyCompactList}\small\item\em Calculate transposed matrix, $ \hat{M}^{\dagger}$. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a9b08cd1cc210f7313ca403293d702166}{operator+}} (const Value\+Type lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: addition operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a5d1aa2ee0eec747859942ef1bbca8eb0}{operator+}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&lhs, const Value\+Type rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: addition operator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \mbox{\hyperlink{namespacecompnal_1_1type_a8d78f405833ca8841cf85e4c681e756b}{operator+}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: addition operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a4e711d785b1ede687153437f8ac67c61}{operator-\/}} (const Value\+Type lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: subtraction operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_aae69b144fcea1ea9f21f9be2496a6280}{operator-\/}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&lhs, const Value\+Type rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: subtraction operator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \mbox{\hyperlink{namespacecompnal_1_1type_a766984ff9b0528c6afb3d98bbf2b6899}{operator-\/}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: subtraction operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a1e4e5475b89250ca8c016d136cb8c721}{operator$\ast$}} (const Value\+Type lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: multiplication operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a568edadab37e626b00dd1e7ee66fc550}{operator$\ast$}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&lhs, const Value\+Type rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: multiplication operator. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacecompnal_1_1type_a40fa1a6abd727b9f6fe05acfacea7690}{operator$\ast$}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: multiplication operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a93b59ceab87692bf82acd36802619747}{operator/}} (const Value\+Type lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: division operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a9e71d439b29e7c67c602ac405fe074ab}{operator/}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&lhs, const Value\+Type rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: division operator. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{namespacecompnal_1_1type_aede5446b68435f708d7c203dee93a821}{operator/}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: division operator. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacecompnal_1_1type_ad2d2798c1ea9ee20b4defce948ae6723}{operator==}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: equality operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1type_a64b6cf325945652ff307e82bcab34a14}{operator==}} (const Value\+Type lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: equality operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1type_aab1ca04085edd567564b034416035d57}{operator==}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&lhs, const Value\+Type rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: equality operator. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacecompnal_1_1type_abba320b8a3de0a5f85d02ed14f12100e}{operator!=}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: inequality operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1type_a677ed82ce1151398ee1b2b9cb3c34204}{operator!=}} (const Value\+Type lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: inequality operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1type_a5544ff679f24a79b2ea11f016b063679}{operator!=}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&lhs, const Value\+Type rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: inequality operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1type_a64ca8ea83a892de78ee2bd6eec6f5b60}{operator$<$}} (const Value\+Type lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: comparison operator (less than). \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1type_a87272a0d6b0d25f431aa7f1467ad82ae}{operator$<$}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&lhs, const Value\+Type \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: comparison operator (less than). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacecompnal_1_1type_a172036efe6de12f6d99033f637187d6d}{operator$<$}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: comparison operator (less than). \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1type_a3d1a8bba09eb826843b52b60a4bcb86c}{operator$>$}} (const Value\+Type lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: comparison operator (greater than). \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1type_ad4ae558d1de1ca584c39912b4162181a}{operator$>$}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&lhs, const Value\+Type \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: comparison operator (greater than). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacecompnal_1_1type_a3b23a111800628daa9439ef730645ed2}{operator$>$}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: comparison operator (greater than). \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1type_a5f9db90871ad80fb5b7c215ddbb84013}{operator$<$=}} (const Value\+Type lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: comparison operator (less than or equal). \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1type_a8651ab997b3cdcbeb650f4524de1a5d2}{operator$<$=}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&lhs, const Value\+Type \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: comparison operator (less than or equal). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacecompnal_1_1type_a95d4ed5b8045f7826079fdf36dbc49dc}{operator$<$=}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: comparison operator (less than or equal). \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1type_a951c0a556b4d0f46a21aba5900dfdb02}{operator$>$=}} (const Value\+Type lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: comparison operator (greater than or equal). \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Value\+Type $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1type_ad6088b98b0fbb51efd0218cb7852bea0}{operator$>$=}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&lhs, const Value\+Type \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: comparison operator (greater than or equal). \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{namespacecompnal_1_1type_a8c4738eb5c2daccf3985ecd7cebc8375}{operator$>$=}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&lhs, const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: comparison operator (greater than or equal). \end{DoxyCompactList}\item 
+std\+::ostream \& \mbox{\hyperlink{namespacecompnal_1_1type_a704bbed72ad19e842995cedefbc09f87}{operator$<$$<$}} (std\+::ostream \&os, const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&half\+\_\+int)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: output operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}\label{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}} 
+\index{compnal::type@{compnal::type}!CRSTag@{CRSTag}}
+\index{CRSTag@{CRSTag}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{CRSTag}{CRSTag}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{compnal\+::type\+::\+CRSTag}}}
+
+
+
+Enumerated type to represent Fermion, Boson, etc.. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NONE@{NONE}!compnal::type@{compnal::type}}\index{compnal::type@{compnal::type}!NONE@{NONE}}}\mbox{\Hypertarget{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}\label{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}} 
+NONE&No taged. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FERMION@{FERMION}!compnal::type@{compnal::type}}\index{compnal::type@{compnal::type}!FERMION@{FERMION}}}\mbox{\Hypertarget{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}\label{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}} 
+FERMION&Fermionic operator. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOSON@{BOSON}!compnal::type@{compnal::type}}\index{compnal::type@{compnal::type}!BOSON@{BOSON}}}\mbox{\Hypertarget{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}\label{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}} 
+BOSON&Bosonic operator. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MIX@{MIX}!compnal::type@{compnal::type}}\index{compnal::type@{compnal::type}!MIX@{MIX}}}\mbox{\Hypertarget{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}\label{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}} 
+MIX&Sum of Fermion and Boson. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00031}{31}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacecompnal_1_1type_a40da0ddd6d39a53f8064c31f523560ca}\label{namespacecompnal_1_1type_a40da0ddd6d39a53f8064c31f523560ca}} 
+\index{compnal::type@{compnal::type}!operator+@{operator+}}
+\index{operator+@{operator+}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+auto compnal\+::type\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T1 $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$decltype(std\+::declval$<$T1$>$() + std\+::declval$<$T2$>$())$>$ }
+
+
+
+Operator overloading\+: addition operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of the left-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
+\hline
+{\em T2} & Value type of the right-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} of the left-\/hand side, $ \boldsymbol{v}_{\rm lhs} $. \\
+\hline
+{\em rhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} of the right-\/hand side, $ \boldsymbol{v}_{\rm rhs} $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} object, $ \boldsymbol{v}_{\rm lhs} + \boldsymbol{v}_{\rm rhs}$. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00289}{289}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_afae823b533de3a1b9d269b9b30d7e388}\label{namespacecompnal_1_1type_afae823b533de3a1b9d269b9b30d7e388}} 
+\index{compnal::type@{compnal::type}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+auto compnal\+::type\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T1 $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$decltype(std\+::declval$<$T1$>$() -\/ std\+::declval$<$T2$>$())$>$ }
+
+
+
+Operator overloading\+: subtraction operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of the left-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
+\hline
+{\em T2} & Value type of the right-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} of the left-\/hand side, $ \boldsymbol{v}_{\rm lhs} $. \\
+\hline
+{\em rhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} of the right-\/hand side, $ \boldsymbol{v}_{\rm rhs} $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} object, $ \boldsymbol{v}_{\rm lhs} - \boldsymbol{v}_{\rm rhs}$. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00301}{301}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_af68e0fefdd6f8dc9bc3c0c97be663a98}\label{namespacecompnal_1_1type_af68e0fefdd6f8dc9bc3c0c97be663a98}} 
+\index{compnal::type@{compnal::type}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+auto compnal\+::type\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T1 $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ decltype(std\+::declval$<$T1$>$()$\ast$std\+::declval$<$T2$>$()) }
+
+
+
+Operator overloading\+: multiplication operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of the left-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
+\hline
+{\em T2} & Value type of the right-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} of the left-\/hand side, $ \boldsymbol{v}_{\rm lhs} $. \\
+\hline
+{\em rhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} of the right-\/hand side, $ \boldsymbol{v}_{\rm rhs} $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Inner product, $ \boldsymbol{v}_{\rm lhs}\cdot\boldsymbol{v}_{\rm rhs}$. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00313}{313}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a8e98a516cb8626c2693fc5b488fcc538}\label{namespacecompnal_1_1type_a8e98a516cb8626c2693fc5b488fcc538}} 
+\index{compnal::type@{compnal::type}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+auto compnal\+::type\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const T1}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$decltype(std\+::declval$<$T1$>$()$\ast$std\+::declval$<$T2$>$())$>$ }
+
+
+
+Operator overloading\+: multiplication operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of the left-\/hand side. \\
+\hline
+{\em T2} & Value type of the right-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side, $ c_{\rm lhs}$. \\
+\hline
+{\em rhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} of the right-\/hand side, $ \boldsymbol{v}_{\rm rhs} $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} object, $ c_{\rm lhs}\boldsymbol{v}_{\rm rhs}$. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00325}{325}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_af13df11371b54e6a617c8447536e6ddf}\label{namespacecompnal_1_1type_af13df11371b54e6a617c8447536e6ddf}} 
+\index{compnal::type@{compnal::type}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+auto compnal\+::type\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T1 $>$ \&}]{lhs,  }\item[{const T2}]{rhs }\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$decltype(std\+::declval$<$T1$>$()$\ast$std\+::declval$<$T2$>$())$>$ }
+
+
+
+Operator overloading\+: multiplication operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of the left-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
+\hline
+{\em T2} & Value type of the right-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} of the left-\/hand side, $ \boldsymbol{v}_{\rm lhs} $. \\
+\hline
+{\em rhs} & The value of the right-\/hand side, $ c_{\rm rhs}$. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} object, $ \boldsymbol{v}_{\rm lhs}c_{\rm rhs} = c_{\rm rhs}\boldsymbol{v}_{\rm lhs}$. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00337}{337}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_abb6429171e978e71a1fbd6682875ca56}\label{namespacecompnal_1_1type_abb6429171e978e71a1fbd6682875ca56}} 
+\index{compnal::type@{compnal::type}!operator==@{operator==}}
+\index{operator==@{operator==}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+bool compnal\+::type\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T1 $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: equality operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of the left-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
+\hline
+{\em T2} & Value type of the right-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} of the left-\/hand side, $ \boldsymbol{v}_{\rm lhs} $. \\
+\hline
+{\em rhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} of the right-\/hand side, $ \boldsymbol{v}_{\rm rhs} $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return true if $ \boldsymbol{v}_{\rm lhs}=\boldsymbol{v}_{\rm rhs}$, otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00349}{349}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a2ef017632e376f62ac6a249c5b291b9c}\label{namespacecompnal_1_1type_a2ef017632e376f62ac6a249c5b291b9c}} 
+\index{compnal::type@{compnal::type}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+bool compnal\+::type\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T1 $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: equality operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of the left-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
+\hline
+{\em T2} & Value type of the right-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} of the left-\/hand side, $ \boldsymbol{v}_{\rm lhs} $. \\
+\hline
+{\em rhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} of the right-\/hand side, $ \boldsymbol{v}_{\rm rhs} $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return true if $ \boldsymbol{v}_{\rm lhs}\neq\boldsymbol{v}_{\rm rhs}$, otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00369}{369}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_ab565f905bc0e0a4cdea7cbee1b5c0da1}\label{namespacecompnal_1_1type_ab565f905bc0e0a4cdea7cbee1b5c0da1}} 
+\index{compnal::type@{compnal::type}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::ostream \& compnal\+::type\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T $>$ \&}]{v }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: output operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Type of \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em os} & Ostream object. \\
+\hline
+{\em v} & \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00378}{378}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a8af5e9e1992abb8fdbb92fdd759d57c5}\label{namespacecompnal_1_1type_a8af5e9e1992abb8fdbb92fdd759d57c5}} 
+\index{compnal::type@{compnal::type}!CalculateVectorVectorSum@{CalculateVectorVectorSum}}
+\index{CalculateVectorVectorSum@{CalculateVectorVectorSum}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{CalculateVectorVectorSum()}{CalculateVectorVectorSum()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 , typename T3 , typename T4 $>$ \\
+auto compnal\+::type\+::\+Calculate\+Vector\+Vector\+Sum (\begin{DoxyParamCaption}\item[{const T1}]{coeff\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&}]{braket\+\_\+vector\+\_\+1,  }\item[{const T3}]{coeff\+\_\+2,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T4 $>$ \&}]{braket\+\_\+vector\+\_\+2 }\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$decltype(std\+::declval$<$T1$>$()$\ast$std\+::declval$<$T2$>$() + std\+::declval$<$T3$>$()$\ast$std\+::declval$<$T4$>$())$>$ }
+
+
+
+Calculate \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} summation, $ c_1\boldsymbol{v}_1 + c_2\boldsymbol{v}_2 $. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of coeff\+\_\+1. \\
+\hline
+{\em T2} & Value type of braket\+\_\+vector\+\_\+1. \\
+\hline
+{\em T3} & Value type of coeff\+\_\+2. \\
+\hline
+{\em T4} & Value type of braket\+\_\+vector\+\_\+2. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em coeff\+\_\+1} & The coefficient $ c_1 $. \\
+\hline
+{\em braket\+\_\+vector\+\_\+1} & \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} $ \boldsymbol{v}_1$. \\
+\hline
+{\em coeff\+\_\+2} & The coefficient $ c_2 $. \\
+\hline
+{\em braket\+\_\+vector\+\_\+2} & \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} $ \boldsymbol{v}_2$. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} object, $ c_1\boldsymbol{v}_{1} + c_2\boldsymbol{v}_{2}$. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00403}{403}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_acf3e8409776c307949c3e1fe254ff377}\label{namespacecompnal_1_1type_acf3e8409776c307949c3e1fe254ff377}} 
+\index{compnal::type@{compnal::type}!CalculateVectorVectorProduct@{CalculateVectorVectorProduct}}
+\index{CalculateVectorVectorProduct@{CalculateVectorVectorProduct}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{CalculateVectorVectorProduct()}{CalculateVectorVectorProduct()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+auto compnal\+::type\+::\+Calculate\+Vector\+Vector\+Product (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T1 $>$ \&}]{braket\+\_\+vector\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&}]{braket\+\_\+vector\+\_\+2 }\end{DoxyParamCaption}) -\/$>$ decltype(std\+::declval$<$T1$>$()$\ast$std\+::declval$<$T2$>$()) }
+
+
+
+Calculate \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} innner product, $ \boldsymbol{v}_1\cdot\boldsymbol{v}_2 $. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of braket\+\_\+vector\+\_\+1. \\
+\hline
+{\em T2} & Value type of braket\+\_\+vector\+\_\+2. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em braket\+\_\+vector\+\_\+1} & \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} $ \boldsymbol{v}_1$. \\
+\hline
+{\em braket\+\_\+vector\+\_\+2} & \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} $ \boldsymbol{v}_2$. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Inner product $ \boldsymbol{v}_1\cdot\boldsymbol{v}_2 $. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00435}{435}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_ae0f6d134554665bcce4747cb9d3efaf5}\label{namespacecompnal_1_1type_ae0f6d134554665bcce4747cb9d3efaf5}} 
+\index{compnal::type@{compnal::type}!CalculateScalarVectorProduct@{CalculateScalarVectorProduct}}
+\index{CalculateScalarVectorProduct@{CalculateScalarVectorProduct}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{CalculateScalarVectorProduct()}{CalculateScalarVectorProduct()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+auto compnal\+::type\+::\+Calculate\+Scalar\+Vector\+Product (\begin{DoxyParamCaption}\item[{const T1}]{value,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&}]{braket\+\_\+vector }\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$decltype(std\+::declval$<$T1$>$()$\ast$std\+::declval$<$T2$>$())$>$ }
+
+
+
+Calculate scalar \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} product, $ c\boldsymbol{v} $. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of value. \\
+\hline
+{\em T2} & Value type of braket\+\_\+vector\+\_\+1. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The coefficient $ c$ \\
+\hline
+{\em braket\+\_\+vector} & \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} $ \boldsymbol{v}$. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} object $ c\boldsymbol{v} $. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00463}{463}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a17052d79b206c32762146cbf191b374f}\label{namespacecompnal_1_1type_a17052d79b206c32762146cbf191b374f}} 
+\index{compnal::type@{compnal::type}!CalculateL1Distance@{CalculateL1Distance}}
+\index{CalculateL1Distance@{CalculateL1Distance}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{CalculateL1Distance()}{CalculateL1Distance()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 , typename T3 , typename T4 $>$ \\
+auto compnal\+::type\+::\+Calculate\+L1\+Distance (\begin{DoxyParamCaption}\item[{const T1}]{coeff\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&}]{braket\+\_\+vector\+\_\+1,  }\item[{const T3}]{coeff\+\_\+2,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T4 $>$ \&}]{braket\+\_\+vector\+\_\+2 }\end{DoxyParamCaption}) -\/$>$ decltype(std\+::declval$<$T1$>$()$\ast$std\+::declval$<$T2$>$() -\/ std\+::declval$<$T3$>$()$\ast$std\+::declval$<$T4$>$()) }
+
+
+
+Calculate L1 distance, aka Manhattan distance, $ \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\|_1=\sum_{i}\|c_1v_{1,i} - c_2v_{2,i}\| $. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of coeff\+\_\+1. \\
+\hline
+{\em T2} & Value type of braket\+\_\+vector\+\_\+1. \\
+\hline
+{\em T3} & Value type of coeff\+\_\+2. \\
+\hline
+{\em T4} & Value type of braket\+\_\+vector\+\_\+2. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em coeff\+\_\+1} & The coefficient $ c_1 $. \\
+\hline
+{\em braket\+\_\+vector\+\_\+1} & \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} $ \boldsymbol{v}_1$. \\
+\hline
+{\em coeff\+\_\+2} & The coefficient $ c_2 $. \\
+\hline
+{\em braket\+\_\+vector\+\_\+2} & \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} $ \boldsymbol{v}_2$. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+L1\+Norm $ \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\|_1 $. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00490}{490}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_ad1d77d463fb467111dce5c14cca2e2d5}\label{namespacecompnal_1_1type_ad1d77d463fb467111dce5c14cca2e2d5}} 
+\index{compnal::type@{compnal::type}!CalculateL2Distance@{CalculateL2Distance}}
+\index{CalculateL2Distance@{CalculateL2Distance}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{CalculateL2Distance()}{CalculateL2Distance()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 , typename T3 , typename T4 $>$ \\
+auto compnal\+::type\+::\+Calculate\+L2\+Distance (\begin{DoxyParamCaption}\item[{const T1}]{coeff\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T2 $>$ \&}]{braket\+\_\+vector\+\_\+1,  }\item[{const T3}]{coeff\+\_\+2,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T4 $>$ \&}]{braket\+\_\+vector\+\_\+2 }\end{DoxyParamCaption}) -\/$>$ decltype(std\+::declval$<$T1$>$()$\ast$std\+::declval$<$T2$>$() -\/ std\+::declval$<$T3$>$()$\ast$std\+::declval$<$T4$>$()) }
+
+
+
+Calculate L2 distance, aka Euclidean distance, $ \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\| $. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of coeff\+\_\+1. \\
+\hline
+{\em T2} & Value type of braket\+\_\+vector\+\_\+1. \\
+\hline
+{\em T3} & Value type of coeff\+\_\+2. \\
+\hline
+{\em T4} & Value type of braket\+\_\+vector\+\_\+2. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em coeff\+\_\+1} & The coefficient $ c_1 $. \\
+\hline
+{\em braket\+\_\+vector\+\_\+1} & \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} $ \boldsymbol{v}_1$. \\
+\hline
+{\em coeff\+\_\+2} & The coefficient $ c_2 $. \\
+\hline
+{\em braket\+\_\+vector\+\_\+2} & \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} $ \boldsymbol{v}_2$. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+L2\+Norm $ \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\| $. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00527}{527}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a6bfd3c989f30d42f945cb38a0cc873ad}\label{namespacecompnal_1_1type_a6bfd3c989f30d42f945cb38a0cc873ad}} 
+\index{compnal::type@{compnal::type}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily std\+::ostream \& compnal\+::type\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}} \&}]{tag }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: output operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & Ostream object. \\
+\hline
+{\em tag} & CRSTag \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00049}{49}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_adaf3ae4cec90114f1175e6ef52a9d9e0}\label{namespacecompnal_1_1type_adaf3ae4cec90114f1175e6ef52a9d9e0}} 
+\index{compnal::type@{compnal::type}!operator+@{operator+}}
+\index{operator+@{operator+}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+auto compnal\+::type\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$decltype(std\+::declval$<$T1$>$() + std\+::declval$<$T2$>$())$>$ }
+
+
+
+Operator overloading\+: addition operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of the left-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object. \\
+\hline
+{\em T2} & Value type of the right-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object of the left-\/hand side, $ \hat{M}_{\rm lhs} $. \\
+\hline
+{\em rhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object of the right-\/hand side, $ \hat{M}_{\rm rhs} $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object, $ \hat{M}_{\rm lhs} + \hat{M}_{\rm rhs}$ 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00459}{459}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a21eff381a9be0b72a6ffa32839dcc597}\label{namespacecompnal_1_1type_a21eff381a9be0b72a6ffa32839dcc597}} 
+\index{compnal::type@{compnal::type}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+auto compnal\+::type\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$decltype(std\+::declval$<$T1$>$() -\/ std\+::declval$<$T2$>$())$>$ }
+
+
+
+Operator overloading\+: subtraction operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of the left-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object. \\
+\hline
+{\em T2} & Value type of the right-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object of the left-\/hand side, $ \hat{M}_{\rm lhs} $. \\
+\hline
+{\em rhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object of the right-\/hand side, $ \hat{M}_{\rm rhs} $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object, $ \hat{M}_{\rm lhs} - \hat{M}_{\rm rhs}$ 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00471}{471}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_ab39e117226ed18d191c9fb40101caa9f}\label{namespacecompnal_1_1type_ab39e117226ed18d191c9fb40101caa9f}} 
+\index{compnal::type@{compnal::type}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+auto compnal\+::type\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$decltype(std\+::declval$<$T1$>$()$\ast$std\+::declval$<$T2$>$())$>$ }
+
+
+
+Operator overloading\+: multiplication operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of the left-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object. \\
+\hline
+{\em T2} & Value type of the right-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object of the left-\/hand side, $ \hat{M}_{\rm lhs} $. \\
+\hline
+{\em rhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object of the right-\/hand side, $ \hat{M}_{\rm rhs} $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object, $ \hat{M}_{\rm lhs}\hat{M}_{\rm rhs}$ 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00483}{483}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a76222be2181f3ff7599d3fa724b18864}\label{namespacecompnal_1_1type_a76222be2181f3ff7599d3fa724b18864}} 
+\index{compnal::type@{compnal::type}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+auto compnal\+::type\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const T1}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&}]{rhs }\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$decltype(std\+::declval$<$T1$>$()$\ast$std\+::declval$<$T2$>$())$>$ }
+
+
+
+Operator overloading\+: multiplication operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of the left-\/hand side. \\
+\hline
+{\em T2} & Value type of the right-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side, $ c_{\rm lhs}$ \\
+\hline
+{\em rhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object of the right-\/hand side, $ \hat{M}_{\rm rhs} $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object, $ c_{\rm lhs}\hat{M}_{\rm rhs}$ 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00495}{495}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a3ca00cf9e2e8afadf942fb299a2cca9d}\label{namespacecompnal_1_1type_a3ca00cf9e2e8afadf942fb299a2cca9d}} 
+\index{compnal::type@{compnal::type}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+auto compnal\+::type\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&}]{lhs,  }\item[{const T2}]{rhs }\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$decltype(std\+::declval$<$T1$>$()$\ast$std\+::declval$<$T2$>$())$>$ }
+
+
+
+Operator overloading\+: multiplication operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of the left-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object. \\
+\hline
+{\em T2} & Value type of the right-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object of the left-\/hand side, $ \hat{M}_{\rm lhs} $. \\
+\hline
+{\em rhs} & The value of the right-\/hand side, $ c_{\rm rhs}$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object, $ \hat{M}_{\rm lhs}c_{\rm rhs}=c_{\rm rhs}\hat{M}_{\rm lhs}$ 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00507}{507}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a0ac388bfa253c05504da2301092939bf}\label{namespacecompnal_1_1type_a0ac388bfa253c05504da2301092939bf}} 
+\index{compnal::type@{compnal::type}!operator==@{operator==}}
+\index{operator==@{operator==}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+bool compnal\+::type\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: equality operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of the left-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object. \\
+\hline
+{\em T2} & Value type of the right-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object of the left-\/hand side, $ \hat{M}_{\rm lhs} $. \\
+\hline
+{\em rhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object of the right-\/hand side, $ \hat{M}_{\rm rhs} $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return true if $ hat{M}_{\rm lhs}=\hat{M}_{\rm rhs}$, otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00519}{519}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a6f92334599a209b293d788605d89029f}\label{namespacecompnal_1_1type_a6f92334599a209b293d788605d89029f}} 
+\index{compnal::type@{compnal::type}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+bool compnal\+::type\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T1 $>$ \&}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: equality operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of the left-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object. \\
+\hline
+{\em T2} & Value type of the right-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object of the left-\/hand side, $ \hat{M}_{\rm lhs} $. \\
+\hline
+{\em rhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object of the right-\/hand side, $ \hat{M}_{\rm rhs} $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return true if $ \hat{M}_{\rm lhs}\neq\hat{M}_{\rm rhs}$, otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00566}{566}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_ad27c1cf5a9b467bdbdcc0d72d743c5a0}\label{namespacecompnal_1_1type_ad27c1cf5a9b467bdbdcc0d72d743c5a0}} 
+\index{compnal::type@{compnal::type}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::ostream \& compnal\+::type\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T $>$ \&}]{m }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: output operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type of \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} matrix. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em os} & Ostream object. \\
+\hline
+{\em m} & The matrix as \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} form. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00578}{578}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_add38fc1fb1f7babb20b058653d949687}\label{namespacecompnal_1_1type_add38fc1fb1f7babb20b058653d949687}} 
+\index{compnal::type@{compnal::type}!CalculateMatrixMatrixSum@{CalculateMatrixMatrixSum}}
+\index{CalculateMatrixMatrixSum@{CalculateMatrixMatrixSum}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{CalculateMatrixMatrixSum()}{CalculateMatrixMatrixSum()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 , typename T3 , typename T4 $>$ \\
+auto compnal\+::type\+::\+Calculate\+Matrix\+Matrix\+Sum (\begin{DoxyParamCaption}\item[{const T1}]{coeff\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&}]{matrix\+\_\+1,  }\item[{const T3}]{coeff\+\_\+2,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T4 $>$ \&}]{matrix\+\_\+2 }\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$decltype(std\+::declval$<$T1$>$()$\ast$std\+::declval$<$T2$>$() + std\+::declval$<$T3$>$()$\ast$std\+::declval$<$T4$>$())$>$ }
+
+
+
+Calculate matrix summation, $ c_{1}\hat{M}_{1} + c_{2}\hat{M}_{2}$. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of coeff\+\_\+1. \\
+\hline
+{\em T2} & Value type of matrix\+\_\+1. \\
+\hline
+{\em T3} & Value type of coeff\+\_\+2. \\
+\hline
+{\em T4} & Value type of matrix\+\_\+2. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em coeff\+\_\+1} & The coefficient $ c_1 $. \\
+\hline
+{\em matrix\+\_\+1} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object of the left-\/hand side, $ \hat{M}_{1} $. \\
+\hline
+{\em coeff\+\_\+2} & The coefficient $ c_2 $. \\
+\hline
+{\em matrix\+\_\+2} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object of the right-\/hand side, $ \hat{M}_{2} $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object, $ c_{1}\hat{M}_{1} + c_{2}\hat{M}_{2}$ 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00608}{608}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a9180334d20402ec5bd10f8b982c8d069}\label{namespacecompnal_1_1type_a9180334d20402ec5bd10f8b982c8d069}} 
+\index{compnal::type@{compnal::type}!CalculateMatrixMatrixProduct@{CalculateMatrixMatrixProduct}}
+\index{CalculateMatrixMatrixProduct@{CalculateMatrixMatrixProduct}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{CalculateMatrixMatrixProduct()}{CalculateMatrixMatrixProduct()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 , typename T3 $>$ \\
+auto compnal\+::type\+::\+Calculate\+Matrix\+Matrix\+Product (\begin{DoxyParamCaption}\item[{const T1}]{coeff\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&}]{matrix\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T3 $>$ \&}]{matrix\+\_\+2 }\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$decltype(std\+::declval$<$T1$>$()$\ast$std\+::declval$<$T2$>$()$\ast$std\+::declval$<$T3$>$())$>$ }
+
+
+
+Calculate matrix product, $ c_{1}\hat{M}_{1}\hat{M}_{2}$. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of coeff\+\_\+1. \\
+\hline
+{\em T2} & Value type of matrix\+\_\+1. \\
+\hline
+{\em T3} & Value type of matrix\+\_\+2. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em coeff\+\_\+1} & The coefficient $ c_1 $. \\
+\hline
+{\em matrix\+\_\+1} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object of the left-\/hand side, $ \hat{M}_{1} $. \\
+\hline
+{\em matrix\+\_\+2} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object of the right-\/hand side, $ \hat{M}_{2} $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object, $ c_1\hat{M}_{1}\hat{M}_{2}$ 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00786}{786}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a75e2fe84321e8bdb8853194f74451c3b}\label{namespacecompnal_1_1type_a75e2fe84321e8bdb8853194f74451c3b}} 
+\index{compnal::type@{compnal::type}!CalculateScalarMatrixProduct@{CalculateScalarMatrixProduct}}
+\index{CalculateScalarMatrixProduct@{CalculateScalarMatrixProduct}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{CalculateScalarMatrixProduct()}{CalculateScalarMatrixProduct()}}
+{\footnotesize\ttfamily template$<$typename T1 , typename T2 $>$ \\
+auto compnal\+::type\+::\+Calculate\+Scalar\+Matrix\+Product (\begin{DoxyParamCaption}\item[{const T1}]{coeff,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T2 $>$ \&}]{matrix }\end{DoxyParamCaption}) -\/$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$decltype(std\+::declval$<$T1$>$()$\ast$std\+::declval$<$T2$>$())$>$ }
+
+
+
+Calculate scalar \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} product, $ c\hat{M}$. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T1} & Value type of coeff. \\
+\hline
+{\em T2} & Value type of matrix. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em coeff} & The coefficient $ c$ \\
+\hline
+{\em matrix} & \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object $ \hat{M}$. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object $ c\hat{M} $. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00887}{887}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a59fb41af50a085e7de7640b31b6fd240}\label{namespacecompnal_1_1type_a59fb41af50a085e7de7640b31b6fd240}} 
+\index{compnal::type@{compnal::type}!CalculateTransposedMatrix@{CalculateTransposedMatrix}}
+\index{CalculateTransposedMatrix@{CalculateTransposedMatrix}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{CalculateTransposedMatrix()}{CalculateTransposedMatrix()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T $>$ compnal\+::type\+::\+Calculate\+Transposed\+Matrix (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T $>$ \&}]{matrix }\end{DoxyParamCaption})}
+
+
+
+Calculate transposed matrix, $ \hat{M}^{\dagger}$. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type of \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object $ \hat{M}$. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object $ \hat{M}^{\dagger} $. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00918}{918}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a9b08cd1cc210f7313ca403293d702166}\label{namespacecompnal_1_1type_a9b08cd1cc210f7313ca403293d702166}} 
+\index{compnal::type@{compnal::type}!operator+@{operator+}}
+\index{operator+@{operator+}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+auto compnal\+::type\+::operator+ (\begin{DoxyParamCaption}\item[{const Value\+Type}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: addition operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type of the left-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00127}{127}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a5d1aa2ee0eec747859942ef1bbca8eb0}\label{namespacecompnal_1_1type_a5d1aa2ee0eec747859942ef1bbca8eb0}} 
+\index{compnal::type@{compnal::type}!operator+@{operator+}}
+\index{operator+@{operator+}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+auto compnal\+::type\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{lhs,  }\item[{const Value\+Type}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: addition operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type of the left-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00141}{141}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a8d78f405833ca8841cf85e4c681e756b}\label{namespacecompnal_1_1type_a8d78f405833ca8841cf85e4c681e756b}} 
+\index{compnal::type@{compnal::type}!operator+@{operator+}}
+\index{operator+@{operator+}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} compnal\+::type\+::operator+ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: addition operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00153}{153}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a4e711d785b1ede687153437f8ac67c61}\label{namespacecompnal_1_1type_a4e711d785b1ede687153437f8ac67c61}} 
+\index{compnal::type@{compnal::type}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+auto compnal\+::type\+::operator-\/ (\begin{DoxyParamCaption}\item[{const Value\+Type}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: subtraction operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type of the left-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00165}{165}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_aae69b144fcea1ea9f21f9be2496a6280}\label{namespacecompnal_1_1type_aae69b144fcea1ea9f21f9be2496a6280}} 
+\index{compnal::type@{compnal::type}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+auto compnal\+::type\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{lhs,  }\item[{const Value\+Type}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: subtraction operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type of the left-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00180}{180}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a766984ff9b0528c6afb3d98bbf2b6899}\label{namespacecompnal_1_1type_a766984ff9b0528c6afb3d98bbf2b6899}} 
+\index{compnal::type@{compnal::type}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} compnal\+::type\+::operator-\/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: subtraction operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00192}{192}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a1e4e5475b89250ca8c016d136cb8c721}\label{namespacecompnal_1_1type_a1e4e5475b89250ca8c016d136cb8c721}} 
+\index{compnal::type@{compnal::type}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+auto compnal\+::type\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const Value\+Type}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: multiplication operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type of the left-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00204}{204}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a568edadab37e626b00dd1e7ee66fc550}\label{namespacecompnal_1_1type_a568edadab37e626b00dd1e7ee66fc550}} 
+\index{compnal::type@{compnal::type}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+auto compnal\+::type\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{lhs,  }\item[{const Value\+Type}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: multiplication operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type of the left-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00218}{218}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a40fa1a6abd727b9f6fe05acfacea7690}\label{namespacecompnal_1_1type_a40fa1a6abd727b9f6fe05acfacea7690}} 
+\index{compnal::type@{compnal::type}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily double compnal\+::type\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: multiplication operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00230}{230}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a93b59ceab87692bf82acd36802619747}\label{namespacecompnal_1_1type_a93b59ceab87692bf82acd36802619747}} 
+\index{compnal::type@{compnal::type}!operator/@{operator/}}
+\index{operator/@{operator/}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator/()}{operator/()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+auto compnal\+::type\+::operator/ (\begin{DoxyParamCaption}\item[{const Value\+Type}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: division operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type of the left-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00242}{242}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a9e71d439b29e7c67c602ac405fe074ab}\label{namespacecompnal_1_1type_a9e71d439b29e7c67c602ac405fe074ab}} 
+\index{compnal::type@{compnal::type}!operator/@{operator/}}
+\index{operator/@{operator/}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator/()}{operator/()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+auto compnal\+::type\+::operator/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{lhs,  }\item[{const Value\+Type}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: division operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type of the left-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00256}{256}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_aede5446b68435f708d7c203dee93a821}\label{namespacecompnal_1_1type_aede5446b68435f708d7c203dee93a821}} 
+\index{compnal::type@{compnal::type}!operator/@{operator/}}
+\index{operator/@{operator/}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator/()}{operator/()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily double compnal\+::type\+::operator/ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: division operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00268}{268}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_ad2d2798c1ea9ee20b4defce948ae6723}\label{namespacecompnal_1_1type_ad2d2798c1ea9ee20b4defce948ae6723}} 
+\index{compnal::type@{compnal::type}!operator==@{operator==}}
+\index{operator==@{operator==}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily bool compnal\+::type\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: equality operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00278}{278}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a64b6cf325945652ff307e82bcab34a14}\label{namespacecompnal_1_1type_a64b6cf325945652ff307e82bcab34a14}} 
+\index{compnal::type@{compnal::type}!operator==@{operator==}}
+\index{operator==@{operator==}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+bool compnal\+::type\+::operator== (\begin{DoxyParamCaption}\item[{const Value\+Type}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: equality operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00287}{287}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_aab1ca04085edd567564b034416035d57}\label{namespacecompnal_1_1type_aab1ca04085edd567564b034416035d57}} 
+\index{compnal::type@{compnal::type}!operator==@{operator==}}
+\index{operator==@{operator==}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+bool compnal\+::type\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{lhs,  }\item[{const Value\+Type}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: equality operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00296}{296}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_abba320b8a3de0a5f85d02ed14f12100e}\label{namespacecompnal_1_1type_abba320b8a3de0a5f85d02ed14f12100e}} 
+\index{compnal::type@{compnal::type}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily bool compnal\+::type\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: inequality operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00306}{306}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a677ed82ce1151398ee1b2b9cb3c34204}\label{namespacecompnal_1_1type_a677ed82ce1151398ee1b2b9cb3c34204}} 
+\index{compnal::type@{compnal::type}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+bool compnal\+::type\+::operator!= (\begin{DoxyParamCaption}\item[{const Value\+Type}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: inequality operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00315}{315}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a5544ff679f24a79b2ea11f016b063679}\label{namespacecompnal_1_1type_a5544ff679f24a79b2ea11f016b063679}} 
+\index{compnal::type@{compnal::type}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+bool compnal\+::type\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{lhs,  }\item[{const Value\+Type}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: inequality operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00324}{324}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a64ca8ea83a892de78ee2bd6eec6f5b60}\label{namespacecompnal_1_1type_a64ca8ea83a892de78ee2bd6eec6f5b60}} 
+\index{compnal::type@{compnal::type}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+bool compnal\+::type\+::operator$<$ (\begin{DoxyParamCaption}\item[{const Value\+Type}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: comparison operator (less than). 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00336}{336}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a87272a0d6b0d25f431aa7f1467ad82ae}\label{namespacecompnal_1_1type_a87272a0d6b0d25f431aa7f1467ad82ae}} 
+\index{compnal::type@{compnal::type}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+bool compnal\+::type\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{lhs,  }\item[{const Value\+Type \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: comparison operator (less than). 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00345}{345}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a172036efe6de12f6d99033f637187d6d}\label{namespacecompnal_1_1type_a172036efe6de12f6d99033f637187d6d}} 
+\index{compnal::type@{compnal::type}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily bool compnal\+::type\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: comparison operator (less than). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00352}{352}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a3d1a8bba09eb826843b52b60a4bcb86c}\label{namespacecompnal_1_1type_a3d1a8bba09eb826843b52b60a4bcb86c}} 
+\index{compnal::type@{compnal::type}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$>$()}{operator>()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+bool compnal\+::type\+::operator$>$ (\begin{DoxyParamCaption}\item[{const Value\+Type}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: comparison operator (greater than). 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00361}{361}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_ad4ae558d1de1ca584c39912b4162181a}\label{namespacecompnal_1_1type_ad4ae558d1de1ca584c39912b4162181a}} 
+\index{compnal::type@{compnal::type}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$>$()}{operator>()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+bool compnal\+::type\+::operator$>$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{lhs,  }\item[{const Value\+Type \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: comparison operator (greater than). 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00370}{370}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a3b23a111800628daa9439ef730645ed2}\label{namespacecompnal_1_1type_a3b23a111800628daa9439ef730645ed2}} 
+\index{compnal::type@{compnal::type}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$>$()}{operator>()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily bool compnal\+::type\+::operator$>$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: comparison operator (greater than). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00377}{377}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a5f9db90871ad80fb5b7c215ddbb84013}\label{namespacecompnal_1_1type_a5f9db90871ad80fb5b7c215ddbb84013}} 
+\index{compnal::type@{compnal::type}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$<$=()}{operator<=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+bool compnal\+::type\+::operator$<$= (\begin{DoxyParamCaption}\item[{const Value\+Type}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: comparison operator (less than or equal). 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00386}{386}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a8651ab997b3cdcbeb650f4524de1a5d2}\label{namespacecompnal_1_1type_a8651ab997b3cdcbeb650f4524de1a5d2}} 
+\index{compnal::type@{compnal::type}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$<$=()}{operator<=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+bool compnal\+::type\+::operator$<$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{lhs,  }\item[{const Value\+Type \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: comparison operator (less than or equal). 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00395}{395}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a95d4ed5b8045f7826079fdf36dbc49dc}\label{namespacecompnal_1_1type_a95d4ed5b8045f7826079fdf36dbc49dc}} 
+\index{compnal::type@{compnal::type}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$<$=()}{operator<=()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily bool compnal\+::type\+::operator$<$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: comparison operator (less than or equal). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00402}{402}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a951c0a556b4d0f46a21aba5900dfdb02}\label{namespacecompnal_1_1type_a951c0a556b4d0f46a21aba5900dfdb02}} 
+\index{compnal::type@{compnal::type}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$>$=()}{operator>=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+bool compnal\+::type\+::operator$>$= (\begin{DoxyParamCaption}\item[{const Value\+Type}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: comparison operator (greater than or equal). 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00411}{411}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_ad6088b98b0fbb51efd0218cb7852bea0}\label{namespacecompnal_1_1type_ad6088b98b0fbb51efd0218cb7852bea0}} 
+\index{compnal::type@{compnal::type}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$>$=()}{operator>=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$typename Value\+Type $>$ \\
+bool compnal\+::type\+::operator$>$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{lhs,  }\item[{const Value\+Type \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: comparison operator (greater than or equal). 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Value\+Type} & Value type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00420}{420}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a8c4738eb5c2daccf3985ecd7cebc8375}\label{namespacecompnal_1_1type_a8c4738eb5c2daccf3985ecd7cebc8375}} 
+\index{compnal::type@{compnal::type}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$>$=()}{operator>=()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily bool compnal\+::type\+::operator$>$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{lhs,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{rhs }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: comparison operator (greater than or equal). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lhs} & The value of the left-\/hand side. \\
+\hline
+{\em rhs} & The value of the right-\/hand side. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00427}{427}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1type_a704bbed72ad19e842995cedefbc09f87}\label{namespacecompnal_1_1type_a704bbed72ad19e842995cedefbc09f87}} 
+\index{compnal::type@{compnal::type}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!compnal::type@{compnal::type}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$()}{operator<<()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily std\+::ostream \& compnal\+::type\+::operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_half_int}{Half\+Int}} \&}]{half\+\_\+int }\end{DoxyParamCaption})}
+
+
+
+Operator overloading\+: output operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & Ostream object. \\
+\hline
+{\em half\+\_\+int} & Half-\/integer. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{half__int_8hpp_source_l00437}{437}} of file \mbox{\hyperlink{half__int_8hpp_source}{half\+\_\+int.\+hpp}}.
+

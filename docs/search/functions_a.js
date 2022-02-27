@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['l1norm_0',['L1Norm',['../structcompnal_1_1sparse__matrix_1_1_braket_vector.html#a827fce19bf033d6317537d3f15ecca48',1,'compnal::sparse_matrix::BraketVector']]],
-  ['l2norm_1',['L2Norm',['../structcompnal_1_1sparse__matrix_1_1_braket_vector.html#a86a86a5b08913d8b9262e3b7c27d68cf',1,'compnal::sparse_matrix::BraketVector']]],
-  ['lapackdspgv_2',['LapackDspgv',['../namespacecompnal_1_1sparse__matrix.html#a027e3543114e86368649fd738a2f9f78',1,'compnal::sparse_matrix']]],
-  ['lapackdstev_3',['LapackDstev',['../namespacecompnal_1_1sparse__matrix.html#ae2d62a5674340dcaccc874b8a1acbc26',1,'compnal::sparse_matrix']]],
-  ['lapackdsyev_4',['LapackDsyev',['../namespacecompnal_1_1sparse__matrix.html#a7b228b82df60b48a8e1b225bf3ec3bf7',1,'compnal::sparse_matrix']]]
+  ['lapackdspgv_0',['LapackDspgv',['../d4/ded/namespacecompnal_1_1blas.html#aa9438b0418e763891a03cbfbcd22f38c',1,'compnal::blas']]],
+  ['lapackdstev_1',['LapackDstev',['../d4/ded/namespacecompnal_1_1blas.html#a8c894de4aabbacd7c8730917eb573df5',1,'compnal::blas']]],
+  ['lapackdsyev_2',['LapackDsyev',['../d4/ded/namespacecompnal_1_1blas.html#ad95086714ba0af598315dba0109fc282',1,'compnal::blas']]]
 ];

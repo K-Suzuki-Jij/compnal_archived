@@ -1,0 +1,167 @@
+\hypertarget{general__model_8hpp_source}{}\doxysection{general\+\_\+model.\+hpp}
+\label{general__model_8hpp_source}\index{src/model/general\_model.hpp@{src/model/general\_model.hpp}}
+\mbox{\hyperlink{general__model_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00001}00001 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00002}00002 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00003}00003 \textcolor{comment}{//  Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00004}00004 \textcolor{comment}{//  you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00005}00005 \textcolor{comment}{//  You may obtain a copy of the License at}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00006}00006 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00007}00007 \textcolor{comment}{//      http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00008}00008 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00009}00009 \textcolor{comment}{//  Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00010}00010 \textcolor{comment}{//  distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00011}00011 \textcolor{comment}{//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00012}00012 \textcolor{comment}{//  See the License for the specific language governing permissions and}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00013}00013 \textcolor{comment}{//  limitations under the License.}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00014}00014 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00015}00015 \textcolor{comment}{//  Created by Kohei Suzuki on 2021/11/27.}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00016}00016 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00018}00018 \textcolor{preprocessor}{\#ifndef COMPNAL\_MODEL\_GENERAL\_MODEL\_HPP\_}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00019}00019 \textcolor{preprocessor}{\#define COMPNAL\_MODEL\_GENERAL\_MODEL\_HPP\_}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00021}00021 \textcolor{preprocessor}{\#include "{}../blas/all.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00022}00022 \textcolor{preprocessor}{\#include "{}../utility/all.hpp"{}}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00024}00024 \textcolor{preprocessor}{\#include <variant>}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00025}00025 \textcolor{preprocessor}{\#include <unordered\_set>}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00027}00027 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00028}00028 \textcolor{keyword}{namespace }model \{}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00032}00032 \textcolor{keyword}{template}<\textcolor{keyword}{class} BaseClass>}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00033}\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{00033}} \textcolor{keyword}{class }\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model}{GeneralModel}}: \textcolor{keyword}{public} BaseClass \{}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00034}00034    }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00035}00035    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00036}00036    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Private Type Alias-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00037}00037    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00039}\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_acab09680bd0d9246de7b7d01fb0be7ea}{00039}} \textcolor{comment}{}   \textcolor{keyword}{using} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_acab09680bd0d9246de7b7d01fb0be7ea}{RealType}} = \textcolor{keyword}{typename} BaseClass::ValueType;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00040}00040    }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00042}\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a94204007e4bfbed4390c2b6a11050b45}{00042}}    \textcolor{keyword}{using} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} = \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type::CRS<RealType>}};}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00043}00043          }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00045}\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ad1dcfd5210c88a9e18553dafd333938e}{00045}}    \textcolor{keyword}{using} \mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash}{Hash}} = \mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash}{utility::VariantHash<std::int64\_t>}};}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00046}00046    }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00047}00047 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00048}00048    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00049}00049    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Public Type Alias-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00050}00050    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00052}\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa0fe422dcae3a6b7b81bf8ba9046c12a}{00052}} \textcolor{comment}{}   \textcolor{keyword}{using} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa0fe422dcae3a6b7b81bf8ba9046c12a}{IntegerType}} = std::int64\_t;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00053}00053    }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00055}\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aaf113170874461235acf8c9a38e7d400}{00055}}    \textcolor{keyword}{using} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aaf113170874461235acf8c9a38e7d400}{StringType}} = std::string;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00056}00056    }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00058}\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa7c4327cc0780b93fa797cea4e22e661}{00058}}    \textcolor{keyword}{using} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa7c4327cc0780b93fa797cea4e22e661}{VariantType}} = std::variant<IntegerType, StringType>;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00059}00059    }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00061}\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{00061}}    \textcolor{keyword}{using} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{IndexType}} = std::variant<IntegerType, StringType, std::vector<VariantType>>;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00062}00062    }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00064}\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a6909524fa6d5fae94fcbf627de24fbf4}{00064}}    \textcolor{keyword}{using} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a6909524fa6d5fae94fcbf627de24fbf4}{OnsiteListType}} = std::unordered\_map<IndexType, CRS, Hash>;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00065}00065    }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00067}\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aaaedb359cd2fa167e2ae9865f5d18e4c}{00067}}    \textcolor{keyword}{using} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aaaedb359cd2fa167e2ae9865f5d18e4c}{IntersiteListType}} = std::unordered\_map<IndexType, std::unordered\_map<IndexType, std::vector<std::pair<CRS, CRS>>, \mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash}{Hash}}>, \mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash}{Hash}}>;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00068}00068    }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00069}00069    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00070}00070    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Constructors-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00071}00071    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00072}00072    \textcolor{keyword}{using} BaseClass::BaseClass;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00073}00073       }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00074}00074    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00075}00075    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Public Member Functions-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00076}00076    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00081}\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a306a53addf17b4a49a5c4f979d65e750}{00081}} \textcolor{comment}{}   \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a306a53addf17b4a49a5c4f979d65e750}{AddPotential}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{IndexType}} \&site, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&m, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_acab09680bd0d9246de7b7d01fb0be7ea}{RealType}} val = 1.0) \{}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00082}00082       }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00083}00083       \textcolor{keywordflow}{if} (val == 0.0) \{}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00084}00084          \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00085}00085       \}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00086}00086 }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00087}00087       \textcolor{keywordflow}{if} (m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} != m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}) \{}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00088}00088          std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00089}00089          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_FUNCTION\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00090}00090          ss << \textcolor{stringliteral}{"{}The input matrix is not a square matrix."{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00091}00091          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00092}00092       \}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00093}00093       }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00094}00094       \textcolor{keywordflow}{if} (m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} != this-\/>GetDimOnsite()) \{}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00095}00095          std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00096}00096          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_FUNCTION\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00097}00097          ss << \textcolor{stringliteral}{"{}The input matrix is invalid"{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00098}00098          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00099}00099       \}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00100}00100 }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00101}00101       \textcolor{keywordflow}{if} (\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa9270da6d33798eed4465903e8de51cd}{potential\_list\_}}.count(site) == 0) \{}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00102}00102          \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa9270da6d33798eed4465903e8de51cd}{potential\_list\_}}[site] = val*m;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00103}00103       \}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00104}00104       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00105}00105          \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa9270da6d33798eed4465903e8de51cd}{potential\_list\_}}.at(site) = \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa9270da6d33798eed4465903e8de51cd}{potential\_list\_}}.at(site) + val*m;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00106}00106       \}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00107}00107       \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a7d37d82218483bb044c70de3008d3222}{index\_list\_}}.emplace(site);}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00108}00108    \}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00109}00109    }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00116}\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a1cf17d5728570f3598f6444da2d09d7a}{00116}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a1cf17d5728570f3598f6444da2d09d7a}{AddInteraction}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{IndexType}} \&site\_1, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_1, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{IndexType}} \&site\_2, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&m\_2, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_acab09680bd0d9246de7b7d01fb0be7ea}{RealType}} val = 1.0) \{}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00117}00117       \textcolor{keywordflow}{if} (val == 0.0) \{}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00118}00118          \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00119}00119       \}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00120}00120       \textcolor{keywordflow}{if} (m\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} != m\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} || m\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} != m\_2.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}) \{}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00121}00121          std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00122}00122          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_FUNCTION\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00123}00123          ss << \textcolor{stringliteral}{"{}The input matrix is not a square matrix."{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00124}00124          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00125}00125       \}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00126}00126       \textcolor{keywordflow}{if} (m\_1.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} != this-\/>GetDimOnsite()) \{}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00127}00127          std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00128}00128          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_FUNCTION\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00129}00129          ss << \textcolor{stringliteral}{"{}The input matrix is invalid"{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00130}00130          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00131}00131       \}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00132}00132 }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00133}00133       \textcolor{keywordflow}{if} (site\_1 == site\_2) \{}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00134}00134          \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a306a53addf17b4a49a5c4f979d65e750}{AddPotential}}(site\_1, m\_1*m\_2, val);}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00135}00135          \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00136}00136       \}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00137}00137       \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a32f92db6c157e455268dde147a78d27c}{interaction\_list\_}}[site\_1][site\_2].push\_back(\{val*m\_1, m\_2\});}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00138}00138       \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a7d37d82218483bb044c70de3008d3222}{index\_list\_}}.emplace(site\_1);}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00139}00139       \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a7d37d82218483bb044c70de3008d3222}{index\_list\_}}.emplace(site\_2);}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00140}00140    \}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00141}00141    }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00142}00142    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00143}00143    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Access Member variables-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00144}00144    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00147}\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab8a710a679276ddb0d5f909201f0ae1c}{00147}} \textcolor{comment}{}   std::int64\_t \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab8a710a679276ddb0d5f909201f0ae1c}{GetSystemSize}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00148}00148       \textcolor{keywordflow}{return} \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a7d37d82218483bb044c70de3008d3222}{index\_list\_}}.size());}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00149}00149    \}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00150}00150    }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00153}\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aaf6727c8961cba06bfda16f501fca7a4}{00153}}    \textcolor{keyword}{const} std::unordered\_set<IndexType, Hash> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aaf6727c8961cba06bfda16f501fca7a4}{GetIndexList}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00154}00154       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a7d37d82218483bb044c70de3008d3222}{index\_list\_}};}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00155}00155    \}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00156}00156    }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00159}\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a36e2760fa49dcd8e853d20a2d1ab53cd}{00159}}    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a6909524fa6d5fae94fcbf627de24fbf4}{OnsiteListType}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a36e2760fa49dcd8e853d20a2d1ab53cd}{GetPotentialList}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa9270da6d33798eed4465903e8de51cd}{potential\_list\_}}; \}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00160}00160    }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00164}\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a0fd799b2f10d89141058f0c43be75891}{00164}}    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a0fd799b2f10d89141058f0c43be75891}{GetPotential}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{IndexType}} \&site)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa9270da6d33798eed4465903e8de51cd}{potential\_list\_}}.at(site); \}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00165}00165    }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00168}\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a823653e68ea08af7bc13b9c8c6b7487b}{00168}}    \textcolor{keyword}{inline} \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aaaedb359cd2fa167e2ae9865f5d18e4c}{IntersiteListType}} \&\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a823653e68ea08af7bc13b9c8c6b7487b}{GetInteractionList}}()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a32f92db6c157e455268dde147a78d27c}{interaction\_list\_}}; \}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00169}00169    }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00174}\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab8ebb37695bfb6c4245822615e4200cc}{00174}}    \textcolor{keyword}{inline} \textcolor{keyword}{const} std::vector<std::pair<CRS, CRS>> \&\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_ab8ebb37695bfb6c4245822615e4200cc}{GetInteraction}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{IndexType}} \&site\_1, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_adf060ecadb682685745449609fa4cdfa}{IndexType}} \&site\_2)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00175}00175       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a32f92db6c157e455268dde147a78d27c}{interaction\_list\_}}.at(site\_1).at(site\_2);}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00176}00176    \}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00177}00177    }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00178}00178 \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00179}00179    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00180}00180    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Private Member Variables-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00181}00181    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00183}\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa9270da6d33798eed4465903e8de51cd}{00183}} \textcolor{comment}{}   \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a6909524fa6d5fae94fcbf627de24fbf4}{OnsiteListType}} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aa9270da6d33798eed4465903e8de51cd}{potential\_list\_}};}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00184}00184    }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00186}\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a32f92db6c157e455268dde147a78d27c}{00186}}    \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_aaaedb359cd2fa167e2ae9865f5d18e4c}{IntersiteListType}} \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a32f92db6c157e455268dde147a78d27c}{interaction\_list\_}};}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00187}00187    }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00189}\mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a7d37d82218483bb044c70de3008d3222}{00189}}    std::unordered\_set<IndexType, Hash> \mbox{\hyperlink{classcompnal_1_1model_1_1_general_model_a7d37d82218483bb044c70de3008d3222}{index\_list\_}};}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00190}00190    }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00191}00191 \};}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00192}00192 }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00193}00193 \} \textcolor{comment}{//namespace model}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00194}00194 \} \textcolor{comment}{//namespace compnal}}
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00195}00195 }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00196}00196 }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00197}00197 }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00198}00198 }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00199}00199 }
+\DoxyCodeLine{\Hypertarget{general__model_8hpp_source_l00200}00200 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_MODEL\_GENERAL\_MODEL\_HPP\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

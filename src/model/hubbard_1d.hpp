@@ -36,7 +36,7 @@ template<typename RealType>
 class Hubbard_1D: public BaseU1Electron_1D<RealType> {
    
    //! @brief Alias of compressed row strage (CRS) with RealType.
-   using CRS = sparse_matrix::CRS<RealType>;
+   using CRS = type::CRS<RealType>;
    
 public:
    

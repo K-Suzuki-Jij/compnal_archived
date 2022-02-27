@@ -48,28 +48,28 @@ TEST(ModelGeneralModel, U1Spin) {
 
    
    EXPECT_EQ(model.GetSystemSize(), 5);
-   EXPECT_EQ(model.GetIndexList().count(+1), 1);
-   EXPECT_EQ(model.GetIndexList().count(-1), 1);
-   EXPECT_EQ(model.GetIndexList().count(-2), 1);
-   EXPECT_EQ(model.GetIndexList().count("a"), 1);
-   EXPECT_EQ(model.GetIndexList().count(VariantVecType{1, "a"}), 1);
+   EXPECT_EQ(model.GetIndexList().count(+1), static_cast<unsigned long>(1));
+   EXPECT_EQ(model.GetIndexList().count(-1), static_cast<unsigned long>(1));
+   EXPECT_EQ(model.GetIndexList().count(-2), static_cast<unsigned long>(1));
+   EXPECT_EQ(model.GetIndexList().count("a"), static_cast<unsigned long>(1));
+   EXPECT_EQ(model.GetIndexList().count(VariantVecType{1, "a"}), static_cast<unsigned long>(1));
    
-   EXPECT_EQ(model.GetPotentialList().size(), 3);
+   EXPECT_EQ(model.GetPotentialList().size(), static_cast<unsigned long>(3));
    EXPECT_EQ(model.GetPotential(-1), sz + sm);
    EXPECT_EQ(model.GetPotential("a"), sp);
    EXPECT_EQ(model.GetPotential(VariantVecType{1, "a"}), sz + sp*sz);
 
-   EXPECT_EQ(model.GetInteraction(1, -2).size(), 1);
+   EXPECT_EQ(model.GetInteraction(1, -2).size(), static_cast<unsigned long>(1));
    EXPECT_EQ(model.GetInteraction(1, -2).at(0).first , sp);
    EXPECT_EQ(model.GetInteraction(1, -2).at(0).second, sm);
    
-   EXPECT_EQ(model.GetInteraction(1, "a").size(), 2);
+   EXPECT_EQ(model.GetInteraction(1, "a").size(), static_cast<unsigned long>(2));
    EXPECT_EQ(model.GetInteraction(1, "a").at(0).first , sp);
    EXPECT_EQ(model.GetInteraction(1, "a").at(0).second, sm);
    EXPECT_EQ(model.GetInteraction(1, "a").at(1).first , sm);
    EXPECT_EQ(model.GetInteraction(1, "a").at(1).second, sp);
    
-   EXPECT_EQ(model.GetInteraction(VariantVecType{1, "a"}, 1).size(), 1);
+   EXPECT_EQ(model.GetInteraction(VariantVecType{1, "a"}, 1).size(), static_cast<unsigned long>(1));
    EXPECT_EQ(model.GetInteraction(VariantVecType{1, "a"}, 1).at(0).first , sp);
    EXPECT_EQ(model.GetInteraction(VariantVecType{1, "a"}, 1).at(0).second, sm);
 }

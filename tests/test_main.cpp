@@ -17,6 +17,9 @@
 
 #include "model/test_base_u1_spin.hpp"
 #include "model/test_general_model.hpp"
+#include "type/test_half_int.hpp"
+#include "type/test_compressed_row_strage.hpp"
+#include "type/test_braket_vector.hpp"
 //#include "model/test_base_u1_electron_1d.hpp"
 //#include "model/test_base_u1_spin_electron_1d.hpp"
 //#include "model/test_base_u1_spin_multi_electrons_1d.hpp"

@@ -18,7 +18,7 @@
 #ifndef COMPNAL_MODEL_BASE_U1SPIN_HPP_
 #define COMPNAL_MODEL_BASE_U1SPIN_HPP_
 
-#include "../sparse_matrix/all.hpp"
+#include "../blas/all.hpp"
 #include "../utility/all.hpp"
 #include "../type/all.hpp"
 
@@ -45,7 +45,7 @@ class BaseU1Spin {
    using HalfInt = type::HalfInt;
    
    //! @brief Alias of compressed row strage (CRS) with RealType.
-   using CRS = sparse_matrix::CRS<RealType>;
+   using CRS = type::CRS<RealType>;
    
 public:
    //------------------------------------------------------------------
@@ -238,7 +238,7 @@ public:
       
       if (flag_display_info) {
          const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
-         const double time_sec   = static_cast<double>(time_count)/sparse_matrix::TIME_UNIT_CONSTANT;
+         const double time_sec   = static_cast<double>(time_count)/blas::TIME_UNIT_CONSTANT;
          std::cout << "\rElapsed time of generating basis:" << time_sec << "[sec]" << std::endl;
       }
       return basis;
@@ -327,7 +327,7 @@ public:
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{s}^{x}\f$.
    static CRS CreateOnsiteOperatorSx(const HalfInt magnitude_spin) {
-      return static_cast<RealType>(0.5)*(CreateOnsiteOperatorSp(magnitude_spin) + CreateOnsiteOperatorSm(magnitude_spin));
+      return RealType{0.5}*(CreateOnsiteOperatorSp(magnitude_spin) + CreateOnsiteOperatorSm(magnitude_spin));
    }
    
    //! @brief Generate the spin-\f$ S\f$ operator for the y-direction
@@ -335,7 +335,7 @@ public:
    //! @param magnitude_spin The magnitude of the spin \f$ S \f$.
    //! @return The matrix of \f$ i\hat{s}^{y}\f$.
    static CRS CreateOnsiteOperatoriSy(const HalfInt magnitude_spin) {
-      return static_cast<RealType>(0.5)*(CreateOnsiteOperatorSp(magnitude_spin) - CreateOnsiteOperatorSm(magnitude_spin));
+      return RealType{0.5}*(CreateOnsiteOperatorSp(magnitude_spin) - CreateOnsiteOperatorSm(magnitude_spin));
    }
    
    //! @brief Generate the spin-\f$ S\f$ operator for the z-direction \f$ \hat{s}^{z}\f$.
@@ -353,6 +353,7 @@ public:
          }
          matrix.row[row + 1] = matrix.col.size();
       }
+      matrix.tag = type::CRSTag::BOSON;
       return matrix;
    }
    
@@ -369,6 +370,7 @@ public:
          matrix.row[row] = matrix.col.size();
       }
       matrix.row[dim_onsite] = matrix.col.size();
+      matrix.tag = type::CRSTag::BOSON;
       return matrix;
    }
    
@@ -384,6 +386,7 @@ public:
          matrix.col.push_back(row - 1);
          matrix.row[row + 1] = matrix.col.size();
       }
+      matrix.tag = type::CRSTag::BOSON;
       return matrix;
    }
    

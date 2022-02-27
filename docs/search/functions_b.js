@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['multiplybyscalar_0',['MultiplyByScalar',['../structcompnal_1_1sparse__matrix_1_1_braket_vector.html#a84f352668f31818b5b947ca932d3b18f',1,'compnal::sparse_matrix::BraketVector::MultiplyByScalar()'],['../structcompnal_1_1sparse__matrix_1_1_c_r_s.html#a818173aa562d5c541552627b1570244f',1,'compnal::sparse_matrix::CRS::MultiplyByScalar()']]]
+  ['multiplybyscalar_0',['MultiplyByScalar',['../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#a5f9df72b25fd7df92422ba30a3ae4362',1,'compnal::type::BraketVector::MultiplyByScalar()'],['../dd/da8/classcompnal_1_1type_1_1_c_r_s.html#a1ce10267ddf6fd06620f57bc9b0a7e43',1,'compnal::type::CRS::MultiplyByScalar()']]]
 ];

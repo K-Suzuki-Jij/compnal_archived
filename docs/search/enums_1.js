@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['crstag_0',['CRSTag',['../namespacecompnal_1_1sparse__matrix.html#ab956f5ab317ec175be8c3b3d709880dc',1,'compnal::sparse_matrix']]]
+  ['crstag_0',['CRSTag',['../d4/df8/namespacecompnal_1_1type.html#aa249dd69b73057aa6d2d501c0825e11b',1,'compnal::type']]]
 ];

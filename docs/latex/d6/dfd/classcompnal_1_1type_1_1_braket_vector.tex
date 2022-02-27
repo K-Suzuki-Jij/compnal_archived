@@ -1,0 +1,677 @@
+\hypertarget{classcompnal_1_1type_1_1_braket_vector}{}\doxysection{compnal\+::type\+::Braket\+Vector\texorpdfstring{$<$}{<} Element\+Type \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classcompnal_1_1type_1_1_braket_vector}\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+
+
+The wrapper class of std\+::vector to represent braket. Note that there is no difference of \texorpdfstring{$<$}{<}bra$\vert$ and $\vert$ket\texorpdfstring{$>$}{>}, since the template parameter Element\+Type cannot accept Complex type.  
+
+
+
+
+{\ttfamily \#include $<$braket\+\_\+vector.\+hpp$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a3b251ed0ef41ee358fb1745e76a8116a}{Value\+Type}} = Element\+Type
+\begin{DoxyCompactList}\small\item\em Alias of Element\+Type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ad0c4db2f74e497854128093dd0adad3e}{Braket\+Vector}} ()
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_adb939432de4494e2aff22b3fd1b48717}{Braket\+Vector}} (const int64\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} class. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T  = Element\+Type$>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a6e2401a10d2931ef4695151430bcadd0}{Braket\+Vector}} (const std\+::initializer\+\_\+list$<$ T $>$ \&init)
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} class with initializer\+\_\+list. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T  = Element\+Type$>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_aaef7397e29c6b4378c08f352970916ce}{Braket\+Vector}} (const std\+::vector$<$ T $>$ \&init)
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} class with vector. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a9a8dded167ef3d52c498ae86a57294dd}{Braket\+Vector}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T $>$ \&vector)
+\begin{DoxyCompactList}\small\item\em Copy constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} class. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a683bca11d3dfdd1dd4dfa3f378d3a887}{Fill}} (const T value)
+\begin{DoxyCompactList}\small\item\em Fill the value to \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a966a4c6f874d236730031e59193ec90e}{Free}} ()
+\begin{DoxyCompactList}\small\item\em Clear the elements and free memory. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ad5d0d469065d6ee4b821e567941efe2e}{Assign}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T $>$ \&vector)
+\begin{DoxyCompactList}\small\item\em Assign \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ab1669113e17026b18833a349c7af7118}{Assign}} (const std\+::vector$<$ T $>$ \&vector)
+\begin{DoxyCompactList}\small\item\em Assign \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T  = Element\+Type$>$ }\\void \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a6dcac49ab1ca9eec9a0703a09b39e933}{Normalize}} (const T normalization\+\_\+factor=T\{1.\+0\})
+\begin{DoxyCompactList}\small\item\em Noemalize \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a5f9df72b25fd7df92422ba30a3ae4362}{Multiply\+By\+Scalar}} (const T coeff)
+\begin{DoxyCompactList}\small\item\em Multiply by scalar to the elements. \end{DoxyCompactList}\item 
+auto \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a1993ee07062625f8b03aec25e58e8694}{Calculate\+L1\+Norm}} () const
+\begin{DoxyCompactList}\small\item\em Calculate L1 norm. \end{DoxyCompactList}\item 
+auto \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a997cd03a4ed8ed3c4dfd4de690d4f091}{Calculate\+L2\+Norm}} () const
+\begin{DoxyCompactList}\small\item\em Calculate L2 norm. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a40b286720fc4ee9269c21981ad15b52a}{Print}} (const std\+::string display\+\_\+name=\char`\"{}Braket\+Vector\char`\"{}) const
+\begin{DoxyCompactList}\small\item\em Print \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} elements. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a34ad810a17b62d18223238c973b068bc}{Resize}} (const T n)
+\begin{DoxyCompactList}\small\item\em Resize \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \end{DoxyCompactList}\item 
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a5253d2f4d72befbcaf32fa943e47c27b}{Size}} () const
+\begin{DoxyCompactList}\small\item\em Return the \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} size as std\+::int64\+\_\+t. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a54d6b1e85225c536bb20f44de181687f}{operator+}} () const
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: unary plus operator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a795d202f847252dd4d097e90ee1718ba}{operator-\/}} () const
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: unary negation operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} \& \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_aceb28352617074c741fe187614d5799e}{operator+=}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: compound assignment plus operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} \& \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a452aabf044b58542d605a5a1d9e90967}{operator-\/=}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T $>$ \&rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: compound assignment plus operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a30184bb9766847064792231d509ca3b0}{operator std\+::vector$<$ T $>$}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: casting operator to std\+::vector$<$\+T$>$. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} \& \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ada5ca48bf12bf3424c64408c430807c5}{operator=}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} \&vector) \&
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: assignment operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ Element\+Type $>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}{value\+\_\+list}}
+\begin{DoxyCompactList}\small\item\em The elements of \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Return\+Type $>$ }\\Return\+Type \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ab300071e85901749211872ee07e3e924}{Calculate\+L1\+Norm}} () const
+\begin{DoxyCompactList}\small\item\em Calculate L1 norm. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Return\+Type $>$ }\\Return\+Type \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector_ad3932c0ab7811b7cb339314a887b737a}{Calculate\+L2\+Norm}} () const
+\begin{DoxyCompactList}\small\item\em Calculate L2 norm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Element\+Type$>$\newline
+class compnal\+::type\+::\+Braket\+Vector$<$ Element\+Type $>$}
+The wrapper class of std\+::vector to represent braket. Note that there is no difference of \texorpdfstring{$<$}{<}bra$\vert$ and $\vert$ket\texorpdfstring{$>$}{>}, since the template parameter Element\+Type cannot accept Complex type. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Element\+Type} & The value type of the vector elements. \\
+\hline
+\end{DoxyTemplParams}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00035}{35}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_a3b251ed0ef41ee358fb1745e76a8116a}\label{classcompnal_1_1type_1_1_braket_vector_a3b251ed0ef41ee358fb1745e76a8116a}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!ValueType@{ValueType}}
+\index{ValueType@{ValueType}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{ValueType}{ValueType}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::\+Value\+Type =  Element\+Type}
+
+
+
+Alias of Element\+Type. 
+
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00042}{42}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_ad0c4db2f74e497854128093dd0adad3e}\label{classcompnal_1_1type_1_1_braket_vector_ad0c4db2f74e497854128093dd0adad3e}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!BraketVector@{BraketVector}}
+\index{BraketVector@{BraketVector}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{BraketVector()}{BraketVector()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::\+Braket\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} class. 
+
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00056}{56}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_adb939432de4494e2aff22b3fd1b48717}\label{classcompnal_1_1type_1_1_braket_vector_adb939432de4494e2aff22b3fd1b48717}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!BraketVector@{BraketVector}}
+\index{BraketVector@{BraketVector}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{BraketVector()}{BraketVector()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::\+Braket\+Vector (\begin{DoxyParamCaption}\item[{const int64\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em size} & The size of \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00060}{60}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_a6e2401a10d2931ef4695151430bcadd0}\label{classcompnal_1_1type_1_1_braket_vector_a6e2401a10d2931ef4695151430bcadd0}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!BraketVector@{BraketVector}}
+\index{BraketVector@{BraketVector}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{BraketVector()}{BraketVector()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename T  = Element\+Type$>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::\+Braket\+Vector (\begin{DoxyParamCaption}\item[{const std\+::initializer\+\_\+list$<$ T $>$ \&}]{init }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} class with initializer\+\_\+list. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type of std\+::vector. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em init} & The vector elements. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00068}{68}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_aaef7397e29c6b4378c08f352970916ce}\label{classcompnal_1_1type_1_1_braket_vector_aaef7397e29c6b4378c08f352970916ce}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!BraketVector@{BraketVector}}
+\index{BraketVector@{BraketVector}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{BraketVector()}{BraketVector()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename T  = Element\+Type$>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::\+Braket\+Vector (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{init }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} class with vector. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type of std\+::vector. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em init} & The vector elements. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00074}{74}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_a9a8dded167ef3d52c498ae86a57294dd}\label{classcompnal_1_1type_1_1_braket_vector_a9a8dded167ef3d52c498ae86a57294dd}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!BraketVector@{BraketVector}}
+\index{BraketVector@{BraketVector}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{BraketVector()}{BraketVector()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename T $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::\+Braket\+Vector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T $>$ \&}]{vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} class. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type of the \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & The vector elements as \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00080}{80}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_a683bca11d3dfdd1dd4dfa3f378d3a887}\label{classcompnal_1_1type_1_1_braket_vector_a683bca11d3dfdd1dd4dfa3f378d3a887}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!Fill@{Fill}}
+\index{Fill@{Fill}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{Fill()}{Fill()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename T $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::\+Fill (\begin{DoxyParamCaption}\item[{const T}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Fill the value to \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em value} & To be filled in. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00092}{92}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_a966a4c6f874d236730031e59193ec90e}\label{classcompnal_1_1type_1_1_braket_vector_a966a4c6f874d236730031e59193ec90e}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!Free@{Free}}
+\index{Free@{Free}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{Free()}{Free()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::\+Free (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Clear the elements and free memory. 
+
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00100}{100}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_ad5d0d469065d6ee4b821e567941efe2e}\label{classcompnal_1_1type_1_1_braket_vector_ad5d0d469065d6ee4b821e567941efe2e}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!Assign@{Assign}}
+\index{Assign@{Assign}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{Assign()}{Assign()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename T $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::\+Assign (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T $>$ \&}]{vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assign \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type of the \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & The vector elements as \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00109}{109}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_ab1669113e17026b18833a349c7af7118}\label{classcompnal_1_1type_1_1_braket_vector_ab1669113e17026b18833a349c7af7118}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!Assign@{Assign}}
+\index{Assign@{Assign}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{Assign()}{Assign()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename T $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::\+Assign (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assign \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type of std\+::vector. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & The vector elements as std\+::vector. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00121}{121}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_a6dcac49ab1ca9eec9a0703a09b39e933}\label{classcompnal_1_1type_1_1_braket_vector_a6dcac49ab1ca9eec9a0703a09b39e933}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!Normalize@{Normalize}}
+\index{Normalize@{Normalize}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{Normalize()}{Normalize()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename T  = Element\+Type$>$ \\
+void \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::\+Normalize (\begin{DoxyParamCaption}\item[{const T}]{normalization\+\_\+factor = {\ttfamily T\{1.0\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Noemalize \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em normalization\+\_\+factor} & Normalized as $\|\boldsymbol{v}\|={\rm normalization\_factor} $. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00133}{133}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_a5f9df72b25fd7df92422ba30a3ae4362}\label{classcompnal_1_1type_1_1_braket_vector_a5f9df72b25fd7df92422ba30a3ae4362}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!MultiplyByScalar@{MultiplyByScalar}}
+\index{MultiplyByScalar@{MultiplyByScalar}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{MultiplyByScalar()}{MultiplyByScalar()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename T $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::\+Multiply\+By\+Scalar (\begin{DoxyParamCaption}\item[{const T}]{coeff }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Multiply by scalar to the elements. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em coeff} & The value to be multiplied. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00148}{148}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_a1993ee07062625f8b03aec25e58e8694}\label{classcompnal_1_1type_1_1_braket_vector_a1993ee07062625f8b03aec25e58e8694}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!CalculateL1Norm@{CalculateL1Norm}}
+\index{CalculateL1Norm@{CalculateL1Norm}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateL1Norm()}{CalculateL1Norm()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+auto \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::\+Calculate\+L1\+Norm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculate L1 norm. 
+
+\begin{DoxyReturn}{Returns}
+L1 norm. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00157}{157}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_a997cd03a4ed8ed3c4dfd4de690d4f091}\label{classcompnal_1_1type_1_1_braket_vector_a997cd03a4ed8ed3c4dfd4de690d4f091}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!CalculateL2Norm@{CalculateL2Norm}}
+\index{CalculateL2Norm@{CalculateL2Norm}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateL2Norm()}{CalculateL2Norm()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+auto \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::\+Calculate\+L2\+Norm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculate L2 norm. 
+
+\begin{DoxyReturn}{Returns}
+L2 norm. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00168}{168}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_a40b286720fc4ee9269c21981ad15b52a}\label{classcompnal_1_1type_1_1_braket_vector_a40b286720fc4ee9269c21981ad15b52a}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!Print@{Print}}
+\index{Print@{Print}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{Print()}{Print()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::\+Print (\begin{DoxyParamCaption}\item[{const std\+::string}]{display\+\_\+name = {\ttfamily \char`\"{}BraketVector$<$~ElementType~$>$\char`\"{}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Print \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} elements. 
+
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00178}{178}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_a34ad810a17b62d18223238c973b068bc}\label{classcompnal_1_1type_1_1_braket_vector_a34ad810a17b62d18223238c973b068bc}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!Resize@{Resize}}
+\index{Resize@{Resize}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{Resize()}{Resize()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename T $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::\+Resize (\begin{DoxyParamCaption}\item[{const T}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Resize \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em n} & \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} will be resized to n. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00188}{188}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_a5253d2f4d72befbcaf32fa943e47c27b}\label{classcompnal_1_1type_1_1_braket_vector_a5253d2f4d72befbcaf32fa943e47c27b}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!Size@{Size}}
+\index{Size@{Size}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{Size()}{Size()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} size as std\+::int64\+\_\+t. 
+
+\begin{DoxyReturn}{Returns}
+The size. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00192}{192}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_a54d6b1e85225c536bb20f44de181687f}\label{classcompnal_1_1type_1_1_braket_vector_a54d6b1e85225c536bb20f44de181687f}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::operator+ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Operator overloading\+: unary plus operator. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} object, $ +\boldsymbol{v} $. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00199}{199}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_a795d202f847252dd4d097e90ee1718ba}\label{classcompnal_1_1type_1_1_braket_vector_a795d202f847252dd4d097e90ee1718ba}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::operator-\/ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Operator overloading\+: unary negation operator. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} object, $ -\boldsymbol{v} $. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00205}{205}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_aceb28352617074c741fe187614d5799e}\label{classcompnal_1_1type_1_1_braket_vector_aceb28352617074c741fe187614d5799e}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename T $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} \& \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::operator+= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T $>$ \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Operator overloading\+: compound assignment plus operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type of the right-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} of the right-\/hand side, $ \boldsymbol{v}_{\rm rhs} $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} object, $ \boldsymbol{v} + \boldsymbol{v}_{\rm rhs}$. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00214}{214}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_a452aabf044b58542d605a5a1d9e90967}\label{classcompnal_1_1type_1_1_braket_vector_a452aabf044b58542d605a5a1d9e90967}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename T $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} \& \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::operator-\/= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ T $>$ \&}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Operator overloading\+: compound assignment plus operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type of the right-\/hand side \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} of the right-\/hand side, $ \boldsymbol{v}_{\rm rhs} $. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} object, $ \boldsymbol{v} - \boldsymbol{v}_{\rm rhs}$. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00223}{223}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_a30184bb9766847064792231d509ca3b0}\label{classcompnal_1_1type_1_1_braket_vector_a30184bb9766847064792231d509ca3b0}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!operator std::vector$<$ T $>$@{operator std::vector$<$ T $>$}}
+\index{operator std::vector$<$ T $>$@{operator std::vector$<$ T $>$}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{operator std::vector$<$ T $>$()}{operator std::vector< T >()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename T $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::operator std\+::vector$<$ T $>$ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [noexcept]}}
+
+
+
+Operator overloading\+: casting operator to std\+::vector$<$\+T$>$. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type of std\+::vector. \\
+\hline
+\end{DoxyTemplParams}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00230}{230}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_ada5ca48bf12bf3424c64408c430807c5}\label{classcompnal_1_1type_1_1_braket_vector_ada5ca48bf12bf3424c64408c430807c5}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} \& \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}$<$ Element\+Type $>$ \&}]{vector }\end{DoxyParamCaption}) \&\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Operator overloading\+: assignment operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} to be assigned. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} object. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00242}{242}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_ab300071e85901749211872ee07e3e924}\label{classcompnal_1_1type_1_1_braket_vector_ab300071e85901749211872ee07e3e924}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!CalculateL1Norm@{CalculateL1Norm}}
+\index{CalculateL1Norm@{CalculateL1Norm}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateL1Norm()}{CalculateL1Norm()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename Return\+Type $>$ \\
+Return\+Type \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::\+Calculate\+L1\+Norm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Calculate L1 norm. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Return\+Type} & Type of the return value. \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+L1 norm. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00255}{255}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_ad3932c0ab7811b7cb339314a887b737a}\label{classcompnal_1_1type_1_1_braket_vector_ad3932c0ab7811b7cb339314a887b737a}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!CalculateL2Norm@{CalculateL2Norm}}
+\index{CalculateL2Norm@{CalculateL2Norm}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateL2Norm()}{CalculateL2Norm()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename Return\+Type $>$ \\
+Return\+Type \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::\+Calculate\+L2\+Norm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Calculate L2 norm. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Return\+Type} & Type of the return value. \\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyReturn}{Returns}
+L2 norm. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00268}{268}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}\label{classcompnal_1_1type_1_1_braket_vector_a0e831d56c4b7fba402c9f4c70373b50a}} 
+\index{compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}!value\_list@{value\_list}}
+\index{value\_list@{value\_list}!compnal::type::BraketVector$<$ ElementType $>$@{compnal::type::BraketVector$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{value\_list}{value\_list}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+std\+::vector$<$Element\+Type$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{compnal\+::type\+::\+Braket\+Vector}}$<$ Element\+Type $>$\+::value\+\_\+list}
+
+
+
+The elements of \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}}. 
+
+
+
+Definition at line \mbox{\hyperlink{braket__vector_8hpp_source_l00049}{49}} of file \mbox{\hyperlink{braket__vector_8hpp_source}{braket\+\_\+vector.\+hpp}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/type/\mbox{\hyperlink{braket__vector_8hpp}{braket\+\_\+vector.\+hpp}}\end{DoxyCompactItemize}

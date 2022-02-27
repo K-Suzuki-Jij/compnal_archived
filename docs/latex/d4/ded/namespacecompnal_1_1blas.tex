@@ -1,0 +1,269 @@
+\hypertarget{namespacecompnal_1_1blas}{}\doxysection{compnal\+::blas Namespace Reference}
+\label{namespacecompnal_1_1blas}\index{compnal::blas@{compnal::blas}}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_all}{Parameters\+All}}
+\item 
+struct \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_c_g}{Parameters\+CG}}
+\item 
+struct \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_i_i}{Parameters\+II}}
+\item 
+struct \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_lanczos}{Parameters\+Lanczos}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\std\+::pair$<$ int, double $>$ \mbox{\hyperlink{namespacecompnal_1_1blas_aada41a4581ddc0dc68722f8c5dc3ae5e}{Conjugate\+Gradient}} (\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $\ast$vec\+\_\+out, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+in, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ \&vec\+\_\+in, const \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_c_g}{Parameters\+CG}} \&params=\mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_c_g}{Parameters\+CG}}(), const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $>$ \&subspace\+\_\+vectors=\{\})
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\std\+::pair$<$ int, double $>$ \mbox{\hyperlink{namespacecompnal_1_1blas_a41a8fbd0adade2a6702b987c653abf7b}{Eigenvalue\+Decomposition\+Lanczos}} (Real\+Type $\ast$target\+\_\+value\+\_\+out, \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $\ast$target\+\_\+vector\+\_\+out, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+in, const int target\+\_\+level, const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $>$ \&subspace\+\_\+vectors, const \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_lanczos}{Parameters\+Lanczos}} \&params=\mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_lanczos}{Parameters\+Lanczos}}())
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\std\+::pair$<$ int, double $>$ \mbox{\hyperlink{namespacecompnal_1_1blas_ac83d4397d2ebb218b629cb5a1c37c6a2}{Eigenvalue\+Decomposition\+Lanczos}} (Real\+Type $\ast$gs\+\_\+value\+\_\+out, \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $\ast$gs\+\_\+vector\+\_\+out, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+in, const \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_lanczos}{Parameters\+Lanczos}} \&params=\mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_lanczos}{Parameters\+Lanczos}}())
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\std\+::pair$<$ int, double $>$ \mbox{\hyperlink{namespacecompnal_1_1blas_a1f728907b3675c8558f09749abf793af}{Eigenvalue\+Decomposition\+LOBPCG}} (Real\+Type $\ast$gs\+\_\+value\+\_\+out, \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $\ast$gs\+\_\+vector\+\_\+out, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+in, const \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_lanczos}{Parameters\+Lanczos}} \&params=\mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_lanczos}{Parameters\+Lanczos}}())
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\std\+::pair$<$ int, double $>$ \mbox{\hyperlink{namespacecompnal_1_1blas_a145ac10a26aba079daa9fba3af245f89}{Inverse\+Iteration}} (\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ $\ast$matrix\+\_\+in, \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $\ast$eigenvector, const Real\+Type eigenvalue, const \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_i_i}{Parameters\+II}} \&params=\mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_i_i}{Parameters\+II}}(), const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $>$ \&subspace\+\_\+vectors=\{\})
+\item 
+void \mbox{\hyperlink{namespacecompnal_1_1blas_a38372ba49e6890655ba310a1d1016301}{dsyev\+\_\+}} (const char \&JOBZ, const char \&UPLO, const int \&N, double $\ast$$\ast$A, const int \&LDA, double $\ast$W, double $\ast$work, const int \&Lwork, int \&INFO)
+\item 
+void \mbox{\hyperlink{namespacecompnal_1_1blas_a0eab548c93d2f1432d8483ae795b54c0}{dstev\+\_\+}} (const char \&JOBZ, const int \&N, double $\ast$D, double $\ast$E, double $\ast$$\ast$Z, const int \&LDZ, double $\ast$WORK, int \&INFO)
+\item 
+void \mbox{\hyperlink{namespacecompnal_1_1blas_aebf338c728e6f6803f320d7938f6c9d5}{dspgv\+\_\+}} (const int \&ITYPE, const char \&JOBZ, const char \&UPLO, const int \&N, double $\ast$AP, double $\ast$BP, double $\ast$W, double $\ast$$\ast$Z, const int \&LDZ, double $\ast$WORK, int \&INFO)
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1blas_ad95086714ba0af598315dba0109fc282}{Lapack\+Dsyev}} (Real\+Type $\ast$gs\+\_\+value, std\+::vector$<$ Real\+Type $>$ $\ast$gs\+\_\+vector, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+in, const int target\+\_\+level=0)
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1blas_a8c894de4aabbacd7c8730917eb573df5}{Lapack\+Dstev}} (Real\+Type $\ast$gs\+\_\+value, std\+::vector$<$ Real\+Type $>$ $\ast$gs\+\_\+vector, const std\+::vector$<$ Real\+Type $>$ \&diag, const std\+::vector$<$ Real\+Type $>$ \&off\+\_\+diag)
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1blas_aa9438b0418e763891a03cbfbcd22f38c}{Lapack\+Dspgv}} (std\+::vector$<$ Real\+Type $>$ $\ast$eigenvalues, std\+::vector$<$ Real\+Type $>$ $\ast$eigenvectors, const int i\+\_\+type, const int dim, const std\+::vector$<$ Real\+Type $>$ \&mat\+\_\+a, const std\+::vector$<$ Real\+Type $>$ \&mat\+\_\+b)
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1blas_af325cf8275d75278e2758dc1419f86f5}{Calculate\+Matrix\+Vector\+Product}} (\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $\ast$vector\+\_\+out, const Real\+Type coeef, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+in, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ \&vector\+\_\+in)
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1blas_aeeec1b8a9d956be99035a82b732b15b4}{Calculate\+Symmetric\+Matrix\+Vector\+Product}} (\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $\ast$vector\+\_\+out, const Real\+Type coeef, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+in, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ \&vector\+\_\+in, std\+::vector$<$ std\+::vector$<$ Real\+Type $>$ $>$ $\ast$vectors\+\_\+work)
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1blas_a5b3e1586b7800ee66fb6c6612a3db5ef}{Calculate\+Symmetric\+Matrix\+Vector\+Product}} (\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $\ast$vector\+\_\+out, const Real\+Type coeef, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+in, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ \&vector\+\_\+in)
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ \mbox{\hyperlink{namespacecompnal_1_1blas_a7102eb471402c962a27565b9bcb6e3c9}{Calculate\+Matrix\+Vector\+Product}} (const Real\+Type coeef, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+in, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ \&vector\+\_\+in)
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ \mbox{\hyperlink{namespacecompnal_1_1blas_a451ecffdd7816999035e938c48e86669}{Calculate\+Symmetric\+Matrix\+Vector\+Product}} (const Real\+Type coeef, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+in, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ \&vector\+\_\+in, std\+::vector$<$ std\+::vector$<$ Real\+Type $>$ $>$ $\ast$vectors\+\_\+work)
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ \mbox{\hyperlink{namespacecompnal_1_1blas_a6a5d23a7342722e87e76a39b8e4cf031}{Calculate\+Symmetric\+Matrix\+Vector\+Product}} (const Real\+Type coeef, const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&matrix\+\_\+in, const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ \&vector\+\_\+in)
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1blas_ae30f924effa78f04d9e973b3525ed4b7}{Orthonormalize}} (std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $>$ $\ast$vectors)
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1blas_ae84dc5fa7300de09e82132e364928b7c}{Orthonormalize}} (\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $\ast$target\+\_\+vector, const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $>$ \&vectors)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int \mbox{\hyperlink{namespacecompnal_1_1blas_aa1196aeb106e923cc2ad6c17fea58f26}{TIME\+\_\+\+UNIT\+\_\+\+CONSTANT}} = 1000$\ast$1000
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacecompnal_1_1blas_aada41a4581ddc0dc68722f8c5dc3ae5e}\label{namespacecompnal_1_1blas_aada41a4581ddc0dc68722f8c5dc3ae5e}} 
+\index{compnal::blas@{compnal::blas}!ConjugateGradient@{ConjugateGradient}}
+\index{ConjugateGradient@{ConjugateGradient}!compnal::blas@{compnal::blas}}
+\doxysubsubsection{\texorpdfstring{ConjugateGradient()}{ConjugateGradient()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::pair$<$ int, double $>$ compnal\+::blas\+::\+Conjugate\+Gradient (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $\ast$}]{vec\+\_\+out,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+in,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ \&}]{vec\+\_\+in,  }\item[{const \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_c_g}{Parameters\+CG}} \&}]{params = {\ttfamily \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_c_g}{Parameters\+CG}}()},  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $>$ \&}]{subspace\+\_\+vectors = {\ttfamily \{\}} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{conjugate__gradient_8hpp_source_l00035}{35}} of file \mbox{\hyperlink{conjugate__gradient_8hpp_source}{conjugate\+\_\+gradient.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1blas_a41a8fbd0adade2a6702b987c653abf7b}\label{namespacecompnal_1_1blas_a41a8fbd0adade2a6702b987c653abf7b}} 
+\index{compnal::blas@{compnal::blas}!EigenvalueDecompositionLanczos@{EigenvalueDecompositionLanczos}}
+\index{EigenvalueDecompositionLanczos@{EigenvalueDecompositionLanczos}!compnal::blas@{compnal::blas}}
+\doxysubsubsection{\texorpdfstring{EigenvalueDecompositionLanczos()}{EigenvalueDecompositionLanczos()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::pair$<$ int, double $>$ compnal\+::blas\+::\+Eigenvalue\+Decomposition\+Lanczos (\begin{DoxyParamCaption}\item[{Real\+Type $\ast$}]{target\+\_\+value\+\_\+out,  }\item[{\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $\ast$}]{target\+\_\+vector\+\_\+out,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+in,  }\item[{const int}]{target\+\_\+level,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $>$ \&}]{subspace\+\_\+vectors,  }\item[{const \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_lanczos}{Parameters\+Lanczos}} \&}]{params = {\ttfamily \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_lanczos}{Parameters\+Lanczos}}()} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{eigendecomposition_8hpp_source_l00075}{75}} of file \mbox{\hyperlink{eigendecomposition_8hpp_source}{eigendecomposition.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1blas_ac83d4397d2ebb218b629cb5a1c37c6a2}\label{namespacecompnal_1_1blas_ac83d4397d2ebb218b629cb5a1c37c6a2}} 
+\index{compnal::blas@{compnal::blas}!EigenvalueDecompositionLanczos@{EigenvalueDecompositionLanczos}}
+\index{EigenvalueDecompositionLanczos@{EigenvalueDecompositionLanczos}!compnal::blas@{compnal::blas}}
+\doxysubsubsection{\texorpdfstring{EigenvalueDecompositionLanczos()}{EigenvalueDecompositionLanczos()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::pair$<$ int, double $>$ compnal\+::blas\+::\+Eigenvalue\+Decomposition\+Lanczos (\begin{DoxyParamCaption}\item[{Real\+Type $\ast$}]{gs\+\_\+value\+\_\+out,  }\item[{\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $\ast$}]{gs\+\_\+vector\+\_\+out,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+in,  }\item[{const \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_lanczos}{Parameters\+Lanczos}} \&}]{params = {\ttfamily \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_lanczos}{Parameters\+Lanczos}}()} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{eigendecomposition_8hpp_source_l00303}{303}} of file \mbox{\hyperlink{eigendecomposition_8hpp_source}{eigendecomposition.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1blas_a1f728907b3675c8558f09749abf793af}\label{namespacecompnal_1_1blas_a1f728907b3675c8558f09749abf793af}} 
+\index{compnal::blas@{compnal::blas}!EigenvalueDecompositionLOBPCG@{EigenvalueDecompositionLOBPCG}}
+\index{EigenvalueDecompositionLOBPCG@{EigenvalueDecompositionLOBPCG}!compnal::blas@{compnal::blas}}
+\doxysubsubsection{\texorpdfstring{EigenvalueDecompositionLOBPCG()}{EigenvalueDecompositionLOBPCG()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::pair$<$ int, double $>$ compnal\+::blas\+::\+Eigenvalue\+Decomposition\+LOBPCG (\begin{DoxyParamCaption}\item[{Real\+Type $\ast$}]{gs\+\_\+value\+\_\+out,  }\item[{\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $\ast$}]{gs\+\_\+vector\+\_\+out,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+in,  }\item[{const \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_lanczos}{Parameters\+Lanczos}} \&}]{params = {\ttfamily \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_lanczos}{Parameters\+Lanczos}}()} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{eigendecomposition_8hpp_source_l00516}{516}} of file \mbox{\hyperlink{eigendecomposition_8hpp_source}{eigendecomposition.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1blas_a145ac10a26aba079daa9fba3af245f89}\label{namespacecompnal_1_1blas_a145ac10a26aba079daa9fba3af245f89}} 
+\index{compnal::blas@{compnal::blas}!InverseIteration@{InverseIteration}}
+\index{InverseIteration@{InverseIteration}!compnal::blas@{compnal::blas}}
+\doxysubsubsection{\texorpdfstring{InverseIteration()}{InverseIteration()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::pair$<$ int, double $>$ compnal\+::blas\+::\+Inverse\+Iteration (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ $\ast$}]{matrix\+\_\+in,  }\item[{\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $\ast$}]{eigenvector,  }\item[{const Real\+Type}]{eigenvalue,  }\item[{const \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_i_i}{Parameters\+II}} \&}]{params = {\ttfamily \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_i_i}{Parameters\+II}}()},  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $>$ \&}]{subspace\+\_\+vectors = {\ttfamily \{\}} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{inverse__iteration_8hpp_source_l00028}{28}} of file \mbox{\hyperlink{inverse__iteration_8hpp_source}{inverse\+\_\+iteration.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1blas_a38372ba49e6890655ba310a1d1016301}\label{namespacecompnal_1_1blas_a38372ba49e6890655ba310a1d1016301}} 
+\index{compnal::blas@{compnal::blas}!dsyev\_@{dsyev\_}}
+\index{dsyev\_@{dsyev\_}!compnal::blas@{compnal::blas}}
+\doxysubsubsection{\texorpdfstring{dsyev\_()}{dsyev\_()}}
+{\footnotesize\ttfamily void compnal\+::blas\+::dsyev\+\_\+ (\begin{DoxyParamCaption}\item[{const char \&}]{JOBZ,  }\item[{const char \&}]{UPLO,  }\item[{const int \&}]{N,  }\item[{double $\ast$$\ast$}]{A,  }\item[{const int \&}]{LDA,  }\item[{double $\ast$}]{W,  }\item[{double $\ast$}]{work,  }\item[{const int \&}]{Lwork,  }\item[{int \&}]{INFO }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacecompnal_1_1blas_a0eab548c93d2f1432d8483ae795b54c0}\label{namespacecompnal_1_1blas_a0eab548c93d2f1432d8483ae795b54c0}} 
+\index{compnal::blas@{compnal::blas}!dstev\_@{dstev\_}}
+\index{dstev\_@{dstev\_}!compnal::blas@{compnal::blas}}
+\doxysubsubsection{\texorpdfstring{dstev\_()}{dstev\_()}}
+{\footnotesize\ttfamily void compnal\+::blas\+::dstev\+\_\+ (\begin{DoxyParamCaption}\item[{const char \&}]{JOBZ,  }\item[{const int \&}]{N,  }\item[{double $\ast$}]{D,  }\item[{double $\ast$}]{E,  }\item[{double $\ast$$\ast$}]{Z,  }\item[{const int \&}]{LDZ,  }\item[{double $\ast$}]{WORK,  }\item[{int \&}]{INFO }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacecompnal_1_1blas_aebf338c728e6f6803f320d7938f6c9d5}\label{namespacecompnal_1_1blas_aebf338c728e6f6803f320d7938f6c9d5}} 
+\index{compnal::blas@{compnal::blas}!dspgv\_@{dspgv\_}}
+\index{dspgv\_@{dspgv\_}!compnal::blas@{compnal::blas}}
+\doxysubsubsection{\texorpdfstring{dspgv\_()}{dspgv\_()}}
+{\footnotesize\ttfamily void compnal\+::blas\+::dspgv\+\_\+ (\begin{DoxyParamCaption}\item[{const int \&}]{ITYPE,  }\item[{const char \&}]{JOBZ,  }\item[{const char \&}]{UPLO,  }\item[{const int \&}]{N,  }\item[{double $\ast$}]{AP,  }\item[{double $\ast$}]{BP,  }\item[{double $\ast$}]{W,  }\item[{double $\ast$$\ast$}]{Z,  }\item[{const int \&}]{LDZ,  }\item[{double $\ast$}]{WORK,  }\item[{int \&}]{INFO }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacecompnal_1_1blas_ad95086714ba0af598315dba0109fc282}\label{namespacecompnal_1_1blas_ad95086714ba0af598315dba0109fc282}} 
+\index{compnal::blas@{compnal::blas}!LapackDsyev@{LapackDsyev}}
+\index{LapackDsyev@{LapackDsyev}!compnal::blas@{compnal::blas}}
+\doxysubsubsection{\texorpdfstring{LapackDsyev()}{LapackDsyev()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void compnal\+::blas\+::\+Lapack\+Dsyev (\begin{DoxyParamCaption}\item[{Real\+Type $\ast$}]{gs\+\_\+value,  }\item[{std\+::vector$<$ Real\+Type $>$ $\ast$}]{gs\+\_\+vector,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+in,  }\item[{const int}]{target\+\_\+level = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{lapack_8hpp_source_l00040}{40}} of file \mbox{\hyperlink{lapack_8hpp_source}{lapack.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1blas_a8c894de4aabbacd7c8730917eb573df5}\label{namespacecompnal_1_1blas_a8c894de4aabbacd7c8730917eb573df5}} 
+\index{compnal::blas@{compnal::blas}!LapackDstev@{LapackDstev}}
+\index{LapackDstev@{LapackDstev}!compnal::blas@{compnal::blas}}
+\doxysubsubsection{\texorpdfstring{LapackDstev()}{LapackDstev()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void compnal\+::blas\+::\+Lapack\+Dstev (\begin{DoxyParamCaption}\item[{Real\+Type $\ast$}]{gs\+\_\+value,  }\item[{std\+::vector$<$ Real\+Type $>$ $\ast$}]{gs\+\_\+vector,  }\item[{const std\+::vector$<$ Real\+Type $>$ \&}]{diag,  }\item[{const std\+::vector$<$ Real\+Type $>$ \&}]{off\+\_\+diag }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{lapack_8hpp_source_l00094}{94}} of file \mbox{\hyperlink{lapack_8hpp_source}{lapack.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1blas_aa9438b0418e763891a03cbfbcd22f38c}\label{namespacecompnal_1_1blas_aa9438b0418e763891a03cbfbcd22f38c}} 
+\index{compnal::blas@{compnal::blas}!LapackDspgv@{LapackDspgv}}
+\index{LapackDspgv@{LapackDspgv}!compnal::blas@{compnal::blas}}
+\doxysubsubsection{\texorpdfstring{LapackDspgv()}{LapackDspgv()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void compnal\+::blas\+::\+Lapack\+Dspgv (\begin{DoxyParamCaption}\item[{std\+::vector$<$ Real\+Type $>$ $\ast$}]{eigenvalues,  }\item[{std\+::vector$<$ Real\+Type $>$ $\ast$}]{eigenvectors,  }\item[{const int}]{i\+\_\+type,  }\item[{const int}]{dim,  }\item[{const std\+::vector$<$ Real\+Type $>$ \&}]{mat\+\_\+a,  }\item[{const std\+::vector$<$ Real\+Type $>$ \&}]{mat\+\_\+b }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{lapack_8hpp_source_l00134}{134}} of file \mbox{\hyperlink{lapack_8hpp_source}{lapack.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1blas_af325cf8275d75278e2758dc1419f86f5}\label{namespacecompnal_1_1blas_af325cf8275d75278e2758dc1419f86f5}} 
+\index{compnal::blas@{compnal::blas}!CalculateMatrixVectorProduct@{CalculateMatrixVectorProduct}}
+\index{CalculateMatrixVectorProduct@{CalculateMatrixVectorProduct}!compnal::blas@{compnal::blas}}
+\doxysubsubsection{\texorpdfstring{CalculateMatrixVectorProduct()}{CalculateMatrixVectorProduct()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void compnal\+::blas\+::\+Calculate\+Matrix\+Vector\+Product (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $\ast$}]{vector\+\_\+out,  }\item[{const Real\+Type}]{coeef,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+in,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ \&}]{vector\+\_\+in }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{matrix__vector__operation_8hpp_source_l00028}{28}} of file \mbox{\hyperlink{matrix__vector__operation_8hpp_source}{matrix\+\_\+vector\+\_\+operation.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1blas_aeeec1b8a9d956be99035a82b732b15b4}\label{namespacecompnal_1_1blas_aeeec1b8a9d956be99035a82b732b15b4}} 
+\index{compnal::blas@{compnal::blas}!CalculateSymmetricMatrixVectorProduct@{CalculateSymmetricMatrixVectorProduct}}
+\index{CalculateSymmetricMatrixVectorProduct@{CalculateSymmetricMatrixVectorProduct}!compnal::blas@{compnal::blas}}
+\doxysubsubsection{\texorpdfstring{CalculateSymmetricMatrixVectorProduct()}{CalculateSymmetricMatrixVectorProduct()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void compnal\+::blas\+::\+Calculate\+Symmetric\+Matrix\+Vector\+Product (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $\ast$}]{vector\+\_\+out,  }\item[{const Real\+Type}]{coeef,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+in,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ \&}]{vector\+\_\+in,  }\item[{std\+::vector$<$ std\+::vector$<$ Real\+Type $>$ $>$ $\ast$}]{vectors\+\_\+work }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{matrix__vector__operation_8hpp_source_l00053}{53}} of file \mbox{\hyperlink{matrix__vector__operation_8hpp_source}{matrix\+\_\+vector\+\_\+operation.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1blas_a5b3e1586b7800ee66fb6c6612a3db5ef}\label{namespacecompnal_1_1blas_a5b3e1586b7800ee66fb6c6612a3db5ef}} 
+\index{compnal::blas@{compnal::blas}!CalculateSymmetricMatrixVectorProduct@{CalculateSymmetricMatrixVectorProduct}}
+\index{CalculateSymmetricMatrixVectorProduct@{CalculateSymmetricMatrixVectorProduct}!compnal::blas@{compnal::blas}}
+\doxysubsubsection{\texorpdfstring{CalculateSymmetricMatrixVectorProduct()}{CalculateSymmetricMatrixVectorProduct()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void compnal\+::blas\+::\+Calculate\+Symmetric\+Matrix\+Vector\+Product (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $\ast$}]{vector\+\_\+out,  }\item[{const Real\+Type}]{coeef,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+in,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ \&}]{vector\+\_\+in }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{matrix__vector__operation_8hpp_source_l00123}{123}} of file \mbox{\hyperlink{matrix__vector__operation_8hpp_source}{matrix\+\_\+vector\+\_\+operation.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1blas_a7102eb471402c962a27565b9bcb6e3c9}\label{namespacecompnal_1_1blas_a7102eb471402c962a27565b9bcb6e3c9}} 
+\index{compnal::blas@{compnal::blas}!CalculateMatrixVectorProduct@{CalculateMatrixVectorProduct}}
+\index{CalculateMatrixVectorProduct@{CalculateMatrixVectorProduct}!compnal::blas@{compnal::blas}}
+\doxysubsubsection{\texorpdfstring{CalculateMatrixVectorProduct()}{CalculateMatrixVectorProduct()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ compnal\+::blas\+::\+Calculate\+Matrix\+Vector\+Product (\begin{DoxyParamCaption}\item[{const Real\+Type}]{coeef,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+in,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ \&}]{vector\+\_\+in }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{matrix__vector__operation_8hpp_source_l00160}{160}} of file \mbox{\hyperlink{matrix__vector__operation_8hpp_source}{matrix\+\_\+vector\+\_\+operation.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1blas_a451ecffdd7816999035e938c48e86669}\label{namespacecompnal_1_1blas_a451ecffdd7816999035e938c48e86669}} 
+\index{compnal::blas@{compnal::blas}!CalculateSymmetricMatrixVectorProduct@{CalculateSymmetricMatrixVectorProduct}}
+\index{CalculateSymmetricMatrixVectorProduct@{CalculateSymmetricMatrixVectorProduct}!compnal::blas@{compnal::blas}}
+\doxysubsubsection{\texorpdfstring{CalculateSymmetricMatrixVectorProduct()}{CalculateSymmetricMatrixVectorProduct()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ compnal\+::blas\+::\+Calculate\+Symmetric\+Matrix\+Vector\+Product (\begin{DoxyParamCaption}\item[{const Real\+Type}]{coeef,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+in,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ \&}]{vector\+\_\+in,  }\item[{std\+::vector$<$ std\+::vector$<$ Real\+Type $>$ $>$ $\ast$}]{vectors\+\_\+work }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{matrix__vector__operation_8hpp_source_l00169}{169}} of file \mbox{\hyperlink{matrix__vector__operation_8hpp_source}{matrix\+\_\+vector\+\_\+operation.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1blas_a6a5d23a7342722e87e76a39b8e4cf031}\label{namespacecompnal_1_1blas_a6a5d23a7342722e87e76a39b8e4cf031}} 
+\index{compnal::blas@{compnal::blas}!CalculateSymmetricMatrixVectorProduct@{CalculateSymmetricMatrixVectorProduct}}
+\index{CalculateSymmetricMatrixVectorProduct@{CalculateSymmetricMatrixVectorProduct}!compnal::blas@{compnal::blas}}
+\doxysubsubsection{\texorpdfstring{CalculateSymmetricMatrixVectorProduct()}{CalculateSymmetricMatrixVectorProduct()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ compnal\+::blas\+::\+Calculate\+Symmetric\+Matrix\+Vector\+Product (\begin{DoxyParamCaption}\item[{const Real\+Type}]{coeef,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ Real\+Type $>$ \&}]{matrix\+\_\+in,  }\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ \&}]{vector\+\_\+in }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{matrix__vector__operation_8hpp_source_l00179}{179}} of file \mbox{\hyperlink{matrix__vector__operation_8hpp_source}{matrix\+\_\+vector\+\_\+operation.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1blas_ae30f924effa78f04d9e973b3525ed4b7}\label{namespacecompnal_1_1blas_ae30f924effa78f04d9e973b3525ed4b7}} 
+\index{compnal::blas@{compnal::blas}!Orthonormalize@{Orthonormalize}}
+\index{Orthonormalize@{Orthonormalize}!compnal::blas@{compnal::blas}}
+\doxysubsubsection{\texorpdfstring{Orthonormalize()}{Orthonormalize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void compnal\+::blas\+::\+Orthonormalize (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $>$ $\ast$}]{vectors }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{orthonormalize_8hpp_source_l00028}{28}} of file \mbox{\hyperlink{orthonormalize_8hpp_source}{orthonormalize.\+hpp}}.
+
+\mbox{\Hypertarget{namespacecompnal_1_1blas_ae84dc5fa7300de09e82132e364928b7c}\label{namespacecompnal_1_1blas_ae84dc5fa7300de09e82132e364928b7c}} 
+\index{compnal::blas@{compnal::blas}!Orthonormalize@{Orthonormalize}}
+\index{Orthonormalize@{Orthonormalize}!compnal::blas@{compnal::blas}}
+\doxysubsubsection{\texorpdfstring{Orthonormalize()}{Orthonormalize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void compnal\+::blas\+::\+Orthonormalize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $\ast$}]{target\+\_\+vector,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{type\+::\+Braket\+Vector}}$<$ Real\+Type $>$ $>$ \&}]{vectors }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{orthonormalize_8hpp_source_l00042}{42}} of file \mbox{\hyperlink{orthonormalize_8hpp_source}{orthonormalize.\+hpp}}.
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacecompnal_1_1blas_aa1196aeb106e923cc2ad6c17fea58f26}\label{namespacecompnal_1_1blas_aa1196aeb106e923cc2ad6c17fea58f26}} 
+\index{compnal::blas@{compnal::blas}!TIME\_UNIT\_CONSTANT@{TIME\_UNIT\_CONSTANT}}
+\index{TIME\_UNIT\_CONSTANT@{TIME\_UNIT\_CONSTANT}!compnal::blas@{compnal::blas}}
+\doxysubsubsection{\texorpdfstring{TIME\_UNIT\_CONSTANT}{TIME\_UNIT\_CONSTANT}}
+{\footnotesize\ttfamily const int compnal\+::blas\+::\+TIME\+\_\+\+UNIT\+\_\+\+CONSTANT = 1000$\ast$1000}
+
+
+
+Definition at line \mbox{\hyperlink{eigendecomposition_8hpp_source_l00037}{37}} of file \mbox{\hyperlink{eigendecomposition_8hpp_source}{eigendecomposition.\+hpp}}.
+

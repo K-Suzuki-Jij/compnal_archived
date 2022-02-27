@@ -1,0 +1,807 @@
+\hypertarget{compressed__row__storage_8hpp_source}{}\doxysection{compressed\+\_\+row\+\_\+storage.\+hpp}
+\label{compressed__row__storage_8hpp_source}\index{src/type/compressed\_row\_storage.hpp@{src/type/compressed\_row\_storage.hpp}}
+\mbox{\hyperlink{compressed__row__storage_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00001}00001 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00002}00002 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00003}00003 \textcolor{comment}{//  Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00004}00004 \textcolor{comment}{//  you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00005}00005 \textcolor{comment}{//  You may obtain a copy of the License at}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00006}00006 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00007}00007 \textcolor{comment}{//      http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00008}00008 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00009}00009 \textcolor{comment}{//  Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00010}00010 \textcolor{comment}{//  distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00011}00011 \textcolor{comment}{//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00012}00012 \textcolor{comment}{//  See the License for the specific language governing permissions and}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00013}00013 \textcolor{comment}{//  limitations under the License.}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00014}00014 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00015}00015 \textcolor{comment}{//  Created by Kohei Suzuki on 2021/05/20.}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00016}00016 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00018}00018 \textcolor{preprocessor}{\#ifndef COMPNAL\_TYPE\_COMPRESSED\_ROW\_STORAGE\_HPP\_}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00019}00019 \textcolor{preprocessor}{\#define COMPNAL\_TYPE\_COMPRESSED\_ROW\_STORAGE\_HPP\_}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00021}00021 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00022}00022 \textcolor{preprocessor}{\#include <cstdint>}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00023}00023 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00024}00024 \textcolor{preprocessor}{\#include <iomanip>}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00025}00025 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00027}00027 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00028}00028 \textcolor{keyword}{namespace }type \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00031}\mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{00031}} \textcolor{keyword}{enum} \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}} \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00032}00032    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00034}\mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{00034}}    \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{NONE}} = 0,}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00035}00035    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00037}\mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{00037}}    \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{FERMION}} = 1,}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00038}00038    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00040}\mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{00040}}    \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{BOSON}} = 2,}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00041}00041    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00043}00043    \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{MIX}} = 3}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00044}\mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{00044}} \};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00049}\mbox{\hyperlink{namespacecompnal_1_1type_a6bfd3c989f30d42f945cb38a0cc873ad}{00049}} std::ostream\& \mbox{\hyperlink{namespacecompnal_1_1type_ab565f905bc0e0a4cdea7cbee1b5c0da1}{operator<<}}(std::ostream \&os, \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}} \&tag) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00050}00050    \textcolor{keywordflow}{if} (tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00051}00051       os << \textcolor{stringliteral}{"{}CRSTag::NONE"{}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00052}00052    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00053}00053    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00054}00054       os << \textcolor{stringliteral}{"{}CRSTag::FERMION"{}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00055}00055    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00056}00056    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00057}00057       os << \textcolor{stringliteral}{"{}CRSTag::BOSON"{}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00058}00058    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00059}00059    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00060}00060       os << \textcolor{stringliteral}{"{}CRSTag::MIX"{}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00061}00061    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00062}00062    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00063}00063       std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00064}00064       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00065}00065       ss << \textcolor{stringliteral}{"{}Unknown CRSTag detected."{}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00066}00066       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00067}00067    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00068}00068    \textcolor{keywordflow}{return} os;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00069}00069 \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00070}00070 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00071}00071 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00074}00074 \textcolor{keyword}{template}<\textcolor{keyword}{typename} ElementType>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00075}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{00075}} \textcolor{keyword}{class }\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00076}00076    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00077}00077 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00078}00078    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00079}00079    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Public Type Alias-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00080}00080    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00082}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a22bb8787abc4618bc014aa842be4a763}{00082}} \textcolor{comment}{}   \textcolor{keyword}{using} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a22bb8787abc4618bc014aa842be4a763}{ValueType}} = ElementType;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00083}00083    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00084}00084    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00085}00085    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00086}00086    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Public Member Variables-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00087}00087    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00089}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{00089}} \textcolor{comment}{}   std::int64\_t \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} = 0;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00090}00090    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00092}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{00092}}    std::int64\_t \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} = 0;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00093}00093    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00095}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{00095}}    std::vector<std::int64\_t> \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}} = \{0\};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00096}00096    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00098}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{00098}}    std::vector<std::int64\_t> \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00099}00099    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00101}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{00101}}    std::vector<ElementType> \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00102}00102    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00104}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{00104}}    \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00105}00105    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00107}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8ff961838014a2146c4e570ebbb85840}{00107}}    std::string \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8ff961838014a2146c4e570ebbb85840}{name}} = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00108}00108    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00109}00109    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00110}00110    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Constructors-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00111}00111    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00113}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a76dae7aa62d63f21ecfa49eb3a73b721}{00113}} \textcolor{comment}{}   \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a76dae7aa62d63f21ecfa49eb3a73b721}{CRS}}() \{\};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00114}00114       }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00119}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a717531e4c418f1da4ee500ff751b154a}{00119}}    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a717531e4c418f1da4ee500ff751b154a}{CRS}}(\textcolor{keyword}{const} std::int64\_t row\_dim\_in, \textcolor{keyword}{const} std::int64\_t col\_dim\_in, \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}} tag\_in = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00120}00120       }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00121}00121       this-\/>row\_dim = row\_dim\_in;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00122}00122       this-\/>col\_dim = col\_dim\_in;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00123}00123       this-\/>row.resize(row\_dim\_in + 1);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00124}00124 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00125}00125       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i <= row\_dim\_in; ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00126}00126          this-\/>row[i] = 0;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00127}00127       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00128}00128       this-\/>tag = tag\_in;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00129}00129    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00130}00130    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00135}00135    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T=ElementType>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00136}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a5025f416b1ed779c591da43d30df2edb}{00136}}    \textcolor{keyword}{explicit} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a5025f416b1ed779c591da43d30df2edb}{CRS}}(\textcolor{keyword}{const} std::vector<std::vector<T>> \&mat\_vec, \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}} tag\_in = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00137}00137       this-\/>row\_dim = mat\_vec.size();}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00138}00138       this-\/>col\_dim = 0;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00139}00139       this-\/>row.resize(this-\/>row\_dim + 1);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00140}00140       this-\/>row[0] = 0;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00141}00141       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00142}00142          \textcolor{keyword}{const} std::int64\_t size = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(mat\_vec[i].size());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00143}00143          \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < size;++j) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00144}00144             \textcolor{keywordflow}{if} (mat\_vec[i][j] != 0.0) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00145}00145                this-\/>col.push\_back(j);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00146}00146                this-\/>val.push\_back(mat\_vec[i][j]);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00147}00147             \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00148}00148             \textcolor{keywordflow}{if} (this-\/>col\_dim < j + 1) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00149}00149                this-\/>col\_dim = j + 1;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00150}00150             \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00151}00151          \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00152}00152          this-\/>row[i + 1] = this-\/>col.size();}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00153}00153       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00154}00154       this-\/>tag = tag\_in;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00155}00155    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00156}00156    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00160}00160    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00161}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a794c0b1737646f1aba58f923c1d19070}{00161}}    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a794c0b1737646f1aba58f923c1d19070}{CRS}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} \&matrix) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00162}00162       \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac4696f6f7423080adbdbc490d49f0b0a}{Assign}}(matrix);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00163}00163    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00164}00164    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00165}00165    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00166}00166    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Public Member Functions-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00167}00167    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00169}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a1ff94881b52233a2903d369e398e907a}{00169}} \textcolor{comment}{}   \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a1ff94881b52233a2903d369e398e907a}{Free}}() \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00170}00170       this-\/>row\_dim = 0;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00171}00171       this-\/>col\_dim = 0;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00172}00172       std::vector<std::int64\_t>().swap(this-\/>row);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00173}00173       std::vector<std::int64\_t>().swap(this-\/>col);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00174}00174       std::vector<ElementType>().swap(this-\/>val);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00175}00175       this-\/>row.push\_back(0);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00176}00176       this-\/>tag = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00177}00177       this-\/>name = \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00178}00178    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00179}00179    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00183}00183    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00184}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac4696f6f7423080adbdbc490d49f0b0a}{00184}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac4696f6f7423080adbdbc490d49f0b0a}{Assign}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} \&matrix) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00185}00185       this-\/>row\_dim = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00186}00186       this-\/>col\_dim = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00187}00187       this-\/>row.resize(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} + 1);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00188}00188       }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00189}00189       this-\/>col.resize(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00190}00190       this-\/>val.resize(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00191}00191       }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00192}00192 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00193}00193       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i <= matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00194}00194          this-\/>row[i] = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i];}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00195}00195       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00196}00196       }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00197}00197 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00198}00198       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00199}00199          this-\/>col[i] = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[i];}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00200}00200          this-\/>val[i] = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[i];}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00201}00201       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00202}00202       this-\/>tag = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00203}00203       this-\/>name = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8ff961838014a2146c4e570ebbb85840}{name}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00204}00204    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00205}00205    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00209}00209    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00210}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a1ce10267ddf6fd06620f57bc9b0a7e43}{00210}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a1ce10267ddf6fd06620f57bc9b0a7e43}{MultiplyByScalar}}(\textcolor{keyword}{const} T coeff) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00211}00211       \textcolor{keywordflow}{if} (coeff == 0.0) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00212}00212 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00213}00213          \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00214}00214             this-\/>row[i + 1] = 0;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00215}00215          \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00216}00216          this-\/>col.clear();}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00217}00217          this-\/>val.clear();}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00218}00218       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00219}00219       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00220}00220 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00221}00221          \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>col.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00222}00222             this-\/>val[i] *= coeff;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00223}00223          \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00224}00224       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00225}00225    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00226}00226    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00230}00230    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00231}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_aa7c4b4d33b18686e7da7ccdae4b94733}{00231}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_aa7c4b4d33b18686e7da7ccdae4b94733}{AddDiagonalElements}}(\textcolor{keyword}{const} T diag\_add) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00232}00232       \textcolor{keywordflow}{if} (this-\/>row\_dim != this-\/>col\_dim) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00233}00233          std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00234}00234          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00235}00235          ss << \textcolor{stringliteral}{"{}The matrix is not a square matrix."{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00236}00236          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00237}00237       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00238}00238       }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00239}00239       \textcolor{keywordtype}{bool} flag = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00240}00240 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00241}00241       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00242}00242          \textcolor{keywordtype}{bool} temp\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00243}00243          \textcolor{keywordflow}{for} (std::int64\_t j = this-\/>row[i]; j < this-\/>row[i + 1]; ++j) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00244}00244             \textcolor{keywordflow}{if} (i == this-\/>col[j]) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00245}00245                this-\/>val[j] += diag\_add;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00246}00246                temp\_flag = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00247}00247                \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00248}00248             \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00249}00249          \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00250}00250          \textcolor{keywordflow}{if} (temp\_flag) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00251}00251 \textcolor{preprocessor}{\#pragma omp critical}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00252}00252             \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00253}00253             flag = temp\_flag;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00254}00254             \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00255}00255          \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00256}00256       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00257}00257       \textcolor{keywordflow}{if} (flag) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00258}00258          \textcolor{comment}{//Restore the diagonal elements.}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00259}00259 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00260}00260          \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00261}00261             \textcolor{keywordtype}{bool} temp\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00262}00262             \textcolor{keywordflow}{for} (std::int64\_t j = this-\/>row[i]; j < this-\/>row[i + 1]; ++j) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00263}00263                \textcolor{keywordflow}{if} (i == this-\/>col[j]) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00264}00264                   this-\/>val[j] -\/= diag\_add;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00265}00265                   temp\_flag = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00266}00266                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00267}00267                \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00268}00268             \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00269}00269          \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00270}00270          std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00271}00271          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00272}00272          ss << \textcolor{stringliteral}{"{}Could not add the value to the diagonal elements."{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00273}00273          ss << \textcolor{stringliteral}{"{}The matrix need to have all the diagonal elements even if they are zero."{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00274}00274          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00275}00275       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00276}00276    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00277}00277    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00279}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a7fd21b0a2b0c525b831cf03e896fa525}{00279}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a7fd21b0a2b0c525b831cf03e896fa525}{SortCol}}() \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00280}00280       \textcolor{keyword}{auto} compare = [\textcolor{keyword}{this}](\textcolor{keyword}{auto} \&a, \textcolor{keyword}{auto} \&b) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00281}00281          \textcolor{keywordflow}{if} (a > b) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00282}00282             \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00283}00283          \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00284}00284          \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00285}00285             std::swap(this-\/>val[std::distance(\&this-\/>col[0], \&a)],}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00286}00286                       this-\/>val[std::distance(\&this-\/>col[0], \&b)]);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00287}00287             \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00288}00288          \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00289}00289       \};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00290}00290       }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00291}00291 \textcolor{preprocessor}{\#pragma omp parallel for schedule(guided)}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00292}00292       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00293}00293          std::sort(\&this-\/>col[this-\/>row[i]], \&this-\/>col[this-\/>row[i + 1]], compare);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00294}00294       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00295}00295    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00296}00296    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00298}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ab43150585915445e3b8745cf9ff1924c}{00298}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ab43150585915445e3b8745cf9ff1924c}{Print}}(\textcolor{keyword}{const} std::string display\_name = \textcolor{stringliteral}{"{}"{}})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00299}00299       \textcolor{keywordflow}{if} (this-\/>name != \textcolor{stringliteral}{"{}"{}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00300}00300          std::cout << \textcolor{stringliteral}{"{}Name: "{}} << this-\/>name << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00301}00301       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00302}00302       std::cout << this-\/>tag << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00303}00303       std::cout << std::fixed;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00304}00304       std::cout << std::setprecision(std::numeric\_limits<ElementType>::max\_digits10);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00305}00305       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00306}00306          \textcolor{keywordflow}{for} (std::int64\_t j = this-\/>row.at(i); j < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}.at(i+1); ++j) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00307}00307             std::cout << display\_name << \textcolor{stringliteral}{"{}["{}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00308}00308             std::cout << std::noshowpos << std::left << std::setw(3) << i << \textcolor{stringliteral}{"{}]["{}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00309}00309             std::cout << std::left << std::setw(3) << this-\/>col[j] << \textcolor{stringliteral}{"{}]="{}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00310}00310             std::cout << std::showpos << this-\/>val[j] << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00311}00311          \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00312}00312       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00313}00313       std::cout << std::noshowpos;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00314}00314    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00315}00315    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00317}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a7cd67a00d8952a69b7563343d79de2fc}{00317}}    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a7cd67a00d8952a69b7563343d79de2fc}{PrintInfo}}(\textcolor{keyword}{const} std::string display\_name = \textcolor{stringliteral}{"{}Matrix"{}})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00318}00318       std::cout << std::fixed;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00319}00319       std::cout << std::setprecision(std::numeric\_limits<ElementType>::max\_digits10);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00320}00320       std::cout << \textcolor{stringliteral}{"{}Print information about CRS: "{}} << display\_name << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00321}00321       std::cout << this-\/>tag << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00322}00322       std::cout << \textcolor{stringliteral}{"{}row\_dim = "{}} << this-\/>row\_dim << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00323}00323       std::cout << \textcolor{stringliteral}{"{}col\_dim = "{}} << this-\/>col\_dim << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00324}00324       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>row.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00325}00325          std::cout << \textcolor{stringliteral}{"{}row["{}} << i << \textcolor{stringliteral}{"{}] = "{}} << this-\/>row.at(i) << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00326}00326       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00327}00327       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>col.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00328}00328          std::cout << \textcolor{stringliteral}{"{}col["{}} << i << \textcolor{stringliteral}{"{}] = "{}} << this-\/>col.at(i) << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00329}00329       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00330}00330       \textcolor{keywordflow}{for} (std::size\_t i = 0; i < this-\/>val.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00331}00331          std::cout << \textcolor{stringliteral}{"{}val["{}} << i << \textcolor{stringliteral}{"{}] = "{}} << this-\/>val.at(i) << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00332}00332       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00333}00333    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00334}00334    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00339}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_accd09f748ee88f6b50816cb5da91c68d}{00339}}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_accd09f748ee88f6b50816cb5da91c68d}{CheckSymmetric}}(\textcolor{keyword}{const} ElementType threshold = 0.000000000000001\textcolor{comment}{/*pow(10,-\/15)*/}, \textcolor{keyword}{const} \textcolor{keywordtype}{bool} flag\_display\_info = \textcolor{keyword}{false})\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00340}00340       \textcolor{keywordflow}{if} (this-\/>row\_dim != this-\/>col\_dim) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00341}00341          std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00342}00342          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00343}00343          ss << \textcolor{stringliteral}{"{}The matrix is not square one."{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00344}00344          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00345}00345       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00346}00346       \textcolor{comment}{// Check sorted}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00347}00347       \textcolor{keywordtype}{bool} flag\_sorted = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00348}00348 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00349}00349       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00350}00350          \textcolor{keywordtype}{bool} temp\_flag = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00351}00351          \textcolor{keywordflow}{for} (std::int64\_t j = this-\/>row[i]; j < this-\/>row[i + 1] -\/ 1; ++j) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00352}00352             \textcolor{keywordflow}{if} (this-\/>col[j] >= this-\/>col[j + 1]) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00353}00353                temp\_flag = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00354}00354             \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00355}00355          \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00356}00356          \textcolor{keywordflow}{if} (temp\_flag) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00357}00357 \textcolor{preprocessor}{\#pragma omp critical}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00358}00358             \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00359}00359                flag\_sorted = temp\_flag;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00360}00360             \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00361}00361          \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00362}00362       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00363}00363       \textcolor{keywordflow}{if} (flag\_sorted) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00364}00364          std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00365}00365          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00366}00366          ss << \textcolor{stringliteral}{"{}The colmun indexes of the matrix is not sorted."{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00367}00367          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00368}00368       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00369}00369       \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < this-\/>\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00370}00370          \textcolor{keywordflow}{for} (std::int64\_t j = this-\/>row[i]; j < this-\/>row[i + 1]; ++j) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00371}00371             \textcolor{keyword}{const} \textcolor{keyword}{auto} iter\_begin = this-\/>col.begin() + this-\/>row[this-\/>col[j]];}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00372}00372             \textcolor{keyword}{const} \textcolor{keyword}{auto} iter\_end   = this-\/>col.begin() + this-\/>row[this-\/>col[j] + 1];}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00373}00373             \textcolor{keyword}{const} \textcolor{keyword}{auto} iter\_find  = std::lower\_bound(iter\_begin, iter\_end, i);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00374}00374             \textcolor{keywordflow}{if} (iter\_find == iter\_end || *iter\_find != i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00375}00375                \textcolor{keywordflow}{if} (flag\_display\_info) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00376}00376                   std::cout << \textcolor{stringliteral}{"{}The input matrix is not symmetric."{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00377}00377                   std::cout << \textcolor{stringliteral}{"{}Corresponding element does not exist."{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00378}00378                   std::cout << \textcolor{stringliteral}{"{}row="{}} << i << \textcolor{stringliteral}{"{}, col="{}} << \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j] << \textcolor{stringliteral}{"{}, val="{}} << \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j] << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00379}00379                \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00380}00380                \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00381}00381             \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00382}00382             \textcolor{keyword}{const} \textcolor{keyword}{auto} inv = std::distance(this-\/>col.begin(), iter\_find);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00383}00383             \textcolor{keywordflow}{if} (std::abs(this-\/>val[j] -\/ this-\/>val[inv]) > threshold) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00384}00384                \textcolor{keywordflow}{if} (flag\_display\_info) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00385}00385                   std::cout << \textcolor{stringliteral}{"{}The input matrix is not symmetric."{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00386}00386                   std::cout << \textcolor{stringliteral}{"{}M["{}} << i << \textcolor{stringliteral}{"{}]["{}} << this-\/>col[j] << \textcolor{stringliteral}{"{}]="{}} << this-\/>val[j] << \textcolor{stringliteral}{"{}, "{}} << this-\/>val[inv] << \textcolor{stringliteral}{"{}=M["{}} << this-\/>col[j] << \textcolor{stringliteral}{"{}]["{}} << i << \textcolor{stringliteral}{"{}]"{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00387}00387                \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00388}00388                \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00389}00389             \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00390}00390          \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00391}00391       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00392}00392       \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00393}00393    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00394}00394    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00395}00395    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00396}00396    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator Overloading-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00397}00397    \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00400}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_abcfc5d5e087b26264f1225949304f2ee}{00400}} \textcolor{comment}{}   \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_abcfc5d5e087b26264f1225949304f2ee}{operator+}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00401}00401       \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00402}00402    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00403}00403    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00406}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_aa02cc0d2b9d8dd67514abe11e52b7bbf}{00406}}    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_aa02cc0d2b9d8dd67514abe11e52b7bbf}{operator-\/}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00407}00407       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_a75e2fe84321e8bdb8853194f74451c3b}{CalculateScalarMatrixProduct}}(-\/1, *\textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00408}00408    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00409}00409    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00414}00414    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00415}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a878cede5b8041d4cf1cabf5bc809fdd0}{00415}}    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}\& \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a878cede5b8041d4cf1cabf5bc809fdd0}{operator+=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} rhs) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00416}00416       \textcolor{keywordflow}{return} *\textcolor{keyword}{this} = *\textcolor{keyword}{this} + rhs;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00417}00417    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00418}00418    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00423}00423    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00424}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a04ea5951e267780634957ac36f2fbaf2}{00424}}    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}\& \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a04ea5951e267780634957ac36f2fbaf2}{operator-\/=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} rhs) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00425}00425       \textcolor{keywordflow}{return} *\textcolor{keyword}{this} = *\textcolor{keyword}{this} -\/ rhs;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00426}00426    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00427}00427    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00432}00432    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00433}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a3dbeb14b8c90fc4f0439ce7e9edab126}{00433}}    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}\& \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a3dbeb14b8c90fc4f0439ce7e9edab126}{operator*=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} rhs) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00434}00434       \textcolor{keywordflow}{return} *\textcolor{keyword}{this} = *\textcolor{keyword}{this} * rhs;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00435}00435    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00436}00436    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00441}00441    \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00442}\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a7621f2369023bfd850e0908482f3f07f}{00442}}    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \&\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a7621f2369023bfd850e0908482f3f07f}{operator=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} \&matrix) \& \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00443}00443       \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac4696f6f7423080adbdbc490d49f0b0a}{Assign}}(matrix);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00444}00444       \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00445}00445    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00446}00446    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00447}00447 \};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00448}00448 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00449}00449 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00450}00450 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator overloading-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00451}00451 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00458}00458 \textcolor{comment}{}\textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00459}\mbox{\hyperlink{namespacecompnal_1_1type_adaf3ae4cec90114f1175e6ef52a9d9e0}{00459}} \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_a40da0ddd6d39a53f8064c31f523560ca}{operator+}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&rhs) -\/>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00460}00460 CRS<\textcolor{keyword}{decltype}(std::declval<T1>() + std::declval<T2>())> \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00461}00461    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_add38fc1fb1f7babb20b058653d949687}{CalculateMatrixMatrixSum}}(T1\{1\}, lhs, T2\{1\}, rhs);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00462}00462 \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00463}00463 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00470}00470 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00471}\mbox{\hyperlink{namespacecompnal_1_1type_a21eff381a9be0b72a6ffa32839dcc597}{00471}} \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_afae823b533de3a1b9d269b9b30d7e388}{operator-\/}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&rhs) -\/>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00472}00472 CRS<\textcolor{keyword}{decltype}(std::declval<T1>() -\/ std::declval<T2>())> \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00473}00473    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_add38fc1fb1f7babb20b058653d949687}{CalculateMatrixMatrixSum}}(T1\{1\}, lhs, T2\{-\/1\}, rhs);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00474}00474 \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00475}00475 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00482}00482 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00483}\mbox{\hyperlink{namespacecompnal_1_1type_ab39e117226ed18d191c9fb40101caa9f}{00483}} \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_af68e0fefdd6f8dc9bc3c0c97be663a98}{operator*}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&rhs) -\/>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00484}00484 CRS<\textcolor{keyword}{decltype}(std::declval<T1>()*std::declval<T2>())> \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00485}00485    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_a9180334d20402ec5bd10f8b982c8d069}{CalculateMatrixMatrixProduct}}(T1\{1\}, lhs, rhs);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00486}00486 \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00487}00487 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00494}00494 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00495}\mbox{\hyperlink{namespacecompnal_1_1type_a76222be2181f3ff7599d3fa724b18864}{00495}} \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_af68e0fefdd6f8dc9bc3c0c97be663a98}{operator*}}(\textcolor{keyword}{const} T1 lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&rhs) -\/>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00496}00496 CRS<\textcolor{keyword}{decltype}(std::declval<T1>()*std::declval<T2>())> \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00497}00497    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_a75e2fe84321e8bdb8853194f74451c3b}{CalculateScalarMatrixProduct}}(lhs, rhs);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00498}00498 \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00499}00499 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00506}00506 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00507}\mbox{\hyperlink{namespacecompnal_1_1type_a3ca00cf9e2e8afadf942fb299a2cca9d}{00507}} \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_af68e0fefdd6f8dc9bc3c0c97be663a98}{operator*}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} T2 rhs) -\/>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00508}00508 CRS<\textcolor{keyword}{decltype}(std::declval<T1>()*std::declval<T2>())> \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00509}00509    \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1type_a75e2fe84321e8bdb8853194f74451c3b}{CalculateScalarMatrixProduct}}(rhs, lhs);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00510}00510 \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00511}00511 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00518}00518 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00519}\mbox{\hyperlink{namespacecompnal_1_1type_a0ac388bfa253c05504da2301092939bf}{00519}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_abb6429171e978e71a1fbd6682875ca56}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&rhs) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00520}00520    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}} != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00521}00521       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00522}00522    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00523}00523    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}} != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00524}00524       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00525}00525    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00526}00526    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}.size() != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}.size()) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00527}00527       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00528}00528    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00529}00529    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00530}00530       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00531}00531    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00532}00532    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size() != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size()) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00533}00533       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00534}00534    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00535}00535    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.size() != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.size()) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00536}00536       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00537}00537    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00538}00538    \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8ff961838014a2146c4e570ebbb85840}{name}} != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8ff961838014a2146c4e570ebbb85840}{name}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00539}00539       \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00540}00540    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00541}00541    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00542}00542       \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i] != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i]) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00543}00543          \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00544}00544       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00545}00545    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00546}00546    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00547}00547       \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[i] != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[i]) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00548}00548          \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00549}00549       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00550}00550    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00551}00551    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00552}00552       \textcolor{keywordflow}{if} (lhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[i] != rhs.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[i]) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00553}00553          \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00554}00554       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00555}00555    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00556}00556    \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00557}00557 \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00558}00558 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00565}00565 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00566}\mbox{\hyperlink{namespacecompnal_1_1type_a6f92334599a209b293d788605d89029f}{00566}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespacecompnal_1_1type_a2ef017632e376f62ac6a249c5b291b9c}{operator!=}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T1>}} \&lhs, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&rhs) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00567}00567    \textcolor{keywordflow}{return} !(lhs == rhs);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00568}00568 \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00569}00569 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00570}00570 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00571}00571 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Operator overloading: I/O Stream-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00572}00572 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00577}00577 \textcolor{comment}{}\textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00578}\mbox{\hyperlink{namespacecompnal_1_1type_ad27c1cf5a9b467bdbdcc0d72d743c5a0}{00578}} std::ostream\& \mbox{\hyperlink{namespacecompnal_1_1type_ab565f905bc0e0a4cdea7cbee1b5c0da1}{operator<<}}(std::ostream \&os, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} \&m) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00579}00579    os << m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00580}00580    os << std::fixed;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00581}00581    os << std::setprecision(std::numeric\_limits<T>::max\_digits10);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00582}00582    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00583}00583       \textcolor{keywordflow}{for} (std::int64\_t j = m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}.at(i); j < m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}.at(i+1); ++j) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00584}00584          os << m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8ff961838014a2146c4e570ebbb85840}{name}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00585}00585          os << \textcolor{stringliteral}{"{}["{}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00586}00586          os << std::noshowpos << std::left << std::setw(3) << i << \textcolor{stringliteral}{"{}]["{}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00587}00587          os << std::left << std::setw(3) << m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j] << \textcolor{stringliteral}{"{}]="{}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00588}00588          os << std::showpos << m.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[j] << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00589}00589       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00590}00590    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00591}00591    \textcolor{keywordflow}{return} os;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00592}00592 \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00593}00593 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00594}00594 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00595}00595 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/Global Functions-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00596}00596 \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00607}00607 \textcolor{comment}{}\textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2, \textcolor{keyword}{typename} T3, \textcolor{keyword}{typename} T4>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00608}\mbox{\hyperlink{namespacecompnal_1_1type_add38fc1fb1f7babb20b058653d949687}{00608}} \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_add38fc1fb1f7babb20b058653d949687}{CalculateMatrixMatrixSum}}(\textcolor{keyword}{const} T1 coeff\_1,}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00609}00609                               \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&matrix\_1,}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00610}00610                               \textcolor{keyword}{const} T3 coeff\_2,}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00611}00611                               \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T4>}} \&matrix\_2) -\/>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00612}00612 CRS<\textcolor{keyword}{decltype}(std::declval<T1>()*std::declval<T2>() + std::declval<T3>()*std::declval<T4>())> \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00613}00613    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00614}00614    \textcolor{keywordflow}{if} (matrix\_1.row\_dim != matrix\_2.row\_dim || matrix\_1.col\_dim != matrix\_2.col\_dim) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00615}00615       std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00616}00616       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00617}00617       ss << \textcolor{stringliteral}{"{}The summation of the matrices cannot be defined."{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00618}00618       ss << \textcolor{stringliteral}{"{}matrix\_1.row\_dim = "{}} << matrix\_1.row\_dim << \textcolor{stringliteral}{"{}, matrix\_1.col\_dim = "{}} << matrix\_1.col\_dim << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00619}00619       ss << \textcolor{stringliteral}{"{}matrix\_2.row\_dim = "{}} << matrix\_2.row\_dim << \textcolor{stringliteral}{"{}, matrix\_2.col\_dim = "{}} << matrix\_2.col\_dim << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00620}00620       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00621}00621    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00622}00622    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00623}00623    \textcolor{keyword}{using} T1T2T3T4 = \textcolor{keyword}{decltype}(std::declval<T1>() *}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00624}00624                              std::declval<T2>() +}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00625}00625                              std::declval<T3>() *}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00626}00626                              std::declval<T4>());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00627}00627    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00628}00628    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T1T2T3T4>}} matrix\_out(matrix\_1.row\_dim, matrix\_1.col\_dim);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00629}00629    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00630}00630    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_1.row\_dim; ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00631}00631       }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00632}00632       \textcolor{keywordtype}{int} check = 0;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00633}00633       std::int64\_t count\_1 = 0;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00634}00634       std::int64\_t count\_2 = 0;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00635}00635       }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00636}00636       \textcolor{keyword}{const} std::int64\_t row\_lower\_1 = matrix\_1.row[  i  ];}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00637}00637       \textcolor{keyword}{const} std::int64\_t row\_upper\_1 = matrix\_1.row[i + 1];}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00638}00638       \textcolor{keyword}{const} std::int64\_t row\_lower\_2 = matrix\_2.row[  i  ];}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00639}00639       \textcolor{keyword}{const} std::int64\_t row\_upper\_2 = matrix\_2.row[i + 1];}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00640}00640       }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00641}00641       \textcolor{keyword}{const} std::int64\_t m1\_count = row\_upper\_1 -\/ row\_lower\_1;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00642}00642       \textcolor{keyword}{const} std::int64\_t m2\_count = row\_upper\_2 -\/ row\_lower\_2;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00643}00643       }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00644}00644       \textcolor{keywordflow}{if} (m1\_count != 0 \&\& m2\_count == 0) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00645}00645          \textcolor{keywordflow}{for} (std::int64\_t j = row\_lower\_1; j < row\_upper\_1; ++j) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00646}00646             matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.push\_back(coeff\_1*matrix\_1.val[j]);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00647}00647             matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.push\_back(matrix\_1.col[j]);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00648}00648          \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00649}00649       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00650}00650       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (m1\_count == 0 \&\& m2\_count != 0) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00651}00651          \textcolor{keywordflow}{for} (std::int64\_t j = row\_lower\_2; j < row\_upper\_2; ++j) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00652}00652             matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.push\_back(coeff\_2*matrix\_2.val[j]);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00653}00653             matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.push\_back(matrix\_2.col[j]);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00654}00654          \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00655}00655       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00656}00656       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (m1\_count != 0 \&\& m2\_count != 0) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00657}00657          \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < m1\_count + m2\_count; ++j) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00658}00658             \textcolor{keywordflow}{if} (matrix\_1.col[row\_lower\_1 + count\_1] < matrix\_2.col[row\_lower\_2 + count\_2]) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00659}00659                matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.push\_back(coeff\_1*matrix\_1.val[row\_lower\_1 + count\_1]);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00660}00660                matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.push\_back(matrix\_1.col[row\_lower\_1 + count\_1]);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00661}00661                count\_1++;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00662}00662                \textcolor{keywordflow}{if} (row\_lower\_1 + count\_1 == row\_upper\_1) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00663}00663                   check = 1;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00664}00664                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00665}00665                \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00666}00666             \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00667}00667             \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.col[row\_lower\_1 + count\_1] == matrix\_2.col[row\_lower\_2 + count\_2]) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00668}00668                \textcolor{keyword}{const} \textcolor{keyword}{auto} val = coeff\_1*matrix\_1.val[row\_lower\_1 + count\_1] + coeff\_2*matrix\_2.val[row\_lower\_2 + count\_2];}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00669}00669                \textcolor{keywordflow}{if} (std::abs(val) > 0.0) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00670}00670                   matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.push\_back(val);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00671}00671                   matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.push\_back(matrix\_1.col[row\_lower\_1 + count\_1]);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00672}00672                   count\_1++;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00673}00673                   count\_2++;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00674}00674                   \textcolor{keyword}{const} std::int64\_t temp\_count\_1 = row\_lower\_1 + count\_1;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00675}00675                   \textcolor{keyword}{const} std::int64\_t temp\_count\_2 = row\_lower\_2 + count\_2;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00676}00676                   \textcolor{keywordflow}{if} (temp\_count\_1 == row\_upper\_1 \&\& temp\_count\_2 < row\_upper\_2) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00677}00677                      check = 1;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00678}00678                      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00679}00679                   \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00680}00680                   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (temp\_count\_1 < row\_upper\_1 \&\& temp\_count\_2 == row\_upper\_2) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00681}00681                      check = 2;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00682}00682                      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00683}00683                   \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00684}00684                   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (temp\_count\_1 == row\_upper\_1 \&\& temp\_count\_2 == row\_upper\_2) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00685}00685                      check = 0;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00686}00686                      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00687}00687                   \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00688}00688                \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00689}00689                \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00690}00690                   count\_1++;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00691}00691                   count\_2++;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00692}00692                   \textcolor{keyword}{const} std::int64\_t temp\_count\_1 = row\_lower\_1 + count\_1;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00693}00693                   \textcolor{keyword}{const} std::int64\_t temp\_count\_2 = row\_lower\_2 + count\_2;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00694}00694                   \textcolor{keywordflow}{if} (temp\_count\_1 == row\_upper\_1 \&\& temp\_count\_2 < row\_upper\_2) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00695}00695                      check = 1;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00696}00696                      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00697}00697                   \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00698}00698                   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (temp\_count\_1 < row\_upper\_1 \&\& temp\_count\_2 == row\_upper\_2) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00699}00699                      check = 2;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00700}00700                      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00701}00701                   \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00702}00702                   \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (temp\_count\_1 == row\_upper\_1 \&\& temp\_count\_2 == row\_upper\_2) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00703}00703                      check = 0;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00704}00704                      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00705}00705                   \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00706}00706                \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00707}00707             \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00708}00708             \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00709}00709                matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.push\_back(coeff\_2*matrix\_2.val[row\_lower\_2 + count\_2]);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00710}00710                matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.push\_back(matrix\_2.col[row\_lower\_2 + count\_2]);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00711}00711                count\_2++;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00712}00712                \textcolor{keywordflow}{if} (row\_lower\_2 + count\_2 == row\_upper\_2) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00713}00713                   check = 2;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00714}00714                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00715}00715                \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00716}00716             \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00717}00717          \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00718}00718          \textcolor{keywordflow}{if} (check == 1) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00719}00719             \textcolor{keywordflow}{for} (std::int64\_t j = row\_lower\_2 + count\_2; j < row\_upper\_2; ++j) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00720}00720                matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.push\_back(coeff\_2*matrix\_2.val[j]);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00721}00721                matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.push\_back(matrix\_2.col[j]);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00722}00722             \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00723}00723          \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00724}00724          \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (check == 2) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00725}00725             \textcolor{keywordflow}{for} (std::int64\_t j = row\_lower\_1 + count\_1; j < row\_upper\_1; ++j) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00726}00726                matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.push\_back(coeff\_1*matrix\_1.val[j]);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00727}00727                matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.push\_back(matrix\_1.col[j]);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00728}00728             \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00729}00729          \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00730}00730       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00731}00731       matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1] = matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size();}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00732}00732    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00733}00733    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00734}00734    \textcolor{keywordflow}{if} (matrix\_1.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00735}00735       matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} = matrix\_2.tag;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00736}00736    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00737}00737    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00738}00738       \textcolor{keywordflow}{if} (matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}} || matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00739}00739          matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00740}00740       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00741}00741       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}} || matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00742}00742          matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00743}00743       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00744}00744       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00745}00745          std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00746}00746          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00747}00747          ss << \textcolor{stringliteral}{"{}Unknown CRSTag detected."{}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00748}00748          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00749}00749       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00750}00750    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00751}00751    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00752}00752       \textcolor{keywordflow}{if} (matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}} || matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00753}00753          matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00754}00754       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00755}00755       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}} || matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00756}00756          matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00757}00757       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00758}00758       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00759}00759          std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00760}00760          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00761}00761          ss << \textcolor{stringliteral}{"{}Unknown CRSTag detected."{}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00762}00762          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00763}00763       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00764}00764    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00765}00765    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00766}00766       matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00767}00767    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00768}00768    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00769}00769       std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00770}00770       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00771}00771       ss << \textcolor{stringliteral}{"{}Unknown CRSTag detected."{}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00772}00772       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00773}00773    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00774}00774    \textcolor{keywordflow}{return} matrix\_out;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00775}00775 \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00776}00776 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00785}00785 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2, \textcolor{keyword}{typename} T3>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00786}\mbox{\hyperlink{namespacecompnal_1_1type_a9180334d20402ec5bd10f8b982c8d069}{00786}} \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_a9180334d20402ec5bd10f8b982c8d069}{CalculateMatrixMatrixProduct}}(\textcolor{keyword}{const} T1 coeff\_1,}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00787}00787                                   \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&matrix\_1,}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00788}00788                                   \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T3>}} \&matrix\_2) -\/>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00789}00789 CRS<\textcolor{keyword}{decltype}(std::declval<T1>()*std::declval<T2>()*std::declval<T3>())> \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00790}00790    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00791}00791    \textcolor{keywordflow}{if} (matrix\_1.col\_dim != matrix\_2.row\_dim) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00792}00792       std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00793}00793       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00794}00794       ss << \textcolor{stringliteral}{"{}Matrix product cannot be defined"{}} << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00795}00795       ss << \textcolor{stringliteral}{"{}matrix\_1.col\_dim = "{}} << matrix\_1.col\_dim << \textcolor{stringliteral}{"{}, matrix\_2.row\_dim = "{}} << matrix\_2.row\_dim << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00796}00796       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00797}00797    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00798}00798    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00799}00799    \textcolor{keyword}{using} T1T2   = \textcolor{keyword}{decltype}(std::declval<T1>()*std::declval<T2>());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00800}00800    \textcolor{keyword}{using} T1T2T3 = \textcolor{keyword}{decltype}(std::declval<T1>()*std::declval<T2>()*std::declval<T3>());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00801}00801 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00802}00802    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T1T2T3>}} matrix\_out(matrix\_1.row\_dim, matrix\_2.col\_dim);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00803}00803    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00804}00804    std::vector<T1T2>   temp\_v1(matrix\_1.col\_dim, 0.0);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00805}00805    std::vector<T1T2T3> temp\_v2(matrix\_2.col\_dim, 0.0);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00806}00806    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00807}00807    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix\_1.row\_dim; ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00808}00808       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_1.row[i]; j < matrix\_1.row[i + 1]; ++j) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00809}00809          temp\_v1[matrix\_1.col[j]] = coeff\_1*matrix\_1.val[j];}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00810}00810       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00811}00811       \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < matrix\_1.col\_dim; ++j) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00812}00812          \textcolor{keywordflow}{for} (std::int64\_t k = matrix\_2.row[j]; k < matrix\_2.row[j + 1]; ++k) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00813}00813             temp\_v2[matrix\_2.col[k]] += temp\_v1[j]*matrix\_2.val[k];}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00814}00814          \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00815}00815       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00816}00816       \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < matrix\_2.col\_dim; ++j) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00817}00817          \textcolor{keywordflow}{if} (std::abs(temp\_v2[j]) > 0.0) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00818}00818             matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.push\_back(temp\_v2[j]);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00819}00819             matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.push\_back(j);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00820}00820          \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00821}00821       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00822}00822       }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00823}00823       matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1] = matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size();}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00824}00824       }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00825}00825       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_1.row[i]; j < matrix\_1.row[i + 1]; ++j) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00826}00826          temp\_v1[matrix\_1.col[j]] = 0.0;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00827}00827       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00828}00828       \textcolor{keywordflow}{for} (std::int64\_t j = matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i]; j < matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1]; ++j) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00829}00829          temp\_v2[matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[j]] = 0.0;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00830}00830       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00831}00831    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00832}00832    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00833}00833    \textcolor{keywordflow}{if} (matrix\_1.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00834}00834       matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} = matrix\_2.tag;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00835}00835    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00836}00836    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00837}00837       \textcolor{keywordflow}{if} (matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}} || matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00838}00838          matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00839}00839       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00840}00840       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00841}00841          matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00842}00842       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00843}00843       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00844}00844          matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00845}00845       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00846}00846       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00847}00847          std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00848}00848          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00849}00849          ss << \textcolor{stringliteral}{"{}Unknown CRSTag detected."{}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00850}00850          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00851}00851       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00852}00852    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00853}00853    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00854}00854       \textcolor{keywordflow}{if} (matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baf96aeb914af342db32480b224f95bd6f}{CRSTag::FERMION}} || matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}} || matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00855}00855          matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} = matrix\_2.tag;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00856}00856       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00857}00857       \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_2.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11ba861b16b31f1b6b1c04552516e7a85987}{CRSTag::NONE}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00858}00858          matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11bad14dac1fb07c963ddc13357a8b1a94de}{CRSTag::BOSON}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00859}00859       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00860}00860       \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00861}00861          std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00862}00862          ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00863}00863          ss << \textcolor{stringliteral}{"{}Unknown CRSTag detected."{}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00864}00864          \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00865}00865       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00866}00866    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00867}00867    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (matrix\_1.tag == \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00868}00868       matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} = \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11baac3550dd78df756a2b31dfbab46f2647}{CRSTag::MIX}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00869}00869    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00870}00870    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00871}00871       std::stringstream ss;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00872}00872       ss << \textcolor{stringliteral}{"{}Error at "{}} << \_\_LINE\_\_ << \textcolor{stringliteral}{"{} in "{}} << \_\_func\_\_ << \textcolor{stringliteral}{"{} in "{}}<< \_\_FILE\_\_ << std::endl;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00873}00873       ss << \textcolor{stringliteral}{"{}Unknown CRSTag detected."{}};}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00874}00874       \textcolor{keywordflow}{throw} std::runtime\_error(ss.str());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00875}00875    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00876}00876    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00877}00877    \textcolor{keywordflow}{return} matrix\_out;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00878}00878 \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00879}00879 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00886}00886 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T1, \textcolor{keyword}{typename} T2>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00887}\mbox{\hyperlink{namespacecompnal_1_1type_a75e2fe84321e8bdb8853194f74451c3b}{00887}} \textcolor{keyword}{auto} \mbox{\hyperlink{namespacecompnal_1_1type_a75e2fe84321e8bdb8853194f74451c3b}{CalculateScalarMatrixProduct}}(\textcolor{keyword}{const} T1 coeff, \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T2>}} \&matrix) -\/>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00888}00888 CRS<\textcolor{keyword}{decltype}(std::declval<T1>()*std::declval<T2>())> \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00889}00889    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00890}00890    \textcolor{keyword}{using} T1T2 = \textcolor{keyword}{decltype}(std::declval<T1>()*std::declval<T2>());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00891}00891    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T1T2>}} out(matrix.row\_dim, matrix.col\_dim, matrix.tag);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00892}00892    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00893}00893    \textcolor{keywordflow}{if} (coeff == T1\{0\}) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00894}00894       \textcolor{keywordflow}{return} out;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00895}00895    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00896}00896    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00897}00897    out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.resize(matrix.col.size());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00898}00898    out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.resize(matrix.val.size());}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00899}00899    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00900}00900 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00901}00901    \textcolor{keywordflow}{for} (std::size\_t i = 0; i < matrix.col.size(); ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00902}00902       out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[i] = matrix.col[i];}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00903}00903       out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[i] = coeff*matrix.val[i];}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00904}00904    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00905}00905    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00906}00906 \textcolor{preprocessor}{\#pragma omp parallel for}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00907}00907    \textcolor{keywordflow}{for} (std::int64\_t i = 1; i <= matrix.row\_dim; ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00908}00908       out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i] = matrix.row[i];}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00909}00909    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00910}00910    \textcolor{keywordflow}{return} out;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00911}00911 \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00912}00912 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00917}00917 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00918}\mbox{\hyperlink{namespacecompnal_1_1type_a59fb41af50a085e7de7640b31b6fd240}{00918}} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} \mbox{\hyperlink{namespacecompnal_1_1type_a59fb41af50a085e7de7640b31b6fd240}{CalculateTransposedMatrix}}(\textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} \&matrix) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00919}00919    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00920}00920    \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS<T>}} matrix\_out(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}, matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}, matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}});}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00921}00921    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00922}00922    std::vector<std::int64\_t> row\_count(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}});}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00923}00923    \textcolor{keywordflow}{for} (std::int64\_t i = 0; i < matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\_dim}}; ++i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00924}00924       \textcolor{keywordflow}{for} (std::int64\_t j = 0; j < matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\_dim}}; ++j) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00925}00925          \textcolor{keyword}{const} std::int64\_t row = matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[j] + row\_count[j];}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00926}00926          \textcolor{keywordflow}{if} (row < matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[j + 1] \&\& matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}[row] == i) \{}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00927}00927             matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}.push\_back(matrix.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}[row]);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00928}00928             matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.push\_back(j);}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00929}00929             row\_count[j]++;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00930}00930          \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00931}00931       \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00932}00932       matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}}[i + 1] = matrix\_out.\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}.size();}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00933}00933    \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00934}00934    }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00935}00935    \textcolor{keywordflow}{return} matrix\_out;}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00936}00936 \}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00937}00937 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00938}00938 \} \textcolor{comment}{// namespace type}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00939}00939 \} \textcolor{comment}{// namespace compnal}}
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00940}00940 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00941}00941 }
+\DoxyCodeLine{\Hypertarget{compressed__row__storage_8hpp_source_l00942}00942 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_TYPE\_COMPRESSED\_ROW\_STORAGE\_HPP\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

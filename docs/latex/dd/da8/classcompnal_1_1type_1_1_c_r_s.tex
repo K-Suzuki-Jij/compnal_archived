@@ -1,0 +1,633 @@
+\hypertarget{classcompnal_1_1type_1_1_c_r_s}{}\doxysection{compnal\+::type\+::CRS\texorpdfstring{$<$}{<} Element\+Type \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classcompnal_1_1type_1_1_c_r_s}\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+
+
+Sparse matrix classs (Compressed Row Strage\+: \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}).  
+
+
+
+
+{\ttfamily \#include $<$compressed\+\_\+row\+\_\+storage.\+hpp$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a22bb8787abc4618bc014aa842be4a763}{Value\+Type}} = Element\+Type
+\begin{DoxyCompactList}\small\item\em Alias of Element\+Type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a76dae7aa62d63f21ecfa49eb3a73b721}{CRS}} ()
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a717531e4c418f1da4ee500ff751b154a}{CRS}} (const std\+::int64\+\_\+t row\+\_\+dim\+\_\+in, const std\+::int64\+\_\+t col\+\_\+dim\+\_\+in, const \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}} tag\+\_\+in=CRSTag\+::\+NONE)
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} class. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T  = Element\+Type$>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a5025f416b1ed779c591da43d30df2edb}{CRS}} (const std\+::vector$<$ std\+::vector$<$ T $>$ $>$ \&mat\+\_\+vec, const \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}} tag\+\_\+in=CRSTag\+::\+NONE)
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} class. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a794c0b1737646f1aba58f923c1d19070}{CRS}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T $>$ \&matrix)
+\begin{DoxyCompactList}\small\item\em Copy constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a1ff94881b52233a2903d369e398e907a}{Free}} ()
+\begin{DoxyCompactList}\small\item\em Clear the elements and free memory. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac4696f6f7423080adbdbc490d49f0b0a}{Assign}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T $>$ \&matrix)
+\begin{DoxyCompactList}\small\item\em Assign \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a1ce10267ddf6fd06620f57bc9b0a7e43}{Multiply\+By\+Scalar}} (const T coeff)
+\begin{DoxyCompactList}\small\item\em Multiply by scalar to the elements. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\void \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_aa7c4b4d33b18686e7da7ccdae4b94733}{Add\+Diagonal\+Elements}} (const T diag\+\_\+add)
+\begin{DoxyCompactList}\small\item\em Add a value to the diagonal elements. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a7fd21b0a2b0c525b831cf03e896fa525}{Sort\+Col}} ()
+\begin{DoxyCompactList}\small\item\em Sort column indexes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ab43150585915445e3b8745cf9ff1924c}{Print}} (const std\+::string display\+\_\+name=\char`\"{}\char`\"{}) const
+\begin{DoxyCompactList}\small\item\em Print the matrix. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a7cd67a00d8952a69b7563343d79de2fc}{Print\+Info}} (const std\+::string display\+\_\+name=\char`\"{}Matrix\char`\"{}) const
+\begin{DoxyCompactList}\small\item\em Print the information about the matrix. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_accd09f748ee88f6b50816cb5da91c68d}{Check\+Symmetric}} (const Element\+Type threshold=0.\+000000000000001, const bool flag\+\_\+display\+\_\+info=false) const
+\begin{DoxyCompactList}\small\item\em Check if the matrix is symmetric or not within the threshold. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_abcfc5d5e087b26264f1225949304f2ee}{operator+}} () const
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: unary plus operator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_aa02cc0d2b9d8dd67514abe11e52b7bbf}{operator-\/}} () const
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: unary negation operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a878cede5b8041d4cf1cabf5bc809fdd0}{operator+=}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T $>$ rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: compound assignment plus operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a04ea5951e267780634957ac36f2fbaf2}{operator-\/=}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T $>$ rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: compound assignment subtraction operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a3dbeb14b8c90fc4f0439ce7e9edab126}{operator$\ast$=}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T $>$ rhs)
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: compound assignment multiplication operator. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a7621f2369023bfd850e0908482f3f07f}{operator=}} (const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T $>$ \&matrix) \&
+\begin{DoxyCompactList}\small\item\em Operator overloading\+: assignment operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}{row\+\_\+dim}} = 0
+\begin{DoxyCompactList}\small\item\em The dimension of the row. \end{DoxyCompactList}\item 
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}{col\+\_\+dim}} = 0
+\begin{DoxyCompactList}\small\item\em The dimension of the colmun. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::int64\+\_\+t $>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}{row}} = \{0\}
+\begin{DoxyCompactList}\small\item\em The locations in the val vector that start a row. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::int64\+\_\+t $>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}{col}}
+\begin{DoxyCompactList}\small\item\em The column indexes of the elements in the val vector. \end{DoxyCompactList}\item 
+std\+::vector$<$ Element\+Type $>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}{val}}
+\begin{DoxyCompactList}\small\item\em The values of the nonzero elements of the matrix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}{tag}} = CRSTag\+::\+NONE
+\begin{DoxyCompactList}\small\item\em Type of the the matrix. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s_a8ff961838014a2146c4e570ebbb85840}{name}} = \char`\"{}\char`\"{}
+\begin{DoxyCompactList}\small\item\em Matrix name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$typename Element\+Type$>$\newline
+class compnal\+::type\+::\+CRS$<$ Element\+Type $>$}
+Sparse matrix classs (Compressed Row Strage\+: \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}). 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Element\+Type} & The value type of the matrix elements. \\
+\hline
+\end{DoxyTemplParams}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00075}{75}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_a22bb8787abc4618bc014aa842be4a763}\label{classcompnal_1_1type_1_1_c_r_s_a22bb8787abc4618bc014aa842be4a763}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!ValueType@{ValueType}}
+\index{ValueType@{ValueType}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{ValueType}{ValueType}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::\+Value\+Type =  Element\+Type}
+
+
+
+Alias of Element\+Type. 
+
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00082}{82}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_a76dae7aa62d63f21ecfa49eb3a73b721}\label{classcompnal_1_1type_1_1_c_r_s_a76dae7aa62d63f21ecfa49eb3a73b721}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!CRS@{CRS}}
+\index{CRS@{CRS}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{CRS()}{CRS()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::\+CRS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} class. 
+
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00113}{113}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_a717531e4c418f1da4ee500ff751b154a}\label{classcompnal_1_1type_1_1_c_r_s_a717531e4c418f1da4ee500ff751b154a}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!CRS@{CRS}}
+\index{CRS@{CRS}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{CRS()}{CRS()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::\+CRS (\begin{DoxyParamCaption}\item[{const std\+::int64\+\_\+t}]{row\+\_\+dim\+\_\+in,  }\item[{const std\+::int64\+\_\+t}]{col\+\_\+dim\+\_\+in,  }\item[{const \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}}}]{tag\+\_\+in = {\ttfamily CRSTag\+:\+:NONE} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row\+\_\+dim\+\_\+in} & The dimension of the row. \\
+\hline
+{\em col\+\_\+dim\+\_\+in} & The dimension of the colmun. \\
+\hline
+{\em tag\+\_\+in} & Type of the the matrix. Defaults to CRSTag\+::\+NONE. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00119}{119}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_a5025f416b1ed779c591da43d30df2edb}\label{classcompnal_1_1type_1_1_c_r_s_a5025f416b1ed779c591da43d30df2edb}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!CRS@{CRS}}
+\index{CRS@{CRS}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{CRS()}{CRS()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename T  = Element\+Type$>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::\+CRS (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ T $>$ $>$ \&}]{mat\+\_\+vec,  }\item[{const \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}}}]{tag\+\_\+in = {\ttfamily CRSTag\+:\+:NONE} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} class. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & The value type of the vector elements. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em mat\+\_\+vec} & The matrix of two dimensional vectors. \\
+\hline
+{\em tag\+\_\+in} & Type of the the matrix. Defaults to CRSTag\+::\+NONE. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00136}{136}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_a794c0b1737646f1aba58f923c1d19070}\label{classcompnal_1_1type_1_1_c_r_s_a794c0b1737646f1aba58f923c1d19070}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!CRS@{CRS}}
+\index{CRS@{CRS}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{CRS()}{CRS()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename T $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::\+CRS (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T $>$ \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy constructor of \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} class. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type of the matrix elements. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & The matrix. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00161}{161}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_a1ff94881b52233a2903d369e398e907a}\label{classcompnal_1_1type_1_1_c_r_s_a1ff94881b52233a2903d369e398e907a}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!Free@{Free}}
+\index{Free@{Free}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{Free()}{Free()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::\+Free (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Clear the elements and free memory. 
+
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00169}{169}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_ac4696f6f7423080adbdbc490d49f0b0a}\label{classcompnal_1_1type_1_1_c_r_s_ac4696f6f7423080adbdbc490d49f0b0a}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!Assign@{Assign}}
+\index{Assign@{Assign}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{Assign()}{Assign()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename T $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::\+Assign (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T $>$ \&}]{matrix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assign \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type of the matrix elements. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & The matrix. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00184}{184}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_a1ce10267ddf6fd06620f57bc9b0a7e43}\label{classcompnal_1_1type_1_1_c_r_s_a1ce10267ddf6fd06620f57bc9b0a7e43}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!MultiplyByScalar@{MultiplyByScalar}}
+\index{MultiplyByScalar@{MultiplyByScalar}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{MultiplyByScalar()}{MultiplyByScalar()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename T $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::\+Multiply\+By\+Scalar (\begin{DoxyParamCaption}\item[{const T}]{coeff }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Multiply by scalar to the elements. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em coeff} & The value to be multiplied. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00210}{210}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_aa7c4b4d33b18686e7da7ccdae4b94733}\label{classcompnal_1_1type_1_1_c_r_s_aa7c4b4d33b18686e7da7ccdae4b94733}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!AddDiagonalElements@{AddDiagonalElements}}
+\index{AddDiagonalElements@{AddDiagonalElements}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{AddDiagonalElements()}{AddDiagonalElements()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename T $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::\+Add\+Diagonal\+Elements (\begin{DoxyParamCaption}\item[{const T}]{diag\+\_\+add }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Add a value to the diagonal elements. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em diag\+\_\+add} & The value to be added to the diagonal elements. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00231}{231}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_a7fd21b0a2b0c525b831cf03e896fa525}\label{classcompnal_1_1type_1_1_c_r_s_a7fd21b0a2b0c525b831cf03e896fa525}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!SortCol@{SortCol}}
+\index{SortCol@{SortCol}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{SortCol()}{SortCol()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::\+Sort\+Col (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sort column indexes. 
+
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00279}{279}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_ab43150585915445e3b8745cf9ff1924c}\label{classcompnal_1_1type_1_1_c_r_s_ab43150585915445e3b8745cf9ff1924c}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!Print@{Print}}
+\index{Print@{Print}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{Print()}{Print()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::\+Print (\begin{DoxyParamCaption}\item[{const std\+::string}]{display\+\_\+name = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Print the matrix. 
+
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00298}{298}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_a7cd67a00d8952a69b7563343d79de2fc}\label{classcompnal_1_1type_1_1_c_r_s_a7cd67a00d8952a69b7563343d79de2fc}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!PrintInfo@{PrintInfo}}
+\index{PrintInfo@{PrintInfo}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{PrintInfo()}{PrintInfo()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::\+Print\+Info (\begin{DoxyParamCaption}\item[{const std\+::string}]{display\+\_\+name = {\ttfamily \char`\"{}Matrix\char`\"{}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Print the information about the matrix. 
+
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00317}{317}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_accd09f748ee88f6b50816cb5da91c68d}\label{classcompnal_1_1type_1_1_c_r_s_accd09f748ee88f6b50816cb5da91c68d}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!CheckSymmetric@{CheckSymmetric}}
+\index{CheckSymmetric@{CheckSymmetric}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{CheckSymmetric()}{CheckSymmetric()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+bool \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::\+Check\+Symmetric (\begin{DoxyParamCaption}\item[{const Element\+Type}]{threshold = {\ttfamily 0.000000000000001},  }\item[{const bool}]{flag\+\_\+display\+\_\+info = {\ttfamily false} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check if the matrix is symmetric or not within the threshold. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em threshold} & The threshold. Defaults to 10$^\wedge$-\/15. \\
+\hline
+{\em flag\+\_\+display\+\_\+info} & Display information if the matrix is not symmetric. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Return true if the matrix is symmetric, otherwise false. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00339}{339}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_abcfc5d5e087b26264f1225949304f2ee}\label{classcompnal_1_1type_1_1_c_r_s_abcfc5d5e087b26264f1225949304f2ee}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!operator+@{operator+}}
+\index{operator+@{operator+}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{operator+()}{operator+()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::operator+ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Operator overloading\+: unary plus operator. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object, $ +\hat{M} $. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00400}{400}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_aa02cc0d2b9d8dd67514abe11e52b7bbf}\label{classcompnal_1_1type_1_1_c_r_s_aa02cc0d2b9d8dd67514abe11e52b7bbf}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/()}{operator-()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::operator-\/ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Operator overloading\+: unary negation operator. 
+
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object, $ -\hat{M} $. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00406}{406}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_a878cede5b8041d4cf1cabf5bc809fdd0}\label{classcompnal_1_1type_1_1_c_r_s_a878cede5b8041d4cf1cabf5bc809fdd0}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename T $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::operator+= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T $>$}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Operator overloading\+: compound assignment plus operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type of the right-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object of the right-\/hand side, $ \hat{M}_{\rm rhs}$. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object, $ \hat{M} + \hat{M}_{\rm rhs} $. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00415}{415}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_a04ea5951e267780634957ac36f2fbaf2}\label{classcompnal_1_1type_1_1_c_r_s_a04ea5951e267780634957ac36f2fbaf2}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename T $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::operator-\/= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T $>$}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Operator overloading\+: compound assignment subtraction operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type of the right-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object of the right-\/hand side, $ \hat{M}_{\rm rhs}$. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object, $ \hat{M} - \hat{M}_{\rm rhs} $. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00424}{424}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_a3dbeb14b8c90fc4f0439ce7e9edab126}\label{classcompnal_1_1type_1_1_c_r_s_a3dbeb14b8c90fc4f0439ce7e9edab126}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename T $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T $>$}]{rhs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Operator overloading\+: compound assignment multiplication operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type of the right-\/hand side. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object of the right-\/hand side, $ \hat{M}_{\rm rhs}$. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object, $ \hat{M}\hat{M}_{\rm rhs} $. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00433}{433}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_a7621f2369023bfd850e0908482f3f07f}\label{classcompnal_1_1type_1_1_c_r_s_a7621f2369023bfd850e0908482f3f07f}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+template$<$typename T $>$ \\
+\mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} \& \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}}$<$ T $>$ \&}]{matrix }\end{DoxyParamCaption}) \&\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Operator overloading\+: assignment operator. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & Value type of the matrix elements. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em matrix} & The \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object to be assigned. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{CRS}} object. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00442}{442}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}\label{classcompnal_1_1type_1_1_c_r_s_ac790fec841b1ca31157753797fba985d}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!row\_dim@{row\_dim}}
+\index{row\_dim@{row\_dim}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{row\_dim}{row\_dim}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::row\+\_\+dim = 0}
+
+
+
+The dimension of the row. 
+
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00089}{89}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}\label{classcompnal_1_1type_1_1_c_r_s_a47d4db1759d84328b3f534bd5f6a7444}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!col\_dim@{col\_dim}}
+\index{col\_dim@{col\_dim}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{col\_dim}{col\_dim}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+std\+::int64\+\_\+t \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::col\+\_\+dim = 0}
+
+
+
+The dimension of the colmun. 
+
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00092}{92}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}\label{classcompnal_1_1type_1_1_c_r_s_a6a151570fadeaab5b9a5b74da39294ff}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!row@{row}}
+\index{row@{row}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{row}{row}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+std\+::vector$<$std\+::int64\+\_\+t$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::row = \{0\}}
+
+
+
+The locations in the val vector that start a row. 
+
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00095}{95}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}\label{classcompnal_1_1type_1_1_c_r_s_a8e206b942a97428dbfd09e62cf17be94}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!col@{col}}
+\index{col@{col}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{col}{col}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+std\+::vector$<$std\+::int64\+\_\+t$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::col}
+
+
+
+The column indexes of the elements in the val vector. 
+
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00098}{98}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}\label{classcompnal_1_1type_1_1_c_r_s_a49f08adf2c82f9729d4d2da4296c5984}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!val@{val}}
+\index{val@{val}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{val}{val}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+std\+::vector$<$Element\+Type$>$ \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::val}
+
+
+
+The values of the nonzero elements of the matrix. 
+
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00101}{101}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}\label{classcompnal_1_1type_1_1_c_r_s_a10f8e01e4b381e42a2d93203098aa5ca}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!tag@{tag}}
+\index{tag@{tag}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{tag}{tag}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+\mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b}{CRSTag}} \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::tag = CRSTag\+::\+NONE}
+
+
+
+Type of the the matrix. 
+
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00104}{104}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1type_1_1_c_r_s_a8ff961838014a2146c4e570ebbb85840}\label{classcompnal_1_1type_1_1_c_r_s_a8ff961838014a2146c4e570ebbb85840}} 
+\index{compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}!name@{name}}
+\index{name@{name}!compnal::type::CRS$<$ ElementType $>$@{compnal::type::CRS$<$ ElementType $>$}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily template$<$typename Element\+Type $>$ \\
+std\+::string \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS}}$<$ Element\+Type $>$\+::name = \char`\"{}\char`\"{}}
+
+
+
+Matrix name. 
+
+
+
+Definition at line \mbox{\hyperlink{compressed__row__storage_8hpp_source_l00107}{107}} of file \mbox{\hyperlink{compressed__row__storage_8hpp_source}{compressed\+\_\+row\+\_\+storage.\+hpp}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/type/\mbox{\hyperlink{compressed__row__storage_8hpp}{compressed\+\_\+row\+\_\+storage.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,659 @@
+\hypertarget{classcompnal_1_1solver_1_1_exact_diag}{}\doxysection{compnal\+::solver\+::Exact\+Diag\texorpdfstring{$<$}{<} Model\+Class \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classcompnal_1_1solver_1_1_exact_diag}\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+
+
+The class for the exact diagonalization.  
+
+
+
+
+{\ttfamily \#include $<$exact\+\_\+diag.\+hpp$>$}
+
+
+
+Collaboration diagram for compnal\+::solver\+::Exact\+Diag\texorpdfstring{$<$}{<} Model\+Class \texorpdfstring{$>$}{>}\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{da/d67/classcompnal_1_1solver_1_1_exact_diag__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a535e85ef2697a25abb2e128542d65c68}{Exact\+Diag}} (const Model\+Class \&model\+\_\+input)
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{Exact\+Diag}} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a0ee709663871546f51f358face6c6c7c}{Exact\+Diag}} (const Model\+Class \&model\+\_\+input, const \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_all}{blas\+::\+Parameters\+All}} \&params\+\_\+input)
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{Exact\+Diag}} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a0e57f30ab281b750b7ebbb24ade22afd}{Calculate\+Ground\+State}} (const bool flag\+\_\+display\+\_\+info=false)
+\begin{DoxyCompactList}\small\item\em Calculate ground state by the exact diagonalization method. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a22420e816fb2c86f9e710312e8f346e2}{Calculate\+Target\+State}} (const int target\+\_\+sector)
+\item 
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1aafb57ecb9c2dcc044f4a6828cc93e8}{Calculate\+Expectation\+Value}} (const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&m, const int site, const int level=0) const
+\item 
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acd281c111110b09eeeea7a456f5220b5}{Calculate\+Correlation\+Function}} (const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&m, const int site, const int target\+\_\+level=0) const
+\item 
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a490b6895fcfb239a483be3dd2f10134a}{Calculate\+Correlation\+Function}} (const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&m\+\_\+1, const int site\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&m\+\_\+2, const int site\+\_\+2, const int target\+\_\+level=0)
+\item 
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ae5779b9d1389557e8dcf81b91e978507}{Calculate\+Correlation\+Function}} (const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&m\+\_\+1, const int site\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&m\+\_\+2, const int site\+\_\+2, const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&m\+\_\+3, const int site\+\_\+3, const int target\+\_\+level=0)
+\item 
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a7c3c205f875f049444abaa9f17d2faeb}{Calculate\+Correlation\+Function}} (const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&m\+\_\+1, const int site\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&m\+\_\+2, const int site\+\_\+2, const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&m\+\_\+3, const int site\+\_\+3, const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&m\+\_\+4, const int site\+\_\+4, const int target\+\_\+level=0)
+\item 
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}{Braket\+Vector}} $>$ \& \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a3998505c06a97dc70312e94409ac1770}{Get\+Eigenvectors}} () const
+\item 
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} $>$ \& \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acaaec962f1fe4e3fcddc0b1e2ecebfc6}{Get\+Eigenvalues}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const Model\+Class \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}{model}}
+\begin{DoxyCompactList}\small\item\em Model class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_all}{blas\+::\+Parameters\+All}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a994630e33087810daa87da6b66925127}{params}}
+\begin{DoxyCompactList}\small\item\em Parameters for diagonalization methods. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacecompnal_1_1solver_aea9ed4356b9eb3f1e01e43d336026522}{Diag\+Method}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a7ebf7d0143bbc123c0cb826ece9e2bf9}{diag\+\_\+method\+\_\+}} = Diag\+Method\+::\+LANCZOS
+\begin{DoxyCompactList}\small\item\em Diagonalization method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} = typename Model\+Class\+::\+Value\+Type
+\begin{DoxyCompactList}\small\item\em Type of real values. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_aef6fb4a525be81943447384b6170f3ef}{QType}} = typename Model\+Class\+::\+QType
+\begin{DoxyCompactList}\small\item\em Type of quantum numbers. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a8b50861a822124ea37cf63af26235f98}{QHash}} = typename Model\+Class\+::\+QHash
+\begin{DoxyCompactList}\small\item\em Type of QType hash. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} = \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} $>$
+\begin{DoxyCompactList}\small\item\em Alias of compressed row strage (CRS) with Real\+Type. \end{DoxyCompactList}\item 
+using \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}{Braket\+Vector}} = blas\+::\+Braket\+Vector$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} $>$
+\begin{DoxyCompactList}\small\item\em Alias of braket vector class with Real\+Type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_aef6fb4a525be81943447384b6170f3ef}{QType}} $>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a4255610b274890174bf7a295e507b4}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&m\+\_\+1)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_aef6fb4a525be81943447384b6170f3ef}{QType}} $>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a5cc7ea84e576863cd2ab55ef61e75e30}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&m\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&m\+\_\+2) const
+\begin{DoxyCompactList}\small\item\em Calculate the quantum numbers of excited states that appear when calculating the correlation functions. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_aef6fb4a525be81943447384b6170f3ef}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ac1fd4a4602fcf9af48101c8d8ac46d47}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&m\+\_\+1\+\_\+bra, const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&m\+\_\+2\+\_\+ket, const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&m\+\_\+3\+\_\+ket) const
+\begin{DoxyCompactList}\small\item\em Calculate the quantum numbers of excited states that appear when calculating the correlation functions. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_aef6fb4a525be81943447384b6170f3ef}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a6c393215396e23e56985ad8ca6b5b551}{Generate\+Target\+Sector}} (const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&m\+\_\+1\+\_\+bra, const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&m\+\_\+2\+\_\+bra, const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&m\+\_\+3\+\_\+ket, const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&m\+\_\+4\+\_\+ket) const
+\begin{DoxyCompactList}\small\item\em Calculate the quantum numbers of excited states that appear when calculating the correlation functions. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a1a3a0400cf96ee595d5a095cfb1c4f87}{Calculate\+Local\+Basis}} (std\+::int64\+\_\+t global\+\_\+basis, const int site, const int dim\+\_\+onsite) const
+\item 
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_aef9f604139cf2607458c7e5d14afae5c}{Generate\+Basis}} (const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_aef6fb4a525be81943447384b6170f3ef}{QType}} \&q\+\_\+number, const bool flag\+\_\+display\+\_\+info=false)
+\item 
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a0b18fac0aecdc44c9c3309c8e8a7dfc8}{Generate\+Matrix\+Components\+Onsite}} (\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components}{Exact\+Diag\+Matrix\+Components}}$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} $>$ $\ast$edmc, const std\+::int64\+\_\+t basis, const int site, const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&matrix\+\_\+onsite, const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} coeef) const
+\item 
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_aedb25e4c8e244da2a95c38f855d0c5d1}{Generate\+Matrix\+Components\+Intersite}} (\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components}{Exact\+Diag\+Matrix\+Components}}$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} $>$ $\ast$edmc, const std\+::int64\+\_\+t basis, const int site\+\_\+1, const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&matrix\+\_\+onsite\+\_\+1, const int site\+\_\+2, const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&matrix\+\_\+onsite\+\_\+2, const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} coeef, const int fermion\+\_\+sign=1.\+0) const
+\item 
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_afc68d703f3882d48e3c09445db2994c2}{Generate\+Hamiltonian}} (\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} $\ast$ham) const
+\item 
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab88d4c67d3ca70815a43a7961c9080af}{Generate\+Matrix\+Components}} (\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components}{Exact\+Diag\+Matrix\+Components}}$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} $>$ $\ast$edmc, const std\+::int64\+\_\+t basis, const \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d}{model\+::\+Hubbard\+\_\+1D}}$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} $>$ \&model\+\_\+input) const
+\item 
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_af1da3592e5e6c2d00903c2f411987233}{Generate\+Matrix\+Components}} (\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components}{Exact\+Diag\+Matrix\+Components}}$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} $>$ $\ast$edmc, const std\+::int64\+\_\+t basis, const \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d}{model\+::\+Kondo\+Lattice\+\_\+1D}}$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} $>$ \&model\+\_\+input) const
+\item 
+{\footnotesize template$<$class Base\+Class $>$ }\\void \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a259b4ea5e04a394742135d8182a1f46e}{Generate\+Matrix\+Components}} (\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components}{Exact\+Diag\+Matrix\+Components}}$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} $>$ $\ast$edmc, const std\+::int64\+\_\+t basis, const model\+::\+General\+Model\+\_\+1D$<$ Base\+Class $>$ \&model\+\_\+input) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}{Braket\+Vector}} $>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}{eigenvectors\+\_\+}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} $>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a08b1c95d031f0b29727039f031480c1d}{eigenvalues\+\_\+}}
+\item 
+std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_aef6fb4a525be81943447384b6170f3ef}{QType}}, std\+::vector$<$ std\+::int64\+\_\+t $>$, \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a8b50861a822124ea37cf63af26235f98}{QHash}} $>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_af7bfc33699d996c081d223b38edbdca2}{bases\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Bases of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
+std\+::unordered\+\_\+map$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_aef6fb4a525be81943447384b6170f3ef}{QType}}, std\+::unordered\+\_\+map$<$ std\+::int64\+\_\+t, std\+::int64\+\_\+t $>$, \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a8b50861a822124ea37cf63af26235f98}{QHash}} $>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a6a65dea6a239083cf479222a02f546c5}{bases\+\_\+inv\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Inverse bases of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. \end{DoxyCompactList}\item 
+std\+::unordered\+\_\+set$<$ int $>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_affb70f954c79af21f543b0797daba72e}{calculated\+\_\+eigenvector\+\_\+set\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The calculated eigenvectors and eigenvalues. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Model\+Class$>$\newline
+class compnal\+::solver\+::\+Exact\+Diag$<$ Model\+Class $>$}
+The class for the exact diagonalization. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Model\+Class} & The model class. \\
+\hline
+\end{DoxyTemplParams}
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00031}{31}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}\label{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!RealType@{RealType}}
+\index{RealType@{RealType}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{RealType}{RealType}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Real\+Type =  typename Model\+Class\+::\+Value\+Type\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Type of real values. 
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00036}{36}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_aef6fb4a525be81943447384b6170f3ef}\label{classcompnal_1_1solver_1_1_exact_diag_aef6fb4a525be81943447384b6170f3ef}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!QType@{QType}}
+\index{QType@{QType}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{QType}{QType}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+QType =  typename Model\+Class\+::\+QType\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Type of quantum numbers. 
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00039}{39}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_a8b50861a822124ea37cf63af26235f98}\label{classcompnal_1_1solver_1_1_exact_diag_a8b50861a822124ea37cf63af26235f98}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!QHash@{QHash}}
+\index{QHash@{QHash}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{QHash}{QHash}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+QHash =  typename Model\+Class\+::\+QHash\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Type of QType hash. 
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00042}{42}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}\label{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!CRS@{CRS}}
+\index{CRS@{CRS}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{CRS}{CRS}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+CRS =  \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{type\+::\+CRS}}$<$\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}}$>$\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Alias of compressed row strage (CRS) with Real\+Type. 
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00045}{45}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}\label{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!BraketVector@{BraketVector}}
+\index{BraketVector@{BraketVector}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{BraketVector}{BraketVector}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Braket\+Vector =  blas\+::\+Braket\+Vector$<$\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}}$>$\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Alias of braket vector class with Real\+Type. 
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00048}{48}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_a535e85ef2697a25abb2e128542d65c68}\label{classcompnal_1_1solver_1_1_exact_diag_a535e85ef2697a25abb2e128542d65c68}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!ExactDiag@{ExactDiag}}
+\index{ExactDiag@{ExactDiag}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{ExactDiag()}{ExactDiag()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Exact\+Diag (\begin{DoxyParamCaption}\item[{const Model\+Class \&}]{model\+\_\+input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Constructor of \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{Exact\+Diag}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model\+\_\+input} & The model class to be diagonalized. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00068}{68}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_a0ee709663871546f51f358face6c6c7c}\label{classcompnal_1_1solver_1_1_exact_diag_a0ee709663871546f51f358face6c6c7c}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!ExactDiag@{ExactDiag}}
+\index{ExactDiag@{ExactDiag}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{ExactDiag()}{ExactDiag()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Exact\+Diag (\begin{DoxyParamCaption}\item[{const Model\+Class \&}]{model\+\_\+input,  }\item[{const \mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_all}{blas\+::\+Parameters\+All}} \&}]{params\+\_\+input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{Exact\+Diag}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model\+\_\+input} & The model class to be diagonalized. \\
+\hline
+{\em params\+\_\+input} & Parameters for diagonalization methods. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00076}{76}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_a0e57f30ab281b750b7ebbb24ade22afd}\label{classcompnal_1_1solver_1_1_exact_diag_a0e57f30ab281b750b7ebbb24ade22afd}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!CalculateGroundState@{CalculateGroundState}}
+\index{CalculateGroundState@{CalculateGroundState}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateGroundState()}{CalculateGroundState()}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Calculate\+Ground\+State (\begin{DoxyParamCaption}\item[{const bool}]{flag\+\_\+display\+\_\+info = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculate ground state by the exact diagonalization method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em flag\+\_\+display\+\_\+info} & If true, display the progress status. Set false by default. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00087}{87}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_a22420e816fb2c86f9e710312e8f346e2}\label{classcompnal_1_1solver_1_1_exact_diag_a22420e816fb2c86f9e710312e8f346e2}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!CalculateTargetState@{CalculateTargetState}}
+\index{CalculateTargetState@{CalculateTargetState}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateTargetState()}{CalculateTargetState()}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Calculate\+Target\+State (\begin{DoxyParamCaption}\item[{const int}]{target\+\_\+sector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00122}{122}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_a1aafb57ecb9c2dcc044f4a6828cc93e8}\label{classcompnal_1_1solver_1_1_exact_diag_a1aafb57ecb9c2dcc044f4a6828cc93e8}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!CalculateExpectationValue@{CalculateExpectationValue}}
+\index{CalculateExpectationValue@{CalculateExpectationValue}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateExpectationValue()}{CalculateExpectationValue()}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Calculate\+Expectation\+Value (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{m,  }\item[{const int}]{site,  }\item[{const int}]{level = {\ttfamily 0} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00171}{171}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_acd281c111110b09eeeea7a456f5220b5}\label{classcompnal_1_1solver_1_1_exact_diag_acd281c111110b09eeeea7a456f5220b5}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!CalculateCorrelationFunction@{CalculateCorrelationFunction}}
+\index{CalculateCorrelationFunction@{CalculateCorrelationFunction}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateCorrelationFunction()}{CalculateCorrelationFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Calculate\+Correlation\+Function (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{m,  }\item[{const int}]{site,  }\item[{const int}]{target\+\_\+level = {\ttfamily 0} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00211}{211}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_a490b6895fcfb239a483be3dd2f10134a}\label{classcompnal_1_1solver_1_1_exact_diag_a490b6895fcfb239a483be3dd2f10134a}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!CalculateCorrelationFunction@{CalculateCorrelationFunction}}
+\index{CalculateCorrelationFunction@{CalculateCorrelationFunction}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateCorrelationFunction()}{CalculateCorrelationFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Calculate\+Correlation\+Function (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{m\+\_\+1,  }\item[{const int}]{site\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{m\+\_\+2,  }\item[{const int}]{site\+\_\+2,  }\item[{const int}]{target\+\_\+level = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00215}{215}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_ae5779b9d1389557e8dcf81b91e978507}\label{classcompnal_1_1solver_1_1_exact_diag_ae5779b9d1389557e8dcf81b91e978507}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!CalculateCorrelationFunction@{CalculateCorrelationFunction}}
+\index{CalculateCorrelationFunction@{CalculateCorrelationFunction}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateCorrelationFunction()}{CalculateCorrelationFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Calculate\+Correlation\+Function (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{m\+\_\+1,  }\item[{const int}]{site\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{m\+\_\+2,  }\item[{const int}]{site\+\_\+2,  }\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{m\+\_\+3,  }\item[{const int}]{site\+\_\+3,  }\item[{const int}]{target\+\_\+level = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00299}{299}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_a7c3c205f875f049444abaa9f17d2faeb}\label{classcompnal_1_1solver_1_1_exact_diag_a7c3c205f875f049444abaa9f17d2faeb}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!CalculateCorrelationFunction@{CalculateCorrelationFunction}}
+\index{CalculateCorrelationFunction@{CalculateCorrelationFunction}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateCorrelationFunction()}{CalculateCorrelationFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Calculate\+Correlation\+Function (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{m\+\_\+1,  }\item[{const int}]{site\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{m\+\_\+2,  }\item[{const int}]{site\+\_\+2,  }\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{m\+\_\+3,  }\item[{const int}]{site\+\_\+3,  }\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{m\+\_\+4,  }\item[{const int}]{site\+\_\+4,  }\item[{const int}]{target\+\_\+level = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00437}{437}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_a3998505c06a97dc70312e94409ac1770}\label{classcompnal_1_1solver_1_1_exact_diag_a3998505c06a97dc70312e94409ac1770}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!GetEigenvectors@{GetEigenvectors}}
+\index{GetEigenvectors@{GetEigenvectors}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{GetEigenvectors()}{GetEigenvectors()}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}{Braket\+Vector}} $>$ \& \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Get\+Eigenvectors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00618}{618}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_acaaec962f1fe4e3fcddc0b1e2ecebfc6}\label{classcompnal_1_1solver_1_1_exact_diag_acaaec962f1fe4e3fcddc0b1e2ecebfc6}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!GetEigenvalues@{GetEigenvalues}}
+\index{GetEigenvalues@{GetEigenvalues}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{GetEigenvalues()}{GetEigenvalues()}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} $>$ \& \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Get\+Eigenvalues (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00619}{619}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_a1a4255610b274890174bf7a295e507b4}\label{classcompnal_1_1solver_1_1_exact_diag_a1a4255610b274890174bf7a295e507b4}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!GenerateTargetSector@{GenerateTargetSector}}
+\index{GenerateTargetSector@{GenerateTargetSector}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateTargetSector()}{GenerateTargetSector()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_aef6fb4a525be81943447384b6170f3ef}{QType}} $>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{m\+\_\+1 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00642}{642}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_a5cc7ea84e576863cd2ab55ef61e75e30}\label{classcompnal_1_1solver_1_1_exact_diag_a5cc7ea84e576863cd2ab55ef61e75e30}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!GenerateTargetSector@{GenerateTargetSector}}
+\index{GenerateTargetSector@{GenerateTargetSector}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateTargetSector()}{GenerateTargetSector()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_aef6fb4a525be81943447384b6170f3ef}{QType}} $>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{m\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{m\+\_\+2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Calculate the quantum numbers of excited states that appear when calculating the correlation functions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m\+\_\+1} & The matrix of an onsite operator. \\
+\hline
+{\em m\+\_\+2} & The matrix of an onsite operator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The list of quantum numbers. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00658}{658}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_ac1fd4a4602fcf9af48101c8d8ac46d47}\label{classcompnal_1_1solver_1_1_exact_diag_ac1fd4a4602fcf9af48101c8d8ac46d47}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!GenerateTargetSector@{GenerateTargetSector}}
+\index{GenerateTargetSector@{GenerateTargetSector}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateTargetSector()}{GenerateTargetSector()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_aef6fb4a525be81943447384b6170f3ef}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{m\+\_\+1\+\_\+bra,  }\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{m\+\_\+2\+\_\+ket,  }\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{m\+\_\+3\+\_\+ket }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Calculate the quantum numbers of excited states that appear when calculating the correlation functions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m\+\_\+1\+\_\+bra} & The matrix of an onsite operator. \\
+\hline
+{\em m\+\_\+2\+\_\+ket} & The matrix of an onsite operator. \\
+\hline
+{\em m\+\_\+3\+\_\+ket} & The matrix of an onsite operator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The list of quantum numbers. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00677}{677}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_a6c393215396e23e56985ad8ca6b5b551}\label{classcompnal_1_1solver_1_1_exact_diag_a6c393215396e23e56985ad8ca6b5b551}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!GenerateTargetSector@{GenerateTargetSector}}
+\index{GenerateTargetSector@{GenerateTargetSector}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateTargetSector()}{GenerateTargetSector()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_aef6fb4a525be81943447384b6170f3ef}{QType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Generate\+Target\+Sector (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{m\+\_\+1\+\_\+bra,  }\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{m\+\_\+2\+\_\+bra,  }\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{m\+\_\+3\+\_\+ket,  }\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{m\+\_\+4\+\_\+ket }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Calculate the quantum numbers of excited states that appear when calculating the correlation functions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m\+\_\+1\+\_\+bra} & The matrix of an onsite operator. \\
+\hline
+{\em m\+\_\+2\+\_\+bra} & The matrix of an onsite operator. \\
+\hline
+{\em m\+\_\+3\+\_\+ket} & The matrix of an onsite operator. \\
+\hline
+{\em m\+\_\+4\+\_\+ket} & The matrix of an onsite operator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The list of quantum numbers. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00709}{709}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_a1a3a0400cf96ee595d5a095cfb1c4f87}\label{classcompnal_1_1solver_1_1_exact_diag_a1a3a0400cf96ee595d5a095cfb1c4f87}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!CalculateLocalBasis@{CalculateLocalBasis}}
+\index{CalculateLocalBasis@{CalculateLocalBasis}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateLocalBasis()}{CalculateLocalBasis()}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+int \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Calculate\+Local\+Basis (\begin{DoxyParamCaption}\item[{std\+::int64\+\_\+t}]{global\+\_\+basis,  }\item[{const int}]{site,  }\item[{const int}]{dim\+\_\+onsite }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00747}{747}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_aef9f604139cf2607458c7e5d14afae5c}\label{classcompnal_1_1solver_1_1_exact_diag_aef9f604139cf2607458c7e5d14afae5c}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!GenerateBasis@{GenerateBasis}}
+\index{GenerateBasis@{GenerateBasis}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateBasis()}{GenerateBasis()}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Generate\+Basis (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_aef6fb4a525be81943447384b6170f3ef}{QType}} \&}]{q\+\_\+number,  }\item[{const bool}]{flag\+\_\+display\+\_\+info = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00754}{754}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_a0b18fac0aecdc44c9c3309c8e8a7dfc8}\label{classcompnal_1_1solver_1_1_exact_diag_a0b18fac0aecdc44c9c3309c8e8a7dfc8}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!GenerateMatrixComponentsOnsite@{GenerateMatrixComponentsOnsite}}
+\index{GenerateMatrixComponentsOnsite@{GenerateMatrixComponentsOnsite}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateMatrixComponentsOnsite()}{GenerateMatrixComponentsOnsite()}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Generate\+Matrix\+Components\+Onsite (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components}{Exact\+Diag\+Matrix\+Components}}$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} $>$ $\ast$}]{edmc,  }\item[{const std\+::int64\+\_\+t}]{basis,  }\item[{const int}]{site,  }\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{matrix\+\_\+onsite,  }\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}}}]{coeef }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00766}{766}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_aedb25e4c8e244da2a95c38f855d0c5d1}\label{classcompnal_1_1solver_1_1_exact_diag_aedb25e4c8e244da2a95c38f855d0c5d1}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!GenerateMatrixComponentsIntersite@{GenerateMatrixComponentsIntersite}}
+\index{GenerateMatrixComponentsIntersite@{GenerateMatrixComponentsIntersite}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateMatrixComponentsIntersite()}{GenerateMatrixComponentsIntersite()}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Generate\+Matrix\+Components\+Intersite (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components}{Exact\+Diag\+Matrix\+Components}}$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} $>$ $\ast$}]{edmc,  }\item[{const std\+::int64\+\_\+t}]{basis,  }\item[{const int}]{site\+\_\+1,  }\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{matrix\+\_\+onsite\+\_\+1,  }\item[{const int}]{site\+\_\+2,  }\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} \&}]{matrix\+\_\+onsite\+\_\+2,  }\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}}}]{coeef,  }\item[{const int}]{fermion\+\_\+sign = {\ttfamily 1.0} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00792}{792}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_afc68d703f3882d48e3c09445db2994c2}\label{classcompnal_1_1solver_1_1_exact_diag_afc68d703f3882d48e3c09445db2994c2}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!GenerateHamiltonian@{GenerateHamiltonian}}
+\index{GenerateHamiltonian@{GenerateHamiltonian}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateHamiltonian()}{GenerateHamiltonian()}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Generate\+Hamiltonian (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_acc7a4debc51ae302733f132f2aa32c6d}{CRS}} $\ast$}]{ham }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00827}{827}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_ab88d4c67d3ca70815a43a7961c9080af}\label{classcompnal_1_1solver_1_1_exact_diag_ab88d4c67d3ca70815a43a7961c9080af}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!GenerateMatrixComponents@{GenerateMatrixComponents}}
+\index{GenerateMatrixComponents@{GenerateMatrixComponents}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateMatrixComponents()}{GenerateMatrixComponents()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Generate\+Matrix\+Components (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components}{Exact\+Diag\+Matrix\+Components}}$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} $>$ $\ast$}]{edmc,  }\item[{const std\+::int64\+\_\+t}]{basis,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_hubbard__1_d}{model\+::\+Hubbard\+\_\+1D}}$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} $>$ \&}]{model\+\_\+input }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00995}{995}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_af1da3592e5e6c2d00903c2f411987233}\label{classcompnal_1_1solver_1_1_exact_diag_af1da3592e5e6c2d00903c2f411987233}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!GenerateMatrixComponents@{GenerateMatrixComponents}}
+\index{GenerateMatrixComponents@{GenerateMatrixComponents}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateMatrixComponents()}{GenerateMatrixComponents()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Generate\+Matrix\+Components (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components}{Exact\+Diag\+Matrix\+Components}}$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} $>$ $\ast$}]{edmc,  }\item[{const std\+::int64\+\_\+t}]{basis,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_kondo_lattice__1_d}{model\+::\+Kondo\+Lattice\+\_\+1D}}$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} $>$ \&}]{model\+\_\+input }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l01073}{1073}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_a259b4ea5e04a394742135d8182a1f46e}\label{classcompnal_1_1solver_1_1_exact_diag_a259b4ea5e04a394742135d8182a1f46e}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!GenerateMatrixComponents@{GenerateMatrixComponents}}
+\index{GenerateMatrixComponents@{GenerateMatrixComponents}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateMatrixComponents()}{GenerateMatrixComponents()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+template$<$class Base\+Class $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::\+Generate\+Matrix\+Components (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components}{Exact\+Diag\+Matrix\+Components}}$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}} $>$ $\ast$}]{edmc,  }\item[{const std\+::int64\+\_\+t}]{basis,  }\item[{const model\+::\+General\+Model\+\_\+1D$<$ Base\+Class $>$ \&}]{model\+\_\+input }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l01109}{1109}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}\label{classcompnal_1_1solver_1_1_exact_diag_a4bb54cc68b058aa00720b0931c21736a}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!model@{model}}
+\index{model@{model}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+const Model\+Class \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::model}
+
+
+
+Model class. 
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00055}{55}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_a994630e33087810daa87da6b66925127}\label{classcompnal_1_1solver_1_1_exact_diag_a994630e33087810daa87da6b66925127}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!params@{params}}
+\index{params@{params}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{params}{params}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+\mbox{\hyperlink{structcompnal_1_1blas_1_1_parameters_all}{blas\+::\+Parameters\+All}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::params}
+
+
+
+Parameters for diagonalization methods. 
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00058}{58}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_a7ebf7d0143bbc123c0cb826ece9e2bf9}\label{classcompnal_1_1solver_1_1_exact_diag_a7ebf7d0143bbc123c0cb826ece9e2bf9}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!diag\_method\_@{diag\_method\_}}
+\index{diag\_method\_@{diag\_method\_}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{diag\_method\_}{diag\_method\_}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+\mbox{\hyperlink{namespacecompnal_1_1solver_aea9ed4356b9eb3f1e01e43d336026522}{Diag\+Method}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::diag\+\_\+method\+\_\+ = Diag\+Method\+::\+LANCZOS}
+
+
+
+Diagonalization method. 
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00061}{61}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}\label{classcompnal_1_1solver_1_1_exact_diag_a9792ea70dd7ac9a0ac1b964c60cbba57}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!eigenvectors\_@{eigenvectors\_}}
+\index{eigenvectors\_@{eigenvectors\_}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{eigenvectors\_}{eigenvectors\_}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ab57d9fc86716f8ad693128211d32a698}{Braket\+Vector}}$>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::eigenvectors\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00625}{625}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_a08b1c95d031f0b29727039f031480c1d}\label{classcompnal_1_1solver_1_1_exact_diag_a08b1c95d031f0b29727039f031480c1d}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!eigenvalues\_@{eigenvalues\_}}
+\index{eigenvalues\_@{eigenvalues\_}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{eigenvalues\_}{eigenvalues\_}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_ada6514651bff6cb916c47982c1b70ba5}{Real\+Type}}$>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::eigenvalues\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00626}{626}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_af7bfc33699d996c081d223b38edbdca2}\label{classcompnal_1_1solver_1_1_exact_diag_af7bfc33699d996c081d223b38edbdca2}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!bases\_@{bases\_}}
+\index{bases\_@{bases\_}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{bases\_}{bases\_}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+std\+::unordered\+\_\+map$<$\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_aef6fb4a525be81943447384b6170f3ef}{QType}}, std\+::vector$<$std\+::int64\+\_\+t$>$, \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a8b50861a822124ea37cf63af26235f98}{QHash}}$>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::bases\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Bases of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00630}{630}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_a6a65dea6a239083cf479222a02f546c5}\label{classcompnal_1_1solver_1_1_exact_diag_a6a65dea6a239083cf479222a02f546c5}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!bases\_inv\_@{bases\_inv\_}}
+\index{bases\_inv\_@{bases\_inv\_}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{bases\_inv\_}{bases\_inv\_}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+std\+::unordered\+\_\+map$<$\mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_aef6fb4a525be81943447384b6170f3ef}{QType}}, std\+::unordered\+\_\+map$<$std\+::int64\+\_\+t, std\+::int64\+\_\+t$>$, \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag_a8b50861a822124ea37cf63af26235f98}{QHash}}$>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::bases\+\_\+inv\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Inverse bases of the target Hilbert space specified by the system size $ N$ and the total sz $ \langle\hat{S}^{z}_{\rm tot}\rangle $. 
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00634}{634}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_exact_diag_affb70f954c79af21f543b0797daba72e}\label{classcompnal_1_1solver_1_1_exact_diag_affb70f954c79af21f543b0797daba72e}} 
+\index{compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}!calculated\_eigenvector\_set\_@{calculated\_eigenvector\_set\_}}
+\index{calculated\_eigenvector\_set\_@{calculated\_eigenvector\_set\_}!compnal::solver::ExactDiag$<$ ModelClass $>$@{compnal::solver::ExactDiag$<$ ModelClass $>$}}
+\doxysubsubsection{\texorpdfstring{calculated\_eigenvector\_set\_}{calculated\_eigenvector\_set\_}}
+{\footnotesize\ttfamily template$<$class Model\+Class $>$ \\
+std\+::unordered\+\_\+set$<$int$>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_exact_diag}{compnal\+::solver\+::\+Exact\+Diag}}$<$ Model\+Class $>$\+::calculated\+\_\+eigenvector\+\_\+set\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The calculated eigenvectors and eigenvalues. 
+
+
+
+Definition at line \mbox{\hyperlink{exact__diag_8hpp_source_l00637}{637}} of file \mbox{\hyperlink{exact__diag_8hpp_source}{exact\+\_\+diag.\+hpp}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/solver/\mbox{\hyperlink{exact__diag_8hpp}{exact\+\_\+diag.\+hpp}}\end{DoxyCompactItemize}

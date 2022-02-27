@@ -1,7 +1,0 @@
-<map id="compnal::solver::ExactDiag&lt; ModelClass &gt;" name="compnal::solver::ExactDiag&lt; ModelClass &gt;">
-<area shape="rect" id="node1" title="The class for the exact diagonalization." alt="" coords="60,317,243,359"/>
-<area shape="rect" id="node2" href="$structcompnal_1_1sparse__matrix_1_1_parameters_all.html" title=" " alt="" coords="71,213,232,255"/>
-<area shape="rect" id="node3" href="$structcompnal_1_1sparse__matrix_1_1_parameters_lanczos.html" title=" " alt="" coords="5,109,167,151"/>
-<area shape="rect" id="node4" href="$structcompnal_1_1sparse__matrix_1_1_parameters_i_i.html" title=" " alt="" coords="191,109,352,151"/>
-<area shape="rect" id="node5" href="$structcompnal_1_1sparse__matrix_1_1_parameters_c_g.html" title=" " alt="" coords="191,5,352,47"/>
-</map>

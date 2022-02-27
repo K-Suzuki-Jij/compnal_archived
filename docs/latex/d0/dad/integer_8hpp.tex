@@ -1,0 +1,51 @@
+\hypertarget{integer_8hpp}{}\doxysection{src/utility/integer.hpp File Reference}
+\label{integer_8hpp}\index{src/utility/integer.hpp@{src/utility/integer.hpp}}
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+Include dependency graph for integer.\+hpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=349pt]{d5/dfb/integer_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dc/d87/integer_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacecompnal}{compnal}}
+\item 
+namespace \mbox{\hyperlink{namespacecompnal_1_1utility}{compnal\+::utility}}
+\begin{DoxyCompactList}\small\item\em Utility classes and functions for compnal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Integer\+Type $>$ }\\std\+::vector$<$ std\+::vector$<$ Integer\+Type $>$ $>$ \mbox{\hyperlink{namespacecompnal_1_1utility_a19f7e6247e080cfaf331019133ae80cd}{compnal\+::utility\+::\+Generate\+Integer\+Partition}} (const Integer\+Type partitioned\+\_\+number, Integer\+Type max\+\_\+number, const Integer\+Type max\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Generate partitions of a positive integer. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Integer\+Type $>$ }\\std\+::vector$<$ std\+::vector$<$ Integer\+Type $>$ $>$ \mbox{\hyperlink{namespacecompnal_1_1utility_a476dca6d6e10211a5f72d9aed05a1b68}{compnal\+::utility\+::\+Generate\+Integer\+Partition}} (const Integer\+Type partitioned\+\_\+number, const Integer\+Type max\+\_\+number)
+\begin{DoxyCompactList}\small\item\em Generate partitions of a positive integer. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Integer\+Type $>$ }\\std\+::int64\+\_\+t \mbox{\hyperlink{namespacecompnal_1_1utility_ad5998331a6095cfe0d7e1c4d3e9de658}{compnal\+::utility\+::\+Calculate\+Binomial\+Coefficient}} (Integer\+Type n, const Integer\+Type k)
+\begin{DoxyCompactList}\small\item\em Calculate binomial coefficient. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Integer\+Type $>$ }\\std\+::vector$<$ std\+::vector$<$ std\+::int64\+\_\+t $>$ $>$ \mbox{\hyperlink{namespacecompnal_1_1utility_a69e83b5318f469cbdcbb2d29c305a49c}{compnal\+::utility\+::\+Generate\+Binomial\+Table}} (const Integer\+Type n)
+\begin{DoxyCompactList}\small\item\em Generate binomial coefficients $ \frac{n!}{k!(n-k)!} $ for $ n $ and all $ 0 <= k <= n$. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::int64\+\_\+t \mbox{\hyperlink{namespacecompnal_1_1utility_aee9ff806431adb586e95bc9d77516915}{compnal\+::utility\+::\+Calculate\+Num\+Permutation}} (const std\+::vector$<$ T $>$ \&list)
+\begin{DoxyCompactList}\small\item\em Calculate the number of permutations from list. ~\newline
+ For example, all the possible permutations for \{1, 1, 2\} are ~\newline
+ \{1, 1, 2\}, \{1, 2, 1\}, \{2, 1, 1\}. ~\newline
+ Thus, this function return the value 3. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacecompnal_1_1utility_a7e59d7a03bcbd9fb222fd52300d29fd7}{compnal\+::utility\+::\+Generate\+Nth\+Permutation}} (const std\+::vector$<$ T $>$ \&list, const std\+::int64\+\_\+t n)
+\begin{DoxyCompactList}\small\item\em Calculate $ n$ -\/th permutation of the list. ~\newline
+ For example, all the possible permutations for \{1, 1, 2\} are ~\newline
+ \{1, 1, 2\}, \{1, 2, 1\}, \{2, 1, 1\}. ~\newline
+ Thus, this function Generate\+Nth\+Permutation(\{1, 1, 2\}, 1) returns \{1, 2, 1\}. ~\newline
+ Note that the index starts from 0. \end{DoxyCompactList}\end{DoxyCompactItemize}
