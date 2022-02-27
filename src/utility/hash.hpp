@@ -31,6 +31,14 @@ struct HalfIntHash {
    }
 };
 
+//! @brief Hash struct of integer and HalfInt.
+struct IntHalfIntHash {
+   std::size_t operator() (const int integer, const type::HalfInt &half_int) const {
+      std::size_t lhs = std::hash<int>()(integer), rhs = std::hash<int>()(half_int.GetInteger());
+      return lhs^(rhs + 0x9e3779b9 + (lhs << 6) + (lhs >> 2));
+   }
+};
+
 //! @brief Hash struct of std::pair.
 struct PairHash {
    template<class T1, class T2>

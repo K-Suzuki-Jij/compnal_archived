@@ -22,7 +22,7 @@
 #include "hubbard_1d.hpp"
 #include "kondo_lattice_1d.hpp"
 #include "general_model.hpp"
-#include "base_u1_electron_1d.hpp"
+#include "base_u1_electron.hpp"
 #include "base_u1_spin.hpp"
 #include "base_u1_spin_electron_1d.hpp"
 #include "base_u1_spin_multi_electrons_1d.hpp"
