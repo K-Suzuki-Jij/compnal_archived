@@ -21,7 +21,7 @@ This graph shows which files directly or indirectly include this file\+:
 \includegraphics[width=350pt]{d3/db9/compressed__row__storage_8hpp__dep__incl}
 \end{center}
 \end{figure}
-\doxysubsection*{Classes}
+\doxysubsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
 class \mbox{\hyperlink{classcompnal_1_1type_1_1_c_r_s}{compnal\+::type\+::\+CRS$<$ Element\+Type $>$}}
@@ -47,15 +47,15 @@ enum \mbox{\hyperlink{namespacecompnal_1_1type_aa249dd69b73057aa6d2d501c0825e11b
 \item 
 std\+::ostream \& \mbox{\hyperlink{namespacecompnal_1_1type_a6bfd3c989f30d42f945cb38a0cc873ad}{compnal\+::type\+::operator$<$$<$}} (std\+::ostream \&os, const CRSTag \&tag)
 \begin{DoxyCompactList}\small\item\em Operator overloading\+: output operator. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_abe470174f2d566d1518f331a79a77b64}{compnal\+::type\+::operator+}} (const CRS$<$ T1 $>$ \&lhs, const CRS$<$ T2 $>$ \&rhs)
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_adaf3ae4cec90114f1175e6ef52a9d9e0}{compnal\+::type\+::operator+}} (const CRS$<$ T1 $>$ \&lhs, const CRS$<$ T2 $>$ \&rhs) -\/$>$ CRS$<$ decltype(std\+::declval$<$ T1 $>$()+std\+::declval$<$ T2 $>$())$>$
 \begin{DoxyCompactList}\small\item\em Operator overloading\+: addition operator. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a9fbc45e1afeb2f2376030e780f509581}{compnal\+::type\+::operator-\/}} (const CRS$<$ T1 $>$ \&lhs, const CRS$<$ T2 $>$ \&rhs)
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a21eff381a9be0b72a6ffa32839dcc597}{compnal\+::type\+::operator-\/}} (const CRS$<$ T1 $>$ \&lhs, const CRS$<$ T2 $>$ \&rhs) -\/$>$ CRS$<$ decltype(std\+::declval$<$ T1 $>$() -\/ std\+::declval$<$ T2 $>$())$>$
 \begin{DoxyCompactList}\small\item\em Operator overloading\+: subtraction operator. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a5fe10a352d8d3269d700c7c8ee70473c}{compnal\+::type\+::operator$\ast$}} (const CRS$<$ T1 $>$ \&lhs, const CRS$<$ T2 $>$ \&rhs)
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_ab39e117226ed18d191c9fb40101caa9f}{compnal\+::type\+::operator$\ast$}} (const CRS$<$ T1 $>$ \&lhs, const CRS$<$ T2 $>$ \&rhs) -\/$>$ CRS$<$ decltype(std\+::declval$<$ T1 $>$() $\ast$std\+::declval$<$ T2 $>$())$>$
 \begin{DoxyCompactList}\small\item\em Operator overloading\+: multiplication operator. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a30f4bf61f4b8ea31dde999efe3856517}{compnal\+::type\+::operator$\ast$}} (const T1 lhs, const CRS$<$ T2 $>$ \&rhs)
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a76222be2181f3ff7599d3fa724b18864}{compnal\+::type\+::operator$\ast$}} (const T1 lhs, const CRS$<$ T2 $>$ \&rhs) -\/$>$ CRS$<$ decltype(std\+::declval$<$ T1 $>$() $\ast$std\+::declval$<$ T2 $>$())$>$
 \begin{DoxyCompactList}\small\item\em Operator overloading\+: multiplication operator. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a0e537fa85ed9e3cf85debefe720a9ad8}{compnal\+::type\+::operator$\ast$}} (const CRS$<$ T1 $>$ \&lhs, const T2 rhs)
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a3ca00cf9e2e8afadf942fb299a2cca9d}{compnal\+::type\+::operator$\ast$}} (const CRS$<$ T1 $>$ \&lhs, const T2 rhs) -\/$>$ CRS$<$ decltype(std\+::declval$<$ T1 $>$() $\ast$std\+::declval$<$ T2 $>$())$>$
 \begin{DoxyCompactList}\small\item\em Operator overloading\+: multiplication operator. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T1 , typename T2 $>$ }\\bool \mbox{\hyperlink{namespacecompnal_1_1type_a0ac388bfa253c05504da2301092939bf}{compnal\+::type\+::operator==}} (const CRS$<$ T1 $>$ \&lhs, const CRS$<$ T2 $>$ \&rhs)
 \begin{DoxyCompactList}\small\item\em Operator overloading\+: equality operator. \end{DoxyCompactList}\item 
@@ -63,11 +63,11 @@ std\+::ostream \& \mbox{\hyperlink{namespacecompnal_1_1type_a6bfd3c989f30d42f945
 \begin{DoxyCompactList}\small\item\em Operator overloading\+: equality operator. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\std\+::ostream \& \mbox{\hyperlink{namespacecompnal_1_1type_ad27c1cf5a9b467bdbdcc0d72d743c5a0}{compnal\+::type\+::operator$<$$<$}} (std\+::ostream \&os, const CRS$<$ T $>$ \&m)
 \begin{DoxyCompactList}\small\item\em Operator overloading\+: output operator. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename T1 , typename T2 , typename T3 , typename T4 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a52ce548d226d24916074a27f88b3e400}{compnal\+::type\+::\+Calculate\+Matrix\+Matrix\+Sum}} (const T1 coeff\+\_\+1, const CRS$<$ T2 $>$ \&matrix\+\_\+1, const T3 coeff\+\_\+2, const CRS$<$ T4 $>$ \&matrix\+\_\+2)
+{\footnotesize template$<$typename T1 , typename T2 , typename T3 , typename T4 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_add38fc1fb1f7babb20b058653d949687}{compnal\+::type\+::\+Calculate\+Matrix\+Matrix\+Sum}} (const T1 coeff\+\_\+1, const CRS$<$ T2 $>$ \&matrix\+\_\+1, const T3 coeff\+\_\+2, const CRS$<$ T4 $>$ \&matrix\+\_\+2) -\/$>$ CRS$<$ decltype(std\+::declval$<$ T1 $>$() $\ast$std\+::declval$<$ T2 $>$()+std\+::declval$<$ T3 $>$() $\ast$std\+::declval$<$ T4 $>$())$>$
 \begin{DoxyCompactList}\small\item\em Calculate matrix summation, $ c_{1}\hat{M}_{1} + c_{2}\hat{M}_{2}$. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename T1 , typename T2 , typename T3 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_aa09c6703ea13c46c2bb89531b7c85a75}{compnal\+::type\+::\+Calculate\+Matrix\+Matrix\+Product}} (const T1 coeff\+\_\+1, const CRS$<$ T2 $>$ \&matrix\+\_\+1, const CRS$<$ T3 $>$ \&matrix\+\_\+2)
+{\footnotesize template$<$typename T1 , typename T2 , typename T3 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a9180334d20402ec5bd10f8b982c8d069}{compnal\+::type\+::\+Calculate\+Matrix\+Matrix\+Product}} (const T1 coeff\+\_\+1, const CRS$<$ T2 $>$ \&matrix\+\_\+1, const CRS$<$ T3 $>$ \&matrix\+\_\+2) -\/$>$ CRS$<$ decltype(std\+::declval$<$ T1 $>$() $\ast$std\+::declval$<$ T2 $>$() $\ast$std\+::declval$<$ T3 $>$())$>$
 \begin{DoxyCompactList}\small\item\em Calculate matrix product, $ c_{1}\hat{M}_{1}\hat{M}_{2}$. \end{DoxyCompactList}\item 
-{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_adeb3713e2d793237d6a8509cd17fb010}{compnal\+::type\+::\+Calculate\+Scalar\+Matrix\+Product}} (const T1 coeff, const CRS$<$ T2 $>$ \&matrix)
+{\footnotesize template$<$typename T1 , typename T2 $>$ }\\auto \mbox{\hyperlink{namespacecompnal_1_1type_a75e2fe84321e8bdb8853194f74451c3b}{compnal\+::type\+::\+Calculate\+Scalar\+Matrix\+Product}} (const T1 coeff, const CRS$<$ T2 $>$ \&matrix) -\/$>$ CRS$<$ decltype(std\+::declval$<$ T1 $>$() $\ast$std\+::declval$<$ T2 $>$())$>$
 \begin{DoxyCompactList}\small\item\em Calculate scalar \mbox{\hyperlink{classcompnal_1_1type_1_1_braket_vector}{Braket\+Vector}} product, $ c\hat{M}$. \end{DoxyCompactList}\item 
 {\footnotesize template$<$typename T $>$ }\\CRS$<$ T $>$ \mbox{\hyperlink{namespacecompnal_1_1type_a59fb41af50a085e7de7640b31b6fd240}{compnal\+::type\+::\+Calculate\+Transposed\+Matrix}} (const CRS$<$ T $>$ \&matrix)
 \begin{DoxyCompactList}\small\item\em Calculate transposed matrix, $ \hat{M}^{\dagger}$. \end{DoxyCompactList}\end{DoxyCompactItemize}

@@ -75,7 +75,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
+<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">braket_vector.hpp File Reference</div></div>
@@ -85,43 +85,24 @@ $(function() {
 <code>#include &lt;sstream&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;cmath&gt;</code><br />
+<code>#include &lt;initializer_list&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for braket_vector.hpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../d4/df6/braket__vector_8hpp__incl.png" border="0" usemap="#asrc_2type_2braket__vector_8hpp" alt=""/></div>
-<map name="asrc_2type_2braket__vector_8hpp" id="asrc_2type_2braket__vector_8hpp">
-<area shape="rect" title=" " alt="" coords="92,5,268,32"/>
-<area shape="rect" title=" " alt="" coords="5,80,77,107"/>
-<area shape="rect" title=" " alt="" coords="101,80,171,107"/>
-<area shape="rect" title=" " alt="" coords="195,80,253,107"/>
-<area shape="rect" title=" " alt="" coords="277,80,336,107"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../d4/df6/braket__vector_8hpp__incl.svg" width="464" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="../../dd/d6d/braket__vector_8hpp__dep__incl.png" border="0" usemap="#asrc_2type_2braket__vector_8hppdep" alt=""/></div>
-<map name="asrc_2type_2braket__vector_8hppdep" id="asrc_2type_2braket__vector_8hppdep">
-<area shape="rect" title=" " alt="" coords="345,5,521,32"/>
-<area shape="rect" href="../../df/daf/conjugate__gradient_8hpp.html" title=" " alt="" coords="597,155,725,196"/>
-<area shape="rect" href="../../df/d20/eigendecomposition_8hpp.html" title=" " alt="" coords="134,162,346,189"/>
-<area shape="rect" href="../../de/d83/inverse__iteration_8hpp.html" title=" " alt="" coords="5,80,197,107"/>
-<area shape="rect" href="../../db/d59/matrix__vector__operation_8hpp.html" title=" " alt="" coords="422,155,573,196"/>
-<area shape="rect" href="../../df/d88/orthonormalize_8hpp.html" title=" " alt="" coords="278,80,461,107"/>
-<area shape="rect" href="../../d9/dd5/type_2all_8hpp.html" title=" " alt="" coords="653,244,763,271"/>
-<area shape="rect" href="../../dd/de6/blas_2all_8hpp.html" title=" " alt="" coords="385,244,495,271"/>
-<area shape="rect" href="../../da/d72/base__u1__spin_8hpp.html" title=" " alt="" coords="561,319,749,345"/>
-<area shape="rect" href="../../d9/d56/general__model_8hpp.html" title=" " alt="" coords="344,319,536,345"/>
-<area shape="rect" href="../../da/d6e/model_2all_8hpp.html" title=" " alt="" coords="486,393,607,420"/>
-<area shape="rect" href="../../d3/df6/exact__diag_8hpp.html" title=" " alt="" coords="461,468,632,495"/>
-<area shape="rect" href="../../d5/d21/solver_2all_8hpp.html" title=" " alt="" coords="486,543,607,569"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/d6d/braket__vector_8hpp__dep__incl.svg" width="770" height="575"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div>
 <p><a href="../../d4/ddc/braket__vector_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Classes</h2></td></tr>
+Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">compnal::type::BraketVector&lt; ElementType &gt;</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |ket&gt;, since the template parameter ElementType cannot accept Complex type.  <a href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -135,26 +116,26 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4a4e992db8a5b87ec24cced3bea23d6f"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr class="memitem:a4a4e992db8a5b87ec24cced3bea23d6f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a4a4e992db8a5b87ec24cced3bea23d6f">compnal::type::operator+</a> (const BraketVector&lt; T1 &gt; &amp;lhs, const BraketVector&lt; T2 &gt; &amp;rhs)</td></tr>
-<tr class="memdesc:a4a4e992db8a5b87ec24cced3bea23d6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: addition operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#a4a4e992db8a5b87ec24cced3bea23d6f">More...</a><br /></td></tr>
-<tr class="separator:a4a4e992db8a5b87ec24cced3bea23d6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61ab692722d7345f2badc279b2e4147b"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr class="memitem:a61ab692722d7345f2badc279b2e4147b"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a61ab692722d7345f2badc279b2e4147b">compnal::type::operator-</a> (const BraketVector&lt; T1 &gt; &amp;lhs, const BraketVector&lt; T2 &gt; &amp;rhs)</td></tr>
-<tr class="memdesc:a61ab692722d7345f2badc279b2e4147b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: subtraction operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#a61ab692722d7345f2badc279b2e4147b">More...</a><br /></td></tr>
-<tr class="separator:a61ab692722d7345f2badc279b2e4147b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6fad03b5399841392dddeb7bdc33347"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr class="memitem:aa6fad03b5399841392dddeb7bdc33347"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#aa6fad03b5399841392dddeb7bdc33347">compnal::type::operator*</a> (const BraketVector&lt; T1 &gt; &amp;lhs, const BraketVector&lt; T2 &gt; &amp;rhs)</td></tr>
-<tr class="memdesc:aa6fad03b5399841392dddeb7bdc33347"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: multiplication operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#aa6fad03b5399841392dddeb7bdc33347">More...</a><br /></td></tr>
-<tr class="separator:aa6fad03b5399841392dddeb7bdc33347"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58a6a5382e7957e41063c27505f58bc4"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr class="memitem:a58a6a5382e7957e41063c27505f58bc4"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a58a6a5382e7957e41063c27505f58bc4">compnal::type::operator*</a> (const T1 lhs, const BraketVector&lt; T2 &gt; &amp;rhs)</td></tr>
-<tr class="memdesc:a58a6a5382e7957e41063c27505f58bc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: multiplication operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#a58a6a5382e7957e41063c27505f58bc4">More...</a><br /></td></tr>
-<tr class="separator:a58a6a5382e7957e41063c27505f58bc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad757b8207538def0761e2a1bd98e3f9"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr class="memitem:aad757b8207538def0761e2a1bd98e3f9"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#aad757b8207538def0761e2a1bd98e3f9">compnal::type::operator*</a> (const BraketVector&lt; T1 &gt; &amp;lhs, const T2 rhs)</td></tr>
-<tr class="memdesc:aad757b8207538def0761e2a1bd98e3f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: multiplication operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#aad757b8207538def0761e2a1bd98e3f9">More...</a><br /></td></tr>
-<tr class="separator:aad757b8207538def0761e2a1bd98e3f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40da0ddd6d39a53f8064c31f523560ca"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:a40da0ddd6d39a53f8064c31f523560ca"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a40da0ddd6d39a53f8064c31f523560ca">compnal::type::operator+</a> (const BraketVector&lt; T1 &gt; &amp;lhs, const BraketVector&lt; T2 &gt; &amp;rhs) -&gt; BraketVector&lt; decltype(std::declval&lt; T1 &gt;()+std::declval&lt; T2 &gt;())&gt;</td></tr>
+<tr class="memdesc:a40da0ddd6d39a53f8064c31f523560ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: addition operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#a40da0ddd6d39a53f8064c31f523560ca">More...</a><br /></td></tr>
+<tr class="separator:a40da0ddd6d39a53f8064c31f523560ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afae823b533de3a1b9d269b9b30d7e388"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:afae823b533de3a1b9d269b9b30d7e388"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#afae823b533de3a1b9d269b9b30d7e388">compnal::type::operator-</a> (const BraketVector&lt; T1 &gt; &amp;lhs, const BraketVector&lt; T2 &gt; &amp;rhs) -&gt; BraketVector&lt; decltype(std::declval&lt; T1 &gt;() - std::declval&lt; T2 &gt;())&gt;</td></tr>
+<tr class="memdesc:afae823b533de3a1b9d269b9b30d7e388"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: subtraction operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#afae823b533de3a1b9d269b9b30d7e388">More...</a><br /></td></tr>
+<tr class="separator:afae823b533de3a1b9d269b9b30d7e388"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af68e0fefdd6f8dc9bc3c0c97be663a98"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:af68e0fefdd6f8dc9bc3c0c97be663a98"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#af68e0fefdd6f8dc9bc3c0c97be663a98">compnal::type::operator*</a> (const BraketVector&lt; T1 &gt; &amp;lhs, const BraketVector&lt; T2 &gt; &amp;rhs) -&gt; decltype(std::declval&lt; T1 &gt;() *std::declval&lt; T2 &gt;())</td></tr>
+<tr class="memdesc:af68e0fefdd6f8dc9bc3c0c97be663a98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: multiplication operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#af68e0fefdd6f8dc9bc3c0c97be663a98">More...</a><br /></td></tr>
+<tr class="separator:af68e0fefdd6f8dc9bc3c0c97be663a98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e98a516cb8626c2693fc5b488fcc538"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:a8e98a516cb8626c2693fc5b488fcc538"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a8e98a516cb8626c2693fc5b488fcc538">compnal::type::operator*</a> (const T1 lhs, const BraketVector&lt; T2 &gt; &amp;rhs) -&gt; BraketVector&lt; decltype(std::declval&lt; T1 &gt;() *std::declval&lt; T2 &gt;())&gt;</td></tr>
+<tr class="memdesc:a8e98a516cb8626c2693fc5b488fcc538"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: multiplication operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#a8e98a516cb8626c2693fc5b488fcc538">More...</a><br /></td></tr>
+<tr class="separator:a8e98a516cb8626c2693fc5b488fcc538"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af13df11371b54e6a617c8447536e6ddf"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:af13df11371b54e6a617c8447536e6ddf"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#af13df11371b54e6a617c8447536e6ddf">compnal::type::operator*</a> (const BraketVector&lt; T1 &gt; &amp;lhs, const T2 rhs) -&gt; BraketVector&lt; decltype(std::declval&lt; T1 &gt;() *std::declval&lt; T2 &gt;())&gt;</td></tr>
+<tr class="memdesc:af13df11371b54e6a617c8447536e6ddf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: multiplication operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#af13df11371b54e6a617c8447536e6ddf">More...</a><br /></td></tr>
+<tr class="separator:af13df11371b54e6a617c8447536e6ddf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb6429171e978e71a1fbd6682875ca56"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
 <tr class="memitem:abb6429171e978e71a1fbd6682875ca56"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#abb6429171e978e71a1fbd6682875ca56">compnal::type::operator==</a> (const BraketVector&lt; T1 &gt; &amp;lhs, const BraketVector&lt; T2 &gt; &amp;rhs)</td></tr>
 <tr class="memdesc:abb6429171e978e71a1fbd6682875ca56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: equality operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#abb6429171e978e71a1fbd6682875ca56">More...</a><br /></td></tr>
@@ -167,31 +148,31 @@ Functions</h2></td></tr>
 <tr class="memitem:ab565f905bc0e0a4cdea7cbee1b5c0da1"><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#ab565f905bc0e0a4cdea7cbee1b5c0da1">compnal::type::operator&lt;&lt;</a> (std::ostream &amp;os, const BraketVector&lt; T &gt; &amp;v)</td></tr>
 <tr class="memdesc:ab565f905bc0e0a4cdea7cbee1b5c0da1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overloading: output operator.  <a href="../../d4/df8/namespacecompnal_1_1type.html#ab565f905bc0e0a4cdea7cbee1b5c0da1">More...</a><br /></td></tr>
 <tr class="separator:ab565f905bc0e0a4cdea7cbee1b5c0da1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a506bbc662bfe7fb2043eb43fefd47c4f"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </td></tr>
-<tr class="memitem:a506bbc662bfe7fb2043eb43fefd47c4f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a506bbc662bfe7fb2043eb43fefd47c4f">compnal::type::CalculateVectorVectorSum</a> (const T1 coeff_1, const BraketVector&lt; T2 &gt; &amp;braket_vector_1, const T3 coeff_2, const BraketVector&lt; T4 &gt; &amp;braket_vector_2)</td></tr>
-<tr class="memdesc:a506bbc662bfe7fb2043eb43fefd47c4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> summation, \( c_1\boldsymbol{v}_1 + c_2\boldsymbol{v}_2 \).  <a href="../../d4/df8/namespacecompnal_1_1type.html#a506bbc662bfe7fb2043eb43fefd47c4f">More...</a><br /></td></tr>
-<tr class="separator:a506bbc662bfe7fb2043eb43fefd47c4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af28fbb4db785006c8b917e50aa7b5969"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr class="memitem:af28fbb4db785006c8b917e50aa7b5969"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#af28fbb4db785006c8b917e50aa7b5969">compnal::type::CalculateVectorVectorProduct</a> (const BraketVector&lt; T1 &gt; &amp;braket_vector_1, const BraketVector&lt; T2 &gt; &amp;braket_vector_2)</td></tr>
-<tr class="memdesc:af28fbb4db785006c8b917e50aa7b5969"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> innner product, \( \boldsymbol{v}_1\cdot\boldsymbol{v}_2 \).  <a href="../../d4/df8/namespacecompnal_1_1type.html#af28fbb4db785006c8b917e50aa7b5969">More...</a><br /></td></tr>
-<tr class="separator:af28fbb4db785006c8b917e50aa7b5969"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab01076b32cfaad46dd5bb2ef798ab868"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
-<tr class="memitem:ab01076b32cfaad46dd5bb2ef798ab868"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#ab01076b32cfaad46dd5bb2ef798ab868">compnal::type::CalculateScalarVectorProduct</a> (const T1 value, const BraketVector&lt; T2 &gt; &amp;braket_vector)</td></tr>
-<tr class="memdesc:ab01076b32cfaad46dd5bb2ef798ab868"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate scalar <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> product, \( c\boldsymbol{v} \).  <a href="../../d4/df8/namespacecompnal_1_1type.html#ab01076b32cfaad46dd5bb2ef798ab868">More...</a><br /></td></tr>
-<tr class="separator:ab01076b32cfaad46dd5bb2ef798ab868"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49a46e2c0dff11c5ef25b7d1325d64e0"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </td></tr>
-<tr class="memitem:a49a46e2c0dff11c5ef25b7d1325d64e0"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a49a46e2c0dff11c5ef25b7d1325d64e0">compnal::type::CalculateL1Norm</a> (const T1 coeff_1, const BraketVector&lt; T2 &gt; &amp;braket_vector_1, const T3 coeff_2, const BraketVector&lt; T4 &gt; &amp;braket_vector_2)</td></tr>
-<tr class="memdesc:a49a46e2c0dff11c5ef25b7d1325d64e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate L1Norm between two <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a>, aka Manhattan distance, \( \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\|_1=\sum_{i}\|c_1v_{1,i} - c_2v_{2,i}\| \).  <a href="../../d4/df8/namespacecompnal_1_1type.html#a49a46e2c0dff11c5ef25b7d1325d64e0">More...</a><br /></td></tr>
-<tr class="separator:a49a46e2c0dff11c5ef25b7d1325d64e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86438c32f811bde5b0e955e05ced0b81"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </td></tr>
-<tr class="memitem:a86438c32f811bde5b0e955e05ced0b81"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a86438c32f811bde5b0e955e05ced0b81">compnal::type::CalculateL2Norm</a> (const T1 coeff_1, const BraketVector&lt; T2 &gt; &amp;braket_vector_1, const T3 coeff_2, const BraketVector&lt; T4 &gt; &amp;braket_vector_2)</td></tr>
-<tr class="memdesc:a86438c32f811bde5b0e955e05ced0b81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate L2Norm, aka Euclidean distance, \( \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\| \).  <a href="../../d4/df8/namespacecompnal_1_1type.html#a86438c32f811bde5b0e955e05ced0b81">More...</a><br /></td></tr>
-<tr class="separator:a86438c32f811bde5b0e955e05ced0b81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8af5e9e1992abb8fdbb92fdd759d57c5"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </td></tr>
+<tr class="memitem:a8af5e9e1992abb8fdbb92fdd759d57c5"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a8af5e9e1992abb8fdbb92fdd759d57c5">compnal::type::CalculateVectorVectorSum</a> (const T1 coeff_1, const BraketVector&lt; T2 &gt; &amp;braket_vector_1, const T3 coeff_2, const BraketVector&lt; T4 &gt; &amp;braket_vector_2) -&gt; BraketVector&lt; decltype(std::declval&lt; T1 &gt;() *std::declval&lt; T2 &gt;()+std::declval&lt; T3 &gt;() *std::declval&lt; T4 &gt;())&gt;</td></tr>
+<tr class="memdesc:a8af5e9e1992abb8fdbb92fdd759d57c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> summation, \( c_1\boldsymbol{v}_1 + c_2\boldsymbol{v}_2 \).  <a href="../../d4/df8/namespacecompnal_1_1type.html#a8af5e9e1992abb8fdbb92fdd759d57c5">More...</a><br /></td></tr>
+<tr class="separator:a8af5e9e1992abb8fdbb92fdd759d57c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf3e8409776c307949c3e1fe254ff377"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:acf3e8409776c307949c3e1fe254ff377"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#acf3e8409776c307949c3e1fe254ff377">compnal::type::CalculateVectorVectorProduct</a> (const BraketVector&lt; T1 &gt; &amp;braket_vector_1, const BraketVector&lt; T2 &gt; &amp;braket_vector_2) -&gt; decltype(std::declval&lt; T1 &gt;() *std::declval&lt; T2 &gt;())</td></tr>
+<tr class="memdesc:acf3e8409776c307949c3e1fe254ff377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> innner product, \( \boldsymbol{v}_1\cdot\boldsymbol{v}_2 \).  <a href="../../d4/df8/namespacecompnal_1_1type.html#acf3e8409776c307949c3e1fe254ff377">More...</a><br /></td></tr>
+<tr class="separator:acf3e8409776c307949c3e1fe254ff377"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0f6d134554665bcce4747cb9d3efaf5"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 &gt; </td></tr>
+<tr class="memitem:ae0f6d134554665bcce4747cb9d3efaf5"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#ae0f6d134554665bcce4747cb9d3efaf5">compnal::type::CalculateScalarVectorProduct</a> (const T1 value, const BraketVector&lt; T2 &gt; &amp;braket_vector) -&gt; BraketVector&lt; decltype(std::declval&lt; T1 &gt;() *std::declval&lt; T2 &gt;())&gt;</td></tr>
+<tr class="memdesc:ae0f6d134554665bcce4747cb9d3efaf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate scalar <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html" title="The wrapper class of std::vector to represent braket. Note that there is no difference of &lt;bra| and |...">BraketVector</a> product, \( c\boldsymbol{v} \).  <a href="../../d4/df8/namespacecompnal_1_1type.html#ae0f6d134554665bcce4747cb9d3efaf5">More...</a><br /></td></tr>
+<tr class="separator:ae0f6d134554665bcce4747cb9d3efaf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17052d79b206c32762146cbf191b374f"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </td></tr>
+<tr class="memitem:a17052d79b206c32762146cbf191b374f"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#a17052d79b206c32762146cbf191b374f">compnal::type::CalculateL1Distance</a> (const T1 coeff_1, const BraketVector&lt; T2 &gt; &amp;braket_vector_1, const T3 coeff_2, const BraketVector&lt; T4 &gt; &amp;braket_vector_2) -&gt; decltype(std::declval&lt; T1 &gt;() *std::declval&lt; T2 &gt;() - std::declval&lt; T3 &gt;() *std::declval&lt; T4 &gt;())</td></tr>
+<tr class="memdesc:a17052d79b206c32762146cbf191b374f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate L1 distance, aka Manhattan distance, \( \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\|_1=\sum_{i}\|c_1v_{1,i} - c_2v_{2,i}\| \).  <a href="../../d4/df8/namespacecompnal_1_1type.html#a17052d79b206c32762146cbf191b374f">More...</a><br /></td></tr>
+<tr class="separator:a17052d79b206c32762146cbf191b374f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1d77d463fb467111dce5c14cca2e2d5"><td class="memTemplParams" colspan="2">template&lt;typename T1 , typename T2 , typename T3 , typename T4 &gt; </td></tr>
+<tr class="memitem:ad1d77d463fb467111dce5c14cca2e2d5"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../d4/df8/namespacecompnal_1_1type.html#ad1d77d463fb467111dce5c14cca2e2d5">compnal::type::CalculateL2Distance</a> (const T1 coeff_1, const BraketVector&lt; T2 &gt; &amp;braket_vector_1, const T3 coeff_2, const BraketVector&lt; T4 &gt; &amp;braket_vector_2) -&gt; decltype(std::declval&lt; T1 &gt;() *std::declval&lt; T2 &gt;() - std::declval&lt; T3 &gt;() *std::declval&lt; T4 &gt;())</td></tr>
+<tr class="memdesc:ad1d77d463fb467111dce5c14cca2e2d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate L2 distance, aka Euclidean distance, \( \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\| \).  <a href="../../d4/df8/namespacecompnal_1_1type.html#ad1d77d463fb467111dce5c14cca2e2d5">More...</a><br /></td></tr>
+<tr class="separator:ad1d77d463fb467111dce5c14cca2e2d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
+Generated on Sun Feb 27 2022 20:56:17 for compnal by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
 </small></address>
 </body>
 </html>
