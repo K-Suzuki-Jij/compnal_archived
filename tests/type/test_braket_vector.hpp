@@ -27,41 +27,85 @@ namespace compnal {
 namespace test {
 
 TEST(BraketVector, Fill) {
-   using type::BraketVector;
-   auto x = BraketVector<long double>({1.3L});
-   auto vec = static_cast<std::vector<double>>(x);
+   type::BraketVector<int> vec(3);
+   vec.Fill(2);
+   EXPECT_EQ(vec, type::BraketVector<int>({2, 2, 2}));
 }
 
 TEST(BraketVector, Free) {
-   
-}
-
-TEST(BraketVector, Clear) {
-   
+   type::BraketVector<int> vec(3);
+   vec.Free();
+   EXPECT_EQ(vec, type::BraketVector<int>(0));
 }
 
 TEST(BraketVector, Assign) {
-   
+   type::BraketVector<int> vec1(3);
+   type::BraketVector<int> vec2(5);
+   vec1.Assign(vec2);
+   EXPECT_EQ(vec1, vec2);
+   std::vector<int> vec3({1,2,3});
+   vec1.Assign(vec3);
+   EXPECT_EQ(vec1, type::BraketVector<int>(vec3));
 }
 
 TEST(BraketVector, Normalize) {
+   type::BraketVector<double> vec1({1, 2, 3});
+   vec1.Normalize();
+   EXPECT_EQ(vec1, type::BraketVector<double>({1/std::sqrt(14.0L), 2/std::sqrt(14.0L), 3/std::sqrt(14.0L)}));
    
+   type::BraketVector<double> vec2({1, 2, 3});
+   vec2.Normalize(2);
+   EXPECT_EQ(vec2, type::BraketVector<double>({2/std::sqrt(14.0L), 4/std::sqrt(14.0L), 6/std::sqrt(14.0L)}));
+   
+   vec1 = type::BraketVector<double>({0, 0, 0});
+   EXPECT_THROW(vec1.Normalize(), std::runtime_error);
 }
 
 TEST(BraketVector, MultiplyByScalar) {
-   
+   type::BraketVector<double> vec1({1, 2, 3});
+   vec1.MultiplyByScalar(2.0);
+   EXPECT_EQ(vec1, type::BraketVector<double>({2, 4, 6}));
 }
 
 TEST(BraketVector, L1Norm) {
-   
+   type::BraketVector<double> vec1({1, 2, 3});
+   EXPECT_DOUBLE_EQ(vec1.CalculateL1Norm(), 1+2+3);
 }
 
 TEST(BraketVector, L2Norm) {
-   
+   type::BraketVector<double> vec1({1, 2, 3});
+   EXPECT_DOUBLE_EQ(vec1.CalculateL2Norm(), std::sqrt(1.0+4.0+9.0));
 }
 
-TEST(BraketVector, CalculateL1Norm) {
-   
+TEST(BraketVector, CalculateL1Distance) {
+   type::BraketVector<double> vec1({1, 2, 3});
+   type::BraketVector<double> vec2({2, 3, 4});
+   EXPECT_DOUBLE_EQ(type::CalculateL1Distance(2, vec1, 3, vec2), 15);
+}
+
+TEST(BraketVector, CalculateL2Distance) {
+   type::BraketVector<double> vec1({1, 2, 3});
+   type::BraketVector<double> vec2({2, 3, 4});
+   EXPECT_DOUBLE_EQ(type::CalculateL2Distance(2, vec1, 3, vec2), std::sqrt(16 + 25 + 36));
+}
+
+TEST(BraketVector, CalculateVectorVectorSum) {
+   type::BraketVector<int> vec1({1, 2, 3});
+   type::BraketVector<int> vec2({2, 3, 4});
+   EXPECT_EQ(type::CalculateVectorVectorSum(2, vec1, 3, vec2),
+             type::BraketVector<int>({8, 13, 18})
+             );
+}
+
+TEST(BraketVector, CalculateVectorVectorProduct) {
+   type::BraketVector<double> vec1({1, 2, 3});
+   type::BraketVector<double> vec2({2, 3, 4});
+   EXPECT_DOUBLE_EQ(type::CalculateVectorVectorProduct(vec1, vec2), 2+6+12);
+}
+
+TEST(BraketVector, CalculateScalarVectorProduct) {
+   type::BraketVector<int> vec1({1, 2, 3});
+   EXPECT_EQ(type::CalculateScalarVectorProduct(2, vec1), type::BraketVector<int>({2, 4, 6}));
 }
 
 TEST(BraketVector, Addition) {

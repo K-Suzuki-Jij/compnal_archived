@@ -739,7 +739,7 @@ CRS<decltype(std::declval<T1>()*std::declval<T2>() + std::declval<T3>()*std::dec
          matrix_out.tag = CRSTag::FERMION;
       }
       else if (matrix_2.tag == CRSTag::BOSON || matrix_2.tag == CRSTag::MIX) {
-         
+         matrix_out.tag = CRSTag::MIX;
       }
       else {
          std::stringstream ss;
@@ -748,7 +748,29 @@ CRS<decltype(std::declval<T1>()*std::declval<T2>() + std::declval<T3>()*std::dec
          throw std::runtime_error(ss.str());
       }
    }
-   matrix_out.tag = matrix_1.tag;
+   else if (matrix_1.tag == CRSTag::BOSON) {
+      if (matrix_2.tag == CRSTag::NONE || matrix_2.tag == CRSTag::BOSON) {
+         matrix_out.tag = CRSTag::BOSON;
+      }
+      else if (matrix_2.tag == CRSTag::FERMION || matrix_2.tag == CRSTag::MIX) {
+         matrix_out.tag = CRSTag::MIX;
+      }
+      else {
+         std::stringstream ss;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+         ss << "Unknown CRSTag detected.";
+         throw std::runtime_error(ss.str());
+      }
+   }
+   else if (matrix_1.tag == CRSTag::MIX) {
+      matrix_out.tag = CRSTag::MIX;
+   }
+   else {
+      std::stringstream ss;
+      ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+      ss << "Unknown CRSTag detected.";
+      throw std::runtime_error(ss.str());
+   }
    return matrix_out;
 }
 
@@ -867,6 +889,11 @@ CRS<decltype(std::declval<T1>()*std::declval<T2>())> {
    
    using T1T2 = decltype(std::declval<T1>()*std::declval<T2>());
    CRS<T1T2> out(matrix.row_dim, matrix.col_dim, matrix.tag);
+   
+   if (coeff == T1{0}) {
+      return out;
+   }
+   
    out.col.resize(matrix.col.size());
    out.val.resize(matrix.val.size());
    

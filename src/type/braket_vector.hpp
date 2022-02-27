@@ -22,6 +22,7 @@
 #include <sstream>
 #include <vector>
 #include <cmath>
+#include <initializer_list>
 
 namespace compnal {
 namespace type {
@@ -44,7 +45,7 @@ public:
    //------------------------------------------------------------------
    //----------------------Public Member Variables---------------------
    //------------------------------------------------------------------
-   //! @brief The elements of BraketVector
+   //! @brief The elements of BraketVector.
    std::vector<ElementType> value_list;
    
    
@@ -55,12 +56,22 @@ public:
    BraketVector() {};
    
    //! @brief Constructor of BraketVector class.
-   //! @tparam T Value type of std::vector.
-   //! @param vector The vector elements as std::vector.
-   template<typename T=ElementType>
-   explicit BraketVector(const std::vector<T> &vector) {
-      Assign(vector);
+   //! @param size The size of BraketVector.
+   BraketVector(const int64_t size) {
+      value_list.resize(size);
    }
+   
+   //! @brief Constructor of BraketVector class with initializer_list.
+   //! @tparam T Value type of std::vector.
+   //! @param init The vector elements.
+   template<typename T=ElementType>
+   explicit BraketVector(const std::initializer_list<T> &init): value_list(init.begin(), init.end()) {}
+   
+   //! @brief Constructor of BraketVector class with vector.
+   //! @tparam T Value type of std::vector.
+   //! @param init The vector elements.
+   template<typename T=ElementType>
+   explicit BraketVector(const std::vector<T> &init): value_list(init.begin(), init.end()) {}
    
    //! @brief Copy constructor of BraketVector class.
    //! @tparam T Value type of the BraketVector.
@@ -118,7 +129,7 @@ public:
    //! @brief Noemalize BraketVector.
    //! @tparam T Value type.
    //! @param normalization_factor Normalized as \f$\|\boldsymbol{v}\|={\rm normalization\_factor} \f$.
-   template<typename T>
+   template<typename T=ElementType>
    void Normalize(const T normalization_factor = T{1.0}) {
       const auto norm = CalculateL2Norm();
       if (norm == 0.0) {
@@ -464,7 +475,7 @@ BraketVector<decltype(std::declval<T1>()*std::declval<T2>())> {
    return out;
 }
 
-//! @brief Calculate L1Norm between two BraketVector, aka Manhattan distance,
+//! @brief Calculate L1 distance, aka Manhattan distance,
 //! \f$ \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\|_1=\sum_{i}\|c_1v_{1,i} - c_2v_{2,i}\| \f$.
 //! @tparam T1 Value type of coeff_1.
 //! @tparam T2 Value type of braket_vector_1.
@@ -476,11 +487,11 @@ BraketVector<decltype(std::declval<T1>()*std::declval<T2>())> {
 //! @param braket_vector_2 BraketVector \f$ \boldsymbol{v}_2\f$.
 //! @return L1Norm \f$ \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\|_1 \f$.
 template<typename T1, typename T2, typename T3, typename T4>
-auto CalculateL1Norm(const T1 coeff_1,
-                     const BraketVector<T2> &braket_vector_1,
-                     const T3 coeff_2,
-                     const BraketVector<T4> &braket_vector_2
-                     ) ->
+auto CalculateL1Distance(const T1 coeff_1,
+                         const BraketVector<T2> &braket_vector_1,
+                         const T3 coeff_2,
+                         const BraketVector<T4> &braket_vector_2
+                         ) ->
 decltype(std::declval<T1>()*std::declval<T2>() - std::declval<T3>()*std::declval<T4>()) {
    
    if (braket_vector_1.value_list.size() != braket_vector_2.value_list.size()) {
@@ -492,7 +503,7 @@ decltype(std::declval<T1>()*std::declval<T2>() - std::declval<T3>()*std::declval
    }
    
    using T1T2T3T4 = decltype(std::declval<T1>()*std::declval<T2>() - std::declval<T3>()*std::declval<T4>());
-   T1T2T3T4 val_out = 0.0;
+   T1T2T3T4 val_out = static_cast<T1T2T3T4>(0.0);
 
    const std::int64_t size = braket_vector_1.value_list.size();
 #pragma omp parallel for reduction (+: val_out)
@@ -502,7 +513,7 @@ decltype(std::declval<T1>()*std::declval<T2>() - std::declval<T3>()*std::declval
    return val_out;
 }
 
-//! @brief Calculate L2Norm, aka Euclidean distance, \f$ \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\| \f$.
+//! @brief Calculate L2 distance, aka Euclidean distance, \f$ \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\| \f$.
 //! @tparam T1 Value type of coeff_1.
 //! @tparam T2 Value type of braket_vector_1.
 //! @tparam T3 Value type of coeff_2.
@@ -513,11 +524,11 @@ decltype(std::declval<T1>()*std::declval<T2>() - std::declval<T3>()*std::declval
 //! @param braket_vector_2 BraketVector \f$ \boldsymbol{v}_2\f$.
 //! @return L2Norm \f$ \|c_1\boldsymbol{v}_1 - c_2\boldsymbol{v}_2\| \f$.
 template<typename T1, typename T2, typename T3, typename T4>
-auto CalculateL2Norm(const T1 coeff_1,
-                     const BraketVector<T2> &braket_vector_1,
-                     const T3 coeff_2,
-                     const BraketVector<T4> &braket_vector_2
-                     ) ->
+auto CalculateL2Distance(const T1 coeff_1,
+                         const BraketVector<T2> &braket_vector_1,
+                         const T3 coeff_2,
+                         const BraketVector<T4> &braket_vector_2
+                         ) ->
 decltype(std::declval<T1>()*std::declval<T2>() - std::declval<T3>()*std::declval<T4>()) {
    
    if (braket_vector_1.value_list.size() != braket_vector_2.value_list.size()) {
@@ -529,7 +540,7 @@ decltype(std::declval<T1>()*std::declval<T2>() - std::declval<T3>()*std::declval
    }
    
    using T1T2T3T4 = decltype(std::declval<T1>()*std::declval<T2>() - std::declval<T3>()*std::declval<T4>());
-   T1T2T3T4 val_out = 0.0;
+   T1T2T3T4 val_out = static_cast<T1T2T3T4>(0.0);
    
    const std::int64_t size = braket_vector_1.value_list.size();
 #pragma omp parallel for reduction (+: val_out)
