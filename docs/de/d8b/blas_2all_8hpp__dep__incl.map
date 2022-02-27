@@ -1,8 +1,9 @@
 <map id="src/blas/all.hpp" name="src/blas/all.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="151,5,261,32"/>
-<area shape="rect" id="node2" href="$da/d72/base__u1__spin_8hpp.html" title=" " alt="" coords="5,80,193,107"/>
-<area shape="rect" id="node6" href="$d9/d56/general__model_8hpp.html" title=" " alt="" coords="218,80,410,107"/>
-<area shape="rect" id="node3" href="$da/d6e/model_2all_8hpp.html" title=" " alt="" coords="145,155,267,181"/>
-<area shape="rect" id="node4" href="$d3/df6/exact__diag_8hpp.html" title=" " alt="" coords="121,229,291,256"/>
-<area shape="rect" id="node5" href="$d5/d21/solver_2all_8hpp.html" title=" " alt="" coords="145,304,267,331"/>
+<area shape="rect" id="node1" title=" " alt="" coords="279,5,390,32"/>
+<area shape="rect" id="node2" href="$d0/dc7/base__u1__electron_8hpp.html" title=" " alt="" coords="5,80,216,107"/>
+<area shape="rect" id="node6" href="$da/d72/base__u1__spin_8hpp.html" title=" " alt="" coords="241,80,429,107"/>
+<area shape="rect" id="node7" href="$d9/d56/general__model_8hpp.html" title=" " alt="" coords="453,80,645,107"/>
+<area shape="rect" id="node3" href="$da/d6e/model_2all_8hpp.html" title=" " alt="" coords="274,155,395,181"/>
+<area shape="rect" id="node4" href="$d3/df6/exact__diag_8hpp.html" title=" " alt="" coords="249,229,420,256"/>
+<area shape="rect" id="node5" href="$d5/d21/solver_2all_8hpp.html" title=" " alt="" coords="274,304,395,331"/>
 </map>

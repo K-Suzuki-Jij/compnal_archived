@@ -1,5 +1,5 @@
 <map id="compnal::model::Hubbard_1D&lt; RealType &gt;" name="compnal::model::Hubbard_1D&lt; RealType &gt;">
-<area shape="rect" id="node1" title="The class for the one&#45;dimensional Hubbard model. The Hamiltonian reads." alt="" coords="44,493,215,535"/>
-<area shape="rect" id="node2" href="$d8/dc0/classcompnal_1_1model_1_1_base_u1_electron__1_d.html" title="The base class for one&#45;dimensional electron systems with the U(1) symmetry." alt="" coords="213,403,430,444"/>
-<area shape="rect" id="node3" href="$dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title=" " alt="" coords="5,5,147,47"/>
+<area shape="rect" id="node1" title="The class for the one&#45;dimensional Hubbard model. The Hamiltonian reads." alt="" coords="79,109,249,151"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,155,47"/>
+<area shape="rect" id="node3" href="$dd/da8/classcompnal_1_1type_1_1_c_r_s.html" title=" " alt="" coords="179,5,320,47"/>
 </map>

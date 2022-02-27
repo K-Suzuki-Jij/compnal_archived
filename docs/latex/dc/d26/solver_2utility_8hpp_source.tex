@@ -2,56 +2,56 @@
 \label{solver_2utility_8hpp_source}\index{src/solver/utility.hpp@{src/solver/utility.hpp}}
 \mbox{\hyperlink{solver_2utility_8hpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00001}00001 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00002}00002 \textcolor{comment}{//}}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00003}00003 \textcolor{comment}{//  Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00004}00004 \textcolor{comment}{//  you may not use this file except in compliance with the License.}}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00005}00005 \textcolor{comment}{//  You may obtain a copy of the License at}}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00006}00006 \textcolor{comment}{//}}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00007}00007 \textcolor{comment}{//      http://www.apache.org/licenses/LICENSE-\/2.0}}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00008}00008 \textcolor{comment}{//}}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00009}00009 \textcolor{comment}{//  Unless required by applicable law or agreed to in writing, software}}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00010}00010 \textcolor{comment}{//  distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00011}00011 \textcolor{comment}{//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00012}00012 \textcolor{comment}{//  See the License for the specific language governing permissions and}}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00013}00013 \textcolor{comment}{//  limitations under the License.}}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00014}00014 \textcolor{comment}{//}}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00015}00015 \textcolor{comment}{//  Created by Kohei Suzuki on 2022/01/29.}}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00016}00016 \textcolor{comment}{//}}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00017}00017 }
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00018}00018 \textcolor{preprocessor}{\#ifndef COMPNAL\_SOLVER\_UTILITY\_HPP\_}}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00019}00019 \textcolor{preprocessor}{\#define COMPNAL\_SOLVER\_UTILITY\_HPP\_}}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00020}00020 }
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00021}00021 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00022}00022 \textcolor{keyword}{namespace }solver \{}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00023}00023 }
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00024}\mbox{\hyperlink{namespacecompnal_1_1solver_aea9ed4356b9eb3f1e01e43d336026522}{00024}} \textcolor{keyword}{enum} \mbox{\hyperlink{namespacecompnal_1_1solver_aea9ed4356b9eb3f1e01e43d336026522}{DiagMethod}} \{}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00025}00025   }
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00026}\mbox{\hyperlink{namespacecompnal_1_1solver_aea9ed4356b9eb3f1e01e43d336026522ac766432e40c81daf2b8104603413196b}{00026}}    \mbox{\hyperlink{namespacecompnal_1_1solver_aea9ed4356b9eb3f1e01e43d336026522ac766432e40c81daf2b8104603413196b}{LANCZOS}} = 0,}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00027}00027    \mbox{\hyperlink{namespacecompnal_1_1solver_aea9ed4356b9eb3f1e01e43d336026522a779f87f3b11a08240fd9da58d90071fe}{LOBPCG}}  = 1}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00028}00028    }
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00029}\mbox{\hyperlink{namespacecompnal_1_1solver_aea9ed4356b9eb3f1e01e43d336026522a779f87f3b11a08240fd9da58d90071fe}{00029}} \};}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00030}00030 }
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00032}00032 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00033}\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components}{00033}} \textcolor{keyword}{struct }\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components}{ExactDiagMatrixComponents}} \{}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00034}00034    }
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00036}\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a2aa3acff1c3ac82a96a1713a0c26b260}{00036}}    std::vector<RealType> \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a2aa3acff1c3ac82a96a1713a0c26b260}{val}};}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00037}00037    }
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00039}\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a5a060bd6aa290ed87ceaa581399e21ba}{00039}}    std::vector<std::int64\_t>  \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a5a060bd6aa290ed87ceaa581399e21ba}{basis\_affected}};}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00040}00040    }
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00042}\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a7329695bd8377ce171a1774a1ecb36a9}{00042}}    std::vector<int> \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a7329695bd8377ce171a1774a1ecb36a9}{basis\_onsite}};}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00043}00043    }
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00045}\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a7fee3db2da4ed6a4d750c3390327b642}{00045}}    std::vector<std::int64\_t> \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a7fee3db2da4ed6a4d750c3390327b642}{site\_constant}};}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00046}00046    }
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00048}\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a253673ab20bc51bc09af60c5daccf531}{00048}}    std::unordered\_map<std::int64\_t, std::int64\_t> \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a253673ab20bc51bc09af60c5daccf531}{inv\_basis\_affected}};}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00049}00049    }
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00051}\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a4c81b233063eedecf43f9a44c78ee01e}{00051}}    \textcolor{keywordtype}{double} \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a4c81b233063eedecf43f9a44c78ee01e}{zero\_precision}} = std::pow(10, -\/15);}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00052}00052 \};}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00053}00053 }
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00054}00054 \}}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00055}00055 \}}
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00056}00056 }
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00057}00057 }
-\DoxyCodeLine{\Hypertarget{solver_2utility_8hpp_source_l00058}00058 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/*  COMPNAL\_SOLVER\_UTILITY\_HPP\_ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{1 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{//  Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{4 \textcolor{comment}{//  you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{5 \textcolor{comment}{//  You may obtain a copy of the License at}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{//      http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{comment}{//  Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{10 \textcolor{comment}{//  distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{11 \textcolor{comment}{//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{12 \textcolor{comment}{//  See the License for the specific language governing permissions and}}
+\DoxyCodeLine{13 \textcolor{comment}{//  limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{//}}
+\DoxyCodeLine{15 \textcolor{comment}{//  Created by Kohei Suzuki on 2022/01/29.}}
+\DoxyCodeLine{16 \textcolor{comment}{//}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_SOLVER\_UTILITY\_HPP\_}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_SOLVER\_UTILITY\_HPP\_}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
+\DoxyCodeLine{22 \textcolor{keyword}{namespace }solver \{}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{keyword}{enum} \mbox{\hyperlink{namespacecompnal_1_1solver_aea9ed4356b9eb3f1e01e43d336026522}{DiagMethod}} \{}
+\DoxyCodeLine{25   }
+\DoxyCodeLine{26    \mbox{\hyperlink{namespacecompnal_1_1solver_aea9ed4356b9eb3f1e01e43d336026522ac766432e40c81daf2b8104603413196b}{LANCZOS}} = 0,}
+\DoxyCodeLine{27    \mbox{\hyperlink{namespacecompnal_1_1solver_aea9ed4356b9eb3f1e01e43d336026522a779f87f3b11a08240fd9da58d90071fe}{LOBPCG}}  = 1}
+\DoxyCodeLine{28    }
+\DoxyCodeLine{29 \};}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{32 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
+\DoxyCodeLine{33 \textcolor{keyword}{struct }\mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components}{ExactDiagMatrixComponents}} \{}
+\DoxyCodeLine{34    }
+\DoxyCodeLine{36    std::vector<RealType> \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a2aa3acff1c3ac82a96a1713a0c26b260}{val}};}
+\DoxyCodeLine{37    }
+\DoxyCodeLine{39    std::vector<std::int64\_t>  \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a5a060bd6aa290ed87ceaa581399e21ba}{basis\_affected}};}
+\DoxyCodeLine{40    }
+\DoxyCodeLine{42    std::vector<int> \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a7329695bd8377ce171a1774a1ecb36a9}{basis\_onsite}};}
+\DoxyCodeLine{43    }
+\DoxyCodeLine{45    std::vector<std::int64\_t> \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a7fee3db2da4ed6a4d750c3390327b642}{site\_constant}};}
+\DoxyCodeLine{46    }
+\DoxyCodeLine{48    std::unordered\_map<std::int64\_t, std::int64\_t> \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a253673ab20bc51bc09af60c5daccf531}{inv\_basis\_affected}};}
+\DoxyCodeLine{49    }
+\DoxyCodeLine{51    \textcolor{keywordtype}{double} \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a4c81b233063eedecf43f9a44c78ee01e}{zero\_precision}} = std::pow(10, -\/15);}
+\DoxyCodeLine{52 \};}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \}}
+\DoxyCodeLine{55 \}}
+\DoxyCodeLine{56 }
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/*  COMPNAL\_SOLVER\_UTILITY\_HPP\_ */}\textcolor{preprocessor}{}}
 
 \end{DoxyCode}

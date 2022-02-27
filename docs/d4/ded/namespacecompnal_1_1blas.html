@@ -75,7 +75,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">compnal::blas Namespace Reference</div></div>
@@ -83,7 +83,7 @@ $(function() {
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Data Structures</h2></td></tr>
+Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d88/structcompnal_1_1blas_1_1_parameters_all.html">ParametersAll</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d74/structcompnal_1_1blas_1_1_parameters_c_g.html">ParametersCG</a></td></tr>
@@ -156,6 +156,252 @@ Variables</h2></td></tr>
 <tr class="separator:aa1196aeb106e923cc2ad6c17fea58f26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a7102eb471402c962a27565b9bcb6e3c9" name="a7102eb471402c962a27565b9bcb6e3c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7102eb471402c962a27565b9bcb6e3c9">&#9670;&nbsp;</a></span>CalculateMatrixVectorProduct() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RealType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; compnal::blas::CalculateMatrixVectorProduct </td>
+          <td>(</td>
+          <td class="paramtype">const RealType&#160;</td>
+          <td class="paramname"><em>coeef</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">type::CRS</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vector_in</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af325cf8275d75278e2758dc1419f86f5" name="af325cf8275d75278e2758dc1419f86f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af325cf8275d75278e2758dc1419f86f5">&#9670;&nbsp;</a></span>CalculateMatrixVectorProduct() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RealType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void compnal::blas::CalculateMatrixVectorProduct </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; *&#160;</td>
+          <td class="paramname"><em>vector_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const RealType&#160;</td>
+          <td class="paramname"><em>coeef</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">type::CRS</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vector_in</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6a5d23a7342722e87e76a39b8e4cf031" name="a6a5d23a7342722e87e76a39b8e4cf031"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a5d23a7342722e87e76a39b8e4cf031">&#9670;&nbsp;</a></span>CalculateSymmetricMatrixVectorProduct() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RealType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; compnal::blas::CalculateSymmetricMatrixVectorProduct </td>
+          <td>(</td>
+          <td class="paramtype">const RealType&#160;</td>
+          <td class="paramname"><em>coeef</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">type::CRS</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vector_in</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a451ecffdd7816999035e938c48e86669" name="a451ecffdd7816999035e938c48e86669"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a451ecffdd7816999035e938c48e86669">&#9670;&nbsp;</a></span>CalculateSymmetricMatrixVectorProduct() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RealType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; compnal::blas::CalculateSymmetricMatrixVectorProduct </td>
+          <td>(</td>
+          <td class="paramtype">const RealType&#160;</td>
+          <td class="paramname"><em>coeef</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">type::CRS</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vector_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; std::vector&lt; RealType &gt; &gt; *&#160;</td>
+          <td class="paramname"><em>vectors_work</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5b3e1586b7800ee66fb6c6612a3db5ef" name="a5b3e1586b7800ee66fb6c6612a3db5ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b3e1586b7800ee66fb6c6612a3db5ef">&#9670;&nbsp;</a></span>CalculateSymmetricMatrixVectorProduct() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RealType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void compnal::blas::CalculateSymmetricMatrixVectorProduct </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; *&#160;</td>
+          <td class="paramname"><em>vector_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const RealType&#160;</td>
+          <td class="paramname"><em>coeef</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">type::CRS</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vector_in</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeeec1b8a9d956be99035a82b732b15b4" name="aeeec1b8a9d956be99035a82b732b15b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeeec1b8a9d956be99035a82b732b15b4">&#9670;&nbsp;</a></span>CalculateSymmetricMatrixVectorProduct() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RealType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void compnal::blas::CalculateSymmetricMatrixVectorProduct </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; *&#160;</td>
+          <td class="paramname"><em>vector_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const RealType&#160;</td>
+          <td class="paramname"><em>coeef</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">type::CRS</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vector_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; std::vector&lt; RealType &gt; &gt; *&#160;</td>
+          <td class="paramname"><em>vectors_work</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="aada41a4581ddc0dc68722f8c5dc3ae5e" name="aada41a4581ddc0dc68722f8c5dc3ae5e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aada41a4581ddc0dc68722f8c5dc3ae5e">&#9670;&nbsp;</a></span>ConjugateGradient()</h2>
 
@@ -193,336 +439,6 @@ template&lt;typename RealType &gt; </div>
           <td></td>
           <td class="paramtype">const std::vector&lt; <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>subspace_vectors</em> = <code>{}</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../df/daf/conjugate__gradient_8hpp_source.html#l00035">35</a> of file <a class="el" href="../../df/daf/conjugate__gradient_8hpp_source.html">conjugate_gradient.hpp</a>.</p>
-
-</div>
-</div>
-<a id="a41a8fbd0adade2a6702b987c653abf7b" name="a41a8fbd0adade2a6702b987c653abf7b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a41a8fbd0adade2a6702b987c653abf7b">&#9670;&nbsp;</a></span>EigenvalueDecompositionLanczos() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename RealType &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::pair&lt; int, double &gt; compnal::blas::EigenvalueDecompositionLanczos </td>
-          <td>(</td>
-          <td class="paramtype">RealType *&#160;</td>
-          <td class="paramname"><em>target_value_out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; *&#160;</td>
-          <td class="paramname"><em>target_vector_out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">type::CRS</a>&lt; RealType &gt; &amp;&#160;</td>
-          <td class="paramname"><em>matrix_in</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>target_level</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; &gt; &amp;&#160;</td>
-          <td class="paramname"><em>subspace_vectors</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="../../da/d5e/structcompnal_1_1blas_1_1_parameters_lanczos.html">ParametersLanczos</a> &amp;&#160;</td>
-          <td class="paramname"><em>params</em> = <code><a class="el" href="../../da/d5e/structcompnal_1_1blas_1_1_parameters_lanczos.html">ParametersLanczos</a>()</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../df/d20/eigendecomposition_8hpp_source.html#l00075">75</a> of file <a class="el" href="../../df/d20/eigendecomposition_8hpp_source.html">eigendecomposition.hpp</a>.</p>
-
-</div>
-</div>
-<a id="ac83d4397d2ebb218b629cb5a1c37c6a2" name="ac83d4397d2ebb218b629cb5a1c37c6a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac83d4397d2ebb218b629cb5a1c37c6a2">&#9670;&nbsp;</a></span>EigenvalueDecompositionLanczos() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename RealType &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::pair&lt; int, double &gt; compnal::blas::EigenvalueDecompositionLanczos </td>
-          <td>(</td>
-          <td class="paramtype">RealType *&#160;</td>
-          <td class="paramname"><em>gs_value_out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; *&#160;</td>
-          <td class="paramname"><em>gs_vector_out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">type::CRS</a>&lt; RealType &gt; &amp;&#160;</td>
-          <td class="paramname"><em>matrix_in</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="../../da/d5e/structcompnal_1_1blas_1_1_parameters_lanczos.html">ParametersLanczos</a> &amp;&#160;</td>
-          <td class="paramname"><em>params</em> = <code><a class="el" href="../../da/d5e/structcompnal_1_1blas_1_1_parameters_lanczos.html">ParametersLanczos</a>()</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../df/d20/eigendecomposition_8hpp_source.html#l00303">303</a> of file <a class="el" href="../../df/d20/eigendecomposition_8hpp_source.html">eigendecomposition.hpp</a>.</p>
-
-</div>
-</div>
-<a id="a1f728907b3675c8558f09749abf793af" name="a1f728907b3675c8558f09749abf793af"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f728907b3675c8558f09749abf793af">&#9670;&nbsp;</a></span>EigenvalueDecompositionLOBPCG()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename RealType &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::pair&lt; int, double &gt; compnal::blas::EigenvalueDecompositionLOBPCG </td>
-          <td>(</td>
-          <td class="paramtype">RealType *&#160;</td>
-          <td class="paramname"><em>gs_value_out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; *&#160;</td>
-          <td class="paramname"><em>gs_vector_out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">type::CRS</a>&lt; RealType &gt; &amp;&#160;</td>
-          <td class="paramname"><em>matrix_in</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="../../da/d5e/structcompnal_1_1blas_1_1_parameters_lanczos.html">ParametersLanczos</a> &amp;&#160;</td>
-          <td class="paramname"><em>params</em> = <code><a class="el" href="../../da/d5e/structcompnal_1_1blas_1_1_parameters_lanczos.html">ParametersLanczos</a>()</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../df/d20/eigendecomposition_8hpp_source.html#l00516">516</a> of file <a class="el" href="../../df/d20/eigendecomposition_8hpp_source.html">eigendecomposition.hpp</a>.</p>
-
-</div>
-</div>
-<a id="a145ac10a26aba079daa9fba3af245f89" name="a145ac10a26aba079daa9fba3af245f89"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a145ac10a26aba079daa9fba3af245f89">&#9670;&nbsp;</a></span>InverseIteration()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename RealType &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">std::pair&lt; int, double &gt; compnal::blas::InverseIteration </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">type::CRS</a>&lt; RealType &gt; *&#160;</td>
-          <td class="paramname"><em>matrix_in</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; *&#160;</td>
-          <td class="paramname"><em>eigenvector</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const RealType&#160;</td>
-          <td class="paramname"><em>eigenvalue</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="../../df/df0/structcompnal_1_1blas_1_1_parameters_i_i.html">ParametersII</a> &amp;&#160;</td>
-          <td class="paramname"><em>params</em> = <code><a class="el" href="../../df/df0/structcompnal_1_1blas_1_1_parameters_i_i.html">ParametersII</a>()</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; &gt; &amp;&#160;</td>
-          <td class="paramname"><em>subspace_vectors</em> = <code>{}</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../de/d83/inverse__iteration_8hpp_source.html#l00028">28</a> of file <a class="el" href="../../de/d83/inverse__iteration_8hpp_source.html">inverse_iteration.hpp</a>.</p>
-
-</div>
-</div>
-<a id="a38372ba49e6890655ba310a1d1016301" name="a38372ba49e6890655ba310a1d1016301"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a38372ba49e6890655ba310a1d1016301">&#9670;&nbsp;</a></span>dsyev_()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void compnal::blas::dsyev_ </td>
-          <td>(</td>
-          <td class="paramtype">const char &amp;&#160;</td>
-          <td class="paramname"><em>JOBZ</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char &amp;&#160;</td>
-          <td class="paramname"><em>UPLO</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int &amp;&#160;</td>
-          <td class="paramname"><em>N</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double **&#160;</td>
-          <td class="paramname"><em>A</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int &amp;&#160;</td>
-          <td class="paramname"><em>LDA</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>W</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>work</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int &amp;&#160;</td>
-          <td class="paramname"><em>Lwork</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int &amp;&#160;</td>
-          <td class="paramname"><em>INFO</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a0eab548c93d2f1432d8483ae795b54c0" name="a0eab548c93d2f1432d8483ae795b54c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0eab548c93d2f1432d8483ae795b54c0">&#9670;&nbsp;</a></span>dstev_()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void compnal::blas::dstev_ </td>
-          <td>(</td>
-          <td class="paramtype">const char &amp;&#160;</td>
-          <td class="paramname"><em>JOBZ</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int &amp;&#160;</td>
-          <td class="paramname"><em>N</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>D</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>E</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double **&#160;</td>
-          <td class="paramname"><em>Z</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int &amp;&#160;</td>
-          <td class="paramname"><em>LDZ</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">double *&#160;</td>
-          <td class="paramname"><em>WORK</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int &amp;&#160;</td>
-          <td class="paramname"><em>INFO</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -616,8 +532,142 @@ template&lt;typename RealType &gt; </div>
 
 </div>
 </div>
-<a id="ad95086714ba0af598315dba0109fc282" name="ad95086714ba0af598315dba0109fc282"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad95086714ba0af598315dba0109fc282">&#9670;&nbsp;</a></span>LapackDsyev()</h2>
+<a id="a0eab548c93d2f1432d8483ae795b54c0" name="a0eab548c93d2f1432d8483ae795b54c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0eab548c93d2f1432d8483ae795b54c0">&#9670;&nbsp;</a></span>dstev_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void compnal::blas::dstev_ </td>
+          <td>(</td>
+          <td class="paramtype">const char &amp;&#160;</td>
+          <td class="paramname"><em>JOBZ</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int &amp;&#160;</td>
+          <td class="paramname"><em>N</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>D</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>E</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double **&#160;</td>
+          <td class="paramname"><em>Z</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int &amp;&#160;</td>
+          <td class="paramname"><em>LDZ</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>WORK</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>INFO</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a38372ba49e6890655ba310a1d1016301" name="a38372ba49e6890655ba310a1d1016301"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38372ba49e6890655ba310a1d1016301">&#9670;&nbsp;</a></span>dsyev_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void compnal::blas::dsyev_ </td>
+          <td>(</td>
+          <td class="paramtype">const char &amp;&#160;</td>
+          <td class="paramname"><em>JOBZ</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char &amp;&#160;</td>
+          <td class="paramname"><em>UPLO</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int &amp;&#160;</td>
+          <td class="paramname"><em>N</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double **&#160;</td>
+          <td class="paramname"><em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int &amp;&#160;</td>
+          <td class="paramname"><em>LDA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>W</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double *&#160;</td>
+          <td class="paramname"><em>work</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int &amp;&#160;</td>
+          <td class="paramname"><em>Lwork</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>INFO</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac83d4397d2ebb218b629cb5a1c37c6a2" name="ac83d4397d2ebb218b629cb5a1c37c6a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac83d4397d2ebb218b629cb5a1c37c6a2">&#9670;&nbsp;</a></span>EigenvalueDecompositionLanczos() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -625,16 +675,58 @@ template&lt;typename RealType &gt; </div>
 template&lt;typename RealType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void compnal::blas::LapackDsyev </td>
+          <td class="memname">std::pair&lt; int, double &gt; compnal::blas::EigenvalueDecompositionLanczos </td>
           <td>(</td>
           <td class="paramtype">RealType *&#160;</td>
-          <td class="paramname"><em>gs_value</em>, </td>
+          <td class="paramname"><em>gs_value_out</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; RealType &gt; *&#160;</td>
-          <td class="paramname"><em>gs_vector</em>, </td>
+          <td class="paramtype"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; *&#160;</td>
+          <td class="paramname"><em>gs_vector_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">type::CRS</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../da/d5e/structcompnal_1_1blas_1_1_parameters_lanczos.html">ParametersLanczos</a> &amp;&#160;</td>
+          <td class="paramname"><em>params</em> = <code><a class="el" href="../../da/d5e/structcompnal_1_1blas_1_1_parameters_lanczos.html">ParametersLanczos</a>()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a41a8fbd0adade2a6702b987c653abf7b" name="a41a8fbd0adade2a6702b987c653abf7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41a8fbd0adade2a6702b987c653abf7b">&#9670;&nbsp;</a></span>EigenvalueDecompositionLanczos() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RealType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; int, double &gt; compnal::blas::EigenvalueDecompositionLanczos </td>
+          <td>(</td>
+          <td class="paramtype">RealType *&#160;</td>
+          <td class="paramname"><em>target_value_out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; *&#160;</td>
+          <td class="paramname"><em>target_vector_out</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -646,7 +738,19 @@ template&lt;typename RealType &gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>target_level</em> = <code>0</code>&#160;</td>
+          <td class="paramname"><em>target_level</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>subspace_vectors</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../da/d5e/structcompnal_1_1blas_1_1_parameters_lanczos.html">ParametersLanczos</a> &amp;&#160;</td>
+          <td class="paramname"><em>params</em> = <code><a class="el" href="../../da/d5e/structcompnal_1_1blas_1_1_parameters_lanczos.html">ParametersLanczos</a>()</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -656,12 +760,10 @@ template&lt;typename RealType &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/dd2/lapack_8hpp_source.html#l00040">40</a> of file <a class="el" href="../../df/dd2/lapack_8hpp_source.html">lapack.hpp</a>.</p>
-
 </div>
 </div>
-<a id="a8c894de4aabbacd7c8730917eb573df5" name="a8c894de4aabbacd7c8730917eb573df5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8c894de4aabbacd7c8730917eb573df5">&#9670;&nbsp;</a></span>LapackDstev()</h2>
+<a id="a1f728907b3675c8558f09749abf793af" name="a1f728907b3675c8558f09749abf793af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f728907b3675c8558f09749abf793af">&#9670;&nbsp;</a></span>EigenvalueDecompositionLOBPCG()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -669,28 +771,28 @@ template&lt;typename RealType &gt; </div>
 template&lt;typename RealType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void compnal::blas::LapackDstev </td>
+          <td class="memname">std::pair&lt; int, double &gt; compnal::blas::EigenvalueDecompositionLOBPCG </td>
           <td>(</td>
           <td class="paramtype">RealType *&#160;</td>
-          <td class="paramname"><em>gs_value</em>, </td>
+          <td class="paramname"><em>gs_value_out</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; RealType &gt; *&#160;</td>
-          <td class="paramname"><em>gs_vector</em>, </td>
+          <td class="paramtype"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; *&#160;</td>
+          <td class="paramname"><em>gs_vector_out</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::vector&lt; RealType &gt; &amp;&#160;</td>
-          <td class="paramname"><em>diag</em>, </td>
+          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">type::CRS</a>&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>matrix_in</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::vector&lt; RealType &gt; &amp;&#160;</td>
-          <td class="paramname"><em>off_diag</em>&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../da/d5e/structcompnal_1_1blas_1_1_parameters_lanczos.html">ParametersLanczos</a> &amp;&#160;</td>
+          <td class="paramname"><em>params</em> = <code><a class="el" href="../../da/d5e/structcompnal_1_1blas_1_1_parameters_lanczos.html">ParametersLanczos</a>()</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -700,7 +802,53 @@ template&lt;typename RealType &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/dd2/lapack_8hpp_source.html#l00094">94</a> of file <a class="el" href="../../df/dd2/lapack_8hpp_source.html">lapack.hpp</a>.</p>
+</div>
+</div>
+<a id="a145ac10a26aba079daa9fba3af245f89" name="a145ac10a26aba079daa9fba3af245f89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a145ac10a26aba079daa9fba3af245f89">&#9670;&nbsp;</a></span>InverseIteration()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RealType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; int, double &gt; compnal::blas::InverseIteration </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">type::CRS</a>&lt; RealType &gt; *&#160;</td>
+          <td class="paramname"><em>matrix_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; *&#160;</td>
+          <td class="paramname"><em>eigenvector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const RealType&#160;</td>
+          <td class="paramname"><em>eigenvalue</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../df/df0/structcompnal_1_1blas_1_1_parameters_i_i.html">ParametersII</a> &amp;&#160;</td>
+          <td class="paramname"><em>params</em> = <code><a class="el" href="../../df/df0/structcompnal_1_1blas_1_1_parameters_i_i.html">ParametersII</a>()</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>subspace_vectors</em> = <code>{}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -756,12 +904,10 @@ template&lt;typename RealType &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/dd2/lapack_8hpp_source.html#l00134">134</a> of file <a class="el" href="../../df/dd2/lapack_8hpp_source.html">lapack.hpp</a>.</p>
-
 </div>
 </div>
-<a id="af325cf8275d75278e2758dc1419f86f5" name="af325cf8275d75278e2758dc1419f86f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af325cf8275d75278e2758dc1419f86f5">&#9670;&nbsp;</a></span>CalculateMatrixVectorProduct() <span class="overload">[1/2]</span></h2>
+<a id="a8c894de4aabbacd7c8730917eb573df5" name="a8c894de4aabbacd7c8730917eb573df5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c894de4aabbacd7c8730917eb573df5">&#9670;&nbsp;</a></span>LapackDstev()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -769,16 +915,58 @@ template&lt;typename RealType &gt; </div>
 template&lt;typename RealType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void compnal::blas::CalculateMatrixVectorProduct </td>
+          <td class="memname">void compnal::blas::LapackDstev </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; *&#160;</td>
-          <td class="paramname"><em>vector_out</em>, </td>
+          <td class="paramtype">RealType *&#160;</td>
+          <td class="paramname"><em>gs_value</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const RealType&#160;</td>
-          <td class="paramname"><em>coeef</em>, </td>
+          <td class="paramtype">std::vector&lt; RealType &gt; *&#160;</td>
+          <td class="paramname"><em>gs_vector</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>diag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::vector&lt; RealType &gt; &amp;&#160;</td>
+          <td class="paramname"><em>off_diag</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad95086714ba0af598315dba0109fc282" name="ad95086714ba0af598315dba0109fc282"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad95086714ba0af598315dba0109fc282">&#9670;&nbsp;</a></span>LapackDsyev()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename RealType &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void compnal::blas::LapackDsyev </td>
+          <td>(</td>
+          <td class="paramtype">RealType *&#160;</td>
+          <td class="paramname"><em>gs_value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; RealType &gt; *&#160;</td>
+          <td class="paramname"><em>gs_vector</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -789,8 +977,8 @@ template&lt;typename RealType &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; &amp;&#160;</td>
-          <td class="paramname"><em>vector_in</em>&#160;</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>target_level</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -799,222 +987,6 @@ template&lt;typename RealType &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../db/d59/matrix__vector__operation_8hpp_source.html#l00028">28</a> of file <a class="el" href="../../db/d59/matrix__vector__operation_8hpp_source.html">matrix_vector_operation.hpp</a>.</p>
-
-</div>
-</div>
-<a id="aeeec1b8a9d956be99035a82b732b15b4" name="aeeec1b8a9d956be99035a82b732b15b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeeec1b8a9d956be99035a82b732b15b4">&#9670;&nbsp;</a></span>CalculateSymmetricMatrixVectorProduct() <span class="overload">[1/4]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename RealType &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void compnal::blas::CalculateSymmetricMatrixVectorProduct </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; *&#160;</td>
-          <td class="paramname"><em>vector_out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const RealType&#160;</td>
-          <td class="paramname"><em>coeef</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">type::CRS</a>&lt; RealType &gt; &amp;&#160;</td>
-          <td class="paramname"><em>matrix_in</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; &amp;&#160;</td>
-          <td class="paramname"><em>vector_in</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; std::vector&lt; RealType &gt; &gt; *&#160;</td>
-          <td class="paramname"><em>vectors_work</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../db/d59/matrix__vector__operation_8hpp_source.html#l00053">53</a> of file <a class="el" href="../../db/d59/matrix__vector__operation_8hpp_source.html">matrix_vector_operation.hpp</a>.</p>
-
-</div>
-</div>
-<a id="a5b3e1586b7800ee66fb6c6612a3db5ef" name="a5b3e1586b7800ee66fb6c6612a3db5ef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b3e1586b7800ee66fb6c6612a3db5ef">&#9670;&nbsp;</a></span>CalculateSymmetricMatrixVectorProduct() <span class="overload">[2/4]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename RealType &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void compnal::blas::CalculateSymmetricMatrixVectorProduct </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; *&#160;</td>
-          <td class="paramname"><em>vector_out</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const RealType&#160;</td>
-          <td class="paramname"><em>coeef</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">type::CRS</a>&lt; RealType &gt; &amp;&#160;</td>
-          <td class="paramname"><em>matrix_in</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; &amp;&#160;</td>
-          <td class="paramname"><em>vector_in</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../db/d59/matrix__vector__operation_8hpp_source.html#l00123">123</a> of file <a class="el" href="../../db/d59/matrix__vector__operation_8hpp_source.html">matrix_vector_operation.hpp</a>.</p>
-
-</div>
-</div>
-<a id="a7102eb471402c962a27565b9bcb6e3c9" name="a7102eb471402c962a27565b9bcb6e3c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7102eb471402c962a27565b9bcb6e3c9">&#9670;&nbsp;</a></span>CalculateMatrixVectorProduct() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename RealType &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; compnal::blas::CalculateMatrixVectorProduct </td>
-          <td>(</td>
-          <td class="paramtype">const RealType&#160;</td>
-          <td class="paramname"><em>coeef</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">type::CRS</a>&lt; RealType &gt; &amp;&#160;</td>
-          <td class="paramname"><em>matrix_in</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; &amp;&#160;</td>
-          <td class="paramname"><em>vector_in</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../db/d59/matrix__vector__operation_8hpp_source.html#l00160">160</a> of file <a class="el" href="../../db/d59/matrix__vector__operation_8hpp_source.html">matrix_vector_operation.hpp</a>.</p>
-
-</div>
-</div>
-<a id="a451ecffdd7816999035e938c48e86669" name="a451ecffdd7816999035e938c48e86669"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a451ecffdd7816999035e938c48e86669">&#9670;&nbsp;</a></span>CalculateSymmetricMatrixVectorProduct() <span class="overload">[3/4]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename RealType &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; compnal::blas::CalculateSymmetricMatrixVectorProduct </td>
-          <td>(</td>
-          <td class="paramtype">const RealType&#160;</td>
-          <td class="paramname"><em>coeef</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">type::CRS</a>&lt; RealType &gt; &amp;&#160;</td>
-          <td class="paramname"><em>matrix_in</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; &amp;&#160;</td>
-          <td class="paramname"><em>vector_in</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; std::vector&lt; RealType &gt; &gt; *&#160;</td>
-          <td class="paramname"><em>vectors_work</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../db/d59/matrix__vector__operation_8hpp_source.html#l00169">169</a> of file <a class="el" href="../../db/d59/matrix__vector__operation_8hpp_source.html">matrix_vector_operation.hpp</a>.</p>
-
-</div>
-</div>
-<a id="a6a5d23a7342722e87e76a39b8e4cf031" name="a6a5d23a7342722e87e76a39b8e4cf031"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a5d23a7342722e87e76a39b8e4cf031">&#9670;&nbsp;</a></span>CalculateSymmetricMatrixVectorProduct() <span class="overload">[4/4]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename RealType &gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; compnal::blas::CalculateSymmetricMatrixVectorProduct </td>
-          <td>(</td>
-          <td class="paramtype">const RealType&#160;</td>
-          <td class="paramname"><em>coeef</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="../../dd/da8/classcompnal_1_1type_1_1_c_r_s.html">type::CRS</a>&lt; RealType &gt; &amp;&#160;</td>
-          <td class="paramname"><em>matrix_in</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="../../d6/dfd/classcompnal_1_1type_1_1_braket_vector.html">type::BraketVector</a>&lt; RealType &gt; &amp;&#160;</td>
-          <td class="paramname"><em>vector_in</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../db/d59/matrix__vector__operation_8hpp_source.html#l00179">179</a> of file <a class="el" href="../../db/d59/matrix__vector__operation_8hpp_source.html">matrix_vector_operation.hpp</a>.</p>
 
 </div>
 </div>
@@ -1035,8 +1007,6 @@ template&lt;typename RealType &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="../../df/d88/orthonormalize_8hpp_source.html#l00028">28</a> of file <a class="el" href="../../df/d88/orthonormalize_8hpp_source.html">orthonormalize.hpp</a>.</p>
 
 </div>
 </div>
@@ -1068,8 +1038,6 @@ template&lt;typename RealType &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/d88/orthonormalize_8hpp_source.html#l00042">42</a> of file <a class="el" href="../../df/d88/orthonormalize_8hpp_source.html">orthonormalize.hpp</a>.</p>
-
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
@@ -1085,14 +1053,12 @@ template&lt;typename RealType &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="../../df/d20/eigendecomposition_8hpp_source.html#l00037">37</a> of file <a class="el" href="../../df/d20/eigendecomposition_8hpp_source.html">eigendecomposition.hpp</a>.</p>
-
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Feb 27 2022 20:56:17 for compnal by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="../../doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3
 </small></address>
 </body>
 </html>

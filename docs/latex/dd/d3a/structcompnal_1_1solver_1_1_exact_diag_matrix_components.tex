@@ -9,7 +9,7 @@ Information for calculating the matrix elements of the Hamiltonian.
 
 {\ttfamily \#include $<$utility.\+hpp$>$}
 
-\doxysubsection*{Data Fields}
+\doxysubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 std\+::vector$<$ Real\+Type $>$ \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a2aa3acff1c3ac82a96a1713a0c26b260}{val}}
@@ -31,26 +31,7 @@ double \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components
 struct compnal\+::solver\+::\+Exact\+Diag\+Matrix\+Components$<$ Real\+Type $>$}
 Information for calculating the matrix elements of the Hamiltonian. 
 
-Definition at line \mbox{\hyperlink{solver_2utility_8hpp_source_l00033}{33}} of file \mbox{\hyperlink{solver_2utility_8hpp_source}{utility.\+hpp}}.
-
-
-
-\doxysubsection{Field Documentation}
-\mbox{\Hypertarget{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a2aa3acff1c3ac82a96a1713a0c26b260}\label{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a2aa3acff1c3ac82a96a1713a0c26b260}} 
-\index{compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$@{compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$}!val@{val}}
-\index{val@{val}!compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$@{compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$}}
-\doxysubsubsection{\texorpdfstring{val}{val}}
-{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::vector$<$Real\+Type$>$ \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components}{compnal\+::solver\+::\+Exact\+Diag\+Matrix\+Components}}$<$ Real\+Type $>$\+::val}
-
-
-
-Values of the matrix elements. 
-
-
-
-Definition at line \mbox{\hyperlink{solver_2utility_8hpp_source_l00036}{36}} of file \mbox{\hyperlink{solver_2utility_8hpp_source}{utility.\+hpp}}.
-
+\doxysubsection{Member Data Documentation}
 \mbox{\Hypertarget{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a5a060bd6aa290ed87ceaa581399e21ba}\label{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a5a060bd6aa290ed87ceaa581399e21ba}} 
 \index{compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$@{compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$}!basis\_affected@{basis\_affected}}
 \index{basis\_affected@{basis\_affected}!compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$@{compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$}}
@@ -61,10 +42,6 @@ std\+::vector$<$std\+::int64\+\_\+t$>$ \mbox{\hyperlink{structcompnal_1_1solver_
 
 
 Column number of the matrix elements. 
-
-
-
-Definition at line \mbox{\hyperlink{solver_2utility_8hpp_source_l00039}{39}} of file \mbox{\hyperlink{solver_2utility_8hpp_source}{utility.\+hpp}}.
 
 \mbox{\Hypertarget{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a7329695bd8377ce171a1774a1ecb36a9}\label{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a7329695bd8377ce171a1774a1ecb36a9}} 
 \index{compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$@{compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$}!basis\_onsite@{basis\_onsite}}
@@ -77,9 +54,16 @@ std\+::vector$<$int$>$ \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_m
 
 The onsite basis. 
 
+\mbox{\Hypertarget{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a253673ab20bc51bc09af60c5daccf531}\label{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a253673ab20bc51bc09af60c5daccf531}} 
+\index{compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$@{compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$}!inv\_basis\_affected@{inv\_basis\_affected}}
+\index{inv\_basis\_affected@{inv\_basis\_affected}!compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$@{compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{inv\_basis\_affected}{inv\_basis\_affected}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::unordered\+\_\+map$<$std\+::int64\+\_\+t, std\+::int64\+\_\+t$>$ \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components}{compnal\+::solver\+::\+Exact\+Diag\+Matrix\+Components}}$<$ Real\+Type $>$\+::inv\+\_\+basis\+\_\+affected}
 
 
-Definition at line \mbox{\hyperlink{solver_2utility_8hpp_source_l00042}{42}} of file \mbox{\hyperlink{solver_2utility_8hpp_source}{utility.\+hpp}}.
+
+Inverse basis. 
 
 \mbox{\Hypertarget{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a7fee3db2da4ed6a4d750c3390327b642}\label{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a7fee3db2da4ed6a4d750c3390327b642}} 
 \index{compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$@{compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$}!site\_constant@{site\_constant}}
@@ -92,24 +76,16 @@ std\+::vector$<$std\+::int64\+\_\+t$>$ \mbox{\hyperlink{structcompnal_1_1solver_
 
 Constants for calculating matrix elements. 
 
-
-
-Definition at line \mbox{\hyperlink{solver_2utility_8hpp_source_l00045}{45}} of file \mbox{\hyperlink{solver_2utility_8hpp_source}{utility.\+hpp}}.
-
-\mbox{\Hypertarget{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a253673ab20bc51bc09af60c5daccf531}\label{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a253673ab20bc51bc09af60c5daccf531}} 
-\index{compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$@{compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$}!inv\_basis\_affected@{inv\_basis\_affected}}
-\index{inv\_basis\_affected@{inv\_basis\_affected}!compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$@{compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$}}
-\doxysubsubsection{\texorpdfstring{inv\_basis\_affected}{inv\_basis\_affected}}
+\mbox{\Hypertarget{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a2aa3acff1c3ac82a96a1713a0c26b260}\label{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a2aa3acff1c3ac82a96a1713a0c26b260}} 
+\index{compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$@{compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$}!val@{val}}
+\index{val@{val}!compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$@{compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{val}{val}}
 {\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
-std\+::unordered\+\_\+map$<$std\+::int64\+\_\+t, std\+::int64\+\_\+t$>$ \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components}{compnal\+::solver\+::\+Exact\+Diag\+Matrix\+Components}}$<$ Real\+Type $>$\+::inv\+\_\+basis\+\_\+affected}
+std\+::vector$<$Real\+Type$>$ \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components}{compnal\+::solver\+::\+Exact\+Diag\+Matrix\+Components}}$<$ Real\+Type $>$\+::val}
 
 
 
-Inverse basis. 
-
-
-
-Definition at line \mbox{\hyperlink{solver_2utility_8hpp_source_l00048}{48}} of file \mbox{\hyperlink{solver_2utility_8hpp_source}{utility.\+hpp}}.
+Values of the matrix elements. 
 
 \mbox{\Hypertarget{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a4c81b233063eedecf43f9a44c78ee01e}\label{structcompnal_1_1solver_1_1_exact_diag_matrix_components_a4c81b233063eedecf43f9a44c78ee01e}} 
 \index{compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$@{compnal::solver::ExactDiagMatrixComponents$<$ RealType $>$}!zero\_precision@{zero\_precision}}
@@ -121,10 +97,6 @@ double \mbox{\hyperlink{structcompnal_1_1solver_1_1_exact_diag_matrix_components
 
 
 Calculation accuracy of the matrix elements. 
-
-
-
-Definition at line \mbox{\hyperlink{solver_2utility_8hpp_source_l00051}{51}} of file \mbox{\hyperlink{solver_2utility_8hpp_source}{utility.\+hpp}}.
 
 
 
