@@ -94,9 +94,11 @@ public:
          ss << "Please set magnitude_spin > 0" << std::endl;
          throw std::runtime_error(ss.str());
       }
-      magnitude_spin_ = magnitude_spin;
-      dim_onsite_     = 2*magnitude_spin + 1;
-      SetOnsiteOperator();
+      if (magnitude_spin_ != magnitude_spin) {
+         magnitude_spin_ = magnitude_spin;
+         dim_onsite_     = 2*magnitude_spin + 1;
+         SetOnsiteOperator();
+      }
    }
    
    //! @brief Set the target Hilbert space specified by the total sz.
@@ -425,11 +427,11 @@ private:
    //! @brief The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    HalfInt total_sz_ = 0;
    
-   //! @brief The dimension of the local Hilbert space, \f$ 2S + 1\f$.
-   int dim_onsite_ = 2;
-   
    //! @brief The magnitude of the spin \f$ S\f$.
    HalfInt magnitude_spin_ = 0.5;
+   
+   //! @brief The dimension of the local Hilbert space, \f$ 2S + 1\f$.
+   int dim_onsite_ = 2*magnitude_spin_ + 1;
    
    //! @brief The spin-\f$ S\f$ operator for the x-direction \f$ \hat{s}^{x}\f$.
    CRS onsite_operator_sx_;
@@ -447,7 +449,7 @@ private:
    CRS onsite_operator_sm_;
    
    //------------------------------------------------------------------
-   //----------------------Private Member Functions---------------------
+   //----------------------Private Member Functions--------------------
    //------------------------------------------------------------------
    //! @brief Set onsite operators.
    void SetOnsiteOperator() {

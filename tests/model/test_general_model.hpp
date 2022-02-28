@@ -19,6 +19,7 @@
 #define COMPNAL_TEST_MODEL_GENERAL_MODEL_HPP_
 
 #include "../../src/model/base_u1_spin.hpp"
+#include "../../src/model/base_u1_electron.hpp"
 #include "../../src/model/general_model.hpp"
 #include <gtest/gtest.h>
 
@@ -75,6 +76,7 @@ TEST(ModelGeneralModel, Basic) {
 
    check_model(model::GeneralModel<model::BaseU1Spin<double>>());
    check_model(model::GeneralModel<model::BaseU1Electron<double>>());
+   check_model(model::GeneralModel<model::BaseU1SpinElectron<double>>());
 
 }
 

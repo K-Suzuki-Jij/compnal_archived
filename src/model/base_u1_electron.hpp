@@ -110,6 +110,12 @@ public:
    //! @param total_electron The number of total electrons is represented by the expectation value of the following operator:
    //! \f[ \hat{N}_{\rm e}=\sum^{N}_{i=1}\hat{n}_{i} \f]
    void SetTotalElectron(const int total_electron) {
+      if (total_electron < 0) {
+         std::stringstream ss;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+         ss << "total_electron must be a non-negative integer" << std::endl;
+         throw std::runtime_error(ss.str());
+      }
       total_electron_ = total_electron;
    }
    
@@ -349,10 +355,8 @@ public:
    //! @param total_sz The total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
    //! @return ture if there exists corresponding subspace, otherwise false.
    static bool ValidateQNumber(const int system_size, const int total_electron, const HalfInt total_sz) {
-      if (system_size < 0 || total_electron < 0) {
-         std::stringstream ss;
-         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
-         ss << "Invalid parameters (system_size or total_electron)" << std::endl;
+      if (system_size <= 0 || total_electron < 0) {
+         return false;
       }
       const int total_2sz = 2*total_sz;
       const bool c1 = (0 <= total_electron && total_electron <= 2*system_size);
