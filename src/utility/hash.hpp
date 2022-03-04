@@ -112,6 +112,21 @@ struct VecIntHash {
    }
 };
 
+//! @brief Hash struct of std::pair<std::vector<T>, HalfInt>.
+struct VecIntHalfIntHash {
+   template<class T>
+   std::size_t operator() (const std::pair<std::vector<T>, type::HalfInt>& p) const {
+      std::size_t hash = p.first.size();
+      for (const auto &i: p.first) {
+         hash ^= std::hash<T>()(i) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+      }
+      std::size_t lhs = std::hash<int>()(p.second);
+      hash ^= lhs^(0x9e3779b9 + (lhs << 6));
+      return hash;
+   }
+};
+
+
 
 }
 }

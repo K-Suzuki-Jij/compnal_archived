@@ -34,7 +34,7 @@
 namespace compnal {
 namespace model {
 
-//! @brief The base class for one-dimensional spin-electron systems with the U(1) symmetry.
+//! @brief The base class for spin-electron systems with the U(1) symmetry.
 //! @tparam RealType The type of real values.
 template<typename RealType>
 class BaseU1SpinElectron {
@@ -257,7 +257,7 @@ public:
       }
       else {
          std::stringstream ss;
-         ss << "Error in " << __func__ << std::endl;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
          ss << "The dimenstion of the matrix must be 4";
          throw std::runtime_error(ss.str());
       }
@@ -272,7 +272,7 @@ public:
    //! @param flag_display_info If true, display the progress status. Set ture by default.
    std::vector<std::int64_t> GenerateBasis(const int system_size,
                                            const QType &quantum_number,
-                                           const bool flag_display_info = true) {
+                                           const bool flag_display_info = true) const {
       const auto start = std::chrono::system_clock::now();
       
       if (!ValidateQNumber(quantum_number)) {
@@ -372,7 +372,7 @@ public:
          }
          if (static_cast<std::int64_t>(spin_basis.size()) != dim_target_lspin) {
             std::stringstream ss;
-            ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__ << std::endl;
+            ss << "Unknown error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
             throw std::runtime_error(ss.str());
          }
          std::sort(spin_basis.begin(), spin_basis.end());
