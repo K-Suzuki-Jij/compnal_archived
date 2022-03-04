@@ -15,8 +15,8 @@
 //  Created by Kohei Suzuki on 2021/05/20.
 //
 
-#ifndef COMPNAL_TYPE_COMPRESSED_ROW_STORAGE_HPP_
-#define COMPNAL_TYPE_COMPRESSED_ROW_STORAGE_HPP_
+#ifndef COMPNAL_BLAS_COMPRESSED_ROW_STORAGE_HPP_
+#define COMPNAL_BLAS_COMPRESSED_ROW_STORAGE_HPP_
 
 #include <iostream>
 #include <cstdint>
@@ -25,7 +25,7 @@
 #include <sstream>
 
 namespace compnal {
-namespace type {
+namespace blas {
 
 //! @brief Enumerated type to represent Fermion, Boson, etc..
 enum CRSTag {
@@ -935,8 +935,8 @@ CRS<T> CalculateTransposedMatrix(const CRS<T> &matrix) {
    return matrix_out;
 }
 
-} // namespace type
+} // namespace blas
 } // namespace compnal
 
 
-#endif /* COMPNAL_TYPE_COMPRESSED_ROW_STORAGE_HPP_ */
+#endif /* COMPNAL_BLAS_COMPRESSED_ROW_STORAGE_HPP_ */

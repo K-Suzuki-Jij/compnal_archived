@@ -18,14 +18,14 @@
 #ifndef COMPNAL_BLAS_ORTHONORMALIZE_HPP_
 #define COMPNAL_BLAS_ORTHONORMALIZE_HPP_
 
-#include "../type/braket_vector.hpp"
+#include "braket_vector.hpp"
 #include <sstream>
 
 namespace compnal {
 namespace blas {
 
 template<typename RealType>
-void Orthonormalize(std::vector<type::BraketVector<RealType>> *vectors) {
+void Orthonormalize(std::vector<BraketVector<RealType>> *vectors) {
    for (std::size_t i = 0; i < vectors->size(); ++i) {
       const std::int64_t dim = static_cast<std::int64_t>(vectors[i]->size());
       for (std::size_t j = 0; j < i; ++j) {
@@ -39,7 +39,7 @@ void Orthonormalize(std::vector<type::BraketVector<RealType>> *vectors) {
 }
 
 template<typename RealType>
-void Orthonormalize(type::BraketVector<RealType> *target_vector, const std::vector<type::BraketVector<RealType>> &vectors) {
+void Orthonormalize(BraketVector<RealType> *target_vector, const std::vector<BraketVector<RealType>> &vectors) {
    const std::int64_t dim = static_cast<std::int64_t>(target_vector->val.size());
    for (std::size_t i = 0; i < vectors.size(); ++i) {
       const RealType inner_product = -1.0*CalculateInnerProduct(*target_vector, vectors[i]);

@@ -51,7 +51,7 @@ class BaseU1Electron {
    using HalfInt = type::HalfInt;
    
    //! @brief Alias of compressed row strage (CRS) with RealType.
-   using CRS = type::CRS<RealType>;
+   using CRS = blas::CRS<RealType>;
    
 public:
    //------------------------------------------------------------------
@@ -423,7 +423,7 @@ public:
          matrix.row[row + 1] = matrix.col.size();
       }
       
-      matrix.tag = type::CRSTag::FERMION;
+      matrix.tag = blas::CRSTag::FERMION;
       
       return matrix;
    }
@@ -457,7 +457,7 @@ public:
          matrix.row[row + 1] = matrix.col.size();
       }
       
-      matrix.tag = type::CRSTag::FERMION;
+      matrix.tag = blas::CRSTag::FERMION;
       
       return matrix;
    }
@@ -466,14 +466,14 @@ public:
    //! \f$ \hat{c}^{\dagger}_{\uparrow}\f$.
    //! @return The matrix of \f$ \hat{c}^{\dagger}_{\uparrow}\f$.
    static CRS CreateOnsiteOperatorCUpDagger() {
-      return type::CalculateTransposedMatrix(CreateOnsiteOperatorCUp());
+      return blas::CalculateTransposedMatrix(CreateOnsiteOperatorCUp());
    }
    
    //! @brief Generate the creation operator for the electrons with the down spin
    //! \f$ \hat{c}^{\dagger}_{\downarrow}\f$.
    //! @return The matrix of \f$ \hat{c}^{\dagger}_{\downarrow}\f$.
    static CRS CreateOnsiteOperatorCDownDagger() {
-      return type::CalculateTransposedMatrix(CreateOnsiteOperatorCDown());
+      return blas::CalculateTransposedMatrix(CreateOnsiteOperatorCDown());
    }
    
    //! @brief Generate the number operator for the electrons with the up spin

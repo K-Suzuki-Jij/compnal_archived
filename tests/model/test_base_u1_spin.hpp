@@ -182,11 +182,11 @@ TEST(ModelBaseU1Spin, CalculateTargetDim) {
 TEST(ModelBaseU1Spin, SpinOneHalf) {
    using RealType = double;
    
-   const type::CRS<RealType> ref_sp ({{+0.0, +1.0}, {+0.0, +0.0}}, type::CRSTag::BOSON);
-   const type::CRS<RealType> ref_sm ({{+0.0, +0.0}, {+1.0, +0.0}}, type::CRSTag::BOSON);
-   const type::CRS<RealType> ref_sx ({{+0.0, +0.5}, {+0.5, +0.0}}, type::CRSTag::BOSON);
-   const type::CRS<RealType> ref_isy({{+0.0, +0.5}, {-0.5, +0.0}}, type::CRSTag::BOSON);
-   const type::CRS<RealType> ref_sz ({{+0.5, +0.0}, {+0.0, -0.5}}, type::CRSTag::BOSON);
+   const blas::CRS<RealType> ref_sp ({{+0.0, +1.0}, {+0.0, +0.0}}, blas::CRSTag::BOSON);
+   const blas::CRS<RealType> ref_sm ({{+0.0, +0.0}, {+1.0, +0.0}}, blas::CRSTag::BOSON);
+   const blas::CRS<RealType> ref_sx ({{+0.0, +0.5}, {+0.5, +0.0}}, blas::CRSTag::BOSON);
+   const blas::CRS<RealType> ref_isy({{+0.0, +0.5}, {-0.5, +0.0}}, blas::CRSTag::BOSON);
+   const blas::CRS<RealType> ref_sz ({{+0.5, +0.0}, {+0.0, -0.5}}, blas::CRSTag::BOSON);
    
    EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSp (0.5) , ref_sp );
    EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSm (0.5) , ref_sm );
@@ -200,35 +200,35 @@ TEST(ModelBaseU1Spin, SpinOne) {
    const RealType sqrt2   = std::sqrt(RealType{2.0});
    const RealType sqrt2_2 = std::sqrt(RealType{2.0})/RealType{2.0};
 
-   const type::CRS<RealType> ref_sp ({
+   const blas::CRS<RealType> ref_sp ({
       {+0.0, +sqrt2, +0.0},
       {+0.0, +0.0, +sqrt2},
       {+0.0, +0.0, +0.0}
-   }, type::CRSTag::BOSON);
+   }, blas::CRSTag::BOSON);
    
-   const type::CRS<RealType> ref_sm ({
+   const blas::CRS<RealType> ref_sm ({
       {+0.0, +0.0, +0.0},
       {+sqrt2, +0.0, +0.0},
       {+0.0, +sqrt2, +0.0}
-   }, type::CRSTag::BOSON);
+   }, blas::CRSTag::BOSON);
    
-   const type::CRS<RealType> ref_sx ({
+   const blas::CRS<RealType> ref_sx ({
       {+0.0, +sqrt2_2, +0.0},
       {+sqrt2_2, +0.0, +sqrt2_2},
       {+0.0, +sqrt2_2, +0.0}
-   }, type::CRSTag::BOSON);
+   }, blas::CRSTag::BOSON);
    
-   const type::CRS<RealType> ref_isy ({
+   const blas::CRS<RealType> ref_isy ({
       {+0.0, +sqrt2_2, +0.0},
       {-sqrt2_2, +0.0, +sqrt2_2},
       {+0.0, -sqrt2_2, +0.0}
-   }, type::CRSTag::BOSON);
+   }, blas::CRSTag::BOSON);
    
-   const type::CRS<RealType> ref_sz ({
+   const blas::CRS<RealType> ref_sz ({
       {+1.0, +0.0, +0.0},
       {+0.0, +0.0, +0.0},
       {+0.0, +0.0, -1.0}
-   }, type::CRSTag::BOSON);
+   }, blas::CRSTag::BOSON);
    
    EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSp (1) , ref_sp );
    EXPECT_EQ(model::BaseU1Spin<RealType>::CreateOnsiteOperatorSm (1) , ref_sm );

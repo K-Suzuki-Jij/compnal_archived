@@ -15,8 +15,8 @@
 //  Created by Kohei Suzuki on 2021/05/22.
 //
 
-#ifndef COMPNAL_TYPE_BRAKET_VECTOR_HPP_
-#define COMPNAL_TYPE_BRAKET_VECTOR_HPP_
+#ifndef COMPNAL_BLAS_BRAKET_VECTOR_HPP_
+#define COMPNAL_BLAS_BRAKET_VECTOR_HPP_
 
 #include <iostream>
 #include <sstream>
@@ -25,7 +25,7 @@
 #include <initializer_list>
 
 namespace compnal {
-namespace type {
+namespace blas {
 
 //! @brief The wrapper class of std::vector to represent braket.
 //! Note that there is no difference of <bra| and |ket>,
@@ -551,8 +551,8 @@ decltype(std::declval<T1>()*std::declval<T2>() - std::declval<T3>()*std::declval
    return std::sqrt(val_out);
 }
 
-} // namespace type
+} // namespace blas
 } // namespace compnal
 
 
-#endif /* COMPNAL_TYPE_BRAKET_VECTOR_HPP_ */
+#endif /* COMPNAL_BLAS_BRAKET_VECTOR_HPP_ */

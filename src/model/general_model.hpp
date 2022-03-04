@@ -39,7 +39,7 @@ class GeneralModel: public BaseClass {
    using RealType = typename BaseClass::ValueType;
    
    //! @brief Alias of compressed row strage (CRS) with RealType.
-   using CRS = type::CRS<RealType>;
+   using CRS = blas::CRS<RealType>;
          
    //! @brief Alias of hash struct for IndexType.
    using Hash = utility::VariantHash<std::int64_t>;

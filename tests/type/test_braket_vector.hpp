@@ -18,7 +18,7 @@
 #ifndef COMPNAL_TEST_BRAKET_VECTOR_HPP_
 #define COMPNAL_TEST_BRAKET_VECTOR_HPP_
 
-#include "../../src/type/braket_vector.hpp"
+#include "../../src/blas/braket_vector.hpp"
 #include <cmath>
 #include <type_traits>
 #include <gtest/gtest.h>
@@ -27,85 +27,85 @@ namespace compnal {
 namespace test {
 
 TEST(BraketVector, Fill) {
-   type::BraketVector<int> vec(3);
+   blas::BraketVector<int> vec(3);
    vec.Fill(2);
-   EXPECT_EQ(vec, type::BraketVector<int>({2, 2, 2}));
+   EXPECT_EQ(vec, blas::BraketVector<int>({2, 2, 2}));
 }
 
 TEST(BraketVector, Free) {
-   type::BraketVector<int> vec(3);
+   blas::BraketVector<int> vec(3);
    vec.Free();
-   EXPECT_EQ(vec, type::BraketVector<int>(0));
+   EXPECT_EQ(vec, blas::BraketVector<int>(0));
 }
 
 TEST(BraketVector, Assign) {
-   type::BraketVector<int> vec1(3);
-   type::BraketVector<int> vec2(5);
+   blas::BraketVector<int> vec1(3);
+   blas::BraketVector<int> vec2(5);
    vec1.Assign(vec2);
    EXPECT_EQ(vec1, vec2);
    std::vector<int> vec3({1,2,3});
    vec1.Assign(vec3);
-   EXPECT_EQ(vec1, type::BraketVector<int>(vec3));
+   EXPECT_EQ(vec1, blas::BraketVector<int>(vec3));
 }
 
 TEST(BraketVector, Normalize) {
-   type::BraketVector<double> vec1({1, 2, 3});
+   blas::BraketVector<double> vec1({1, 2, 3});
    vec1.Normalize();
-   EXPECT_EQ(vec1, type::BraketVector<double>({1/std::sqrt(14.0L), 2/std::sqrt(14.0L), 3/std::sqrt(14.0L)}));
+   EXPECT_EQ(vec1, blas::BraketVector<double>({1/std::sqrt(14.0L), 2/std::sqrt(14.0L), 3/std::sqrt(14.0L)}));
    
-   type::BraketVector<double> vec2({1, 2, 3});
+   blas::BraketVector<double> vec2({1, 2, 3});
    vec2.Normalize(2);
-   EXPECT_EQ(vec2, type::BraketVector<double>({2/std::sqrt(14.0L), 4/std::sqrt(14.0L), 6/std::sqrt(14.0L)}));
+   EXPECT_EQ(vec2, blas::BraketVector<double>({2/std::sqrt(14.0L), 4/std::sqrt(14.0L), 6/std::sqrt(14.0L)}));
    
-   vec1 = type::BraketVector<double>({0, 0, 0});
+   vec1 = blas::BraketVector<double>({0, 0, 0});
    EXPECT_THROW(vec1.Normalize(), std::runtime_error);
 }
 
 TEST(BraketVector, MultiplyByScalar) {
-   type::BraketVector<double> vec1({1, 2, 3});
+   blas::BraketVector<double> vec1({1, 2, 3});
    vec1.MultiplyByScalar(2.0);
-   EXPECT_EQ(vec1, type::BraketVector<double>({2, 4, 6}));
+   EXPECT_EQ(vec1, blas::BraketVector<double>({2, 4, 6}));
 }
 
 TEST(BraketVector, L1Norm) {
-   type::BraketVector<double> vec1({1, 2, 3});
+   blas::BraketVector<double> vec1({1, 2, 3});
    EXPECT_DOUBLE_EQ(vec1.CalculateL1Norm(), 1+2+3);
 }
 
 TEST(BraketVector, L2Norm) {
-   type::BraketVector<double> vec1({1, 2, 3});
+   blas::BraketVector<double> vec1({1, 2, 3});
    EXPECT_DOUBLE_EQ(vec1.CalculateL2Norm(), std::sqrt(1.0+4.0+9.0));
 }
 
 TEST(BraketVector, CalculateL1Distance) {
-   type::BraketVector<double> vec1({1, 2, 3});
-   type::BraketVector<double> vec2({2, 3, 4});
-   EXPECT_DOUBLE_EQ(type::CalculateL1Distance(2, vec1, 3, vec2), 15);
+   blas::BraketVector<double> vec1({1, 2, 3});
+   blas::BraketVector<double> vec2({2, 3, 4});
+   EXPECT_DOUBLE_EQ(blas::CalculateL1Distance(2, vec1, 3, vec2), 15);
 }
 
 TEST(BraketVector, CalculateL2Distance) {
-   type::BraketVector<double> vec1({1, 2, 3});
-   type::BraketVector<double> vec2({2, 3, 4});
-   EXPECT_DOUBLE_EQ(type::CalculateL2Distance(2, vec1, 3, vec2), std::sqrt(16 + 25 + 36));
+   blas::BraketVector<double> vec1({1, 2, 3});
+   blas::BraketVector<double> vec2({2, 3, 4});
+   EXPECT_DOUBLE_EQ(blas::CalculateL2Distance(2, vec1, 3, vec2), std::sqrt(16 + 25 + 36));
 }
 
 TEST(BraketVector, CalculateVectorVectorSum) {
-   type::BraketVector<int> vec1({1, 2, 3});
-   type::BraketVector<int> vec2({2, 3, 4});
-   EXPECT_EQ(type::CalculateVectorVectorSum(2, vec1, 3, vec2),
-             type::BraketVector<int>({8, 13, 18})
+   blas::BraketVector<int> vec1({1, 2, 3});
+   blas::BraketVector<int> vec2({2, 3, 4});
+   EXPECT_EQ(blas::CalculateVectorVectorSum(2, vec1, 3, vec2),
+             blas::BraketVector<int>({8, 13, 18})
              );
 }
 
 TEST(BraketVector, CalculateVectorVectorProduct) {
-   type::BraketVector<double> vec1({1, 2, 3});
-   type::BraketVector<double> vec2({2, 3, 4});
-   EXPECT_DOUBLE_EQ(type::CalculateVectorVectorProduct(vec1, vec2), 2+6+12);
+   blas::BraketVector<double> vec1({1, 2, 3});
+   blas::BraketVector<double> vec2({2, 3, 4});
+   EXPECT_DOUBLE_EQ(blas::CalculateVectorVectorProduct(vec1, vec2), 2+6+12);
 }
 
 TEST(BraketVector, CalculateScalarVectorProduct) {
-   type::BraketVector<int> vec1({1, 2, 3});
-   EXPECT_EQ(type::CalculateScalarVectorProduct(2, vec1), type::BraketVector<int>({2, 4, 6}));
+   blas::BraketVector<int> vec1({1, 2, 3});
+   EXPECT_EQ(blas::CalculateScalarVectorProduct(2, vec1), blas::BraketVector<int>({2, 4, 6}));
 }
 
 TEST(BraketVector, Addition) {
@@ -124,7 +124,7 @@ TEST(BraketVector, Addition) {
          }
       }
    };
-   using type::BraketVector;
+   using blas::BraketVector;
    check(BraketVector<long double>({1.3L}) + BraketVector<long double>({1.4L}), BraketVector<long double>({2.7L}), LDBL_EPSILON, __LINE__);
    check(BraketVector<long double>({1.3L}) + BraketVector<double     >({1.4 }), BraketVector<double     >({2.7 }), DBL_EPSILON , __LINE__);
    check(BraketVector<long double>({1.3L}) + BraketVector<float      >({1.4F}), BraketVector<float      >({2.7F}), FLT_EPSILON , __LINE__);
@@ -215,7 +215,7 @@ TEST(BraketVector, Subtraction) {
          }
       }
    };
-   using type::BraketVector;
+   using blas::BraketVector;
    check(BraketVector<long double>({1.3L}) - BraketVector<long double>({1.4L}), BraketVector<long double>({-0.1L}), LDBL_EPSILON, __LINE__);
    check(BraketVector<long double>({1.3L}) - BraketVector<double     >({1.4 }), BraketVector<double     >({-0.1 }), DBL_EPSILON , __LINE__);
    check(BraketVector<long double>({1.3L}) - BraketVector<float      >({1.4F}), BraketVector<float      >({-0.1F}), FLT_EPSILON , __LINE__);
@@ -303,7 +303,7 @@ TEST(BraketVector, MultiplicationVectorVector) {
       }
    };
    
-   using type::BraketVector;
+   using blas::BraketVector;
    check(BraketVector<long double>({1.3L}) * BraketVector<long double>({1.4L}), 1.82L, LDBL_EPSILON, __LINE__);
    check(BraketVector<long double>({1.3L}) * BraketVector<double     >({1.4 }), 1.82 , DBL_EPSILON , __LINE__);
    check(BraketVector<long double>({1.3L}) * BraketVector<float      >({1.4F}), 1.82F, FLT_EPSILON , __LINE__);
@@ -393,7 +393,7 @@ TEST(BraketVector, MultiplicationVectorScalar) {
          }
       }
    };
-   using type::BraketVector;
+   using blas::BraketVector;
    check(BraketVector<long double>({1.3L}) * static_cast<long double>(1.4L), BraketVector<long double>({1.82L}), LDBL_EPSILON, __LINE__);
    check(BraketVector<long double>({1.3L}) * static_cast<double     >(1.4 ), BraketVector<double     >({1.82 }), DBL_EPSILON , __LINE__);
    check(BraketVector<long double>({1.3L}) * static_cast<float      >(1.4F), BraketVector<float      >({1.82F}), FLT_EPSILON , __LINE__);
@@ -483,7 +483,7 @@ TEST(BraketVector, MultiplicationScalarVector) {
          }
       }
    };
-   using type::BraketVector;
+   using blas::BraketVector;
    check(static_cast<long double>(1.4L) * BraketVector<long double>({1.3L}), BraketVector<long double>({1.82L}), LDBL_EPSILON, __LINE__);
    check(static_cast<double     >(1.4 ) * BraketVector<long double>({1.3L}), BraketVector<double     >({1.82 }), DBL_EPSILON , __LINE__);
    check(static_cast<float      >(1.4F) * BraketVector<long double>({1.3L}), BraketVector<float      >({1.82F}), FLT_EPSILON , __LINE__);
@@ -558,7 +558,7 @@ TEST(BraketVector, MultiplicationScalarVector) {
 }
 
 TEST(BraketVector, Equality) {
-   using type::BraketVector;
+   using blas::BraketVector;
    EXPECT_TRUE(BraketVector<long long>({1LL}) == BraketVector<long long>({1LL}));
    EXPECT_TRUE(BraketVector<long long>({1LL}) == BraketVector<long     >({1L }));
    EXPECT_TRUE(BraketVector<long long>({1LL}) == BraketVector<int      >({1  }));

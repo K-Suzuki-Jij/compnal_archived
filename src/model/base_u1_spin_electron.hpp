@@ -48,7 +48,7 @@ class BaseU1SpinElectron {
    using HalfInt = type::HalfInt;
       
    //! @brief Alias of compressed row strage (CRS) with RealType.
-   using CRS = type::CRS<RealType>;
+   using CRS = blas::CRS<RealType>;
       
 public:
    //------------------------------------------------------------------
@@ -542,7 +542,7 @@ public:
       for (int element = 0; element < dim_onsite_lspin; ++element) {
          matrix.row[element + 1 + 3*dim_onsite_lspin] = matrix.col.size();
       }
-      matrix.tag = type::CRSTag::FERMION;
+      matrix.tag = blas::CRSTag::FERMION;
       return matrix;
    }
    
@@ -581,7 +581,7 @@ public:
       for (int element = 0; element < dim_onsite_lspin; ++element) {
          matrix.row[element + 1 + 3*dim_onsite_lspin] = matrix.col.size();
       }
-      matrix.tag = type::CRSTag::FERMION;
+      matrix.tag = blas::CRSTag::FERMION;
       return matrix;
    }
    
@@ -744,7 +744,7 @@ public:
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{c}^{\dagger}_{\uparrow}\f$.
    static CRS CreateOnsiteOperatorCUpDagger(const HalfInt magnitude_lspin) {
-      return type::CalculateTransposedMatrix(CreateOnsiteOperatorCUp(magnitude_lspin));
+      return blas::CalculateTransposedMatrix(CreateOnsiteOperatorCUp(magnitude_lspin));
    }
    
    //! @brief Generate the creation operator for the electrons with the down spin
@@ -752,7 +752,7 @@ public:
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{c}^{\dagger}_{\downarrow}\f$.
    static CRS CreateOnsiteOperatorCDownDagger(const HalfInt magnitude_lspin) {
-      return type::CalculateTransposedMatrix(CreateOnsiteOperatorCDown(magnitude_lspin));
+      return blas::CalculateTransposedMatrix(CreateOnsiteOperatorCDown(magnitude_lspin));
    }
    
    //! @brief Generate the number operator for the electrons with the up spin

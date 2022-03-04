@@ -18,7 +18,7 @@
 #ifndef COMPNAL_BLAS_LAPACK_HPP_
 #define COMPNAL_BLAS_LAPACK_HPP_
 
-#include "../type/compressed_row_storage.hpp"
+#include "compressed_row_storage.hpp"
 #include <sstream>
 
 namespace compnal {
@@ -39,7 +39,7 @@ void dspgv_(const int &ITYPE,const char &JOBZ, const char &UPLO, const int &N, d
 template <typename RealType>
 void LapackDsyev(RealType *gs_value,
                  std::vector<RealType> *gs_vector,
-                 const type::CRS<RealType> &matrix_in,
+                 const CRS<RealType> &matrix_in,
                  const int target_level = 0
                  ) {
    

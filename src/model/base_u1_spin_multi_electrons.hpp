@@ -44,7 +44,7 @@ class BaseU1SpinMultiElectrons {
    using HalfInt = type::HalfInt;
       
    //! @brief Alias of compressed row strage (CRS) with RealType.
-   using CRS = type::CRS<RealType>;
+   using CRS = blas::CRS<RealType>;
       
 public:
    //------------------------------------------------------------------
@@ -715,7 +715,7 @@ public:
          }
          matrix.row[row + 1] = matrix.col.size();
       }
-      matrix.tag = type::CRSTag::FERMION;
+      matrix.tag = blas::CRSTag::FERMION;
       return matrix;
    }
    
@@ -780,7 +780,7 @@ public:
          }
          matrix.row[row + 1] = matrix.col.size();
       }
-      matrix.tag = type::CRSTag::FERMION;
+      matrix.tag = blas::CRSTag::FERMION;
       return matrix;
    }
    
@@ -843,7 +843,7 @@ public:
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$.
    //! @return The matrix of \f$ \hat{c}^{\dagger}_{\alpha, \uparrow}\f$.
    static CRS CreateOnsiteOperatorCUpDagger(const HalfInt magnitude_lspin, const int orbital, const int num_orbital) {
-      return type::CalculateTransposedMatrix(CreateOnsiteOperatorCUp(magnitude_lspin, orbital, num_orbital));
+      return blas::CalculateTransposedMatrix(CreateOnsiteOperatorCUp(magnitude_lspin, orbital, num_orbital));
    }
    
    //! @brief Generate the creation operator for the electrons
@@ -853,7 +853,7 @@ public:
    //! @param magnitude_lspin The magnitude of the local spin \f$ S \f$.
    //! @return The matrix of \f$ \hat{c}^{\dagger}_{\alpha, \downarrow}\f$.
    static CRS CreateOnsiteOperatorCDownDagger(const HalfInt magnitude_lspin, const int orbital, const int num_orbital) {
-      return type::CalculateTransposedMatrix(CreateOnsiteOperatorCDown(magnitude_lspin, orbital, num_orbital));
+      return blas::CalculateTransposedMatrix(CreateOnsiteOperatorCDown(magnitude_lspin, orbital, num_orbital));
    }
    
    //! @brief Generate the number operator for the electrons
@@ -961,7 +961,7 @@ public:
    //! @param num_orbital The number of the orbitals of the electrons \f$ n_{\rm o}\f$
    //! @return The matrix of \f$ \hat{S}^{-}\f$.
    static CRS CreateOnsiteOperatorSmL(const HalfInt magnitude_lspin, const int num_orbital) {
-      return type::CalculateTransposedMatrix(CreateOnsiteOperatorSpL(magnitude_lspin, num_orbital));
+      return blas::CalculateTransposedMatrix(CreateOnsiteOperatorSpL(magnitude_lspin, num_orbital));
    }
    
    //! @brief Generate the spin-\f$ S\f$ operator of the local spin for the x-direction \f$ \hat{S}^{x}\f$.

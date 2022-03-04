@@ -47,7 +47,7 @@ TEST(ModelGeneralModel, Basic) {
       model.AddInteraction(1, sm, "a", sp);
       model.AddInteraction(VariantVecType{1, "a"}, sp, 1, sm);
       model.AddInteraction(VariantVecType{1, "a"}, sp, VariantVecType{1, "a"}, sz);
-
+      
       
       EXPECT_EQ(model.GetSystemSize(), 5);
       EXPECT_EQ(model.GetIndexList().count(+1), static_cast<unsigned long>(1));
@@ -60,7 +60,7 @@ TEST(ModelGeneralModel, Basic) {
       EXPECT_EQ(model.GetPotential(-1), sz + sm);
       EXPECT_EQ(model.GetPotential("a"), sp);
       EXPECT_EQ(model.GetPotential(VariantVecType{1, "a"}), sz + sp*sz);
-
+      
       EXPECT_EQ(model.GetInteraction(1, -2).size(), static_cast<unsigned long>(1));
       EXPECT_EQ(model.GetInteraction(1, -2).at(0).first , sp);
       EXPECT_EQ(model.GetInteraction(1, -2).at(0).second, sm);
@@ -90,7 +90,7 @@ TEST(ModelGeneralModel, Basic) {
    check_model(model::GeneralModel<model::BaseU1Electron<long double>>());
    check_model(model::GeneralModel<model::BaseU1SpinElectron<long double>>());
    check_model(model::GeneralModel<model::BaseU1SpinMultiElectrons<long double>>());
-
+   
 }
 
 TEST(ModelGeneralModel, BaseU1Spin) {
@@ -103,9 +103,9 @@ TEST(ModelGeneralModel, BaseU1Spin) {
       model.AddPotential(-1, model.GetOnsiteOperatorSm());
    };
    
-   check_model(model::GeneralModel<model::BaseU1Spin<float>>());
-   check_model(model::GeneralModel<model::BaseU1Spin<double>>());
-   check_model(model::GeneralModel<model::BaseU1Spin<long double>>());
+   EXPECT_NO_THROW(check_model(model::GeneralModel<model::BaseU1Spin<float>>()));
+   EXPECT_NO_THROW(check_model(model::GeneralModel<model::BaseU1Spin<double>>()));
+   EXPECT_NO_THROW(check_model(model::GeneralModel<model::BaseU1Spin<long double>>()));
    
 }
 
@@ -126,9 +126,9 @@ TEST(ModelGeneralModel, BaseU1Electron) {
       model.AddPotential(-1, model.GetOnsiteOperatorSm());
    };
    
-   check_model(model::GeneralModel<model::BaseU1Electron<float>>());
-   check_model(model::GeneralModel<model::BaseU1Electron<double>>());
-   check_model(model::GeneralModel<model::BaseU1Electron<long double>>());
+   EXPECT_NO_THROW(check_model(model::GeneralModel<model::BaseU1Electron<float>>()));
+   EXPECT_NO_THROW(check_model(model::GeneralModel<model::BaseU1Electron<double>>()));
+   EXPECT_NO_THROW(check_model(model::GeneralModel<model::BaseU1Electron<long double>>()));
    
 }
 
@@ -162,9 +162,9 @@ TEST(ModelGeneralModel, BaseU1SpinElectron) {
       model.AddPotential(-1, model.GetOnsiteOperatorSm());
    };
    
-   check_model(model::GeneralModel<model::BaseU1SpinElectron<float>>());
-   check_model(model::GeneralModel<model::BaseU1SpinElectron<double>>());
-   check_model(model::GeneralModel<model::BaseU1SpinElectron<long double>>());
+   EXPECT_NO_THROW(check_model(model::GeneralModel<model::BaseU1SpinElectron<float>>()));
+   EXPECT_NO_THROW(check_model(model::GeneralModel<model::BaseU1SpinElectron<double>>()));
+   EXPECT_NO_THROW(check_model(model::GeneralModel<model::BaseU1SpinElectron<long double>>()));
    
 }
 
@@ -184,7 +184,7 @@ TEST(ModelGeneralModel, BaseU1SpinMultiElectrons) {
       model.AddPotential(-1, model.GetOnsiteOperatorSpC(0));
       model.AddPotential(-1, model.GetOnsiteOperatorSmC(0));
       model.AddPotential(-1, model.GetOnsiteOperatorSCSL(0));
-
+      
       model.AddPotential(-1, model.GetOnsiteOperatorCUp(1));
       model.AddPotential(-1, model.GetOnsiteOperatorCUpDagger(1));
       model.AddPotential(-1, model.GetOnsiteOperatorCDown(1));
@@ -214,9 +214,9 @@ TEST(ModelGeneralModel, BaseU1SpinMultiElectrons) {
       model.AddPotential(-1, model.GetOnsiteOperatorSm());
    };
    
-   check_model(model::GeneralModel<model::BaseU1SpinMultiElectrons<float>>(0.5, {2, 2}));
-   check_model(model::GeneralModel<model::BaseU1SpinMultiElectrons<double>>(0.5, {2, 2}));
-   check_model(model::GeneralModel<model::BaseU1SpinMultiElectrons<long double>>(0.5, {2, 2}));
+   EXPECT_NO_THROW(check_model(model::GeneralModel<model::BaseU1SpinMultiElectrons<float>>(0.5, {2, 2})));
+   EXPECT_NO_THROW(check_model(model::GeneralModel<model::BaseU1SpinMultiElectrons<double>>(0.5, {2, 2})));
+   EXPECT_NO_THROW(check_model(model::GeneralModel<model::BaseU1SpinMultiElectrons<long double>>(0.5, {2, 2})));
    
 }
 

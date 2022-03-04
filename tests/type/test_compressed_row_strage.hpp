@@ -18,74 +18,74 @@
 #ifndef COMPNAL_TEST_COMPRESSED_ROW_STORAGE_HPP_
 #define COMPNAL_TEST_COMPRESSED_ROW_STORAGE_HPP_
 
-#include "../../src/type/compressed_row_storage.hpp"
+#include "../../src/blas/compressed_row_storage.hpp"
 #include <gtest/gtest.h>
 
 namespace compnal {
 namespace test {
 
 TEST(CRS, Constructors) {
-   EXPECT_NO_THROW(type::CRS<double>());
-   EXPECT_NO_THROW(type::CRS<double>(3, 4));
-   EXPECT_NO_THROW(type::CRS<double>(3, 4, type::CRSTag::FERMION));
-   EXPECT_NO_THROW(type::CRS<double>({{1, 2.0}, {3.1}, {-1}}));
-   EXPECT_NO_THROW(type::CRS<double>({{1, 2.0}, {3.1}, {-1}}, type::CRSTag::FERMION));
-   EXPECT_NO_THROW(type::CRS<double>(std::vector<std::vector<int>>{{1,2,3}, {-1,-2}}));
-   EXPECT_NO_THROW(type::CRS<int>());
-   EXPECT_NO_THROW(type::CRS<int>(3, 4));
-   EXPECT_NO_THROW(type::CRS<int>(3, 4, type::CRSTag::FERMION));
-   EXPECT_NO_THROW(type::CRS<int>({{1, 2}, {3}, {-1}}));
-   EXPECT_NO_THROW(type::CRS<int>({{1, 2}, {3}, {-1}}, type::CRSTag::FERMION));
-   EXPECT_NO_THROW(type::CRS<int>(std::vector<std::vector<int>>{{1,2,3}, {-1,-2}}));
-   EXPECT_EQ(type::CRS<int>({{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}), type::CRS<int>(3, 3));
+   EXPECT_NO_THROW(blas::CRS<double>());
+   EXPECT_NO_THROW(blas::CRS<double>(3, 4));
+   EXPECT_NO_THROW(blas::CRS<double>(3, 4, blas::CRSTag::FERMION));
+   EXPECT_NO_THROW(blas::CRS<double>({{1, 2.0}, {3.1}, {-1}}));
+   EXPECT_NO_THROW(blas::CRS<double>({{1, 2.0}, {3.1}, {-1}}, blas::CRSTag::FERMION));
+   EXPECT_NO_THROW(blas::CRS<double>(std::vector<std::vector<int>>{{1,2,3}, {-1,-2}}));
+   EXPECT_NO_THROW(blas::CRS<int>());
+   EXPECT_NO_THROW(blas::CRS<int>(3, 4));
+   EXPECT_NO_THROW(blas::CRS<int>(3, 4, blas::CRSTag::FERMION));
+   EXPECT_NO_THROW(blas::CRS<int>({{1, 2}, {3}, {-1}}));
+   EXPECT_NO_THROW(blas::CRS<int>({{1, 2}, {3}, {-1}}, blas::CRSTag::FERMION));
+   EXPECT_NO_THROW(blas::CRS<int>(std::vector<std::vector<int>>{{1,2,3}, {-1,-2}}));
+   EXPECT_EQ(blas::CRS<int>({{0, 0, 0}, {0, 0, 0}, {0, 0, 0}}), blas::CRS<int>(3, 3));
 }
 
 TEST(CRS, Free) {
-   type::CRS<int> m({{1, 2}, {3}, {-1}}, type::CRSTag::FERMION);
+   blas::CRS<int> m({{1, 2}, {3}, {-1}}, blas::CRSTag::FERMION);
    m.name = "Matrix";
    m.Free();
-   EXPECT_EQ(m, type::CRS<int>());
+   EXPECT_EQ(m, blas::CRS<int>());
 }
 
 TEST(CRS, Assign) {
-   type::CRS<int> m_int({{1, 2}, {3}, {-1}}, type::CRSTag::BOSON);
+   blas::CRS<int> m_int({{1, 2}, {3}, {-1}}, blas::CRSTag::BOSON);
    
-   type::CRS<double> m_d_1 = m_int;
+   blas::CRS<double> m_d_1 = m_int;
    EXPECT_EQ(m_d_1, m_int);
    
-   type::CRS<double> m_d_2;
+   blas::CRS<double> m_d_2;
    m_d_2 = m_int;
    EXPECT_EQ(m_d_2, m_int);
    
-   type::CRS<double> m_d_3;
+   blas::CRS<double> m_d_3;
    m_d_3.Assign(m_int);
    EXPECT_EQ(m_d_3, m_int);
 }
 
 TEST(CRS, MultiplyByScalar) {
-   type::CRS<double> m_d({{1.0, 2.0}, {3.0}, {-2.0}});
+   blas::CRS<double> m_d({{1.0, 2.0}, {3.0}, {-2.0}});
    m_d.MultiplyByScalar(2);
-   EXPECT_EQ(m_d, type::CRS<double>({{2.0, 4.0}, {6.0}, {-4.0}}));
+   EXPECT_EQ(m_d, blas::CRS<double>({{2.0, 4.0}, {6.0}, {-4.0}}));
    
-   type::CRS<int> m_int({{1, 3}, {3}, {-1}});
+   blas::CRS<int> m_int({{1, 3}, {3}, {-1}});
    m_int.MultiplyByScalar(2);
-   EXPECT_EQ(m_int, type::CRS<int>({{2, 6}, {6}, {-2}}));
+   EXPECT_EQ(m_int, blas::CRS<int>({{2, 6}, {6}, {-2}}));
 }
 
 TEST(CRS, AddDiagonalElements) {
-   type::CRS<double> m_d({{1.0, 2.0}, {3.0, -2.0}});
+   blas::CRS<double> m_d({{1.0, 2.0}, {3.0, -2.0}});
    m_d.AddDiagonalElements(1);
-   EXPECT_EQ(m_d, type::CRS<double>({{2.0, 2.0}, {3.0, -1.0}}));
+   EXPECT_EQ(m_d, blas::CRS<double>({{2.0, 2.0}, {3.0, -1.0}}));
    
-   type::CRS<double> m_d_2({{0.0, 2.0}, {3.0, -2.0}});
+   blas::CRS<double> m_d_2({{0.0, 2.0}, {3.0, -2.0}});
    EXPECT_THROW(m_d_2.AddDiagonalElements(0.00000001), std::runtime_error);
    
-   type::CRS<double> m_d_3({{1.0, 2.0}, {3.0, -2.0}, {3.0, -2.0}});
+   blas::CRS<double> m_d_3({{1.0, 2.0}, {3.0, -2.0}, {3.0, -2.0}});
    EXPECT_THROW(m_d_3.AddDiagonalElements(0.00000001), std::runtime_error);
 }
 
 TEST(CRS, SortCol) {
-   type::CRS<int> m_d(3, 3);
+   blas::CRS<int> m_d(3, 3);
    m_d.col.resize(8);
    m_d.val.resize(8);
    m_d.row[1] = 2;
@@ -107,302 +107,302 @@ TEST(CRS, SortCol) {
    m_d.val[5] = 7;
    m_d.val[6] = 5;
    m_d.val[7] = 6;
-   EXPECT_FALSE(m_d == type::CRS<int>({{0, 1, 2}, {2, 3, 4}, {5, 6, 7}}));
+   EXPECT_FALSE(m_d == blas::CRS<int>({{0, 1, 2}, {2, 3, 4}, {5, 6, 7}}));
    m_d.SortCol();
-   EXPECT_TRUE(m_d == type::CRS<int>({{0, 1, 2}, {2, 3, 4}, {5, 6, 7}}));
+   EXPECT_TRUE(m_d == blas::CRS<int>({{0, 1, 2}, {2, 3, 4}, {5, 6, 7}}));
 }
 
 TEST(CRS, CheckSymmetric) {
-   type::CRS<double> m_d_1({{1.0, 2.0}, {3.0, -2.0}});
+   blas::CRS<double> m_d_1({{1.0, 2.0}, {3.0, -2.0}});
    EXPECT_FALSE(m_d_1.CheckSymmetric());
 
-   type::CRS<double> m_d_2({{1.0, 2.0}, {-2.0}, {3.0, -2.0}});
+   blas::CRS<double> m_d_2({{1.0, 2.0}, {-2.0}, {3.0, -2.0}});
    EXPECT_THROW(m_d_2.CheckSymmetric(), std::runtime_error);
    
-   type::CRS<double> m_d_3({{1.0, 2.0}, {2.0, 1.0}});
+   blas::CRS<double> m_d_3({{1.0, 2.0}, {2.0, 1.0}});
    EXPECT_TRUE(m_d_3.CheckSymmetric());
 }
 
 TEST(CRS, UnaryOperators) {
-   type::CRS<double> m_d({{1.0, 2.0}, {-2.0}, {3.0, -2.0}});
-   EXPECT_EQ(+m_d, type::CRS<double>({{1.0, 2.0}, {-2.0}, {3.0, -2.0}}));
-   EXPECT_EQ(-m_d, type::CRS<double>({{-1.0, -2.0}, {2.0}, {-3.0, 2.0}}));
+   blas::CRS<double> m_d({{1.0, 2.0}, {-2.0}, {3.0, -2.0}});
+   EXPECT_EQ(+m_d, blas::CRS<double>({{1.0, 2.0}, {-2.0}, {3.0, -2.0}}));
+   EXPECT_EQ(-m_d, blas::CRS<double>({{-1.0, -2.0}, {2.0}, {-3.0, 2.0}}));
 }
 
 TEST(CRS, CompoundAssignmentOperators) {
-   type::CRS<int> m_d_1({{+1, +2}, {+2, +1}});
-   type::CRS<int> m_d_2({{-3, +1}, {-2, -2}});
-   type::CRS<int> m_d_3 = m_d_1 + m_d_2;
+   blas::CRS<int> m_d_1({{+1, +2}, {+2, +1}});
+   blas::CRS<int> m_d_2({{-3, +1}, {-2, -2}});
+   blas::CRS<int> m_d_3 = m_d_1 + m_d_2;
    m_d_1 += m_d_2;
    EXPECT_EQ(m_d_1, m_d_3);
    m_d_1 -= m_d_2;
    EXPECT_EQ(m_d_1, m_d_3 - m_d_2);
    m_d_1 *= m_d_2;
-   EXPECT_EQ(m_d_1, type::CRS<int>({{+1, +2}, {+2, +1}})*m_d_2);
+   EXPECT_EQ(m_d_1, blas::CRS<int>({{+1, +2}, {+2, +1}})*m_d_2);
 }
 
 TEST(CRS, CalculateMatrixMatrixSum) {
    
-   type::CRS<int> m_1(2, 2);
-   type::CRS<int> m_2(2, 2);
-   type::CRS<int> m_3(2, 2);
+   blas::CRS<int> m_1(2, 2);
+   blas::CRS<int> m_2(2, 2);
+   blas::CRS<int> m_3(2, 2);
    
    //CRSTag
    //------------------------------
-   m_1.tag = type::CRSTag::FERMION;
-   m_2.tag = type::CRSTag::FERMION;
-   m_3 = type::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::FERMION));
+   m_1.tag = blas::CRSTag::FERMION;
+   m_2.tag = blas::CRSTag::FERMION;
+   m_3 = blas::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::FERMION));
    
-   m_1.tag = type::CRSTag::FERMION;
-   m_2.tag = type::CRSTag::BOSON;
-   m_3 = type::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::MIX));
+   m_1.tag = blas::CRSTag::FERMION;
+   m_2.tag = blas::CRSTag::BOSON;
+   m_3 = blas::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::MIX));
    
-   m_1.tag = type::CRSTag::FERMION;
-   m_2.tag = type::CRSTag::MIX;
-   m_3 = type::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::MIX));
+   m_1.tag = blas::CRSTag::FERMION;
+   m_2.tag = blas::CRSTag::MIX;
+   m_3 = blas::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::MIX));
    
-   m_1.tag = type::CRSTag::FERMION;
-   m_2.tag = type::CRSTag::NONE;
-   m_3 = type::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::FERMION));
-   
-   //------------------------------
-   m_1.tag = type::CRSTag::BOSON;
-   m_2.tag = type::CRSTag::FERMION;
-   m_3 = type::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::MIX));
-   
-   m_1.tag = type::CRSTag::BOSON;
-   m_2.tag = type::CRSTag::BOSON;
-   m_3 = type::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::BOSON));
-   
-   m_1.tag = type::CRSTag::BOSON;
-   m_2.tag = type::CRSTag::MIX;
-   m_3 = type::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::MIX));
-   
-   m_1.tag = type::CRSTag::BOSON;
-   m_2.tag = type::CRSTag::NONE;
-   m_3 = type::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::BOSON));
+   m_1.tag = blas::CRSTag::FERMION;
+   m_2.tag = blas::CRSTag::NONE;
+   m_3 = blas::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::FERMION));
    
    //------------------------------
-   m_1.tag = type::CRSTag::MIX;
-   m_2.tag = type::CRSTag::FERMION;
-   m_3 = type::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::MIX));
+   m_1.tag = blas::CRSTag::BOSON;
+   m_2.tag = blas::CRSTag::FERMION;
+   m_3 = blas::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::MIX));
    
-   m_1.tag = type::CRSTag::MIX;
-   m_2.tag = type::CRSTag::BOSON;
-   m_3 = type::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::MIX));
+   m_1.tag = blas::CRSTag::BOSON;
+   m_2.tag = blas::CRSTag::BOSON;
+   m_3 = blas::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::BOSON));
    
-   m_1.tag = type::CRSTag::MIX;
-   m_2.tag = type::CRSTag::MIX;
-   m_3 = type::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::MIX));
+   m_1.tag = blas::CRSTag::BOSON;
+   m_2.tag = blas::CRSTag::MIX;
+   m_3 = blas::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::MIX));
    
-   m_1.tag = type::CRSTag::MIX;
-   m_2.tag = type::CRSTag::NONE;
-   m_3 = type::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::MIX));
+   m_1.tag = blas::CRSTag::BOSON;
+   m_2.tag = blas::CRSTag::NONE;
+   m_3 = blas::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::BOSON));
    
    //------------------------------
-   m_1.tag = type::CRSTag::NONE;
-   m_2.tag = type::CRSTag::FERMION;
-   m_3 = type::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::FERMION));
+   m_1.tag = blas::CRSTag::MIX;
+   m_2.tag = blas::CRSTag::FERMION;
+   m_3 = blas::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::MIX));
    
-   m_1.tag = type::CRSTag::NONE;
-   m_2.tag = type::CRSTag::BOSON;
-   m_3 = type::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::BOSON));
+   m_1.tag = blas::CRSTag::MIX;
+   m_2.tag = blas::CRSTag::BOSON;
+   m_3 = blas::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::MIX));
    
-   m_1.tag = type::CRSTag::NONE;
-   m_2.tag = type::CRSTag::MIX;
-   m_3 = type::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::MIX));
+   m_1.tag = blas::CRSTag::MIX;
+   m_2.tag = blas::CRSTag::MIX;
+   m_3 = blas::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::MIX));
    
-   m_1.tag = type::CRSTag::NONE;
-   m_2.tag = type::CRSTag::NONE;
-   m_3 = type::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::NONE));
+   m_1.tag = blas::CRSTag::MIX;
+   m_2.tag = blas::CRSTag::NONE;
+   m_3 = blas::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::MIX));
+   
+   //------------------------------
+   m_1.tag = blas::CRSTag::NONE;
+   m_2.tag = blas::CRSTag::FERMION;
+   m_3 = blas::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::FERMION));
+   
+   m_1.tag = blas::CRSTag::NONE;
+   m_2.tag = blas::CRSTag::BOSON;
+   m_3 = blas::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::BOSON));
+   
+   m_1.tag = blas::CRSTag::NONE;
+   m_2.tag = blas::CRSTag::MIX;
+   m_3 = blas::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::MIX));
+   
+   m_1.tag = blas::CRSTag::NONE;
+   m_2.tag = blas::CRSTag::NONE;
+   m_3 = blas::CalculateMatrixMatrixSum(1, m_1, 1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::NONE));
    
    
    //Check Sum
-   m_1 = type::CRS<int>({{1, 2}, {3, 4}}, type::CRSTag::NONE);
-   m_2 = type::CRS<int>({{5, 6}, {7, 8}}, type::CRSTag::NONE);
-   m_3 = type::CalculateMatrixMatrixSum(2, m_1, 3, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>({{2+15, 4+18}, {6+21, 8+24}}));
+   m_1 = blas::CRS<int>({{1, 2}, {3, 4}}, blas::CRSTag::NONE);
+   m_2 = blas::CRS<int>({{5, 6}, {7, 8}}, blas::CRSTag::NONE);
+   m_3 = blas::CalculateMatrixMatrixSum(2, m_1, 3, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>({{2+15, 4+18}, {6+21, 8+24}}));
    
-   m_1 = type::CRS<int>({{0, 0}, {0, 0}}, type::CRSTag::NONE);
-   m_2 = type::CRS<int>({{1, 2}, {3, 4}}, type::CRSTag::NONE);
-   m_3 = type::CalculateMatrixMatrixSum(2, m_1, 3, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>({{3, 6}, {9, 12}}));
+   m_1 = blas::CRS<int>({{0, 0}, {0, 0}}, blas::CRSTag::NONE);
+   m_2 = blas::CRS<int>({{1, 2}, {3, 4}}, blas::CRSTag::NONE);
+   m_3 = blas::CalculateMatrixMatrixSum(2, m_1, 3, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>({{3, 6}, {9, 12}}));
 
-   m_1 = type::CRS<int>({{1, 2}, {3, 4}}, type::CRSTag::NONE);
-   m_2 = type::CRS<int>({{0, 0}, {0, 0}}, type::CRSTag::NONE);
-   m_3 = type::CalculateMatrixMatrixSum(2, m_1, 3, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>({{2, 4}, {6, 8}}));
+   m_1 = blas::CRS<int>({{1, 2}, {3, 4}}, blas::CRSTag::NONE);
+   m_2 = blas::CRS<int>({{0, 0}, {0, 0}}, blas::CRSTag::NONE);
+   m_3 = blas::CalculateMatrixMatrixSum(2, m_1, 3, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>({{2, 4}, {6, 8}}));
    
-   m_1 = type::CRS<int>({{0, 0}, {5, 0}}, type::CRSTag::NONE);
-   m_2 = type::CRS<int>({{1, 2}, {3, 4}}, type::CRSTag::NONE);
-   m_3 = type::CalculateMatrixMatrixSum(2, m_1, 3, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>({{3, 6}, {9+10, 12}}));
+   m_1 = blas::CRS<int>({{0, 0}, {5, 0}}, blas::CRSTag::NONE);
+   m_2 = blas::CRS<int>({{1, 2}, {3, 4}}, blas::CRSTag::NONE);
+   m_3 = blas::CalculateMatrixMatrixSum(2, m_1, 3, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>({{3, 6}, {9+10, 12}}));
    
-   m_1 = type::CRS<int>({{1, 2}, {3, 4}}, type::CRSTag::NONE);
-   m_2 = type::CRS<int>({{0, 5}, {0, 0}}, type::CRSTag::NONE);
-   m_3 = type::CalculateMatrixMatrixSum(2, m_1, 3, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>({{2, 4+15}, {6, 8}}));
+   m_1 = blas::CRS<int>({{1, 2}, {3, 4}}, blas::CRSTag::NONE);
+   m_2 = blas::CRS<int>({{0, 5}, {0, 0}}, blas::CRSTag::NONE);
+   m_3 = blas::CalculateMatrixMatrixSum(2, m_1, 3, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>({{2, 4+15}, {6, 8}}));
    
    
-   m_1 = type::CRS<int>({{1, 2, 3, 4}}, type::CRSTag::NONE);
-   m_2 = type::CRS<int>({{0, 5}, {0, 0}}, type::CRSTag::NONE);
-   EXPECT_THROW(type::CalculateMatrixMatrixSum(2, m_1, 3, m_2), std::runtime_error);
+   m_1 = blas::CRS<int>({{1, 2, 3, 4}}, blas::CRSTag::NONE);
+   m_2 = blas::CRS<int>({{0, 5}, {0, 0}}, blas::CRSTag::NONE);
+   EXPECT_THROW(blas::CalculateMatrixMatrixSum(2, m_1, 3, m_2), std::runtime_error);
    
 }
 
 TEST(CRS, CalculateMatrixMatrixProduct) {
 
-   type::CRS<int> m_1(2, 2);
-   type::CRS<int> m_2(2, 2);
-   type::CRS<int> m_3(2, 2);
+   blas::CRS<int> m_1(2, 2);
+   blas::CRS<int> m_2(2, 2);
+   blas::CRS<int> m_3(2, 2);
    
    //CRSTag
    //------------------------------
-   m_1.tag = type::CRSTag::FERMION;
-   m_2.tag = type::CRSTag::FERMION;
-   m_3 = type::CalculateMatrixMatrixProduct(1, m_1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::BOSON));
+   m_1.tag = blas::CRSTag::FERMION;
+   m_2.tag = blas::CRSTag::FERMION;
+   m_3 = blas::CalculateMatrixMatrixProduct(1, m_1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::BOSON));
    
-   m_1.tag = type::CRSTag::FERMION;
-   m_2.tag = type::CRSTag::BOSON;
-   m_3 = type::CalculateMatrixMatrixProduct(1, m_1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::FERMION));
+   m_1.tag = blas::CRSTag::FERMION;
+   m_2.tag = blas::CRSTag::BOSON;
+   m_3 = blas::CalculateMatrixMatrixProduct(1, m_1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::FERMION));
    
-   m_1.tag = type::CRSTag::FERMION;
-   m_2.tag = type::CRSTag::MIX;
-   m_3 = type::CalculateMatrixMatrixProduct(1, m_1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::MIX));
+   m_1.tag = blas::CRSTag::FERMION;
+   m_2.tag = blas::CRSTag::MIX;
+   m_3 = blas::CalculateMatrixMatrixProduct(1, m_1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::MIX));
    
-   m_1.tag = type::CRSTag::FERMION;
-   m_2.tag = type::CRSTag::NONE;
-   m_3 = type::CalculateMatrixMatrixProduct(1, m_1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::FERMION));
-   
-   //------------------------------
-   m_1.tag = type::CRSTag::BOSON;
-   m_2.tag = type::CRSTag::FERMION;
-   m_3 = type::CalculateMatrixMatrixProduct(1, m_1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::FERMION));
-   
-   m_1.tag = type::CRSTag::BOSON;
-   m_2.tag = type::CRSTag::BOSON;
-   m_3 = type::CalculateMatrixMatrixProduct(1, m_1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::BOSON));
-   
-   m_1.tag = type::CRSTag::BOSON;
-   m_2.tag = type::CRSTag::MIX;
-   m_3 = type::CalculateMatrixMatrixProduct(1, m_1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::MIX));
-   
-   m_1.tag = type::CRSTag::BOSON;
-   m_2.tag = type::CRSTag::NONE;
-   m_3 = type::CalculateMatrixMatrixProduct(1, m_1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::BOSON));
+   m_1.tag = blas::CRSTag::FERMION;
+   m_2.tag = blas::CRSTag::NONE;
+   m_3 = blas::CalculateMatrixMatrixProduct(1, m_1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::FERMION));
    
    //------------------------------
-   m_1.tag = type::CRSTag::MIX;
-   m_2.tag = type::CRSTag::FERMION;
-   m_3 = type::CalculateMatrixMatrixProduct(1, m_1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::MIX));
+   m_1.tag = blas::CRSTag::BOSON;
+   m_2.tag = blas::CRSTag::FERMION;
+   m_3 = blas::CalculateMatrixMatrixProduct(1, m_1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::FERMION));
    
-   m_1.tag = type::CRSTag::MIX;
-   m_2.tag = type::CRSTag::BOSON;
-   m_3 = type::CalculateMatrixMatrixProduct(1, m_1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::MIX));
+   m_1.tag = blas::CRSTag::BOSON;
+   m_2.tag = blas::CRSTag::BOSON;
+   m_3 = blas::CalculateMatrixMatrixProduct(1, m_1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::BOSON));
    
-   m_1.tag = type::CRSTag::MIX;
-   m_2.tag = type::CRSTag::MIX;
-   m_3 = type::CalculateMatrixMatrixProduct(1, m_1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::MIX));
+   m_1.tag = blas::CRSTag::BOSON;
+   m_2.tag = blas::CRSTag::MIX;
+   m_3 = blas::CalculateMatrixMatrixProduct(1, m_1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::MIX));
    
-   m_1.tag = type::CRSTag::MIX;
-   m_2.tag = type::CRSTag::NONE;
-   m_3 = type::CalculateMatrixMatrixProduct(1, m_1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::MIX));
+   m_1.tag = blas::CRSTag::BOSON;
+   m_2.tag = blas::CRSTag::NONE;
+   m_3 = blas::CalculateMatrixMatrixProduct(1, m_1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::BOSON));
    
    //------------------------------
-   m_1.tag = type::CRSTag::NONE;
-   m_2.tag = type::CRSTag::FERMION;
-   m_3 = type::CalculateMatrixMatrixProduct(1, m_1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::FERMION));
+   m_1.tag = blas::CRSTag::MIX;
+   m_2.tag = blas::CRSTag::FERMION;
+   m_3 = blas::CalculateMatrixMatrixProduct(1, m_1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::MIX));
    
-   m_1.tag = type::CRSTag::NONE;
-   m_2.tag = type::CRSTag::BOSON;
-   m_3 = type::CalculateMatrixMatrixProduct(1, m_1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::BOSON));
+   m_1.tag = blas::CRSTag::MIX;
+   m_2.tag = blas::CRSTag::BOSON;
+   m_3 = blas::CalculateMatrixMatrixProduct(1, m_1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::MIX));
    
-   m_1.tag = type::CRSTag::NONE;
-   m_2.tag = type::CRSTag::MIX;
-   m_3 = type::CalculateMatrixMatrixProduct(1, m_1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::MIX));
+   m_1.tag = blas::CRSTag::MIX;
+   m_2.tag = blas::CRSTag::MIX;
+   m_3 = blas::CalculateMatrixMatrixProduct(1, m_1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::MIX));
    
-   m_1.tag = type::CRSTag::NONE;
-   m_2.tag = type::CRSTag::NONE;
-   m_3 = type::CalculateMatrixMatrixProduct(1, m_1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>(2, 2, type::CRSTag::NONE));
+   m_1.tag = blas::CRSTag::MIX;
+   m_2.tag = blas::CRSTag::NONE;
+   m_3 = blas::CalculateMatrixMatrixProduct(1, m_1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::MIX));
+   
+   //------------------------------
+   m_1.tag = blas::CRSTag::NONE;
+   m_2.tag = blas::CRSTag::FERMION;
+   m_3 = blas::CalculateMatrixMatrixProduct(1, m_1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::FERMION));
+   
+   m_1.tag = blas::CRSTag::NONE;
+   m_2.tag = blas::CRSTag::BOSON;
+   m_3 = blas::CalculateMatrixMatrixProduct(1, m_1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::BOSON));
+   
+   m_1.tag = blas::CRSTag::NONE;
+   m_2.tag = blas::CRSTag::MIX;
+   m_3 = blas::CalculateMatrixMatrixProduct(1, m_1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::MIX));
+   
+   m_1.tag = blas::CRSTag::NONE;
+   m_2.tag = blas::CRSTag::NONE;
+   m_3 = blas::CalculateMatrixMatrixProduct(1, m_1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>(2, 2, blas::CRSTag::NONE));
    
    
    //Check Prod
-   m_1 = type::CRS<int>({{1, 2, 3}, {4, 5, 6}}, type::CRSTag::NONE);
-   m_2 = type::CRS<int>({{7, 8}, {9, 10}, {11, 12}}, type::CRSTag::NONE);
-   m_3 = type::CalculateMatrixMatrixProduct(2, m_1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>({{58*2, 64*2}, {139*2, 154*2}}));
+   m_1 = blas::CRS<int>({{1, 2, 3}, {4, 5, 6}}, blas::CRSTag::NONE);
+   m_2 = blas::CRS<int>({{7, 8}, {9, 10}, {11, 12}}, blas::CRSTag::NONE);
+   m_3 = blas::CalculateMatrixMatrixProduct(2, m_1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>({{58*2, 64*2}, {139*2, 154*2}}));
    
-   m_1 = type::CRS<int>({{1, 2, 0}, {4, 0, 0}}, type::CRSTag::NONE);
-   m_2 = type::CRS<int>({{7, 8}, {9, 10}, {11, 12}}, type::CRSTag::NONE);
-   m_3 = type::CalculateMatrixMatrixProduct(2, m_1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>({{25*2, 28*2}, {28*2, 32*2}}));
+   m_1 = blas::CRS<int>({{1, 2, 0}, {4, 0, 0}}, blas::CRSTag::NONE);
+   m_2 = blas::CRS<int>({{7, 8}, {9, 10}, {11, 12}}, blas::CRSTag::NONE);
+   m_3 = blas::CalculateMatrixMatrixProduct(2, m_1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>({{25*2, 28*2}, {28*2, 32*2}}));
    
-   m_1 = type::CRS<int>({{1, 2, 3}, {4, 5, 6}}, type::CRSTag::NONE);
-   m_2 = type::CRS<int>({{7, 8}, {0, 0}, {11, 0}}, type::CRSTag::NONE);
-   m_3 = type::CalculateMatrixMatrixProduct(2, m_1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>({{40*2, 8*2}, {94*2, 32*2}}));
+   m_1 = blas::CRS<int>({{1, 2, 3}, {4, 5, 6}}, blas::CRSTag::NONE);
+   m_2 = blas::CRS<int>({{7, 8}, {0, 0}, {11, 0}}, blas::CRSTag::NONE);
+   m_3 = blas::CalculateMatrixMatrixProduct(2, m_1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>({{40*2, 8*2}, {94*2, 32*2}}));
    
-   m_1 = type::CRS<int>({{0, 0, 0}, {0, 0, 0}}, type::CRSTag::NONE);
-   m_2 = type::CRS<int>({{7, 8}, {9, 10}, {11, 12}}, type::CRSTag::NONE);
-   m_3 = type::CalculateMatrixMatrixProduct(2, m_1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>({{0, 0}, {0, 0}}));
+   m_1 = blas::CRS<int>({{0, 0, 0}, {0, 0, 0}}, blas::CRSTag::NONE);
+   m_2 = blas::CRS<int>({{7, 8}, {9, 10}, {11, 12}}, blas::CRSTag::NONE);
+   m_3 = blas::CalculateMatrixMatrixProduct(2, m_1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>({{0, 0}, {0, 0}}));
    
-   m_1 = type::CRS<int>({{1, 2, 3}, {4, 5, 6}}, type::CRSTag::NONE);
-   m_2 = type::CRS<int>({{0, 0}, {0, 0}, {0, 0}}, type::CRSTag::NONE);
-   m_3 = type::CalculateMatrixMatrixProduct(2, m_1, m_2);
-   EXPECT_EQ(m_3, type::CRS<int>({{0, 0}, {0, 0}}));
+   m_1 = blas::CRS<int>({{1, 2, 3}, {4, 5, 6}}, blas::CRSTag::NONE);
+   m_2 = blas::CRS<int>({{0, 0}, {0, 0}, {0, 0}}, blas::CRSTag::NONE);
+   m_3 = blas::CalculateMatrixMatrixProduct(2, m_1, m_2);
+   EXPECT_EQ(m_3, blas::CRS<int>({{0, 0}, {0, 0}}));
 
    
-   m_1 = type::CRS<int>({{1, 2, 3, 4}}, type::CRSTag::NONE);
-   m_2 = type::CRS<int>({{0, 5}, {0, 0}}, type::CRSTag::NONE);
-   EXPECT_THROW(type::CalculateMatrixMatrixProduct(2, m_1, m_2), std::runtime_error);
+   m_1 = blas::CRS<int>({{1, 2, 3, 4}}, blas::CRSTag::NONE);
+   m_2 = blas::CRS<int>({{0, 5}, {0, 0}}, blas::CRSTag::NONE);
+   EXPECT_THROW(blas::CalculateMatrixMatrixProduct(2, m_1, m_2), std::runtime_error);
 }
 
 TEST(CRS, CalculateScalarMatrixProduct) {
-   type::CRS<int> m_1({{1, 2}, {3, 4}});
-   auto m_2 = type::CalculateScalarMatrixProduct(2, m_1);
-   EXPECT_EQ(m_2, type::CRS<int>({{2, 4}, {6, 8}}));
+   blas::CRS<int> m_1({{1, 2}, {3, 4}});
+   auto m_2 = blas::CalculateScalarMatrixProduct(2, m_1);
+   EXPECT_EQ(m_2, blas::CRS<int>({{2, 4}, {6, 8}}));
    
-   m_2 = type::CalculateScalarMatrixProduct(0, m_1);
-   EXPECT_EQ(m_2, type::CRS<int>({{0, 0}, {0, 0}}));
+   m_2 = blas::CalculateScalarMatrixProduct(0, m_1);
+   EXPECT_EQ(m_2, blas::CRS<int>({{0, 0}, {0, 0}}));
 }
 
 TEST(CRS, CalculateTransposedMatrix) {
-   type::CRS<int> m_1({{1, 2, 3}, {4, 5, 6}}, type::CRSTag::NONE);
-   auto m_2 = type::CalculateTransposedMatrix(m_1);
-   EXPECT_EQ(m_2, type::CRS<int>({{1, 4}, {2, 5}, {3, 6}}));
+   blas::CRS<int> m_1({{1, 2, 3}, {4, 5, 6}}, blas::CRSTag::NONE);
+   auto m_2 = blas::CalculateTransposedMatrix(m_1);
+   EXPECT_EQ(m_2, blas::CRS<int>({{1, 4}, {2, 5}, {3, 6}}));
 }
 
 TEST(CRS, Addition) {
@@ -433,7 +433,7 @@ TEST(CRS, Addition) {
          }
       }
    };
-   using type::CRS;
+   using blas::CRS;
    expect_crs_eq(CRS<long double>({{1.3L}}) + CRS<long double>({{1.4L}}), CRS<long double>({{2.7L}}), LDBL_EPSILON, __LINE__);
    expect_crs_eq(CRS<long double>({{1.3L}}) + CRS<double     >({{1.4 }}), CRS<double     >({{2.7 }}), DBL_EPSILON , __LINE__);
    expect_crs_eq(CRS<long double>({{1.3L}}) + CRS<float      >({{1.4F}}), CRS<float      >({{2.7F}}), FLT_EPSILON , __LINE__);
@@ -536,7 +536,7 @@ TEST(CRS, Subtraction) {
          }
       }
    };
-   using type::CRS;
+   using blas::CRS;
    expect_crs_eq(CRS<long double>({{1.3L}}) - CRS<long double>({{1.4L}}), CRS<long double>({{-0.1L}}), LDBL_EPSILON, __LINE__);
    expect_crs_eq(CRS<long double>({{1.3L}}) - CRS<double     >({{1.4 }}), CRS<double     >({{-0.1 }}), DBL_EPSILON , __LINE__);
    expect_crs_eq(CRS<long double>({{1.3L}}) - CRS<float      >({{1.4F}}), CRS<float      >({{-0.1F}}), FLT_EPSILON , __LINE__);
@@ -638,7 +638,7 @@ TEST(CRS, MultiplicationMatrixMatrix) {
          }
       }
    };
-   using type::CRS;
+   using blas::CRS;
    expect_crs_eq(CRS<long double>({{1.3L}}) * CRS<long double>({{1.4L}}), CRS<long double>({{1.82L}}), LDBL_EPSILON, __LINE__);
    expect_crs_eq(CRS<long double>({{1.3L}}) * CRS<double     >({{1.4 }}), CRS<double     >({{1.82 }}), DBL_EPSILON , __LINE__);
    expect_crs_eq(CRS<long double>({{1.3L}}) * CRS<float      >({{1.4F}}), CRS<float      >({{1.82F}}), FLT_EPSILON , __LINE__);
@@ -740,7 +740,7 @@ TEST(CRS, MultiplicationMatrixScalar) {
          }
       }
    };
-   using type::CRS;
+   using blas::CRS;
    expect_crs_eq(CRS<long double>({{1.3L}}) * static_cast<long double>(1.4L), CRS<long double>({{1.82L}}), LDBL_EPSILON, __LINE__);
    expect_crs_eq(CRS<long double>({{1.3L}}) * static_cast<double     >(1.4 ), CRS<double     >({{1.82 }}), DBL_EPSILON , __LINE__);
    expect_crs_eq(CRS<long double>({{1.3L}}) * static_cast<float      >(1.4F), CRS<float      >({{1.82F}}), FLT_EPSILON , __LINE__);
@@ -842,7 +842,7 @@ TEST(CRS, MultiplicationScalarMatrix) {
          }
       }
    };
-   using type::CRS;
+   using blas::CRS;
    expect_crs_eq(static_cast<long double>(1.4L) * CRS<long double>({{1.3L}}), CRS<long double>({{1.82L}}), LDBL_EPSILON, __LINE__);
    expect_crs_eq(static_cast<double     >(1.4 ) * CRS<long double>({{1.3L}}), CRS<double     >({{1.82 }}), DBL_EPSILON , __LINE__);
    expect_crs_eq(static_cast<float      >(1.4F) * CRS<long double>({{1.3L}}), CRS<float      >({{1.82F}}), FLT_EPSILON , __LINE__);
@@ -917,7 +917,7 @@ TEST(CRS, MultiplicationScalarMatrix) {
 }
 
 TEST(CRS, MultiplicationEquality) {
-   using type::CRS;
+   using blas::CRS;
    EXPECT_TRUE(CRS<long long>({{1LL}}) == CRS<long long>({{1LL}}));
    EXPECT_TRUE(CRS<long long>({{1LL}}) == CRS<long     >({{1L }}));
    EXPECT_TRUE(CRS<long long>({{1LL}}) == CRS<int      >({{1  }}));

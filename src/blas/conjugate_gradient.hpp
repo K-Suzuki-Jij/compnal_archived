@@ -18,8 +18,8 @@
 #ifndef COMPNAL_BLAS_CONJUGATE_GRADIENT_HPP_
 #define COMPNAL_BLAS_CONJUGATE_GRADIENT_HPP_
 
-#include "../type/compressed_row_storage.hpp"
-#include "../type/braket_vector.hpp"
+#include "compressed_row_storage.hpp"
+#include "braket_vector.hpp"
 
 #include <vector>
 #include <random>
@@ -32,11 +32,11 @@ namespace compnal {
 namespace blas {
 
 template<typename RealType>
-std::pair<int, double> ConjugateGradient(type::BraketVector<RealType> *vec_out,
-                                         const type::CRS<RealType>    &matrix_in,
-                                         const type::BraketVector<RealType> &vec_in,
+std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
+                                         const CRS<RealType>    &matrix_in,
+                                         const BraketVector<RealType> &vec_in,
                                          const ParametersCG &params = ParametersCG(),
-                                         const std::vector<type::BraketVector<RealType>> &subspace_vectors = {}
+                                         const std::vector<BraketVector<RealType>> &subspace_vectors = {}
                                          ) {
    
    if (matrix_in.row_dim != matrix_in.col_dim) {
@@ -56,9 +56,9 @@ std::pair<int, double> ConjugateGradient(type::BraketVector<RealType> *vec_out,
    
    const auto start = std::chrono::system_clock::now();
    const std::int64_t dim = matrix_in.row_dim;
-   type::BraketVector<RealType> rrr(dim);
-   type::BraketVector<RealType> ppp(dim);
-   type::BraketVector<RealType> yyy(dim);
+   BraketVector<RealType> rrr(dim);
+   BraketVector<RealType> ppp(dim);
+   BraketVector<RealType> yyy(dim);
    std::vector<std::vector<RealType>> vectors_work;
    
    if (params.flag_symmetric_crs) {

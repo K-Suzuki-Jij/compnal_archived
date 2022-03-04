@@ -18,8 +18,8 @@
 #ifndef COMPNAL_BLAS_EIGENDECOMPOSITION_HPP_
 #define COMPNAL_BLAS_EIGENDECOMPOSITION_HPP_
 
-#include "../type/compressed_row_storage.hpp"
-#include "../type/braket_vector.hpp"
+#include "compressed_row_storage.hpp"
+#include "braket_vector.hpp"
 #include "lapack.hpp"
 #include "orthonormalize.hpp"
 
@@ -73,10 +73,10 @@ struct ParametersAll {
 
 template <typename RealType>
 std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *target_value_out,
-                                                      type::BraketVector<RealType>  *target_vector_out,
-                                                      const type::CRS<RealType>     &matrix_in,
+                                                      BraketVector<RealType>  *target_vector_out,
+                                                      const CRS<RealType>     &matrix_in,
                                                       const int               target_level,
-                                                      const std::vector<type::BraketVector<RealType>> &subspace_vectors,
+                                                      const std::vector<BraketVector<RealType>> &subspace_vectors,
                                                       const ParametersLanczos &params = ParametersLanczos()
                                                       ) {
    
@@ -128,9 +128,9 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *t
    int converge_step_number = 0;
    const std::int64_t dim = matrix_in.row_dim;
    RealType residual_error_final = 0.0;
-   type::BraketVector<RealType> vector_0(dim);
-   type::BraketVector<RealType> vector_1(dim);
-   type::BraketVector<RealType> vector_2(dim);
+   BraketVector<RealType> vector_0(dim);
+   BraketVector<RealType> vector_1(dim);
+   BraketVector<RealType> vector_2(dim);
 
    std::vector<std::vector<RealType>> rits_vector;
    std::vector<RealType> krylov_eigen_vector;
@@ -301,8 +301,8 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *t
 
 template <typename RealType>
 std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *gs_value_out,
-                                                      type::BraketVector<RealType>  *gs_vector_out,
-                                                      const type::CRS<RealType>     &matrix_in,
+                                                      BraketVector<RealType>  *gs_vector_out,
+                                                      const CRS<RealType>     &matrix_in,
                                                       const ParametersLanczos &params = ParametersLanczos()
                                                       ) {
    
@@ -345,9 +345,9 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
    int converge_step_number = 0;
    const std::int64_t dim = matrix_in.row_dim;
    RealType residual_error_final = 0.0;
-   type::BraketVector<RealType> vector_0(dim);
-   type::BraketVector<RealType> vector_1(dim);
-   type::BraketVector<RealType> vector_2(dim);
+   BraketVector<RealType> vector_0(dim);
+   BraketVector<RealType> vector_1(dim);
+   BraketVector<RealType> vector_2(dim);
 
    std::vector<std::vector<RealType>> rits_vector;
    std::vector<RealType> krylov_eigen_vector;
@@ -514,8 +514,8 @@ std::pair<int, double> EigenvalueDecompositionLanczos(RealType                *g
 
 template <typename RealType>
 std::pair<int, double> EigenvalueDecompositionLOBPCG(RealType                *gs_value_out,
-                                                     type::BraketVector<RealType>  *gs_vector_out,
-                                                     const type::CRS<RealType>     &matrix_in,
+                                                     BraketVector<RealType>  *gs_vector_out,
+                                                     const CRS<RealType>     &matrix_in,
                                                      const ParametersLanczos &params = ParametersLanczos()) {
    
    if (matrix_in.row_dim != matrix_in.col_dim) {
@@ -555,13 +555,13 @@ std::pair<int, double> EigenvalueDecompositionLOBPCG(RealType                *gs
    }
    
    const std::int64_t dim = matrix_in.row_dim;
-   type::BraketVector<RealType> v0(dim);
-   type::BraketVector<RealType> v1(dim);
-   type::BraketVector<RealType> v2(dim);
-   type::BraketVector<RealType> w0(dim);
-   type::BraketVector<RealType> w1(dim);
-   type::BraketVector<RealType> w2(dim);
-   type::BraketVector<RealType> r (dim);
+   BraketVector<RealType> v0(dim);
+   BraketVector<RealType> v1(dim);
+   BraketVector<RealType> v2(dim);
+   BraketVector<RealType> w0(dim);
+   BraketVector<RealType> w1(dim);
+   BraketVector<RealType> w2(dim);
+   BraketVector<RealType> r (dim);
    
    std::vector<std::vector<RealType>> vectors_work;
 
