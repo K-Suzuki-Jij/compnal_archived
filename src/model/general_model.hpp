@@ -94,7 +94,10 @@ public:
       if (m.row_dim != this->GetDimOnsite()) {
          std::stringstream ss;
          ss << "Error at " << __LINE__ << " in " << __FUNCTION__ << " in "<< __FILE__ << std::endl;
-         ss << "The input matrix is invalid" << std::endl;
+         ss << "The input matrix is invalid." << std::endl;
+         ss << "The dimension of input matrix is " << m.row_dim << std::endl;
+         ss << "But the dimensiotn of this model is " << this->GetDimOnsite() << std::endl;
+         m.PrintInfo();
          throw std::runtime_error(ss.str());
       }
 
