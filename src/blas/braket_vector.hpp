@@ -132,7 +132,7 @@ public:
    template<typename T=ElementType>
    void Normalize(const T normalization_factor = T{1.0}) {
       const auto norm = CalculateL2Norm();
-      if (norm == 0.0) {
+      if (std::abs(norm) < 4*std::numeric_limits<T>::epsilon()) {
          std::stringstream ss;
          ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
          ss << "All the elements are zero" << std::endl;
@@ -212,7 +212,18 @@ public:
    //! @return BraketVector object, \f$ \boldsymbol{v} + \boldsymbol{v}_{\rm rhs}\f$.
    template<typename T>
    BraketVector& operator+=(const BraketVector<T> &rhs) {
-      return *this = *this + rhs;
+      if (this->value_list.size() != rhs.value_list.size()) {
+         std::stringstream ss;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+         ss << "BraketVector types do not match each other" << std::endl;
+         ss << "dim_1 = " << this->value_list.size() << ", dim_2 = " << rhs.value_list.size() << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+#pragma omp parallel for
+      for (std::size_t i = 0; i < this->value_list.size(); ++i) {
+         this->value_list[i] += rhs.value_list[i];
+      }
+      return *this;
    }
    
    //! @brief Operator overloading: compound assignment plus operator.
@@ -221,7 +232,18 @@ public:
    //! @return BraketVector object, \f$ \boldsymbol{v} - \boldsymbol{v}_{\rm rhs}\f$.
    template<typename T>
    BraketVector& operator-=(const BraketVector<T> &rhs) {
-      return *this = *this - rhs;
+      if (this->value_list.size() != rhs.value_list.size()) {
+         std::stringstream ss;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+         ss << "BraketVector types do not match each other" << std::endl;
+         ss << "dim_1 = " << this->value_list.size() << ", dim_2 = " << rhs.value_list.size() << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+#pragma omp parallel for
+      for (std::size_t i = 0; i < this->value_list.size(); ++i) {
+         this->value_list[i] -= rhs.value_list[i];
+      }
+      return *this;
    }
    
    //! @brief Operator overloading: casting operator to std::vector<T>.

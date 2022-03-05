@@ -20,7 +20,8 @@
 
 #include "compressed_row_storage.hpp"
 #include "braket_vector.hpp"
-#include "eigendecomposition.hpp"
+//#include "eigendecomposition.hpp"
+#include "parameters.hpp"
 #include "lapack.hpp"
 #include "matrix_vector_operation.hpp"
 #include "conjugate_gradient.hpp"

@@ -20,6 +20,7 @@
 
 #include "compressed_row_storage.hpp"
 #include "braket_vector.hpp"
+#include "parameters.hpp"
 
 namespace compnal {
 namespace blas {
@@ -28,7 +29,7 @@ template<typename RealType>
 std::pair<int, double> InverseIteration(CRS<RealType>          *matrix_in,
                                         BraketVector<RealType> *eigenvector,
                                         const RealType         eigenvalue,
-                                        const ParametersII     &params = ParametersII(),
+                                        const ParametersII<RealType> &params = ParametersII<RealType>(),
                                         const std::vector<BraketVector<RealType>> &subspace_vectors = {}
                                         ) {
    

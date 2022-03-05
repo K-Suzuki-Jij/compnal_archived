@@ -21,8 +21,9 @@
 #include "model/test_base_u1_spin_multi_electrons.hpp"
 #include "model/test_general_model.hpp"
 #include "type/test_half_int.hpp"
-#include "type/test_compressed_row_strage.hpp"
-#include "type/test_braket_vector.hpp"
+#include "blas/test_compressed_row_strage.hpp"
+#include "blas/test_braket_vector.hpp"
+#include "blas/test_orthonormalize.hpp"
 #include "utility/test_integer.hpp"
 #include "gtest/gtest.h"
 

@@ -35,7 +35,7 @@ template<typename RealType>
 std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
                                          const CRS<RealType>    &matrix_in,
                                          const BraketVector<RealType> &vec_in,
-                                         const ParametersCG &params = ParametersCG(),
+                                         const ParametersCG<RealType> &params = ParametersCG<RealType>(),
                                          const std::vector<BraketVector<RealType>> &subspace_vectors = {}
                                          ) {
    

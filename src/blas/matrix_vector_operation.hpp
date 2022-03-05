@@ -21,6 +21,10 @@
 #include "compressed_row_storage.hpp"
 #include "braket_vector.hpp"
 
+#ifdef _OPENMP
+#include <omp.h>
+#endif
+
 namespace compnal {
 namespace blas {
 
