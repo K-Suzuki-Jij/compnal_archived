@@ -18,9 +18,8 @@
 #ifndef COMPNAL_SPARSE_MATRIX_ALL_HPP_
 #define COMPNAL_SPARSE_MATRIX_ALL_HPP_
 
-#include "compressed_row_storage.hpp"
 #include "braket_vector.hpp"
-//#include "eigendecomposition.hpp"
+#include "compressed_row_storage.hpp"
 #include "parameters.hpp"
 #include "lapack.hpp"
 #include "matrix_vector_operation.hpp"

@@ -19,6 +19,7 @@
 #define COMPNAL_BLAS_BRAKET_VECTOR_HPP_
 
 #include <iostream>
+#include <iomanip>
 #include <sstream>
 #include <vector>
 #include <cmath>
