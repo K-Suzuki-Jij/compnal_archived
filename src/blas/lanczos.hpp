@@ -18,8 +18,11 @@
 #ifndef COMPNAL_BLAS_LANCZOS_HPP_
 #define COMPNAL_BLAS_LANCZOS_HPP_
 
+#include "compressed_row_storage.hpp"
+#include "braket_vector.hpp"
 #include "parameters.hpp"
 #include "lapack.hpp"
+#include "orthonormalize.hpp"
 
 namespace compnal {
 namespace blas {
