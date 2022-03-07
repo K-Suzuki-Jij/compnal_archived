@@ -25,6 +25,7 @@
 #include "blas/test_braket_vector.hpp"
 #include "blas/test_matrix_vector_operation.hpp"
 #include "blas/test_orthonormalize.hpp"
+#include "blas/test_eigendecomposition_lanczos.hpp"
 #include "utility/test_integer.hpp"
 #include "gtest/gtest.h"
 

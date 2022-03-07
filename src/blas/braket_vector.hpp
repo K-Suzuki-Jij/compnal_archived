@@ -428,6 +428,29 @@ auto CalculateVectorVectorSum(const T1 coeff_1,
                               const T3 coeff_2,
                               const BraketVector<T4> &braket_vector_2) ->
 BraketVector<decltype(std::declval<T1>()*std::declval<T2>() + std::declval<T3>()*std::declval<T4>())> {
+   
+   using T1T2T3T4 = decltype(std::declval<T1>()*std::declval<T2>() + std::declval<T3>()*std::declval<T4>());
+   BraketVector<T1T2T3T4> vector_out;
+   CalculateVectorVectorSum(&vector_out, coeff_1, braket_vector_1, coeff_2, braket_vector_2);
+   return vector_out;
+}
+
+//! @brief Calculate BraketVector summation, \f$ c_1\boldsymbol{v}_1 + c_2\boldsymbol{v}_2 \f$.
+//! @tparam T1 Value type of output vector, \f$ c_1\boldsymbol{v}_{1} + c_2\boldsymbol{v}_{2}\f$.
+//! @tparam T2 Value type of coeff_1.
+//! @tparam T3 Value type of braket_vector_1.
+//! @tparam T4 Value type of coeff_2.
+//! @tparam T5 Value type of braket_vector_2.
+//! @param coeff_1 The coefficient \f$ c_1 \f$.
+//! @param braket_vector_1 BraketVector \f$ \boldsymbol{v}_1\f$.
+//! @param coeff_2 The coefficient \f$ c_2 \f$.
+//! @param braket_vector_2 BraketVector \f$ \boldsymbol{v}_2\f$.
+template<typename T1, typename T2, typename T3, typename T4, typename T5>
+void CalculateVectorVectorSum(BraketVector<T1> *braket_vector_out,
+                              const T2 coeff_1,
+                              const BraketVector<T3> &braket_vector_1,
+                              const T4 coeff_2,
+                              const BraketVector<T5> &braket_vector_2) {
    if (braket_vector_1.value_list.size() != braket_vector_2.value_list.size()) {
       std::stringstream ss;
       ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
@@ -435,17 +458,12 @@ BraketVector<decltype(std::declval<T1>()*std::declval<T2>() + std::declval<T3>()
       ss << "dim_1 = " << braket_vector_1.value_list.size() << ", dim_2 = " << braket_vector_2.value_list.size() << std::endl;
       throw std::runtime_error(ss.str());
    }
-   
-   using T1T2T3T4 = decltype(std::declval<T1>()*std::declval<T2>() + std::declval<T3>()*std::declval<T4>());
-   BraketVector<T1T2T3T4> vector_out;
-   
-   vector_out.Resize(braket_vector_1.value_list.size());
-   const std::int64_t size = braket_vector_1.value_list.size();
+   braket_vector_out->value_list.resize(braket_vector_1.value_list.size());
+   const std::int64_t size = braket_vector_1.Size();
 #pragma omp parallel for
    for (std::int64_t i = 0; i < size; ++i) {
-      vector_out.value_list[i] = coeff_1*braket_vector_1.value_list[i] + coeff_2*braket_vector_2.value_list[i];
+      braket_vector_out->value_list[i] = coeff_1*braket_vector_1.value_list[i] + coeff_2*braket_vector_2.value_list[i];
    }
-   return vector_out;
 }
 
 //! @brief Calculate BraketVector innner product, \f$ \boldsymbol{v}_1\cdot\boldsymbol{v}_2 \f$.
