@@ -228,7 +228,7 @@ public:
                                            const bool flag_display_info = true) const {
       const auto start = std::chrono::system_clock::now();
       
-      if (!ValidateQNumber(quantum_number)) {
+      if (!ValidateQNumber(system_size, quantum_number)) {
          std::stringstream ss;
          ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
          ss << "Invalid parameters (system_size or total_electron or total_sz)" << std::endl;
@@ -358,10 +358,22 @@ public:
       if (system_size <= 0 || total_electron < 0) {
          return false;
       }
+      
+      auto func = [](const auto a, const auto x, const auto b) {
+         return (x >= a)*(1 - (x >= b));
+      };
+
+      const int max_total_electron = 2*system_size;
+      const int min_total_electron = 0;
+      const int max_total_2sz = func(0, total_electron, system_size)*total_electron +
+      func(system_size, total_electron, 2*system_size)*(2*system_size - total_electron);
+      const int min_total_2sz = -max_total_2sz;
       const int total_2sz = 2*total_sz;
-      const bool c1 = (0 <= total_electron && total_electron <= 2*system_size);
-      const bool c2 = ((total_electron - total_2sz)%2 == 0);
-      const bool c3 = (-total_electron <= total_2sz && total_2sz <= total_electron);
+      
+      const bool c1 = (min_total_electron <= total_electron && total_electron <= max_total_electron);
+      const bool c2 = (min_total_2sz <= total_2sz && total_2sz <= max_total_2sz);
+      const bool c3 = ((total_electron - total_2sz)%2 == 0);
+
       if (c1 && c2 && c3) {
          return true;
       }
