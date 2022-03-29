@@ -24,6 +24,12 @@
 #include "lapack.hpp"
 #include "orthonormalize.hpp"
 
+#include <random>
+
+#ifdef _OPENMP
+#include <omp.h>
+#endif
+
 namespace compnal {
 namespace blas {
 
@@ -31,8 +37,8 @@ template <typename RealType>
 void EigendecompositionLanczos(RealType                *target_value_out,
                                BraketVector<RealType>  *target_vector_out,
                                const CRS<RealType>     &matrix_in,
-                               const std::vector<BraketVector<RealType>> &subspace_vectors = {},
-                               const ParametersLanczos<RealType> &params = ParametersLanczos<RealType>()
+                               const ParametersLanczos<RealType> &params = ParametersLanczos<RealType>(),
+                               const std::vector<BraketVector<RealType>> &subspace_vectors = {}
                                ) {
    
    const auto start = std::chrono::system_clock::now();

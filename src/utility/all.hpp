@@ -20,6 +20,7 @@
 
 #include "integer.hpp"
 #include "hash.hpp"
+#include "sort.hpp"
 
 //! @namespace compnal::utility
 //! @brief Utility classes and functions for compnal.

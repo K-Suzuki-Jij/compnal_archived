@@ -15,18 +15,19 @@
 //  Created by Kohei Suzuki on 2021/06/14.
 //
 
-#include "model/test_base_u1_electron.hpp"
-#include "model/test_base_u1_spin.hpp"
-#include "model/test_base_u1_spin_electron.hpp"
-#include "model/test_base_u1_spin_multi_electrons.hpp"
-#include "model/test_general_model.hpp"
-#include "type/test_half_int.hpp"
 #include "blas/test_compressed_row_strage.hpp"
 #include "blas/test_braket_vector.hpp"
 #include "blas/test_matrix_vector_operation.hpp"
 #include "blas/test_orthonormalize.hpp"
 #include "blas/test_lanczos.hpp"
 #include "blas/test_lobpcg.hpp"
+#include "model/test_base_u1_electron.hpp"
+#include "model/test_base_u1_spin.hpp"
+#include "model/test_base_u1_spin_electron.hpp"
+#include "model/test_base_u1_spin_multi_electrons.hpp"
+#include "model/test_general_model.hpp"
+#include "solver/test_exact_diag.hpp"
+#include "type/test_half_int.hpp"
 #include "utility/test_integer.hpp"
 #include "gtest/gtest.h"
 

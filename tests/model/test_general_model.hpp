@@ -50,11 +50,11 @@ TEST(ModelGeneralModel, Basic) {
       
       
       EXPECT_EQ(model.GetSystemSize(), 5);
-      EXPECT_EQ(model.GetIndexList().count(+1), static_cast<unsigned long>(1));
-      EXPECT_EQ(model.GetIndexList().count(-1), static_cast<unsigned long>(1));
-      EXPECT_EQ(model.GetIndexList().count(-2), static_cast<unsigned long>(1));
-      EXPECT_EQ(model.GetIndexList().count("a"), static_cast<unsigned long>(1));
-      EXPECT_EQ(model.GetIndexList().count(VariantVecType{1, "a"}), static_cast<unsigned long>(1));
+      EXPECT_EQ(model.GetIndexSet().count(+1), static_cast<unsigned long>(1));
+      EXPECT_EQ(model.GetIndexSet().count(-1), static_cast<unsigned long>(1));
+      EXPECT_EQ(model.GetIndexSet().count(-2), static_cast<unsigned long>(1));
+      EXPECT_EQ(model.GetIndexSet().count("a"), static_cast<unsigned long>(1));
+      EXPECT_EQ(model.GetIndexSet().count(VariantVecType{1, "a"}), static_cast<unsigned long>(1));
       
       EXPECT_EQ(model.GetPotentialList().size(), static_cast<unsigned long>(3));
       EXPECT_EQ(model.GetPotential(-1), sz + sm);

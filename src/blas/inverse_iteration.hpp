@@ -22,6 +22,10 @@
 #include "braket_vector.hpp"
 #include "parameters.hpp"
 
+#ifdef _OPENMP
+#include <omp.h>
+#endif
+
 namespace compnal {
 namespace blas {
 
@@ -45,9 +49,16 @@ std::pair<int, double> InverseIteration(CRS<RealType>          *matrix_in,
    
    BraketVector<RealType> improved_eigenvector;
    BraketVector<RealType> vectors_work(matrix_in->row_dim);
+   std::vector<std::vector<RealType>> vectors_work_pthreads;
+   
+   if (params.cg.flag_symmetric_crs) {
+#ifdef _OPENMP
+      vectors_work_pthreads = std::vector<std::vector<RealType>>(omp_get_max_threads(), std::vector<RealType>(matrix_in->row_dim));
+#endif
+   }
    
    if (params.cg.flag_use_initial_vec) {
-      if (static_cast<std::int64_t>(eigenvector->val.size()) != matrix_in->row_dim) {
+      if (static_cast<std::int64_t>(eigenvector->value_list.size()) != matrix_in->row_dim) {
          std::stringstream ss;
          ss << "Error in " << __func__ << std::endl;
          ss << "The dimension of the initial vector is not equal to that of the input matrix." << std::endl;
@@ -56,24 +67,24 @@ std::pair<int, double> InverseIteration(CRS<RealType>          *matrix_in,
       improved_eigenvector = *eigenvector;
    }
 
-   matrix_in->DiagonalScaling(params.diag_add - eigenvalue);
+   matrix_in->AddDiagonalElements(params.diag_add - eigenvalue);
    
    for (int step = 0; step < params.max_step; ++step) {
       if (params.cg.flag_symmetric_crs) {
-         CalculateSymmetricMatrixVectorProduct(&vectors_work, 1.0, *matrix_in, *eigenvector);
+         CalculateSymmetricMatrixVectorProduct(&vectors_work, 1.0, *matrix_in, *eigenvector, &vectors_work_pthreads);
       }
       else {
          CalculateMatrixVectorProduct(&vectors_work, 1.0, *matrix_in, *eigenvector);
       }
-      const RealType residual_error = CalculateL1Norm(params.diag_add, *eigenvector, 1.0, vectors_work);
+      const RealType residual_error = CalculateL1Distance(params.diag_add, *eigenvector, 1.0, vectors_work);
       
-      if (params.flag_output_info) {
+      if (params.flag_display_info) {
          std::cout << "\rII_Step[" << step << "]=" << std::scientific << std::setprecision(1);
          std::cout << residual_error << std::flush;
       }
       
       if (residual_error < params.acc) {
-         matrix_in->DiagonalScaling(-(params.diag_add - eigenvalue));
+         matrix_in->AddDiagonalElements(-(params.diag_add - eigenvalue));
          const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
          const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
          std::cout << std::defaultfloat << std::setprecision(8) << "\rElapsed time of inverse iteration:" << time_sec << "[sec]";

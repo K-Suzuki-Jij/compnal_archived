@@ -19,7 +19,8 @@
 #define COMPNAL_SOLVER_EXACT_DIAG_HPP_
 
 #include "../model/all.hpp"
-#include "../sparse_matrix/all.hpp"
+#include "../blas/all.hpp"
+#include "../type/all.hpp"
 #include "./utility.hpp"
 
 namespace compnal {
@@ -35,6 +36,10 @@ class ExactDiag {
    //! @brief Type of real values.
    using RealType = typename ModelClass::ValueType;
    
+   using IndexType = typename ModelClass::IndexType;
+   
+   using IndexHash = typename ModelClass::IndexHash;
+   
    //! @brief Type of quantum numbers.
    using QType = typename ModelClass::QType;
    
@@ -42,57 +47,85 @@ class ExactDiag {
    using QHash = typename ModelClass::QHash;
    
    //! @brief Alias of compressed row strage (CRS) with RealType.
-   using CRS = type::CRS<RealType>;
+   using CRS = blas::CRS<RealType>;
    
    //! @brief Alias of braket vector class with RealType.
    using BraketVector = blas::BraketVector<RealType>;
-      
+   
 public:
    //------------------------------------------------------------------
    //---------------------Public Member Variables----------------------
    //------------------------------------------------------------------
    //! @brief Model class.
    const ModelClass model;
-   
-   //! @brief Parameters for diagonalization methods.
-   blas::ParametersAll params;
-   
-   //! @brief Diagonalization method.
-   DiagMethod diag_method_ = DiagMethod::LANCZOS;
-
+            
    //------------------------------------------------------------------
    //--------------------------Constructors----------------------------
    //------------------------------------------------------------------
    //! @brief Constructor of ExactDiag class.
    //! @param model_input The model class to be diagonalized.
-   explicit ExactDiag(const ModelClass &model_input): model(model_input) {
-      params.lanczos.flag_symmetric_crs = true;
-      params.ii.cg.flag_symmetric_crs   = true;
+   explicit ExactDiag(const ModelClass &model_input): model(model_input), system_size_(model_input.GetSystemSize()) {
+      params_.lanczos.flag_symmetric_crs = true;
+      params_.ii.cg.flag_symmetric_crs   = true;
+      
+      const auto &index_set = model_input.GetIndexSet();
+      index_list_ = std::vector<IndexType>(index_set.begin(), index_set.end());
+      std::sort(index_list_.begin(), index_list_.end());
+      
+      for (int i = 0; i < system_size_; ++i) {
+         index_to_integer_[index_list_[i]] = i;
+      }
+      
+      if constexpr (std::is_same<ModelClass, model::GeneralModel<model::BaseU1Spin<RealType>>>::value) {
+         target_q_number_ = QType{0};
+      }
+      else if constexpr (std::is_same<ModelClass, model::GeneralModel<model::BaseU1Electron<RealType>>>::value) {
+         target_q_number_ = QType{0, type::HalfInt{0}};
+      }
+      else if constexpr (std::is_same<ModelClass, model::GeneralModel<model::BaseU1SpinElectron<RealType>>>::value) {
+         target_q_number_ = QType{0, type::HalfInt{0}};
+      }
+      else if constexpr (std::is_same<ModelClass, model::GeneralModel<model::BaseU1SpinMultiElectrons<RealType>>>::value) {
+         target_q_number_ = QType{std::vector<int>(model.GetNumElectronOrbital()), 0};
+      }
+      else {
+         static_assert([]{return false;}(), "Unknwon model type");
+      }
    }
    
-   //! @brief Constructor of ExactDiag class.
-   //! @param model_input The model class to be diagonalized.
-   //! @param params_input Parameters for diagonalization methods.
-   ExactDiag(const ModelClass &model_input,
-             const blas::ParametersAll &params_input): ExactDiag(model_input) {
-      params = params_input;
+   ExactDiag(const ModelClass &model_input, const QType &q_number_input): ExactDiag(model_input) {
+      SetTargetQNumber(q_number_input);
    }
-    
    
    //------------------------------------------------------------------
    //---------------------Public Member Functions----------------------
    //------------------------------------------------------------------
+   void SetTargetQNumber(const QType &q_number) {
+      target_q_number_ = q_number;
+   }
+   
+   void SetDiagonalizationMethod(const DiagMethod diag_method) {
+      diag_method_ = diag_method;
+   }
+   
    //! @brief Calculate ground state by the exact diagonalization method.
    //! @param flag_display_info If true, display the progress status. Set false by default.
-   void CalculateGroundState(const bool flag_display_info = false) {
+   void CalculateGroundState(const bool flag_display_info = true) {
       if (calculated_eigenvector_set_.count(0) != 0) {
          return;
       }
-      
-      GenerateBasis(model.GetQNumber(), flag_display_info);
-      
-      CRS ham;
-      GenerateHamiltonian(&ham);
+            
+      if (bases_.count(target_q_number_) == 0) {
+         //Generate basis
+         bases_[target_q_number_] = model.GenerateBasis(system_size_, target_q_number_, flag_display_info);
+         auto &temp_inv = bases_inv_[target_q_number_];
+         const auto &temp_basis = bases_.at(target_q_number_);
+         for (std::int64_t i = 0; i < static_cast<std::int64_t>(bases_.at(target_q_number_).size()); ++i) {
+            temp_inv[temp_basis[i]] = i;
+         }
+      }
+            
+      CRS ham = GenerateHamiltonian();
       
       if (eigenvalues_.size() == 0) {
          eigenvalues_.emplace_back();
@@ -102,19 +135,19 @@ public:
       }
       
       if (diag_method_ == DiagMethod::LANCZOS) {
-         blas::EigenvalueDecompositionLanczos(&eigenvalues_[0], &eigenvectors_[0], ham, params.lanczos);
+         blas::EigendecompositionLanczos(&eigenvalues_[0], &eigenvectors_[0], ham, params_.lanczos);
       }
       else if (diag_method_ == DiagMethod::LOBPCG) {
-         blas::EigenvalueDecompositionLOBPCG(&eigenvalues_[0], &eigenvectors_[0], ham, params.lanczos);
+         blas::EigendecompositionLOBPCG(&eigenvalues_[0], &eigenvectors_[0], ham, params_.lanczos);
       }
       else {
          std::stringstream ss;
-         ss << "Error in " << __func__ << std::endl;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
          ss << "Invalid diagonalization method detected." << std::endl;
          throw std::runtime_error(ss.str());
       }
       
-      blas::InverseIteration(&ham, &eigenvectors_[0], eigenvalues_[0], params.ii);
+      blas::InverseIteration(&ham, &eigenvectors_[0], eigenvalues_[0], params_.ii);
       
       calculated_eigenvector_set_.emplace(0);
    }
@@ -145,8 +178,8 @@ public:
                }
                BraketVector temp_vector(ham.row_dim);
                RealType temp_value = 0.0;
-               blas::EigenvalueDecompositionLanczos(&temp_value, &temp_vector, ham, sector, eigenvectors_, params.lanczos);
-               blas::InverseIteration(&ham, &temp_vector, temp_value, params.ii, eigenvectors_);
+               blas::EigendecompositionLanczos(&temp_value, &temp_vector, ham, sector, eigenvectors_, params_.lanczos);
+               blas::InverseIteration(&ham, &temp_vector, temp_value, params_.ii, eigenvectors_);
                eigenvalues_.push_back(temp_value);
                eigenvectors_.push_back(temp_vector);
                model.SetCalculatedEigenvectorSet(sector);
@@ -162,7 +195,7 @@ public:
       else {
          std::stringstream ss;
          ss << "Error in " << __func__ << std::endl;
-         ss << "Invalid diag_method: " << target_sector << std::endl;
+         ss << "Invalid diag_method_: " << target_sector << std::endl;
          throw std::runtime_error(ss.str());
       }
       
@@ -254,7 +287,7 @@ public:
             RealType temp_val_m2 = 0.0;
             
             int fermion_sign_m1 = 1;
-            if (m_1.tag == type::CRSTag::FERMION) {
+            if (m_1.tag == blas::CRSTag::FERMION) {
                int num_electron = 0;
                for (int site = 0; site < site_1; site++) {
                   num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
@@ -273,7 +306,7 @@ public:
             vector_work_m1.val[i] = temp_val_m1*fermion_sign_m1;
             
             int fermion_sign_m2 = 1;
-            if (m_2.tag == type::CRSTag::FERMION) {
+            if (m_2.tag == blas::CRSTag::FERMION) {
                int num_electron = 0;
                for (int site = 0; site < site_2; site++) {
                   num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
@@ -291,7 +324,7 @@ public:
             }
             vector_work_m2.val[i] = temp_val_m2*fermion_sign_m2;
          }
-         val += blas::CalculateInnerProduct(vector_work_m1, vector_work_m2);
+         val += blas::CalculateVectorVectorProduct(vector_work_m1, vector_work_m2);
       }
       return val;
    }
@@ -360,7 +393,7 @@ public:
             RealType temp_val = 0.0;
             
             int fermion_sign_m3 = 1;
-            if (m_3.tag == type::CRSTag::FERMION) {
+            if (m_3.tag == blas::CRSTag::FERMION) {
                int num_electron = 0;
                for (int site = 0; site < site_1; site++) {
                   num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
@@ -392,7 +425,7 @@ public:
             RealType temp_val_m2 = 0.0;
             
             int fermion_sign_m2 = 1;
-            if (m_2.tag == type::CRSTag::FERMION) {
+            if (m_2.tag == blas::CRSTag::FERMION) {
                int num_electron = 0;
                for (int site = 0; site < site_1; site++) {
                   num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
@@ -411,7 +444,7 @@ public:
             vector_work_b.val[i] = temp_val_m2*fermion_sign_m2;
             
             int fermion_sign_m1 = 1;
-            if (m_1.tag == type::CRSTag::FERMION) {
+            if (m_1.tag == blas::CRSTag::FERMION) {
                int num_electron = 0;
                for (int site = 0; site < site_1; site++) {
                   num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
@@ -429,7 +462,7 @@ public:
             }
             vector_work_c.val[i] = temp_val_m1*fermion_sign_m1;
          }
-         val += blas::CalculateInnerProduct(vector_work_b, vector_work_c);
+         val += blas::CalculateVectorVectorProduct(vector_work_b, vector_work_c);
       }
       return val;
    }
@@ -512,7 +545,7 @@ public:
             RealType temp_val = 0.0;
             
             int fermion_sign_m4 = 1;
-            if (m_4.tag == type::CRSTag::FERMION) {
+            if (m_4.tag == blas::CRSTag::FERMION) {
                int num_electron = 0;
                for (int site = 0; site < site_1; site++) {
                   num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
@@ -540,7 +573,7 @@ public:
             RealType temp_val = 0.0;
             
             int fermion_sign_m1 = 1;
-            if (m_1.tag == type::CRSTag::FERMION) {
+            if (m_1.tag == blas::CRSTag::FERMION) {
                int num_electron = 0;
                for (int site = 0; site < site_1; site++) {
                   num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
@@ -571,7 +604,7 @@ public:
             RealType temp_val = 0.0;
             
             int fermion_sign_m3 = 1;
-            if (m_3.tag == type::CRSTag::FERMION) {
+            if (m_3.tag == blas::CRSTag::FERMION) {
                int num_electron = 0;
                for (int site = 0; site < site_1; site++) {
                   num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
@@ -592,7 +625,7 @@ public:
             temp_val = 0.0;
             
             int fermion_sign_m2 = 1;
-            if (m_2.tag == type::CRSTag::FERMION) {
+            if (m_2.tag == blas::CRSTag::FERMION) {
                int num_electron = 0;
                for (int site = 0; site < site_1; site++) {
                   num_electron += model.CalculateNumElectron(CalculateLocalBasis(global_basis, site, dim_onsite));
@@ -610,20 +643,32 @@ public:
             }
             vector_work_m2m1.val[i] = temp_val*fermion_sign_m2;
          }
-         val += blas::CalculateInnerProduct(vector_work_m2m1, vector_work_m3m4);
+         val += blas::CalculateVectorVectorProduct(vector_work_m2m1, vector_work_m3m4);
       }
       return val;
    }
    
    inline const std::vector<BraketVector> &GetEigenvectors() const { return eigenvectors_; }
    inline const std::vector<RealType>     &GetEigenvalues()  const { return eigenvalues_; }
-   
+   inline const RealType GetEigenvalue(const int level)  const { return eigenvalues_.at(level); }
+   inline const BraketVector &GetEigenvector(const int level) const { return eigenvectors_.at(level); }
+
 private:
    //------------------------------------------------------------------
    //---------------------Private Member Variables---------------------
    //------------------------------------------------------------------
+   const int system_size_;
+
    std::vector<BraketVector> eigenvectors_;
    std::vector<RealType>     eigenvalues_;
+   
+   //! @brief Parameters for diagonalization methods.
+   blas::Parameters<RealType> params_;
+   
+   QType target_q_number_;
+   
+   //! @brief Diagonalization method.
+   DiagMethod diag_method_ = DiagMethod::LANCZOS;
    
    //! @brief Bases of the target Hilbert space specified by
    //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
@@ -635,6 +680,10 @@ private:
    
    //! @brief The calculated eigenvectors and eigenvalues.
    std::unordered_set<int> calculated_eigenvector_set_;
+   
+   std::unordered_map<IndexType, int, IndexHash> index_to_integer_;
+   
+   std::vector<IndexType> index_list_;
    
    //------------------------------------------------------------------
    //---------------------Private Member Functions---------------------
@@ -665,7 +714,7 @@ private:
             target_q_set.push_back(q_m1);
          }
       }
-   
+      
       return target_q_set;
    }
    
@@ -714,7 +763,7 @@ private:
       std::unordered_set<QType, QHash> q_set_m2_bra = GenerateTargetSector(m_2_bra);
       std::unordered_set<QType, QHash> q_set_m3_ket = GenerateTargetSector(m_3_ket);
       std::unordered_set<QType, QHash> q_set_m4_ket = GenerateTargetSector(m_4_ket);
-
+      
       std::unordered_map<QType, std::vector<QType>, QHash> q_list_m1_m2_bra;
       for (const auto &q1: q_set_m1_bra) {
          for (const auto &q2: q_set_m2_bra) {
@@ -824,12 +873,15 @@ private:
       }
    }
    
-   void GenerateHamiltonian(CRS *ham) const {
+   CRS GenerateHamiltonian(const bool flag_display_info = true) const {
       const auto start = std::chrono::system_clock::now();
-      std::cout << "Generating Hamiltonian..." << std::flush;
       
-      const auto &basis     = model.GetTargetBasis();
-      const auto &basis_inv = model.GetTargetBasisInv();
+      if (flag_display_info) {
+         std::cout << "Generating Hamiltonian..." << std::flush;
+      }
+      
+      const auto &basis     = bases_.at(target_q_number_);
+      const auto &basis_inv = bases_inv_.at(target_q_number_);
       
       const std::int64_t dim_target = basis.size();
       std::int64_t num_total_elements = 0;
@@ -881,9 +933,10 @@ private:
          num_row_element[row + 1] += num_row_element[row];
       }
       
-      ham->row.resize(dim_target + 1);
-      ham->col.resize(num_total_elements);
-      ham->val.resize(num_total_elements);
+      CRS ham;
+      ham.row.resize(dim_target + 1);
+      ham.col.resize(num_total_elements);
+      ham.val.resize(num_total_elements);
       
 #pragma omp parallel for
       for (std::int64_t row = 0; row < dim_target; ++row) {
@@ -896,13 +949,13 @@ private:
             if (basis_inv.count(a_basis) > 0) {
                const std::int64_t inv = basis_inv.at(a_basis);
                if ((inv < row && std::abs(val) > components[thread_num].zero_precision) || inv == row) {
-                  ham->col[num_row_element[row]] = inv;
-                  ham->val[num_row_element[row]] = val;
+                  ham.col[num_row_element[row]] = inv;
+                  ham.val[num_row_element[row]] = val;
                   num_row_element[row]++;
                }
             }
          }
-         ham->row[row + 1] = num_row_element[row];
+         ham.row[row + 1] = num_row_element[row];
          components[thread_num].val.clear();
          components[thread_num].basis_affected.clear();
          components[thread_num].inv_basis_affected.clear();
@@ -946,9 +999,9 @@ private:
          num_row_element[row + 1] += num_row_element[row];
       }
       
-      ham->row.resize(dim_target + 1);
-      ham->col.resize(num_total_elements);
-      ham->val.resize(num_total_elements);
+      ham.row.resize(dim_target + 1);
+      ham.col.resize(num_total_elements);
+      ham.val.resize(num_total_elements);
       
       for (int row = 0; row < dim_target; ++row) {
          GenerateMatrixComponents(&components, basis[row], model);
@@ -959,171 +1012,62 @@ private:
             if (basis_inv.count(a_basis) > 0) {
                const std::int64_t inv = basis_inv.at(a_basis);
                if ((inv <= row && std::abs(val) > components.zero_precision) || inv == row) {
-                  ham->col[num_row_element[row]] = inv;
-                  ham->val[num_row_element[row]] = val;
+                  ham.col[num_row_element[row]] = inv;
+                  ham.val[num_row_element[row]] = val;
                   num_row_element[row]++;
                }
             }
          }
-         ham->row[row + 1] = num_row_element[row];
+         ham.row[row + 1] = num_row_element[row];
          components.val.clear();
          components.basis_affected.clear();
          components.inv_basis_affected.clear();
       }
 #endif
       
-      ham->row_dim = dim_target;
-      ham->col_dim = dim_target;
+      ham.row_dim = dim_target;
+      ham.col_dim = dim_target;
       
-      const bool flag_check_1 = (ham->row[dim_target] != num_total_elements);
-      const bool flag_check_2 = (static_cast<std::int64_t>(ham->col.size()) != num_total_elements);
-      const bool flag_check_3 = (static_cast<std::int64_t>(ham->val.size()) != num_total_elements);
+      const bool flag_check_1 = (ham.row[dim_target] != num_total_elements);
+      const bool flag_check_2 = (static_cast<std::int64_t>(ham.col.size()) != num_total_elements);
+      const bool flag_check_3 = (static_cast<std::int64_t>(ham.val.size()) != num_total_elements);
       
       if (flag_check_1 || flag_check_2 || flag_check_3) {
          std::stringstream ss;
          ss << "Unknown error detected in " << __FUNCTION__ << " at " << __LINE__  << std::endl;
          throw std::runtime_error(ss.str());
       }
-      ham->SortCol();
+      ham.SortCol();
       
       const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
       const double time_sec   = static_cast<double>(time_count)/blas::TIME_UNIT_CONSTANT;
       std::cout << "\rElapsed time of generating Hamiltonian:" << time_sec << "[sec]" << std::endl;
       
-   }
-      
-   void GenerateMatrixComponents(ExactDiagMatrixComponents<RealType> *edmc,
-                                 const std::int64_t basis,
-                                 const model::Hubbard_1D<RealType> &model_input) const {
-      
-      const auto &nc            = model_input.GetOnsiteOperatorNC();
-      const auto &c_up          = model_input.GetOnsiteOperatorCUp();
-      const auto &c_up_dagger   = model_input.GetOnsiteOperatorCUpDagger();
-      const auto &c_down        = model_input.GetOnsiteOperatorCDown();
-      const auto &c_down_dagger = model_input.GetOnsiteOperatorCDownDagger();
-      
-      for (int site = 0; site < model_input.GetSystemSize(); ++site) {
-         edmc->basis_onsite[site] = CalculateLocalBasis(basis, site, model_input.GetDimOnsite());
-      }
-      
-      //Onsite elements
-      for (int site = 0; site < model_input.GetSystemSize(); ++site) {
-         GenerateMatrixComponentsOnsite(edmc, basis, site, model_input.GetOnsiteOperatorHam(), 1.0);
-      }
-      
-      //Intersite Coulomb
-      for (int distance = 1; distance <= static_cast<int>(model_input.GetIntersiteCoulomb().size()); ++distance) {
-         for (int site = 0; site < model_input.GetSystemSize() - distance; ++site) {
-            GenerateMatrixComponentsIntersite(edmc, basis, site, nc, site + distance, nc, model_input.GetIntersiteCoulomb(distance - 1));
-         }
-      }
-      
-      //Intersite Hopping
-      for (int distance = 1; distance <= static_cast<int>(model_input.GetHopping().size()); ++distance) {
-         for (int site = 0; site < model_input.GetSystemSize() - distance; ++site) {
-            const auto t = model_input.GetHopping(distance - 1);
-            int n_electron = 0;
-            for (int s = site; s < site + distance; ++s) {
-               n_electron += model_input.CalculateNumElectron(edmc->basis_onsite[s]);
-            }
-            GenerateMatrixComponentsIntersite(edmc, basis, site, c_up_dagger  , site + distance, c_up         , +1.0*t, 2*(n_electron%2) - 1);
-            GenerateMatrixComponentsIntersite(edmc, basis, site, c_up         , site + distance, c_up_dagger  , -1.0*t, 2*(n_electron%2) - 1);
-            GenerateMatrixComponentsIntersite(edmc, basis, site, c_down_dagger, site + distance, c_down       , +1.0*t, 2*(n_electron%2) - 1);
-            GenerateMatrixComponentsIntersite(edmc, basis, site, c_down       , site + distance, c_down_dagger, -1.0*t, 2*(n_electron%2) - 1);
-         }
-      }
-      
-      if (model_input.GetBoundaryCondition() == model::BoundaryCondition::PBC) {
-         //Intersite Coulomb
-         for (int distance = 1; distance <= static_cast<int>(model_input.GetIntersiteCoulomb().size()); ++distance) {
-            for (int i = 0; i < distance; ++i) {
-               const auto d1 = model_input.GetSystemSize() - distance + i;
-               const auto d2 = i;
-               GenerateMatrixComponentsIntersite(edmc, basis, d1, nc, d2, nc, model_input.GetIntersiteCoulomb(distance - 1));
-            }
-         }
-         
-         //Intersite Hopping
-         for (int distance = 1; distance <= static_cast<int>(model_input.GetHopping().size()); ++distance) {
-            for (int i = 0; i < distance; ++i) {
-               const auto d1 = model_input.GetSystemSize() - distance + i;
-               const auto d2 = i;
-               const auto t = model_input.GetHopping(distance - 1);
-               int n_electron = 0;
-               for (int s = d2; s < d2 + d1; ++s) {
-                  n_electron += model_input.CalculateNumElectron(edmc->basis_onsite[s]);
-               }
-               GenerateMatrixComponentsIntersite(edmc, basis, d1, c_up_dagger  , d2, c_up         , +1.0*t, 2*(n_electron%2) - 1);
-               GenerateMatrixComponentsIntersite(edmc, basis, d1, c_up         , d2, c_up_dagger  , -1.0*t, 2*(n_electron%2) - 1);
-               GenerateMatrixComponentsIntersite(edmc, basis, d1, c_down_dagger, d2, c_down       , +1.0*t, 2*(n_electron%2) - 1);
-               GenerateMatrixComponentsIntersite(edmc, basis, d1, c_down       , d2, c_down_dagger, -1.0*t, 2*(n_electron%2) - 1);
-            }
-         }
-      }
-      
-      //Fill zero in the diagonal elements for symmetric matrix vector product calculation.
-      if (edmc->inv_basis_affected.count(basis) == 0) {
-         edmc->inv_basis_affected[basis] = edmc->basis_affected.size();
-         edmc->val.push_back(0.0);
-         edmc->basis_affected.push_back(basis);
-      }
-      
+      return ham;
    }
    
-   void GenerateMatrixComponents(ExactDiagMatrixComponents<RealType> *edmc,
-                                 const std::int64_t basis,
-                                 const model::KondoLattice_1D<RealType> &model_input) const {
-      
-      const auto &c_up          = model_input.GetOnsiteOperatorCUp();
-      const auto &c_up_dagger   = model_input.GetOnsiteOperatorCUpDagger();
-      const auto &c_down        = model_input.GetOnsiteOperatorCDown();
-      const auto &c_down_dagger = model_input.GetOnsiteOperatorCDownDagger();
-      
-      for (int site = 0; site < model_input.GetSystemSize(); ++site) {
-         edmc->basis_onsite[site] = CalculateLocalBasis(basis, site, model_input.GetDimOnsite());
-      }
-      
-      //Onsite elements
-      for (int site = 0; site < model_input.GetSystemSize(); ++site) {
-         GenerateMatrixComponentsOnsite(edmc, basis, site, model_input.GetOnsiteOperatorHam(), 1.0);
-      }
-      
-      //Intersite Hopping
-      for (int distance = 1; distance <= static_cast<int>(model_input.GetHopping().size()); ++distance) {
-         for (int site = 0; site < model_input.GetSystemSize() - distance; ++site) {
-            const auto t = model_input.GetHopping(distance - 1);
-            int n_electron = 0;
-            for (int s = site; s < site + distance; ++s) {
-               n_electron += model_input.CalculateNumElectron(edmc->basis_onsite[s]);
-            }
-            GenerateMatrixComponentsIntersite(edmc, basis, site, c_up_dagger  , site + distance, c_up         , +1.0*t, 2*(n_electron%2) - 1);
-            GenerateMatrixComponentsIntersite(edmc, basis, site, c_up         , site + distance, c_up_dagger  , -1.0*t, 2*(n_electron%2) - 1);
-            GenerateMatrixComponentsIntersite(edmc, basis, site, c_down_dagger, site + distance, c_down       , +1.0*t, 2*(n_electron%2) - 1);
-            GenerateMatrixComponentsIntersite(edmc, basis, site, c_down       , site + distance, c_down_dagger, -1.0*t, 2*(n_electron%2) - 1);
-         }
-      }
-      
-   }
+   
+   
    
    template<class BaseClass>
    void GenerateMatrixComponents(ExactDiagMatrixComponents<RealType> *edmc,
                                  const std::int64_t basis,
-                                 const model::GeneralModel_1D<BaseClass> &model_input) const {
+                                 const model::GeneralModel<BaseClass> &model_input) const {
       
       for (int site = 0; site < model_input.GetSystemSize(); ++site) {
          edmc->basis_onsite[site] = CalculateLocalBasis(basis, site, model_input.GetDimOnsite());
       }
       
       //Onsite elements
-      for (const auto &it: model_input.GetOnsiteOperatorList()) {
-         GenerateMatrixComponentsOnsite(edmc, basis, it.first, it.second, 1.0);
+      for (const auto &it: model_input.GetPotentialList()) {
+         GenerateMatrixComponentsOnsite(edmc, basis, index_to_integer_.at(it.first), it.second, 1.0);
       }
       
       //Intersite elements
-      for (const auto &it1: model.GetIntersiteOperatorList()) {
-         const int site_1 = it1.first;
+      for (const auto &it1: model.GetInteractionList()) {
+         const int site_1 = index_to_integer_.at(it1.first);
          for (const auto &it2: it1.second) {
-            const int site_2 = it2.first;
+            const int site_2 = index_to_integer_.at(it2.first);
             for (const auto &it3: it2.second) {
                const auto &m_1 = it3.first;
                const auto &m_2 = it3.second;
@@ -1145,8 +1089,8 @@ private:
    
 };
 
-}
-}
+} //namespace solver
+} //namespace compnal
 
 
 #endif /* COMPNAL_SOLVER_EXACT_DIAG_HPP_ */

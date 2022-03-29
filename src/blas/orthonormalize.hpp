@@ -29,7 +29,7 @@ namespace blas {
 //! @tparam ElementType The value type of BraketVector.
 //! @param vectors The pointer of BraketVector list.
 template<typename ElementType>
-void Orthonormalize(std::vector<BraketVector<ElementType>> *vectors) {
+void Orthonormalize(std::vector<BraketVector<ElementType>> *vectors, const bool flag_normalize = true) {
    std::int64_t vec_size = static_cast<std::int64_t>(vectors->size());
    for (std::int64_t i = 0; i < vec_size; ++i) {
       const std::int64_t dim = static_cast<std::int64_t>((*vectors)[i].Size());
@@ -54,15 +54,17 @@ void Orthonormalize(std::vector<BraketVector<ElementType>> *vectors) {
          }
       }
       //Normalize
-      const auto norm = (*vectors)[i].CalculateL2Norm();
-      if (std::abs(norm) < 4*std::numeric_limits<ElementType>::epsilon()) {
-         std::stringstream ss;
-         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
-         ss << "Detected vectors pointing to the same direction." << std::endl;
-         ss << "Failed to orthonormalize." << std::endl;
-         throw std::runtime_error(ss.str());
+      if (flag_normalize) {
+         const auto norm = (*vectors)[i].CalculateL2Norm();
+         if (std::abs(norm) < 4*std::numeric_limits<ElementType>::epsilon()) {
+            std::stringstream ss;
+            ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+            ss << "Detected vectors pointing to the same direction." << std::endl;
+            ss << "Failed to orthonormalize." << std::endl;
+            throw std::runtime_error(ss.str());
+         }
+         (*vectors)[i].MultiplyByScalar(ElementType{1.0}/norm);
       }
-      (*vectors)[i].MultiplyByScalar(ElementType{1.0}/norm);
    }
 }
 
@@ -71,7 +73,7 @@ void Orthonormalize(std::vector<BraketVector<ElementType>> *vectors) {
 //! @param target_vector The pointer of the BraketVector to be orthonormalized.
 //! @param vectors The BraketVector list. Note that this vectors must be orthonormalized.
 template<typename ElementType>
-void Orthonormalize(BraketVector<ElementType> *target_vector, const std::vector<BraketVector<ElementType>> &vectors) {
+void Orthonormalize(BraketVector<ElementType> *target_vector, const std::vector<BraketVector<ElementType>> &vectors, const bool flag_normalize = true) {
    const std::int64_t dim = static_cast<std::int64_t>(target_vector->value_list.size());
    for (std::size_t i = 0; i < vectors.size(); ++i) {
       if ((*target_vector).value_list.size() != vectors[i].value_list.size()) {
@@ -88,15 +90,17 @@ void Orthonormalize(BraketVector<ElementType> *target_vector, const std::vector<
       }
    }
    //Normalize
-   const auto norm = (*target_vector).CalculateL2Norm();
-   if (std::abs(norm) < 4*std::numeric_limits<ElementType>::epsilon()) {
-      std::stringstream ss;
-      ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
-      ss << "Detected vectors pointing to the same direction." << std::endl;
-      ss << "Failed to orthonormalize." << std::endl;
-      throw std::runtime_error(ss.str());
+   if (flag_normalize) {
+      const auto norm = (*target_vector).CalculateL2Norm();
+      if (std::abs(norm) < 4*std::numeric_limits<ElementType>::epsilon()) {
+         std::stringstream ss;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+         ss << "Detected vectors pointing to the same direction." << std::endl;
+         ss << "Failed to orthonormalize." << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      (*target_vector).MultiplyByScalar(ElementType{1.0}/norm);
    }
-   (*target_vector).MultiplyByScalar(ElementType{1.0}/norm);
 }
 
 }  // namespace sparse_matrix

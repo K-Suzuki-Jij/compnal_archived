@@ -18,6 +18,8 @@
 #ifndef COMPNAL_BLAS_COMPRESSED_ROW_STORAGE_HPP_
 #define COMPNAL_BLAS_COMPRESSED_ROW_STORAGE_HPP_
 
+#include "../utility/all.hpp"
+
 #include <iostream>
 #include <cstdint>
 #include <vector>
@@ -277,20 +279,9 @@ public:
    
    //! @brief Sort column indexes.
    void SortCol() {
-      auto compare = [this](auto &a, auto &b) {
-         if (a > b) {
-            return false;
-         }
-         else {
-            std::swap(this->val[std::distance(&this->col[0], &a)],
-                      this->val[std::distance(&this->col[0], &b)]);
-            return true;
-         }
-      };
-      
 #pragma omp parallel for schedule(guided)
-      for (std::int64_t i = 0; i < this->row_dim; ++i) {
-         std::sort(&this->col[this->row[i]], &this->col[this->row[i + 1]], compare);
+      for (std::int64_t i = 0; i < this->row_dim; i++) {
+         utility::QuickSortVector(&this->col, &this->val, this->row[i], this->row[i+1]);
       }
    }
    

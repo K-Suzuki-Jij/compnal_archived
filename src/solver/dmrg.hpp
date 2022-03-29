@@ -12,21 +12,23 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Created by Kohei Suzuki on 2021/11/06.
+//  Created by Kohei Suzuki on 2022/03/27.
 //
 
-#ifndef COMPNAL_SPARSE_MATRIX_ALL_HPP_
-#define COMPNAL_SPARSE_MATRIX_ALL_HPP_
+#ifndef COMPNAL_SOLVER_DMRG_HPP_
+#define COMPNAL_SOLVER_DMRG_HPP_
 
-#include "braket_vector.hpp"
-#include "compressed_row_storage.hpp"
-#include "parameters.hpp"
-#include "lapack.hpp"
-#include "matrix_vector_operation.hpp"
-#include "conjugate_gradient.hpp"
-#include "inverse_iteration.hpp"
-#include "orthonormalize.hpp"
-#include "lanczos.hpp"
-#include "lobpcg.hpp"
+namespace compnal {
+namespace solver {
 
-#endif /* COMPNAL_SPARSE_MATRIX_ALL_HPP_ */
+
+
+
+
+
+
+} //namespace solver
+} //namespace compnal
+
+
+#endif /* COMPNAL_SOLVER_DMRG_HPP_ */

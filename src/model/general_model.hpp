@@ -40,9 +40,6 @@ class GeneralModel: public BaseClass {
    
    //! @brief Alias of compressed row strage (CRS) with RealType.
    using CRS = blas::CRS<RealType>;
-         
-   //! @brief Alias of hash struct for IndexType.
-   using Hash = utility::VariantHash<std::int64_t>;
    
 public:
    //------------------------------------------------------------------
@@ -57,14 +54,17 @@ public:
    //! @brief Alias of variant type as mixture of IntegerType and StringType.
    using VariantType = std::variant<IntegerType, StringType>;
    
+   //! @brief Alias of hash struct for IndexType.
+   using IndexHash = utility::VariantHash<std::int64_t>;
+   
    //! @brief Alias of index type.
    using IndexType = std::variant<IntegerType, StringType, std::vector<VariantType>>;
    
    //! @brief Type for onsite operator lists.
-   using OnsiteListType = std::unordered_map<IndexType, CRS, Hash>;
+   using OnsiteListType = std::unordered_map<IndexType, CRS, IndexHash>;
    
    //! @brief Type for lists of onsite operator pairs.
-   using IntersiteListType = std::unordered_map<IndexType, std::unordered_map<IndexType, std::vector<std::pair<CRS, CRS>>, Hash>, Hash>;
+   using IntersiteListType = std::unordered_map<IndexType, std::unordered_map<IndexType, std::vector<std::pair<CRS, CRS>>, IndexHash>, IndexHash>;
    
    //------------------------------------------------------------------
    //---------------------------Constructors---------------------------
@@ -147,13 +147,13 @@ public:
    //------------------------------------------------------------------
    //! @brief Get the system size.
    //! @return The system size.
-   std::int64_t GetSystemSize() const {
-      return static_cast<std::int64_t>(index_list_.size());
+   int GetSystemSize() const {
+      return static_cast<int>(index_list_.size());
    }
    
    //! @brief Get the site index list.
    //! @return The site index list.
-   const std::unordered_set<IndexType, Hash> &GetIndexList() const {
+   const std::unordered_set<IndexType, IndexHash> &GetIndexSet() const {
       return index_list_;
    }
    
@@ -189,7 +189,7 @@ private:
    IntersiteListType interaction_list_;
    
    //! @brief The site index list.
-   std::unordered_set<IndexType, Hash> index_list_;
+   std::unordered_set<IndexType, IndexHash> index_list_;
    
 };
 

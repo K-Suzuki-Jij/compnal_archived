@@ -47,7 +47,7 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
       throw std::runtime_error(ss.str());
    }
    
-   if (static_cast<std::int64_t>(vec_in.val.size()) != matrix_in.row_dim) {
+   if (static_cast<std::int64_t>(vec_in.value_list.size()) != matrix_in.row_dim) {
       std::stringstream ss;
       ss << "Error in " << __func__ << std::endl;
       ss << "Matrix vector product (Ax=b) cannot be defined." << std::endl;
@@ -68,7 +68,7 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
    }
    
    if (params.flag_use_initial_vec) {
-      if (static_cast<std::int64_t>(vec_out->val.size()) != dim) {
+      if (static_cast<std::int64_t>(vec_out->value_list.size()) != dim) {
          std::stringstream ss;
          ss << "Error in " << __func__ << std::endl;
          ss << "The dimension of the initial vector is not equal to that of the input matrix." << std::endl;
@@ -79,13 +79,13 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
       std::uniform_real_distribution<RealType> uniform_rand(-1, 1);
       std::mt19937 random_number_engine;
       random_number_engine.seed(std::random_device()());
-      vec_out->val.resize(dim);
+      vec_out->value_list.resize(dim);
       for (std::int64_t i = 0; i < dim; ++i) {
-         vec_out->val[i] = uniform_rand(random_number_engine);
+         vec_out->value_list[i] = uniform_rand(random_number_engine);
       }
    }
    Orthonormalize(vec_out, subspace_vectors);
-   vec_out->Normalize();
+
    if (params.flag_symmetric_crs) {
       CalculateSymmetricMatrixVectorProduct(&rrr, 1.0, matrix_in, *vec_out, &vectors_work);
    }
@@ -95,12 +95,12 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
    
 #pragma omp parallel for
    for (std::int64_t i = 0; i < dim; ++i) {
-      rrr.val[i] = vec_in.val[i] - rrr.val[i];
-      ppp.val[i] = rrr.val[i];
+      rrr.value_list[i] = vec_in.value_list[i] - rrr.value_list[i];
+      ppp.value_list[i] = rrr.value_list[i];
    }
    
-   Orthonormalize(&rrr, subspace_vectors);
-   Orthonormalize(&ppp, subspace_vectors);
+   Orthonormalize(&rrr, subspace_vectors, false);
+   Orthonormalize(&ppp, subspace_vectors, false);
    
    for (int step = 0; step < params.max_step; ++step) {
       if (params.flag_symmetric_crs) {
@@ -110,23 +110,23 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
          CalculateMatrixVectorProduct(&yyy, 1.0, matrix_in, ppp);
       }
       
-      Orthonormalize(&yyy, subspace_vectors);
+      Orthonormalize(&yyy, subspace_vectors, false);
       
-      const RealType inner_prod = CalculateInnerProduct(rrr, rrr);
-      const RealType alpha      = inner_prod/CalculateInnerProduct(ppp, yyy);
+      const RealType inner_prod = CalculateVectorVectorProduct(rrr, rrr);
+      const RealType alpha      = inner_prod/CalculateVectorVectorProduct(ppp, yyy);
       
 #pragma omp parallel for
       for (std::int64_t i = 0; i < dim; ++i) {
-         vec_out->val[i] += alpha*ppp.val[i];
-         rrr.val[i]      -= alpha*yyy.val[i];
+         vec_out->value_list[i] += alpha*ppp.value_list[i];
+         rrr.value_list[i]      -= alpha*yyy.value_list[i];
       }
       
-      Orthonormalize(vec_out, subspace_vectors);
-      Orthonormalize(&rrr    , subspace_vectors);
+      Orthonormalize(vec_out, subspace_vectors, false);
+      Orthonormalize(&rrr   , subspace_vectors, false);
       
-      const RealType residual_error = CalculateInnerProduct(rrr, rrr);
+      const RealType residual_error = CalculateVectorVectorProduct(rrr, rrr);
       
-      if (params.flag_output_info) {
+      if (params.flag_display_info) {
          std::cout << "\rCG_Step[" << step << "]=" << std::scientific << std::setprecision(1);
          std::cout << residual_error << std::string(5, ' ') << std::flush;
       }
@@ -144,9 +144,9 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
       
 #pragma omp parallel for
       for (std::int64_t i = 0; i < dim; ++i) {
-         ppp.val[i] = rrr.val[i] + beta*ppp.val[i];
+         ppp.value_list[i] = rrr.value_list[i] + beta*ppp.value_list[i];
       }
-      Orthonormalize(&ppp, subspace_vectors);
+      Orthonormalize(&ppp, subspace_vectors, false);
    }
    
    std::stringstream ss;

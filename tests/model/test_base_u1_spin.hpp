@@ -29,7 +29,6 @@ TEST(ModelBaseU1Spin, Constructors) {
    
    model::BaseU1Spin<RealType> model;
    EXPECT_EQ(model.GetDimOnsite()    , 2  );
-   EXPECT_EQ(model.GetTotalSz()      , 0  );
    EXPECT_EQ(model.GetMagnitudeSpin(), 0.5);
    
    EXPECT_EQ(model.GetOnsiteOperatorSp (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSp (0.5));
@@ -44,7 +43,6 @@ TEST(ModelBaseU1Spin, ConstructorsSpin) {
    
    model::BaseU1Spin<RealType> model(1);
    EXPECT_EQ(model.GetDimOnsite()    , 3);
-   EXPECT_EQ(model.GetTotalSz()      , 0);
    EXPECT_EQ(model.GetMagnitudeSpin(), 1);
    
    EXPECT_EQ(model.GetOnsiteOperatorSp (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSp (1));
@@ -55,9 +53,8 @@ TEST(ModelBaseU1Spin, ConstructorsSpin) {
 }
 
 TEST(ModelBaseU1Spin, ConstructorsSpinSz) {
-   model::BaseU1Spin<double> model(1, 2);
+   model::BaseU1Spin<double> model(1);
    EXPECT_EQ(model.GetDimOnsite()    , 3);
-   EXPECT_EQ(model.GetTotalSz()      , 2);
    EXPECT_EQ(model.GetMagnitudeSpin(), 1);
 }
 
@@ -67,7 +64,6 @@ TEST(ModelBaseU1Spin, SetMagnitudeSpin) {
    model::BaseU1Spin<RealType> model;
    model.SetMagnitudeSpin(1.5);
    EXPECT_EQ(model.GetDimOnsite()    , 4);
-   EXPECT_EQ(model.GetTotalSz()      , 0);
    EXPECT_EQ(model.GetMagnitudeSpin(), 1.5);
    EXPECT_EQ(model.GetOnsiteOperatorSp (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSp (1.5));
    EXPECT_EQ(model.GetOnsiteOperatorSm (), model::BaseU1Spin<RealType>::CreateOnsiteOperatorSm (1.5));
@@ -77,14 +73,6 @@ TEST(ModelBaseU1Spin, SetMagnitudeSpin) {
    
    EXPECT_THROW(model.SetMagnitudeSpin(0) , std::runtime_error);
    EXPECT_THROW(model.SetMagnitudeSpin(-1), std::runtime_error);
-}
-
-TEST(ModelBaseU1Spin, SetTotalSz) {
-   model::BaseU1Spin<double> model;
-   model.SetTotalSz(-4);
-   EXPECT_EQ(model.GetDimOnsite()    , 2);
-   EXPECT_EQ(model.GetTotalSz()      , -4);
-   EXPECT_EQ(model.GetMagnitudeSpin(), 0.5);
 }
 
 TEST(ModelBaseU1Spin, CalculateNumElectron) {
@@ -97,19 +85,19 @@ TEST(ModelBaseU1Spin, CalculateNumElectron) {
 
 TEST(ModelBaseU1Spin, CalculateQNumber) {
    model::BaseU1Spin<double> model;
-   model.SetTotalSz(3);
-   EXPECT_THROW(model.CalculateQNumber(-1, 0), std::runtime_error);
-   EXPECT_THROW(model.CalculateQNumber(0, -1), std::runtime_error);
-   EXPECT_THROW(model.CalculateQNumber(-2, -1), std::runtime_error);
+   model::BaseU1Spin<double>::QType total_sz = 3;
+   EXPECT_THROW(model.CalculateQNumber(-1,  0, total_sz), std::runtime_error);
+   EXPECT_THROW(model.CalculateQNumber( 0, -1, total_sz), std::runtime_error);
+   EXPECT_THROW(model.CalculateQNumber(-2, -1, total_sz), std::runtime_error);
    
-   EXPECT_THROW(model.CalculateQNumber(2, 0), std::runtime_error);
-   EXPECT_THROW(model.CalculateQNumber(0, 2), std::runtime_error);
-   EXPECT_THROW(model.CalculateQNumber(2, 2), std::runtime_error);
+   EXPECT_THROW(model.CalculateQNumber(2, 0, total_sz), std::runtime_error);
+   EXPECT_THROW(model.CalculateQNumber(0, 2, total_sz), std::runtime_error);
+   EXPECT_THROW(model.CalculateQNumber(2, 2, total_sz), std::runtime_error);
 
-   EXPECT_EQ(model.CalculateQNumber(0, 0), 3);
-   EXPECT_EQ(model.CalculateQNumber(0, 1), 4);
-   EXPECT_EQ(model.CalculateQNumber(1, 0), 2);
-   EXPECT_EQ(model.CalculateQNumber(1, 1), 3);
+   EXPECT_EQ(model.CalculateQNumber(0, 0, total_sz), 3);
+   EXPECT_EQ(model.CalculateQNumber(0, 1, total_sz), 4);
+   EXPECT_EQ(model.CalculateQNumber(1, 0, total_sz), 2);
+   EXPECT_EQ(model.CalculateQNumber(1, 1, total_sz), 3);
 }
 
 TEST(ModelBaseU1Spin, GenerateBasisSpin05) {
