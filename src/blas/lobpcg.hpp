@@ -31,6 +31,7 @@ template<typename RealType>
 void EigendecompositionLOBPCG(RealType                *gs_value_out,
                               BraketVector<RealType>  *gs_vector_out,
                               const CRS<RealType>     &matrix_in,
+                              const bool flag_display_info = true,
                               const ParametersLanczos<RealType> &params = ParametersLanczos<RealType>()) {
    
    if (matrix_in.row_dim != matrix_in.col_dim) {
@@ -46,7 +47,7 @@ void EigendecompositionLOBPCG(RealType                *gs_value_out,
    if (matrix_in.row_dim == 0) {
       *gs_value_out = 0.0;
       gs_vector_out->Free();
-      if (params.flag_display_info) {
+      if (flag_display_info) {
          const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
          const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
          std::cout << "\rElapsed time of Eigendecomposition by LOBPCG:" << time_sec << "[sec]" << std::endl;
@@ -58,7 +59,7 @@ void EigendecompositionLOBPCG(RealType                *gs_value_out,
       *gs_value_out = matrix_in.val[0];
       gs_vector_out->value_list.resize(1);
       gs_vector_out->value_list[0] = 1.0;
-      if (params.flag_display_info) {
+      if (flag_display_info) {
          const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
          const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
          std::cout << "\rElapsed time of Eigendecomposition by LOBPCG:" << time_sec << "[sec]" << std::endl;
@@ -70,7 +71,7 @@ void EigendecompositionLOBPCG(RealType                *gs_value_out,
       std::vector<RealType> temp_gs_vector_out;
       LapackDsyev(gs_value_out, &temp_gs_vector_out, matrix_in);
       gs_vector_out->Assign(temp_gs_vector_out);
-      if (params.flag_display_info) {
+      if (flag_display_info) {
          const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
          const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
          std::cout << "\rElapsed time of Eigendecomposition by LOBPCG:" << time_sec << "[sec]" << std::endl;
@@ -167,7 +168,7 @@ void EigendecompositionLOBPCG(RealType                *gs_value_out,
          residual_error += r.value_list[i]*r.value_list[i];
       }
       
-      if (params.flag_display_info) {
+      if (flag_display_info) {
          std::cout << "\rLOBPCG_Step[" << step + 1 << "]=" << std::scientific << std::setprecision(1);
          std::cout << residual_error << std::flush;
       }
@@ -180,13 +181,15 @@ void EigendecompositionLOBPCG(RealType                *gs_value_out,
          for (std::int64_t i = 0; i < dim; ++i) {
             gs_vector_out->value_list[i] = k_e_vec[0]*w0.value_list[i] + k_e_vec[1]*w1.value_list[i] + k_e_vec[2]*w2.value_list[i];
          }
-         if (params.flag_display_info) {
+         if (flag_display_info) {
             gs_vector_out->Normalize();
-            const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
-            const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
-            std::cout << std::defaultfloat << std::setprecision(8) << "\rElapsed time of diagonalization:" << time_sec << "[sec]" << std::flush;
-            std::cout << " (" << residual_error << ")" << std::flush;
-            std::cout << std::endl;
+            if (flag_display_info) {
+               const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
+               const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
+               std::cout << std::defaultfloat << std::setprecision(8) << "\rElapsed time of diagonalization:" << time_sec << "[sec]" << std::flush;
+               std::cout << " (" << residual_error << ")" << std::flush;
+               std::cout << std::endl;
+            }
          }
          return;
       }

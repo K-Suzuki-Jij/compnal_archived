@@ -30,7 +30,6 @@ struct ParametersLanczos {
    RealType acc = std::pow(10, -14);
    bool flag_use_initial_vec = false;
    bool flag_store_vec       = false;
-   bool flag_display_info    = true;
    bool flag_symmetric_crs   = false;
 };
 
@@ -39,7 +38,6 @@ struct ParametersCG {
    int max_step = 1000;
    RealType acc = std::pow(10, -7);
    bool flag_use_initial_vec = false;
-   bool flag_display_info    = true;
    bool flag_symmetric_crs   = false;
 };
 
@@ -52,7 +50,6 @@ struct ParametersII {
    int      max_step = 3;
    RealType acc      = std::pow(10, -7);
    RealType diag_add = std::pow(10, -11);
-   bool     flag_display_info = true;
    ParametersCG<RealType> cg;
 };
 

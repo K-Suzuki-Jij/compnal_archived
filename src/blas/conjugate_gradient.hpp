@@ -32,12 +32,13 @@ namespace compnal {
 namespace blas {
 
 template<typename RealType>
-std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
-                                         const CRS<RealType>    &matrix_in,
-                                         const BraketVector<RealType> &vec_in,
-                                         const ParametersCG<RealType> &params = ParametersCG<RealType>(),
-                                         const std::vector<BraketVector<RealType>> &subspace_vectors = {}
-                                         ) {
+void ConjugateGradient(BraketVector<RealType> *vec_out,
+                       const CRS<RealType>    &matrix_in,
+                       const BraketVector<RealType> &vec_in,
+                       const std::vector<BraketVector<RealType>> &subspace_vectors = {},
+                       const bool flag_display_info = true,
+                       const ParametersCG<RealType> &params = ParametersCG<RealType>()
+                       ) {
    
    if (matrix_in.row_dim != matrix_in.col_dim) {
       std::stringstream ss;
@@ -85,7 +86,7 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
       }
    }
    Orthonormalize(vec_out, subspace_vectors);
-
+   
    if (params.flag_symmetric_crs) {
       CalculateSymmetricMatrixVectorProduct(&rrr, 1.0, matrix_in, *vec_out, &vectors_work);
    }
@@ -126,18 +127,20 @@ std::pair<int, double> ConjugateGradient(BraketVector<RealType> *vec_out,
       
       const RealType residual_error = CalculateVectorVectorProduct(rrr, rrr);
       
-      if (params.flag_display_info) {
+      if (flag_display_info) {
          std::cout << "\rCG_Step[" << step << "]=" << std::scientific << std::setprecision(1);
          std::cout << residual_error << std::string(5, ' ') << std::flush;
       }
       
       if (residual_error < params.acc) {
-         const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
-         const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
-         std::cout << std::defaultfloat << std::setprecision(8) << "\rElapsed time of conjugate_gradient:" << time_sec << "[sec]";
-         std::cout << " (" << residual_error << ")" << std::flush;
-         std::cout << std::endl;
-         return {step, time_sec};
+         if (flag_display_info) {
+            const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
+            const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
+            std::cout << std::defaultfloat << std::setprecision(8) << "\rElapsed time of conjugate_gradient:" << time_sec << "[sec]";
+            std::cout << " (" << residual_error << ")" << std::flush;
+            std::cout << std::endl;
+         }
+         return;
       }
       
       const RealType beta = residual_error/inner_prod;

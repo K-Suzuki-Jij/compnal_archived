@@ -27,7 +27,7 @@ namespace test {
 TEST(ModelBaseU1Spin, Constructors) {
    using RealType = double;
    
-   model::BaseU1Spin<RealType> model;
+   model::BaseU1Spin<RealType> model(0.5);
    EXPECT_EQ(model.GetDimOnsite()    , 2  );
    EXPECT_EQ(model.GetMagnitudeSpin(), 0.5);
    

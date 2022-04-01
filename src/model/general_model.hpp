@@ -130,6 +130,7 @@ public:
          std::stringstream ss;
          ss << "Error at " << __LINE__ << " in " << __FUNCTION__ << " in "<< __FILE__ << std::endl;
          ss << "The input matrix is invalid" << std::endl;
+         ss << "row_dim=" << m_1.row_dim << ", dim_onsite=" << this->GetDimOnsite() << std::endl;
          throw std::runtime_error(ss.str());
       }
 

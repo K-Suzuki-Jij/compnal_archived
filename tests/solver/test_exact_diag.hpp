@@ -26,16 +26,18 @@ namespace compnal {
 namespace test {
 
 TEST(SolverExactDiag, BaseU1Spin) {
-   model::GeneralModel<model::BaseU1Spin<double>> model(1);
-   for (int i = 0; i < 10; ++i)  {
+   model::GeneralModel<model::BaseU1Spin<long double>> model;
+   const int system_size = 10;
+   for (int i = 0; i < system_size - 1; ++i)  {
       model.AddInteraction(i, model.GetOnsiteOperatorSp(), i+1, model.GetOnsiteOperatorSm(), 0.5);
       model.AddInteraction(i, model.GetOnsiteOperatorSm(), i+1, model.GetOnsiteOperatorSp(), 0.5);
       model.AddInteraction(i, model.GetOnsiteOperatorSz(), i+1, model.GetOnsiteOperatorSz(), 1.0);
    }
    solver::ExactDiag solver(model);
    solver.SetTargetQNumber(0);
+   solver.SetFlagDisplayInfo(false);
    solver.CalculateGroundState();
-   std::cout << solver.GetEigenvalue(0) << std::endl;
+   printf("%.32Lf\n", solver.GetEigenvalue(0)/system_size);
    
 }
 

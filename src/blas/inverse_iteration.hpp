@@ -30,12 +30,12 @@ namespace compnal {
 namespace blas {
 
 template<typename RealType>
-std::pair<int, double> InverseIteration(CRS<RealType>          *matrix_in,
-                                        BraketVector<RealType> *eigenvector,
-                                        const RealType         eigenvalue,
-                                        const ParametersII<RealType> &params = ParametersII<RealType>(),
-                                        const std::vector<BraketVector<RealType>> &subspace_vectors = {}
-                                        ) {
+void InverseIteration(CRS<RealType>          *matrix_in,
+                      BraketVector<RealType> *eigenvector,
+                      const RealType         eigenvalue,
+                      const std::vector<BraketVector<RealType>> &subspace_vectors = {},
+                      const bool flag_display_info = true,
+                      const ParametersII<RealType> &params = ParametersII<RealType>()) {
    
    if (matrix_in->row_dim != matrix_in->col_dim) {
       std::stringstream ss;
@@ -78,22 +78,24 @@ std::pair<int, double> InverseIteration(CRS<RealType>          *matrix_in,
       }
       const RealType residual_error = CalculateL1Distance(params.diag_add, *eigenvector, 1.0, vectors_work);
       
-      if (params.flag_display_info) {
+      if (flag_display_info) {
          std::cout << "\rII_Step[" << step << "]=" << std::scientific << std::setprecision(1);
          std::cout << residual_error << std::flush;
       }
       
       if (residual_error < params.acc) {
          matrix_in->AddDiagonalElements(-(params.diag_add - eigenvalue));
-         const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
-         const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
-         std::cout << std::defaultfloat << std::setprecision(8) << "\rElapsed time of inverse iteration:" << time_sec << "[sec]";
-         std::cout << " (" << residual_error << ")" << std::flush;
-         std::cout << std::endl;
-         return {step, time_sec};
+         if (flag_display_info) {
+            const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
+            const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
+            std::cout << std::defaultfloat << std::setprecision(8) << "\rElapsed time of inverse iteration:" << time_sec << "[sec]";
+            std::cout << " (" << residual_error << ")" << std::flush;
+            std::cout << std::endl;
+         }
+         return;
       }
-
-      ConjugateGradient(&improved_eigenvector, *matrix_in, *eigenvector, params.cg, subspace_vectors);
+      
+      ConjugateGradient(&improved_eigenvector, *matrix_in, *eigenvector, subspace_vectors, flag_display_info, params.cg);
       improved_eigenvector.Normalize();
       eigenvector->Assign(improved_eigenvector);
    }

@@ -37,8 +37,9 @@ template <typename RealType>
 void EigendecompositionLanczos(RealType                *target_value_out,
                                BraketVector<RealType>  *target_vector_out,
                                const CRS<RealType>     &matrix_in,
-                               const ParametersLanczos<RealType> &params = ParametersLanczos<RealType>(),
-                               const std::vector<BraketVector<RealType>> &subspace_vectors = {}
+                               const std::vector<BraketVector<RealType>> &subspace_vectors = {},
+                               const bool flag_display_info = true,
+                               const ParametersLanczos<RealType> &params = ParametersLanczos<RealType>()
                                ) {
    
    const auto start = std::chrono::system_clock::now();
@@ -54,7 +55,7 @@ void EigendecompositionLanczos(RealType                *target_value_out,
    if (matrix_in.row_dim == 0) {
       *target_value_out = 0.0;
       target_vector_out->Free();
-      if (params.flag_display_info) {
+      if (flag_display_info) {
          const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
          const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
          std::cout << "\rElapsed time of Eigendecomposition by Lanczos:" << time_sec << "[sec]" << std::endl;
@@ -66,7 +67,7 @@ void EigendecompositionLanczos(RealType                *target_value_out,
       std::vector<RealType> temp_gs_vector_out;
       LapackDsyev(target_value_out, &temp_gs_vector_out, matrix_in, static_cast<int>(subspace_vectors.size()));
       target_vector_out->Assign(temp_gs_vector_out);
-      if (params.flag_display_info) {
+      if (flag_display_info) {
          const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
          const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
          std::cout << "\rElapsed time of Eigendecomposition by Lanczos:" << time_sec << "[sec]" << std::endl;
@@ -147,7 +148,7 @@ void EigendecompositionLanczos(RealType                *target_value_out,
          LapackDstev(&krylov_eigen_value[step + 1], &krylov_eigen_vector, diagonal_value, off_diagonal_value);
          const RealType residual_error = std::abs(krylov_eigen_value[step + 1] - krylov_eigen_value[step]);
          
-         if (params.flag_display_info) {
+         if (flag_display_info) {
             std::cout << "\rLanczos_Step[" << step + 1 << "]=" << std::scientific << std::setprecision(1);
             std::cout << residual_error << std::flush;
          }
@@ -229,13 +230,13 @@ void EigendecompositionLanczos(RealType                *target_value_out,
             vector_1.value_list[i] -= diagonal_value[step]*vector_2.value_list[i] + off_diagonal_value[step - 1]*vector_0.value_list[i];
             vector_0.value_list[i]  = vector_2.value_list[i];
          }
-         if (params.flag_display_info) {
+         if (flag_display_info) {
             std::cout << "\rLanczos_Vec_Step:" << step << "/" << converge_step_number << std::string(5, ' ') << std::flush;
          }
       }
       target_vector_out->Normalize();
    }
-   if (params.flag_display_info) {
+   if (flag_display_info) {
       const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
       const double time_sec   = static_cast<double>(time_count)/TIME_UNIT_CONSTANT;
       std::cout << std::defaultfloat << std::setprecision(8) << "\rElapsed time of diagonalization:" << time_sec << "[sec]" << std::flush;

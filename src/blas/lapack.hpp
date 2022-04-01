@@ -155,8 +155,8 @@ void LapackDspgv(std::vector<RealType> *eigenvalues,
    int lap_info;
    
    for (int i = 0; i < size; ++i) {
-      lap_ap[i] = mat_a[i];
-      lap_bp[i] = mat_b[i];
+      lap_ap[i] = static_cast<double>(mat_a[i]);
+      lap_bp[i] = static_cast<double>(mat_b[i]);
    }
    
    dspgv_(i_type, 'V', 'U', dim, lap_ap, lap_bp, lap_w, (double**)lap_z, lap_ldz, lap_work, lap_info);

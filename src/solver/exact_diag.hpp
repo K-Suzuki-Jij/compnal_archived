@@ -58,6 +58,9 @@ public:
    //------------------------------------------------------------------
    //! @brief Model class.
    const ModelClass model;
+   
+   //! @brief Parameters for diagonalization methods.
+   blas::Parameters<RealType> diagonalization_parameters;
             
    //------------------------------------------------------------------
    //--------------------------Constructors----------------------------
@@ -65,8 +68,8 @@ public:
    //! @brief Constructor of ExactDiag class.
    //! @param model_input The model class to be diagonalized.
    explicit ExactDiag(const ModelClass &model_input): model(model_input), system_size_(model_input.GetSystemSize()) {
-      params_.lanczos.flag_symmetric_crs = true;
-      params_.ii.cg.flag_symmetric_crs   = true;
+      diagonalization_parameters.lanczos.flag_symmetric_crs = true;
+      diagonalization_parameters.ii.cg.flag_symmetric_crs   = true;
       
       const auto &index_set = model_input.GetIndexSet();
       index_list_ = std::vector<IndexType>(index_set.begin(), index_set.end());
@@ -108,25 +111,29 @@ public:
       diag_method_ = diag_method;
    }
    
+   void SetFlagDisplayInfo(const bool flag_display_info) {
+      flag_display_info_ = flag_display_info;
+      
+   }
+   
    //! @brief Calculate ground state by the exact diagonalization method.
-   //! @param flag_display_info If true, display the progress status. Set false by default.
-   void CalculateGroundState(const bool flag_display_info = true) {
+   void CalculateGroundState() {
       if (calculated_eigenvector_set_.count(0) != 0) {
          return;
       }
             
       if (bases_.count(target_q_number_) == 0) {
          //Generate basis
-         bases_[target_q_number_] = model.GenerateBasis(system_size_, target_q_number_, flag_display_info);
+         bases_[target_q_number_] = model.GenerateBasis(system_size_, target_q_number_, flag_display_info_);
          auto &temp_inv = bases_inv_[target_q_number_];
          const auto &temp_basis = bases_.at(target_q_number_);
          for (std::int64_t i = 0; i < static_cast<std::int64_t>(bases_.at(target_q_number_).size()); ++i) {
             temp_inv[temp_basis[i]] = i;
          }
       }
-            
+
       CRS ham = GenerateHamiltonian();
-      
+
       if (eigenvalues_.size() == 0) {
          eigenvalues_.emplace_back();
       }
@@ -135,10 +142,10 @@ public:
       }
       
       if (diag_method_ == DiagMethod::LANCZOS) {
-         blas::EigendecompositionLanczos(&eigenvalues_[0], &eigenvectors_[0], ham, params_.lanczos);
+         blas::EigendecompositionLanczos(&eigenvalues_[0], &eigenvectors_[0], ham, {}, flag_display_info_, diagonalization_parameters.lanczos);
       }
       else if (diag_method_ == DiagMethod::LOBPCG) {
-         blas::EigendecompositionLOBPCG(&eigenvalues_[0], &eigenvectors_[0], ham, params_.lanczos);
+         blas::EigendecompositionLOBPCG(&eigenvalues_[0], &eigenvectors_[0], ham, flag_display_info_, diagonalization_parameters.lanczos);
       }
       else {
          std::stringstream ss;
@@ -147,7 +154,7 @@ public:
          throw std::runtime_error(ss.str());
       }
       
-      blas::InverseIteration(&ham, &eigenvectors_[0], eigenvalues_[0], params_.ii);
+      blas::InverseIteration(&ham, &eigenvectors_[0], eigenvalues_[0], {}, flag_display_info_, diagonalization_parameters.ii);
       
       calculated_eigenvector_set_.emplace(0);
    }
@@ -178,8 +185,8 @@ public:
                }
                BraketVector temp_vector(ham.row_dim);
                RealType temp_value = 0.0;
-               blas::EigendecompositionLanczos(&temp_value, &temp_vector, ham, sector, eigenvectors_, params_.lanczos);
-               blas::InverseIteration(&ham, &temp_vector, temp_value, params_.ii, eigenvectors_);
+               blas::EigendecompositionLanczos(&temp_value, &temp_vector, ham, sector, eigenvectors_, diagonalization_parameters.lanczos);
+               blas::InverseIteration(&ham, &temp_vector, temp_value, diagonalization_parameters.ii, eigenvectors_);
                eigenvalues_.push_back(temp_value);
                eigenvectors_.push_back(temp_vector);
                model.SetCalculatedEigenvectorSet(sector);
@@ -661,14 +668,13 @@ private:
 
    std::vector<BraketVector> eigenvectors_;
    std::vector<RealType>     eigenvalues_;
-   
-   //! @brief Parameters for diagonalization methods.
-   blas::Parameters<RealType> params_;
-   
+      
    QType target_q_number_;
    
    //! @brief Diagonalization method.
    DiagMethod diag_method_ = DiagMethod::LANCZOS;
+   
+   bool flag_display_info_ = true;
    
    //! @brief Bases of the target Hilbert space specified by
    //! the system size \f$ N\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle \f$.
@@ -800,9 +806,9 @@ private:
       return static_cast<int>(global_basis%dim_onsite);
    }
    
-   void GenerateBasis(const QType &q_number, const bool flag_display_info = false) {
+   void GenerateBasis(const QType &q_number) {
       if (bases_.count(q_number) == 0) {
-         bases_[q_number] = model.GenerateBasis(q_number, flag_display_info);
+         bases_[q_number] = model.GenerateBasis(q_number, flag_display_info_);
          const auto &basis = bases_.at(q_number);
          auto &basis_inv = bases_inv_[q_number];
          basis_inv.clear();
@@ -873,10 +879,10 @@ private:
       }
    }
    
-   CRS GenerateHamiltonian(const bool flag_display_info = true) const {
+   CRS GenerateHamiltonian() const {
       const auto start = std::chrono::system_clock::now();
       
-      if (flag_display_info) {
+      if (flag_display_info_) {
          std::cout << "Generating Hamiltonian..." << std::flush;
       }
       
@@ -1039,9 +1045,11 @@ private:
       }
       ham.SortCol();
       
-      const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
-      const double time_sec   = static_cast<double>(time_count)/blas::TIME_UNIT_CONSTANT;
-      std::cout << "\rElapsed time of generating Hamiltonian:" << time_sec << "[sec]" << std::endl;
+      if (flag_display_info_) {
+         const auto   time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
+         const double time_sec   = static_cast<double>(time_count)/blas::TIME_UNIT_CONSTANT;
+         std::cout << "\rElapsed time of generating Hamiltonian:" << time_sec << "[sec]" << std::endl;
+      }
       
       return ham;
    }

@@ -86,11 +86,9 @@ public:
          ss << "Please set magnitude_spin > 0" << std::endl;
          throw std::runtime_error(ss.str());
       }
-      if (magnitude_spin_ != magnitude_spin) {
-         magnitude_spin_ = magnitude_spin;
-         dim_onsite_     = 2*magnitude_spin + 1;
-         SetOnsiteOperator();
-      }
+      magnitude_spin_ = magnitude_spin;
+      dim_onsite_     = 2*magnitude_spin + 1;
+      SetOnsiteOperator();
    }
          
    //! @brief Calculate the number of electrons from the input onsite basis.
