@@ -34,7 +34,7 @@ RealType GetAccuracy() {
    return 100*std::numeric_limits<RealType>::epsilon();
 }
 
-template<typename RealType, typename IntegerType>
+template<typename RealType>
 std::int64_t CountSignFlip(const RealType value,
                            const std::vector<RealType> &diag,
                            const std::vector<RealType> &off_diag,
@@ -89,7 +89,7 @@ void Dstev(RealType *eigenvalue,
       throw std::runtime_error(ss.str());
    }
    
-   if (n < 0 || n >= diag.size()) {
+   if (n < 0 || n >= static_cast<IntegerType>(diag.size())) {
       std::stringstream ss;
       ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
       ss << "n=" << n << "is invalid" << std::endl;
@@ -103,7 +103,7 @@ void Dstev(RealType *eigenvalue,
    if (dim == 1) {
       *eigenvalue = diag[0];
       eigenvector->resize(1);
-      *eigenvector[0] = 1;
+      (*eigenvector)[0] = 1;
       return;
    }
    if (dim == 2) {
@@ -171,7 +171,7 @@ void Dstev(RealType *eigenvalue,
       (*eigenvector)[i] = uniform_rand(random_number_engine);
    }
    
-   auto normalize = [](std::vector<RealType> *vector) {
+   auto normalize = [](std::vector<RealType> *vector, const std::int64_t dim) {
       RealType norm = 0.0;
       for (std::int64_t i = 0; i < dim; ++i) {
          norm += (*vector)[i]*(*vector)[i];
@@ -184,7 +184,7 @@ void Dstev(RealType *eigenvalue,
    
    for (int i = 0; i < inverse_iteration_repeat; ++i) {
       Tdma(eigenvector, diag, off_diag, *eigenvector, -(*eigenvalue) + th);
-      normalize(eigenvector);
+      normalize(eigenvector, dim);
    }
    
 }

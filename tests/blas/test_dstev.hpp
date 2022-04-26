@@ -12,32 +12,37 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Created by Kohei Suzuki on 2022/03/08.
+//  Created by Kohei Suzuki on 2022/04/27.
 //
 
-#ifndef COMPNAL_TEST_EIGENDECOMPOSITION_LANCZOS_HPP_
-#define COMPNAL_TEST_EIGENDECOMPOSITION_LANCZOS_HPP_
+#ifndef COMPNAL_TEST_DSTEV_HPP_
+#define COMPNAL_TEST_DSTEV_HPP_
 
-#include "../../src/blas/lanczos.hpp"
-#include "../../src/blas/compressed_row_storage.hpp"
-#include "../../src/blas/braket_vector.hpp"
-
+#include "../../src/blas/compnal_lapack.hpp"
 #include <gtest/gtest.h>
 
 namespace compnal {
 namespace test {
 
-TEST(Lanczos, Basic) {
-   blas::CRS<double> m_d({{1.0, 2.0}, {2.0, 1.0}});
-   double value = 0.0;
-   blas::BraketVector<double> vector;
-   blas::EigendecompositionLanczos(&value, &vector, m_d);
+TEST(Dstev, Basic) {
+   
+   std::vector<double> diag = {1, 2, 3};
+   std::vector<double> off_diag = {2, 2};
+   double eigenvalue;
+   std::vector<double> eigenvector;
+   
+   blas::Dstev(&eigenvalue, &eigenvector, 2, diag, off_diag);
+   
+   std::cout << eigenvalue << std::endl;
+   for (std::size_t i = 0; i < eigenvector.size(); ++i) {
+      printf("vec[%ld]=%lf\n", i, eigenvector[i]);
+   }
+   
 }
-
-
 
 } //namespace test
 } //namespace compnal
 
 
-#endif /* COMPNAL_TEST_EIGENDECOMPOSITION_LANCZOS_HPP_ */
+
+#endif /* COMPNAL_TEST_DSTEV_HPP_ */

@@ -21,6 +21,7 @@
 #include "blas/test_orthonormalize.hpp"
 #include "blas/test_lanczos.hpp"
 #include "blas/test_lobpcg.hpp"
+#include "blas/test_dstev.hpp"
 #include "model/test_base_u1_electron.hpp"
 #include "model/test_base_u1_spin.hpp"
 #include "model/test_base_u1_spin_electron.hpp"

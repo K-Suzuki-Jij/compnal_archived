@@ -56,7 +56,7 @@ void Tdma(std::vector<RealType> *vector_out,
    ppp[0] = -off_diag[0]/(diag[0] + diag_add);
    qqq[0] = vector_in[0]/(diag[0] + diag_add);
    
-   for (std::int64_t i = 1; i < dim - 1;) {
+   for (std::int64_t i = 1; i < dim - 1; ++i) {
       ppp[i] = -off_diag[i]/(diag[i]+ diag_add + off_diag[i - 1]*ppp[i - 1]);
       qqq[i] = (vector_in[i] - off_diag[i - 1]*qqq[i - 1])/(diag[i]+ diag_add + off_diag[i - 1]*ppp[i - 1]);
    }
