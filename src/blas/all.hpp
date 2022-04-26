@@ -28,5 +28,7 @@
 #include "orthonormalize.hpp"
 #include "lanczos.hpp"
 #include "lobpcg.hpp"
+#include "tdma.hpp"
+#include "compnal_lapack.hpp"
 
 #endif /* COMPNAL_SPARSE_MATRIX_ALL_HPP_ */

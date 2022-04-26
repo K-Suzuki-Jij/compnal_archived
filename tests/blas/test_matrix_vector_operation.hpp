@@ -245,10 +245,9 @@ TEST(MatrixVectorOperation, CalculateSymmetricMatrixVectorProductType1Basic) {
    blas::CalculateSymmetricMatrixVectorProduct(&out_ld, 2.3L, mat_ld, vec_ld);
 #endif
    EXPECT_EQ(out_ld.Size(), 3);
-   EXPECT_TRUE(std::abs(out_ld.value_list[0] + 1.311L) < 5*std::numeric_limits<long double>::epsilon());
-   EXPECT_TRUE(std::abs(out_ld.value_list[1] + 2.576L) < 5*std::numeric_limits<long double>::epsilon());
-   EXPECT_TRUE(std::abs(out_ld.value_list[2] - 7.176L) < 5*std::numeric_limits<long double>::epsilon());
-   
+   EXPECT_TRUE(std::abs(out_ld.value_list[0] + 1.311L) < 10*std::numeric_limits<long double>::epsilon());
+   EXPECT_TRUE(std::abs(out_ld.value_list[1] + 2.576L) < 10*std::numeric_limits<long double>::epsilon());
+   EXPECT_TRUE(std::abs(out_ld.value_list[2] - 7.176L) < 10*std::numeric_limits<long double>::epsilon());
 }
 
 TEST(MatrixVectorOperation, CalculateSymmetricMatrixVectorProductType1Specific) {
@@ -450,9 +449,9 @@ TEST(MatrixVectorOperation, CalculateSymmetricMatrixVectorProductType2Basic) {
    auto out_ld = blas::CalculateSymmetricMatrixVectorProduct(2.3L, mat_ld, vec_ld);
 #endif
    EXPECT_EQ(out_ld.Size(), 3);
-   EXPECT_TRUE(std::abs(out_ld.value_list[0] + 1.311L) < 5*std::numeric_limits<long double>::epsilon());
-   EXPECT_TRUE(std::abs(out_ld.value_list[1] + 2.576L) < 5*std::numeric_limits<long double>::epsilon());
-   EXPECT_TRUE(std::abs(out_ld.value_list[2] - 7.176L) < 5*std::numeric_limits<long double>::epsilon());
+   EXPECT_TRUE(std::abs(out_ld.value_list[0] + 1.311L) < 10*std::numeric_limits<long double>::epsilon());
+   EXPECT_TRUE(std::abs(out_ld.value_list[1] + 2.576L) < 10*std::numeric_limits<long double>::epsilon());
+   EXPECT_TRUE(std::abs(out_ld.value_list[2] - 7.176L) < 10*std::numeric_limits<long double>::epsilon());
    
 }
 
