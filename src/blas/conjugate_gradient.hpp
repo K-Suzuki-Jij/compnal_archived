@@ -23,6 +23,7 @@
 
 #include <vector>
 #include <random>
+#include <chrono>
 
 #ifdef _OPENMP
 #include <omp.h>

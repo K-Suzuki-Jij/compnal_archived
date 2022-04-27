@@ -113,14 +113,14 @@ void Dstev(RealType *eigenvalue,
       const auto root = std::sqrt((a - c)*(a - c) + 4*b*b);
       const auto e1 = (a + c - std::sqrt((a - c)*(a - c) + 4*b*b))*RealType{0.5};
       const auto e2 = (a + c + std::sqrt((a - c)*(a - c) + 4*b*b))*RealType{0.5};
-      if (n == 1) {
+      if (n == 0) {
          *eigenvalue = e1;
          eigenvector->resize(2);
          (*eigenvector)[0] = (a - c - root)/std::sqrt(4*b*b - (a - c - root));
          (*eigenvector)[1] = 2*b/std::sqrt(4*b*b - (a - c - root));
          
       }
-      else if (n == 2) {
+      else if (n == 1) {
          *eigenvalue = e2;
          eigenvector->resize(2);
          (*eigenvector)[0] = (a - c + root)/std::sqrt(4*b*b + a - c - root);
@@ -129,17 +129,18 @@ void Dstev(RealType *eigenvalue,
       else {
          std::stringstream ss;
          ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
-         ss << "n=" << n << "is invalid" << std::endl;
+         ss << "n=" << n << " is invalid" << std::endl;
          throw std::runtime_error(ss.str());
       }
+      return;
    }
    
    RealType x0 = std::numeric_limits<RealType>::max();
    RealType x1 = std::numeric_limits<RealType>::lowest();
    
    for (std::int64_t i = 0; i < dim - 2; ++i) {
-      x0 = std::min(x0, diag[i + 1] - (off_diag[i] + off_diag[i + 1]));
-      x1 = std::max(x1, diag[i + 1] + (off_diag[i] + off_diag[i + 1]));
+      x0 = std::min(x0, diag[i + 1] - (std::abs(off_diag[i]) + std::abs(off_diag[i + 1])));
+      x1 = std::max(x1, diag[i + 1] + (std::abs(off_diag[i]) + std::abs(off_diag[i + 1])));
    }
    
    const RealType th    = GetAccuracy<RealType>();

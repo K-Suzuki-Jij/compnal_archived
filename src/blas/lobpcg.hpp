@@ -24,6 +24,8 @@
 #include "lapack.hpp"
 #include "orthonormalize.hpp"
 
+#include <chrono>
+
 namespace compnal {
 namespace blas {
 

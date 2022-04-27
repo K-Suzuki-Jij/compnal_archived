@@ -17,12 +17,13 @@
 
 #include "../src/blas/all.hpp"
 #include <random>
+#include <chrono>
 
 int main(void) {
    
-   int max_dim = 1000;
-   
-   for (int dim = 10; dim < max_dim; dim += 100) {
+   int max_dim = 10;
+
+   for (int dim = 1; dim < max_dim; dim += 1) {
       std::vector<double> diag(dim);
       std::vector<double> off_diag(dim - 1);
       
@@ -47,14 +48,14 @@ int main(void) {
       compnal::blas::LapackDstev(&val_lapack, &vec_lapack, diag, off_diag);
       auto time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
       double time_sec   = static_cast<double>(time_count)/(1000*1000);
-      std::cout << "Time Lapack :" << time_sec << "[sec]: " << val_lapack << std::endl;
+      std::cout << "dim=" << dim << " Time Lapack :" << time_sec << "[sec]: " << val_lapack << std::endl;
       
       
       start = std::chrono::system_clock::now();
       compnal::blas::Dstev(&val_compnal, &vec_compnal, 0, diag, off_diag);
       time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
       time_sec   = static_cast<double>(time_count)/(1000*1000);
-      std::cout << "Time Compnal:" << time_sec << "[sec]: " << val_compnal << std::endl;
+      std::cout << "dim=" << dim << " Time Compnal:" << time_sec << "[sec]: " << val_compnal << std::endl;
    }
 
 }

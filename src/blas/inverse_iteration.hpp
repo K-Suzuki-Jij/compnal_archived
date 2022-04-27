@@ -22,6 +22,8 @@
 #include "braket_vector.hpp"
 #include "parameters.hpp"
 
+#include <chrono>
+
 #ifdef _OPENMP
 #include <omp.h>
 #endif
