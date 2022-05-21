@@ -18,8 +18,8 @@
 #ifndef COMPNAL_UTILITY_ALL_HPP_
 #define COMPNAL_UTILITY_ALL_HPP_
 
-#include "integer.hpp"
 #include "hash.hpp"
+#include "integer.hpp"
 #include "sort.hpp"
 
 //! @namespace compnal::utility

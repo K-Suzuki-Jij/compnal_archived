@@ -18,11 +18,11 @@
 #ifndef COMPNAL_TEST_EIGENDECOMPOSITION_LANCZOS_HPP_
 #define COMPNAL_TEST_EIGENDECOMPOSITION_LANCZOS_HPP_
 
-#include "../../src/blas/lanczos.hpp"
-#include "../../src/blas/compressed_row_storage.hpp"
-#include "../../src/blas/braket_vector.hpp"
-
 #include <gtest/gtest.h>
+
+#include "../../src/blas/braket_vector.hpp"
+#include "../../src/blas/compressed_row_storage.hpp"
+#include "../../src/blas/lanczos.hpp"
 
 namespace compnal {
 namespace test {
@@ -34,10 +34,7 @@ TEST(Lanczos, Basic) {
    blas::EigendecompositionLanczos(&value, &vector, m_d);
 }
 
-
-
-} //namespace test
-} //namespace compnal
-
+}  // namespace test
+}  // namespace compnal
 
 #endif /* COMPNAL_TEST_EIGENDECOMPOSITION_LANCZOS_HPP_ */

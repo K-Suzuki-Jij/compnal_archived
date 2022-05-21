@@ -21,49 +21,43 @@
 namespace compnal {
 namespace blas {
 
-const int TIME_UNIT_CONSTANT = 1000*1000;
+const int TIME_UNIT_CONSTANT = 1000 * 1000;
 
-template<typename RealType>
+template <typename RealType>
 struct ParametersLanczos {
    int min_step = 0;
    int max_step = 1000;
    RealType acc = std::pow(10, -14);
    bool flag_use_initial_vec = false;
-   bool flag_store_vec       = false;
-   bool flag_symmetric_crs   = false;
+   bool flag_store_vec = false;
+   bool flag_symmetric_crs = false;
 };
 
-template<typename RealType>
+template <typename RealType>
 struct ParametersCG {
    int max_step = 1000;
    RealType acc = std::pow(10, -7);
    bool flag_use_initial_vec = false;
-   bool flag_symmetric_crs   = false;
+   bool flag_symmetric_crs = false;
 };
 
-template<typename RealType>
+template <typename RealType>
 struct ParametersII {
-   ParametersII() {
-      cg.flag_use_initial_vec = true;
-   }
-   
-   int      max_step = 3;
-   RealType acc      = std::pow(10, -7);
+   ParametersII() { cg.flag_use_initial_vec = true; }
+
+   int max_step = 3;
+   RealType acc = std::pow(10, -7);
    RealType diag_add = std::pow(10, -11);
    ParametersCG<RealType> cg;
 };
 
-template<typename RealType>
+template <typename RealType>
 struct Parameters {
    ParametersLanczos<RealType> lanczos;
    ParametersII<RealType> ii;
 };
 
-
-
-
-} // namespace blas
-} // namespace compnel
-
+}  // namespace blas
+}  // namespace compnal
 
 #endif /* COMPNAL_BLAS_PARAMETERS_HPP_ */

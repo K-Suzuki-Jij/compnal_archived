@@ -18,31 +18,28 @@
 #ifndef COMPNAL_TEST_DSTEV_HPP_
 #define COMPNAL_TEST_DSTEV_HPP_
 
-#include "../../src/blas/compnal_lapack.hpp"
 #include <gtest/gtest.h>
+
+#include "../../src/blas/compnal_lapack.hpp"
 
 namespace compnal {
 namespace test {
 
 TEST(Dstev, Basic) {
-   
    std::vector<double> diag = {1, 2, 3};
    std::vector<double> off_diag = {2, 2};
    double eigenvalue;
    std::vector<double> eigenvector;
-   
+
    blas::Dstev(&eigenvalue, &eigenvector, 2, diag, off_diag);
-   
+
    std::cout << eigenvalue << std::endl;
    for (std::size_t i = 0; i < eigenvector.size(); ++i) {
       printf("vec[%ld]=%lf\n", i, eigenvector[i]);
    }
-   
 }
 
-} //namespace test
-} //namespace compnal
-
-
+}  // namespace test
+}  // namespace compnal
 
 #endif /* COMPNAL_TEST_DSTEV_HPP_ */

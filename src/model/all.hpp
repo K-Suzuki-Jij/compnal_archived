@@ -18,11 +18,10 @@
 #ifndef COMPNAL_MODEL_ALL_HPP_
 #define COMPNAL_MODEL_ALL_HPP_
 
-#include "general_model.hpp"
 #include "base_u1_electron.hpp"
 #include "base_u1_spin.hpp"
 #include "base_u1_spin_electron.hpp"
 #include "base_u1_spin_multi_electrons.hpp"
-
+#include "general_model.hpp"
 
 #endif /* COMPNAL_MODEL_ALL_HPP_ */

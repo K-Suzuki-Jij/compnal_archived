@@ -24,15 +24,14 @@ namespace compnal {
 namespace model {
 
 enum BoundaryCondition {
-  
+
    OBC = 0,
    PBC = 1,
    SSD = 2
-   
+
 };
 
 }
-}
-
+}  // namespace compnal
 
 #endif /* COMPNAL_MODEL_UTILITY_HPP_ */

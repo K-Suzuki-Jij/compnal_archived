@@ -18,8 +18,9 @@
 #ifndef COMPNAL_TEST_MODEL_BASE_U1_SPIN_MULTI_ELECTRONS_HPP_
 #define COMPNAL_TEST_MODEL_BASE_U1_SPIN_MULTI_ELECTRONS_HPP_
 
-#include "../../src/model/base_u1_spin_multi_electrons.hpp"
 #include <gtest/gtest.h>
+
+#include "../../src/model/base_u1_spin_multi_electrons.hpp"
 
 namespace compnal {
 namespace test {
@@ -29,7 +30,7 @@ TEST(BaseU1SpinMultiElectrons, Constructors) {
    model::BaseU1SpinMultiElectrons<RealType> model;
 }
 
-} //namespace test
-} //namespace compnal
+}  // namespace test
+}  // namespace compnal
 
 #endif /* COMPNAL_TEST_MODEL_BASE_U1_SPIN_MULTI_ELECTRONS_HPP_ */

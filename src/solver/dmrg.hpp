@@ -19,16 +19,7 @@
 #define COMPNAL_SOLVER_DMRG_HPP_
 
 namespace compnal {
-namespace solver {
-
-
-
-
-
-
-
-} //namespace solver
-} //namespace compnal
-
+namespace solver {}  // namespace solver
+}  // namespace compnal
 
 #endif /* COMPNAL_SOLVER_DMRG_HPP_ */

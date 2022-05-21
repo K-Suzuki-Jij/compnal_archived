@@ -23,41 +23,37 @@
 namespace compnal {
 namespace utility {
 
-//Ascending order
+// Ascending order
 template <typename T1, typename T2>
-void QuickSortVector(std::vector<T1> *target_vector, std::vector<T2> *vector_1, const std::int64_t left, const std::int64_t right) {
-   
+void QuickSortVector(std::vector<T1> *target_vector, std::vector<T2> *vector_1, const std::int64_t left,
+                     const std::int64_t right) {
    if (right - left <= 1) {
       return;
    }
-   
-   const std::int64_t pivot_index = (left + right)/2;
-   const T1           pivot       = (*target_vector)[pivot_index];
-   
+
+   const std::int64_t pivot_index = (left + right) / 2;
+   const T1 pivot = (*target_vector)[pivot_index];
+
    std::swap((*target_vector)[pivot_index], (*target_vector)[right - 1]);
-   std::swap((*vector_1)[pivot_index]     , (*vector_1)[right - 1]     );
-   
+   std::swap((*vector_1)[pivot_index], (*vector_1)[right - 1]);
+
    std::int64_t index = left;
    for (std::int64_t i = left; i < right - 1; i++) {
       if ((*target_vector)[i] < pivot) {
          std::swap((*target_vector)[index], (*target_vector)[i]);
-         std::swap((*vector_1)[index]     , (*vector_1)[i]      );
+         std::swap((*vector_1)[index], (*vector_1)[i]);
          index++;
       }
    }
-  
-   std::swap((*target_vector)[index], (*target_vector)[right - 1]);
-   std::swap((*vector_1)[index]     , (*vector_1)[right - 1]     );
 
-   QuickSortVector(target_vector, vector_1, left     , index);
+   std::swap((*target_vector)[index], (*target_vector)[right - 1]);
+   std::swap((*vector_1)[index], (*vector_1)[right - 1]);
+
+   QuickSortVector(target_vector, vector_1, left, index);
    QuickSortVector(target_vector, vector_1, index + 1, right);
-   
 }
 
-
-
-} // namespace utility
-} // namespace compnel
-
+}  // namespace utility
+}  // namespace compnal
 
 #endif /* COMPNAL_UTILITY_SORT_HPP_ */

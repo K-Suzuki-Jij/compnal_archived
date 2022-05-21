@@ -21,59 +21,54 @@
 namespace compnal {
 namespace blas {
 
-template<typename RealType>
-void Tdma(std::vector<RealType> *vector_out,
-          const std::vector<RealType> &diag,
-          const std::vector<RealType> &off_diag,
-          const std::vector<RealType> &vector_in,
-          const RealType diag_add = 0.0) {
-   
+template <typename RealType>
+void Tdma(std::vector<RealType> *vector_out, const std::vector<RealType> &diag, const std::vector<RealType> &off_diag,
+          const std::vector<RealType> &vector_in, const RealType diag_add = 0.0) {
    if (off_diag.size() + 1 != diag.size()) {
       std::stringstream ss;
-      ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+      ss << "Error at " << __LINE__ << " in " << __func__ << " in " << __FILE__ << std::endl;
       ss << "diag size=" << diag.size() << ", off_diag size=" << off_diag.size() << std::endl;
       throw std::runtime_error(ss.str());
    }
-   
+
    if (vector_in.size() != diag.size()) {
       std::stringstream ss;
-      ss << "Error at " << __LINE__ << " in " << __func__ << " in "<< __FILE__ << std::endl;
+      ss << "Error at " << __LINE__ << " in " << __func__ << " in " << __FILE__ << std::endl;
       ss << "Matrix vector product (Ax=b) cannot be defined." << std::endl;
       throw std::runtime_error(ss.str());
    }
-   
+
    const std::int64_t dim = static_cast<std::int64_t>(diag.size());
-   
+
    if (dim == 1) {
       vector_out->resize(1);
-      (*vector_out)[0] = diag[0]/vector_in[0];
+      (*vector_out)[0] = diag[0] / vector_in[0];
       return;
    }
-   
+
    std::vector<RealType> ppp(dim - 1);
    std::vector<RealType> qqq(dim);
-   
-   ppp[0] = -off_diag[0]/(diag[0] + diag_add);
-   qqq[0] = vector_in[0]/(diag[0] + diag_add);
-   
+
+   ppp[0] = -off_diag[0] / (diag[0] + diag_add);
+   qqq[0] = vector_in[0] / (diag[0] + diag_add);
+
    for (std::int64_t i = 1; i < dim - 1; ++i) {
-      ppp[i] = -off_diag[i]/(diag[i]+ diag_add + off_diag[i - 1]*ppp[i - 1]);
-      qqq[i] = (vector_in[i] - off_diag[i - 1]*qqq[i - 1])/(diag[i]+ diag_add + off_diag[i - 1]*ppp[i - 1]);
+      ppp[i] = -off_diag[i] / (diag[i] + diag_add + off_diag[i - 1] * ppp[i - 1]);
+      qqq[i] = (vector_in[i] - off_diag[i - 1] * qqq[i - 1]) / (diag[i] + diag_add + off_diag[i - 1] * ppp[i - 1]);
    }
-   qqq[dim - 1] = (vector_in[dim - 1] - off_diag[dim - 2]*qqq[dim - 2])/(diag[dim - 1]+ diag_add + off_diag[dim - 2]*ppp[dim - 2]);
-   
+   qqq[dim - 1] = (vector_in[dim - 1] - off_diag[dim - 2] * qqq[dim - 2]) /
+                  (diag[dim - 1] + diag_add + off_diag[dim - 2] * ppp[dim - 2]);
+
    vector_out->resize(dim);
-   
+
    (*vector_out)[dim - 1] = qqq[dim - 1];
-   
+
    for (std::int64_t i = dim - 2; i >= 0; --i) {
-      (*vector_out)[i] = ppp[i]*(*vector_out)[i + 1] + qqq[i];
+      (*vector_out)[i] = ppp[i] * (*vector_out)[i + 1] + qqq[i];
    }
-   
 }
 
-
-} // namespace blas
-} // namespace compnel
+}  // namespace blas
+}  // namespace compnal
 
 #endif /* COMPNAL_BLAS_TDMA_HPP_ */
