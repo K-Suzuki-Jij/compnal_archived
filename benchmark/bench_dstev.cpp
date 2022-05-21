@@ -48,14 +48,15 @@ int main(void) {
       compnal::blas::LapackDstev(&val_lapack, &vec_lapack, diag, off_diag);
       auto time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
       double time_sec   = static_cast<double>(time_count)/(1000*1000);
-      std::cout << "dim=" << dim << " Time Lapack :" << time_sec << "[sec]: " << val_lapack << std::endl;
+      std::cout << std::defaultfloat << std::setprecision(8);
+      std::cout << "dim=" << dim << " Time Lapack :"<< std::fixed << std::defaultfloat << std::setprecision(8) << time_sec << "[sec]: " << val_lapack << std::endl;
       
       
       start = std::chrono::system_clock::now();
       compnal::blas::Dstev(&val_compnal, &vec_compnal, 0, diag, off_diag);
       time_count = std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::system_clock::now() - start).count();
       time_sec   = static_cast<double>(time_count)/(1000*1000);
-      std::cout << "dim=" << dim << " Time Compnal:" << time_sec << "[sec]: " << val_compnal << std::endl;
+      std::cout << "dim=" << dim << " Time Compnal:"<< std::fixed << std::defaultfloat << std::setprecision(8) << time_sec << "[sec]: " << val_compnal << std::endl;
    }
 
 }
