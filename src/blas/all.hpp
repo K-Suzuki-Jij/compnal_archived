@@ -18,11 +18,17 @@
 #ifndef COMPNAL_SPARSE_MATRIX_ALL_HPP_
 #define COMPNAL_SPARSE_MATRIX_ALL_HPP_
 
-#include "eigendecomposition.hpp"
-#include "lapack.hpp"
-#include "matrix_vector_operation.hpp"
+#include "braket_vector.hpp"
+#include "compnal_lapack.hpp"
+#include "compressed_row_storage.hpp"
 #include "conjugate_gradient.hpp"
 #include "inverse_iteration.hpp"
+#include "lanczos.hpp"
+#include "lapack.hpp"
+#include "lobpcg.hpp"
+#include "matrix_vector_operation.hpp"
 #include "orthonormalize.hpp"
+#include "parameters.hpp"
+#include "tdma.hpp"
 
 #endif /* COMPNAL_SPARSE_MATRIX_ALL_HPP_ */

@@ -12,26 +12,29 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Created by Kohei Suzuki on 2022/01/26.
+//  Created by Kohei Suzuki on 2022/03/08.
 //
 
-#ifndef COMPNAL_MODEL_UTILITY_HPP_
-#define COMPNAL_MODEL_UTILITY_HPP_
+#ifndef COMPNAL_TEST_EIGENDECOMPOSITION_LANCZOS_HPP_
+#define COMPNAL_TEST_EIGENDECOMPOSITION_LANCZOS_HPP_
 
-#include <cmath>
+#include <gtest/gtest.h>
+
+#include "../../src/blas/braket_vector.hpp"
+#include "../../src/blas/compressed_row_storage.hpp"
+#include "../../src/blas/lanczos.hpp"
 
 namespace compnal {
-namespace model {
+namespace test {
 
-enum BoundaryCondition {
-
-   OBC = 0,
-   PBC = 1,
-   SSD = 2
-
-};
-
+TEST(Lanczos, Basic) {
+   blas::CRS<double> m_d({{1.0, 2.0}, {2.0, 1.0}});
+   double value = 0.0;
+   blas::BraketVector<double> vector;
+   blas::EigendecompositionLanczos(&value, &vector, m_d);
 }
+
+}  // namespace test
 }  // namespace compnal
 
-#endif /* COMPNAL_MODEL_UTILITY_HPP_ */
+#endif /* COMPNAL_TEST_EIGENDECOMPOSITION_LANCZOS_HPP_ */

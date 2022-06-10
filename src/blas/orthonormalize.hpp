@@ -18,40 +18,98 @@
 #ifndef COMPNAL_BLAS_ORTHONORMALIZE_HPP_
 #define COMPNAL_BLAS_ORTHONORMALIZE_HPP_
 
-#include "../type/braket_vector.hpp"
+#include <limits>
 #include <sstream>
+
+#include "braket_vector.hpp"
 
 namespace compnal {
 namespace blas {
 
-template<typename RealType>
-void Orthonormalize(std::vector<type::BraketVector<RealType>> *vectors) {
-   for (std::size_t i = 0; i < vectors->size(); ++i) {
-      const std::int64_t dim = static_cast<std::int64_t>(vectors[i]->size());
-      for (std::size_t j = 0; j < i; ++j) {
-         const RealType inner_product = -1.0*CalculateInnerProduct(*vectors[i], (*vectors)[j]);
+//! @brief Orthonormalize BraketVector list by Gram–Schmidt orthonormalization.
+//! @tparam ElementType The value type of BraketVector.
+//! @param vectors The pointer of BraketVector list.
+template <typename ElementType>
+void Orthonormalize(std::vector<BraketVector<ElementType>> *vectors, const bool flag_normalize = true) {
+   std::int64_t vec_size = static_cast<std::int64_t>(vectors->size());
+   for (std::int64_t i = 0; i < vec_size; ++i) {
+      const std::int64_t dim = static_cast<std::int64_t>((*vectors)[i].Size());
+      if (dim < vec_size) {
+         std::stringstream ss;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in " << __FILE__ << std::endl;
+         ss << "Cannot orthonormalize all the vectors" << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      for (std::int64_t j = 0; j < i; ++j) {
+         if ((*vectors)[i].value_list.size() != (*vectors)[j].value_list.size()) {
+            std::stringstream ss;
+            ss << "Error at " << __LINE__ << " in " << __func__ << " in " << __FILE__ << std::endl;
+            ss << "Dimenstion of BraketVector list doen not match "
+                  "each other"
+               << std::endl;
+            ss << "Failed to orthonormalize." << std::endl;
+            throw std::runtime_error(ss.str());
+         }
+         const ElementType inner_product = (*vectors)[i] * (*vectors)[j];
 #pragma omp parallel for
          for (std::int64_t k = 0; k < dim; ++k) {
-            vectors[i]->val[k] += inner_product*vectors[j]->val[k];
+            (*vectors)[i].value_list[k] -= inner_product * (*vectors)[j].value_list[k];
          }
       }
-   }
-}
-
-template<typename RealType>
-void Orthonormalize(type::BraketVector<RealType> *target_vector, const std::vector<type::BraketVector<RealType>> &vectors) {
-   const std::int64_t dim = static_cast<std::int64_t>(target_vector->val.size());
-   for (std::size_t i = 0; i < vectors.size(); ++i) {
-      const RealType inner_product = -1.0*CalculateInnerProduct(*target_vector, vectors[i]);
-#pragma omp parallel for
-      for (std::int64_t j = 0; j < dim; ++j) {
-         target_vector->val[j] += inner_product*vectors[i].val[j];
+      // Normalize
+      if (flag_normalize) {
+         const auto norm = (*vectors)[i].CalculateL2Norm();
+         if (std::abs(norm) < 4 * std::numeric_limits<ElementType>::epsilon()) {
+            std::stringstream ss;
+            ss << "Error at " << __LINE__ << " in " << __func__ << " in " << __FILE__ << std::endl;
+            ss << "Detected vectors pointing to the same direction." << std::endl;
+            ss << "Failed to orthonormalize." << std::endl;
+            throw std::runtime_error(ss.str());
+         }
+         (*vectors)[i].MultiplyByScalar(ElementType{1.0} / norm);
       }
    }
 }
 
-}  // namespace sparse_matrix
-}  // namespace compnal
+//! @brief Orthonormalize a BraketVector to BraketVector list by Gram–Schmidt
+//! orthonormalization.
+//! @tparam ElementType The value type of BraketVector.
+//! @param target_vector The pointer of the BraketVector to be orthonormalized.
+//! @param vectors The BraketVector list. Note that this vectors must be
+//! orthonormalized.
+template <typename ElementType>
+void Orthonormalize(BraketVector<ElementType> *target_vector, const std::vector<BraketVector<ElementType>> &vectors,
+                    const bool flag_normalize = true) {
+   const std::int64_t dim = static_cast<std::int64_t>(target_vector->value_list.size());
+   for (std::size_t i = 0; i < vectors.size(); ++i) {
+      if ((*target_vector).value_list.size() != vectors[i].value_list.size()) {
+         std::stringstream ss;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in " << __FILE__ << std::endl;
+         ss << "Dimenstion of BraketVector list doen not match each other" << std::endl;
+         ss << "Failed to orthonormalize." << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      const ElementType inner_product = ElementType{1.0} * (*target_vector) * (vectors[i]);
+#pragma omp parallel for
+      for (std::int64_t j = 0; j < dim; ++j) {
+         target_vector->value_list[j] -= inner_product * vectors[i].value_list[j];
+      }
+   }
+   // Normalize
+   if (flag_normalize) {
+      const auto norm = (*target_vector).CalculateL2Norm();
+      if (std::abs(norm) < 4 * std::numeric_limits<ElementType>::epsilon()) {
+         std::stringstream ss;
+         ss << "Error at " << __LINE__ << " in " << __func__ << " in " << __FILE__ << std::endl;
+         ss << "Detected vectors pointing to the same direction." << std::endl;
+         ss << "Failed to orthonormalize." << std::endl;
+         throw std::runtime_error(ss.str());
+      }
+      (*target_vector).MultiplyByScalar(ElementType{1.0} / norm);
+   }
+}
 
+}  // namespace blas
+}  // namespace compnal
 
 #endif /* COMPNAL_BLAS_ORTHONORMALIZE_HPP_ */

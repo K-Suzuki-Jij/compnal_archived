@@ -19,8 +19,5 @@
 #define COMPNAL_TYPE_ALL_HPP_
 
 #include "half_int.hpp"
-#include "compressed_row_storage.hpp"
-#include "braket_vector.hpp"
-
 
 #endif /* COMPNAL_TYPE_ALL_HPP_ */

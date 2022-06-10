@@ -12,17 +12,25 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Created by Kohei Suzuki on 2021/11/06.
+//  Created by Kohei Suzuki on 2022/03/01.
 //
 
-#ifndef COMPNAL_UTILITY_ALL_HPP_
-#define COMPNAL_UTILITY_ALL_HPP_
+#ifndef COMPNAL_TEST_MODEL_BASE_U1_SPIN_ELECTRON_HPP_
+#define COMPNAL_TEST_MODEL_BASE_U1_SPIN_ELECTRON_HPP_
 
-#include "hash.hpp"
-#include "integer.hpp"
-#include "sort.hpp"
+#include <gtest/gtest.h>
 
-//! @namespace compnal::utility
-//! @brief Utility classes and functions for compnal.
+#include "../../src/model/base_u1_spin_electron.hpp"
 
-#endif /* COMPNAL_UTILITY_ALL_HPP_ */
+namespace compnal {
+namespace test {
+
+TEST(ModelBaseU1SpinElectron, Constructors) {
+   using RealType = double;
+   model::BaseU1SpinElectron<RealType> model;
+}
+
+}  // namespace test
+}  // namespace compnal
+
+#endif /*  COMPNAL_TEST_MODEL_BASE_U1_SPIN_ELECTRON_HPP_ */

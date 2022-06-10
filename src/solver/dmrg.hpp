@@ -12,17 +12,14 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Created by Kohei Suzuki on 2021/11/06.
+//  Created by Kohei Suzuki on 2022/03/27.
 //
 
-#ifndef COMPNAL_UTILITY_ALL_HPP_
-#define COMPNAL_UTILITY_ALL_HPP_
+#ifndef COMPNAL_SOLVER_DMRG_HPP_
+#define COMPNAL_SOLVER_DMRG_HPP_
 
-#include "hash.hpp"
-#include "integer.hpp"
-#include "sort.hpp"
+namespace compnal {
+namespace solver {}  // namespace solver
+}  // namespace compnal
 
-//! @namespace compnal::utility
-//! @brief Utility classes and functions for compnal.
-
-#endif /* COMPNAL_UTILITY_ALL_HPP_ */
+#endif /* COMPNAL_SOLVER_DMRG_HPP_ */
