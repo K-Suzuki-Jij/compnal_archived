@@ -1,5 +1,0 @@
-var searchData=
-[
-  ['xxz_5f1d_0',['XXZ_1D',['../d4/d66/classcompnal_1_1model_1_1_x_x_z__1_d.html',1,'compnal::model::XXZ_1D&lt; RealType &gt;'],['../d4/d66/classcompnal_1_1model_1_1_x_x_z__1_d.html#a57c101b518a4ecbb029c24c8104e0679',1,'compnal::model::XXZ_1D::XXZ_1D()'],['../d4/d66/classcompnal_1_1model_1_1_x_x_z__1_d.html#a806c46ae40094e3671d12d1c375f0a6e',1,'compnal::model::XXZ_1D::XXZ_1D(const int system_size)'],['../d4/d66/classcompnal_1_1model_1_1_x_x_z__1_d.html#a93713e1eadc2fd9c22fb4bcce67b2239',1,'compnal::model::XXZ_1D::XXZ_1D(const int system_size, const double magnitude_spin)'],['../d4/d66/classcompnal_1_1model_1_1_x_x_z__1_d.html#a56ade31dd17578e5f1e846ab833a1c43',1,'compnal::model::XXZ_1D::XXZ_1D(const int system_size, const BoundaryCondition boundary_condition)'],['../d4/d66/classcompnal_1_1model_1_1_x_x_z__1_d.html#a13778abd4f33a57561b606e2491e2a7d',1,'compnal::model::XXZ_1D::XXZ_1D(const int system_size, const double magnitude_spin, const BoundaryCondition boundary_condition)']]],
-  ['xxz_5f1d_2ehpp_1',['xxz_1d.hpp',['../db/d1c/xxz__1d_8hpp.html',1,'']]]
-];
