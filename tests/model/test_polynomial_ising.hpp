@@ -12,15 +12,26 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Created by Kohei Suzuki on 2021/06/14.
+//  Created by Kohei Suzuki on 2022/06/10.
 //
 
-#include "model/test_polynomial_ising.hpp"
-#include "solver/test_classical_monte_carlo.hpp"
-#include "utility/test_integer.hpp"
-#include "gtest/gtest.h"
+#ifndef COMPNAL_TEST_MODEL_POLYNOMIAL_ISING_HPP_
+#define COMPNAL_TEST_MODEL_POLYNOMIAL_ISING_HPP_
 
-int main(int argc, char **argv) {
-   testing::InitGoogleTest(&argc, argv);
-   return RUN_ALL_TESTS();
+#include "../../src/model/polynomial_ising.hpp"
+#include <gtest/gtest.h>
+
+namespace compnal {
+namespace test {
+
+TEST(ModelPolynomialIsing, Basic) {
+   
+   model::PolynomialIsing<double> model(10, {1.0, 1.0, 1.0}, model::Lattice::INFINIT_RANGE);
+   
 }
+
+} // namespace test
+} // namespace compnal
+
+
+#endif /* COMPNAL_TEST_MODEL_POLYNOMIAL_ISING_HPP_ */
