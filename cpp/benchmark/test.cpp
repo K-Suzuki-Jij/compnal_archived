@@ -25,7 +25,7 @@ int main(void) {
    compnal::solver::ClassicalMonteCarlo solver(model, compnal::solver::Updater::METROPOLIS);
    solver.SetNumSweeps(10000);
    solver.SetNumSamples(100);
-   solver.SetInverseTemperature(100);
+   solver.SetInverseTemperature(0.0001);
    
    std::chrono::system_clock::time_point start, end;
    
