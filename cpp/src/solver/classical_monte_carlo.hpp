@@ -136,11 +136,15 @@ private:
          std::vector<RealType> energy_difference(system_size);
          ResetEnergyDifference(&energy_difference, spin_configuration, model);
          
+         // Prepare system size index list (0, 1, 2, ..., N - 1)
+         std::vector<int> system_size_index_list(system_size);
+         std::iota(system_size_index_list.begin(), system_size_index_list.end(), 0);
+         
          for (int sweep_count = 0; sweep_count < num_sweeps_; sweep_count++) {
             for (int i = 0; i < system_size; i++) {
                const int index = dist_system_size(mt);
                if (energy_difference[index] <= 0.0 || std::exp(-beta_*energy_difference[index]) > dist_real(mt)) {
-                  UpdateSpinAndEnergyDifference(&spin_configuration, &energy_difference, index, model);
+                  UpdateSpinAndEnergyDifference(&spin_configuration, &energy_difference, &system_size_index_list, index, model);
                }
             }
          }
@@ -243,19 +247,17 @@ private:
    
    void UpdateSpinAndEnergyDifference(std::vector<SpinType> *sample,
                                       std::vector<RealType> *energy_difference,
+                                      std::vector<int> *system_size_index_list,
                                       const int index,
-                                      const model::PolynomialIsing<RealType> &model_input) const {
+                                      const model::PolynomialIsing<RealType> &model_input) {
       
       const int system_size = model_input.GetSystemSize();
       const auto &interaction = model_input.GetInteraction();
       const SpinType target_spin = (*sample)[index];
-      
-      std::vector<int> seed(system_size);
-      std::iota(seed.begin(), seed.end(), 0);
-      
-      // Erase index in seed.
-      std::swap(seed[index], seed.back());
-      seed.pop_back();
+            
+      // Erase index in system_index_list_.
+      std::swap((*system_size_index_list)[index], (*system_size_index_list).back());
+      (*system_size_index_list).pop_back();
       
       for (int p = 2; p < static_cast<int>(interaction.size()); ++p) {
          if (std::abs(interaction[p]) > std::numeric_limits<RealType>::epsilon()) {
@@ -267,16 +269,16 @@ private:
             int size = 0;
             
             while (true) {
-               for (int i = start_index; i < static_cast<int>(seed.size()); ++i) {
+               for (int i = start_index; i < system_size - 1; ++i) {
                   indices[size++] = i;
                   if (size == combination_size) {
                      SpinType sign = 1;
                      for (int j = 0; j < combination_size; ++j) {
-                        sign *= (*sample)[seed[indices[j]]];
+                        sign *= (*sample)[(*system_size_index_list)[indices[j]]];
                      }
                      const RealType val = target_spin*sign*target_ineraction;
                      for (int j = 0; j < combination_size; ++j) {
-                        (*energy_difference)[seed[indices[j]]] += val;
+                        (*energy_difference)[(*system_size_index_list)[indices[j]]] += val;
                      }
                      break;
                   }
@@ -292,7 +294,8 @@ private:
       
       (*energy_difference)[index] *= -1;
       (*sample)[index] *= -1;
-      
+      (*system_size_index_list).push_back(index);
+      std::sort((*system_size_index_list).begin(), (*system_size_index_list).end());
    }
    
    

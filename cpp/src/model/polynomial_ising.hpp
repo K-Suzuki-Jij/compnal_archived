@@ -37,7 +37,7 @@ public:
    PolynomialIsing(const int system_size, const std::vector<RealType> &interaction, const Lattice lattice) {
       SetSystemSize(system_size);
       SetInteraction(interaction);
-      lattice_ = lattice;
+      SetLattice(lattice);
    }
    
    void SetSystemSize(const int system_size) {
@@ -50,6 +50,10 @@ public:
    void SetInteraction(const std::vector<RealType> &interaction) {
       interaction_ = interaction;
       polynomial_degree_ = static_cast<int>(interaction.size());
+   }
+   
+   void SetLattice(const Lattice lattice) {
+      lattice_ = lattice;
    }
    
    int GetSystemSize() const {
@@ -67,7 +71,7 @@ public:
 
 private:
    int system_size_ = 0;
-   int polynomial_degree_;
+   int polynomial_degree_ = 0;
    std::vector<RealType> interaction_ = {};
    Lattice lattice_ = Lattice::NONE;
    

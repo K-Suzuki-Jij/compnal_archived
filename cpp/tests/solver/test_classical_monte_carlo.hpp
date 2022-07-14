@@ -26,10 +26,10 @@ namespace test {
 
 TEST(SolverClassicalMonteCarlo, InfinitRangePolyIsing) {
    
-   model::PolynomialIsing<double> model(10, {0.0, -1.0}, model::Lattice::INFINIT_RANGE);
+   model::PolynomialIsing<double> model(1000, {0.0, 0.0, -1.0}, model::Lattice::INFINIT_RANGE);
    solver::ClassicalMonteCarlo solver(model, solver::Updater::METROPOLIS);
-   solver.SetNumSweeps(100);
-   solver.SetNumSamples(10);
+   solver.SetNumSweeps(1000);
+   solver.SetNumSamples(100);
    solver.SetInverseTemperature(1);
    solver.Run();
    
