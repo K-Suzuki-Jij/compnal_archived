@@ -2,7 +2,7 @@
 //  main.cpp
 //  compnal
 //
-//  Created by Kohei Suzuki on 2022/07/12.
+//  Created by Kohei Suzuki on 2022/07/14.
 //
 
 #include <iostream>

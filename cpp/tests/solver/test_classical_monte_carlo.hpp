@@ -28,9 +28,9 @@ TEST(SolverClassicalMonteCarlo, InfinitRangePolyIsing) {
    
    model::PolynomialIsing<double> model(10, {0.0, -1.0}, model::Lattice::INFINIT_RANGE);
    solver::ClassicalMonteCarlo solver(model, solver::Updater::METROPOLIS);
-   solver.SetNumSweeps(1000);
+   solver.SetNumSweeps(100);
    solver.SetNumSamples(10);
-   solver.SetInverseTemperature(100);
+   solver.SetInverseTemperature(1);
    solver.Run();
    
    for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {

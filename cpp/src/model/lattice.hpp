@@ -23,14 +23,15 @@ namespace model {
 
 //! @brief Enumerated type for lattice.
 enum class Lattice {
-
-   CHAIN, // One-dimensional chain
-   SQUARE, // Two-dimensional square lattice
-   TRIANGLE, // Two-dimensional triangle lattice
-   HONEYCOMB, // Two-dimensional honeycomb lattice
-   CUBIC, // Three-dimensional cubic lattice
+   
+   NONE         , // None Type
+   CHAIN        , // One-dimensional chain
+   SQUARE       , // Two-dimensional square lattice
+   TRIANGLE     , // Two-dimensional triangle lattice
+   HONEYCOMB    , // Two-dimensional honeycomb lattice
+   CUBIC        , // Three-dimensional cubic lattice
    INFINIT_RANGE, // Infinite range model
-   ANY_TYPE // Users can create any types of lattice.
+   ANY_TYPE       // Users can create any types of lattice.
    
 };
 

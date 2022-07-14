@@ -53,7 +53,7 @@ void pybind11SolverClassicalMonteCarlo(py::module &m) {
    py_class.def(py::init<const ModelType, const solver::Updater>(), "model"_a, "updater"_a);
    
    //Public Member Functions
-   py_class.def("set_num_sweeps", &ClassicalMC::SetNumSweeps, "num_sweeps"_a);
+   py_class.def("set_num_sweeps", &ClassicalMC::SetNumSweeps  , "num_sweeps"_a );
    py_class.def("set_num_samples", &ClassicalMC::SetNumSamples, "num_samples"_a);
    py_class.def("set_inverse_temperature", &ClassicalMC::SetInverseTemperature, "beta"_a);
    py_class.def("get_num_sweeps", &ClassicalMC::GetNumSweeps);

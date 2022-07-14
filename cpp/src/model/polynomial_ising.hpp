@@ -66,10 +66,10 @@ public:
    
 
 private:
-   int system_size_;
+   int system_size_ = 0;
    int polynomial_degree_;
-   std::vector<RealType> interaction_;
-   Lattice lattice_;
+   std::vector<RealType> interaction_ = {};
+   Lattice lattice_ = Lattice::NONE;
    
 };
 

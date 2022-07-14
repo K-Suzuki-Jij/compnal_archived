@@ -36,6 +36,7 @@ using namespace pybind11::literals;
 void pybind11ModelLattice(py::module &m) {
    
    py::enum_<model::Lattice>(m, "Lattice")
+      .value("NONE"         , model::Lattice::NONE         )
       .value("CHAIN"        , model::Lattice::CHAIN        )
       .value("SQUARE"       , model::Lattice::SQUARE       )
       .value("TRIANGLE"     , model::Lattice::TRIANGLE     )
@@ -60,9 +61,10 @@ void pybind11ModelPolynomialIsing(py::module &m) {
    //Public Member Functions
    py_class.def("set_system_size", &PolyIsing::SetSystemSize , "system_size"_a);
    py_class.def("set_interaction", &PolyIsing::SetInteraction, "interaction"_a);
+   py_class.def("set_lattice"    , &PolyIsing::SetLattice    , "lattice"_a    );
    py_class.def("get_system_size", &PolyIsing::GetSystemSize );
    py_class.def("get_interaction", &PolyIsing::GetInteraction);
-   py_class.def("get_lattice"    , &PolyIsing::GetLattice);
+   py_class.def("get_lattice"    , &PolyIsing::GetLattice    );
    
 }
 
