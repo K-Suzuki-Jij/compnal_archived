@@ -59,6 +59,7 @@ void pybind11SolverClassicalMonteCarlo(py::module &m) {
    py_class.def("get_num_sweeps", &ClassicalMC::GetNumSweeps);
    py_class.def("get_num_samples", &ClassicalMC::GetNumSamples);
    py_class.def("get_samples", &ClassicalMC::GetSamples);
+   py_class.def("get_energies", &ClassicalMC::GetEnergies);
    py_class.def("clear_samples", &ClassicalMC::ClearSamples);
    py_class.def("run", &ClassicalMC::Run);
    py_class.def_readonly("model", &ClassicalMC::model);

@@ -19,6 +19,7 @@
 #define COMPNAL_SOLVER_CLASSICAL_MONTE_CARLO_HPP_
 
 #include "../model/polynomial_ising.hpp"
+#include "./classical_monte_carlo_updater/updater_poly_ising_infinite_range.hpp"
 #include <vector>
 #include <random>
 
@@ -81,6 +82,10 @@ public:
       return samples_;
    }
    
+   const std::vector<RealType> &GetEnergies() const {
+      return energies_;
+   }
+   
    template<typename T>
    const std::vector<SpinType> &GetSample(const T index) const {
       return samples_.at(index);
@@ -89,12 +94,14 @@ public:
    void ClearSamples() {
       samples_.clear();
       samples_.shrink_to_fit();
+      energies_.clear();
+      energies_.shrink_to_fit();
    }
    
    void Run() {
       Sample(model);
+      energies_ = CalculateEnergies();
    }
-   
    
 private:
    int num_sweeps_  = 1000;
@@ -102,6 +109,7 @@ private:
    RealType beta_   = 100;
    std::vector<int> seed_list_;
    std::vector<std::vector<SpinType>> samples_;
+   std::vector<RealType> energies_;
    
    void SetRandomSeed() {
       seed_list_.resize(num_samples_);
@@ -109,6 +117,18 @@ private:
       for (std::size_t i = 0; i < seed_list_.size(); ++i) {
          seed_list_[i] = rnd();
       }
+   }
+   
+   std::vector<RealType> CalculateEnergies() const {
+      if (static_cast<int>(samples_.size()) != num_samples_) {
+         throw std::runtime_error("The size of samples is not equal to the num_samples_");
+      }
+      std::vector<RealType> energies(num_samples_);
+#pragma omp parallel for schedule(guided)
+      for (int i = 0; i < num_samples_; ++i) {
+         energies[i] = model.CalculateEnergy(samples_[i]);
+      }
+      return energies;
    }
    
    void Sample(const model::PolynomialIsing<RealType> &model_input) {
@@ -144,7 +164,7 @@ private:
             for (int i = 0; i < system_size; i++) {
                const int index = dist_system_size(mt);
                if (energy_difference[index] <= 0.0 || std::exp(-beta_*energy_difference[index]) > dist_real(mt)) {
-                  UpdateSpinAndEnergyDifference(&spin_configuration, &energy_difference, &system_size_index_list, index, model);
+                  UpdaterInfiniteRange(&spin_configuration, &energy_difference, &system_size_index_list, index, model);
                }
             }
          }
@@ -213,9 +233,11 @@ private:
                      for (int i = start_index; i < system_size - 1; ++i) {
                         indices[size++] = i;
                         if (size == p) {
+                           SpinType sign = 1;
                            for (int j = 0; j < p; ++j) {
-                              val += target_ineraction*sample[system_size_index_list[indices[j]]]*target_spin;
+                              sign *= sample[system_size_index_list[indices[j]]];
                            }
+                           val += target_ineraction*sign*target_spin;
                            break;
                         }
                      }
@@ -241,213 +263,6 @@ private:
          throw std::runtime_error("Unknown lattice type detected.");
       }
    }
-   
-   void UpdateSpinAndEnergyDifference(std::vector<SpinType> *sample,
-                                      std::vector<RealType> *energy_difference,
-                                      std::vector<int> *system_size_index_list,
-                                      const int index,
-                                      const model::PolynomialIsing<RealType> &model_input) const {
-      
-      const int num_roop = model_input.GetSystemSize() - 1;
-      const auto &interaction = model_input.GetInteraction();
-      const SpinType target_spin = (*sample)[index];
-      
-      if (interaction.size() == 1) {
-         (*energy_difference)[index] *= -1;
-         (*sample)[index] *= -1;
-      }
-      else if (interaction.size() == 2) {
-         const RealType target_ineraction_deg2 = interaction[1];
-         std::swap((*system_size_index_list)[index], (*system_size_index_list).back());
-         system_size_index_list->pop_back();
-         
-         for (int i2 = 0; i2 < num_roop; ++i2) {
-            const int index_i2 = (*system_size_index_list)[i2];
-            (*energy_difference)[index_i2] += 4*target_ineraction_deg2*target_spin*(*sample)[index_i2];
-         }
-         
-         (*energy_difference)[index] *= -1;
-         (*sample)[index] *= -1;
-         system_size_index_list->push_back(index);
-         std::swap((*system_size_index_list)[index], (*system_size_index_list).back());
-      }
-      else if (interaction.size() == 3) {
-         const RealType target_ineraction_deg2 = interaction[1];
-         const RealType target_ineraction_deg3 = interaction[2];
-         std::swap((*system_size_index_list)[index], (*system_size_index_list).back());
-         system_size_index_list->pop_back();
-         
-         const RealType temp_val_deg2 = 4*target_ineraction_deg2*target_spin;
-         for (int i2 = 0; i2 < num_roop; ++i2) {
-            const int index_i2 = (*system_size_index_list)[i2];
-            const SpinType spin_i2 = (*sample)[index_i2];
-            const RealType temp_val_deg3 = 4*target_ineraction_deg3*target_spin*spin_i2;
-            (*energy_difference)[index_i2] += temp_val_deg2*spin_i2;
-            for (int i3 = i2 + 1; i3 < num_roop; ++i3) {
-               const int index_i3 = (*system_size_index_list)[i3];
-               (*energy_difference)[index_i3] += temp_val_deg3*(*sample)[index_i3];
-            }
-         }
-         
-         (*energy_difference)[index] *= -1;
-         (*sample)[index] *= -1;
-         system_size_index_list->push_back(index);
-         std::swap((*system_size_index_list)[index], (*system_size_index_list).back());
-      }
-      else if (interaction.size() == 4) {
-         const RealType target_ineraction_deg2 = interaction[1];
-         const RealType target_ineraction_deg3 = interaction[2];
-         const RealType target_ineraction_deg4 = interaction[3];
-         std::swap((*system_size_index_list)[index], (*system_size_index_list).back());
-         system_size_index_list->pop_back();
-         
-         const RealType temp_val_deg2 = 4*target_ineraction_deg2*target_spin;
-         for (int i2 = 0; i2 < num_roop; ++i2) {
-            const int index_i2 = (*system_size_index_list)[i2];
-            const SpinType spin_i2 = (*sample)[index_i2];
-            const RealType temp_val_deg3 = 4*target_ineraction_deg3*target_spin*spin_i2;
-            (*energy_difference)[index_i2] += temp_val_deg2*spin_i2;
-            for (int i3 = i2 + 1; i3 < num_roop; ++i3) {
-               const int index_i3 = (*system_size_index_list)[i3];
-               const SpinType spin_i3 = (*sample)[index_i3];
-               const RealType temp_val_deg4 = 4*target_ineraction_deg4*target_spin*spin_i2*spin_i3;
-               (*energy_difference)[index_i3] += temp_val_deg3*spin_i3;
-               for (int i4 = i3 + 1; i4 < num_roop; ++i4) {
-                  const int index_i4 = (*system_size_index_list)[i4];
-                  (*energy_difference)[index_i4] += temp_val_deg4*(*sample)[index_i4];
-               }
-            }
-         }
-         
-         (*energy_difference)[index] *= -1;
-         (*sample)[index] *= -1;
-         system_size_index_list->push_back(index);
-         std::swap((*system_size_index_list)[index], (*system_size_index_list).back());
-      }
-      else if (interaction.size() == 5) {
-         const RealType target_ineraction_deg2 = interaction[1];
-         const RealType target_ineraction_deg3 = interaction[2];
-         const RealType target_ineraction_deg4 = interaction[3];
-         const RealType target_ineraction_deg5 = interaction[4];
-         std::swap((*system_size_index_list)[index], (*system_size_index_list).back());
-         system_size_index_list->pop_back();
-         
-         const RealType temp_val_deg2 = 4*target_ineraction_deg2*target_spin;
-         for (int i2 = 0; i2 < num_roop; ++i2) {
-            const int index_i2 = (*system_size_index_list)[i2];
-            const SpinType spin_i2 = (*sample)[index_i2];
-            const RealType temp_val_deg3 = 4*target_ineraction_deg3*target_spin*spin_i2;
-            (*energy_difference)[index_i2] += temp_val_deg2*spin_i2;
-            for (int i3 = i2 + 1; i3 < num_roop; ++i3) {
-               const int index_i3 = (*system_size_index_list)[i3];
-               const SpinType spin_i3 = (*sample)[index_i3];
-               const RealType temp_val_deg4 = 4*target_ineraction_deg4*target_spin*spin_i2*spin_i3;
-               (*energy_difference)[index_i3] += temp_val_deg3*spin_i3;
-               for (int i4 = i3 + 1; i4 < num_roop; ++i4) {
-                  const int index_i4 = (*system_size_index_list)[i4];
-                  const SpinType spin_i4 = (*sample)[index_i4];
-                  const RealType temp_val_deg5 = 4*target_ineraction_deg5*target_spin*spin_i2*spin_i3*spin_i4;
-                  (*energy_difference)[index_i4] += temp_val_deg4*spin_i4;
-                  for (int i5 = i4 + 1; i5 < num_roop; ++i5) {
-                     const int index_i5 = (*system_size_index_list)[i5];
-                     (*energy_difference)[index_i5] += temp_val_deg5*(*sample)[index_i5];
-                  }
-               }
-            }
-         }
-         
-         (*energy_difference)[index] *= -1;
-         (*sample)[index] *= -1;
-         system_size_index_list->push_back(index);
-         std::swap((*system_size_index_list)[index], (*system_size_index_list).back());
-      }
-      else if (interaction.size() == 6) {
-         const RealType target_ineraction_deg2 = interaction[1];
-         const RealType target_ineraction_deg3 = interaction[2];
-         const RealType target_ineraction_deg4 = interaction[3];
-         const RealType target_ineraction_deg5 = interaction[4];
-         const RealType target_ineraction_deg6 = interaction[5];
-         std::swap((*system_size_index_list)[index], (*system_size_index_list).back());
-         system_size_index_list->pop_back();
-         
-         const RealType temp_val_deg2 = 4*target_ineraction_deg2*target_spin;
-         for (int i2 = 0; i2 < num_roop; ++i2) {
-            const int index_i2 = (*system_size_index_list)[i2];
-            const SpinType spin_i2 = (*sample)[index_i2];
-            const RealType temp_val_deg3 = 4*target_ineraction_deg3*target_spin*spin_i2;
-            (*energy_difference)[index_i2] += temp_val_deg2*spin_i2;
-            for (int i3 = i2 + 1; i3 < num_roop; ++i3) {
-               const int index_i3 = (*system_size_index_list)[i3];
-               const SpinType spin_i3 = (*sample)[index_i3];
-               const RealType temp_val_deg4 = 4*target_ineraction_deg4*target_spin*spin_i2*spin_i3;
-               (*energy_difference)[index_i3] += temp_val_deg3*spin_i3;
-               for (int i4 = i3 + 1; i4 < num_roop; ++i4) {
-                  const int index_i4 = (*system_size_index_list)[i4];
-                  const SpinType spin_i4 = (*sample)[index_i4];
-                  const RealType temp_val_deg5 = 4*target_ineraction_deg5*target_spin*spin_i2*spin_i3*spin_i4;
-                  (*energy_difference)[index_i4] += temp_val_deg4*spin_i4;
-                  for (int i5 = i4 + 1; i5 < num_roop; ++i5) {
-                     const int index_i5 = (*system_size_index_list)[i5];
-                     const SpinType spin_i5 = (*sample)[index_i5];
-                     const RealType temp_val_deg6 = 4*target_ineraction_deg6*target_spin*spin_i2*spin_i3*spin_i4*spin_i5;
-                     (*energy_difference)[index_i5] += temp_val_deg5*spin_i5;
-                     for (int i6 = i5 + 1; i6 < num_roop; ++i6) {
-                        const int index_i6 = (*system_size_index_list)[i6];
-                        (*energy_difference)[index_i6] += temp_val_deg6*(*sample)[index_i6];
-                     }
-                  }
-               }
-            }
-         }
-         
-         (*energy_difference)[index] *= -1;
-         (*sample)[index] *= -1;
-         system_size_index_list->push_back(index);
-         std::swap((*system_size_index_list)[index], (*system_size_index_list).back());
-      }
-      else {
-         // Erase index in system_index_list_.
-         std::swap((*system_size_index_list)[index], (*system_size_index_list).back());
-         
-         for (int p = 1; p < static_cast<int>(interaction.size()); ++p) {
-            if (std::abs(interaction[p]) > std::numeric_limits<RealType>::epsilon()) {
-               const RealType target_ineraction = interaction[p];
-               
-               std::vector<int> indices(p);
-               int start_index = 0;
-               int size = 0;
-               
-               while (true) {
-                  for (int i = start_index; i < num_roop; ++i) {
-                     indices[size++] = i;
-                     if (size == p) {
-                        SpinType sign = 1;
-                        for (int j = 0; j < p; ++j) {
-                           sign *= (*sample)[(*system_size_index_list)[indices[j]]];
-                        }
-                        const RealType val = 4*target_spin*sign*target_ineraction;
-                        for (int j = 0; j < p; ++j) {
-                           (*energy_difference)[(*system_size_index_list)[indices[j]]] += val;
-                        }
-                        break;
-                     }
-                  }
-                  --size;
-                  if (size < 0) {
-                     break;
-                  }
-                  start_index = indices[size] + 1;
-               }
-            }
-         }
-         
-         (*energy_difference)[index] *= -1;
-         (*sample)[index] *= -1;
-         std::swap((*system_size_index_list)[index], (*system_size_index_list).back());
-      }
-   }
-   
-   
    
 };
 

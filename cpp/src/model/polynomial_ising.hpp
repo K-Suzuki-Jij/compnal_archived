@@ -76,6 +76,66 @@ public:
       return lattice_;
    }
    
+   RealType CalculateEnergy(const std::vector<SpinType> &sample) const {
+      
+      if (static_cast<int>(sample.size()) != system_size_) {
+         throw std::runtime_error("Sample size is not equal to system_size");
+      }
+      
+      RealType energy = 0;
+      
+      if (lattice_ == Lattice::CHAIN) {
+         throw std::runtime_error("CHAIN is under construction.");
+      }
+      else if (lattice_ == Lattice::SQUARE) {
+         throw std::runtime_error("SQUARE is under construction.");
+      }
+      else if (lattice_ == Lattice::TRIANGLE) {
+         throw std::runtime_error("TRIANGLE is under construction.");
+      }
+      else if (lattice_ == Lattice::HONEYCOMB) {
+         throw std::runtime_error("HONEYCOMB is under construction.");
+      }
+      else if (lattice_ == Lattice::CUBIC) {
+         throw std::runtime_error("CUBIC is under construction.");
+      }
+      else if (lattice_ == Lattice::INFINIT_RANGE) {
+         for (std::size_t i = 0; i < interaction_.size(); ++i) {
+            const int polynomial_degree = static_cast<int>(i) + 1;
+            const RealType target_ineraction = interaction_[i];
+            if (std::abs(target_ineraction) > std::numeric_limits<RealType>::epsilon()) {
+               std::vector<int> indices(polynomial_degree);
+               int start_index = 0;
+               int size = 0;
+               while (true) {
+                  for (int i = start_index; i < system_size_; ++i) {
+                     indices[size++] = i;
+                     if (size == polynomial_degree) {
+                        SpinType sign = 1;
+                        for (int j = 0; j < polynomial_degree; ++j) {
+                           sign *= sample[indices[j]];
+                        }
+                        energy += target_ineraction*sign;
+                        break;
+                     }
+                  }
+                  --size;
+                  if (size < 0) {
+                     break;
+                  }
+                  start_index = indices[size] + 1;
+               }
+            }
+         }
+         return energy;
+      }
+      else if (lattice_ == Lattice::ANY_TYPE) {
+         throw std::runtime_error("ANY_TYPE is under construction.");
+      }
+      else {
+         throw std::runtime_error("Unknown lattice type detected.");
+      }
+   }
 
 private:
    int system_size_ = 0;
