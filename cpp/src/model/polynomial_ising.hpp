@@ -32,7 +32,7 @@ class PolynomialIsing {
 public:
    
    using ValueType = RealType;
-   using SpinType = char;
+   using SpinType = std::int8_t;
    
    PolynomialIsing(const int system_size, const std::vector<RealType> &interaction, const Lattice lattice) {
       SetSystemSize(system_size);
@@ -48,8 +48,16 @@ public:
    }
    
    void SetInteraction(const std::vector<RealType> &interaction) {
-      interaction_ = interaction;
-      polynomial_degree_ = static_cast<int>(interaction.size());
+      std::vector<RealType> new_interaction = interaction;
+      std::int64_t size = static_cast<std::int64_t>(new_interaction.size());
+      for (std::int64_t i = size - 1; i >= 0; --i) {
+         if (std::abs(new_interaction[i]) > std::numeric_limits<RealType>::epsilon()) {
+            new_interaction.resize(i + 1);
+            break;
+         }
+      }
+      interaction_ = new_interaction;
+      polynomial_degree_ = static_cast<int>(new_interaction.size());
    }
    
    void SetLattice(const Lattice lattice) {

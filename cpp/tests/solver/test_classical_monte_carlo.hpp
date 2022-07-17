@@ -26,16 +26,16 @@ namespace test {
 
 TEST(SolverClassicalMonteCarlo, InfinitRangePolyIsing) {
    
-   model::PolynomialIsing<double> model(1000, {0.0, 0.0, -1.0}, model::Lattice::INFINIT_RANGE);
+   model::PolynomialIsing<double> model(30, {0.0, 0.0, 1.0}, model::Lattice::INFINIT_RANGE);
    solver::ClassicalMonteCarlo solver(model, solver::Updater::METROPOLIS);
-   solver.SetNumSweeps(1000);
-   solver.SetNumSamples(100);
-   solver.SetInverseTemperature(1);
+   solver.SetNumSweeps(10000);
+   solver.SetNumSamples(10);
+   solver.SetInverseTemperature(100);
    solver.Run();
    
    for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
       for (const auto &it: solver.GetSample(i)) {
-         printf("%d, ", it);
+         printf("%+d, ", it);
       }
       printf("\n");
    }
