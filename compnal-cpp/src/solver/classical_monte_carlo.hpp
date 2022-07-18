@@ -20,6 +20,7 @@
 
 #include "../model/polynomial_ising.hpp"
 #include "./classical_monte_carlo_updater/updater_poly_ising_infinite_range.hpp"
+#include "classical_monte_carlo_updater/updater_all.hpp"
 #include <vector>
 #include <random>
 
@@ -183,24 +184,23 @@ private:
          auto &spin_configuration = samples_[sample_count];
          RandomizeSpins(&spin_configuration , &mt, system_size);
          
-         // Set energy difference
-         std::vector<RealType> energy_difference(system_size);
-         ResetEnergyDifference(&energy_difference, spin_configuration, model);
-         
          // Prepare system size index list (0, 1, 2, ..., N - 1)
          std::vector<int> system_size_index_list(system_size);
          std::iota(system_size_index_list.begin(), system_size_index_list.end(), 0);
+         
+         // Set energy difference
+         std::vector<RealType> energy_difference(system_size);
+         ResetEnergyDifference(&energy_difference, &system_size_index_list, spin_configuration, model);
          
          for (int sweep_count = 0; sweep_count < num_sweeps_; sweep_count++) {
             for (int i = 0; i < system_size; i++) {
                const int index = dist_system_size(mt);
                if (energy_difference[index] <= 0.0 || std::exp(-beta_*energy_difference[index]) > dist_real(mt)) {
-                  UpdaterInfiniteRange(&spin_configuration, &energy_difference, &system_size_index_list, index, model);
+                  UpdateConfiguration(&spin_configuration, &energy_difference, &system_size_index_list, index, model);
                }
             }
          }
       }
-      
    }
    
    void RandomizeSpins(std::vector<SpinType> *sample, std::mt19937_64 *random_number_engine, const int system_size) const {
@@ -208,90 +208,6 @@ private:
       sample->resize(system_size);
       for (int i = 0; i < system_size; i++) {
          (*sample)[i] = 2*dist(*random_number_engine) - 1;
-      }
-   }
-   
-   void ResetEnergyDifference(std::vector<RealType> *energy_difference,
-                              const std::vector<SpinType> &sample,
-                              const model::PolynomialIsing<RealType> &model_input) const {
-      
-      if (static_cast<int>(sample.size()) != model_input.GetSystemSize()) {
-         throw std::runtime_error("The sample size is not equal to the system size.");
-      }
-      
-      const int system_size = model_input.GetSystemSize();
-      const auto &interaction = model_input.GetInteraction();
-      energy_difference->clear();
-      energy_difference->resize(system_size);
-      
-      if (model_input.GetLattice() == model::Lattice::CHAIN) {
-         throw std::runtime_error("CHAIN is under construction.");
-      }
-      else if (model_input.GetLattice() == model::Lattice::SQUARE) {
-         throw std::runtime_error("SQUARE is under construction.");
-      }
-      else if (model_input.GetLattice() == model::Lattice::TRIANGLE) {
-         throw std::runtime_error("TRIANGLE is under construction.");
-      }
-      else if (model_input.GetLattice() == model::Lattice::HONEYCOMB) {
-         throw std::runtime_error("HONEYCOMB is under construction.");
-      }
-      else if (model_input.GetLattice() == model::Lattice::CUBIC) {
-         throw std::runtime_error("CUBIC is under construction.");
-      }
-      else if (model_input.GetLattice() == model::Lattice::INFINIT_RANGE) {
-         std::vector<int> system_size_index_list(system_size);
-         std::iota(system_size_index_list.begin(), system_size_index_list.end(), 0);
-         for (int index = 0; index < system_size; ++index) {
-            RealType val = 0.0;
-            const SpinType target_spin = sample[index];
-            
-            // Erase index in seed.
-            std::swap(system_size_index_list[index], system_size_index_list.back());
-            
-            if (interaction.size() >= 1) {
-               val += interaction[0]*sample[index];
-            }
-            for (int p = 1; p < static_cast<int>(interaction.size()); ++p) {
-               if (std::abs(interaction[p]) > std::numeric_limits<RealType>::epsilon()) {
-                  const RealType target_ineraction = interaction[p];
-                  
-                  std::vector<int> indices(p);
-                  int start_index = 0;
-                  int size = 0;
-                  
-                  while (true) {
-                     for (int i = start_index; i < system_size - 1; ++i) {
-                        indices[size++] = i;
-                        if (size == p) {
-                           SpinType sign = 1;
-                           for (int j = 0; j < p; ++j) {
-                              sign *= sample[system_size_index_list[indices[j]]];
-                           }
-                           val += target_ineraction*sign*target_spin;
-                           break;
-                        }
-                     }
-                     --size;
-                     if (size < 0) {
-                        break;
-                     }
-                     start_index = indices[size] + 1;
-                  }
-                  
-               }
-            }
-            (*energy_difference)[index] = -2.0*val;
-            
-            // Restore index to seed.
-            std::swap(system_size_index_list[index], system_size_index_list.back());
-         }
-      }
-      else if (model_input.GetLattice() == model::Lattice::ANY_TYPE) {
-         throw std::runtime_error("ANY_TYPE is under construction.");
-      }
-      else {
-         throw std::runtime_error("Unknown lattice type detected.");
       }
    }
    

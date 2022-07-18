@@ -25,14 +25,76 @@ namespace compnal {
 namespace solver {
 
 template<typename SpinType, typename RealType>
+void ResetEnergyDifferenceInfiniteRange(std::vector<RealType> *energy_difference,
+                                        std::vector<int> *system_size_index_list,
+                                        const std::vector<SpinType> &sample,
+                                        const model::PolynomialIsing<RealType> &model) {
+   
+   if (static_cast<int>(sample.size()) != model.GetSystemSize()) {
+      throw std::runtime_error("The sample size is not equal to the system size.");
+   }
+   
+   const int system_size = model.GetSystemSize();
+   const auto &interaction = model.GetInteraction();
+   energy_difference->clear();
+   energy_difference->resize(system_size);
+   
+   for (int index = 0; index < system_size; ++index) {
+      RealType val = 0.0;
+      const SpinType target_spin = sample[index];
+      
+      // Erase index in seed.
+      std::swap((*system_size_index_list)[index], (*system_size_index_list).back());
+      
+      if (interaction.size() >= 1) {
+         val += interaction[0]*sample[index];
+      }
+      for (int p = 1; p < static_cast<int>(interaction.size()); ++p) {
+         if (std::abs(interaction[p]) > std::numeric_limits<RealType>::epsilon()) {
+            const RealType target_ineraction = interaction[p];
+            
+            std::vector<int> indices(p);
+            int start_index = 0;
+            int size = 0;
+            
+            while (true) {
+               for (int i = start_index; i < system_size - 1; ++i) {
+                  indices[size++] = i;
+                  if (size == p) {
+                     SpinType sign = 1;
+                     for (int j = 0; j < p; ++j) {
+                        sign *= sample[(*system_size_index_list)[indices[j]]];
+                     }
+                     val += target_ineraction*sign*target_spin;
+                     break;
+                  }
+               }
+               --size;
+               if (size < 0) {
+                  break;
+               }
+               start_index = indices[size] + 1;
+            }
+            
+         }
+      }
+      (*energy_difference)[index] = -2.0*val;
+      
+      // Restore index to seed.
+      std::swap((*system_size_index_list)[index], (*system_size_index_list).back());
+   }
+   
+}
+
+template<typename SpinType, typename RealType>
 void UpdaterInfiniteRange(std::vector<SpinType> *sample,
                           std::vector<RealType> *energy_difference,
                           std::vector<int> *system_size_index_list,
                           const int index,
-                          const model::PolynomialIsing<RealType> &model_input) {
+                          const model::PolynomialIsing<RealType> &model) {
    
-   const int num_roop = model_input.GetSystemSize() - 1;
-   const auto &interaction = model_input.GetInteraction();
+   const int num_roop = model.GetSystemSize() - 1;
+   const auto &interaction = model.GetInteraction();
    const SpinType target_spin = (*sample)[index];
    
    std::swap((*system_size_index_list)[index], (*system_size_index_list).back());
@@ -263,7 +325,7 @@ void UpdaterInfiniteRange(std::vector<SpinType> *sample,
 }
 
 
-}
-}
+} // namespace solver
+} // namespace compnal
 
 #endif /* COMPNAL_SOLVER_UPDATER_POLY_ISING_INFINITE_RANGE_HPP_ */
