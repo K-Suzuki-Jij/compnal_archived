@@ -106,10 +106,10 @@ public:
 private:
    int num_sweeps_  = 1000;
    int num_samples_ = 1;
-   RealType beta_   = 100;
+   RealType beta_   = 1;
    std::vector<int> seed_list_;
-   std::vector<std::vector<SpinType>> samples_;
    std::vector<RealType> energies_;
+   std::vector<std::vector<SpinType>> samples_;
    
    void SetRandomSeed() {
       seed_list_.resize(num_samples_);
