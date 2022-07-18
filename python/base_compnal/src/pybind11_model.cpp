@@ -66,6 +66,7 @@ void pybind11ModelPolynomialIsing(py::module &m) {
    py_class.def("get_interaction", &PolyIsing::GetInteraction);
    py_class.def("get_lattice"    , &PolyIsing::GetLattice    );
    py_class.def("calculate_energy", &PolyIsing::CalculateEnergy, "sample"_a);
+   py_class.def("calculate_magnetization", &PolyIsing::CalculateMagnetization, "sample"_a);
    
 }
 

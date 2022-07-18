@@ -76,6 +76,17 @@ public:
       return lattice_;
    }
    
+   RealType CalculateMagnetization(const std::vector<SpinType> &sample) const {
+      if (static_cast<int>(sample.size()) != system_size_) {
+         throw std::runtime_error("Sample size is not equal to system_size");
+      }
+      RealType magnetization = 0;
+      for (const auto &it: sample) {
+         magnetization += it;
+      }
+      return magnetization/system_size_;
+   }
+   
    RealType CalculateEnergy(const std::vector<SpinType> &sample) const {
       
       if (static_cast<int>(sample.size()) != system_size_) {

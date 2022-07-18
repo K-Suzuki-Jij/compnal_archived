@@ -66,7 +66,17 @@ public:
       SetRandomSeed();
    }
    
+   void SetTemperature(const RealType temperature) {
+      if (temperature <= 0) {
+         throw std::runtime_error("Temperature must be positive number");
+      }
+      beta_ = 1/temperature;
+   }
+   
    void SetInverseTemperature(const RealType beta) {
+      if (beta < 0) {
+         throw std::runtime_error("Inverse temperature must be positive number");
+      }
       beta_ = beta;
    }
    
@@ -86,6 +96,10 @@ public:
       return energies_;
    }
    
+   const std::vector<RealType> &GetMagnetizations() const {
+      return magnetizations_;
+   }
+   
    template<typename T>
    const std::vector<SpinType> &GetSample(const T index) const {
       return samples_.at(index);
@@ -96,19 +110,24 @@ public:
       samples_.shrink_to_fit();
       energies_.clear();
       energies_.shrink_to_fit();
+      magnetizations_.clear();
+      magnetizations_.shrink_to_fit();
    }
    
    void Run() {
+      SetRandomSeed();
       Sample(model);
       energies_ = CalculateEnergies();
+      magnetizations_ = CalculateMagnetizations();
    }
    
 private:
    int num_sweeps_  = 1000;
    int num_samples_ = 1;
    RealType beta_   = 1;
-   std::vector<int> seed_list_;
+   std::vector<RealType> magnetizations_;
    std::vector<RealType> energies_;
+   std::vector<int> seed_list_;
    std::vector<std::vector<SpinType>> samples_;
    
    void SetRandomSeed() {
@@ -117,6 +136,18 @@ private:
       for (std::size_t i = 0; i < seed_list_.size(); ++i) {
          seed_list_[i] = rnd();
       }
+   }
+   
+   std::vector<RealType> CalculateMagnetizations() const {
+      if (static_cast<int>(samples_.size()) != num_samples_) {
+         throw std::runtime_error("The size of samples is not equal to the num_samples_");
+      }
+      std::vector<RealType> magnetizations(num_samples_);
+#pragma omp parallel for schedule(guided)
+      for (int i = 0; i < num_samples_; ++i) {
+         magnetizations[i] = model.CalculateMagnetization(samples_[i]);
+      }
+      return magnetizations;
    }
    
    std::vector<RealType> CalculateEnergies() const {
