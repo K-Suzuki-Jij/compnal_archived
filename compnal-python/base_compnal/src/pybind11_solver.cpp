@@ -62,7 +62,7 @@ void pybind11SolverClassicalMonteCarlo(py::module &m) {
    py_class.def("get_samples", &ClassicalMC::GetSamples);
    py_class.def("get_energies", &ClassicalMC::GetEnergies);
    py_class.def("get_magnetizations", &ClassicalMC::GetMagnetizations);
-   py_class.def("clear_samples", &ClassicalMC::ClearSamples);
+   py_class.def("clear_results", &ClassicalMC::ClearResults);
    py_class.def("run", &ClassicalMC::Run);
    py_class.def_readonly("model", &ClassicalMC::model);
    py_class.def_readonly("updater", &ClassicalMC::updater);
