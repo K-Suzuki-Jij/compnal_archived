@@ -18,6 +18,8 @@
 #ifndef COMPNAL_MODEL_LATTICE_HPP_
 #define COMPNAL_MODEL_LATTICE_HPP_
 
+#include <stdexcept>
+
 namespace compnal {
 namespace model {
 
@@ -35,6 +37,25 @@ enum class Lattice {
    
 };
 
+enum class BoundaryCondition {
+  
+   NONE, // None Type
+   OBC,  // Open boundary condition
+   PBC   // Periodic boundary condition
+   
+};
+
+BoundaryCondition GetDefaultBoundaryCondition(const Lattice lattice) {
+   if (lattice == Lattice::NONE) {
+      throw std::runtime_error("Please set Lattice");
+   }
+   else if (lattice == Lattice::ANY_TYPE) {
+      return BoundaryCondition::NONE;
+   }
+   else {
+      return BoundaryCondition::OBC;
+   }
+}
 
 } // namespace model
 } // namespace compnal

@@ -34,10 +34,23 @@ public:
    using ValueType = RealType;
    using SpinType = std::int8_t;
    
-   PolynomialIsing(const int system_size, const std::vector<RealType> &interaction, const Lattice lattice) {
+   PolynomialIsing(const int system_size,
+                   const std::vector<RealType> &interaction,
+                   const Lattice lattice) {
       SetSystemSize(system_size);
       SetInteraction(interaction);
       SetLattice(lattice);
+      SetBoundaryCondtion(GetDefaultBoundaryCondition(lattice));
+   }
+   
+   PolynomialIsing(const int system_size,
+                   const std::vector<RealType> &interaction,
+                   const Lattice lattice,
+                   const BoundaryCondition boundary_condition) {
+      SetSystemSize(system_size);
+      SetInteraction(interaction);
+      SetLattice(lattice);
+      SetBoundaryCondtion(boundary_condition);
    }
    
    void SetSystemSize(const int system_size) {
@@ -62,6 +75,10 @@ public:
    
    void SetLattice(const Lattice lattice) {
       lattice_ = lattice;
+   }
+   
+   void SetBoundaryCondtion(const BoundaryCondition boundary_condition) {
+      boundary_condition_ = boundary_condition;
    }
    
    int GetSystemSize() const {
@@ -153,6 +170,7 @@ private:
    int polynomial_degree_ = 0;
    std::vector<RealType> interaction_ = {};
    Lattice lattice_ = Lattice::NONE;
+   BoundaryCondition boundary_condition_ = BoundaryCondition::NONE;
    
 };
 
