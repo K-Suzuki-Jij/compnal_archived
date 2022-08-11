@@ -23,15 +23,15 @@
 #ifndef COMPNAL_LATTICE_TRIANGLE_HPP_
 #define COMPNAL_LATTICE_TRIANGLE_HPP_
 
-#include "two_dimensional_lattice.hpp"
+#include "base_two_dimensional_lattice.hpp"
 
 namespace compnal {
 namespace lattice {
 
 //! @brief Class to represent the two-dimensional triangle lattice.
-class Triangle: public TwoDimensionalLattice {
+class Triangle: public BaseTwoDimensionalLattice {
 public:
-   using TwoDimensionalLattice::TwoDimensionalLattice;
+   using BaseTwoDimensionalLattice::BaseTwoDimensionalLattice;
 };
 
 } // namespace lattice

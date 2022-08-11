@@ -13,15 +13,15 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  two_dimensional_lattice.hpp
+//  base_two_dimensional_lattice.hpp
 //  compnal
 //
 //  Created by kohei on 2022/08/11.
 //  
 //
 
-#ifndef COMPNAL_LATTICE_TWO_DIMENSIONAL_LATTICE_HPP_
-#define COMPNAL_LATTICE_TWO_DIMENSIONAL_LATTICE_HPP_
+#ifndef COMPNAL_LATTICE_BASE_TWO_DIMENSIONAL_LATTICE_HPP_
+#define COMPNAL_LATTICE_BASE_TWO_DIMENSIONAL_LATTICE_HPP_
 
 #include "boundary_condition.hpp"
 #include <stdexcept>
@@ -30,21 +30,21 @@ namespace compnal {
 namespace lattice {
 
 //! @brief Base class to represent the two-dimensional lattice.
-class TwoDimensionalLattice {
+class BaseTwoDimensionalLattice {
   
 public:
-   //! @brief Constructor of TwoDimensionalLattice class.
+   //! @brief Constructor of BaseTwoDimensionalLattice class.
    //! @param x_size The size of the x-direction.
    //! @param y_size The size of the y-direction.
-   TwoDimensionalLattice(const int x_size, const int y_size) {
+   BaseTwoDimensionalLattice(const int x_size, const int y_size) {
       SetSystemSize(x_size, y_size);
    }
    
-   //! @brief Constructor of TwoDimensionalLattice class.
+   //! @brief Constructor of BaseTwoDimensionalLattice class.
    //! @param x_size The size of the x-direction.
    //! @param y_size The size of the y-direction.
    //! @param boundary_condition Boundary condtion. BoundaryCondition::NONE cannot be used here.
-   TwoDimensionalLattice(const int x_size, const int y_size, const BoundaryCondition boundary_condition) {
+   BaseTwoDimensionalLattice(const int x_size, const int y_size, const BoundaryCondition boundary_condition) {
       SetSystemSize(x_size, y_size);
       SetBoundaryCondition(boundary_condition);
    }
@@ -125,4 +125,4 @@ private:
 } // namespace lattice
 } // namespace compnal
 
-#endif /* COMPNAL_LATTICE_TWO_DIMENSIONAL_LATTICE_HPP_ */
+#endif /* COMPNAL_LATTICE_BASE_TWO_DIMENSIONAL_LATTICE_HPP_ */

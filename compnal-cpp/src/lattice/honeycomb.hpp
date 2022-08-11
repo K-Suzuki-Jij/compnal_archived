@@ -23,15 +23,15 @@
 #ifndef COMPNAL_LATTICE_HONEYCOMB_HPP_
 #define COMPNAL_LATTICE_HONEYCOMB_HPP_
 
+#include "base_two_dimensional_lattice.hpp"
+
 namespace compnal {
 namespace lattice {
 
-class Honeycomb {
-   
-private:
-   int system_size = 0;
-   int n_x = 0;
-   int n_y = 0;
+//! @brief Class to represent the two-dimensional honeycomb lattice.
+class Honeycomb: public BaseTwoDimensionalLattice {
+public:
+   using BaseTwoDimensionalLattice::BaseTwoDimensionalLattice;
 };
 
 

@@ -23,18 +23,14 @@
 #ifndef COMPNAL_LATTICE_CUBIC_HPP_
 #define COMPNAL_LATTICE_CUBIC_HPP_
 
+#include "base_three_dimensional_lattice.hpp"
 
 namespace compnal {
 namespace lattice {
 
-class Cubic {
-   
-   
-private:
-   int system_size = 0;
-   int n_x = 0;
-   int n_y = 0;
-   int n_z = 0;
+class Cubic: public BaseThreeDimensionalLattice {
+public:
+   using BaseThreeDimensionalLattice::BaseThreeDimensionalLattice;
 };
 
 } // namespace lattice

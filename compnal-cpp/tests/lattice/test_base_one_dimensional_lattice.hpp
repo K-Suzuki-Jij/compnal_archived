@@ -13,42 +13,43 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  test_chain.hpp
+//  test_base_one_dimensional_lattice.hpp
 //  compnal
 //
-//  Created by kohei on 2022/08/10.
+//  Created by kohei on 2022/08/11.
 //  
 //
 
-#ifndef COMPNAL_TEST_LATTICE_CHAIN_HPP_
-#define COMPNAL_TEST_LATTICE_CHAIN_HPP_
+#ifndef COMPNAL_TEST_LATTICE_ONE_DIMENSIONAL_LATTICE_HPP_
+#define COMPNAL_TEST_LATTICE_ONE_DIMENSIONAL_LATTICE_HPP_
 
+#include "../../src/lattice/base_one_dimensional_lattice.hpp"
 #include "../../src/lattice/chain.hpp"
 #include <gtest/gtest.h>
 
 namespace compnal {
 namespace test {
 
-TEST(LatticeChain, Constructor) {
+TEST(LatticeBaseOneDimensionalLattice, Constructor) {
    
-   EXPECT_EQ(lattice::Chain{8}.GetSystemSize(), 8);
-   EXPECT_EQ(lattice::Chain{8}.GetBoundaryCondition(), lattice::BoundaryCondition::OBC);
+   EXPECT_EQ(lattice::BaseOneDimensionalLattice{8}.GetSystemSize(), 8);
+   EXPECT_EQ(lattice::BaseOneDimensionalLattice{8}.GetBoundaryCondition(), lattice::BoundaryCondition::OBC);
 
-   EXPECT_EQ((lattice::Chain{
+   EXPECT_EQ((lattice::BaseOneDimensionalLattice{
       8, lattice::BoundaryCondition::PBC
    }.GetSystemSize()), 8);
-   EXPECT_EQ((lattice::Chain{
+   EXPECT_EQ((lattice::BaseOneDimensionalLattice{
       8, lattice::BoundaryCondition::PBC
    }.GetBoundaryCondition()), lattice::BoundaryCondition::PBC);
 
-   EXPECT_THROW(lattice::Chain{-1}, std::runtime_error);
-   EXPECT_THROW((lattice::Chain{1, lattice::BoundaryCondition::NONE}), std::runtime_error);
+   EXPECT_THROW(lattice::BaseOneDimensionalLattice{-1}, std::runtime_error);
+   EXPECT_THROW((lattice::BaseOneDimensionalLattice{1, lattice::BoundaryCondition::NONE}), std::runtime_error);
 
 }
 
-TEST(LatticeChain, SetSystemSize) {
+TEST(LatticeBaseOneDimensionalLattice, SetSystemSize) {
    
-   lattice::Chain chain(0);
+   lattice::BaseOneDimensionalLattice chain(0);
    chain.SetSystemSize(123456789);
    EXPECT_EQ(chain.GetSystemSize(), 123456789);
    
@@ -56,9 +57,9 @@ TEST(LatticeChain, SetSystemSize) {
    
 }
 
-TEST(LatticeChain, SetBoundaryCondition) {
+TEST(LatticeBaseOneDimensionalLattice, SetBoundaryCondition) {
    
-   lattice::Chain chain(8, lattice::BoundaryCondition::PBC);
+   lattice::BaseOneDimensionalLattice chain(8, lattice::BoundaryCondition::PBC);
    chain.SetBoundaryCondition(lattice::BoundaryCondition::OBC);
    EXPECT_EQ(chain.GetBoundaryCondition(), lattice::BoundaryCondition::OBC);
    
@@ -66,9 +67,11 @@ TEST(LatticeChain, SetBoundaryCondition) {
    
 }
 
+TEST(LatticeChain, Basic) {
+   EXPECT_NE(typeid(lattice::Chain), typeid(lattice::BaseOneDimensionalLattice));
+}
 
 } // namespace test
 } // namespace compnal
 
-
-#endif /* COMPNAL_TEST_LATTICE_CHAIN_HPP_ */
+#endif /* COMPNAL_TEST_LATTICE_ONE_DIMENSIONAL_LATTICE_HPP_ */

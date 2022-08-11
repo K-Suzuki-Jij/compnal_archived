@@ -23,70 +23,16 @@
 #ifndef COMPNAL_LATTICE_CHAIN_HPP_
 #define COMPNAL_LATTICE_CHAIN_HPP_
 
-#include "boundary_condition.hpp"
-#include <stdexcept>
+#include "base_one_dimensional_lattice.hpp"
 
 namespace compnal {
 namespace lattice {
 
 //! @brief The class to represent the one-dimensional chain.
-class Chain {
-   
+class Chain: public BaseOneDimensionalLattice {
 public:
-   
-   //! @brief Constructor of Chain class.
-   //! @param system_size System size.
-   Chain(const int system_size) {
-      SetSystemSize(system_size);
-   }
-   
-   //! @brief Constructor of Chain class.
-   //! @param system_size System size.
-   //! @param boundary_condition Boundary condtion. BoundaryCondition::NONE cannot be used here.
-   Chain(const int system_size, const BoundaryCondition boundary_condition) {
-      SetSystemSize(system_size);
-      SetBoundaryCondition(boundary_condition);
-   }
-   
-   //! @brief Set system size.
-   //! @param system_size System size.
-   void SetSystemSize(const int system_size) {
-      if (system_size < 0) {
-         throw std::runtime_error("system_size must be larger than or equal to 0.");
-      }
-      system_size_ = system_size;
-   }
-   
-   //! @brief Set boundary condition.
-   //! @param boundary_condition Boundary condtion. BoundaryCondition::NONE cannot be used here.
-   void SetBoundaryCondition(const BoundaryCondition boundary_condition) {
-      if (boundary_condition == BoundaryCondition::NONE) {
-         throw std::runtime_error("BoundaryCondition::NONE cannot be set.");
-      }
-      bc_ = boundary_condition;
-   }
-   
-   //! @brief Get system size.
-   //! @return System size.
-   int GetSystemSize() const {
-      return system_size_;
-   }
-   
-   //! @brief Get boundary condition.
-   //! @return Boundary condition.
-   BoundaryCondition GetBoundaryCondition() const {
-      return bc_;
-   }
-   
-private:
-   //! @brief System size.
-   int system_size_ = 0;
-   
-   //! @brief Boundary condition.
-   BoundaryCondition bc_ = BoundaryCondition::OBC;
-   
+   using BaseOneDimensionalLattice::BaseOneDimensionalLattice;
 };
-
 
 } // namespace lattice
 } // namespace compnal

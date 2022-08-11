@@ -23,44 +23,45 @@
 #ifndef COMPNAL_TEST_LATTICE_TWO_DIMENSIONAL_LATTICE_HPP_
 #define COMPNAL_TEST_LATTICE_TWO_DIMENSIONAL_LATTICE_HPP_
 
-#include "../../src/lattice/two_dimensional_lattice.hpp"
+#include "../../src/lattice/base_two_dimensional_lattice.hpp"
 #include "../../src/lattice/square.hpp"
 #include "../../src/lattice/triangle.hpp"
+#include "../../src/lattice/honeycomb.hpp"
 #include <gtest/gtest.h>
 
 namespace compnal {
 namespace test {
 
-TEST(LatticeTwoDimensionalLattice, Constructor) {
+TEST(LatticeBaseTwoDimensionalLattice, Constructor) {
    
-   EXPECT_EQ((lattice::TwoDimensionalLattice{8, 7}.GetSystemSize()), 56);
-   EXPECT_EQ((lattice::TwoDimensionalLattice{8, 7}.GetBoundaryCondition()), lattice::BoundaryCondition::OBC);
+   EXPECT_EQ((lattice::BaseTwoDimensionalLattice{8, 7}.GetSystemSize()), 56);
+   EXPECT_EQ((lattice::BaseTwoDimensionalLattice{8, 7}.GetBoundaryCondition()), lattice::BoundaryCondition::OBC);
 
-   EXPECT_EQ((lattice::TwoDimensionalLattice{
+   EXPECT_EQ((lattice::BaseTwoDimensionalLattice{
       8, 7, lattice::BoundaryCondition::PBC
    }.GetSystemSize()), 56);
-   EXPECT_EQ((lattice::TwoDimensionalLattice{
+   EXPECT_EQ((lattice::BaseTwoDimensionalLattice{
       8, 7, lattice::BoundaryCondition::PBC
    }.GetXSize()), 8);
-   EXPECT_EQ((lattice::TwoDimensionalLattice{
+   EXPECT_EQ((lattice::BaseTwoDimensionalLattice{
       8, 7, lattice::BoundaryCondition::PBC
    }.GetYSize()), 7);
-   EXPECT_EQ((lattice::TwoDimensionalLattice{
+   EXPECT_EQ((lattice::BaseTwoDimensionalLattice{
       8, 7, lattice::BoundaryCondition::PBC
    }.GetBoundaryCondition()), lattice::BoundaryCondition::PBC);
 
-   EXPECT_THROW((lattice::TwoDimensionalLattice{-1, +9}), std::runtime_error);
-   EXPECT_THROW((lattice::TwoDimensionalLattice{+3, -1}), std::runtime_error);
-   EXPECT_THROW((lattice::TwoDimensionalLattice{-2, -1}), std::runtime_error);
+   EXPECT_THROW((lattice::BaseTwoDimensionalLattice{-1, +9}), std::runtime_error);
+   EXPECT_THROW((lattice::BaseTwoDimensionalLattice{+3, -1}), std::runtime_error);
+   EXPECT_THROW((lattice::BaseTwoDimensionalLattice{-2, -1}), std::runtime_error);
 
-   EXPECT_THROW((lattice::TwoDimensionalLattice{+2, +2, lattice::BoundaryCondition::NONE}), std::runtime_error);
-   EXPECT_THROW((lattice::TwoDimensionalLattice{-2, -2, lattice::BoundaryCondition::NONE}), std::runtime_error);
+   EXPECT_THROW((lattice::BaseTwoDimensionalLattice{+2, +2, lattice::BoundaryCondition::NONE}), std::runtime_error);
+   EXPECT_THROW((lattice::BaseTwoDimensionalLattice{-2, -2, lattice::BoundaryCondition::NONE}), std::runtime_error);
 
 }
 
-TEST(LatticeTwoDimensionalLattice, SetSystemSize) {
+TEST(LatticeBaseTwoDimensionalLattice, SetSystemSize) {
    
-   lattice::TwoDimensionalLattice square{0, 0};
+   lattice::BaseTwoDimensionalLattice square{0, 0};
    square.SetXSize(3);
    square.SetYSize(1);
 
@@ -79,9 +80,9 @@ TEST(LatticeTwoDimensionalLattice, SetSystemSize) {
 
 }
 
-TEST(LatticeTwoDimensionalLattice, SetBoundaryCondition) {
+TEST(LatticeBaseTwoDimensionalLattice, SetBoundaryCondition) {
    
-   lattice::TwoDimensionalLattice square{0, 0, lattice::BoundaryCondition::PBC};
+   lattice::BaseTwoDimensionalLattice square{0, 0, lattice::BoundaryCondition::PBC};
    square.SetBoundaryCondition(lattice::BoundaryCondition::OBC);
    EXPECT_EQ(square.GetBoundaryCondition(), lattice::BoundaryCondition::OBC);
    
@@ -90,11 +91,15 @@ TEST(LatticeTwoDimensionalLattice, SetBoundaryCondition) {
 }
 
 TEST(LatticeSquare, Basic) {
-   EXPECT_NE(typeid(lattice::Square), typeid(lattice::TwoDimensionalLattice));
+   EXPECT_NE(typeid(lattice::Square), typeid(lattice::BaseTwoDimensionalLattice));
 }
 
 TEST(LatticeTriangle, Basic) {
-   EXPECT_NE(typeid(lattice::Triangle), typeid(lattice::TwoDimensionalLattice));
+   EXPECT_NE(typeid(lattice::Triangle), typeid(lattice::BaseTwoDimensionalLattice));
+}
+
+TEST(LatticeHoneycomb, Basic) {
+   EXPECT_NE(typeid(lattice::Honeycomb), typeid(lattice::BaseTwoDimensionalLattice));
 }
 
 
