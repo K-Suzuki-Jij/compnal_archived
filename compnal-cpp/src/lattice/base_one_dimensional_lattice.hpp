@@ -29,7 +29,7 @@
 namespace compnal {
 namespace lattice {
 
-//! @brief The class to represent the one-dimensional chain.
+//! @brief Base class to represent the one-dimensional system.
 class BaseOneDimensionalLattice {
    
 public:

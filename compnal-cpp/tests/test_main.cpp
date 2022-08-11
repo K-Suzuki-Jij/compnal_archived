@@ -21,6 +21,7 @@
 #include "lattice/test_base_one_dimensional_lattice.hpp"
 #include "lattice/test_base_two_dimensional_lattice.hpp"
 #include "lattice/test_base_three_dimensional_lattice.hpp"
+#include "lattice/test_infinite_range.hpp"
 #include "gtest/gtest.h"
 
 int main(int argc, char **argv) {

@@ -28,6 +28,7 @@
 namespace compnal {
 namespace lattice {
 
+//! @brief Class to represent the three-dimensional cubic lattice.
 class Cubic: public BaseThreeDimensionalLattice {
 public:
    using BaseThreeDimensionalLattice::BaseThreeDimensionalLattice;

@@ -23,13 +23,48 @@
 #ifndef COMPNAL_LATTICE_INFINITE_RANGE_HPP_
 #define COMPNAL_LATTICE_INFINITE_RANGE_HPP_
 
+#include "boundary_condition.hpp"
+#include <stdexcept>
+
 namespace compnal {
 namespace lattice {
 
+//! @brief Class to represent the infinite-dimensional lattice.
 class InfiniteRange {
    
+public:
+   
+   //! @brief Constructor of InfiniteRange class.
+   //! @param system_size System size.
+   InfiniteRange(const int system_size) {
+      SetSystemSize(system_size);
+   }
+   
+   //! @brief Set system size.
+   //! @param system_size System size.
+   void SetSystemSize(const int system_size) {
+      if (system_size < 0) {
+         throw std::runtime_error("system_size must be larger than or equal to 0.");
+      }
+      system_size_ = system_size;
+   }
+   
+   //! @brief Get system size.
+   //! @return System size.
+   int GetSystemSize() const {
+      return system_size_;
+   }
+   
+   //! @brief Get boundary condition.
+   //! @return Boundary condition, BoundaryCondition::NONE.
+   BoundaryCondition GetBoundaryCondition() const {
+      return BoundaryCondition::NONE;
+   }
+   
 private:
-   int system_size = 0;
+   //! @brief System size.
+   int system_size_ = 0;
+   
 };
 
 } // namespace lattice

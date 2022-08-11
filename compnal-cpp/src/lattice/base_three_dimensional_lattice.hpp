@@ -29,7 +29,7 @@
 namespace compnal {
 namespace lattice {
 
-
+//! @brief Base class to represent the three-dimensional lattice.
 class BaseThreeDimensionalLattice {
   
 public:
