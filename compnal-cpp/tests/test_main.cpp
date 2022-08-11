@@ -15,9 +15,11 @@
 //  Created by Kohei Suzuki on 2021/06/14.
 //
 
-#include "model/test_polynomial_ising.hpp"
-#include "solver/test_classical_monte_carlo.hpp"
-#include "utility/test_integer.hpp"
+//#include "model/test_polynomial_ising.hpp"
+//#include "solver/test_classical_monte_carlo.hpp"
+//#include "utility/test_integer.hpp"
+#include "lattice/test_chain.hpp"
+#include "lattice/test_two_dimensional_lattice.hpp"
 #include "gtest/gtest.h"
 
 int main(int argc, char **argv) {

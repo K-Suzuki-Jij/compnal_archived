@@ -58,7 +58,7 @@ public:
    }
    
    //! @brief Set boundary condition.
-   //! @param boundary_condition Boundary condtion.
+   //! @param boundary_condition Boundary condtion. BoundaryCondition::NONE cannot be used here.
    void SetBoundaryCondition(const BoundaryCondition boundary_condition) {
       if (boundary_condition == BoundaryCondition::NONE) {
          throw std::runtime_error("BoundaryCondition::NONE cannot be set.");

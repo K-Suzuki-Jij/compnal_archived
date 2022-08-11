@@ -48,25 +48,23 @@ TEST(LatticeChain, Constructor) {
 
 TEST(LatticeChain, SetSystemSize) {
    
-   lattice::Chain lattice(8, lattice::BoundaryCondition::PBC);
-   lattice.SetSystemSize(123456789);
-   EXPECT_EQ(lattice.GetSystemSize(), 123456789);
+   lattice::Chain chain(0);
+   chain.SetSystemSize(123456789);
+   EXPECT_EQ(chain.GetSystemSize(), 123456789);
    
-   EXPECT_THROW(lattice.SetSystemSize(-1), std::runtime_error);
+   EXPECT_THROW(chain.SetSystemSize(-1), std::runtime_error);
    
 }
 
 TEST(LatticeChain, SetBoundaryCondition) {
    
-   lattice::Chain lattice(8, lattice::BoundaryCondition::PBC);
-   lattice.SetBoundaryCondition(lattice::BoundaryCondition::OBC);
-   EXPECT_EQ(lattice.GetBoundaryCondition(), lattice::BoundaryCondition::OBC);
+   lattice::Chain chain(8, lattice::BoundaryCondition::PBC);
+   chain.SetBoundaryCondition(lattice::BoundaryCondition::OBC);
+   EXPECT_EQ(chain.GetBoundaryCondition(), lattice::BoundaryCondition::OBC);
    
-   EXPECT_THROW(lattice.SetBoundaryCondition(lattice::BoundaryCondition::NONE), std::runtime_error);
+   EXPECT_THROW(chain.SetBoundaryCondition(lattice::BoundaryCondition::NONE), std::runtime_error);
    
 }
-
-
 
 
 } // namespace test

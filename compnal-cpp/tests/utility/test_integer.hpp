@@ -29,10 +29,10 @@ TEST(UtilityInteger, GenerateAllCombinations) {
    std::vector<std::vector<int>> combinations;
    std::vector<int> seed = {1, 2, 3, 4};
    
-   utility::GenerateAllCombinations(&combinations, seed, 0);
+   combinations = utility::GenerateAllCombinations(seed, 0);
    EXPECT_EQ(combinations.size(), 0);
    
-   utility::GenerateAllCombinations(&combinations, seed, 1);
+   combinations = utility::GenerateAllCombinations(seed, 1);
    EXPECT_EQ(combinations.size(), 4);
    EXPECT_EQ(combinations[0].size(), 1);
    EXPECT_EQ(combinations[1].size(), 1);
@@ -43,7 +43,7 @@ TEST(UtilityInteger, GenerateAllCombinations) {
    EXPECT_EQ(combinations[2][0], 3);
    EXPECT_EQ(combinations[3][0], 4);
    
-   utility::GenerateAllCombinations(&combinations, seed, 3);
+   combinations = utility::GenerateAllCombinations(seed, 3);
    EXPECT_EQ(combinations.size()   , 4);
    EXPECT_EQ(combinations[0].size(), 3);
    EXPECT_EQ(combinations[1].size(), 3);
@@ -66,7 +66,7 @@ TEST(UtilityInteger, GenerateAllCombinations) {
    EXPECT_EQ(combinations[3][1], 3);
    EXPECT_EQ(combinations[3][2], 4);
    
-   utility::GenerateAllCombinations(&combinations, seed, 4);
+   combinations = utility::GenerateAllCombinations(seed, 4);
    EXPECT_EQ(combinations.size()   , 1);
    EXPECT_EQ(combinations[0].size(), 4);
    EXPECT_EQ(combinations[0][0], 1);
@@ -74,8 +74,8 @@ TEST(UtilityInteger, GenerateAllCombinations) {
    EXPECT_EQ(combinations[0][2], 3);
    EXPECT_EQ(combinations[0][3], 4);
 
-   EXPECT_THROW(utility::GenerateAllCombinations(&combinations, seed, 5 );, std::runtime_error);
-   EXPECT_THROW(utility::GenerateAllCombinations(&combinations, seed, -1);, std::runtime_error);
+   EXPECT_THROW(utility::GenerateAllCombinations(seed, 5 );, std::runtime_error);
+   EXPECT_THROW(utility::GenerateAllCombinations(seed, -1);, std::runtime_error);
 
 }
 

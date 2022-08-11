@@ -20,8 +20,31 @@
 //  
 //
 
-#ifndef boundary_condition_h
-#define boundary_condition_h
+#ifndef COMPNAL_LATTICE_BOUNDARY_CONDITION_HPP_
+#define COMPNAL_LATTICE_BOUNDARY_CONDITION_HPP_
+
+namespace compnal {
+namespace lattice {
+
+//! @brief Enumerated type for boundary conditions.
+enum class BoundaryCondition {
+  
+   //! @brief None Type
+   NONE,
+   
+   //! @brief Open boundary condition
+   OBC,
+   
+   //! @brief Periodic boundary condition
+   PBC,
+   
+   //! @brief Sine-Square Deformation
+   SSD
+   
+};
+
+} // namespace lattice
+} // namespace compnal
 
 
-#endif /* boundary_condition_h */
+#endif /* COMPNAL_LATTICE_BOUNDARY_CONDITION_HPP_ */

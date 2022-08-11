@@ -20,8 +20,21 @@
 //  
 //
 
-#ifndef triangle_h
-#define triangle_h
+#ifndef COMPNAL_LATTICE_TRIANGLE_HPP_
+#define COMPNAL_LATTICE_TRIANGLE_HPP_
 
+#include "two_dimensional_lattice.hpp"
 
-#endif /* triangle_h */
+namespace compnal {
+namespace lattice {
+
+//! @brief Class to represent the two-dimensional triangle lattice.
+class Triangle: public TwoDimensionalLattice {
+public:
+   using TwoDimensionalLattice::TwoDimensionalLattice;
+};
+
+} // namespace lattice
+} // namespace compnal
+
+#endif /* COMPNAL_LATTICE_TRIANGLE_HPP_ */

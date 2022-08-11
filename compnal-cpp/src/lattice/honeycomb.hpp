@@ -20,8 +20,22 @@
 //  
 //
 
-#ifndef honeycomb_h
-#define honeycomb_h
+#ifndef COMPNAL_LATTICE_HONEYCOMB_HPP_
+#define COMPNAL_LATTICE_HONEYCOMB_HPP_
+
+namespace compnal {
+namespace lattice {
+
+class Honeycomb {
+   
+private:
+   int system_size = 0;
+   int n_x = 0;
+   int n_y = 0;
+};
 
 
-#endif /* honeycomb_h */
+} // namespace lattice
+} // namespace compnal
+
+#endif /* COMPNAL_LATTICE_HONEYCOMB_HPP_ */

@@ -23,26 +23,28 @@
 namespace compnal {
 namespace utility {
 
-
+//! @brief Generate all the combinations from a given list.
+//! @param list The list, from which all the combinations will be generated.
+//! @param combination_size The size of combinations.
+//! @return All the combinations.
 template<typename T>
-void GenerateAllCombinations(std::vector<std::vector<T>> *combinations, const std::vector<T> &seed, const std::int64_t combination_size) {
+std::vector<std::vector<T>> GenerateAllCombinations(const std::vector<T> &list, const std::int64_t combination_size) {
    
-   if (static_cast<std::int64_t>(seed.size()) < combination_size) {
-      throw std::runtime_error("combination_size must be smallar than or equal to seed.size().");
+   std::vector<std::vector<T>> combinations;
+   
+   if (static_cast<std::int64_t>(list.size()) < combination_size) {
+      throw std::runtime_error("combination_size must be smallar than or equal to list.size().");
    }
    if (combination_size < 0) {
       throw std::runtime_error("combination_size must be larger than -1.");
    }
    if (combination_size == 0) {
-      combinations->clear();
-      combinations->shrink_to_fit();
-      return;
+      return combinations;
    }
    
-   combinations->clear();
    std::vector<std::int64_t> indices(combination_size);
    
-   const std::int64_t seed_size = static_cast<std::int64_t>(seed.size());
+   const std::int64_t seed_size = static_cast<std::int64_t>(list.size());
    std::int64_t start_index = 0;
    std::int64_t size = 0;
    
@@ -52,9 +54,9 @@ void GenerateAllCombinations(std::vector<std::vector<T>> *combinations, const st
          if (size == combination_size) {
             std::vector<T> temp(combination_size);
             for (std::size_t j = 0; j < temp.size(); ++j) {
-               temp[j] = seed[indices[j]];
+               temp[j] = list[indices[j]];
             }
-            combinations->push_back(temp);
+            combinations.push_back(temp);
             break;
          }
       }
@@ -64,8 +66,9 @@ void GenerateAllCombinations(std::vector<std::vector<T>> *combinations, const st
       }
       start_index = indices[size] + 1;
    }
-   combinations->shrink_to_fit();
+   combinations.shrink_to_fit();
    
+   return combinations;
 }
 
 

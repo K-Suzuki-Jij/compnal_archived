@@ -20,8 +20,22 @@
 //  
 //
 
-#ifndef quantum_any_type_h
-#define quantum_any_type_h
+#ifndef COMPNAL_LATTICE_QUANTUM_ANY_TYPE_HPP_
+#define COMPNAL_LATTICE_QUANTUM_ANY_TYPE_HPP_
 
+namespace compnal {
+namespace lattice {
 
-#endif /* quantum_any_type_h */
+template<typename IndexType>
+class QuantumAnyType {
+   
+   
+private:
+   int system_size = 0;
+   
+};
+
+} // namespace lattice
+} // namespace compnal
+
+#endif /* COMPNAL_LATTICE_QUANTUM_ANY_TYPE_HPP_ */

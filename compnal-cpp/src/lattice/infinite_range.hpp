@@ -20,8 +20,20 @@
 //  
 //
 
-#ifndef infinite_range_h
-#define infinite_range_h
+#ifndef COMPNAL_LATTICE_INFINITE_RANGE_HPP_
+#define COMPNAL_LATTICE_INFINITE_RANGE_HPP_
+
+namespace compnal {
+namespace lattice {
+
+class InfiniteRange {
+   
+private:
+   int system_size = 0;
+};
+
+} // namespace lattice
+} // namespace compnal
 
 
-#endif /* infinite_range_h */
+#endif /* COMPNAL_LATTICE_INFINITE_RANGE_HPP_ */

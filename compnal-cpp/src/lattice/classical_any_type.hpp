@@ -20,8 +20,23 @@
 //  
 //
 
-#ifndef classical_any_type_h
-#define classical_any_type_h
+#ifndef COMPNAL_LATTICE_CLASSICAL_ANY_TYPE_HPP_
+#define COMPNAL_LATTICE_CLASSICAL_ANY_TYPE_HPP_
 
 
-#endif /* classical_any_type_h */
+namespace compnal {
+namespace lattice {
+
+
+class ClassicalAnyType {
+   
+private:
+   int system_size = 0;
+   
+};
+
+} // namespace lattice
+} // namespace compnal
+
+
+#endif /* COMPNAL_LATTICE_CLASSICAL_ANY_TYPE_HPP_ */

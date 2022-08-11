@@ -20,8 +20,24 @@
 //  
 //
 
-#ifndef cubic_h
-#define cubic_h
+#ifndef COMPNAL_LATTICE_CUBIC_HPP_
+#define COMPNAL_LATTICE_CUBIC_HPP_
 
 
-#endif /* cubic_h */
+namespace compnal {
+namespace lattice {
+
+class Cubic {
+   
+   
+private:
+   int system_size = 0;
+   int n_x = 0;
+   int n_y = 0;
+   int n_z = 0;
+};
+
+} // namespace lattice
+} // namespace compnal
+
+#endif /* COMPNAL_LATTICE_CUBIC_HPP_ */

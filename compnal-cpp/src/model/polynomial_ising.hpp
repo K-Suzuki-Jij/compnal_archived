@@ -24,7 +24,7 @@
 namespace compnal {
 namespace model {
 
-
+//! @brief Polynomial Ising class.
 template<typename RealType>
 class PolynomialIsing {
    static_assert(std::is_floating_point<RealType>::value, "Template parameter RealType must be floating point type");

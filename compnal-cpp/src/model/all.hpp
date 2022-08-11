@@ -18,7 +18,6 @@
 #ifndef COMPNAL_MODEL_ALL_HPP_
 #define COMPNAL_MODEL_ALL_HPP_
 
-#include "lattice.hpp"
 #include "polynomial_ising.hpp"
 
 

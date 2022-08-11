@@ -19,5 +19,6 @@
 #define COMPNAL_UTILITY_ALL_HPP_
 
 #include "integer.hpp"
+#include "hash.hpp"
 
 #endif /* COMPNAL_UTILITY_ALL_HPP_ */
