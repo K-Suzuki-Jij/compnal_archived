@@ -1,3 +1,4 @@
+//
 //  Copyright 2022 Kohei Suzuki
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,14 +13,28 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Created by Kohei Suzuki on 2022/07/13.
+//  base_quadratic_general_model.hpp
+//  compnal
+//
+//  Created by kohei on 2022/08/13.
+//  
 //
 
-#ifndef COMPNAL_UTILITY_ALL_HPP_
-#define COMPNAL_UTILITY_ALL_HPP_
+#ifndef COMPNAL_MODEL_BASE_QUADRATIC_GENERAL_MODEL_HPP_
+#define COMPNAL_MODEL_BASE_QUADRATIC_GENERAL_MODEL_HPP_
 
-#include "integer.hpp"
-#include "hash.hpp"
-#include "type.hpp"
+namespace compnal {
+namespace model {
 
-#endif /* COMPNAL_UTILITY_ALL_HPP_ */
+template<typename RealType>
+class BaseQuadraticGeneralModel {
+  
+   
+   
+};
+
+
+} // namespace model
+} // namespace compnal
+
+#endif /* COMPNAL_MODEL_BASE_QUADRATIC_GENERAL_MODEL_HPP_ */

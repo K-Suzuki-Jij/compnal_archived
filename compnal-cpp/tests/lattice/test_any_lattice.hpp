@@ -13,29 +13,29 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  quantum_any_type.hpp
+//  test_classical_any_lattice.hpp
 //  compnal
 //
-//  Created by kohei on 2022/08/10.
+//  Created by kohei on 2022/08/11.
 //  
 //
 
-#ifndef COMPNAL_LATTICE_QUANTUM_ANY_TYPE_HPP_
-#define COMPNAL_LATTICE_QUANTUM_ANY_TYPE_HPP_
+#ifndef COMPNAL_TEST_LATTICE_ANY_LATTICE_HPP_
+#define COMPNAL_TEST_LATTICE_ANY_LATTICE_HPP_
+
+#include "../../src/lattice/any_lattice.hpp"
+#include <gtest/gtest.h>
 
 namespace compnal {
-namespace lattice {
+namespace test {
 
-template<typename IndexType>
-class QuantumAnyType {
-   
-   
-private:
-   int system_size = 0;
-   
-};
+TEST(LatticeAnyLattice, Basic) {
+   lattice::AnyLattice lattice;
+   EXPECT_EQ(lattice.GetBoundaryCondition(), lattice::BoundaryCondition::NONE);
+}
 
-} // namespace lattice
+
+} // namespace test
 } // namespace compnal
 
-#endif /* COMPNAL_LATTICE_QUANTUM_ANY_TYPE_HPP_ */
+#endif /* COMPNAL_TEST_LATTICE_ANY_LATTICE_HPP_ */

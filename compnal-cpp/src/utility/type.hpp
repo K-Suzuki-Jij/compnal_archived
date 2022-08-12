@@ -13,30 +13,27 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  classical_any_type.hpp
+//  type.hpp
 //  compnal
 //
-//  Created by kohei on 2022/08/10.
+//  Created by kohei on 2022/08/13.
 //  
 //
 
-#ifndef COMPNAL_LATTICE_CLASSICAL_ANY_TYPE_HPP_
-#define COMPNAL_LATTICE_CLASSICAL_ANY_TYPE_HPP_
-
+#ifndef COMPNAL_UTILITY_TYPE_HPP_
+#define COMPNAL_UTILITY_TYPE_HPP_
 
 namespace compnal {
-namespace lattice {
+namespace utility {
+
+using IntStrType = std::variant<std::int32_t, std::string>;
+
+using IndexType = std::variant<std::int32_t, std::string, std::vector<IntStrType>>;
+
+using SpinType = std::int8_t;
 
 
-class ClassicalAnyType {
-   
-private:
-   int system_size = 0;
-   
-};
-
-} // namespace lattice
+} // namespace utility
 } // namespace compnal
 
-
-#endif /* COMPNAL_LATTICE_CLASSICAL_ANY_TYPE_HPP_ */
+#endif /* COMPNAL_UTILITY_TYPE_HPP_ */

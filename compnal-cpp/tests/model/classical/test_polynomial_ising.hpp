@@ -18,15 +18,33 @@
 #ifndef COMPNAL_TEST_MODEL_POLYNOMIAL_ISING_HPP_
 #define COMPNAL_TEST_MODEL_POLYNOMIAL_ISING_HPP_
 
-#include "../../src/model/polynomial_ising.hpp"
+#include "../../../src/model/classical/polynomial_ising.hpp"
 #include <gtest/gtest.h>
 
 namespace compnal {
 namespace test {
 
-TEST(ModelPolynomialIsing, Basic) {
+TEST(ModelPolynomialIsing, InfiniteRange) {
    
-   model::PolynomialIsing<double> model(10, {1.0, 1.0, 1.0}, model::Lattice::INFINIT_RANGE);
+   lattice::InfiniteRange lattice{10};
+   std::unordered_map<int, double> interaction{{0, -1.0}, {3, +1.0}};
+   model::PolynomialIsing model{lattice, interaction};
+   
+}
+
+TEST(ModelPolynomialIsing, AnyLattice) {
+   using VISType = std::vector<utility::IntStrType>;
+   model::PolynomialIsing<double, lattice::AnyLattice> model{lattice::AnyLattice{}};
+   
+   model.AddInteraction({1, 2, "a"}, -1.0);
+   model.AddInteraction({1, VISType{1, 1}}, -2.0);
+   
+   EXPECT_EQ(model.GetSystemSize(), 4);
+   EXPECT_EQ(model.GetIndexSet().count(1), 1);
+   EXPECT_EQ(model.GetIndexSet().count(2), 1);
+   EXPECT_EQ(model.GetIndexSet().count("a"), 1);
+   EXPECT_EQ(model.GetIndexSet().count(VISType{1, 1}), 1);
+   EXPECT_EQ(model.lattice.GetBoundaryCondition(), lattice::BoundaryCondition::NONE);
    
 }
 

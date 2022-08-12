@@ -24,32 +24,27 @@
 #define COMPNAL_UTILITY_HASH_HPP_
 
 #include <variant>
+#include "type.hpp"
 
 namespace compnal {
 namespace utility {
 
 //! @brief Hash struct of IndexType used in model::GeneralModel
-//! @tparam IntegerType Integer type.
-template <typename IntegerType>
-struct VariantHash {
-   static_assert(std::is_integral<IntegerType>::value, "Template parameter, IntegerType must be integer type");
-
-   using VariantVecType = std::vector<std::variant<IntegerType, std::string>>;
-
-   template <class... Types>
+struct IndexHash {
+   template<class... Types>
    std::size_t operator()(const std::variant<Types...> &v) const {
-      if (std::holds_alternative<IntegerType>(v)) {
-         return std::hash<IntegerType>()(std::get<IntegerType>(v));
+      if (std::holds_alternative<std::int32_t>(v)) {
+         return std::hash<std::int32_t>()(std::get<std::int32_t>(v));
       }
       else if (std::holds_alternative<std::string>(v)) {
          return std::hash<std::string>()(std::get<std::string>(v));
       }
-      else if (std::holds_alternative<VariantVecType>(v)) {
-         const auto &variant_vec = std::get<VariantVecType>(v);
+      else if (std::holds_alternative<std::vector<IntStrType>>(v)) {
+         const auto &variant_vec = std::get<std::vector<IntStrType>>(v);
          std::size_t hash = variant_vec.size();
          for (const auto &i : variant_vec) {
-            if (std::holds_alternative<IntegerType>(i)) {
-               hash ^= std::hash<IntegerType>()(std::get<IntegerType>(i)) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+            if (std::holds_alternative<std::int32_t>(i)) {
+               hash ^= std::hash<std::int32_t>()(std::get<std::int32_t>(i)) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
             }
             else if (std::holds_alternative<std::string>(i)) {
                hash ^= std::hash<std::string>()(std::get<std::string>(i)) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
@@ -63,6 +58,17 @@ struct VariantHash {
       else {
          throw std::runtime_error("Invalid template parameters");
       }
+   }
+};
+
+//! @brief Hash struct of std::vector.
+struct IndexVectorHash {
+   std::size_t operator()(const std::vector<IndexType> &v) const {
+      std::size_t hash = v.size();
+      for (const auto &i : v) {
+         hash ^= IndexHash()(i) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+      }
+      return hash;
    }
 };
 

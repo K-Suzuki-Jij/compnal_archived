@@ -18,7 +18,11 @@
 #ifndef COMPNAL_MODEL_ALL_HPP_
 #define COMPNAL_MODEL_ALL_HPP_
 
-#include "polynomial_ising.hpp"
+#include "classical/ising.hpp"
+#include "classical/polynomial_ising.hpp"
+#include "classical/potts.hpp"
 
+#include "quantum/hubbard.hpp"
+#include "quantum/heisenberg.hpp"
 
 #endif /* COMPNAL_MODEL_ALL_HPP_ */

@@ -1,3 +1,4 @@
+//
 //  Copyright 2022 Kohei Suzuki
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,14 +13,29 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Created by Kohei Suzuki on 2022/07/13.
+//  any_lattice.hpp
+//  compnal
+//
+//  Created by kohei on 2022/08/10.
+//  
 //
 
-#ifndef COMPNAL_UTILITY_ALL_HPP_
-#define COMPNAL_UTILITY_ALL_HPP_
+#ifndef COMPNAL_LATTICE_ANY_LATTICE_HPP_
+#define COMPNAL_LATTICE_ANY_LATTICE_HPP_
 
-#include "integer.hpp"
-#include "hash.hpp"
-#include "type.hpp"
+#include "boundary_condition.hpp"
 
-#endif /* COMPNAL_UTILITY_ALL_HPP_ */
+namespace compnal {
+namespace lattice {
+
+struct AnyLattice {
+   BoundaryCondition GetBoundaryCondition() const {
+      return BoundaryCondition::NONE;
+   }
+};
+
+} // namespace lattice
+} // namespace compnal
+
+
+#endif /* COMPNAL_LATTICE_ANY_LATTICE_HPP_ */
