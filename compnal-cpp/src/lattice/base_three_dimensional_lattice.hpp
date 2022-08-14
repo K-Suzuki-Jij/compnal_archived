@@ -38,7 +38,7 @@ public:
    //! @param x_size The size of the x-direction.
    //! @param y_size The size of the y-direction.
    //! @param z_size The size of the z-direction.
-   BaseThreeDimensionalLattice(const int x_size, const int y_size, const int z_size) {
+   BaseThreeDimensionalLattice(const std::int32_t x_size, const std::int32_t y_size, const std::int32_t z_size) {
       SetSystemSize(x_size, y_size, z_size);
    }
    
@@ -47,14 +47,14 @@ public:
    //! @param y_size The size of the y-direction.
    //! @param z_size The size of the z-direction.
    //! @param boundary_condition Boundary condtion. BoundaryCondition::NONE cannot be used here.
-   BaseThreeDimensionalLattice(const int x_size, const int y_size, const int z_size, const BoundaryCondition boundary_condition) {
+   BaseThreeDimensionalLattice(const std::int32_t x_size, const std::int32_t y_size, const std::int32_t z_size, const BoundaryCondition boundary_condition) {
       SetSystemSize(x_size, y_size, z_size);
       SetBoundaryCondition(boundary_condition);
    }
    
    //! @brief Set size of the x-direction.
    //! @param x_size Size of the x-direction.
-   void SetXSize(const int x_size) {
+   void SetXSize(const std::int32_t x_size) {
       if (x_size < 0) {
          throw std::runtime_error("x_size must be larger than or equal to 0.");
       }
@@ -63,7 +63,7 @@ public:
    
    //! @brief Set size of the y-direction.
    //! @param y_size Size of the y-direction.
-   void SetYSize(const int y_size) {
+   void SetYSize(const std::int32_t y_size) {
       if (y_size < 0) {
          throw std::runtime_error("y_size must be larger than or equal to 0.");
       }
@@ -72,7 +72,7 @@ public:
    
    //! @brief Set size of the z-direction.
    //! @param z_size Size of the z-direction.
-   void SetZSize(const int z_size) {
+   void SetZSize(const std::int32_t z_size) {
       if (z_size < 0) {
          throw std::runtime_error("z_size must be larger than or equal to 0.");
       }
@@ -83,7 +83,7 @@ public:
    //! @param x_size Size of the x-direction.
    //! @param y_size Size of the y-direction.
    //! @param z_size Size of the z-direction.
-   void SetSystemSize(const int x_size, const int y_size, const int z_size) {
+   void SetSystemSize(const std::int32_t x_size, const std::int32_t y_size, const std::int32_t z_size) {
       SetXSize(x_size);
       SetYSize(y_size);
       SetZSize(z_size);
@@ -100,25 +100,25 @@ public:
    
    //! @brief Get size of the x-direction.
    //! @return Size of the x-direction.
-   int GetXSize() const {
+   std::int32_t GetXSize() const {
       return x_size_;
    }
    
    //! @brief Get size of the y-direction.
    //! @return Size of the y-direction.
-   int GetYSize() const {
+   std::int32_t GetYSize() const {
       return y_size_;
    }
    
    //! @brief Get size of the z-direction.
    //! @return Size of the z-direction.
-   int GetZSize() const {
+   std::int32_t GetZSize() const {
       return z_size_;
    }
    
    //! @brief Get system size.
    //! @return System size.
-   int GetSystemSize() const {
+   std::int32_t GetSystemSize() const {
       return x_size_*y_size_*z_size_;
    }
    
@@ -131,13 +131,13 @@ public:
    
 private:
    //! @brief Size of the x-direction.
-   int x_size_ = 0;
+   std::int32_t x_size_ = 0;
    
    //! @brief Size of the y-direction.
-   int y_size_ = 0;
+   std::int32_t y_size_ = 0;
    
    //! @brief Size of the z-direction.
-   int z_size_ = 0;
+   std::int32_t z_size_ = 0;
    
    //! @brief Boundary condition.
    BoundaryCondition bc_ = BoundaryCondition::OBC;

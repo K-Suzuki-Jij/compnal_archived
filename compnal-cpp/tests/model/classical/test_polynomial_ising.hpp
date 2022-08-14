@@ -34,7 +34,7 @@ TEST(ModelPolynomialIsing, InfiniteRange) {
 
 TEST(ModelPolynomialIsing, AnyLattice) {
    using VISType = std::vector<utility::IntStrType>;
-   model::PolynomialIsing<double, lattice::AnyLattice> model{lattice::AnyLattice{}};
+   model::PolynomialIsing<lattice::AnyLattice, double> model{lattice::AnyLattice{}};
    
    model.AddInteraction({1, 2, "a"}, -1.0);
    model.AddInteraction({1, VISType{1, 1}}, -2.0);

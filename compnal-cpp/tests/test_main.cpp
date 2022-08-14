@@ -16,14 +16,14 @@
 //
 
 
-//#include "solver/test_classical_monte_carlo.hpp"
-//#include "utility/test_integer.hpp"
+#include "utility/test_integer.hpp"
 #include "lattice/test_base_one_dimensional_lattice.hpp"
 #include "lattice/test_base_two_dimensional_lattice.hpp"
 #include "lattice/test_base_three_dimensional_lattice.hpp"
 #include "lattice/test_infinite_range.hpp"
 #include "lattice/test_any_lattice.hpp"
 #include "model/classical/test_polynomial_ising.hpp"
+#include "solver/test_classical_monte_carlo.hpp"
 #include "gtest/gtest.h"
 
 int main(int argc, char **argv) {

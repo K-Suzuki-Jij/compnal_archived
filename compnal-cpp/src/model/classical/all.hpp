@@ -13,30 +13,18 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  type.hpp
+//  all.hpp
 //  compnal
 //
 //  Created by kohei on 2022/08/13.
 //  
 //
 
-#ifndef COMPNAL_UTILITY_TYPE_HPP_
-#define COMPNAL_UTILITY_TYPE_HPP_
+#ifndef COMPNAL_MODEL_CLASSICAL_ALL_HPP_
+#define COMPNAL_MODEL_CLASSICAL_ALL_HPP_
 
-#include <random>
+#include "ising.hpp"
+#include "polynomial_ising.hpp"
+#include "potts.hpp"
 
-namespace compnal {
-namespace utility {
-
-using IntStrType = std::variant<std::int32_t, std::string>;
-
-using IndexType = std::variant<std::int32_t, std::string, std::vector<IntStrType>>;
-
-using SpinType = std::int8_t;
-
-using RandType = std::mt19937_64;
-
-} // namespace utility
-} // namespace compnal
-
-#endif /* COMPNAL_UTILITY_TYPE_HPP_ */
+#endif /* COMPNAL_MODEL_CLASSICAL_ALL_HPP_ */

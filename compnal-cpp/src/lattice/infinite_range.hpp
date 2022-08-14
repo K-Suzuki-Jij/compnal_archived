@@ -36,13 +36,13 @@ public:
    
    //! @brief Constructor of InfiniteRange class.
    //! @param system_size System size.
-   InfiniteRange(const int system_size) {
+   InfiniteRange(const std::int32_t system_size) {
       SetSystemSize(system_size);
    }
    
    //! @brief Set system size.
    //! @param system_size System size.
-   void SetSystemSize(const int system_size) {
+   void SetSystemSize(const std::int32_t system_size) {
       if (system_size < 0) {
          throw std::runtime_error("system_size must be larger than or equal to 0.");
       }
@@ -51,7 +51,7 @@ public:
    
    //! @brief Get system size.
    //! @return System size.
-   int GetSystemSize() const {
+   std::int32_t GetSystemSize() const {
       return system_size_;
    }
    
@@ -63,7 +63,7 @@ public:
    
 private:
    //! @brief System size.
-   int system_size_ = 0;
+   std::int32_t system_size_ = 0;
    
 };
 

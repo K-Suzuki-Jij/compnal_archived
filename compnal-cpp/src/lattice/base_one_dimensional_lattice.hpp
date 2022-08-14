@@ -36,21 +36,21 @@ public:
    
    //! @brief Constructor of BaseOneDimensionalLattice class.
    //! @param system_size System size.
-   BaseOneDimensionalLattice(const int system_size) {
+   BaseOneDimensionalLattice(const std::int32_t system_size) {
       SetSystemSize(system_size);
    }
    
    //! @brief Constructor of BaseOneDimensionalLattice class.
    //! @param system_size System size.
    //! @param boundary_condition Boundary condtion. BoundaryCondition::NONE cannot be used here.
-   BaseOneDimensionalLattice(const int system_size, const BoundaryCondition boundary_condition) {
+   BaseOneDimensionalLattice(const std::int32_t system_size, const BoundaryCondition boundary_condition) {
       SetSystemSize(system_size);
       SetBoundaryCondition(boundary_condition);
    }
    
    //! @brief Set system size.
    //! @param system_size System size.
-   void SetSystemSize(const int system_size) {
+   void SetSystemSize(const std::int32_t system_size) {
       if (system_size < 0) {
          throw std::runtime_error("system_size must be larger than or equal to 0.");
       }
@@ -68,7 +68,7 @@ public:
    
    //! @brief Get system size.
    //! @return System size.
-   int GetSystemSize() const {
+   std::int32_t GetSystemSize() const {
       return system_size_;
    }
    
@@ -80,7 +80,7 @@ public:
    
 private:
    //! @brief System size.
-   int system_size_ = 0;
+   std::int32_t system_size_ = 0;
    
    //! @brief Boundary condition.
    BoundaryCondition bc_ = BoundaryCondition::OBC;

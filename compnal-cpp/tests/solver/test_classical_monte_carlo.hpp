@@ -19,18 +19,20 @@
 #define COMPNAL_TEST_SOLVER_CLASSICAL_MONTE_CARLO_HPP_
 
 #include "../../src/solver/classical_monte_carlo.hpp"
+#include "../../src/solver/updater/monte_carlo_updater.hpp"
 #include <gtest/gtest.h>
 
 namespace compnal {
 namespace test {
 
 TEST(SolverClassicalMonteCarlo, InfinitRangePolyIsing) {
-   
-   model::PolynomialIsing<double> model(30, {0.0, 0.0, 1.0}, model::Lattice::INFINIT_RANGE);
-   solver::ClassicalMonteCarlo solver(model, solver::Updater::METROPOLIS);
-   solver.SetNumSweeps(10000);
+   const lattice::InfiniteRange lattice(10);
+   const std::unordered_map<std::int32_t, double> interaction{{3, -0.03}};
+   model::PolynomialIsing model(lattice, interaction);
+   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver.SetNumSweeps(100000);
    solver.SetNumSamples(10);
-   solver.SetInverseTemperature(100);
+   solver.SetTemperature(0.15);
    solver.Run();
    
    for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {

@@ -13,21 +13,21 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  base_quadratic_general_model.hpp
+//  quadratic_general_model.hpp
 //  compnal
 //
 //  Created by kohei on 2022/08/13.
 //  
 //
 
-#ifndef COMPNAL_MODEL_BASE_QUADRATIC_GENERAL_MODEL_HPP_
-#define COMPNAL_MODEL_BASE_QUADRATIC_GENERAL_MODEL_HPP_
+#ifndef COMPNAL_MODEL_QUADRATIC_GENERAL_MODEL_HPP_
+#define COMPNAL_MODEL_QUADRATIC_GENERAL_MODEL_HPP_
 
 namespace compnal {
 namespace model {
 
 template<typename RealType>
-class BaseQuadraticGeneralModel {
+class QuadraticGeneralModel {
   
    
    
@@ -37,4 +37,4 @@ class BaseQuadraticGeneralModel {
 } // namespace model
 } // namespace compnal
 
-#endif /* COMPNAL_MODEL_BASE_QUADRATIC_GENERAL_MODEL_HPP_ */
+#endif /* COMPNAL_MODEL_QUADRATIC_GENERAL_MODEL_HPP_ */
