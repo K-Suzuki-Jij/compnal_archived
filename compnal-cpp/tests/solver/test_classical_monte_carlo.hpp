@@ -26,21 +26,23 @@ namespace compnal {
 namespace test {
 
 TEST(SolverClassicalMonteCarlo, InfinitRangePolyIsing) {
-   const lattice::InfiniteRange lattice(10);
+   const lattice::InfiniteRange lattice(100);
    const std::unordered_map<std::int32_t, double> interaction{{3, -0.03}};
    model::PolynomialIsing model(lattice, interaction);
    solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
-   solver.SetNumSweeps(100000);
+   solver.SetNumSweeps(1000);
    solver.SetNumSamples(10);
-   solver.SetTemperature(0.15);
+   solver.SetTemperature(10000);
    solver.Run();
    
-   for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      for (const auto &it: solver.GetSample(i)) {
-         printf("%+d, ", it);
-      }
-      printf("\n");
-   }
+   //for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
+   //   for (const auto &it: solver.GetSample(i)) {
+   //      printf("%+d, ", it);
+   //   }
+   //   printf("\n");
+   //}
+   
+   printf("%lf\n", solver.CalculateSampleAverage());
    
 }
 

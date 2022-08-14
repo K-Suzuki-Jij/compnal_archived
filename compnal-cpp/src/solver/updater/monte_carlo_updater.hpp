@@ -30,14 +30,14 @@ namespace compnal {
 namespace solver {
 namespace updater {
 
-template<typename RealType, class ModelType>
+template<class ModelType>
 void ExecuteMetropolis(std::vector<utility::SpinType> *sample,
                        const ModelType &model,
                        const std::int32_t num_sweeps,
-                       const RealType beta,
+                       const typename ModelType::ValueType beta,
                        const std::uint64_t seed) {
    
-   //using RealType = typename ModelType::ValueType;
+   using RealType = typename ModelType::ValueType;
    
    if (sample->size() != static_cast<std::size_t>(model.GetSystemSize())) {
       throw std::runtime_error("The sample size is not equal to the system size.");
@@ -49,20 +49,17 @@ void ExecuteMetropolis(std::vector<utility::SpinType> *sample,
    utility::RandType random_number_engine(seed);
    std::uniform_real_distribution<RealType> dist_real(0, 1);
    std::uniform_int_distribution<std::int32_t> dist_system_size(0, system_size - 1);
-   
-   // Prepare system size index list (0, 1, 2, ..., N - 1)
-   std::vector<std::int32_t> system_size_index_list(system_size);
-   std::iota(system_size_index_list.begin(), system_size_index_list.end(), 0);
-   
+      
    // Set energy difference
    std::vector<RealType> energy_difference(system_size);
-   SetEnergyDifference<RealType>(&energy_difference, &system_size_index_list, *sample, model);
+   SetEnergyDifference<RealType>(&energy_difference, *sample, model);
    
+   // Do Metropolis update
    for (std::int32_t sweep_count = 0; sweep_count < num_sweeps; sweep_count++) {
       for (std::int32_t i = 0; i < system_size; i++) {
          const std::int32_t index = dist_system_size(random_number_engine);
          if (energy_difference[index] <= 0.0 || std::exp(-beta*energy_difference[index]) > dist_real(random_number_engine)) {
-            UpdateConfiguration(sample, &energy_difference, &system_size_index_list, index, model);
+            UpdateConfiguration(sample, &energy_difference, index, model);
          }
       }
    }
