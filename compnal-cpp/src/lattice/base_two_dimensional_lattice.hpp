@@ -25,6 +25,7 @@
 
 #include "boundary_condition.hpp"
 #include <stdexcept>
+#include <cstdint>
 
 namespace compnal {
 namespace lattice {

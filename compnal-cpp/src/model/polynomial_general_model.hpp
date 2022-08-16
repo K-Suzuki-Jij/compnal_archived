@@ -23,8 +23,8 @@
 #ifndef COMPNAL_MODEL_POLYNOMIAL_GENERAL_MODEL_HPP_
 #define COMPNAL_MODEL_POLYNOMIAL_GENERAL_MODEL_HPP_
 
-#include "hash.hpp"
-#include "type.hpp"
+#include "../utility/hash.hpp"
+#include "../utility/type.hpp"
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>

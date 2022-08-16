@@ -39,17 +39,7 @@ void SetEnergyDifference(std::vector<RealType> *energy_difference,
       throw std::runtime_error("The size of energy_difference is not equal to the system size.");
    }
    
-   const std::int32_t system_size = static_cast<std::int32_t>(model.GetSystemSize());
-   const auto &interaction = model.GetInteraction();
-   
-   for (std::int32_t index = 0; index < system_size; ++index) {
-      
-   }
-   
-   
-   
-   
-   
+
 }
 
 template<typename RealType>

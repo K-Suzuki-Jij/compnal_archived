@@ -33,40 +33,41 @@ namespace py = pybind11;
 //The following does not bring in anything else from the pybind11 namespace except for literals.
 using namespace pybind11::literals;
 
-void pybind11ModelLattice(py::module &m) {
-   
-   py::enum_<model::Lattice>(m, "Lattice")
-      .value("NONE"         , model::Lattice::NONE         )
-      .value("CHAIN"        , model::Lattice::CHAIN        )
-      .value("SQUARE"       , model::Lattice::SQUARE       )
-      .value("TRIANGLE"     , model::Lattice::TRIANGLE     )
-      .value("HONEYCOMB"    , model::Lattice::HONEYCOMB    )
-      .value("CUBIC"        , model::Lattice::CUBIC        )
-      .value("INFINIT_RANGE", model::Lattice::INFINIT_RANGE)
-      .value("ANY_TYPE"     , model::Lattice::ANY_TYPE     );
-   
-}
 
-
-template<typename RealType>
+template<class LatticeType, typename RealType>
 void pybind11ModelPolynomialIsing(py::module &m) {
    
-   using PolyIsing = model::PolynomialIsing<RealType>;
+   using PolyIsing = model::PolynomialIsing<LatticeType, RealType>;
    
    auto py_class = py::class_<PolyIsing>(m, "PolynomialIsing", py::module_local());
    
    //Constructors
-   py_class.def(py::init<const int, const std::vector<RealType>, const model::Lattice>(), "system_size"_a, "interaction"_a, "lattice"_a);
+   py_class.def(py::init<const LatticeType, const std::unordered_map<std::int32_t, RealType>>(), "lattice"_a, "interaction"_a);
    
    //Public Member Functions
-   py_class.def("set_system_size", &PolyIsing::SetSystemSize , "system_size"_a);
-   py_class.def("set_interaction", &PolyIsing::SetInteraction, "interaction"_a);
-   py_class.def("set_lattice"    , &PolyIsing::SetLattice    , "lattice"_a    );
-   py_class.def("get_system_size", &PolyIsing::GetSystemSize );
+   py_class.def("set_interaction", &PolyIsing::SetInteraction, "degree"_a, "value"_a);
    py_class.def("get_interaction", &PolyIsing::GetInteraction);
-   py_class.def("get_lattice"    , &PolyIsing::GetLattice    );
-   py_class.def("calculate_energy", &PolyIsing::CalculateEnergy, "sample"_a);
-   py_class.def("calculate_magnetization", &PolyIsing::CalculateMagnetization, "sample"_a);
+   py_class.def("get_system_size", &PolyIsing::GetSystemSize);
+   py_class.def("get_degree", &PolyIsing::GetDegree);
+   
+}
+
+template<typename RealType>
+void pybind11ModelPolynomialIsingAnyLattice(py::module &m) {
+   
+   using PolyIsing = model::PolynomialIsing<lattice::AnyLattice, RealType>;
+   
+   auto py_class = py::class_<PolyIsing>(m, "PolynomialIsing", py::module_local());
+   
+   //Constructors
+   py_class.def(py::init<const lattice::AnyLattice>(), "lattice"_a);
+   
+   //Public Member Functions
+   py_class.def("add_interaction", &PolyIsing::AddInteraction, "index_list"_a, "value"_a);
+   py_class.def("get_interaction", &PolyIsing::GetInteraction);
+   py_class.def("get_index_set", &PolyIsing::GetIndexSet);
+   py_class.def("generate_index_list", &PolyIsing::GenerateIndexList);
+   py_class.def("get_system_size", &PolyIsing::GetSystemSize);
    
 }
 

@@ -15,25 +15,32 @@
 //  Created by Kohei Suzuki on 2022/07/13.
 //
 
-#include "src/pybind11_model.cpp"
-#include "src/pybind11_solver.cpp"
+#include "src/pybind11_lattice.hpp"
+#include "src/pybind11_model.hpp"
+//#include "src/pybind11_solver.hpp"
 
 
 PYBIND11_MODULE(base_compnal, m) {
    namespace py = pybind11;
    
    using RealType = double;
-   
-   compnal::wrapper::pybind11ModelLattice(m);
-   compnal::wrapper::pybind11SolverUpdater(m);
+      
+   py::module_ m_lattice = m.def_submodule("lattice");
+   compnal::wrapper::pybind11LatticeChain(m_lattice);
+   compnal::wrapper::pybind11LatticeSquare(m_lattice);
+   compnal::wrapper::pybind11LatticeTriangle(m_lattice);
+   compnal::wrapper::pybind11LatticeHoneycomb(m_lattice);
+   compnal::wrapper::pybind11LatticeCubic(m_lattice);
+   compnal::wrapper::pybind11LatticeInfiniteRange(m_lattice);
 
-   
    py::module_ m_model = m.def_submodule("model");
-   compnal::wrapper::pybind11ModelPolynomialIsing<RealType>(m_model);
-   
-   py::module_ m_solver = m.def_submodule("solver");
-   compnal::wrapper::pybind11SolverClassicalMonteCarlo<compnal::model::PolynomialIsing<RealType>>(m_solver);
+   compnal::wrapper::pybind11ModelPolynomialIsing<compnal::lattice::Chain, RealType>(m_model);
+   //compnal::wrapper::pybind11ModelPolynomialIsing<compnal::lattice::Square, RealType>(m_model);
+   //
+   //py::module_ m_solver = m.def_submodule("solver");
+   //compnal::wrapper::pybind11SolverUpdater(m_solver);
+   //compnal::wrapper::pybind11SolverClassicalMonteCarlo<compnal::model::PolynomialIsing<RealType>>(m_solver);
 
-   
+
 
 };

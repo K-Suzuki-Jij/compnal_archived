@@ -184,9 +184,6 @@ private:
    
 };
 
-template<class LatticeType, typename Key, typename RealType>
-PolynomialIsing(LatticeType, std::unordered_map<Key, RealType>)
--> PolynomialIsing<LatticeType, RealType>;
 
 template<typename RealType>
 class PolynomialIsing<lattice::AnyLattice, RealType> {
