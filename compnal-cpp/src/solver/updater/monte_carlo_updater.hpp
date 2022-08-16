@@ -23,7 +23,14 @@
 #ifndef COMPNAL_SOLVER_UPDATER_MONTE_CARLO_UPDATER_HPP_
 #define COMPNAL_SOLVER_UPDATER_MONTE_CARLO_UPDATER_HPP_
 
+#include "ssf_polynomial_ising_any_lattice.hpp"
+#include "ssf_polynomial_ising_chain.hpp"
+#include "ssf_polynomial_ising_cubic.hpp"
+#include "ssf_polynomial_ising_honeycomb.hpp"
+#include "ssf_polynomial_ising_square.hpp"
+#include "ssf_polynomial_ising_triangle.hpp"
 #include "ssf_polynomial_ising_infinite_range.hpp"
+
 #include "../../utility/type.hpp"
 
 namespace compnal {
@@ -43,7 +50,7 @@ void ExecuteMetropolis(std::vector<utility::SpinType> *sample,
       throw std::runtime_error("The sample size is not equal to the system size.");
    }
    
-   const std::int32_t system_size = model.GetSystemSize();
+   const std::int32_t system_size = static_cast<std::int32_t>(model.GetSystemSize());
    
    // Set random number engine
    utility::RandType random_number_engine(seed);

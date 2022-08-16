@@ -51,9 +51,17 @@ public:
       if (degree < 0) {
          throw std::runtime_error("degree must be larger than or equal to 0");
       }
+      if (degree > lattice.GetSystemSize()) {
+         throw std::runtime_error("degree must be smaller than or equal to the system size.");
+      }
       if (std::abs(value) > std::numeric_limits<RealType>::epsilon()) {
-         interaction_.resize(degree + 1);
-         interaction_[degree] = value;
+         if (interaction_.size() <= degree) {
+            interaction_.resize(degree + 1);
+            interaction_[degree] = value;
+         }
+         else {
+            interaction_[degree] = value;
+         }
       }
    }
    
@@ -69,7 +77,7 @@ public:
       return lattice.GetSystemSize();
    }
    
-   static RealType CalculateAverage(const std::vector<std::vector<OPType>> &samples) {
+   RealType CalculateAverage(const std::vector<std::vector<OPType>> &samples) const {
       return CalculateMoment(samples, 1);
    }
    
@@ -77,53 +85,52 @@ public:
       return static_cast<std::int32_t>(interaction_.size()) - 1;
    }
    
-   static RealType CalculateMoment(const std::vector<std::vector<OPType>> &samples, const std::int32_t degree) {
-      RealType val = RealType{0.0};
+   RealType CalculateMoment(const std::vector<std::vector<OPType>> &samples, const std::int32_t degree) const {
+      if (degree <= 0) {
+         throw std::runtime_error("degree must be lager than 0.");
+      }
+      
+      RealType val = 0;
       if (degree == 1) {
 #pragma omp parallel for schedule(guided) reduction(+: val)
          for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
-            const auto &sample = samples[i];
-            RealType temp = RealType{0.0};
-            for (std::int32_t j = 0; j < static_cast<std::int32_t>(sample.size()); ++j) {
-               temp += sample[j];
-            }
-            val += temp/sample.size();
+            val += CalculateMagnetization(samples[i]);
          }
+         return val/samples.size();
       }
       else if (degree == 2) {
 #pragma omp parallel for schedule(guided) reduction(+: val)
          for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
-            const auto &sample = samples[i];
-            const std::int32_t sample_size = static_cast<std::int32_t>(sample.size());
-            RealType temp = RealType{0.0};
-            for (std::int32_t j_1 = 0; j_1 < sample_size; ++j_1) {
-               for (std::int32_t j_2 = 0; j_2 < sample_size; ++j_2) {
-                  temp += sample[j_1]*sample[j_2];
-               }
-            }
-            val += temp/(sample_size*sample_size);
+            val += CalculateMagnetization(samples[i]);
+            val = val*val;
          }
+         return val/samples.size();
+      }
+      else if (degree == 3) {
+#pragma omp parallel for schedule(guided) reduction(+: val)
+         for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
+            val += CalculateMagnetization(samples[i]);
+            val = val*val*val;
+         }
+         return val/samples.size();
       }
       else if (degree == 4) {
 #pragma omp parallel for schedule(guided) reduction(+: val)
          for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
-            const auto &sample = samples[i];
-            const std::int32_t sample_size = static_cast<std::int32_t>(sample.size());
-            RealType temp = RealType{0.0};
-            for (std::int32_t j_1 = 0; j_1 < sample_size; ++j_1) {
-               for (std::int32_t j_2 = 0; j_2 < sample_size; ++j_2) {
-                  for (std::int32_t j_3 = 0; j_3 < sample_size; ++j_3) {
-                     for (std::int32_t j_4 = 0; j_4 < sample_size; ++j_4) {
-                        temp += sample[j_1]*sample[j_2]*sample[j_3]*sample[j_4];
-                     }
-                  }
-               }
-            }
-            val += temp/(sample_size*sample_size*sample_size*sample_size);
+            val += CalculateMagnetization(samples[i]);
+            val = val*val*val*val;
          }
+         return val/samples.size();
       }
       else {
-         throw std::runtime_error("Under construction");
+#pragma omp parallel for schedule(guided) reduction(+: val)
+         for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
+            val += CalculateMagnetization(samples[i]);
+            for (std::int32_t j = 0; j < degree; ++j) {
+               val *= val;
+            }
+         }
+         return val/samples.size();
       }
       return val/samples.size();
    }
@@ -131,10 +138,48 @@ public:
 private:
    std::vector<RealType> interaction_;
    
+   RealType CalculateEnergy(const lattice::Chain &chain_lattice,
+                            const std::vector<OPType> &sample) const {
+      RealType energy = 0;
+      return energy;
+   }
+   
+   RealType CalculateEnergy(const lattice::Cubic &cubic_lattice,
+                            const std::vector<OPType> &sample) const {
+      RealType energy = 0;
+      return energy;
+   }
+   
+   RealType CalculateEnergy(const lattice::Honeycomb &honeycomb_lattice,
+                            const std::vector<OPType> &sample) const {
+      RealType energy = 0;
+      return energy;
+   }
+   
+   RealType CalculateEnergy(const lattice::Square &square_lattice,
+                            const std::vector<OPType> &sample) const {
+      RealType energy = 0;
+      return energy;
+   }
+   
+   RealType CalculateEnergy(const lattice::Triangle &triangle_lattice,
+                            const std::vector<OPType> &sample) const {
+      RealType energy = 0;
+      return energy;
+   }
+   
    RealType CalculateEnergy(const lattice::InfiniteRange &infinite_range_lattice,
                             const std::vector<OPType> &sample) const {
       RealType energy = 0;
       return energy;
+   }
+   
+   RealType CalculateMagnetization(const std::vector<OPType> &sample) const {
+      RealType val = 0;
+      for (std::size_t i = 0; i < sample.size(); ++i) {
+         val += sample[i];
+      }
+      return val/sample.size();
    }
    
 };
@@ -179,8 +224,85 @@ public:
       return interaction.GetSystemSize();
    }
    
+   RealType CalculateEnergy(const std::vector<OPType> &sample) const {
+      if (sample.size() != interaction.GetSystemSize()) {
+         throw std::runtime_error("The sample size is not equal to the system size");
+      }
+      RealType val = 0;
+      const auto &interaction_map = interaction.GetIndexMap();
+      for (const auto &it: interaction.GetInteraction()) {
+         OPType spin = 1;
+         for (const auto &index: it.first) {
+            spin *= sample[interaction_map.at(index)];
+         }
+         val += spin*it.second;
+      }
+      return val;
+   }
+   
+   RealType CalculateAverage(const std::vector<std::vector<OPType>> &samples) const {
+      return CalculateMoment(samples, 1);
+   }
+   
+   RealType CalculateMoment(const std::vector<std::vector<OPType>> &samples, const std::int32_t degree) const {
+      if (degree <= 0) {
+         throw std::runtime_error("degree must be lager than 0.");
+      }
+      
+      RealType val = 0;
+      if (degree == 1) {
+#pragma omp parallel for schedule(guided) reduction(+: val)
+         for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
+            val += CalculateMagnetization(samples[i]);
+         }
+         return val/samples.size();
+      }
+      else if (degree == 2) {
+#pragma omp parallel for schedule(guided) reduction(+: val)
+         for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
+            val += CalculateMagnetization(samples[i]);
+            val = val*val;
+         }
+         return val/samples.size();
+      }
+      else if (degree == 3) {
+#pragma omp parallel for schedule(guided) reduction(+: val)
+         for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
+            val += CalculateMagnetization(samples[i]);
+            val = val*val*val;
+         }
+         return val/samples.size();
+      }
+      else if (degree == 4) {
+#pragma omp parallel for schedule(guided) reduction(+: val)
+         for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
+            val += CalculateMagnetization(samples[i]);
+            val = val*val*val*val;
+         }
+         return val/samples.size();
+      }
+      else {
+#pragma omp parallel for schedule(guided) reduction(+: val)
+         for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
+            val += CalculateMagnetization(samples[i]);
+            for (std::int32_t j = 0; j < degree; ++j) {
+               val *= val;
+            }
+         }
+         return val/samples.size();
+      }
+   }
+   
 private:
    PolynomialGeneralModel<RealType> interaction;
+   
+   RealType CalculateMagnetization(const std::vector<OPType> &sample) const {
+      RealType val = 0;
+      for (std::size_t i = 0; i < sample.size(); ++i) {
+         val += sample[i];
+      }
+      return val/sample.size();
+   }
    
 };
 

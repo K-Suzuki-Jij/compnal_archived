@@ -140,6 +140,7 @@ public:
          }
       }
       else if (this->cmc_updater == CMCUpdater::HEAT_BATH) {
+         throw std::runtime_error("Under construction");
 #pragma omp parallel for schedule(guided)
          for (std::int32_t sample_count = 0; sample_count < num_samples_; sample_count++) {
             RandomizeConfiguration(&samples_[sample_count], configuration_seed_list[sample_count]);

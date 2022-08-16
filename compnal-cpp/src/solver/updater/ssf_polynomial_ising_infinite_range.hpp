@@ -33,23 +33,24 @@ namespace updater {
 
 template<typename RealType>
 void SetEnergyDifference(std::vector<RealType> *energy_difference,
-                         const std::vector<utility::SpinType> &sample,
+                         const std::vector<typename model::PolynomialIsing<lattice::InfiniteRange, RealType>::OPType> &sample,
                          const model::PolynomialIsing<lattice::InfiniteRange, RealType> &model) {
    
    
    if (static_cast<std::int32_t>(sample.size()) != model.GetSystemSize()) {
       throw std::runtime_error("The sample size is not equal to the system size.");
    }
+   if (energy_difference->size() != sample.size()) {
+      throw std::runtime_error("The size of energy_difference is not equal to the system size.");
+   }
    
+   using OPType = typename model::PolynomialIsing<lattice::InfiniteRange, RealType>::OPType;
    const std::int32_t system_size = model.GetSystemSize();
    const std::vector<RealType> &interaction = model.GetInteraction();
-   
-   energy_difference->clear();
-   energy_difference->resize(system_size);
-   
+      
    for (std::int32_t index = 0; index < system_size; ++index) {
       RealType val = 0.0;
-      const utility::SpinType target_spin = sample[index];
+      const OPType target_spin = sample[index];
    
       if (interaction.size() >= 2) {
          val += interaction[1]*sample[index];
@@ -65,7 +66,7 @@ void SetEnergyDifference(std::vector<RealType> *energy_difference,
                for (std::int32_t i = start_index; i < system_size - 1; ++i) {
                   indices[size++] = i;
                   if (size == p) {
-                     utility::SpinType sign = 1;
+                     OPType sign = 1;
                      for (std::int32_t j = 0; j < p; ++j) {
                         if (indices[j] >= index) {
                            sign *= sample[indices[j] + 1];
@@ -93,15 +94,15 @@ void SetEnergyDifference(std::vector<RealType> *energy_difference,
 
 
 template<typename RealType>
-void UpdateConfiguration(std::vector<utility::SpinType> *sample,
+void UpdateConfiguration(std::vector<typename model::PolynomialIsing<lattice::InfiniteRange, RealType>::OPType> *sample,
                          std::vector<RealType> *energy_difference,
                          const std::int32_t index,
                          const model::PolynomialIsing<lattice::InfiniteRange, RealType> &model) {
    
-   
+   using OPType = typename model::PolynomialIsing<lattice::InfiniteRange, RealType>::OPType;
    const std::vector<RealType> &interaction = model.GetInteraction();
    const std::int32_t degree = model.GetDegree();
-   const utility::SpinType target_spin = (*sample)[index];
+   const OPType target_spin = (*sample)[index];
    const std::int32_t system_size = model.GetSystemSize();
       
    if (degree == 2) {
@@ -114,10 +115,10 @@ void UpdateConfiguration(std::vector<utility::SpinType> *sample,
    else if (degree == 3) {
       const RealType target_ineraction_deg2 = interaction[2];
       const RealType target_ineraction_deg3 = interaction[3];
-      const utility::SpinType spin_prod1 = target_spin;
+      const OPType spin_prod1 = target_spin;
       for (std::int32_t i2 = 0; i2 < system_size; ++i2) {
          if (i2 == index) {continue;}
-         const utility::SpinType spin_prod2 = spin_prod1*(*sample)[i2];
+         const OPType spin_prod2 = spin_prod1*(*sample)[i2];
          const RealType diff_val_i2 = 4*target_ineraction_deg2*spin_prod2;
          RealType sum_val_i2 = 0;
          for (std::int32_t i3 = i2 + 1; i3 < system_size; ++i3) {
@@ -133,15 +134,15 @@ void UpdateConfiguration(std::vector<utility::SpinType> *sample,
       const RealType target_ineraction_deg2 = interaction[2];
       const RealType target_ineraction_deg3 = interaction[3];
       const RealType target_ineraction_deg4 = interaction[4];
-      const utility::SpinType spin_prod1 = target_spin;
+      const OPType spin_prod1 = target_spin;
       for (std::int32_t i2 = 0; i2 < system_size; ++i2) {
          if (i2 == index) {continue;}
-         const utility::SpinType spin_prod2 = spin_prod1*(*sample)[i2];
+         const OPType spin_prod2 = spin_prod1*(*sample)[i2];
          const RealType diff_val_i2 = 4*target_ineraction_deg2*spin_prod2;
          RealType sum_val_i2 = 0;
          for (std::int32_t i3 = i2 + 1; i3 < system_size; ++i3) {
             if (i3 == index) {continue;}
-            const utility::SpinType spin_prod3 = spin_prod2*(*sample)[i3];
+            const OPType spin_prod3 = spin_prod2*(*sample)[i3];
             const RealType diff_val_i3 = 4*target_ineraction_deg3*spin_prod3;
             RealType sum_val_i3 = 0;
             for (std::int32_t i4 = i3 + 1; i4 < system_size; ++i4) {
@@ -161,20 +162,20 @@ void UpdateConfiguration(std::vector<utility::SpinType> *sample,
       const RealType target_ineraction_deg3 = interaction[3];
       const RealType target_ineraction_deg4 = interaction[4];
       const RealType target_ineraction_deg5 = interaction[5];
-      const utility::SpinType spin_prod1 = target_spin;
+      const OPType spin_prod1 = target_spin;
       for (std::int32_t i2 = 0; i2 < system_size; ++i2) {
          if (i2 == index) {continue;}
-         const utility::SpinType spin_prod2 = spin_prod1*(*sample)[i2];
+         const OPType spin_prod2 = spin_prod1*(*sample)[i2];
          const RealType diff_val_i2 = 4*target_ineraction_deg2*spin_prod2;
          RealType sum_val_i2 = 0;
          for (std::int32_t i3 = i2 + 1; i3 < system_size; ++i3) {
             if (i3 == index) {continue;}
-            const utility::SpinType spin_prod3 = spin_prod2*(*sample)[i3];
+            const OPType spin_prod3 = spin_prod2*(*sample)[i3];
             const RealType diff_val_i3 = 4*target_ineraction_deg3*spin_prod3;
             RealType sum_val_i3 = 0;
             for (std::int32_t i4 = i3 + 1; i4 < system_size; ++i4) {
                if (i4 == index) {continue;}
-               const utility::SpinType spin_prod4 = spin_prod3*(*sample)[i4];
+               const OPType spin_prod4 = spin_prod3*(*sample)[i4];
                const RealType diff_val_i4 = 4*target_ineraction_deg4*spin_prod4;
                RealType sum_val_i4 = 0;
                for (std::int32_t i5 = i4 + 1; i5 < system_size; ++i5) {
@@ -198,25 +199,25 @@ void UpdateConfiguration(std::vector<utility::SpinType> *sample,
       const RealType target_ineraction_deg4 = interaction[4];
       const RealType target_ineraction_deg5 = interaction[5];
       const RealType target_ineraction_deg6 = interaction[6];
-      const utility::SpinType spin_prod1 = target_spin;
+      const OPType spin_prod1 = target_spin;
       for (std::int32_t i2 = 0; i2 < system_size; ++i2) {
          if (i2 == index) {continue;}
-         const utility::SpinType spin_prod2 = spin_prod1*(*sample)[i2];
+         const OPType spin_prod2 = spin_prod1*(*sample)[i2];
          const RealType diff_val_i2 = 4*target_ineraction_deg2*spin_prod2;
          RealType sum_val_i2 = 0;
          for (std::int32_t i3 = i2 + 1; i3 < system_size; ++i3) {
             if (i3 == index) {continue;}
-            const utility::SpinType spin_prod3 = spin_prod2*(*sample)[i3];
+            const OPType spin_prod3 = spin_prod2*(*sample)[i3];
             const RealType diff_val_i3 = 4*target_ineraction_deg3*spin_prod3;
             RealType sum_val_i3 = 0;
             for (std::int32_t i4 = i3 + 1; i4 < system_size; ++i4) {
                if (i4 == index) {continue;}
-               const utility::SpinType spin_prod4 = spin_prod3*(*sample)[i4];
+               const OPType spin_prod4 = spin_prod3*(*sample)[i4];
                const RealType diff_val_i4 = 4*target_ineraction_deg4*spin_prod4;
                RealType sum_val_i4 = 0;
                for (std::int32_t i5 = i4 + 1; i5 < system_size; ++i5) {
                   if (i5 == index) {continue;}
-                  const utility::SpinType spin_prod5 = spin_prod4*(*sample)[i5];
+                  const OPType spin_prod5 = spin_prod4*(*sample)[i5];
                   const RealType diff_val_i5 = 4*target_ineraction_deg5*spin_prod5;
                   RealType sum_val_i5 = 0;
                   for (std::int32_t i6 = i5 + 1; i6 < system_size; ++i6) {
@@ -244,30 +245,30 @@ void UpdateConfiguration(std::vector<utility::SpinType> *sample,
       const RealType target_ineraction_deg5 = interaction[5];
       const RealType target_ineraction_deg6 = interaction[6];
       const RealType target_ineraction_deg7 = interaction[7];
-      const utility::SpinType spin_prod1 = target_spin;
+      const OPType spin_prod1 = target_spin;
       for (std::int32_t i2 = 0; i2 < system_size; ++i2) {
          if (i2 == index) {continue;}
-         const utility::SpinType spin_prod2 = spin_prod1*(*sample)[i2];
+         const OPType spin_prod2 = spin_prod1*(*sample)[i2];
          const RealType diff_val_i2 = 4*target_ineraction_deg2*spin_prod2;
          RealType sum_val_i2 = 0;
          for (std::int32_t i3 = i2 + 1; i3 < system_size; ++i3) {
             if (i3 == index) {continue;}
-            const utility::SpinType spin_prod3 = spin_prod2*(*sample)[i3];
+            const OPType spin_prod3 = spin_prod2*(*sample)[i3];
             const RealType diff_val_i3 = 4*target_ineraction_deg3*spin_prod3;
             RealType sum_val_i3 = 0;
             for (std::int32_t i4 = i3 + 1; i4 < system_size; ++i4) {
                if (i4 == index) {continue;}
-               const utility::SpinType spin_prod4 = spin_prod3*(*sample)[i4];
+               const OPType spin_prod4 = spin_prod3*(*sample)[i4];
                const RealType diff_val_i4 = 4*target_ineraction_deg4*spin_prod4;
                RealType sum_val_i4 = 0;
                for (std::int32_t i5 = i4 + 1; i5 < system_size; ++i5) {
                   if (i5 == index) {continue;}
-                  const utility::SpinType spin_prod5 = spin_prod4*(*sample)[i5];
+                  const OPType spin_prod5 = spin_prod4*(*sample)[i5];
                   const RealType diff_val_i5 = 4*target_ineraction_deg5*spin_prod5;
                   RealType sum_val_i5 = 0;
                   for (std::int32_t i6 = i5 + 1; i6 < system_size; ++i6) {
                      if (i6 == index) {continue;}
-                     const utility::SpinType spin_prod6 = spin_prod5*(*sample)[i6];
+                     const OPType spin_prod6 = spin_prod5*(*sample)[i6];
                      const RealType diff_val_i6 = 4*target_ineraction_deg6*spin_prod6;
                      RealType sum_val_i6 = 0;
                      for (std::int32_t i7 = i6 + 1; i7 < system_size; ++i7) {
@@ -303,7 +304,7 @@ void UpdateConfiguration(std::vector<utility::SpinType> *sample,
                for (std::int32_t i = start_index; i < system_size - 1; ++i) {
                   indices[size++] = i;
                   if (size == p) {
-                     utility::SpinType sign = 1;
+                     OPType sign = 1;
                      for (std::int32_t j = 0; j < p; ++j) {
                         if (indices[j] >= index) {
                            sign *= (*sample)[indices[j] + 1];

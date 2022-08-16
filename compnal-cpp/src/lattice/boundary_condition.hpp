@@ -36,10 +36,7 @@ enum class BoundaryCondition {
    OBC,
    
    //! @brief Periodic boundary condition
-   PBC,
-   
-   //! @brief Sine-Square Deformation
-   SSD
+   PBC
    
 };
 

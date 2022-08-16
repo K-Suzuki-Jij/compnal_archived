@@ -45,8 +45,9 @@ public:
    
    void AddInteraction(std::vector<IndexType> index_list, const RealType value) {
       std::sort(index_list.begin(), index_list.end());
-      interaction_list_[index_list] += value;
+      interaction_[index_list] += value;
       index_set_.insert(index_list.begin(), index_list.end());
+      flag_need_reset_index_map_ = true;
    }
    
    std::vector<IndexType> GenerateIndexList() const {
@@ -54,9 +55,9 @@ public:
       std::sort(index_list.begin(), index_list.end());
       return index_list;
    }
-   
+
    const InteractionType &GetInteraction() const {
-      return interaction_list_;
+      return interaction_;
    }
    
    const std::unordered_set<IndexType, IndexHash> &GetIndexSet() const {
@@ -66,12 +67,26 @@ public:
    std::size_t GetSystemSize() const {
       return index_set_.size();
    }
-
    
+   const std::unordered_map<IndexType, std::int64_t> GetIndexMap() const {
+      if (flag_need_reset_index_map_) {
+         std::vector<IndexType> index_list = GenerateIndexList();
+         std::int64_t count = 0;
+         index_map_.clear();
+         for (std::size_t i = 0; i < index_list.size(); ++i) {
+            index_map_[index_list[i]] = count;
+            count++;
+         }
+         flag_need_reset_index_map_ = false;
+      }
+      return index_map_;
+   }
+
 private:
    std::unordered_set<IndexType, IndexHash> index_set_;
-   InteractionType interaction_list_;
-   
+   std::unordered_map<IndexType, std::int64_t, IndexHash> index_map_;
+   InteractionType interaction_;
+   bool flag_need_reset_index_map_ = true;
 };
 
 
