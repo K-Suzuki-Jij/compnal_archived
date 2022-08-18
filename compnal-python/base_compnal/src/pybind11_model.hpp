@@ -35,14 +35,15 @@ using namespace pybind11::literals;
 
 
 template<class LatticeType, typename RealType>
-void pybind11ModelPolynomialIsing(py::module &m) {
+void pybind11ModelPolynomialIsing(py::module &m, const std::string &post_name = "") {
    
    using PolyIsing = model::PolynomialIsing<LatticeType, RealType>;
-   
-   auto py_class = py::class_<PolyIsing>(m, "PolynomialIsing", py::module_local());
+   std::string name = std::string("PolynomialIsing") + post_name;
+
+   auto py_class = py::class_<PolyIsing>(m, name.c_str(), py::module_local());
    
    //Constructors
-   py_class.def(py::init<const LatticeType, const std::unordered_map<std::int32_t, RealType>>(), "lattice"_a, "interaction"_a);
+   py_class.def(py::init<const LatticeType&, const std::unordered_map<std::int32_t, RealType>&>(), "lattice"_a, "interaction"_a);
    
    //Public Member Functions
    py_class.def("set_interaction", &PolyIsing::SetInteraction, "degree"_a, "value"_a);
@@ -53,14 +54,15 @@ void pybind11ModelPolynomialIsing(py::module &m) {
 }
 
 template<typename RealType>
-void pybind11ModelPolynomialIsingAnyLattice(py::module &m) {
+void pybind11ModelPolynomialIsingAnyLattice(py::module &m, const std::string &post_name = "") {
    
    using PolyIsing = model::PolynomialIsing<lattice::AnyLattice, RealType>;
-   
-   auto py_class = py::class_<PolyIsing>(m, "PolynomialIsing", py::module_local());
+   std::string name = std::string("PolynomialIsing") + post_name;
+
+   auto py_class = py::class_<PolyIsing>(m, name.c_str(), py::module_local());
    
    //Constructors
-   py_class.def(py::init<const lattice::AnyLattice>(), "lattice"_a);
+   py_class.def(py::init<const lattice::AnyLattice&>(), "lattice"_a);
    
    //Public Member Functions
    py_class.def("add_interaction", &PolyIsing::AddInteraction, "index_list"_a, "value"_a);

@@ -33,11 +33,11 @@ namespace py = pybind11;
 //The following does not bring in anything else from the pybind11 namespace except for literals.
 using namespace pybind11::literals;
 
-void pybind11SolverUpdater(py::module &m) {
+void pybind11SolverCMCUpdater(py::module &m) {
    
-   py::enum_<solver::Updater>(m, "Updater")
-      .value("METROPOLIS", solver::Updater::METROPOLIS)
-      .value("HEAT_BATH" , solver::Updater::HEAT_BATH);
+   py::enum_<solver::CMCUpdater>(m, "CMCUpdater")
+      .value("METROPOLIS", solver::CMCUpdater::METROPOLIS)
+      .value("HEAT_BATH" , solver::CMCUpdater::HEAT_BATH);
    
 }
 
@@ -45,28 +45,30 @@ void pybind11SolverUpdater(py::module &m) {
 template<class ModelType>
 void pybind11SolverClassicalMonteCarlo(py::module &m) {
    
-   using ClassicalMC = solver::ClassicalMonteCarlo<ModelType>;
+   using CMC = solver::ClassicalMonteCarlo<ModelType>;
    
-   auto py_class = py::class_<ClassicalMC>(m, "ClassicalMonteCarlo", py::module_local());
+   auto py_class = py::class_<CMC>(m, "ClassicalMonteCarlo", py::module_local());
    
    //Constructors
-   py_class.def(py::init<const ModelType, const solver::Updater>(), "model"_a, "updater"_a);
+   py_class.def(py::init<const ModelType&, const typename ModelType::ValueType, const solver::CMCUpdater>(), "model"_a, "temperature"_a, "updater"_a=solver::CMCUpdater::METROPOLIS);
    
    //Public Member Functions
-   py_class.def("set_num_sweeps", &ClassicalMC::SetNumSweeps  , "num_sweeps"_a );
-   py_class.def("set_num_samples", &ClassicalMC::SetNumSamples, "num_samples"_a);
-   py_class.def("set_temperature", &ClassicalMC::SetTemperature, "T"_a);
-   py_class.def("set_inverse_temperature", &ClassicalMC::SetInverseTemperature, "beta"_a);
-   py_class.def("get_num_sweeps", &ClassicalMC::GetNumSweeps);
-   py_class.def("get_num_samples", &ClassicalMC::GetNumSamples);
-   py_class.def("get_samples", &ClassicalMC::GetSamples);
-   py_class.def("get_energies", &ClassicalMC::GetEnergies);
-   py_class.def("get_magnetizations", &ClassicalMC::GetMagnetizations);
-   py_class.def("clear_results", &ClassicalMC::ClearResults);
-   py_class.def("run", py::overload_cast<>(&ClassicalMC::Run));
-   py_class.def("calculate_sample_average", &ClassicalMC::CalculateSampleAverage, "degree"_a = 1);
-   py_class.def_readonly("model", &ClassicalMC::model);
-   py_class.def_readonly("updater", &ClassicalMC::updater);
+   py_class.def("set_num_sweeps", &CMC::SetNumSweeps  , "num_sweeps"_a );
+   py_class.def("set_num_samples", &CMC::SetNumSamples, "num_samples"_a);
+   py_class.def("set_temperature", &CMC::SetTemperature, "T"_a);
+   py_class.def("set_inverse_temperature", &CMC::SetInverseTemperature, "beta"_a);
+   py_class.def("get_num_sweeps", &CMC::GetNumSweeps);
+   py_class.def("get_num_samples", &CMC::GetNumSamples);
+   py_class.def("get_samples", &CMC::GetSamples);
+   py_class.def("get_temperature", &CMC::GetTemperature);
+   py_class.def("get_inverse_temperature", &CMC::GetInverseTemperature);
+   py_class.def("get_seed", &CMC::GetSeed);
+   py_class.def("run", py::overload_cast<>(&CMC::Run));
+   py_class.def("run", py::overload_cast<const std::uint64_t>(&CMC::Run), "seed"_a);
+   py_class.def("calculate_sample_average", &CMC::CalculateSampleAverage);
+   py_class.def("calculate_sample_moment", &CMC::CalculateSampleMoment, "degree"_a);
+   py_class.def_readonly("model", &CMC::model);
+   py_class.def_readonly("updater", &CMC::cmc_updater);
    
 }
 

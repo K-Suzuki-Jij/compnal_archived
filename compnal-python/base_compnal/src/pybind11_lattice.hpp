@@ -37,6 +37,13 @@ namespace py = pybind11;
 //The following does not bring in anything else from the pybind11 namespace except for literals.
 using namespace pybind11::literals;
 
+void pybind11BoundaryCondition(py::module &m) {
+   py::enum_<compnal::lattice::BoundaryCondition>(m, "BoundaryCondition")
+      .value("NONE", compnal::lattice::BoundaryCondition::NONE)
+      .value("OBC", compnal::lattice::BoundaryCondition::OBC)
+      .value("PBC", compnal::lattice::BoundaryCondition::PBC);
+}
+
 void pybind11LatticeChain(py::module &m) {
    
    using ODL = lattice::Chain;
