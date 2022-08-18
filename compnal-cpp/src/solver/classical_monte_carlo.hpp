@@ -45,7 +45,9 @@ public:
    const ModelType model;
    const CMCUpdater cmc_updater;
    
-   ClassicalMonteCarlo(const ModelType &model, const CMCUpdater cmc_updater): model(model), cmc_updater(cmc_updater) {}
+   ClassicalMonteCarlo(const ModelType &model,
+                       const CMCUpdater cmc_updater=CMCUpdater::METROPOLIS):
+   model(model), cmc_updater(cmc_updater) {}
    
    void SetNumSweeps(const std::int32_t num_sweeps) {
       if (num_sweeps < 0) {
@@ -87,6 +89,10 @@ public:
       return samples_;
    }
    
+   const std::vector<OPType> &GetSample(const std::int64_t i) const {
+      return samples_.at(i);
+   }
+   
    RealType GetTemperature() const {
       return 1/beta_;
    }
@@ -99,11 +105,6 @@ public:
       return seed_;
    }
    
-   template<typename T>
-   const std::vector<OPType> &GetSample(const T index) const {
-      return samples_.at(index);
-   }
-      
    void Run() {
       Run(std::random_device()());
    }
@@ -140,11 +141,10 @@ public:
          }
       }
       else if (this->cmc_updater == CMCUpdater::HEAT_BATH) {
-         throw std::runtime_error("Under construction");
 #pragma omp parallel for schedule(guided)
          for (std::int32_t sample_count = 0; sample_count < num_samples_; sample_count++) {
             RandomizeConfiguration(&samples_[sample_count], configuration_seed_list[sample_count]);
-            //updater::ExecuteHeatBath(&samples_[sample_count], model, num_sweeps_, beta_, execute_seed_list[sample_count]);
+            updater::ExecuteHeatBath(&samples_[sample_count], model, num_sweeps_, beta_, execute_seed_list[sample_count]);
          }
       }
       else {

@@ -145,7 +145,7 @@ setup(
     ext_modules=[CMakeExtension("base_compnal")],
     cmdclass={"build_ext": CMakeBuild},
     packages=[  
-        'compnal', 
+        'compnal',
         ],
     zip_safe=False,
     extras_require={"test": ["pytest>=6.0"]},

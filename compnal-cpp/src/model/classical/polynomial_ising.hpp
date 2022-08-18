@@ -101,38 +101,39 @@ public:
       else if (degree == 2) {
 #pragma omp parallel for schedule(guided) reduction(+: val)
          for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
-            val += CalculateMagnetization(samples[i]);
-            val = val*val;
+            RealType avg = CalculateMagnetization(samples[i]);
+            val += avg*avg;
          }
          return val/samples.size();
       }
       else if (degree == 3) {
 #pragma omp parallel for schedule(guided) reduction(+: val)
          for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
-            val += CalculateMagnetization(samples[i]);
-            val = val*val*val;
+            RealType avg = CalculateMagnetization(samples[i]);
+            val += avg*avg*avg;
          }
          return val/samples.size();
       }
       else if (degree == 4) {
 #pragma omp parallel for schedule(guided) reduction(+: val)
          for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
-            val += CalculateMagnetization(samples[i]);
-            val = val*val*val*val;
+            RealType avg = CalculateMagnetization(samples[i]);
+            val += avg*avg*avg*avg;
          }
          return val/samples.size();
       }
       else {
 #pragma omp parallel for schedule(guided) reduction(+: val)
          for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
-            val += CalculateMagnetization(samples[i]);
+            RealType avg = CalculateMagnetization(samples[i]);
+            RealType prod = 1;
             for (std::int32_t j = 0; j < degree; ++j) {
-               val *= val;
+               prod = prod*avg;
             }
+            val += prod;
          }
          return val/samples.size();
       }
-      return val/samples.size();
    }
 
 private:

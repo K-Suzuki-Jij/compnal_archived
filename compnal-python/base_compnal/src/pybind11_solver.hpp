@@ -43,14 +43,15 @@ void pybind11SolverCMCUpdater(py::module &m) {
 
 
 template<class ModelType>
-void pybind11SolverClassicalMonteCarlo(py::module &m) {
+void pybind11SolverClassicalMonteCarlo(py::module &m, const std::string &post_name = "") {
    
    using CMC = solver::ClassicalMonteCarlo<ModelType>;
-   
-   auto py_class = py::class_<CMC>(m, "ClassicalMonteCarlo", py::module_local());
+   std::string name = std::string("ClassicalMonteCarlo") + post_name;
+
+   auto py_class = py::class_<CMC>(m, name.c_str(), py::module_local());
    
    //Constructors
-   py_class.def(py::init<const ModelType&, const typename ModelType::ValueType, const solver::CMCUpdater>(), "model"_a, "temperature"_a, "updater"_a=solver::CMCUpdater::METROPOLIS);
+   py_class.def(py::init<const ModelType&, const solver::CMCUpdater>(), "model"_a, "updater"_a=solver::CMCUpdater::METROPOLIS);
    
    //Public Member Functions
    py_class.def("set_num_sweeps", &CMC::SetNumSweeps  , "num_sweeps"_a );
