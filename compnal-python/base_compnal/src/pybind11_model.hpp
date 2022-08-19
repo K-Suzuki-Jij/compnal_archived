@@ -50,6 +50,7 @@ void pybind11ModelPolynomialIsing(py::module &m, const std::string &post_name = 
    py_class.def("get_interaction", &PolyIsing::GetInteraction);
    py_class.def("get_system_size", &PolyIsing::GetSystemSize);
    py_class.def("get_degree", &PolyIsing::GetDegree);
+   py_class.def_readonly("lattice", &PolyIsing::lattice);
    
 }
 
@@ -70,6 +71,8 @@ void pybind11ModelPolynomialIsingAnyLattice(py::module &m, const std::string &po
    py_class.def("get_index_set", &PolyIsing::GetIndexSet);
    py_class.def("generate_index_list", &PolyIsing::GenerateIndexList);
    py_class.def("get_system_size", &PolyIsing::GetSystemSize);
+   py_class.def_readonly("lattice", &PolyIsing::lattice);
+
    
 }
 

@@ -146,6 +146,7 @@ setup(
     cmdclass={"build_ext": CMakeBuild},
     packages=[  
         'compnal',
+        'compnal.lattice'
         ],
     zip_safe=False,
     extras_require={"test": ["pytest>=6.0"]},

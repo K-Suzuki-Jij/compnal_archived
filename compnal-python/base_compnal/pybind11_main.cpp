@@ -25,7 +25,7 @@ PYBIND11_MODULE(base_compnal, m) {
    
    using RealType = double;
       
-   py::module_ m_lattice = m.def_submodule("lattice");
+   py::module_ m_lattice = m.def_submodule("base_lattice");
    compnal::wrapper::pybind11BoundaryCondition(m_lattice);
    compnal::wrapper::pybind11LatticeChain(m_lattice);
    compnal::wrapper::pybind11LatticeSquare(m_lattice);
@@ -34,7 +34,7 @@ PYBIND11_MODULE(base_compnal, m) {
    compnal::wrapper::pybind11LatticeCubic(m_lattice);
    compnal::wrapper::pybind11LatticeInfiniteRange(m_lattice);
 
-   py::module_ m_model = m.def_submodule("model");
+   py::module_ m_model = m.def_submodule("base_model");
    compnal::wrapper::pybind11ModelPolynomialIsing<compnal::lattice::Chain, RealType>(m_model, "Chain");
    compnal::wrapper::pybind11ModelPolynomialIsing<compnal::lattice::Square, RealType>(m_model, "Square");
    compnal::wrapper::pybind11ModelPolynomialIsing<compnal::lattice::Triangle, RealType>(m_model, "Triangle");
@@ -43,7 +43,7 @@ PYBIND11_MODULE(base_compnal, m) {
    compnal::wrapper::pybind11ModelPolynomialIsing<compnal::lattice::InfiniteRange, RealType>(m_model, "InfiniteRange");
 
    
-   py::module_ m_solver = m.def_submodule("solver");
+   py::module_ m_solver = m.def_submodule("base_solver");
    compnal::wrapper::pybind11SolverCMCUpdater(m_solver);
    compnal::wrapper::pybind11SolverClassicalMonteCarlo<compnal::model::PolynomialIsing<compnal::lattice::Chain, RealType>>(m_solver, "PolyIsingChain");
    compnal::wrapper::pybind11SolverClassicalMonteCarlo<compnal::model::PolynomialIsing<compnal::lattice::Square, RealType>>(m_solver, "PolyIsingSquare");
