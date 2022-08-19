@@ -52,3 +52,5 @@ compnal-python/notebook/work
 
 # Reference site
 docs
+
+*.pyc
