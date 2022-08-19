@@ -157,6 +157,18 @@ void pybind11LatticeInfiniteRange(py::module &m) {
    
 }
 
+void pybind11LatticeAnyLattice(py::module &m) {
+   
+   using TDL = lattice::AnyLattice;
+   auto py_class = py::class_<TDL>(m, "AnyLattice", py::module_local());
+   
+   py_class.def(py::init<>());
+   
+   //Public Member Functions
+   py_class.def("get_boundary_condition", &TDL::GetBoundaryCondition);
+   
+}
+
 } // namespace wrapper
 } // namespace compnal
 

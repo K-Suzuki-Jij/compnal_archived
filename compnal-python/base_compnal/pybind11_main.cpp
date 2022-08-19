@@ -33,6 +33,7 @@ PYBIND11_MODULE(base_compnal, m) {
    compnal::wrapper::pybind11LatticeHoneycomb(m_lattice);
    compnal::wrapper::pybind11LatticeCubic(m_lattice);
    compnal::wrapper::pybind11LatticeInfiniteRange(m_lattice);
+   compnal::wrapper::pybind11LatticeAnyLattice(m_lattice);
 
    py::module_ m_model = m.def_submodule("base_model");
    compnal::wrapper::pybind11ModelPolynomialIsing<compnal::lattice::Chain, RealType>(m_model, "Chain");
