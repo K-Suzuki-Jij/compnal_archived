@@ -47,7 +47,12 @@ public:
       std::sort(index_list.begin(), index_list.end());
       interaction_[index_list] += value;
       index_set_.insert(index_list.begin(), index_list.end());
-      flag_need_reset_index_map_ = true;
+   }
+   
+   void SetInteraction(std::vector<IndexType> index_list, const RealType value) {
+      std::sort(index_list.begin(), index_list.end());
+      interaction_[index_list] = value;
+      index_set_.insert(index_list.begin(), index_list.end());
    }
    
    std::vector<IndexType> GenerateIndexList() const {
@@ -60,6 +65,18 @@ public:
       return interaction_;
    }
    
+   std::pair<std::vector<std::vector<IndexType>>, std::vector<RealType>> GenerateInteractionAsPair() const {
+      std::vector<std::vector<IndexType>> key_list;
+      std::vector<RealType> value_list;
+      key_list.reserve(interaction_.size());
+      value_list.reserve(interaction_.size());
+      for (const auto &it: interaction_) {
+         key_list.push_back(it.first);
+         value_list.push_back(it.second);
+      }
+      return std::pair<std::vector<std::vector<IndexType>>, std::vector<RealType>>{key_list, value_list};
+   }
+   
    const std::unordered_set<IndexType, IndexHash> &GetIndexSet() const {
       return index_set_;
    }
@@ -68,25 +85,20 @@ public:
       return index_set_.size();
    }
    
-   const std::unordered_map<IndexType, std::int64_t> GetIndexMap() const {
-      if (flag_need_reset_index_map_) {
-         std::vector<IndexType> index_list = GenerateIndexList();
-         std::int64_t count = 0;
-         index_map_.clear();
-         for (std::size_t i = 0; i < index_list.size(); ++i) {
-            index_map_[index_list[i]] = count;
-            count++;
-         }
-         flag_need_reset_index_map_ = false;
+   std::unordered_map<IndexType, std::int64_t, IndexHash> GenerateIndexMap() const {
+      std::unordered_map<IndexType, std::int64_t, IndexHash> index_map;
+      std::vector<IndexType> index_list = GenerateIndexList();
+      std::int64_t count = 0;
+      for (std::size_t i = 0; i < index_list.size(); ++i) {
+         index_map[index_list[i]] = count;
+         count++;
       }
-      return index_map_;
+      return index_map;
    }
 
 private:
    std::unordered_set<IndexType, IndexHash> index_set_;
-   std::unordered_map<IndexType, std::int64_t, IndexHash> index_map_;
    InteractionType interaction_;
-   bool flag_need_reset_index_map_ = true;
 };
 
 

@@ -26,7 +26,7 @@ namespace test {
 
 TEST(ModelPolynomialIsing, AnyLattice) {
    using VISType = std::vector<utility::IntStrType>;
-   model::PolynomialIsing<lattice::AnyLattice, double> model{lattice::AnyLattice{}};
+   auto model = model::make_polynomial_ising<double>(lattice::AnyLattice{});
    
    model.AddInteraction({1, 2, "a"}, -1.0);
    model.AddInteraction({1, VISType{1, 1}}, -2.0);
@@ -37,14 +37,14 @@ TEST(ModelPolynomialIsing, AnyLattice) {
    EXPECT_EQ(model.GetIndexSet().count("a"), 1);
    EXPECT_EQ(model.GetIndexSet().count(VISType{1, 1}), 1);
    EXPECT_EQ(model.lattice.GetBoundaryCondition(), lattice::BoundaryCondition::NONE);
-   
 }
 
 TEST(ModelPolynomialIsing, InfiniteRange) {
    
    lattice::InfiniteRange lattice{10};
    std::unordered_map<int, double> interaction{{0, -1.0}, {3, +1.0}};
-   model::PolynomialIsing model{lattice, interaction};
+   auto model = model::make_polynomial_ising(lattice, interaction);
+   model.CalculateEnergy({});
    
 }
 

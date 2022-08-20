@@ -47,10 +47,15 @@ void pybind11ModelPolynomialIsing(py::module &m, const std::string &post_name = 
    
    //Public Member Functions
    py_class.def("set_interaction", &PolyIsing::SetInteraction, "degree"_a, "value"_a);
+   py_class.def("add_interaction", &PolyIsing::SetInteraction, "degree"_a, "value"_a);
    py_class.def("get_interaction", &PolyIsing::GetInteraction);
    py_class.def("get_system_size", &PolyIsing::GetSystemSize);
+   py_class.def("calculate_energy", py::overload_cast<const std::vector<typename PolyIsing::OPType>&>(&PolyIsing::CalculateEnergy, py::const_), "sample"_a);
    py_class.def("get_degree", &PolyIsing::GetDegree);
-   py_class.def_readonly("lattice", &PolyIsing::lattice);
+   
+   m.def("make_polynomial_ising", [](const LatticeType &lattice, const std::unordered_map<std::int32_t, RealType> &interaction) {
+      return model::make_polynomial_ising<LatticeType, RealType>(lattice, interaction);
+   }, "lattice"_a, "interaction"_a = py::dict());
    
 }
 
@@ -66,12 +71,17 @@ void pybind11ModelPolynomialIsingAnyLattice(py::module &m, const std::string &po
    py_class.def(py::init<const lattice::AnyLattice&>(), "lattice"_a);
    
    //Public Member Functions
+   py_class.def("set_interaction", &PolyIsing::SetInteraction, "index_list"_a, "value"_a);
    py_class.def("add_interaction", &PolyIsing::AddInteraction, "index_list"_a, "value"_a);
-   py_class.def("get_interaction", &PolyIsing::GetInteraction);
-   py_class.def("get_index_set", &PolyIsing::GetIndexSet);
+   py_class.def("generate_interaction_as_pair", &PolyIsing::GenerateInteractionAsPair);
    py_class.def("generate_index_list", &PolyIsing::GenerateIndexList);
    py_class.def("get_system_size", &PolyIsing::GetSystemSize);
-   py_class.def_readonly("lattice", &PolyIsing::lattice);
+   py_class.def("calculate_energy", &PolyIsing::CalculateEnergy, "sample"_a);
+
+   m.def("make_polynomial_ising", [](const lattice::AnyLattice &lattice,
+                                     const typename model::PolynomialIsing<lattice::AnyLattice, RealType>::InteractionType &interaction) {
+      return model::make_polynomial_ising<RealType>(lattice, interaction);
+   }, "lattice"_a, "interaction"_a = py::dict());
 
 }
 

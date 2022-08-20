@@ -42,7 +42,7 @@ PYBIND11_MODULE(base_compnal, m) {
    compnal::wrapper::pybind11ModelPolynomialIsing<compnal::lattice::Honeycomb, RealType>(m_model, "Honeycomb");
    compnal::wrapper::pybind11ModelPolynomialIsing<compnal::lattice::Cubic, RealType>(m_model, "Cubic");
    compnal::wrapper::pybind11ModelPolynomialIsing<compnal::lattice::InfiniteRange, RealType>(m_model, "InfiniteRange");
-
+   compnal::wrapper::pybind11ModelPolynomialIsingAnyLattice<RealType>(m_model, "AnyLattice");
    
    py::module_ m_solver = m.def_submodule("base_solver");
    compnal::wrapper::pybind11SolverCMCUpdater(m_solver);

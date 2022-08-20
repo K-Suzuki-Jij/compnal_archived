@@ -40,7 +40,7 @@ public:
    const LatticeType lattice;
    
    PolynomialIsing(const LatticeType &input_lattice,
-                   const std::unordered_map<std::int32_t, RealType> &interaction
+                   const std::unordered_map<std::int32_t, RealType> &interaction = {}
                    ): lattice(input_lattice) {
       for (const auto &it: interaction) {
          SetInteraction(it.first, it.second);
@@ -61,6 +61,24 @@ public:
          }
          else {
             interaction_[degree] = value;
+         }
+      }
+   }
+   
+   void AddInteraction(const std::int32_t degree, const RealType value) {
+      if (degree < 0) {
+         throw std::runtime_error("degree must be larger than or equal to 0");
+      }
+      if (degree > lattice.GetSystemSize()) {
+         throw std::runtime_error("degree must be smaller than or equal to the system size.");
+      }
+      if (std::abs(value) > std::numeric_limits<RealType>::epsilon()) {
+         if (interaction_.size() <= degree) {
+            interaction_.resize(degree + 1);
+            interaction_[degree] = value;
+         }
+         else {
+            interaction_[degree] += value;
          }
       }
    }
@@ -200,35 +218,49 @@ public:
    
    const lattice::AnyLattice lattice;
    
-   PolynomialIsing(const lattice::AnyLattice &input_lattice): lattice(input_lattice) {}
+   PolynomialIsing(const lattice::AnyLattice &input_lattice,
+                   const InteractionType &interaction = {}): lattice(input_lattice) {
+                      for (const auto &it: interaction) {
+                         SetInteraction(it.first, it.second);
+                      }
+                   }
    
-   void AddInteraction(const std::vector<IndexType> &index_list, const RealType value) {
-      interaction.AddInteraction(index_list, value);
+   void SetInteraction(const std::vector<IndexType> &index_list, const RealType value) {
+      interaction_.SetInteraction(index_list, value);
    }
    
-   void GenerateIndexList() const {
-      return interaction.GenerateIndexList();
+   void AddInteraction(const std::vector<IndexType> &index_list, const RealType value) {
+      interaction_.AddInteraction(index_list, value);
+   }
+   
+   std::pair<std::vector<std::vector<IndexType>>, std::vector<RealType>> GenerateInteractionAsPair() const {
+      return interaction_.GenerateInteractionAsPair();
+   }
+   
+   std::vector<IndexType> GenerateIndexList() const {
+      return interaction_.GenerateIndexList();
    }
    
    const InteractionType &GetInteraction() const {
-      return interaction.GetInteraction();
+      return interaction_.GetInteraction();
    }
    
    const std::unordered_set<IndexType, IndexHash> &GetIndexSet() const {
-      return interaction.GetIndexSet();
+      return interaction_.GetIndexSet();
    }
    
    const std::size_t GetSystemSize() const {
-      return interaction.GetSystemSize();
+      return interaction_.GetSystemSize();
    }
    
+   
    RealType CalculateEnergy(const std::vector<OPType> &sample) const {
-      if (sample.size() != interaction.GetSystemSize()) {
+      if (sample.size() != interaction_.GetSystemSize()) {
          throw std::runtime_error("The sample size is not equal to the system size");
       }
       RealType val = 0;
-      const auto &interaction_map = interaction.GetIndexMap();
-      for (const auto &it: interaction.GetInteraction()) {
+      const auto &interaction_map = interaction_.GenerateIndexMap();
+      for (const auto &it: interaction_.GetInteraction()) {
          OPType spin = 1;
          for (const auto &index: it.first) {
             spin *= sample[interaction_map.at(index)];
@@ -292,7 +324,7 @@ public:
    }
    
 private:
-   PolynomialGeneralModel<RealType> interaction;
+   PolynomialGeneralModel<RealType> interaction_;
    
    RealType CalculateMagnetization(const std::vector<OPType> &sample) const {
       RealType val = 0;
@@ -304,6 +336,17 @@ private:
    
 };
 
+template<class LatticeType, typename RealType>
+auto make_polynomial_ising(const LatticeType &lattice,
+                           const std::unordered_map<std::int32_t, RealType> &interaction = {}) {
+   return PolynomialIsing<LatticeType, RealType>{lattice, interaction};
+}
+
+template<typename RealType>
+auto make_polynomial_ising(const lattice::AnyLattice &lattice,
+                           const typename PolynomialIsing<lattice::AnyLattice, RealType>::InteractionType &interaction = {}) {
+   return PolynomialIsing<lattice::AnyLattice, RealType>{lattice, interaction};
+}
 
 } // namespace model
 } // namespace compnal
