@@ -10,8 +10,7 @@ from compnal.lattice.boundary_condition import (
 )
 
 
-BasicLatticeType = Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange]
-LatticeType = Union[BasicLatticeType, AnyLattice]
+LatticeType = Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange, AnyLattice]
 InteractionType = Union[Dict[int, float], Dict[List[Union[int, str, List[Union[int, str]]]], float]]
 
 class PolynomialIsing:
@@ -193,7 +192,7 @@ def make_polynomial_ising(
         lattice: LatticeType, 
         interaction: InteractionType = {}
     ) -> Union[PolynomialIsing, PolynomialIsingAnyLattice]:
-    
+
     """Make PolynomialIsing class from lattice (and interaction).
 
     Args:

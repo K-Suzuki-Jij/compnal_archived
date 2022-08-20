@@ -147,7 +147,8 @@ setup(
     packages=[  
         'compnal',
         'compnal.lattice',
-        'compnal.model'
+        'compnal.model',
+        'compnal.solver'
         ],
     zip_safe=False,
     extras_require={"test": ["pytest>=6.0"]},

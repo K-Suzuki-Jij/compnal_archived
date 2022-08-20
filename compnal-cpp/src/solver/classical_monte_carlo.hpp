@@ -47,7 +47,13 @@ public:
    
    ClassicalMonteCarlo(const ModelType &model,
                        const CMCUpdater cmc_updater=CMCUpdater::METROPOLIS):
-   model(model), cmc_updater(cmc_updater) {}
+   model(model), cmc_updater(cmc_updater) {
+      seed_ = std::random_device()();
+      samples_.resize(num_samples_);
+      for (std::size_t i = 0; i < samples_.size(); ++i) {
+         RandomizeConfiguration(&samples_[i], seed_);
+      }
+   }
    
    void SetNumSweeps(const std::int32_t num_sweeps) {
       if (num_sweeps < 0) {
@@ -171,6 +177,7 @@ private:
    void RandomizeConfiguration(std::vector<utility::SpinType> *sample,
                                const std::uint64_t seed) const {
       std::uniform_int_distribution<utility::SpinType> dist(0, 1);
+      sample->resize(model.GetSystemSize());
       utility::RandType random_number_engine(seed);
       for (std::size_t i = 0; i < sample->size(); i++) {
          (*sample)[i] = 2*dist(random_number_engine) - 1;
@@ -178,6 +185,13 @@ private:
    }
    
 };
+
+
+template<class ModelType>
+auto make_classical_monte_carlo(const ModelType &model,
+                                const CMCUpdater cmc_updater=CMCUpdater::METROPOLIS) {
+   return ClassicalMonteCarlo<ModelType>{model, cmc_updater};
+}
 
 
 } // namespace solver

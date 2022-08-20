@@ -58,16 +58,16 @@ void SetEnergyDifference(std::vector<RealType> *energy_difference,
       for (std::int32_t p = 2; p < static_cast<std::int32_t>(interaction.size()); ++p) {
          if (std::abs(interaction[p]) > std::numeric_limits<RealType>::epsilon()) {
             const RealType target_ineraction = interaction[p];
-            std::vector<std::int32_t> indices(p);
+            std::vector<std::int32_t> indices(p - 1);
             std::int32_t start_index = 0;
             std::int32_t size = 0;
             
             while (true) {
                for (std::int32_t i = start_index; i < system_size - 1; ++i) {
                   indices[size++] = i;
-                  if (size == p) {
+                  if (size == p - 1) {
                      OPType sign = 1;
-                     for (std::int32_t j = 0; j < p; ++j) {
+                     for (std::int32_t j = 0; j < p - 1; ++j) {
                         if (indices[j] >= index) {
                            sign *= sample[indices[j] + 1];
                         }

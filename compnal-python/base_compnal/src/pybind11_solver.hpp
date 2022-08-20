@@ -56,8 +56,8 @@ void pybind11SolverClassicalMonteCarlo(py::module &m, const std::string &post_na
    //Public Member Functions
    py_class.def("set_num_sweeps", &CMC::SetNumSweeps  , "num_sweeps"_a );
    py_class.def("set_num_samples", &CMC::SetNumSamples, "num_samples"_a);
-   py_class.def("set_temperature", &CMC::SetTemperature, "T"_a);
-   py_class.def("set_inverse_temperature", &CMC::SetInverseTemperature, "beta"_a);
+   py_class.def("set_temperature", &CMC::SetTemperature, "temperature"_a);
+   py_class.def("set_inverse_temperature", &CMC::SetInverseTemperature, "inverse_temperature"_a);
    py_class.def("get_num_sweeps", &CMC::GetNumSweeps);
    py_class.def("get_num_samples", &CMC::GetNumSamples);
    py_class.def("get_samples", &CMC::GetSamples);
@@ -69,7 +69,12 @@ void pybind11SolverClassicalMonteCarlo(py::module &m, const std::string &post_na
    py_class.def("calculate_sample_average", &CMC::CalculateSampleAverage);
    py_class.def("calculate_sample_moment", &CMC::CalculateSampleMoment, "degree"_a);
    py_class.def_readonly("model", &CMC::model);
-   py_class.def_readonly("updater", &CMC::cmc_updater);
+   py_class.def_readonly("cmc_updater", &CMC::cmc_updater);
+   
+   m.def("make_classical_monte_carlo", [](const ModelType &model,
+                                          const solver::CMCUpdater cmc_updater) {
+      return make_classical_monte_carlo(model, cmc_updater);
+   }, "model"_a, "cmc_updater"_a = solver::CMCUpdater::METROPOLIS);
    
 }
 
