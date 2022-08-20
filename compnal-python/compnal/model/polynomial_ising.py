@@ -26,6 +26,25 @@ def make_polynomial_ising(lattice: LatticeType, interaction: InteractionType = {
 
                 super().__init__(lattice=lattice, interaction=interaction)
 
+            def set_interaction(self, degree: int, value: float) -> None:
+                super().set_interaction(degree, value)
+
+            def add_interaction(self, degree: int, value: float) -> None:
+                super().add_interaction(degree, value)
+
+            def get_interaction(self) -> list:
+                return super().get_interaction()
+
+            def get_system_size(self) -> int:
+                return super().get_system_size()
+
+            def calculate_energy(self, sample: list[int]) -> float:
+                return super().calculate_energy(sample)
+
+            @property
+            def system_size(self) -> int:
+                return self.get_system_size()
+            
         return PolynomialIsing(lattice=lattice, interaction=interaction)
                 
 
@@ -34,11 +53,40 @@ def make_polynomial_ising(lattice: LatticeType, interaction: InteractionType = {
 
             def __init__(
                 self, 
-                lattice: LatticeType, 
+                lattice: AnyLattice, 
                 interaction: Dict[List[Union[int, str, List[Union[int, str]]]], float] = {}
             ) -> None:
 
                 super().__init__(lattice=lattice, interaction=interaction)
+
+            def set_interaction(self, index_list: List[Union[int, str, List[Union[int, str]]]], value: float) -> None:
+                super().set_interaction(index_list, value)
+
+            def add_interaction(self, index_list: List[Union[int, str, List[Union[int, str]]]], value: float) -> None:
+                super().add_interaction(index_list, value)
+
+            def get_interaction(self) -> list:
+                keys, values = super().generate_interaction_as_pair()
+                interaction_map = {}
+                for key, value in zip(keys, values):
+                    if isinstance(key, list):
+                        interaction_map[tuple(key)] = value
+                    else:
+                        interaction_map[key] = value
+                return interaction_map
+
+            def get_system_size(self) -> int:
+                return super().get_system_size()
+
+            def calculate_energy(self, sample: list[int]) -> float:
+                return super().calculate_energy(sample)
+
+            def generate_index_list(self) -> List[Union[int, str, List[Union[int, str]]]]:
+                return super().generate_index_list()
+
+            @property
+            def system_size(self) -> int:
+                return self.get_system_size()
 
         return PolynomialIsing(lattice=lattice, interaction=interaction)
     else:
