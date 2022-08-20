@@ -30,7 +30,7 @@ namespace utility {
 
 using IntStrType = std::variant<std::int32_t, std::string>;
 
-using IndexType = std::variant<std::int32_t, std::string, std::vector<IntStrType>>;
+using AnyIndexType = std::variant<std::int32_t, std::string, std::vector<IntStrType>>;
 
 using SpinType = std::int8_t;
 

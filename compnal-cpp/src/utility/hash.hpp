@@ -30,7 +30,7 @@ namespace compnal {
 namespace utility {
 
 //! @brief Hash struct of IndexType used in model::GeneralModel
-struct IndexHash {
+struct AnyIndexHash {
    template<class... Types>
    std::size_t operator()(const std::variant<Types...> &v) const {
       if (std::holds_alternative<std::int32_t>(v)) {
@@ -62,11 +62,11 @@ struct IndexHash {
 };
 
 //! @brief Hash struct of std::vector.
-struct IndexVectorHash {
-   std::size_t operator()(const std::vector<IndexType> &v) const {
+struct AnyIndexVectorHash {
+   std::size_t operator()(const std::vector<AnyIndexType> &v) const {
       std::size_t hash = v.size();
       for (const auto &i : v) {
-         hash ^= IndexHash()(i) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
+         hash ^= AnyIndexHash()(i) + 0x9e3779b9 + (hash << 6) + (hash >> 2);
       }
       return hash;
    }

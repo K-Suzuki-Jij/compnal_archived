@@ -36,9 +36,9 @@ template<typename RealType>
 class PolynomialGeneralModel {
   
 public:
-   using IndexType = utility::IndexType;
-   using IndexHash = utility::IndexHash;
-   using VectorHash = utility::IndexVectorHash;
+   using IndexType = utility::AnyIndexType;
+   using IndexHash = utility::AnyIndexHash;
+   using VectorHash = utility::AnyIndexVectorHash;
    using InteractionType = std::unordered_map<std::vector<IndexType>, RealType, VectorHash>;
    
    PolynomialGeneralModel() {}

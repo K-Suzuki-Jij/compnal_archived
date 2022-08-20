@@ -73,7 +73,6 @@ void pybind11ModelPolynomialIsingAnyLattice(py::module &m, const std::string &po
    py_class.def("get_system_size", &PolyIsing::GetSystemSize);
    py_class.def_readonly("lattice", &PolyIsing::lattice);
 
-   
 }
 
 
