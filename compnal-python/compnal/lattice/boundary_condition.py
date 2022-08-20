@@ -14,16 +14,16 @@ class BoundaryCondition(Enum):
     PBC = 2
 
 def cast_base_boundary_condition(boundary_condition: base_lattice.BoundaryCondition):
-    """_summary_
+    """Cast base_compnal.base_lattice.BoundaryCondition to compnal.lattice.BoundaryCondition.
 
     Args:
-        boundary_condition (base_lattice.BoundaryCondition): _description_
+        boundary_condition (base_lattice.BoundaryCondition): The boundary condition.
 
     Raises:
-        RuntimeError: _description_
+        RuntimeError: When unknonw BoundaryCondition is iuput.
 
     Returns:
-        _type_: _description_
+        BoundaryCondition: The boundary condition as the type of compnal.lattice.BoundaryCondition.
     """
     if boundary_condition == base_lattice.BoundaryCondition.NONE:
         return BoundaryCondition.NONE
@@ -35,16 +35,16 @@ def cast_base_boundary_condition(boundary_condition: base_lattice.BoundaryCondit
         raise RuntimeError("Unknonw BoundaryCondition")
 
 def cast_boundary_condition(boundary_condition: BoundaryCondition):
-    """_summary_
+    """Cast compnal.lattice.BoundaryCondition to base_compnal.base_lattice.BoundaryCondition.
 
     Args:
-        boundary_condition (BoundaryCondition): _description_
+        boundary_condition (lattice.BoundaryCondition): The boundary condition.
 
     Raises:
-        RuntimeError: _description_
+        RuntimeError: When unknonw BoundaryCondition is iuput.
 
     Returns:
-        _type_: _description_
+        BoundaryCondition: The boundary condition as the type of base_compnal.base_lattice.BoundaryCondition.
     """
     if boundary_condition == BoundaryCondition.NONE:
         return base_lattice.BoundaryCondition.NONE
