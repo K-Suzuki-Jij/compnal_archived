@@ -95,6 +95,10 @@ public:
       return lattice.GetSystemSize();
    }
    
+   lattice::BoundaryCondition GetBoundaryCondition() const {
+      return lattice.GetBoundaryCondition();
+   }
+   
    RealType CalculateAverage(const std::vector<std::vector<OPType>> &samples) const {
       return CalculateMoment(samples, 1);
    }
@@ -241,16 +245,20 @@ public:
       return interaction_.GenerateIndexList();
    }
    
-   const InteractionType &GetInteraction() const {
+   InteractionType GetInteraction() const {
       return interaction_.GetInteraction();
    }
    
-   const std::unordered_set<IndexType, IndexHash> &GetIndexSet() const {
+   std::unordered_set<IndexType, IndexHash> GetIndexSet() const {
       return interaction_.GetIndexSet();
    }
    
-   const std::size_t GetSystemSize() const {
+   std::size_t GetSystemSize() const {
       return interaction_.GetSystemSize();
+   }
+   
+   lattice::BoundaryCondition GetBoundaryCondition() const {
+      return lattice.GetBoundaryCondition();
    }
    
    
