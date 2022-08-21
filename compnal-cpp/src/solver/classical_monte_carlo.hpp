@@ -142,8 +142,12 @@ public:
       if (this->cmc_updater == CMCUpdater::METROPOLIS) {
 #pragma omp parallel for schedule(guided)
          for (std::int32_t sample_count = 0; sample_count < num_samples_; sample_count++) {
-            RandomizeConfiguration(&samples_[sample_count], configuration_seed_list[sample_count]);
-            updater::ExecuteMetropolis(&samples_[sample_count], model, num_sweeps_, beta_, execute_seed_list[sample_count]);
+            std::vector<std::pair<OPType, RealType>> sample_delta(model.GetSystemSize());
+            RandomizeConfiguration(&sample_delta, configuration_seed_list[sample_count]);
+            updater::ExecuteMetropolis(&sample_delta, model, num_sweeps_, beta_, execute_seed_list[sample_count]);
+            for (std::size_t i = 0; i < sample_delta.size(); ++i) {
+               samples_[sample_count][i] = sample_delta[i].first;
+            }
          }
       }
       else if (this->cmc_updater == CMCUpdater::HEAT_BATH) {
@@ -181,6 +185,15 @@ private:
       utility::RandType random_number_engine(seed);
       for (std::size_t i = 0; i < sample->size(); i++) {
          (*sample)[i] = 2*dist(random_number_engine) - 1;
+      }
+   }
+   
+   void RandomizeConfiguration(std::vector<std::pair<OPType, RealType>> *sample_delta,
+                               const std::uint64_t seed) const {
+      std::uniform_int_distribution<utility::SpinType> dist(0, 1);
+      utility::RandType random_number_engine(seed);
+      for (auto &&it: (*sample_delta)) {
+         it.first = 2*dist(random_number_engine) - 1;
       }
    }
    

@@ -38,6 +38,40 @@ namespace solver {
 namespace updater {
 
 template<class ModelType>
+void ExecuteMetropolis(std::vector<std::pair<typename ModelType::OPType, typename ModelType::ValueType>> *sample_delta,
+                       const ModelType &model,
+                       const std::int32_t num_sweeps,
+                       const typename ModelType::ValueType beta,
+                       const std::uint64_t seed) {
+   
+   using RealType = typename ModelType::ValueType;
+   
+   if (sample_delta->size() != static_cast<std::size_t>(model.GetSystemSize())) {
+      throw std::runtime_error("The sample size is not equal to the system size.");
+   }
+   
+   const std::int32_t system_size = static_cast<std::int32_t>(model.GetSystemSize());
+   
+   // Set random number engine
+   utility::RandType random_number_engine(seed);
+   std::uniform_real_distribution<RealType> dist_real(0, 1);
+   std::uniform_int_distribution<std::int32_t> dist_system_size(0, system_size - 1);
+      
+   // Set energy difference
+   SetEnergyDifference<typename ModelType::ValueType>(sample_delta, model);
+   
+   // Do Metropolis update
+   for (std::int32_t sweep_count = 0; sweep_count < num_sweeps; sweep_count++) {
+      for (std::int32_t i = 0; i < system_size; i++) {
+         const std::int32_t index = dist_system_size(random_number_engine);
+         if ((*sample_delta)[index].second <= 0.0 || std::exp(-beta*(*sample_delta)[index].second) > dist_real(random_number_engine)) {
+            UpdateConfiguration(sample_delta, index, model);
+         }
+      }
+   }
+}
+
+template<class ModelType>
 void ExecuteMetropolis(std::vector<utility::SpinType> *sample,
                        const ModelType &model,
                        const std::int32_t num_sweeps,

@@ -32,6 +32,19 @@ namespace solver {
 namespace updater {
 
 template<typename RealType>
+void SetEnergyDifference(std::vector<std::pair<typename model::PolynomialIsing<lattice::Chain, RealType>::OPType, RealType>> *sample_delta,
+                         const model::PolynomialIsing<lattice::Chain, RealType> &model) {
+   
+}
+
+template<typename RealType>
+void UpdateConfiguration(std::vector<std::pair<typename model::PolynomialIsing<lattice::Chain, RealType>::OPType, RealType>> *sample_delta,
+                         const std::int32_t index,
+                         const model::PolynomialIsing<lattice::Chain, RealType> &model) {
+   
+}
+
+template<typename RealType>
 void SetEnergyDifference(std::vector<RealType> *energy_difference,
                          const std::vector<typename model::PolynomialIsing<lattice::Chain, RealType>::OPType> &sample,
                          const model::PolynomialIsing<lattice::Chain, RealType> &model) {
