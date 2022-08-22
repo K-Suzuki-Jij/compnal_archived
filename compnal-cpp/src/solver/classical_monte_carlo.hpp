@@ -122,13 +122,8 @@ public:
       if (num_sweeps_ < 0) {
          throw std::runtime_error("num_sweeps must be non-negative integer.");
       }
-      seed_ = seed;
       
-      samples_.resize(num_samples_);
-      for (std::size_t i = 0; i < samples_.size(); ++i) {
-         samples_[i].resize(model.GetSystemSize());
-      }
-      samples_.shrink_to_fit();
+      seed_ = seed;
       
       utility::RandType random_number_engine(seed_);
       std::vector<std::uint64_t> configuration_seed_list(num_samples_);
@@ -139,22 +134,32 @@ public:
          execute_seed_list[i] = random_number_engine();
       }
       
+      samples_.resize(num_samples_);
+      for (std::size_t i = 0; i < samples_.size(); ++i) {
+         samples_[i].resize(model.GetSystemSize());
+      }
+      samples_.shrink_to_fit();
+      
       if (this->cmc_updater == CMCUpdater::METROPOLIS) {
 #pragma omp parallel for schedule(guided)
          for (std::int32_t sample_count = 0; sample_count < num_samples_; sample_count++) {
-            std::vector<std::pair<OPType, RealType>> sample_delta(model.GetSystemSize());
-            RandomizeConfiguration(&sample_delta, configuration_seed_list[sample_count]);
-            updater::ExecuteMetropolis(&sample_delta, model, num_sweeps_, beta_, execute_seed_list[sample_count]);
-            for (std::size_t i = 0; i < sample_delta.size(); ++i) {
-               samples_[sample_count][i] = sample_delta[i].first;
+            std::vector<std::pair<OPType, RealType>> sample_energy_difference_pair(model.GetSystemSize());
+            RandomizeConfiguration(&sample_energy_difference_pair, configuration_seed_list[sample_count]);
+            updater::ExecuteMetropolis(&sample_energy_difference_pair, model, num_sweeps_, beta_, execute_seed_list[sample_count]);
+            for (std::size_t i = 0; i < sample_energy_difference_pair.size(); ++i) {
+               samples_[sample_count][i] = sample_energy_difference_pair[i].first;
             }
          }
       }
       else if (this->cmc_updater == CMCUpdater::HEAT_BATH) {
 #pragma omp parallel for schedule(guided)
          for (std::int32_t sample_count = 0; sample_count < num_samples_; sample_count++) {
-            RandomizeConfiguration(&samples_[sample_count], configuration_seed_list[sample_count]);
-            updater::ExecuteHeatBath(&samples_[sample_count], model, num_sweeps_, beta_, execute_seed_list[sample_count]);
+            std::vector<std::pair<OPType, RealType>> sample_energy_difference_pair(model.GetSystemSize());
+            RandomizeConfiguration(&sample_energy_difference_pair, configuration_seed_list[sample_count]);
+            updater::ExecuteHeatBath(&sample_energy_difference_pair, model, num_sweeps_, beta_, execute_seed_list[sample_count]);
+            for (std::size_t i = 0; i < sample_energy_difference_pair.size(); ++i) {
+               samples_[sample_count][i] = sample_energy_difference_pair[i].first;
+            }
          }
       }
       else {
@@ -188,11 +193,11 @@ private:
       }
    }
    
-   void RandomizeConfiguration(std::vector<std::pair<OPType, RealType>> *sample_delta,
+   void RandomizeConfiguration(std::vector<std::pair<OPType, RealType>> *sample_energy_difference_pair,
                                const std::uint64_t seed) const {
       std::uniform_int_distribution<utility::SpinType> dist(0, 1);
       utility::RandType random_number_engine(seed);
-      for (auto &&it: (*sample_delta)) {
+      for (auto &&it: (*sample_energy_difference_pair)) {
          it.first = 2*dist(random_number_engine) - 1;
       }
    }

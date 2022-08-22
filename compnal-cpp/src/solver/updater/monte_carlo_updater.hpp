@@ -38,7 +38,7 @@ namespace solver {
 namespace updater {
 
 template<class ModelType>
-void ExecuteMetropolis(std::vector<std::pair<typename ModelType::OPType, typename ModelType::ValueType>> *sample_delta,
+void ExecuteMetropolis(std::vector<std::pair<typename ModelType::OPType, typename ModelType::ValueType>> *sample_energy_difference_pair,
                        const ModelType &model,
                        const std::int32_t num_sweeps,
                        const typename ModelType::ValueType beta,
@@ -46,7 +46,7 @@ void ExecuteMetropolis(std::vector<std::pair<typename ModelType::OPType, typenam
    
    using RealType = typename ModelType::ValueType;
    
-   if (sample_delta->size() != static_cast<std::size_t>(model.GetSystemSize())) {
+   if (sample_energy_difference_pair->size() != static_cast<std::size_t>(model.GetSystemSize())) {
       throw std::runtime_error("The sample size is not equal to the system size.");
    }
    
@@ -54,25 +54,25 @@ void ExecuteMetropolis(std::vector<std::pair<typename ModelType::OPType, typenam
    
    // Set random number engine
    utility::RandType random_number_engine(seed);
-   std::uniform_real_distribution<RealType> dist_real(0, 1);
+   std::uniform_real_distribution<typename ModelType::ValueType> dist_real(0, 1);
    std::uniform_int_distribution<std::int32_t> dist_system_size(0, system_size - 1);
       
    // Set energy difference
-   SetEnergyDifference<typename ModelType::ValueType>(sample_delta, model);
+   SetEnergyDifference<typename ModelType::ValueType>(sample_energy_difference_pair, model);
    
    // Do Metropolis update
    for (std::int32_t sweep_count = 0; sweep_count < num_sweeps; sweep_count++) {
       for (std::int32_t i = 0; i < system_size; i++) {
          const std::int32_t index = dist_system_size(random_number_engine);
-         if ((*sample_delta)[index].second <= 0.0 || std::exp(-beta*(*sample_delta)[index].second) > dist_real(random_number_engine)) {
-            UpdateConfiguration(sample_delta, index, model);
+         if ((*sample_energy_difference_pair)[index].second <= 0.0 || std::exp(-beta*(*sample_energy_difference_pair)[index].second) > dist_real(random_number_engine)) {
+            UpdateConfiguration(sample_energy_difference_pair, index, model);
          }
       }
    }
 }
 
 template<class ModelType>
-void ExecuteMetropolis(std::vector<utility::SpinType> *sample,
+void ExecuteHeatBath(std::vector<std::pair<typename ModelType::OPType, typename ModelType::ValueType>> *sample_energy_difference_pair,
                        const ModelType &model,
                        const std::int32_t num_sweeps,
                        const typename ModelType::ValueType beta,
@@ -80,7 +80,7 @@ void ExecuteMetropolis(std::vector<utility::SpinType> *sample,
    
    using RealType = typename ModelType::ValueType;
    
-   if (sample->size() != static_cast<std::size_t>(model.GetSystemSize())) {
+   if (sample_energy_difference_pair->size() != static_cast<std::size_t>(model.GetSystemSize())) {
       throw std::runtime_error("The sample size is not equal to the system size.");
    }
    
@@ -93,54 +93,19 @@ void ExecuteMetropolis(std::vector<utility::SpinType> *sample,
       
    // Set energy difference
    std::vector<RealType> energy_difference(system_size);
-   SetEnergyDifference<RealType>(&energy_difference, *sample, model);
+   SetEnergyDifference<typename ModelType::ValueType>(sample_energy_difference_pair, model);
    
    // Do Metropolis update
    for (std::int32_t sweep_count = 0; sweep_count < num_sweeps; sweep_count++) {
       for (std::int32_t i = 0; i < system_size; i++) {
          const std::int32_t index = dist_system_size(random_number_engine);
-         if (energy_difference[index] <= 0.0 || std::exp(-beta*energy_difference[index]) > dist_real(random_number_engine)) {
-            UpdateConfiguration(sample, &energy_difference, index, model);
+         if (1/(1 + std::exp(beta*(*sample_energy_difference_pair)[index].second)) > dist_real(random_number_engine)) {
+            UpdateConfiguration(sample_energy_difference_pair, index, model);
          }
       }
    }
 }
 
-
-template<class ModelType>
-void ExecuteHeatBath(std::vector<utility::SpinType> *sample,
-                     const ModelType &model,
-                     const std::int32_t num_sweeps,
-                     const typename ModelType::ValueType beta,
-                     const std::uint64_t seed) {
-   
-   using RealType = typename ModelType::ValueType;
-   
-   if (sample->size() != static_cast<std::size_t>(model.GetSystemSize())) {
-      throw std::runtime_error("The sample size is not equal to the system size.");
-   }
-   
-   const std::int32_t system_size = static_cast<std::int32_t>(model.GetSystemSize());
-   
-   // Set random number engine
-   utility::RandType random_number_engine(seed);
-   std::uniform_real_distribution<RealType> dist_real(0, 1);
-   std::uniform_int_distribution<std::int32_t> dist_system_size(0, system_size - 1);
-      
-   // Set energy difference
-   std::vector<RealType> energy_difference(system_size);
-   SetEnergyDifference<RealType>(&energy_difference, *sample, model);
-   
-   // Do Metropolis update
-   for (std::int32_t sweep_count = 0; sweep_count < num_sweeps; sweep_count++) {
-      for (std::int32_t i = 0; i < system_size; i++) {
-         const std::int32_t index = dist_system_size(random_number_engine);
-         if (1/(1 + std::exp(beta*energy_difference[index])) > dist_real(random_number_engine)) {
-            UpdateConfiguration(sample, &energy_difference, index, model);
-         }
-      }
-   }
-}
 
 } // namespace updater
 } // namespace solver

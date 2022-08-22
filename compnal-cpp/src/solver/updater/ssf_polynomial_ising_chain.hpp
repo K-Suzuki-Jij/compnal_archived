@@ -32,28 +32,11 @@ namespace solver {
 namespace updater {
 
 template<typename RealType>
-void SetEnergyDifference(std::vector<std::pair<typename model::PolynomialIsing<lattice::Chain, RealType>::OPType, RealType>> *sample_delta,
+void SetEnergyDifference(std::vector<std::pair<typename model::PolynomialIsing<lattice::Chain, RealType>::OPType, RealType>> *sample_energy_difference_pair,
                          const model::PolynomialIsing<lattice::Chain, RealType> &model) {
    
-}
-
-template<typename RealType>
-void UpdateConfiguration(std::vector<std::pair<typename model::PolynomialIsing<lattice::Chain, RealType>::OPType, RealType>> *sample_delta,
-                         const std::int32_t index,
-                         const model::PolynomialIsing<lattice::Chain, RealType> &model) {
-   
-}
-
-template<typename RealType>
-void SetEnergyDifference(std::vector<RealType> *energy_difference,
-                         const std::vector<typename model::PolynomialIsing<lattice::Chain, RealType>::OPType> &sample,
-                         const model::PolynomialIsing<lattice::Chain, RealType> &model) {
-   
-   if (static_cast<std::int32_t>(sample.size()) != model.GetSystemSize()) {
+   if (static_cast<std::int32_t>(sample_energy_difference_pair->size()) != model.GetSystemSize()) {
       throw std::runtime_error("The sample size is not equal to the system size.");
-   }
-   if (energy_difference->size() != sample.size()) {
-      throw std::runtime_error("The size of energy_difference is not equal to the system size.");
    }
    
    using OPType = typename model::PolynomialIsing<lattice::Chain, RealType>::OPType;
@@ -78,11 +61,11 @@ void SetEnergyDifference(std::vector<RealType> *energy_difference,
                   else if (connected_index >= system_size) {
                      connected_index -= system_size;
                   }
-                  sign *= sample[connected_index];
+                  sign *= (*sample_energy_difference_pair)[connected_index].first;
                }
                val += sign*target_ineraction;
             }
-            (*energy_difference)[index] = -2.0*val;
+            (*sample_energy_difference_pair)[index].second = -2.0*val;
          }
       }
    }
@@ -101,23 +84,23 @@ void SetEnergyDifference(std::vector<RealType> *energy_difference,
                OPType sign = 1;
                for (std::int32_t j = 0; j < degree; ++j) {
                   std::int32_t connected_index = index - degree + 1 + i + j;
-                  sign *= sample[connected_index];
+                  sign *= (*sample_energy_difference_pair)[connected_index].first;
                }
                val += sign*target_ineraction;
             }
-            (*energy_difference)[index] = -2.0*val;
+            (*sample_energy_difference_pair)[index].second = -2.0*val;
          }
       }
    }
    else {
       throw std::runtime_error("Unsupported BinaryCondition");
    }
+
    
 }
 
 template<typename RealType>
-void UpdateConfiguration(std::vector<typename model::PolynomialIsing<lattice::Chain, RealType>::OPType> *sample,
-                         std::vector<RealType> *energy_difference,
+void UpdateConfiguration(std::vector<std::pair<typename model::PolynomialIsing<lattice::Chain, RealType>::OPType, RealType>> *sample_energy_difference_pair,
                          const std::int32_t index,
                          const model::PolynomialIsing<lattice::Chain, RealType> &model) {
    
@@ -141,7 +124,7 @@ void UpdateConfiguration(std::vector<typename model::PolynomialIsing<lattice::Ch
                else if (connected_index >= system_size) {
                   connected_index -= system_size;
                }
-               sign *= (*sample)[connected_index];
+               sign *= (*sample_energy_difference_pair)[connected_index].first;
             }
             for (std::int32_t j = 0; j < degree; ++j) {
                std::int32_t connected_index = index - degree + 1 + i + j;
@@ -152,7 +135,7 @@ void UpdateConfiguration(std::vector<typename model::PolynomialIsing<lattice::Ch
                   connected_index -= system_size;
                }
                if (connected_index != index) {
-                  (*energy_difference)[connected_index] += 4*target_ineraction*sign;
+                  (*sample_energy_difference_pair)[connected_index].second += 4*target_ineraction*sign;
                }
             }
          }
@@ -171,12 +154,12 @@ void UpdateConfiguration(std::vector<typename model::PolynomialIsing<lattice::Ch
             OPType sign = 1;
             for (std::int32_t j = 0; j < degree; ++j) {
                std::int32_t connected_index = index - degree + 1 + i + j;
-               sign *= (*sample)[connected_index];
+               sign *= (*sample_energy_difference_pair)[connected_index].first;
             }
             for (std::int32_t j = 0; j < degree; ++j) {
                std::int32_t connected_index = index - degree + 1 + i + j;
                if (connected_index != index) {
-                  (*energy_difference)[connected_index] += 4*target_ineraction*sign;
+                  (*sample_energy_difference_pair)[connected_index].second += 4*target_ineraction*sign;
                }
             }
          }
@@ -185,10 +168,11 @@ void UpdateConfiguration(std::vector<typename model::PolynomialIsing<lattice::Ch
    else {
       throw std::runtime_error("Unsupported BinaryCondition");
    }
-   (*energy_difference)[index] *= -1;
-   (*sample)[index] *= -1;
+   (*sample_energy_difference_pair)[index].first *= -1;
+   (*sample_energy_difference_pair)[index].second *= -1;
    
 }
+
 
 } // namespace updater
 } // namespace solver

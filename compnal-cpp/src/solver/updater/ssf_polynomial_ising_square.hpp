@@ -28,36 +28,13 @@ namespace solver {
 namespace updater {
 
 template<typename RealType>
-void SetEnergyDifference(std::vector<std::pair<typename model::PolynomialIsing<lattice::Square, RealType>::OPType, RealType>> *sample_delta,
+void SetEnergyDifference(std::vector<std::pair<typename model::PolynomialIsing<lattice::Square, RealType>::OPType, RealType>> *sample_energy_difference_pair,
                          const model::PolynomialIsing<lattice::Square, RealType> &model) {
    
 }
 
 template<typename RealType>
-void UpdateConfiguration(std::vector<std::pair<typename model::PolynomialIsing<lattice::Square, RealType>::OPType, RealType>> *sample_delta,
-                         const std::int32_t index,
-                         const model::PolynomialIsing<lattice::Square, RealType> &model) {
-   
-}
-
-template<typename RealType>
-void SetEnergyDifference(std::vector<RealType> *energy_difference,
-                         const std::vector<utility::SpinType> &sample,
-                         const model::PolynomialIsing<lattice::Square, RealType> &model) {
-   
-   if (static_cast<std::int32_t>(sample.size()) != model.GetSystemSize()) {
-      throw std::runtime_error("The sample size is not equal to the system size.");
-   }
-   if (energy_difference->size() != sample.size()) {
-      throw std::runtime_error("The size of energy_difference is not equal to the system size.");
-   }
-   
-
-}
-
-template<typename RealType>
-void UpdateConfiguration(std::vector<utility::SpinType> *sample,
-                         std::vector<RealType> *energy_difference,
+void UpdateConfiguration(std::vector<std::pair<typename model::PolynomialIsing<lattice::Square, RealType>::OPType, RealType>> *sample_energy_difference_pair,
                          const std::int32_t index,
                          const model::PolynomialIsing<lattice::Square, RealType> &model) {
    
