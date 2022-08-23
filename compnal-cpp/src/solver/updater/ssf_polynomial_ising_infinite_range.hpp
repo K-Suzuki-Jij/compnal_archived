@@ -99,8 +99,15 @@ void UpdateConfiguration(std::vector<std::pair<typename model::PolynomialIsing<l
    const std::int32_t degree = model.GetDegree();
    const OPType target_spin = (*sample_energy_difference_pair)[index].first;
    const std::int32_t system_size = model.GetSystemSize();
-      
-   if (degree == 3) {
+   
+   if (degree == 2) {
+      const RealType target_ineraction_deg2 = interaction[2];
+      for (std::int32_t i2 = 0; i2 < system_size; ++i2) {
+         if (i2 == index) {continue;}
+         (*sample_energy_difference_pair)[i2].second += 4*target_ineraction_deg2*target_spin*(*sample_energy_difference_pair)[i2].first;
+      }
+   }
+   else if (degree == 3) {
       const RealType target_ineraction_deg2 = interaction[2];
       const RealType target_ineraction_deg3 = interaction[3];
       const OPType spin_prod1 = target_spin;

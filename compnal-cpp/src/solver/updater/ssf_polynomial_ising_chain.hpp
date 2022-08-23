@@ -147,22 +147,23 @@ void UpdateConfiguration(std::vector<std::pair<typename model::PolynomialIsing<l
             continue;
          }
          const RealType target_ineraction = interaction[degree];
-         for (std::int32_t i = 0; i < degree; ++i) {
-            if (index - degree + 1 + i < 0 || index + i >= system_size) {
-               continue;
+         
+         for (std::int32_t i = std::max(index - degree + 1, 0); i <= index; ++i) {
+            if (i > system_size - degree) {
+               break;
             }
             OPType sign = 1;
-            for (std::int32_t j = 0; j < degree; ++j) {
-               std::int32_t connected_index = index - degree + 1 + i + j;
-               sign *= (*sample_energy_difference_pair)[connected_index].first;
+            for (std::int32_t j = i; j < i + degree; ++j) {
+               sign *= (*sample_energy_difference_pair)[j].first;
             }
-            for (std::int32_t j = 0; j < degree; ++j) {
-               std::int32_t connected_index = index - degree + 1 + i + j;
-               if (connected_index != index) {
-                  (*sample_energy_difference_pair)[connected_index].second += 4*target_ineraction*sign;
-               }
+            for (std::int32_t j = i; j < index; ++j) {
+               (*sample_energy_difference_pair)[j].second += 4*target_ineraction*sign;
+            }
+            for (std::int32_t j = index + 1; j < i + degree; ++j) {
+               (*sample_energy_difference_pair)[j].second += 4*target_ineraction*sign;
             }
          }
+            
       }
    }
    else {

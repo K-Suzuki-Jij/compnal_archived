@@ -46,6 +46,9 @@ class ClassicalMonteCarlo:
     def get_seed(self) -> int:
         return self.__base_solver.get_seed()
 
+    def get_samples(self) -> list[list[int]]:
+        return self.__base_solver.get_samples()
+
     def run(self, seed: Optional[int] = None) -> int:
         if seed is None:
             self.__base_solver.run()

@@ -45,14 +45,14 @@ TEST(SolverClassicalMonteCarlo, AnyLattice) {
 }
 
 TEST(SolverClassicalMonteCarlo, Chain) {
-   const lattice::Chain lattice(10, lattice::BoundaryCondition::PBC);
+   const lattice::Chain lattice(10, lattice::BoundaryCondition::OBC);
    const std::unordered_map<std::int32_t, double> interaction{{3, -1.0}};
    model::PolynomialIsing model(lattice, interaction);
    solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
    solver.SetNumSweeps(10000);
-   solver.SetNumSamples(10);
+   solver.SetNumSamples(1);
    solver.SetTemperature(0.15);
-   solver.Run();
+   solver.Run(1);
    
    for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
       for (const auto &it: solver.GetSample(i)) {
