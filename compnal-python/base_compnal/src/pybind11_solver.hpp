@@ -46,6 +46,7 @@ template<class ModelType>
 void pybind11SolverClassicalMonteCarlo(py::module &m, const std::string &post_name = "") {
    
    using CMC = solver::ClassicalMonteCarlo<ModelType>;
+   using IndexType = typename CMC::IndexType;
    std::string name = std::string("ClassicalMonteCarlo") + post_name;
 
    auto py_class = py::class_<CMC>(m, name.c_str(), py::module_local());
@@ -58,18 +59,20 @@ void pybind11SolverClassicalMonteCarlo(py::module &m, const std::string &post_na
    py_class.def("set_num_samples", &CMC::SetNumSamples, "num_samples"_a);
    py_class.def("set_temperature", &CMC::SetTemperature, "temperature"_a);
    py_class.def("set_inverse_temperature", &CMC::SetInverseTemperature, "inverse_temperature"_a);
+   py_class.def("set_cmc_updater", &CMC::SetCMCUpdater, "cmc_updater"_a);
    py_class.def("get_num_sweeps", &CMC::GetNumSweeps);
    py_class.def("get_num_samples", &CMC::GetNumSamples);
    py_class.def("get_samples", &CMC::GetSamples);
    py_class.def("get_temperature", &CMC::GetTemperature);
    py_class.def("get_inverse_temperature", &CMC::GetInverseTemperature);
    py_class.def("get_seed", &CMC::GetSeed);
+   py_class.def("get_cmc_updater", &CMC::GetCMCUpdater);
    py_class.def("run", py::overload_cast<>(&CMC::Run));
    py_class.def("run", py::overload_cast<const std::uint64_t>(&CMC::Run), "seed"_a);
    py_class.def("calculate_sample_average", &CMC::CalculateSampleAverage);
    py_class.def("calculate_sample_moment", &CMC::CalculateSampleMoment, "degree"_a);
-   py_class.def_readonly("model", &CMC::model);
-   py_class.def_readonly("cmc_updater", &CMC::cmc_updater);
+   py_class.def("calculate_correlation_function", py::overload_cast<const IndexType, const IndexType>(&CMC::CalculateCorrelationFunction), "index_1"_a, "index_2"_a);
+   py_class.def("calculate_correlation_function", py::overload_cast<const IndexType, const std::vector<IndexType>&>(&CMC::CalculateCorrelationFunction), "origin"_a, "index_list"_a);
    
    m.def("make_classical_monte_carlo", [](const ModelType &model,
                                           const solver::CMCUpdater cmc_updater) {
