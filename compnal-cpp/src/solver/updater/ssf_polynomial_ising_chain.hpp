@@ -95,8 +95,6 @@ void SetEnergyDifference(std::vector<std::pair<typename model::PolynomialIsing<l
    else {
       throw std::runtime_error("Unsupported BinaryCondition");
    }
-
-   
 }
 
 template<typename RealType>
@@ -106,7 +104,6 @@ void UpdateConfiguration(std::vector<std::pair<typename model::PolynomialIsing<l
    
    using OPType = typename model::PolynomialIsing<lattice::Chain, RealType>::OPType;
    const std::vector<RealType> &interaction = model.GetInteraction();
-   const std::int32_t degree = model.GetDegree();
    const std::int32_t system_size = model.GetSystemSize();
    
    if (model.lattice.GetBoundaryCondition() == lattice::BoundaryCondition::PBC) {
@@ -143,134 +140,25 @@ void UpdateConfiguration(std::vector<std::pair<typename model::PolynomialIsing<l
       }
    }
    else if (model.lattice.GetBoundaryCondition() == lattice::BoundaryCondition::OBC) {
-      if (degree == 3) {
-         const RealType target_ineraction_deg2 = interaction[2];
-         const RealType target_ineraction_deg3 = interaction[3];
-         if (2 <= index && index <= system_size - 3) {
-            const OPType sign3_1 =
-            (*sample_energy_difference_pair)[index - 2].first*
-            (*sample_energy_difference_pair)[index - 1].first*
-            (*sample_energy_difference_pair)[index - 0].first;
-            const OPType sign3_2 =
-            (*sample_energy_difference_pair)[index - 1].first*
-            (*sample_energy_difference_pair)[index - 0].first*
-            (*sample_energy_difference_pair)[index + 1].first;
-            const OPType sign3_3 =
-            (*sample_energy_difference_pair)[index - 0].first*
-            (*sample_energy_difference_pair)[index + 1].first*
-            (*sample_energy_difference_pair)[index + 2].first;
-            
-            const OPType sign2_1 =
-            (*sample_energy_difference_pair)[index - 1].first*
-            (*sample_energy_difference_pair)[index - 0].first;
-            const OPType sign2_2 =
-            (*sample_energy_difference_pair)[index - 0].first*
-            (*sample_energy_difference_pair)[index + 1].first;
-            
-            (*sample_energy_difference_pair)[index - 2].second += 4*target_ineraction_deg3*sign3_1;
-            (*sample_energy_difference_pair)[index - 1].second += 4*target_ineraction_deg3*(sign3_1 + sign3_2);
-            (*sample_energy_difference_pair)[index - 1].second += 4*target_ineraction_deg2*sign2_1;
-            (*sample_energy_difference_pair)[index + 1].second += 4*target_ineraction_deg3*(sign3_2 + sign3_3);
-            (*sample_energy_difference_pair)[index + 1].second += 4*target_ineraction_deg2*sign2_2;
-            (*sample_energy_difference_pair)[index + 2].second += 4*target_ineraction_deg3*sign3_3;
+      for (std::int32_t degree = 1; degree < interaction.size(); ++degree) {
+         if (std::abs(interaction[degree]) <= std::numeric_limits<RealType>::epsilon()) {
+            continue;
          }
-         else if (index == 0) {
-            const OPType sign3_1 =
-            (*sample_energy_difference_pair)[0].first*
-            (*sample_energy_difference_pair)[1].first*
-            (*sample_energy_difference_pair)[2].first;
-            const OPType sign2_1 =
-            (*sample_energy_difference_pair)[0].first*
-            (*sample_energy_difference_pair)[1].first;
-            
-            (*sample_energy_difference_pair)[1].second += 4*target_ineraction_deg3*sign3_1;
-            (*sample_energy_difference_pair)[1].second += 4*target_ineraction_deg2*sign2_1;
-            (*sample_energy_difference_pair)[2].second += 4*target_ineraction_deg3*sign3_1;
-         }
-         else if (index == 1) {
-            const OPType sign3_1 =
-            (*sample_energy_difference_pair)[0].first*
-            (*sample_energy_difference_pair)[1].first*
-            (*sample_energy_difference_pair)[2].first;
-            const OPType sign3_2 =
-            (*sample_energy_difference_pair)[1].first*
-            (*sample_energy_difference_pair)[2].first*
-            (*sample_energy_difference_pair)[3].first;
-            const OPType sign2_1 =
-            (*sample_energy_difference_pair)[0].first*
-            (*sample_energy_difference_pair)[1].first;
-            const OPType sign2_2 =
-            (*sample_energy_difference_pair)[1].first*
-            (*sample_energy_difference_pair)[2].first;
-            
-            (*sample_energy_difference_pair)[0].second += 4*target_ineraction_deg3*sign3_1;
-            (*sample_energy_difference_pair)[0].second += 4*target_ineraction_deg2*sign2_1;
-            (*sample_energy_difference_pair)[2].second += 4*target_ineraction_deg3*sign3_1;
-            (*sample_energy_difference_pair)[2].second += 4*target_ineraction_deg3*sign3_2;
-            (*sample_energy_difference_pair)[2].second += 4*target_ineraction_deg2*sign2_2;
-            (*sample_energy_difference_pair)[3].second += 4*target_ineraction_deg3*sign3_2;
-         }
-         else if (index == system_size - 2) {
-            const OPType sign3_1 =
-            (*sample_energy_difference_pair)[index - 2].first*
-            (*sample_energy_difference_pair)[index - 1].first*
-            (*sample_energy_difference_pair)[index - 0].first;
-            const OPType sign3_2 =
-            (*sample_energy_difference_pair)[index - 1].first*
-            (*sample_energy_difference_pair)[index - 0].first*
-            (*sample_energy_difference_pair)[index + 1].first;
-            const OPType sign2_1 =
-            (*sample_energy_difference_pair)[index - 1].first*
-            (*sample_energy_difference_pair)[index - 0].first;
-            const OPType sign2_2 =
-            (*sample_energy_difference_pair)[index + 0].first*
-            (*sample_energy_difference_pair)[index + 1].first;
-            
-            (*sample_energy_difference_pair)[index - 2].second += 4*target_ineraction_deg3*sign3_1;
-            (*sample_energy_difference_pair)[index - 1].second += 4*target_ineraction_deg3*sign3_1;
-            (*sample_energy_difference_pair)[index - 1].second += 4*target_ineraction_deg3*sign3_2;
-            (*sample_energy_difference_pair)[index - 1].second += 4*target_ineraction_deg2*sign2_1;
-            (*sample_energy_difference_pair)[index + 1].second += 4*target_ineraction_deg3*sign3_2;
-            (*sample_energy_difference_pair)[index + 1].second += 4*target_ineraction_deg2*sign2_2;
-         }
-         else if (index == system_size - 1) {
-            const OPType sign3_1 =
-            (*sample_energy_difference_pair)[index - 2].first*
-            (*sample_energy_difference_pair)[index - 1].first*
-            (*sample_energy_difference_pair)[index - 0].first;
-            const OPType sign2_1 =
-            (*sample_energy_difference_pair)[index - 1].first*
-            (*sample_energy_difference_pair)[index - 0].first;
-            
-            (*sample_energy_difference_pair)[index - 2].second += 4*target_ineraction_deg3*sign3_1;
-            (*sample_energy_difference_pair)[index - 1].second += 4*target_ineraction_deg3*sign3_1;
-            (*sample_energy_difference_pair)[index - 1].second += 4*target_ineraction_deg2*sign2_1;
-         }
-         else {
-            throw std::runtime_error("Invalid index.");
-         }
-      }
-      else {
-         for (std::int32_t degree = 1; degree < interaction.size(); ++degree) {
-            if (std::abs(interaction[degree]) <= std::numeric_limits<RealType>::epsilon()) {
-               continue;
+         const RealType target_ineraction = interaction[degree];
+         
+         for (std::int32_t i = std::max(index - degree + 1, 0); i <= index; ++i) {
+            if (i > system_size - degree) {
+               break;
             }
-            const RealType target_ineraction = interaction[degree];
-            
-            for (std::int32_t i = std::max(index - degree + 1, 0); i <= index; ++i) {
-               if (i > system_size - degree) {
-                  break;
-               }
-               OPType sign = 1;
-               for (std::int32_t j = i; j < i + degree; ++j) {
-                  sign *= (*sample_energy_difference_pair)[j].first;
-               }
-               for (std::int32_t j = i; j < index; ++j) {
-                  (*sample_energy_difference_pair)[j].second += 4*target_ineraction*sign;
-               }
-               for (std::int32_t j = index + 1; j < i + degree; ++j) {
-                  (*sample_energy_difference_pair)[j].second += 4*target_ineraction*sign;
-               }
+            OPType sign = 1;
+            for (std::int32_t j = i; j < i + degree; ++j) {
+               sign *= (*sample_energy_difference_pair)[j].first;
+            }
+            for (std::int32_t j = i; j < index; ++j) {
+               (*sample_energy_difference_pair)[j].second += 4*target_ineraction*sign;
+            }
+            for (std::int32_t j = index + 1; j < i + degree; ++j) {
+               (*sample_energy_difference_pair)[j].second += 4*target_ineraction*sign;
             }
          }
       }
