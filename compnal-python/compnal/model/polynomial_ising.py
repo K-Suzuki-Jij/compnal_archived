@@ -99,6 +99,9 @@ class PolynomialIsing:
 
 
 class PolynomialIsingAnyLattice:
+    """PolynomialIsing class with the any lattice.
+    User can add any interactions.
+    """
     def __init__(
             self, 
             lattice: AnyLattice, 

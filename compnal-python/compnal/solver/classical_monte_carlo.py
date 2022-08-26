@@ -7,12 +7,26 @@ from compnal.solver.updater import Updater, cast_updater, cast_base_updater
 ModelType = Union[PolynomialIsing, PolynomialIsingAnyLattice]
 
 class ClassicalMonteCarlo:
+    """ClassicalMonteCarlo class. This class can treat classical models.
+    
+    Attributes:
+        updater (Updater): The algorithm of update method.
+        num_sweeps (int): The number of sweeps.
+        num_samples (int): The number of samples.
+        beta (float): The inverse temperature.
+    """
 
     def __init__(
             self,
             model: ModelType,
             updater: Updater = Updater.METROPOLIS
         ) -> None:
+        """The constructor.
+
+        Args:
+            model (ModelType): The classical model.
+            updater (Updater, optional): The algorithm of update method. Defaults to Updater.METROPOLIS.
+        """
         
         self.__base_solver = base_solver.make_classical_monte_carlo(
             model=model._base_model, 
@@ -20,45 +34,113 @@ class ClassicalMonteCarlo:
         )
         
     def set_num_sweeps(self, num_sweeps: int) -> None:
+        """Set the number of sweeps.
+
+        Args:
+            num_sweeps (int): The number of sweeps.
+        """
         self.__base_solver.set_num_sweeps(num_sweeps=num_sweeps)
 
     def set_num_samples(self, num_samples: int) -> None:
+        """Set the number of samples.
+
+        Args:
+            num_samples (int): The number of samples.
+        """
         self.__base_solver.set_num_samples(num_samples=num_samples)
 
     def set_temperature(self, temperature: int) -> None:
+        """Set the temperature at which the monte carlo algorithm executes.
+
+        Args:
+            temperature (int): The temperature.
+        """
         self.__base_solver.set_temperature(temperature=temperature)
 
     def set_inverse_temperature(self, beta: float) -> None:
+        """Set the inverse temperature at which the monte carlo algorithm executes.
+
+        Args:
+            beta (float): The inverse temperature.
+        """
         self.__base_solver.set_inverse_temperature(inverse_temperature=beta)
     
     def get_num_sweeps(self) -> int:
+        """Get the number of sweeps.
+
+        Returns:
+            int: The number of sweeps.
+        """
         return self.__base_solver.get_num_sweeps()
 
     def get_num_samples(self) -> int:
+        """Get the number of samples.
+
+        Returns:
+            int: The number of samples.
+        """
         return self.__base_solver.get_num_samples()
 
     def get_temperature(self) -> int:
+        """Get the temperature at which the monte carlo algorithm executes.
+
+        Returns:
+            int: The temperature.
+        """
         return self.__base_solver.get_temperature()
 
     def get_inverse_temperature(self) -> float:
+        """Get the inverse temperature at which the monte carlo algorithm executes.
+
+        Returns:
+            float: The inverse temperature.
+        """
         return self.__base_solver.get_inverse_temperature()
 
     def get_seed(self) -> int:
+        """Get the seed used by the monte carlo algorithm.
+
+        Returns:
+            int: The seed.
+        """
         return self.__base_solver.get_seed()
 
     def get_samples(self) -> list[list[int]]:
+        """Get the samples.
+
+        Returns:
+            list[list[int]]: The samples.
+        """
         return self.__base_solver.get_samples()
 
-    def run(self, seed: Optional[int] = None) -> int:
+    def run(self, seed: Optional[int] = None) -> None:
+        """Run the monte carlo algorithm.
+
+        Args:
+            seed (Optional[int], optional): The seed used by the monte carlo algorithm. Defaults to None.
+        """
         if seed is None:
             self.__base_solver.run()
         else:
             self.__base_solver.run(seed=seed)
 
     def calculate_sample_average(self) -> float:
+        """Calculate average of all the samples.
+
+        Returns:
+            float: The average value.
+        """
         return self.__base_solver.calculate_sample_average()
 
     def calculate_sample_moment(self, degree: int) -> float:
+        """Calculate the moment with the specified degree of each sample and take average for all the moments.
+
+        Args:
+            degree (int): The degree of the moment.
+
+        Returns:
+            float: The moment.
+        """
         return self.__base_solver.calculate_sample_moment(degree=degree)
 
     @property
