@@ -1,5 +1,4 @@
 from typing import Optional, Union
-from enum import Enum
 from base_compnal import base_solver
 from compnal.model.polynomial_ising import PolynomialIsing, PolynomialIsingAnyLattice
 from compnal.solver.updater import Updater, cast_updater, cast_base_updater
