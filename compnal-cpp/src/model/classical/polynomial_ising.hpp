@@ -35,131 +35,76 @@ class PolynomialIsing {
 public:
    
    using ValueType = RealType;
+   using IndexType = std::int32_t;
    using OPType = utility::SpinType;
-   
-   const LatticeType lattice;
-   
-   PolynomialIsing(const LatticeType &input_lattice,
-                   const std::unordered_map<std::int32_t, RealType> &interaction = {}
-                   ): lattice(input_lattice) {
-      for (const auto &it: interaction) {
-         SetInteraction(it.first, it.second);
-      }
-   }
       
-   void SetInteraction(const std::int32_t degree, const RealType value) {
-      if (degree < 0) {
-         throw std::runtime_error("degree must be larger than or equal to 0");
-      }
-      if (degree > lattice.GetSystemSize()) {
-         throw std::runtime_error("degree must be smaller than or equal to the system size.");
-      }
-      if (std::abs(value) > std::numeric_limits<RealType>::epsilon()) {
-         if (interaction_.size() <= degree) {
-            interaction_.resize(degree + 1);
-            interaction_[degree] = value;
-         }
-         else {
-            interaction_[degree] = value;
-         }
+   PolynomialIsing(const LatticeType &lattice,
+                   const std::unordered_map<std::int32_t, RealType> &interaction):
+   lattice_(lattice) {
+      for (const auto &it: interaction) {
+         interaction_.resize(it.first + 1);
+         interaction_[it.first] = it.second;
       }
    }
-   
-   void AddInteraction(const std::int32_t degree, const RealType value) {
-      if (degree < 0) {
-         throw std::runtime_error("degree must be larger than or equal to 0");
-      }
-      if (degree > lattice.GetSystemSize()) {
-         throw std::runtime_error("degree must be smaller than or equal to the system size.");
-      }
-      if (std::abs(value) > std::numeric_limits<RealType>::epsilon()) {
-         if (interaction_.size() <= degree) {
-            interaction_.resize(degree + 1);
-            interaction_[degree] = value;
-         }
-         else {
-            interaction_[degree] += value;
-         }
-      }
-   }
-   
+
    const std::vector<RealType> &GetInteraction() const {
       return interaction_;
    }
-      
-   RealType CalculateEnergy(const std::vector<OPType> &sample) const {
-      return CalculateEnergy(lattice, sample);
-   }
-   
+         
    std::int32_t GetSystemSize() const {
-      return lattice.GetSystemSize();
+      return lattice_.GetSystemSize();
    }
    
    lattice::BoundaryCondition GetBoundaryCondition() const {
-      return lattice.GetBoundaryCondition();
+      return lattice_.GetBoundaryCondition();
    }
-   
-   RealType CalculateAverage(const std::vector<std::vector<OPType>> &samples) const {
-      return CalculateMoment(samples, 1);
-   }
-   
+      
    std::int32_t GetDegree() const {
       return static_cast<std::int32_t>(interaction_.size()) - 1;
    }
    
-   RealType CalculateMoment(const std::vector<std::vector<OPType>> &samples, const std::int32_t degree) const {
+   RealType CalculateEnergy(const std::vector<OPType> &sample) const {
+      return CalculateEnergy(lattice_, sample);
+   }
+   
+   RealType CalculateMoment(const std::vector<std::vector<OPType>> &samples,
+                            const std::int32_t degree,
+                            const std::int32_t num_threads = utility::DEFAULT_NUM_THREADS) const {
       if (degree <= 0) {
          throw std::runtime_error("degree must be lager than 0.");
       }
       
       RealType val = 0;
-      if (degree == 1) {
-#pragma omp parallel for schedule(guided) reduction(+: val)
-         for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
-            val += CalculateMagnetization(samples[i]);
+#pragma omp parallel for schedule(guided) reduction(+: val) num_threads(num_threads)
+      for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
+         RealType avg = CalculateMagnetization(samples[i]);
+         RealType prod = 1;
+         for (std::int32_t j = 0; j < degree; ++j) {
+            prod = prod*avg;
          }
-         return val/samples.size();
+         val += prod;
       }
-      else if (degree == 2) {
-#pragma omp parallel for schedule(guided) reduction(+: val)
-         for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
-            RealType avg = CalculateMagnetization(samples[i]);
-            val += avg*avg;
-         }
-         return val/samples.size();
-      }
-      else if (degree == 3) {
-#pragma omp parallel for schedule(guided) reduction(+: val)
-         for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
-            RealType avg = CalculateMagnetization(samples[i]);
-            val += avg*avg*avg;
-         }
-         return val/samples.size();
-      }
-      else if (degree == 4) {
-#pragma omp parallel for schedule(guided) reduction(+: val)
-         for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
-            RealType avg = CalculateMagnetization(samples[i]);
-            val += avg*avg*avg*avg;
-         }
-         return val/samples.size();
-      }
-      else {
-#pragma omp parallel for schedule(guided) reduction(+: val)
-         for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
-            RealType avg = CalculateMagnetization(samples[i]);
-            RealType prod = 1;
-            for (std::int32_t j = 0; j < degree; ++j) {
-               prod = prod*avg;
-            }
-            val += prod;
-         }
-         return val/samples.size();
-      }
+      return val/samples.size();
    }
-
+   
+   RealType CalculateCorrelation(const std::vector<std::vector<OPType>> &samples,
+                                         const IndexType ind1,
+                                         const IndexType ind2) const {
+      const std::int32_t size = static_cast<std::int32_t>(samples.size());
+      if (ind1 < 0 || ind2 < 0 || ind1 >= size || ind2 >= size) {
+         throw std::runtime_error("The index is out of range.");
+      }
+      RealType val = 0;
+      for (std::int32_t i = 0; i < size; ++i) {
+         val += samples[i][ind1]*samples[i][ind2];
+      }
+      return val/size;
+   }
+   
 private:
+   LatticeType lattice_;
    std::vector<RealType> interaction_;
+
    
    RealType CalculateEnergy(const lattice::Chain &chain_lattice,
                             const std::vector<OPType> &sample) const {
@@ -219,23 +164,10 @@ public:
    using IndexHash = typename PolynomialGeneralModel<RealType>::IndexHash;
    using VectorHash = typename PolynomialGeneralModel<RealType>::VectorHash;
    using InteractionType = typename PolynomialGeneralModel<RealType>::InteractionType;
-   
-   const lattice::AnyLattice lattice;
-   
-   PolynomialIsing(const lattice::AnyLattice &input_lattice,
-                   const InteractionType &interaction = {}): lattice(input_lattice) {
-                      for (const auto &it: interaction) {
-                         SetInteraction(it.first, it.second);
-                      }
-                   }
-   
-   void SetInteraction(const std::vector<IndexType> &index_list, const RealType value) {
-      interaction_.SetInteraction(index_list, value);
-   }
-   
-   void AddInteraction(const std::vector<IndexType> &index_list, const RealType value) {
-      interaction_.AddInteraction(index_list, value);
-   }
+      
+   PolynomialIsing(const lattice::AnyLattice &lattice,
+                   const InteractionType &interaction):
+   lattice_(lattice), interaction_(interaction) {}
    
    std::pair<std::vector<std::vector<IndexType>>, std::vector<RealType>> GenerateInteractionAsPair() const {
       return interaction_.GenerateInteractionAsPair();
@@ -253,86 +185,71 @@ public:
       return interaction_.GetIndexSet();
    }
    
-   std::size_t GetSystemSize() const {
+   std::int32_t GetSystemSize() const {
       return interaction_.GetSystemSize();
    }
    
-   lattice::BoundaryCondition GetBoundaryCondition() const {
-      return lattice.GetBoundaryCondition();
+   std::int32_t GetDegree() const {
+      return interaction_.GetDegree();
    }
    
+   lattice::BoundaryCondition GetBoundaryCondition() const {
+      return lattice_.GetBoundaryCondition();
+   }
    
    RealType CalculateEnergy(const std::vector<OPType> &sample) const {
       if (sample.size() != interaction_.GetSystemSize()) {
          throw std::runtime_error("The sample size is not equal to the system size");
       }
+      const std::unordered_map<IndexType, std::int64_t, IndexHash> &index_map = interaction_.GetIndexMap();
       RealType val = 0;
-      const auto &interaction_map = interaction_.GenerateIndexMap();
       for (const auto &it: interaction_.GetInteraction()) {
          OPType spin = 1;
          for (const auto &index: it.first) {
-            spin *= sample[interaction_map.at(index)];
+            spin *= sample[index_map.at(index)];
          }
          val += spin*it.second;
       }
       return val;
    }
    
-   RealType CalculateAverage(const std::vector<std::vector<OPType>> &samples) const {
-      return CalculateMoment(samples, 1);
-   }
-   
-   RealType CalculateMoment(const std::vector<std::vector<OPType>> &samples, const std::int32_t degree) const {
+   RealType CalculateMoment(const std::vector<std::vector<OPType>> &samples,
+                            const std::int32_t degree,
+                            const std::int32_t num_threads = utility::DEFAULT_NUM_THREADS) const {
       if (degree <= 0) {
          throw std::runtime_error("degree must be lager than 0.");
       }
       
       RealType val = 0;
-      if (degree == 1) {
-#pragma omp parallel for schedule(guided) reduction(+: val)
-         for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
-            val += CalculateMagnetization(samples[i]);
+#pragma omp parallel for schedule(guided) reduction(+: val) num_threads(num_threads)
+      for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
+         RealType avg = CalculateMagnetization(samples[i]);
+         RealType prod = 1;
+         for (std::int32_t j = 0; j < degree; ++j) {
+            prod = prod*avg;
          }
-         return val/samples.size();
+         val += prod;
       }
-      else if (degree == 2) {
-#pragma omp parallel for schedule(guided) reduction(+: val)
-         for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
-            val += CalculateMagnetization(samples[i]);
-            val = val*val;
-         }
-         return val/samples.size();
+      return val/samples.size();
+   }
+   
+   RealType CalculateCorrelation(const std::vector<std::vector<OPType>> &samples,
+                                 const IndexType ind1,
+                                 const IndexType ind2) const {
+      const std::unordered_map<IndexType, std::int64_t, IndexHash> &index_map = interaction_.GetIndexMap();
+      if (index_map.count(ind1) == 0 || index_map.count(ind2) == 0) {
+         throw std::runtime_error("The index is out of range.");
       }
-      else if (degree == 3) {
-#pragma omp parallel for schedule(guided) reduction(+: val)
-         for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
-            val += CalculateMagnetization(samples[i]);
-            val = val*val*val;
-         }
-         return val/samples.size();
+      RealType val = 0;
+      for (std::size_t i = 0; i < samples.size(); ++i) {
+         val += samples[i][index_map.at(ind1)]*samples[i][index_map.at(ind2)];
       }
-      else if (degree == 4) {
-#pragma omp parallel for schedule(guided) reduction(+: val)
-         for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
-            val += CalculateMagnetization(samples[i]);
-            val = val*val*val*val;
-         }
-         return val/samples.size();
-      }
-      else {
-#pragma omp parallel for schedule(guided) reduction(+: val)
-         for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
-            val += CalculateMagnetization(samples[i]);
-            for (std::int32_t j = 0; j < degree; ++j) {
-               val *= val;
-            }
-         }
-         return val/samples.size();
-      }
+      return val/samples.size();
    }
    
 private:
    PolynomialGeneralModel<RealType> interaction_;
+   lattice::AnyLattice lattice_;
    
    RealType CalculateMagnetization(const std::vector<OPType> &sample) const {
       RealType val = 0;
@@ -346,13 +263,13 @@ private:
 
 template<class LatticeType, typename RealType>
 auto make_polynomial_ising(const LatticeType &lattice,
-                           const std::unordered_map<std::int32_t, RealType> &interaction = {}) {
+                           const std::unordered_map<std::int32_t, RealType> &interaction) {
    return PolynomialIsing<LatticeType, RealType>{lattice, interaction};
 }
 
 template<typename RealType>
 auto make_polynomial_ising(const lattice::AnyLattice &lattice,
-                           const typename PolynomialIsing<lattice::AnyLattice, RealType>::InteractionType &interaction = {}) {
+                           const typename PolynomialIsing<lattice::AnyLattice, RealType>::InteractionType &interaction) {
    return PolynomialIsing<lattice::AnyLattice, RealType>{lattice, interaction};
 }
 

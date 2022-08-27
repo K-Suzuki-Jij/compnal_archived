@@ -1,4 +1,4 @@
-from typing import Tuple, Union, Dict, List
+from typing import Union
 from base_compnal import base_model
 from compnal.lattice.one_dimension import Chain
 from compnal.lattice.two_dimension import Square, Triangle, Honeycomb
@@ -11,7 +11,7 @@ from compnal.lattice.boundary_condition import (
 
 
 LatticeType = Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange, AnyLattice]
-InteractionType = Union[Dict[int, float], Dict[List[Union[int, str, List[Union[int, str]]]], float]]
+InteractionType = Union[dict[int, float], dict[list[Union[int, str, list[Union[int, str]]]], float]]
 
 class PolynomialIsing:
     """PolynomialIsing class.
@@ -23,32 +23,14 @@ class PolynomialIsing:
     def __init__(
             self, 
             lattice: Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange],
-            interaction: Dict[int, float] = {}
+            interaction: dict[int, float]
         ) -> None:
         """
         Args:
             lattice (LatticeType): The lattice.
-            interaction (Dict[int, float], optional): The interaction. Defaults to {}.
+            interaction (dict[int, float], optional): The interaction.
         """
         self.__base_model = base_model.make_polynomial_ising(lattice=lattice, interaction=interaction)
-
-    def set_interaction(self, degree: int, value: float) -> None:
-        """Set interaction. Overwrite if already set.
-
-        Args:
-            degree (int): The degree of the interaction.
-            value (float): The value of the interaction.
-        """
-        self.__base_model.set_interaction(degree=degree, value=value)
-        
-    def add_interaction(self, degree: int, value: float) -> None:
-        """Add interaction. 
-
-        Args:
-            degree (int): The degree of the interaction.
-            value (float): The value of the interaction.
-        """
-        self.__base_model.add_interaction(degree=degree, value=value)
 
     def get_interaction(self) -> list:
         """Get interaction.
@@ -73,6 +55,14 @@ class PolynomialIsing:
             BoundaryCondition: The boundary condition.
         """
         return cast_base_boundary_condition(self.__base_model.get_boundary_condition())
+
+    def get_degree(self) -> int:
+        """Get the degree of the interactions.
+
+        Returns:
+            int: The degree of the interactions.
+        """
+        return self.__base_model.get_degree()
 
     def calculate_energy(self, sample: list[int]) -> float:
         """Calculate energy.
@@ -105,34 +95,22 @@ class PolynomialIsingAnyLattice:
     def __init__(
             self, 
             lattice: AnyLattice, 
-            interaction: Dict[List[Union[int, str, List[Union[int, str]]]], float] = {}
+            interaction: dict[list[Union[int, str, list[Union[int, str]]]], float]
         ) -> None:
+        """Constructor of PolynomialIsingAnyLattice class.
+
+        Args:
+            lattice (AnyLattice): The lattice.
+            interaction (dict[list[Union[int, str, list[Union[int, str]]]], float]): The interactions.
+        """
 
         self.__base_model = base_model.make_polynomial_ising(lattice=lattice, interaction=interaction)
 
-    def set_interaction(self, index_list: List[Union[int, str, List[Union[int, str]]]], value: float) -> None:
-        """Set interaction. Overwrite if already set.
-
-        Args:
-            index_list (List[Union[int, str, List[Union[int, str]]]]): The index list connected by the interaction.
-            value (float): The value of the interaction.
-        """
-        self.__base_model.set_interaction(index_list, value)
-
-    def add_interaction(self, index_list: List[Union[int, str, List[Union[int, str]]]], value: float) -> None:
-        """Add interaction.
-
-        Args:
-            index_list (List[Union[int, str, List[Union[int, str]]]]): The index list connected by the interaction.
-            value (float): The value of the interaction.
-        """
-        self.__base_model.set_interaction(index_list, value)
-
-    def get_interaction(self) -> Dict[List[Union[int, str, Tuple[Union[int, str]]]], float]:
+    def get_interaction(self) -> dict[list[Union[int, str, tuple[Union[int, str]]]], float]:
         """Get interaction.
 
         Returns:
-            Dict[List[Union[int, str, Tuple[Union[int, str]]]], float]: The interaction.
+            dict[list[Union[int, str, tuple[Union[int, str]]]], float]: The interaction.
         """
         keys, values = self.__base_model.generate_interaction_as_pair()
         interaction_map = {}
@@ -159,6 +137,14 @@ class PolynomialIsingAnyLattice:
         """
         return cast_base_boundary_condition(self.__base_model.get_boundary_condition())
 
+    def get_degree(self) -> int:
+        """Get the degree of the interactions.
+
+        Returns:
+            int: The degree of the interactions.
+        """
+        return self.__base_model.get_degree()
+
     def calculate_energy(self, sample: list[int]) -> float:
         """Calculate energy.
 
@@ -170,11 +156,11 @@ class PolynomialIsingAnyLattice:
         """
         return self.__base_model.calculate_energy(sample)
 
-    def generate_index_list(self) -> List[Union[int, str, List[Union[int, str]]]]:
+    def generate_index_list(self) -> list[Union[int, str, list[Union[int, str]]]]:
         """Generate index list.
 
         Returns:
-            List[Union[int, str, List[Union[int, str]]]]: The index list.
+            list[Union[int, str, list[Union[int, str]]]]: The index list.
         """
         return self.__base_model.generate_index_list()
 
@@ -193,14 +179,14 @@ class PolynomialIsingAnyLattice:
 
 def make_polynomial_ising(
         lattice: LatticeType, 
-        interaction: InteractionType = {}
+        interaction: InteractionType
     ) -> Union[PolynomialIsing, PolynomialIsingAnyLattice]:
 
     """Make PolynomialIsing class from lattice (and interaction).
 
     Args:
         lattice (LatticeType): The lattice.
-        interaction (InteractionType, optional): The interaction. Defaults to {}.
+        interaction (InteractionType, optional): The interaction.
 
     Raises:
         TypeError: The error raises when the unsupported lattices input.

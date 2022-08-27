@@ -34,21 +34,20 @@ enum class CMCUpdater {
    
 };
 
+const CMCUpdater DEFAULT_CMC_UPDATER = CMCUpdater::METROPOLIS;
+
 template<class ModelType>
 class ClassicalMonteCarlo {
    
-   using RealType = typename ModelType::ValueType;
-   using OPType = typename ModelType::OPType;
-   
 public:
+
+   using RealType  = typename ModelType::ValueType;
+   using IndexType = typename ModelType::IndexType;
+   using OPType    = typename ModelType::OPType;
    
-   const ModelType model;
-   const CMCUpdater cmc_updater;
-   
-   ClassicalMonteCarlo(const ModelType &model,
-                       const CMCUpdater cmc_updater=CMCUpdater::METROPOLIS):
-   model(model), cmc_updater(cmc_updater) {
-      seed_ = std::random_device()();
+   ClassicalMonteCarlo(const ModelType  &model,
+                       const CMCUpdater cmc_updater = DEFAULT_CMC_UPDATER):
+   cmc_updater_(cmc_updater), seed_(std::random_device()()), model_(model) {
       samples_.resize(num_samples_);
       for (std::size_t i = 0; i < samples_.size(); ++i) {
          RandomizeConfiguration(&samples_[i], seed_);
@@ -69,11 +68,11 @@ public:
       num_samples_ = num_samples;
    }
    
-   void SetTemperature(const RealType temperature) {
-      if (temperature <= 0) {
-         throw std::runtime_error("Temperature must be positive number");
+   void SetNumThreads(const std::int32_t num_threads) {
+      if (num_threads < 0) {
+         throw std::runtime_error("num_threads must be non-negative integer.");
       }
-      beta_ = 1/temperature;
+      num_threads_ = num_threads;
    }
    
    void SetInverseTemperature(const RealType beta) {
@@ -81,6 +80,17 @@ public:
          throw std::runtime_error("Inverse temperature must be positive number");
       }
       beta_ = beta;
+   }
+   
+   void SetTemperature(const RealType temperature) {
+      if (temperature <= 0) {
+         throw std::runtime_error("Temperature must be positive number");
+      }
+      beta_ = 1/temperature;
+   }
+   
+   void SetCMCUpdater(const CMCUpdater cmc_updater) {
+      cmc_updater_ = cmc_updater;
    }
    
    std::int32_t GetNumSweeps() const {
@@ -91,26 +101,34 @@ public:
       return num_samples_;
    }
    
-   const std::vector<std::vector<OPType>> &GetSamples() const {
-      return samples_;
-   }
-   
-   const std::vector<OPType> &GetSample(const std::int64_t i) const {
-      return samples_.at(i);
-   }
-   
-   RealType GetTemperature() const {
-      return 1/beta_;
+   std::int32_t GetNumThreads() const {
+      return num_threads_;
    }
    
    RealType GetInverseTemperature() const {
       return beta_;
    }
    
+   RealType GetTemperature() const {
+      return 1/beta_;
+   }
+   
+   CMCUpdater GetCMCUpdater() const {
+      return cmc_updater_;
+   }
+
    std::uint64_t GetSeed() const {
       return seed_;
    }
    
+   const std::vector<std::vector<OPType>> &GetSamples() const {
+      return samples_;
+   }
+   
+   const std::vector<OPType> &GetSample(const std::size_t i) const {
+      return samples_.at(i);
+   }
+
    void Run() {
       Run(std::random_device()());
    }
@@ -134,32 +152,24 @@ public:
          execute_seed_list[i] = random_number_engine();
       }
       
-      samples_.resize(num_samples_);
-      for (std::size_t i = 0; i < samples_.size(); ++i) {
-         samples_[i].resize(model.GetSystemSize());
-      }
+      samples_.clear();
       samples_.shrink_to_fit();
+      samples_.resize(num_samples_);
       
-      if (this->cmc_updater == CMCUpdater::METROPOLIS) {
-#pragma omp parallel for schedule(guided)
+      if (cmc_updater_ == CMCUpdater::METROPOLIS) {
+#pragma omp parallel for schedule(guided) num_threads(num_threads_)
          for (std::int32_t sample_count = 0; sample_count < num_samples_; sample_count++) {
-            std::vector<std::pair<OPType, RealType>> sample_energy_difference_pair(model.GetSystemSize());
-            RandomizeConfiguration(&sample_energy_difference_pair, configuration_seed_list[sample_count]);
-            updater::ExecuteMetropolis(&sample_energy_difference_pair, model, num_sweeps_, beta_, execute_seed_list[sample_count]);
-            for (std::size_t i = 0; i < sample_energy_difference_pair.size(); ++i) {
-               samples_[sample_count][i] = sample_energy_difference_pair[i].first;
-            }
+            samples_[sample_count].resize(model_.GetSystemSize());
+            RandomizeConfiguration(&samples_[sample_count], configuration_seed_list[sample_count]);
+            updater::ExecuteMetropolis(&samples_[sample_count], model_, num_sweeps_, beta_, execute_seed_list[sample_count]);
          }
       }
-      else if (this->cmc_updater == CMCUpdater::HEAT_BATH) {
-#pragma omp parallel for schedule(guided)
+      else if (cmc_updater_ == CMCUpdater::HEAT_BATH) {
+#pragma omp parallel for schedule(guided) num_threads(num_threads_)
          for (std::int32_t sample_count = 0; sample_count < num_samples_; sample_count++) {
-            std::vector<std::pair<OPType, RealType>> sample_energy_difference_pair(model.GetSystemSize());
-            RandomizeConfiguration(&sample_energy_difference_pair, configuration_seed_list[sample_count]);
-            updater::ExecuteHeatBath(&sample_energy_difference_pair, model, num_sweeps_, beta_, execute_seed_list[sample_count]);
-            for (std::size_t i = 0; i < sample_energy_difference_pair.size(); ++i) {
-               samples_[sample_count][i] = sample_energy_difference_pair[i].first;
-            }
+            samples_[sample_count].resize(model_.GetSystemSize());
+            RandomizeConfiguration(&samples_[sample_count], configuration_seed_list[sample_count]);
+            updater::ExecuteHeatBath(&samples_[sample_count], model_, num_sweeps_, beta_, execute_seed_list[sample_count]);
          }
       }
       else {
@@ -169,45 +179,53 @@ public:
    }
    
    RealType CalculateSampleAverage() const {
-      return model.CalculateAverage(samples_);
+      return model_.CalculateMoment(samples_, 1, num_threads_);
    }
    
    RealType CalculateSampleMoment(const std::int32_t degree) const {
-      return model.CalculateMoment(samples_, degree);
+      return model_.CalculateMoment(samples_, degree, num_threads_);
+   }
+   
+   RealType CalculateCorrelation(const IndexType ind1, const IndexType ind2) const {
+      return model_.CalculateCorrelation(samples_, ind1, ind2);
+   }
+   
+   std::vector<RealType> CalculateCorrelationList(const IndexType origin,
+                                                  const std::vector<IndexType> &index_list) const {
+      std::int32_t size = static_cast<std::int32_t>(index_list.size());
+      std::vector<RealType> value_list(size);
+#pragma omp parallel for schedule(guided) num_threads(num_threads_)
+      for (std::int32_t i = 0; i < size; ++i) {
+         value_list[i] = model_.CalculateCorrelation(samples_, origin, index_list[i]);
+      }
+      return value_list;
    }
    
 private:
-   std::int32_t num_sweeps_  = 1000;
-   std::int32_t num_samples_ = 1;
-   RealType beta_   = 1;
+   std::int32_t num_sweeps_  = utility::DEFAULT_NUM_SWEEPS;
+   std::int32_t num_samples_ = utility::DEFAULT_NUM_SAMPLES;
+   std::int32_t num_threads_ = utility::DEFAULT_NUM_THREADS;
+   RealType beta_            = utility::DEFAULT_BETA<RealType>;
+   CMCUpdater cmc_updater_   = DEFAULT_CMC_UPDATER;
+   std::uint64_t seed_       = std::random_device()();
+   ModelType model_;
    std::vector<std::vector<OPType>> samples_;
-   std::uint64_t seed_ = 0;
-   
+
    void RandomizeConfiguration(std::vector<utility::SpinType> *sample,
                                const std::uint64_t seed) const {
       std::uniform_int_distribution<utility::SpinType> dist(0, 1);
-      sample->resize(model.GetSystemSize());
       utility::RandType random_number_engine(seed);
       for (std::size_t i = 0; i < sample->size(); i++) {
          (*sample)[i] = 2*dist(random_number_engine) - 1;
       }
    }
-   
-   void RandomizeConfiguration(std::vector<std::pair<OPType, RealType>> *sample_energy_difference_pair,
-                               const std::uint64_t seed) const {
-      std::uniform_int_distribution<utility::SpinType> dist(0, 1);
-      utility::RandType random_number_engine(seed);
-      for (auto &&it: (*sample_energy_difference_pair)) {
-         it.first = 2*dist(random_number_engine) - 1;
-      }
-   }
-   
+      
 };
 
 
 template<class ModelType>
-auto make_classical_monte_carlo(const ModelType &model,
-                                const CMCUpdater cmc_updater=CMCUpdater::METROPOLIS) {
+auto make_classical_monte_carlo(const ModelType  &model,
+                                const CMCUpdater cmc_updater = DEFAULT_CMC_UPDATER) {
    return ClassicalMonteCarlo<ModelType>{model, cmc_updater};
 }
 

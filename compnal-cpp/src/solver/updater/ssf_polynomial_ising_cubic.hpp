@@ -28,13 +28,15 @@ namespace solver {
 namespace updater {
 
 template<typename RealType>
-void SetEnergyDifference(std::vector<std::pair<typename model::PolynomialIsing<lattice::Cubic, RealType>::OPType, RealType>> *sample_energy_difference_pair,
+void SetEnergyDifference(std::vector<typename model::PolynomialIsing<lattice::Cubic, RealType>::ValueType> *energy_difference,
+                         const std::vector<typename model::PolynomialIsing<lattice::Cubic, RealType>::OPType> &sample,
                          const model::PolynomialIsing<lattice::Cubic, RealType> &model) {
    
 }
 
 template<typename RealType>
-void UpdateConfiguration(std::vector<std::pair<typename model::PolynomialIsing<lattice::Cubic, RealType>::OPType, RealType>> *sample_energy_difference_pair,
+void UpdateConfiguration(std::vector<typename model::PolynomialIsing<lattice::Cubic, RealType>::OPType> *sample,
+                         std::vector<typename model::PolynomialIsing<lattice::Cubic, RealType>::ValueType> *energy_difference,
                          const std::int32_t index,
                          const model::PolynomialIsing<lattice::Cubic, RealType> &model) {
    

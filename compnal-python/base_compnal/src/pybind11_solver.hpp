@@ -57,11 +57,13 @@ void pybind11SolverClassicalMonteCarlo(py::module &m, const std::string &post_na
    //Public Member Functions
    py_class.def("set_num_sweeps", &CMC::SetNumSweeps  , "num_sweeps"_a );
    py_class.def("set_num_samples", &CMC::SetNumSamples, "num_samples"_a);
-   py_class.def("set_temperature", &CMC::SetTemperature, "temperature"_a);
+   py_class.def("set_num_threads", &CMC::SetNumThreads, "num_threads"_a);
    py_class.def("set_inverse_temperature", &CMC::SetInverseTemperature, "inverse_temperature"_a);
+   py_class.def("set_temperature", &CMC::SetTemperature, "temperature"_a);
    py_class.def("set_cmc_updater", &CMC::SetCMCUpdater, "cmc_updater"_a);
    py_class.def("get_num_sweeps", &CMC::GetNumSweeps);
    py_class.def("get_num_samples", &CMC::GetNumSamples);
+   py_class.def("get_num_threads", &CMC::GetNumThreads);
    py_class.def("get_samples", &CMC::GetSamples);
    py_class.def("get_temperature", &CMC::GetTemperature);
    py_class.def("get_inverse_temperature", &CMC::GetInverseTemperature);
@@ -71,8 +73,8 @@ void pybind11SolverClassicalMonteCarlo(py::module &m, const std::string &post_na
    py_class.def("run", py::overload_cast<const std::uint64_t>(&CMC::Run), "seed"_a);
    py_class.def("calculate_sample_average", &CMC::CalculateSampleAverage);
    py_class.def("calculate_sample_moment", &CMC::CalculateSampleMoment, "degree"_a);
-   py_class.def("calculate_correlation_function", py::overload_cast<const IndexType, const IndexType>(&CMC::CalculateCorrelationFunction), "index_1"_a, "index_2"_a);
-   py_class.def("calculate_correlation_function", py::overload_cast<const IndexType, const std::vector<IndexType>&>(&CMC::CalculateCorrelationFunction), "origin"_a, "index_list"_a);
+   py_class.def("calculate_correlation", &CMC::CalculateCorrelation, "index_1"_a, "index_2"_a);
+   py_class.def("calculate_correlation_list", &CMC::CalculateCorrelationList, "origin"_a, "index_list"_a);
    
    m.def("make_classical_monte_carlo", [](const ModelType &model,
                                           const solver::CMCUpdater cmc_updater) {

@@ -36,6 +36,14 @@ using SpinType = std::int8_t;
 
 using RandType = std::mt19937_64;
 
+const std::int32_t DEFAULT_NUM_SWEEPS = 1000;
+const std::int32_t DEFAULT_NUM_SAMPLES = 1;
+const std::int32_t DEFAULT_NUM_THREADS = 1;
+
+template<typename RealType>
+const RealType DEFAULT_BETA = 1;
+
+
 } // namespace utility
 } // namespace compnal
 

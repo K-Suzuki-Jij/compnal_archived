@@ -41,28 +41,28 @@ public:
    using VectorHash = utility::AnyIndexVectorHash;
    using InteractionType = std::unordered_map<std::vector<IndexType>, RealType, VectorHash>;
    
-   PolynomialGeneralModel() {}
-   
-   void AddInteraction(std::vector<IndexType> index_list, const RealType value) {
-      std::sort(index_list.begin(), index_list.end());
-      interaction_[index_list] += value;
-      index_set_.insert(index_list.begin(), index_list.end());
+   PolynomialGeneralModel(const InteractionType &interaction) {
+      for (const auto &it: interaction) {
+         std::vector<IndexType> index_list = it.first;
+         std::sort(index_list.begin(), index_list.end());
+         index_set_.insert(index_list.begin(), index_list.end());
+         interaction_[index_list] += it.second;
+         if (degree_ < index_list.size()) {
+            degree_ = static_cast<std::int32_t>(index_list.size());
+         }
+      }
+      std::vector<IndexType> index_list = GenerateIndexList();
+      std::int64_t count = 0;
+      for (std::size_t i = 0; i < index_list.size(); ++i) {
+         index_map_[index_list[i]] = count;
+         count++;
+      }
    }
-   
-   void SetInteraction(std::vector<IndexType> index_list, const RealType value) {
-      std::sort(index_list.begin(), index_list.end());
-      interaction_[index_list] = value;
-      index_set_.insert(index_list.begin(), index_list.end());
-   }
-   
+      
    std::vector<IndexType> GenerateIndexList() const {
       std::vector<IndexType> index_list(index_set_.begin(), index_set_.end());
       std::sort(index_list.begin(), index_list.end());
       return index_list;
-   }
-
-   const InteractionType &GetInteraction() const {
-      return interaction_;
    }
    
    std::pair<std::vector<std::vector<IndexType>>, std::vector<RealType>> GenerateInteractionAsPair() const {
@@ -77,28 +77,32 @@ public:
       return std::pair<std::vector<std::vector<IndexType>>, std::vector<RealType>>{key_list, value_list};
    }
    
+   std::int32_t GetSystemSize() const {
+      return static_cast<std::int32_t>(index_set_.size());
+   }
+   
    const std::unordered_set<IndexType, IndexHash> &GetIndexSet() const {
       return index_set_;
    }
    
-   std::size_t GetSystemSize() const {
-      return index_set_.size();
+   const std::unordered_map<IndexType, std::int64_t, IndexHash> &GetIndexMap() const {
+      return index_map_;
    }
    
-   std::unordered_map<IndexType, std::int64_t, IndexHash> GenerateIndexMap() const {
-      std::unordered_map<IndexType, std::int64_t, IndexHash> index_map;
-      std::vector<IndexType> index_list = GenerateIndexList();
-      std::int64_t count = 0;
-      for (std::size_t i = 0; i < index_list.size(); ++i) {
-         index_map[index_list[i]] = count;
-         count++;
-      }
-      return index_map;
+   const InteractionType &GetInteraction() const {
+      return interaction_;
    }
-
+   
+   std::int32_t GetDegree() const {
+      return degree_;
+   }
+   
 private:
+   int32_t degree_ = 0;
    std::unordered_set<IndexType, IndexHash> index_set_;
+   std::unordered_map<IndexType, std::int64_t, IndexHash> index_map_;
    InteractionType interaction_;
+
 };
 
 

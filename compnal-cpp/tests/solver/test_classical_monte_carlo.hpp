@@ -26,7 +26,7 @@ namespace compnal {
 namespace test {
 
 TEST(SolverClassicalMonteCarlo, AnyLattice) {
-   model::PolynomialIsing<lattice::AnyLattice, double> model{lattice::AnyLattice{}};
+   model::PolynomialIsing<lattice::AnyLattice, double> model{lattice::AnyLattice{}, {}};
    solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
    solver.SetNumSweeps(10000);
    solver.SetNumSamples(10);

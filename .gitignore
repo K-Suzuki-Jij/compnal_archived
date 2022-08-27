@@ -48,7 +48,7 @@ share/python-wheels/
 .ipynb_checkpoints
 
 # Working Directry
-compnal-python/notebook/work
+compnal-python/notebooks/work
 
 # Reference site
 docs

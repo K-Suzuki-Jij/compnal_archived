@@ -12,6 +12,7 @@ class ClassicalMonteCarlo:
         updater (Updater): The algorithm of update method.
         num_sweeps (int): The number of sweeps.
         num_samples (int): The number of samples.
+        num_threads (int): The number of threads.
         beta (float): The inverse temperature.
     """
 
@@ -48,6 +49,14 @@ class ClassicalMonteCarlo:
         """
         self.__base_solver.set_num_samples(num_samples=num_samples)
 
+    def set_num_threads(self, num_threads: int) -> None:
+        """Set the number of threads.
+
+        Args:
+            num_threads (int): The number of threads.
+        """
+        self.__base_solver.set_num_threads(num_threads=num_threads)
+
     def set_temperature(self, temperature: int) -> None:
         """Set the temperature at which the monte carlo algorithm executes.
 
@@ -79,6 +88,14 @@ class ClassicalMonteCarlo:
             int: The number of samples.
         """
         return self.__base_solver.get_num_samples()
+
+    def get_num_threads(self) -> int:
+        """Get the number of threads.
+
+        Returns:
+            int: The number of threads.
+        """
+        return self.__base_solver.get_num_threads()
 
     def get_temperature(self) -> int:
         """Get the temperature at which the monte carlo algorithm executes.
@@ -142,6 +159,38 @@ class ClassicalMonteCarlo:
         """
         return self.__base_solver.calculate_sample_moment(degree=degree)
 
+    def calculate_correlation(
+            self, 
+            index_1: Union[int, list[Union[int, str, list[Union[int, str]]]]],
+            index_2: Union[int, list[Union[int, str, list[Union[int, str]]]]]
+        ) -> float:
+        """Calculate correlation function.
+
+        Args:
+            index_1 (Union[int, list[Union[int, str, list[Union[int, str]]]]]): The index.
+            index_2 (Union[int, list[Union[int, str, list[Union[int, str]]]]]): The index.
+
+        Returns:
+            float: Correlation function from the samples at the sites of index_1 and index_2.
+        """
+        return self.__base_solver.calculate_correlation_function(index_1, index_2)
+
+    def calculate_correlation_list(
+            self, 
+            origin: Union[int, list[Union[int, str, list[Union[int, str]]]]],
+            index_list: Union[list[int], list[list[Union[int, str, list[Union[int, str]]]]]]
+        ) -> list[float]:
+        """Calculate correlation function list.
+
+        Args:
+            origin (Union[int, list[Union[int, str, list[Union[int, str]]]]]): The index.
+            index_list (Union[list[int], list[list[Union[int, str, list[Union[int, str]]]]]]): The index list.
+
+        Returns:
+            list[float]: Correlation function list from the samples at the sites of origin and index in index_list.
+        """
+        return self.__base_solver.calculate_correlation_function(origin, index_list)
+
     @property
     def updater(self) -> Updater:
         return cast_base_updater(self.__base_solver.cmc_updater)
@@ -165,6 +214,14 @@ class ClassicalMonteCarlo:
     @num_samples.setter
     def num_samples(self, num_samples: int) -> None:
         self.set_num_samples(num_samples=num_samples)
+
+    @property
+    def num_threads(self) -> int:
+        self.get_num_threads()
+
+    @num_threads.setter
+    def num_threads(self, num_threads: int) -> None:
+        self.set_num_threads(num_threads=num_threads)
 
     @property
     def beta(self) -> float:
