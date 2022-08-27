@@ -1,0 +1,76 @@
+\hypertarget{namespacecompnal_1_1utility}{}\doxysection{compnal\+::utility Namespace Reference}
+\label{namespacecompnal_1_1utility}\index{compnal::utility@{compnal::utility}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcompnal_1_1utility_1_1_index_hash}{Index\+Hash}}
+\begin{DoxyCompactList}\small\item\em Hash struct of Index\+Type used in model\+::\+General\+Model. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structcompnal_1_1utility_1_1_index_vector_hash}{Index\+Vector\+Hash}}
+\begin{DoxyCompactList}\small\item\em Hash struct of std\+::vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{namespacecompnal_1_1utility_a3d69b51c69a7de895a088b78c1709dcc}{Int\+Str\+Type}} = std\+::variant$<$ std\+::int32\+\_\+t, std\+::string $>$
+\item 
+using \mbox{\hyperlink{namespacecompnal_1_1utility_a9200f93daeceeb7f1cdfa4f49179f672}{Index\+Type}} = std\+::variant$<$ std\+::int32\+\_\+t, std\+::string, std\+::vector$<$ \mbox{\hyperlink{namespacecompnal_1_1utility_a3d69b51c69a7de895a088b78c1709dcc}{Int\+Str\+Type}} $>$ $>$
+\item 
+using \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{Spin\+Type}} = std\+::int8\+\_\+t
+\item 
+using \mbox{\hyperlink{namespacecompnal_1_1utility_a16654fac778ada1d5434540168b09f26}{Rand\+Type}} = std\+::mt19937\+\_\+64
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\std\+::vector$<$ std\+::vector$<$ T $>$ $>$ \mbox{\hyperlink{namespacecompnal_1_1utility_a0ea5fe7adf7d0d730b9fc31237cda74c}{Generate\+All\+Combinations}} (const std\+::vector$<$ T $>$ \&list, const std\+::int64\+\_\+t combination\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Generate all the combinations from a given list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{namespacecompnal_1_1utility_a9200f93daeceeb7f1cdfa4f49179f672}\label{namespacecompnal_1_1utility_a9200f93daeceeb7f1cdfa4f49179f672}} 
+\index{compnal::utility@{compnal::utility}!IndexType@{IndexType}}
+\index{IndexType@{IndexType}!compnal::utility@{compnal::utility}}
+\doxysubsubsection{\texorpdfstring{IndexType}{IndexType}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespacecompnal_1_1utility_a9200f93daeceeb7f1cdfa4f49179f672}{compnal\+::utility\+::\+Index\+Type}} = typedef std\+::variant$<$std\+::int32\+\_\+t, std\+::string, std\+::vector$<$\mbox{\hyperlink{namespacecompnal_1_1utility_a3d69b51c69a7de895a088b78c1709dcc}{Int\+Str\+Type}}$>$ $>$}
+
+\mbox{\Hypertarget{namespacecompnal_1_1utility_a3d69b51c69a7de895a088b78c1709dcc}\label{namespacecompnal_1_1utility_a3d69b51c69a7de895a088b78c1709dcc}} 
+\index{compnal::utility@{compnal::utility}!IntStrType@{IntStrType}}
+\index{IntStrType@{IntStrType}!compnal::utility@{compnal::utility}}
+\doxysubsubsection{\texorpdfstring{IntStrType}{IntStrType}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespacecompnal_1_1utility_a3d69b51c69a7de895a088b78c1709dcc}{compnal\+::utility\+::\+Int\+Str\+Type}} = typedef std\+::variant$<$std\+::int32\+\_\+t, std\+::string$>$}
+
+\mbox{\Hypertarget{namespacecompnal_1_1utility_a16654fac778ada1d5434540168b09f26}\label{namespacecompnal_1_1utility_a16654fac778ada1d5434540168b09f26}} 
+\index{compnal::utility@{compnal::utility}!RandType@{RandType}}
+\index{RandType@{RandType}!compnal::utility@{compnal::utility}}
+\doxysubsubsection{\texorpdfstring{RandType}{RandType}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespacecompnal_1_1utility_a16654fac778ada1d5434540168b09f26}{compnal\+::utility\+::\+Rand\+Type}} = typedef std\+::mt19937\+\_\+64}
+
+\mbox{\Hypertarget{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}\label{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}} 
+\index{compnal::utility@{compnal::utility}!SpinType@{SpinType}}
+\index{SpinType@{SpinType}!compnal::utility@{compnal::utility}}
+\doxysubsubsection{\texorpdfstring{SpinType}{SpinType}}
+{\footnotesize\ttfamily using \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{compnal\+::utility\+::\+Spin\+Type}} = typedef std\+::int8\+\_\+t}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacecompnal_1_1utility_a0ea5fe7adf7d0d730b9fc31237cda74c}\label{namespacecompnal_1_1utility_a0ea5fe7adf7d0d730b9fc31237cda74c}} 
+\index{compnal::utility@{compnal::utility}!GenerateAllCombinations@{GenerateAllCombinations}}
+\index{GenerateAllCombinations@{GenerateAllCombinations}!compnal::utility@{compnal::utility}}
+\doxysubsubsection{\texorpdfstring{GenerateAllCombinations()}{GenerateAllCombinations()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+std\+::vector$<$ std\+::vector$<$ T $>$ $>$ compnal\+::utility\+::\+Generate\+All\+Combinations (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ T $>$ \&}]{list,  }\item[{const std\+::int64\+\_\+t}]{combination\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Generate all the combinations from a given list. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The list, from which all the combinations will be generated. \\
+\hline
+{\em combination\+\_\+size} & The size of combinations. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+All the combinations. 
+\end{DoxyReturn}

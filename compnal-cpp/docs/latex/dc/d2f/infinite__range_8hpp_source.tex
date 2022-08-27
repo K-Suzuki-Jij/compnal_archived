@@ -1,0 +1,70 @@
+\hypertarget{infinite__range_8hpp_source}{}\doxysection{infinite\+\_\+range.\+hpp}
+\label{infinite__range_8hpp_source}\index{src/lattice/infinite\_range.hpp@{src/lattice/infinite\_range.hpp}}
+\mbox{\hyperlink{infinite__range_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{//  Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{5 \textcolor{comment}{//  you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{//  You may obtain a copy of the License at}}
+\DoxyCodeLine{7 \textcolor{comment}{//}}
+\DoxyCodeLine{8 \textcolor{comment}{//      http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 \textcolor{comment}{//  Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{11 \textcolor{comment}{//  distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{12 \textcolor{comment}{//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{13 \textcolor{comment}{//  See the License for the specific language governing permissions and}}
+\DoxyCodeLine{14 \textcolor{comment}{//  limitations under the License.}}
+\DoxyCodeLine{15 \textcolor{comment}{//}}
+\DoxyCodeLine{16 \textcolor{comment}{//  infinite\_range.hpp}}
+\DoxyCodeLine{17 \textcolor{comment}{//  compnal}}
+\DoxyCodeLine{18 \textcolor{comment}{//}}
+\DoxyCodeLine{19 \textcolor{comment}{//  Created by kohei on 2022/08/10.}}
+\DoxyCodeLine{20 \textcolor{comment}{//  }}
+\DoxyCodeLine{21 \textcolor{comment}{//}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#ifndef COMPNAL\_LATTICE\_INFINITE\_RANGE\_HPP\_}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#define COMPNAL\_LATTICE\_INFINITE\_RANGE\_HPP\_}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{boundary__condition_8hpp}{boundary\_condition.hpp}}"{}}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include <stdexcept>}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
+\DoxyCodeLine{30 \textcolor{keyword}{namespace }lattice \{}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{33 \textcolor{keyword}{class }\mbox{\hyperlink{classcompnal_1_1lattice_1_1_infinite_range}{InfiniteRange}} \{}
+\DoxyCodeLine{34    }
+\DoxyCodeLine{35 \textcolor{keyword}{public}:}
+\DoxyCodeLine{36    }
+\DoxyCodeLine{39    \mbox{\hyperlink{classcompnal_1_1lattice_1_1_infinite_range_a7d149e4f7a24da86d843afecdc4d3820}{InfiniteRange}}(\textcolor{keyword}{const} std::int32\_t system\_size) \{}
+\DoxyCodeLine{40       \mbox{\hyperlink{classcompnal_1_1lattice_1_1_infinite_range_ac46dfc273278a086887a19d9cba9858c}{SetSystemSize}}(system\_size);}
+\DoxyCodeLine{41    \}}
+\DoxyCodeLine{42    }
+\DoxyCodeLine{45    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_infinite_range_ac46dfc273278a086887a19d9cba9858c}{SetSystemSize}}(\textcolor{keyword}{const} std::int32\_t system\_size) \{}
+\DoxyCodeLine{46       \textcolor{keywordflow}{if} (system\_size < 0) \{}
+\DoxyCodeLine{47          \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}system\_size must be larger than or equal to 0."{}});}
+\DoxyCodeLine{48       \}}
+\DoxyCodeLine{49       \mbox{\hyperlink{classcompnal_1_1lattice_1_1_infinite_range_adeb48e0b9adeed94cddfc0303bf3b28b}{system\_size\_}} = system\_size;}
+\DoxyCodeLine{50    \}}
+\DoxyCodeLine{51    }
+\DoxyCodeLine{54    std::int32\_t \mbox{\hyperlink{classcompnal_1_1lattice_1_1_infinite_range_ad33c67753da9e62e875931eff7c70e7d}{GetSystemSize}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{55       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_infinite_range_adeb48e0b9adeed94cddfc0303bf3b28b}{system\_size\_}};}
+\DoxyCodeLine{56    \}}
+\DoxyCodeLine{57    }
+\DoxyCodeLine{60    \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{BoundaryCondition}} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_infinite_range_af1752cde9967f09a9fd3f412ded94a16}{GetBoundaryCondition}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{61       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5ab50339a10e1de285ac99d4c3990b8693}{BoundaryCondition::NONE}};}
+\DoxyCodeLine{62    \}}
+\DoxyCodeLine{63    }
+\DoxyCodeLine{64 \textcolor{keyword}{private}:}
+\DoxyCodeLine{66    std::int32\_t \mbox{\hyperlink{classcompnal_1_1lattice_1_1_infinite_range_adeb48e0b9adeed94cddfc0303bf3b28b}{system\_size\_}} = 0;}
+\DoxyCodeLine{67    }
+\DoxyCodeLine{68 \};}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 \} \textcolor{comment}{// namespace lattice}}
+\DoxyCodeLine{71 \} \textcolor{comment}{// namespace compnal}}
+\DoxyCodeLine{72 }
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_LATTICE\_INFINITE\_RANGE\_HPP\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

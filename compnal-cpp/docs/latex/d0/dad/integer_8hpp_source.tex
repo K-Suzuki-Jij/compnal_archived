@@ -1,0 +1,83 @@
+\hypertarget{integer_8hpp_source}{}\doxysection{integer.\+hpp}
+\label{integer_8hpp_source}\index{src/utility/integer.hpp@{src/utility/integer.hpp}}
+\mbox{\hyperlink{integer_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{//  Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{4 \textcolor{comment}{//  you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{5 \textcolor{comment}{//  You may obtain a copy of the License at}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{//      http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{comment}{//  Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{10 \textcolor{comment}{//  distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{11 \textcolor{comment}{//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{12 \textcolor{comment}{//  See the License for the specific language governing permissions and}}
+\DoxyCodeLine{13 \textcolor{comment}{//  limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{//}}
+\DoxyCodeLine{15 \textcolor{comment}{//  Created by Kohei Suzuki on 2022/07/06.}}
+\DoxyCodeLine{16 \textcolor{comment}{//}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_UTILITY\_INTEGER\_HPP\_}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_UTILITY\_INTEGER\_HPP\_}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
+\DoxyCodeLine{24 \textcolor{keyword}{namespace }utility \{}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{30 \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{31 std::vector<std::vector<T>> \mbox{\hyperlink{namespacecompnal_1_1utility_a0ea5fe7adf7d0d730b9fc31237cda74c}{GenerateAllCombinations}}(\textcolor{keyword}{const} std::vector<T> \&list, \textcolor{keyword}{const} std::int64\_t combination\_size) \{}
+\DoxyCodeLine{32    }
+\DoxyCodeLine{33    std::vector<std::vector<T>> combinations;}
+\DoxyCodeLine{34    }
+\DoxyCodeLine{35    \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(list.size()) < combination\_size) \{}
+\DoxyCodeLine{36       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}combination\_size must be smallar than or equal to list.size()."{}});}
+\DoxyCodeLine{37    \}}
+\DoxyCodeLine{38    \textcolor{keywordflow}{if} (combination\_size < 0) \{}
+\DoxyCodeLine{39       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}combination\_size must be larger than -\/1."{}});}
+\DoxyCodeLine{40    \}}
+\DoxyCodeLine{41    \textcolor{keywordflow}{if} (combination\_size == 0) \{}
+\DoxyCodeLine{42       \textcolor{keywordflow}{return} combinations;}
+\DoxyCodeLine{43    \}}
+\DoxyCodeLine{44    }
+\DoxyCodeLine{45    std::vector<std::int64\_t> indices(combination\_size);}
+\DoxyCodeLine{46    }
+\DoxyCodeLine{47    \textcolor{keyword}{const} std::int64\_t seed\_size = \textcolor{keyword}{static\_cast<}std::int64\_t\textcolor{keyword}{>}(list.size());}
+\DoxyCodeLine{48    std::int64\_t start\_index = 0;}
+\DoxyCodeLine{49    std::int64\_t size = 0;}
+\DoxyCodeLine{50    }
+\DoxyCodeLine{51    \textcolor{keywordflow}{while} (\textcolor{keyword}{true}) \{}
+\DoxyCodeLine{52       \textcolor{keywordflow}{for} (std::int64\_t i = start\_index; i < seed\_size; ++i) \{}
+\DoxyCodeLine{53          indices[size++] = i;}
+\DoxyCodeLine{54          \textcolor{keywordflow}{if} (size == combination\_size) \{}
+\DoxyCodeLine{55             std::vector<T> temp(combination\_size);}
+\DoxyCodeLine{56             \textcolor{keywordflow}{for} (std::size\_t j = 0; j < temp.size(); ++j) \{}
+\DoxyCodeLine{57                temp[j] = list[indices[j]];}
+\DoxyCodeLine{58             \}}
+\DoxyCodeLine{59             combinations.push\_back(temp);}
+\DoxyCodeLine{60             \textcolor{keywordflow}{break};}
+\DoxyCodeLine{61          \}}
+\DoxyCodeLine{62       \}}
+\DoxyCodeLine{63       -\/-\/size;}
+\DoxyCodeLine{64       \textcolor{keywordflow}{if} (size < 0) \{}
+\DoxyCodeLine{65          \textcolor{keywordflow}{break};}
+\DoxyCodeLine{66       \}}
+\DoxyCodeLine{67       start\_index = indices[size] + 1;}
+\DoxyCodeLine{68    \}}
+\DoxyCodeLine{69    combinations.shrink\_to\_fit();}
+\DoxyCodeLine{70    }
+\DoxyCodeLine{71    \textcolor{keywordflow}{return} combinations;}
+\DoxyCodeLine{72 \}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77 \} \textcolor{comment}{// namespace utility}}
+\DoxyCodeLine{78 \} \textcolor{comment}{// namespace compnal}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_UTILITY\_INTEGER\_HPP\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

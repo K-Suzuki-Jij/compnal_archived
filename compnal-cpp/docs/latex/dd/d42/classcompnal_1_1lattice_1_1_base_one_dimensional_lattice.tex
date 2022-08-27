@@ -1,0 +1,167 @@
+\hypertarget{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice}{}\doxysection{compnal\+::lattice\+::Base\+One\+Dimensional\+Lattice Class Reference}
+\label{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice}\index{compnal::lattice::BaseOneDimensionalLattice@{compnal::lattice::BaseOneDimensionalLattice}}
+
+
+Base class to represent the one-\/dimensional system.  
+
+
+
+
+{\ttfamily \#include $<$base\+\_\+one\+\_\+dimensional\+\_\+lattice.\+hpp$>$}
+
+
+
+Inheritance diagram for compnal\+::lattice\+::Base\+One\+Dimensional\+Lattice\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{d7/d76/classcompnal_1_1lattice_1_1_base_one_dimensional_lattice__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_a04a3d3d153d4fb6b6f362ac01db1226f}{Base\+One\+Dimensional\+Lattice}} (const std\+::int32\+\_\+t system\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice}{Base\+One\+Dimensional\+Lattice}} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_a8ab0e32805d403a067d76161ff30851a}{Base\+One\+Dimensional\+Lattice}} (const std\+::int32\+\_\+t system\+\_\+size, const \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{Boundary\+Condition}} boundary\+\_\+condition)
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice}{Base\+One\+Dimensional\+Lattice}} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_a7f0cf0dd309f1dd3dfc23c3b4c5bc6b1}{Set\+System\+Size}} (const std\+::int32\+\_\+t system\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Set system size. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_a71dfec715e2def868c377f9c0946e8a2}{Set\+Boundary\+Condition}} (const \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{Boundary\+Condition}} boundary\+\_\+condition)
+\begin{DoxyCompactList}\small\item\em Set boundary condition. \end{DoxyCompactList}\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_a8a9142c7412ebd92ece4bf0121ca8c76}{Get\+System\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Get system size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{Boundary\+Condition}} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_aa6a44a09c0cebbc910f9a08de729653a}{Get\+Boundary\+Condition}} () const
+\begin{DoxyCompactList}\small\item\em Get boundary condition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_a236b705545dff263393e1df9aabc7762}{system\+\_\+size\+\_\+}} = 0
+\begin{DoxyCompactList}\small\item\em System size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{Boundary\+Condition}} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_a05cb0829ea05c22284f58267163170ef}{bc\+\_\+}} = \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5ac5878c0c0199e57e3e999f7dc4add33f}{Boundary\+Condition\+::\+OBC}}
+\begin{DoxyCompactList}\small\item\em Boundary condition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class to represent the one-\/dimensional system. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_a04a3d3d153d4fb6b6f362ac01db1226f}\label{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_a04a3d3d153d4fb6b6f362ac01db1226f}} 
+\index{compnal::lattice::BaseOneDimensionalLattice@{compnal::lattice::BaseOneDimensionalLattice}!BaseOneDimensionalLattice@{BaseOneDimensionalLattice}}
+\index{BaseOneDimensionalLattice@{BaseOneDimensionalLattice}!compnal::lattice::BaseOneDimensionalLattice@{compnal::lattice::BaseOneDimensionalLattice}}
+\doxysubsubsection{\texorpdfstring{BaseOneDimensionalLattice()}{BaseOneDimensionalLattice()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily compnal\+::lattice\+::\+Base\+One\+Dimensional\+Lattice\+::\+Base\+One\+Dimensional\+Lattice (\begin{DoxyParamCaption}\item[{const std\+::int32\+\_\+t}]{system\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice}{Base\+One\+Dimensional\+Lattice}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em system\+\_\+size} & System size. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_a8ab0e32805d403a067d76161ff30851a}\label{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_a8ab0e32805d403a067d76161ff30851a}} 
+\index{compnal::lattice::BaseOneDimensionalLattice@{compnal::lattice::BaseOneDimensionalLattice}!BaseOneDimensionalLattice@{BaseOneDimensionalLattice}}
+\index{BaseOneDimensionalLattice@{BaseOneDimensionalLattice}!compnal::lattice::BaseOneDimensionalLattice@{compnal::lattice::BaseOneDimensionalLattice}}
+\doxysubsubsection{\texorpdfstring{BaseOneDimensionalLattice()}{BaseOneDimensionalLattice()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily compnal\+::lattice\+::\+Base\+One\+Dimensional\+Lattice\+::\+Base\+One\+Dimensional\+Lattice (\begin{DoxyParamCaption}\item[{const std\+::int32\+\_\+t}]{system\+\_\+size,  }\item[{const \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{Boundary\+Condition}}}]{boundary\+\_\+condition }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice}{Base\+One\+Dimensional\+Lattice}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em system\+\_\+size} & System size. \\
+\hline
+{\em boundary\+\_\+condition} & Boundary condtion. \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5ab50339a10e1de285ac99d4c3990b8693}{Boundary\+Condition\+::\+NONE}} cannot be used here. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_aa6a44a09c0cebbc910f9a08de729653a}\label{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_aa6a44a09c0cebbc910f9a08de729653a}} 
+\index{compnal::lattice::BaseOneDimensionalLattice@{compnal::lattice::BaseOneDimensionalLattice}!GetBoundaryCondition@{GetBoundaryCondition}}
+\index{GetBoundaryCondition@{GetBoundaryCondition}!compnal::lattice::BaseOneDimensionalLattice@{compnal::lattice::BaseOneDimensionalLattice}}
+\doxysubsubsection{\texorpdfstring{GetBoundaryCondition()}{GetBoundaryCondition()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{Boundary\+Condition}} compnal\+::lattice\+::\+Base\+One\+Dimensional\+Lattice\+::\+Get\+Boundary\+Condition (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get boundary condition. 
+
+\begin{DoxyReturn}{Returns}
+Boundary condition. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_a8a9142c7412ebd92ece4bf0121ca8c76}\label{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_a8a9142c7412ebd92ece4bf0121ca8c76}} 
+\index{compnal::lattice::BaseOneDimensionalLattice@{compnal::lattice::BaseOneDimensionalLattice}!GetSystemSize@{GetSystemSize}}
+\index{GetSystemSize@{GetSystemSize}!compnal::lattice::BaseOneDimensionalLattice@{compnal::lattice::BaseOneDimensionalLattice}}
+\doxysubsubsection{\texorpdfstring{GetSystemSize()}{GetSystemSize()}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t compnal\+::lattice\+::\+Base\+One\+Dimensional\+Lattice\+::\+Get\+System\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get system size. 
+
+\begin{DoxyReturn}{Returns}
+System size. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_a71dfec715e2def868c377f9c0946e8a2}\label{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_a71dfec715e2def868c377f9c0946e8a2}} 
+\index{compnal::lattice::BaseOneDimensionalLattice@{compnal::lattice::BaseOneDimensionalLattice}!SetBoundaryCondition@{SetBoundaryCondition}}
+\index{SetBoundaryCondition@{SetBoundaryCondition}!compnal::lattice::BaseOneDimensionalLattice@{compnal::lattice::BaseOneDimensionalLattice}}
+\doxysubsubsection{\texorpdfstring{SetBoundaryCondition()}{SetBoundaryCondition()}}
+{\footnotesize\ttfamily void compnal\+::lattice\+::\+Base\+One\+Dimensional\+Lattice\+::\+Set\+Boundary\+Condition (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{Boundary\+Condition}}}]{boundary\+\_\+condition }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set boundary condition. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em boundary\+\_\+condition} & Boundary condtion. \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5ab50339a10e1de285ac99d4c3990b8693}{Boundary\+Condition\+::\+NONE}} cannot be used here. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_a7f0cf0dd309f1dd3dfc23c3b4c5bc6b1}\label{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_a7f0cf0dd309f1dd3dfc23c3b4c5bc6b1}} 
+\index{compnal::lattice::BaseOneDimensionalLattice@{compnal::lattice::BaseOneDimensionalLattice}!SetSystemSize@{SetSystemSize}}
+\index{SetSystemSize@{SetSystemSize}!compnal::lattice::BaseOneDimensionalLattice@{compnal::lattice::BaseOneDimensionalLattice}}
+\doxysubsubsection{\texorpdfstring{SetSystemSize()}{SetSystemSize()}}
+{\footnotesize\ttfamily void compnal\+::lattice\+::\+Base\+One\+Dimensional\+Lattice\+::\+Set\+System\+Size (\begin{DoxyParamCaption}\item[{const std\+::int32\+\_\+t}]{system\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set system size. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em system\+\_\+size} & System size. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_a05cb0829ea05c22284f58267163170ef}\label{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_a05cb0829ea05c22284f58267163170ef}} 
+\index{compnal::lattice::BaseOneDimensionalLattice@{compnal::lattice::BaseOneDimensionalLattice}!bc\_@{bc\_}}
+\index{bc\_@{bc\_}!compnal::lattice::BaseOneDimensionalLattice@{compnal::lattice::BaseOneDimensionalLattice}}
+\doxysubsubsection{\texorpdfstring{bc\_}{bc\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{Boundary\+Condition}} compnal\+::lattice\+::\+Base\+One\+Dimensional\+Lattice\+::bc\+\_\+ = \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5ac5878c0c0199e57e3e999f7dc4add33f}{Boundary\+Condition\+::\+OBC}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Boundary condition. 
+
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_a236b705545dff263393e1df9aabc7762}\label{classcompnal_1_1lattice_1_1_base_one_dimensional_lattice_a236b705545dff263393e1df9aabc7762}} 
+\index{compnal::lattice::BaseOneDimensionalLattice@{compnal::lattice::BaseOneDimensionalLattice}!system\_size\_@{system\_size\_}}
+\index{system\_size\_@{system\_size\_}!compnal::lattice::BaseOneDimensionalLattice@{compnal::lattice::BaseOneDimensionalLattice}}
+\doxysubsubsection{\texorpdfstring{system\_size\_}{system\_size\_}}
+{\footnotesize\ttfamily std\+::int32\+\_\+t compnal\+::lattice\+::\+Base\+One\+Dimensional\+Lattice\+::system\+\_\+size\+\_\+ = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+System size. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/lattice/\mbox{\hyperlink{base__one__dimensional__lattice_8hpp}{base\+\_\+one\+\_\+dimensional\+\_\+lattice.\+hpp}}\end{DoxyCompactItemize}

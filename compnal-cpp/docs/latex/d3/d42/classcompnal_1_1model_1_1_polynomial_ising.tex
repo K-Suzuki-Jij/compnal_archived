@@ -1,0 +1,168 @@
+\hypertarget{classcompnal_1_1model_1_1_polynomial_ising}{}\doxysection{compnal\+::model\+::Polynomial\+Ising\texorpdfstring{$<$}{<} Lattice\+Type, Real\+Type \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classcompnal_1_1model_1_1_polynomial_ising}\index{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}}
+
+
+Polynomial \mbox{\hyperlink{classcompnal_1_1model_1_1_ising}{Ising}} class.  
+
+
+
+
+{\ttfamily \#include $<$polynomial\+\_\+ising.\+hpp$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_a9636991a0ac4c5fc1c148452410d07ff}{Value\+Type}} = Real\+Type
+\item 
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_aeb1be0834bfd732e6b302d6ffa4f17a6}{OPType}} = \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility\+::\+Spin\+Type}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_ae266391716ed7d2ae768cbc98a68398a}{Polynomial\+Ising}} (const Lattice\+Type \&input\+\_\+lattice, const std\+::unordered\+\_\+map$<$ std\+::int32\+\_\+t, Real\+Type $>$ \&interaction)
+\item 
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_abaf441aeba4732b1e8b2ac6394d5b5b8}{Set\+Interaction}} (const std\+::int32\+\_\+t degree, const Real\+Type value)
+\item 
+const std\+::vector$<$ Real\+Type $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_af0e6b82f862b127d774e777755978276}{Get\+Interaction}} () const
+\item 
+Real\+Type \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_a29774ee0f05b8e02a3207662420587a2}{Calculate\+Energy}} (const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_aeb1be0834bfd732e6b302d6ffa4f17a6}{OPType}} $>$ \&sample) const
+\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_a23b08f11a746ee36d423d129966bd47a}{Get\+System\+Size}} () const
+\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_a2ebd28c8069fd741d6d510159106c44f}{Get\+Degree}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Real\+Type \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_aaf81f6f052164c353a94041cb6cc50f3}{Calculate\+Average}} (const std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_aeb1be0834bfd732e6b302d6ffa4f17a6}{OPType}} $>$ $>$ \&samples)
+\item 
+static Real\+Type \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_a297f00b8a4b9458d6e73f7d4a529bf2c}{Calculate\+Moment}} (const std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_aeb1be0834bfd732e6b302d6ffa4f17a6}{OPType}} $>$ $>$ \&samples, const std\+::int32\+\_\+t degree)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const Lattice\+Type \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_ade099d01819a5e4f47fee4192614f14f}{lattice}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Real\+Type \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_aa1b4ce9936bdc73d8d081b4b004807f1}{Calculate\+Energy}} (const \mbox{\hyperlink{classcompnal_1_1lattice_1_1_infinite_range}{lattice\+::\+Infinite\+Range}} \&infinite\+\_\+range\+\_\+lattice, const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_aeb1be0834bfd732e6b302d6ffa4f17a6}{OPType}} $>$ \&sample) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ Real\+Type $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_a64782816b632117e9d8162804d6ef13f}{interaction\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$class Lattice\+Type, typename Real\+Type$>$\newline
+class compnal\+::model\+::\+Polynomial\+Ising$<$ Lattice\+Type, Real\+Type $>$}
+Polynomial \mbox{\hyperlink{classcompnal_1_1model_1_1_ising}{Ising}} class. 
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_polynomial_ising_aeb1be0834bfd732e6b302d6ffa4f17a6}\label{classcompnal_1_1model_1_1_polynomial_ising_aeb1be0834bfd732e6b302d6ffa4f17a6}} 
+\index{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}!OPType@{OPType}}
+\index{OPType@{OPType}!compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}}
+\doxysubsubsection{\texorpdfstring{OPType}{OPType}}
+{\footnotesize\ttfamily template$<$class Lattice\+Type , typename Real\+Type $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{compnal\+::model\+::\+Polynomial\+Ising}}$<$ Lattice\+Type, Real\+Type $>$\+::\+OPType =  \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility\+::\+Spin\+Type}}}
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_polynomial_ising_a9636991a0ac4c5fc1c148452410d07ff}\label{classcompnal_1_1model_1_1_polynomial_ising_a9636991a0ac4c5fc1c148452410d07ff}} 
+\index{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}!ValueType@{ValueType}}
+\index{ValueType@{ValueType}!compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}}
+\doxysubsubsection{\texorpdfstring{ValueType}{ValueType}}
+{\footnotesize\ttfamily template$<$class Lattice\+Type , typename Real\+Type $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{compnal\+::model\+::\+Polynomial\+Ising}}$<$ Lattice\+Type, Real\+Type $>$\+::\+Value\+Type =  Real\+Type}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_polynomial_ising_ae266391716ed7d2ae768cbc98a68398a}\label{classcompnal_1_1model_1_1_polynomial_ising_ae266391716ed7d2ae768cbc98a68398a}} 
+\index{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}!PolynomialIsing@{PolynomialIsing}}
+\index{PolynomialIsing@{PolynomialIsing}!compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}}
+\doxysubsubsection{\texorpdfstring{PolynomialIsing()}{PolynomialIsing()}}
+{\footnotesize\ttfamily template$<$class Lattice\+Type , typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{compnal\+::model\+::\+Polynomial\+Ising}}$<$ Lattice\+Type, Real\+Type $>$\+::\+Polynomial\+Ising (\begin{DoxyParamCaption}\item[{const Lattice\+Type \&}]{input\+\_\+lattice,  }\item[{const std\+::unordered\+\_\+map$<$ std\+::int32\+\_\+t, Real\+Type $>$ \&}]{interaction }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_polynomial_ising_aaf81f6f052164c353a94041cb6cc50f3}\label{classcompnal_1_1model_1_1_polynomial_ising_aaf81f6f052164c353a94041cb6cc50f3}} 
+\index{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}!CalculateAverage@{CalculateAverage}}
+\index{CalculateAverage@{CalculateAverage}!compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateAverage()}{CalculateAverage()}}
+{\footnotesize\ttfamily template$<$class Lattice\+Type , typename Real\+Type $>$ \\
+static Real\+Type \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{compnal\+::model\+::\+Polynomial\+Ising}}$<$ Lattice\+Type, Real\+Type $>$\+::\+Calculate\+Average (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_aeb1be0834bfd732e6b302d6ffa4f17a6}{OPType}} $>$ $>$ \&}]{samples }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_polynomial_ising_aa1b4ce9936bdc73d8d081b4b004807f1}\label{classcompnal_1_1model_1_1_polynomial_ising_aa1b4ce9936bdc73d8d081b4b004807f1}} 
+\index{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}!CalculateEnergy@{CalculateEnergy}}
+\index{CalculateEnergy@{CalculateEnergy}!compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateEnergy()}{CalculateEnergy()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Lattice\+Type , typename Real\+Type $>$ \\
+Real\+Type \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{compnal\+::model\+::\+Polynomial\+Ising}}$<$ Lattice\+Type, Real\+Type $>$\+::\+Calculate\+Energy (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1lattice_1_1_infinite_range}{lattice\+::\+Infinite\+Range}} \&}]{infinite\+\_\+range\+\_\+lattice,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_aeb1be0834bfd732e6b302d6ffa4f17a6}{OPType}} $>$ \&}]{sample }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_polynomial_ising_a29774ee0f05b8e02a3207662420587a2}\label{classcompnal_1_1model_1_1_polynomial_ising_a29774ee0f05b8e02a3207662420587a2}} 
+\index{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}!CalculateEnergy@{CalculateEnergy}}
+\index{CalculateEnergy@{CalculateEnergy}!compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateEnergy()}{CalculateEnergy()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Lattice\+Type , typename Real\+Type $>$ \\
+Real\+Type \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{compnal\+::model\+::\+Polynomial\+Ising}}$<$ Lattice\+Type, Real\+Type $>$\+::\+Calculate\+Energy (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_aeb1be0834bfd732e6b302d6ffa4f17a6}{OPType}} $>$ \&}]{sample }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_polynomial_ising_a297f00b8a4b9458d6e73f7d4a529bf2c}\label{classcompnal_1_1model_1_1_polynomial_ising_a297f00b8a4b9458d6e73f7d4a529bf2c}} 
+\index{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}!CalculateMoment@{CalculateMoment}}
+\index{CalculateMoment@{CalculateMoment}!compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateMoment()}{CalculateMoment()}}
+{\footnotesize\ttfamily template$<$class Lattice\+Type , typename Real\+Type $>$ \\
+static Real\+Type \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{compnal\+::model\+::\+Polynomial\+Ising}}$<$ Lattice\+Type, Real\+Type $>$\+::\+Calculate\+Moment (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_aeb1be0834bfd732e6b302d6ffa4f17a6}{OPType}} $>$ $>$ \&}]{samples,  }\item[{const std\+::int32\+\_\+t}]{degree }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_polynomial_ising_a2ebd28c8069fd741d6d510159106c44f}\label{classcompnal_1_1model_1_1_polynomial_ising_a2ebd28c8069fd741d6d510159106c44f}} 
+\index{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}!GetDegree@{GetDegree}}
+\index{GetDegree@{GetDegree}!compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetDegree()}{GetDegree()}}
+{\footnotesize\ttfamily template$<$class Lattice\+Type , typename Real\+Type $>$ \\
+std\+::int32\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{compnal\+::model\+::\+Polynomial\+Ising}}$<$ Lattice\+Type, Real\+Type $>$\+::\+Get\+Degree (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_polynomial_ising_af0e6b82f862b127d774e777755978276}\label{classcompnal_1_1model_1_1_polynomial_ising_af0e6b82f862b127d774e777755978276}} 
+\index{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}!GetInteraction@{GetInteraction}}
+\index{GetInteraction@{GetInteraction}!compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetInteraction()}{GetInteraction()}}
+{\footnotesize\ttfamily template$<$class Lattice\+Type , typename Real\+Type $>$ \\
+const std\+::vector$<$ Real\+Type $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{compnal\+::model\+::\+Polynomial\+Ising}}$<$ Lattice\+Type, Real\+Type $>$\+::\+Get\+Interaction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_polynomial_ising_a23b08f11a746ee36d423d129966bd47a}\label{classcompnal_1_1model_1_1_polynomial_ising_a23b08f11a746ee36d423d129966bd47a}} 
+\index{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}!GetSystemSize@{GetSystemSize}}
+\index{GetSystemSize@{GetSystemSize}!compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetSystemSize()}{GetSystemSize()}}
+{\footnotesize\ttfamily template$<$class Lattice\+Type , typename Real\+Type $>$ \\
+std\+::int32\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{compnal\+::model\+::\+Polynomial\+Ising}}$<$ Lattice\+Type, Real\+Type $>$\+::\+Get\+System\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_polynomial_ising_abaf441aeba4732b1e8b2ac6394d5b5b8}\label{classcompnal_1_1model_1_1_polynomial_ising_abaf441aeba4732b1e8b2ac6394d5b5b8}} 
+\index{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}!SetInteraction@{SetInteraction}}
+\index{SetInteraction@{SetInteraction}!compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}}
+\doxysubsubsection{\texorpdfstring{SetInteraction()}{SetInteraction()}}
+{\footnotesize\ttfamily template$<$class Lattice\+Type , typename Real\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{compnal\+::model\+::\+Polynomial\+Ising}}$<$ Lattice\+Type, Real\+Type $>$\+::\+Set\+Interaction (\begin{DoxyParamCaption}\item[{const std\+::int32\+\_\+t}]{degree,  }\item[{const Real\+Type}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_polynomial_ising_a64782816b632117e9d8162804d6ef13f}\label{classcompnal_1_1model_1_1_polynomial_ising_a64782816b632117e9d8162804d6ef13f}} 
+\index{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}!interaction\_@{interaction\_}}
+\index{interaction\_@{interaction\_}!compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}}
+\doxysubsubsection{\texorpdfstring{interaction\_}{interaction\_}}
+{\footnotesize\ttfamily template$<$class Lattice\+Type , typename Real\+Type $>$ \\
+std\+::vector$<$Real\+Type$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{compnal\+::model\+::\+Polynomial\+Ising}}$<$ Lattice\+Type, Real\+Type $>$\+::interaction\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_polynomial_ising_ade099d01819a5e4f47fee4192614f14f}\label{classcompnal_1_1model_1_1_polynomial_ising_ade099d01819a5e4f47fee4192614f14f}} 
+\index{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}!lattice@{lattice}}
+\index{lattice@{lattice}!compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$@{compnal::model::PolynomialIsing$<$ LatticeType, RealType $>$}}
+\doxysubsubsection{\texorpdfstring{lattice}{lattice}}
+{\footnotesize\ttfamily template$<$class Lattice\+Type , typename Real\+Type $>$ \\
+const Lattice\+Type \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{compnal\+::model\+::\+Polynomial\+Ising}}$<$ Lattice\+Type, Real\+Type $>$\+::lattice}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/model/classical/\mbox{\hyperlink{polynomial__ising_8hpp}{polynomial\+\_\+ising.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,92 @@
+\hypertarget{classcompnal_1_1lattice_1_1_classical_any_lattice}{}\doxysection{compnal\+::lattice\+::Classical\+Any\+Lattice\texorpdfstring{$<$}{<} Real\+Type \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classcompnal_1_1lattice_1_1_classical_any_lattice}\index{compnal::lattice::ClassicalAnyLattice$<$ RealType $>$@{compnal::lattice::ClassicalAnyLattice$<$ RealType $>$}}
+
+
+{\ttfamily \#include $<$classical\+\_\+any\+\_\+lattice.\+hpp$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classcompnal_1_1lattice_1_1_classical_any_lattice_a951ac62f4c35f47d32e472dcc4c3b3d1}{Index\+Type}} = std\+::variant$<$ int, std\+::string, std\+::vector$<$ std\+::variant$<$ int, std\+::string $>$ $>$ $>$
+\item 
+using \mbox{\hyperlink{classcompnal_1_1lattice_1_1_classical_any_lattice_ace0f3350353f2f149a7e37b8ea786736}{Index\+Hash}} = \mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash}{utility\+::\+Variant\+Hash}}$<$ std\+::int64\+\_\+t $>$
+\begin{DoxyCompactList}\small\item\em Alias of hash struct for Index\+Type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcompnal_1_1lattice_1_1_classical_any_lattice_aedbdf59bedcac332994003c39756081c}{Classical\+Any\+Lattice}} ()
+\item 
+\mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{Boundary\+Condition}} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_classical_any_lattice_a4c25352b778f334df4e29b50046b5f94}{Get\+Boundary\+Condition}} () const
+\begin{DoxyCompactList}\small\item\em Get boundary condition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{classcompnal_1_1lattice_1_1_classical_any_lattice_a951ac62f4c35f47d32e472dcc4c3b3d1}{Index\+Type}}, \mbox{\hyperlink{classcompnal_1_1lattice_1_1_classical_any_lattice_ace0f3350353f2f149a7e37b8ea786736}{Index\+Hash}} $>$ \mbox{\hyperlink{classcompnal_1_1lattice_1_1_classical_any_lattice_a20ff24e69fb310f0b643511a4b752699}{index\+\_\+list\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The site index list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_classical_any_lattice_ace0f3350353f2f149a7e37b8ea786736}\label{classcompnal_1_1lattice_1_1_classical_any_lattice_ace0f3350353f2f149a7e37b8ea786736}} 
+\index{compnal::lattice::ClassicalAnyLattice$<$ RealType $>$@{compnal::lattice::ClassicalAnyLattice$<$ RealType $>$}!IndexHash@{IndexHash}}
+\index{IndexHash@{IndexHash}!compnal::lattice::ClassicalAnyLattice$<$ RealType $>$@{compnal::lattice::ClassicalAnyLattice$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{IndexHash}{IndexHash}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1lattice_1_1_classical_any_lattice}{compnal\+::lattice\+::\+Classical\+Any\+Lattice}}$<$ Real\+Type $>$\+::\+Index\+Hash =  \mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash}{utility\+::\+Variant\+Hash}}$<$std\+::int64\+\_\+t$>$}
+
+
+
+Alias of hash struct for Index\+Type. 
+
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_classical_any_lattice_a951ac62f4c35f47d32e472dcc4c3b3d1}\label{classcompnal_1_1lattice_1_1_classical_any_lattice_a951ac62f4c35f47d32e472dcc4c3b3d1}} 
+\index{compnal::lattice::ClassicalAnyLattice$<$ RealType $>$@{compnal::lattice::ClassicalAnyLattice$<$ RealType $>$}!IndexType@{IndexType}}
+\index{IndexType@{IndexType}!compnal::lattice::ClassicalAnyLattice$<$ RealType $>$@{compnal::lattice::ClassicalAnyLattice$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{IndexType}{IndexType}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1lattice_1_1_classical_any_lattice}{compnal\+::lattice\+::\+Classical\+Any\+Lattice}}$<$ Real\+Type $>$\+::\+Index\+Type =  std\+::variant$<$int, std\+::string, std\+::vector$<$std\+::variant$<$int, std\+::string$>$ $>$$>$}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_classical_any_lattice_aedbdf59bedcac332994003c39756081c}\label{classcompnal_1_1lattice_1_1_classical_any_lattice_aedbdf59bedcac332994003c39756081c}} 
+\index{compnal::lattice::ClassicalAnyLattice$<$ RealType $>$@{compnal::lattice::ClassicalAnyLattice$<$ RealType $>$}!ClassicalAnyLattice@{ClassicalAnyLattice}}
+\index{ClassicalAnyLattice@{ClassicalAnyLattice}!compnal::lattice::ClassicalAnyLattice$<$ RealType $>$@{compnal::lattice::ClassicalAnyLattice$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{ClassicalAnyLattice()}{ClassicalAnyLattice()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1lattice_1_1_classical_any_lattice}{compnal\+::lattice\+::\+Classical\+Any\+Lattice}}$<$ Real\+Type $>$\+::\+Classical\+Any\+Lattice (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_classical_any_lattice_a4c25352b778f334df4e29b50046b5f94}\label{classcompnal_1_1lattice_1_1_classical_any_lattice_a4c25352b778f334df4e29b50046b5f94}} 
+\index{compnal::lattice::ClassicalAnyLattice$<$ RealType $>$@{compnal::lattice::ClassicalAnyLattice$<$ RealType $>$}!GetBoundaryCondition@{GetBoundaryCondition}}
+\index{GetBoundaryCondition@{GetBoundaryCondition}!compnal::lattice::ClassicalAnyLattice$<$ RealType $>$@{compnal::lattice::ClassicalAnyLattice$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetBoundaryCondition()}{GetBoundaryCondition()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{Boundary\+Condition}} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_classical_any_lattice}{compnal\+::lattice\+::\+Classical\+Any\+Lattice}}$<$ Real\+Type $>$\+::\+Get\+Boundary\+Condition (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get boundary condition. 
+
+\begin{DoxyReturn}{Returns}
+Boundary condition, \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5ab50339a10e1de285ac99d4c3990b8693}{Boundary\+Condition\+::\+NONE}}. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_classical_any_lattice_a20ff24e69fb310f0b643511a4b752699}\label{classcompnal_1_1lattice_1_1_classical_any_lattice_a20ff24e69fb310f0b643511a4b752699}} 
+\index{compnal::lattice::ClassicalAnyLattice$<$ RealType $>$@{compnal::lattice::ClassicalAnyLattice$<$ RealType $>$}!index\_list\_@{index\_list\_}}
+\index{index\_list\_@{index\_list\_}!compnal::lattice::ClassicalAnyLattice$<$ RealType $>$@{compnal::lattice::ClassicalAnyLattice$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{index\_list\_}{index\_list\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::unordered\+\_\+set$<$\mbox{\hyperlink{classcompnal_1_1lattice_1_1_classical_any_lattice_a951ac62f4c35f47d32e472dcc4c3b3d1}{Index\+Type}}, \mbox{\hyperlink{classcompnal_1_1lattice_1_1_classical_any_lattice_ace0f3350353f2f149a7e37b8ea786736}{Index\+Hash}}$>$ \mbox{\hyperlink{classcompnal_1_1lattice_1_1_classical_any_lattice}{compnal\+::lattice\+::\+Classical\+Any\+Lattice}}$<$ Real\+Type $>$\+::index\+\_\+list\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The site index list. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/lattice/\mbox{\hyperlink{classical__any__lattice_8hpp}{classical\+\_\+any\+\_\+lattice.\+hpp}}\end{DoxyCompactItemize}

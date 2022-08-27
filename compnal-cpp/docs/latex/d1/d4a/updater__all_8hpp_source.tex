@@ -1,0 +1,109 @@
+\hypertarget{updater__all_8hpp_source}{}\doxysection{updater\+\_\+all.\+hpp}
+\label{updater__all_8hpp_source}\index{src/solver/classical\_monte\_carlo\_updater/updater\_all.hpp@{src/solver/classical\_monte\_carlo\_updater/updater\_all.hpp}}
+\mbox{\hyperlink{updater__all_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{//  Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{4 \textcolor{comment}{//  you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{5 \textcolor{comment}{//  You may obtain a copy of the License at}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{//      http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{comment}{//  Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{10 \textcolor{comment}{//  distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{11 \textcolor{comment}{//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{12 \textcolor{comment}{//  See the License for the specific language governing permissions and}}
+\DoxyCodeLine{13 \textcolor{comment}{//  limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{//}}
+\DoxyCodeLine{15 \textcolor{comment}{//  Created by Kohei Suzuki on 2022/07/18.}}
+\DoxyCodeLine{16 \textcolor{comment}{//}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_SOLVER\_UPDATER\_ALL\_HPP\_}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_SOLVER\_UPDATER\_ALL\_HPP\_}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{updater__poly__ising__infinite__range_8hpp}{updater\_poly\_ising\_infinite\_range.hpp}}"{}}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
+\DoxyCodeLine{24 \textcolor{keyword}{namespace }solver \{}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{keyword}{template}<\textcolor{keyword}{typename} SpinType, \textcolor{keyword}{typename} RealType>}
+\DoxyCodeLine{27 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1solver_aed09bd57e0a8c11246a328093da9b9df}{ResetEnergyDifference}}(std::vector<RealType> *energy\_difference,}
+\DoxyCodeLine{28                            std::vector<int> *system\_size\_index\_list,}
+\DoxyCodeLine{29                            \textcolor{keyword}{const} std::vector<SpinType> \&sample,}
+\DoxyCodeLine{30                            \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{model::PolynomialIsing<RealType>}} \&model) \{}
+\DoxyCodeLine{31    }
+\DoxyCodeLine{32    \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(sample.size()) != model.GetSystemSize()) \{}
+\DoxyCodeLine{33       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}The sample size is not equal to the system size."{}});}
+\DoxyCodeLine{34    \}}
+\DoxyCodeLine{35    }
+\DoxyCodeLine{36    \textcolor{keywordflow}{if} (model.GetLattice() == model::Lattice::CHAIN) \{}
+\DoxyCodeLine{37       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}CHAIN is under construction."{}});}
+\DoxyCodeLine{38    \}}
+\DoxyCodeLine{39    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (model.GetLattice() == model::Lattice::SQUARE) \{}
+\DoxyCodeLine{40       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}SQUARE is under construction."{}});}
+\DoxyCodeLine{41    \}}
+\DoxyCodeLine{42    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (model.GetLattice() == model::Lattice::TRIANGLE) \{}
+\DoxyCodeLine{43       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}TRIANGLE is under construction."{}});}
+\DoxyCodeLine{44    \}}
+\DoxyCodeLine{45    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (model.GetLattice() == model::Lattice::HONEYCOMB) \{}
+\DoxyCodeLine{46       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}HONEYCOMB is under construction."{}});}
+\DoxyCodeLine{47    \}}
+\DoxyCodeLine{48    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (model.GetLattice() == model::Lattice::CUBIC) \{}
+\DoxyCodeLine{49       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}CUBIC is under construction."{}});}
+\DoxyCodeLine{50    \}}
+\DoxyCodeLine{51    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (model.GetLattice() == model::Lattice::INFINIT\_RANGE) \{}
+\DoxyCodeLine{52       \mbox{\hyperlink{namespacecompnal_1_1solver_a681505518184b30354157e4694d5ae04}{ResetEnergyDifferenceInfiniteRange}}(energy\_difference, system\_size\_index\_list, sample, model);}
+\DoxyCodeLine{53    \}}
+\DoxyCodeLine{54    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (model.GetLattice() == model::Lattice::ANY\_TYPE) \{}
+\DoxyCodeLine{55       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}ANY\_TYPE is under construction."{}});}
+\DoxyCodeLine{56    \}}
+\DoxyCodeLine{57    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{58       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Unknown lattice type detected."{}});}
+\DoxyCodeLine{59    \}}
+\DoxyCodeLine{60    }
+\DoxyCodeLine{61 \}}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{keyword}{template}<\textcolor{keyword}{typename} SpinType, \textcolor{keyword}{typename} RealType>}
+\DoxyCodeLine{64 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1solver_a4e586dc12897a02e8174d3eb861c2d81}{UpdateConfiguration}}(std::vector<SpinType> *sample,}
+\DoxyCodeLine{65                          std::vector<RealType> *energy\_difference,}
+\DoxyCodeLine{66                          std::vector<int> *system\_size\_index\_list,}
+\DoxyCodeLine{67                          \textcolor{keyword}{const} \textcolor{keywordtype}{int} index,}
+\DoxyCodeLine{68                          \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{model::PolynomialIsing<RealType>}} \&model) \{}
+\DoxyCodeLine{69    }
+\DoxyCodeLine{70    \textcolor{keywordflow}{if} (model.GetLattice() == model::Lattice::CHAIN) \{}
+\DoxyCodeLine{71       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}CHAIN is under construction."{}});}
+\DoxyCodeLine{72    \}}
+\DoxyCodeLine{73    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (model.GetLattice() == model::Lattice::SQUARE) \{}
+\DoxyCodeLine{74       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}SQUARE is under construction."{}});}
+\DoxyCodeLine{75    \}}
+\DoxyCodeLine{76    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (model.GetLattice() == model::Lattice::TRIANGLE) \{}
+\DoxyCodeLine{77       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}TRIANGLE is under construction."{}});}
+\DoxyCodeLine{78    \}}
+\DoxyCodeLine{79    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (model.GetLattice() == model::Lattice::HONEYCOMB) \{}
+\DoxyCodeLine{80       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}HONEYCOMB is under construction."{}});}
+\DoxyCodeLine{81    \}}
+\DoxyCodeLine{82    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (model.GetLattice() == model::Lattice::CUBIC) \{}
+\DoxyCodeLine{83       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}CUBIC is under construction."{}});}
+\DoxyCodeLine{84    \}}
+\DoxyCodeLine{85    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (model.GetLattice() == model::Lattice::INFINIT\_RANGE) \{}
+\DoxyCodeLine{86       \mbox{\hyperlink{namespacecompnal_1_1solver_a725f8031b3bf7bae3e2537b76971ad0b}{UpdaterInfiniteRange}}(sample, energy\_difference, system\_size\_index\_list, index, model);}
+\DoxyCodeLine{87    \}}
+\DoxyCodeLine{88    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (model.GetLattice() == model::Lattice::ANY\_TYPE) \{}
+\DoxyCodeLine{89       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}ANY\_TYPE is under construction."{}});}
+\DoxyCodeLine{90    \}}
+\DoxyCodeLine{91    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{92       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Unknown lattice type detected."{}});}
+\DoxyCodeLine{93    \}}
+\DoxyCodeLine{94    }
+\DoxyCodeLine{95 \}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 \} \textcolor{comment}{// namespace solver}}
+\DoxyCodeLine{100 \} \textcolor{comment}{// namespace compnal}}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_SOLVER\_UPDATER\_ALL\_HPP\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

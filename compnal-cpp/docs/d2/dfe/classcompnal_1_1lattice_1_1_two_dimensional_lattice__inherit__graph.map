@@ -1,0 +1,5 @@
+<map id="compnal::lattice::TwoDimensionalLattice" name="compnal::lattice::TwoDimensionalLattice">
+<area shape="rect" id="node1" title="Base class to represent the two&#45;dimensional lattice." alt="" coords="72,5,291,47"/>
+<area shape="rect" id="node2" href="$d8/d6b/classcompnal_1_1lattice_1_1_square.html" title="Class to represent the two&#45;dimensional square lattice." alt="" coords="5,95,168,121"/>
+<area shape="rect" id="node3" href="$df/dab/classcompnal_1_1lattice_1_1_triangle.html" title="Class to represent the two&#45;dimensional triangle lattice." alt="" coords="192,95,360,121"/>
+</map>

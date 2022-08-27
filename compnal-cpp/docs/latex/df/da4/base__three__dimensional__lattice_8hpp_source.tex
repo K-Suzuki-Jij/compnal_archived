@@ -1,0 +1,123 @@
+\hypertarget{base__three__dimensional__lattice_8hpp_source}{}\doxysection{base\+\_\+three\+\_\+dimensional\+\_\+lattice.\+hpp}
+\label{base__three__dimensional__lattice_8hpp_source}\index{src/lattice/base\_three\_dimensional\_lattice.hpp@{src/lattice/base\_three\_dimensional\_lattice.hpp}}
+\mbox{\hyperlink{base__three__dimensional__lattice_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{//  Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{5 \textcolor{comment}{//  you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{//  You may obtain a copy of the License at}}
+\DoxyCodeLine{7 \textcolor{comment}{//}}
+\DoxyCodeLine{8 \textcolor{comment}{//      http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 \textcolor{comment}{//  Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{11 \textcolor{comment}{//  distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{12 \textcolor{comment}{//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{13 \textcolor{comment}{//  See the License for the specific language governing permissions and}}
+\DoxyCodeLine{14 \textcolor{comment}{//  limitations under the License.}}
+\DoxyCodeLine{15 \textcolor{comment}{//}}
+\DoxyCodeLine{16 \textcolor{comment}{//  base\_three\_dimensional\_lattice.hpp}}
+\DoxyCodeLine{17 \textcolor{comment}{//  compnal}}
+\DoxyCodeLine{18 \textcolor{comment}{//}}
+\DoxyCodeLine{19 \textcolor{comment}{//  Created by kohei on 2022/08/11.}}
+\DoxyCodeLine{20 \textcolor{comment}{//  }}
+\DoxyCodeLine{21 \textcolor{comment}{//}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#ifndef COMPNAL\_LATTICE\_BASE\_THREE\_DIMENSIONAL\_LATTICE\_HPP\_}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#define COMPNAL\_LATTICE\_BASE\_THREE\_DIMENSIONAL\_LATTICE\_HPP\_}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{boundary__condition_8hpp}{boundary\_condition.hpp}}"{}}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include <stdexcept>}}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
+\DoxyCodeLine{30 \textcolor{keyword}{namespace }lattice \{}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{33 \textcolor{keyword}{class }\mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice}{BaseThreeDimensionalLattice}} \{}
+\DoxyCodeLine{34   }
+\DoxyCodeLine{35 \textcolor{keyword}{public}:}
+\DoxyCodeLine{36    }
+\DoxyCodeLine{41    \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_a9c4a2bad30ddc37bf0198a8628523942}{BaseThreeDimensionalLattice}}(\textcolor{keyword}{const} std::int32\_t x\_size, \textcolor{keyword}{const} std::int32\_t y\_size, \textcolor{keyword}{const} std::int32\_t z\_size) \{}
+\DoxyCodeLine{42       \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_af647f3e7be5bd4d82d9ac015dbcaa715}{SetSystemSize}}(x\_size, y\_size, z\_size);}
+\DoxyCodeLine{43    \}}
+\DoxyCodeLine{44    }
+\DoxyCodeLine{50    \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_a858965fb39f65c346cbc587a1d82dfed}{BaseThreeDimensionalLattice}}(\textcolor{keyword}{const} std::int32\_t x\_size, \textcolor{keyword}{const} std::int32\_t y\_size, \textcolor{keyword}{const} std::int32\_t z\_size, \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{BoundaryCondition}} boundary\_condition) \{}
+\DoxyCodeLine{51       \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_af647f3e7be5bd4d82d9ac015dbcaa715}{SetSystemSize}}(x\_size, y\_size, z\_size);}
+\DoxyCodeLine{52       \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_a90a4a8837e539a1c1df8f84cf24a394b}{SetBoundaryCondition}}(boundary\_condition);}
+\DoxyCodeLine{53    \}}
+\DoxyCodeLine{54    }
+\DoxyCodeLine{57    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_a257a26c88cd3c6b9942ae967b1a7e480}{SetXSize}}(\textcolor{keyword}{const} std::int32\_t x\_size) \{}
+\DoxyCodeLine{58       \textcolor{keywordflow}{if} (x\_size < 0) \{}
+\DoxyCodeLine{59          \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}x\_size must be larger than or equal to 0."{}});}
+\DoxyCodeLine{60       \}}
+\DoxyCodeLine{61       \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_aedf1f9d511c08f72974ec13f7b483a6b}{x\_size\_}} = x\_size;}
+\DoxyCodeLine{62    \}}
+\DoxyCodeLine{63    }
+\DoxyCodeLine{66    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_ac6cf5193327f1a31a14d76a4816c473b}{SetYSize}}(\textcolor{keyword}{const} std::int32\_t y\_size) \{}
+\DoxyCodeLine{67       \textcolor{keywordflow}{if} (y\_size < 0) \{}
+\DoxyCodeLine{68          \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}y\_size must be larger than or equal to 0."{}});}
+\DoxyCodeLine{69       \}}
+\DoxyCodeLine{70       \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_a8b57a228c7a91b6641e174ebcabd4c63}{y\_size\_}} = y\_size;}
+\DoxyCodeLine{71    \}}
+\DoxyCodeLine{72    }
+\DoxyCodeLine{75    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_ab8cf6c10a8e25c513b083a4c6d2601e9}{SetZSize}}(\textcolor{keyword}{const} std::int32\_t z\_size) \{}
+\DoxyCodeLine{76       \textcolor{keywordflow}{if} (z\_size < 0) \{}
+\DoxyCodeLine{77          \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}z\_size must be larger than or equal to 0."{}});}
+\DoxyCodeLine{78       \}}
+\DoxyCodeLine{79       \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_aff603ab1fd925d771d715fce99de9895}{z\_size\_}} = z\_size;}
+\DoxyCodeLine{80    \}}
+\DoxyCodeLine{81    }
+\DoxyCodeLine{86    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_af647f3e7be5bd4d82d9ac015dbcaa715}{SetSystemSize}}(\textcolor{keyword}{const} std::int32\_t x\_size, \textcolor{keyword}{const} std::int32\_t y\_size, \textcolor{keyword}{const} std::int32\_t z\_size) \{}
+\DoxyCodeLine{87       \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_a257a26c88cd3c6b9942ae967b1a7e480}{SetXSize}}(x\_size);}
+\DoxyCodeLine{88       \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_ac6cf5193327f1a31a14d76a4816c473b}{SetYSize}}(y\_size);}
+\DoxyCodeLine{89       \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_ab8cf6c10a8e25c513b083a4c6d2601e9}{SetZSize}}(z\_size);}
+\DoxyCodeLine{90    \}}
+\DoxyCodeLine{91    }
+\DoxyCodeLine{94    \textcolor{keywordtype}{void} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_a90a4a8837e539a1c1df8f84cf24a394b}{SetBoundaryCondition}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{BoundaryCondition}} boundary\_condition) \{}
+\DoxyCodeLine{95       \textcolor{keywordflow}{if} (boundary\_condition == \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5ab50339a10e1de285ac99d4c3990b8693}{BoundaryCondition::NONE}}) \{}
+\DoxyCodeLine{96          \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}BoundaryCondition::NONE cannot be set."{}});}
+\DoxyCodeLine{97       \}}
+\DoxyCodeLine{98       \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_aee5167e5e8828a1b509a151f664b14d0}{bc\_}} = boundary\_condition;}
+\DoxyCodeLine{99    \}}
+\DoxyCodeLine{100    }
+\DoxyCodeLine{103    std::int32\_t \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_a2547d4932ec95c955571f40ba639bdc0}{GetXSize}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{104       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_aedf1f9d511c08f72974ec13f7b483a6b}{x\_size\_}};}
+\DoxyCodeLine{105    \}}
+\DoxyCodeLine{106    }
+\DoxyCodeLine{109    std::int32\_t \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_a19d3e7db4c9546f944117e3df53c428b}{GetYSize}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{110       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_a8b57a228c7a91b6641e174ebcabd4c63}{y\_size\_}};}
+\DoxyCodeLine{111    \}}
+\DoxyCodeLine{112    }
+\DoxyCodeLine{115    std::int32\_t \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_a2656bc31f80b53a435a76d18c59744b8}{GetZSize}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{116       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_aff603ab1fd925d771d715fce99de9895}{z\_size\_}};}
+\DoxyCodeLine{117    \}}
+\DoxyCodeLine{118    }
+\DoxyCodeLine{121    std::int32\_t \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_aad20c0bd3e2783505d652c6a95fd157a}{GetSystemSize}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{122       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_aedf1f9d511c08f72974ec13f7b483a6b}{x\_size\_}}*\mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_a8b57a228c7a91b6641e174ebcabd4c63}{y\_size\_}}*\mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_aff603ab1fd925d771d715fce99de9895}{z\_size\_}};}
+\DoxyCodeLine{123    \}}
+\DoxyCodeLine{124    }
+\DoxyCodeLine{127    \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{BoundaryCondition}} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_a4e96926ed5712e01a36ec1b7aeeaf3e7}{GetBoundaryCondition}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{128       \textcolor{keywordflow}{return} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_aee5167e5e8828a1b509a151f664b14d0}{bc\_}};}
+\DoxyCodeLine{129    \}}
+\DoxyCodeLine{130    }
+\DoxyCodeLine{131    }
+\DoxyCodeLine{132 \textcolor{keyword}{private}:}
+\DoxyCodeLine{134    std::int32\_t \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_aedf1f9d511c08f72974ec13f7b483a6b}{x\_size\_}} = 0;}
+\DoxyCodeLine{135    }
+\DoxyCodeLine{137    std::int32\_t \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_a8b57a228c7a91b6641e174ebcabd4c63}{y\_size\_}} = 0;}
+\DoxyCodeLine{138    }
+\DoxyCodeLine{140    std::int32\_t \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_aff603ab1fd925d771d715fce99de9895}{z\_size\_}} = 0;}
+\DoxyCodeLine{141    }
+\DoxyCodeLine{143    \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{BoundaryCondition}} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_base_three_dimensional_lattice_aee5167e5e8828a1b509a151f664b14d0}{bc\_}} = \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5ac5878c0c0199e57e3e999f7dc4add33f}{BoundaryCondition::OBC}};}
+\DoxyCodeLine{144    }
+\DoxyCodeLine{145 \};}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149 \} \textcolor{comment}{// namespace lattice}}
+\DoxyCodeLine{150 \} \textcolor{comment}{// namespace compnal}}
+\DoxyCodeLine{151 }
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_LATTICE\_BASE\_THREE\_DIMENSIONAL\_LATTICE\_HPP\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,349 @@
+\hypertarget{ssf__polynomial__ising__infinite__range_8hpp_source}{}\doxysection{ssf\+\_\+polynomial\+\_\+ising\+\_\+infinite\+\_\+range.\+hpp}
+\label{ssf__polynomial__ising__infinite__range_8hpp_source}\index{src/solver/updater/ssf\_polynomial\_ising\_infinite\_range.hpp@{src/solver/updater/ssf\_polynomial\_ising\_infinite\_range.hpp}}
+\mbox{\hyperlink{ssf__polynomial__ising__infinite__range_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{//  Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{5 \textcolor{comment}{//  you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{//  You may obtain a copy of the License at}}
+\DoxyCodeLine{7 \textcolor{comment}{//}}
+\DoxyCodeLine{8 \textcolor{comment}{//      http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 \textcolor{comment}{//  Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{11 \textcolor{comment}{//  distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{12 \textcolor{comment}{//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{13 \textcolor{comment}{//  See the License for the specific language governing permissions and}}
+\DoxyCodeLine{14 \textcolor{comment}{//  limitations under the License.}}
+\DoxyCodeLine{15 \textcolor{comment}{//}}
+\DoxyCodeLine{16 \textcolor{comment}{//  ssf\_polynomial\_ising\_infinite\_range.hpp}}
+\DoxyCodeLine{17 \textcolor{comment}{//  compnal}}
+\DoxyCodeLine{18 \textcolor{comment}{//}}
+\DoxyCodeLine{19 \textcolor{comment}{//  Created by kohei on 2022/08/13.}}
+\DoxyCodeLine{20 \textcolor{comment}{//  }}
+\DoxyCodeLine{21 \textcolor{comment}{//}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#ifndef COMPNAL\_SOLVER\_UPDATER\_SSF\_POLYNOMIAL\_ISING\_INFINITE\_RANGE\_HPP\_}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#define COMPNAL\_SOLVER\_UPDATER\_SSF\_POLYNOMIAL\_ISING\_INFINITE\_RANGE\_HPP\_}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include "{}../../lattice/infinite\_range.hpp"{}}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include "{}../../model/classical/polynomial\_ising.hpp"{}}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include "{}../../utility/type.hpp"{}}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
+\DoxyCodeLine{31 \textcolor{keyword}{namespace }solver \{}
+\DoxyCodeLine{32 \textcolor{keyword}{namespace }updater \{}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
+\DoxyCodeLine{35 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1solver_1_1updater_a16c02f4eeefc797f99edd1c9da60c165}{SetEnergyDifference}}(std::vector<RealType> *energy\_difference,}
+\DoxyCodeLine{36                          std::vector<std::int32\_t> *system\_size\_index\_list,}
+\DoxyCodeLine{37                          \textcolor{keyword}{const} std::vector<utility::SpinType> \&sample,}
+\DoxyCodeLine{38                          \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{model::PolynomialIsing<lattice::InfiniteRange, RealType>}} \&model) \{}
+\DoxyCodeLine{39    }
+\DoxyCodeLine{40    }
+\DoxyCodeLine{41    \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}std::int32\_t\textcolor{keyword}{>}(sample.size()) != model.\mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_a23b08f11a746ee36d423d129966bd47a}{GetSystemSize}}()) \{}
+\DoxyCodeLine{42       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}The sample size is not equal to the system size."{}});}
+\DoxyCodeLine{43    \}}
+\DoxyCodeLine{44    }
+\DoxyCodeLine{45    \textcolor{keyword}{const} std::int32\_t system\_size = model.\mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_a23b08f11a746ee36d423d129966bd47a}{GetSystemSize}}();}
+\DoxyCodeLine{46    \textcolor{keyword}{const} std::vector<RealType> \&interaction = model.\mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_af0e6b82f862b127d774e777755978276}{GetInteraction}}();}
+\DoxyCodeLine{47    }
+\DoxyCodeLine{48    energy\_difference-\/>clear();}
+\DoxyCodeLine{49    energy\_difference-\/>resize(system\_size);}
+\DoxyCodeLine{50    }
+\DoxyCodeLine{51    \textcolor{keywordflow}{for} (std::int32\_t index = 0; index < system\_size; ++index) \{}
+\DoxyCodeLine{52       RealType val = 0.0;}
+\DoxyCodeLine{53       \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} target\_spin = sample[index];}
+\DoxyCodeLine{54       }
+\DoxyCodeLine{55       \textcolor{comment}{// Erase index in seed.}}
+\DoxyCodeLine{56       std::swap((*system\_size\_index\_list)[index], (*system\_size\_index\_list).back());}
+\DoxyCodeLine{57       }
+\DoxyCodeLine{58       \textcolor{keywordflow}{if} (interaction.size() >= 1) \{}
+\DoxyCodeLine{59          val += interaction[1]*sample[index];}
+\DoxyCodeLine{60       \}}
+\DoxyCodeLine{61       \textcolor{keywordflow}{for} (std::int32\_t p = 2; p < static\_cast<std::int32\_t>(interaction.size()); ++p) \{}
+\DoxyCodeLine{62          \textcolor{keywordflow}{if} (std::abs(interaction[p]) > std::numeric\_limits<RealType>::epsilon()) \{}
+\DoxyCodeLine{63             \textcolor{keyword}{const} RealType target\_ineraction = interaction[p];}
+\DoxyCodeLine{64             std::vector<std::int32\_t> indices(p);}
+\DoxyCodeLine{65             std::int32\_t start\_index = 0;}
+\DoxyCodeLine{66             std::int32\_t size = 0;}
+\DoxyCodeLine{67             }
+\DoxyCodeLine{68             \textcolor{keywordflow}{while} (\textcolor{keyword}{true}) \{}
+\DoxyCodeLine{69                \textcolor{keywordflow}{for} (std::int32\_t i = start\_index; i < system\_size -\/ 1; ++i) \{}
+\DoxyCodeLine{70                   indices[size++] = i;}
+\DoxyCodeLine{71                   \textcolor{keywordflow}{if} (size == p) \{}
+\DoxyCodeLine{72                      \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} sign = 1;}
+\DoxyCodeLine{73                      \textcolor{keywordflow}{for} (std::int32\_t j = 0; j < p; ++j) \{}
+\DoxyCodeLine{74                         sign *= sample[(*system\_size\_index\_list)[indices[j]]];}
+\DoxyCodeLine{75                      \}}
+\DoxyCodeLine{76                      val += target\_ineraction*sign*target\_spin;}
+\DoxyCodeLine{77                      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{78                   \}}
+\DoxyCodeLine{79                \}}
+\DoxyCodeLine{80                -\/-\/size;}
+\DoxyCodeLine{81                \textcolor{keywordflow}{if} (size < 0) \{}
+\DoxyCodeLine{82                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{83                \}}
+\DoxyCodeLine{84                start\_index = indices[size] + 1;}
+\DoxyCodeLine{85             \}}
+\DoxyCodeLine{86          \}}
+\DoxyCodeLine{87       \}}
+\DoxyCodeLine{88       (*energy\_difference)[index] = -\/2.0*val;}
+\DoxyCodeLine{89       }
+\DoxyCodeLine{90       \textcolor{comment}{// Restore index to seed.}}
+\DoxyCodeLine{91       std::swap((*system\_size\_index\_list)[index], (*system\_size\_index\_list).back());}
+\DoxyCodeLine{92    \}}
+\DoxyCodeLine{93      }
+\DoxyCodeLine{94 \}}
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
+\DoxyCodeLine{98 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1solver_1_1updater_a3732d6ddc5c0a50490c8cd1f24307543}{UpdateConfiguration}}(std::vector<utility::SpinType> *sample,}
+\DoxyCodeLine{99                          std::vector<RealType> *energy\_difference,}
+\DoxyCodeLine{100                          std::vector<std::int32\_t> *system\_size\_index\_list,}
+\DoxyCodeLine{101                          \textcolor{keyword}{const} std::int32\_t index,}
+\DoxyCodeLine{102                          \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{model::PolynomialIsing<lattice::InfiniteRange, RealType>}} \&model) \{}
+\DoxyCodeLine{103    }
+\DoxyCodeLine{104    }
+\DoxyCodeLine{105    \textcolor{keyword}{const} std::int32\_t num\_roop = model.\mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_a23b08f11a746ee36d423d129966bd47a}{GetSystemSize}}() -\/ 1;}
+\DoxyCodeLine{106    \textcolor{keyword}{const} std::vector<RealType> \&interaction = model.\mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_af0e6b82f862b127d774e777755978276}{GetInteraction}}();}
+\DoxyCodeLine{107    \textcolor{keyword}{const} std::int32\_t degree = model.\mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_a2ebd28c8069fd741d6d510159106c44f}{GetDegree}}();}
+\DoxyCodeLine{108    \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} target\_spin = (*sample)[index];}
+\DoxyCodeLine{109    }
+\DoxyCodeLine{110    std::swap((*system\_size\_index\_list)[index], (*system\_size\_index\_list).back());}
+\DoxyCodeLine{111    system\_size\_index\_list-\/>pop\_back();}
+\DoxyCodeLine{112    }
+\DoxyCodeLine{113    \textcolor{keywordflow}{if} (degree == 2) \{}
+\DoxyCodeLine{114       \textcolor{keyword}{const} RealType target\_ineraction\_deg2 = interaction[2];}
+\DoxyCodeLine{115       \textcolor{keywordflow}{for} (std::int32\_t i2 = 0; i2 < num\_roop; ++i2) \{}
+\DoxyCodeLine{116          \textcolor{keyword}{const} std::int32\_t index\_i2 = (*system\_size\_index\_list)[i2];}
+\DoxyCodeLine{117          (*energy\_difference)[index\_i2] += 4*target\_ineraction\_deg2*target\_spin*(*sample)[index\_i2];}
+\DoxyCodeLine{118       \}}
+\DoxyCodeLine{119    \}}
+\DoxyCodeLine{120    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (degree == 3) \{}
+\DoxyCodeLine{121       \textcolor{keyword}{const} RealType target\_ineraction\_deg2 = interaction[2];}
+\DoxyCodeLine{122       \textcolor{keyword}{const} RealType target\_ineraction\_deg3 = interaction[3];}
+\DoxyCodeLine{123       \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} spin\_prod1 = target\_spin;}
+\DoxyCodeLine{124       \textcolor{keywordflow}{for} (std::int32\_t i2 = 0; i2 < num\_roop; ++i2) \{}
+\DoxyCodeLine{125          \textcolor{keyword}{const} std::int32\_t index\_i2 = (*system\_size\_index\_list)[i2];}
+\DoxyCodeLine{126          \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} spin\_prod2 = spin\_prod1*(*sample)[index\_i2];}
+\DoxyCodeLine{127          \textcolor{keyword}{const} RealType diff\_val\_i2 = 4*target\_ineraction\_deg2*spin\_prod2;}
+\DoxyCodeLine{128          RealType sum\_val\_i2 = 0;}
+\DoxyCodeLine{129          \textcolor{keywordflow}{for} (std::int32\_t i3 = i2 + 1; i3 < num\_roop; ++i3) \{}
+\DoxyCodeLine{130             \textcolor{keyword}{const} std::int32\_t index\_i3 = (*system\_size\_index\_list)[i3];}
+\DoxyCodeLine{131             \textcolor{keyword}{const} RealType diff\_val\_i3 = 4*target\_ineraction\_deg3*spin\_prod2*(*sample)[index\_i3];}
+\DoxyCodeLine{132             (*energy\_difference)[index\_i3] += diff\_val\_i3;}
+\DoxyCodeLine{133             sum\_val\_i2 += diff\_val\_i3;}
+\DoxyCodeLine{134          \}}
+\DoxyCodeLine{135          (*energy\_difference)[index\_i2] += sum\_val\_i2 + diff\_val\_i2;}
+\DoxyCodeLine{136       \}}
+\DoxyCodeLine{137    \}}
+\DoxyCodeLine{138    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (degree == 4) \{}
+\DoxyCodeLine{139       \textcolor{keyword}{const} RealType target\_ineraction\_deg2 = interaction[2];}
+\DoxyCodeLine{140       \textcolor{keyword}{const} RealType target\_ineraction\_deg3 = interaction[3];}
+\DoxyCodeLine{141       \textcolor{keyword}{const} RealType target\_ineraction\_deg4 = interaction[4];}
+\DoxyCodeLine{142       \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} spin\_prod1 = target\_spin;}
+\DoxyCodeLine{143       \textcolor{keywordflow}{for} (std::int32\_t i2 = 0; i2 < num\_roop; ++i2) \{}
+\DoxyCodeLine{144          \textcolor{keyword}{const} std::int32\_t index\_i2 = (*system\_size\_index\_list)[i2];}
+\DoxyCodeLine{145          \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} spin\_prod2 = spin\_prod1*(*sample)[index\_i2];}
+\DoxyCodeLine{146          \textcolor{keyword}{const} RealType diff\_val\_i2 = 4*target\_ineraction\_deg2*spin\_prod2;}
+\DoxyCodeLine{147          RealType sum\_val\_i2 = 0;}
+\DoxyCodeLine{148          \textcolor{keywordflow}{for} (std::int32\_t i3 = i2 + 1; i3 < num\_roop; ++i3) \{}
+\DoxyCodeLine{149             \textcolor{keyword}{const} std::int32\_t index\_i3 = (*system\_size\_index\_list)[i3];}
+\DoxyCodeLine{150             \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} spin\_prod3 = spin\_prod2*(*sample)[index\_i3];}
+\DoxyCodeLine{151             \textcolor{keyword}{const} RealType diff\_val\_i3 = 4*target\_ineraction\_deg3*spin\_prod3;}
+\DoxyCodeLine{152             RealType sum\_val\_i3 = 0;}
+\DoxyCodeLine{153             \textcolor{keywordflow}{for} (std::int32\_t i4 = i3 + 1; i4 < num\_roop; ++i4) \{}
+\DoxyCodeLine{154                \textcolor{keyword}{const} std::int32\_t index\_i4 = (*system\_size\_index\_list)[i4];}
+\DoxyCodeLine{155                \textcolor{keyword}{const} RealType diff\_val\_i4 = 4*target\_ineraction\_deg4*spin\_prod3*(*sample)[index\_i4];}
+\DoxyCodeLine{156                (*energy\_difference)[index\_i4] += diff\_val\_i4;}
+\DoxyCodeLine{157                sum\_val\_i3 += diff\_val\_i4;}
+\DoxyCodeLine{158             \}}
+\DoxyCodeLine{159             (*energy\_difference)[index\_i3] += sum\_val\_i3 + diff\_val\_i3;}
+\DoxyCodeLine{160             sum\_val\_i2 += sum\_val\_i3 + diff\_val\_i3;}
+\DoxyCodeLine{161          \}}
+\DoxyCodeLine{162          (*energy\_difference)[index\_i2] += sum\_val\_i2 + diff\_val\_i2;}
+\DoxyCodeLine{163       \}}
+\DoxyCodeLine{164    \}}
+\DoxyCodeLine{165    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (degree == 5) \{}
+\DoxyCodeLine{166       \textcolor{keyword}{const} RealType target\_ineraction\_deg2 = interaction[2];}
+\DoxyCodeLine{167       \textcolor{keyword}{const} RealType target\_ineraction\_deg3 = interaction[3];}
+\DoxyCodeLine{168       \textcolor{keyword}{const} RealType target\_ineraction\_deg4 = interaction[4];}
+\DoxyCodeLine{169       \textcolor{keyword}{const} RealType target\_ineraction\_deg5 = interaction[5];}
+\DoxyCodeLine{170       \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} spin\_prod1 = target\_spin;}
+\DoxyCodeLine{171       \textcolor{keywordflow}{for} (std::int32\_t i2 = 0; i2 < num\_roop; ++i2) \{}
+\DoxyCodeLine{172          \textcolor{keyword}{const} std::int32\_t index\_i2 = (*system\_size\_index\_list)[i2];}
+\DoxyCodeLine{173          \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} spin\_prod2 = spin\_prod1*(*sample)[index\_i2];}
+\DoxyCodeLine{174          \textcolor{keyword}{const} RealType diff\_val\_i2 = 4*target\_ineraction\_deg2*spin\_prod2;}
+\DoxyCodeLine{175          RealType sum\_val\_i2 = 0;}
+\DoxyCodeLine{176          \textcolor{keywordflow}{for} (std::int32\_t i3 = i2 + 1; i3 < num\_roop; ++i3) \{}
+\DoxyCodeLine{177             \textcolor{keyword}{const} std::int32\_t index\_i3 = (*system\_size\_index\_list)[i3];}
+\DoxyCodeLine{178             \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} spin\_prod3 = spin\_prod2*(*sample)[index\_i3];}
+\DoxyCodeLine{179             \textcolor{keyword}{const} RealType diff\_val\_i3 = 4*target\_ineraction\_deg3*spin\_prod3;}
+\DoxyCodeLine{180             RealType sum\_val\_i3 = 0;}
+\DoxyCodeLine{181             \textcolor{keywordflow}{for} (std::int32\_t i4 = i3 + 1; i4 < num\_roop; ++i4) \{}
+\DoxyCodeLine{182                \textcolor{keyword}{const} std::int32\_t index\_i4 = (*system\_size\_index\_list)[i4];}
+\DoxyCodeLine{183                \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} spin\_prod4 = spin\_prod3*(*sample)[index\_i4];}
+\DoxyCodeLine{184                \textcolor{keyword}{const} RealType diff\_val\_i4 = 4*target\_ineraction\_deg4*spin\_prod4;}
+\DoxyCodeLine{185                RealType sum\_val\_i4 = 0;}
+\DoxyCodeLine{186                \textcolor{keywordflow}{for} (std::int32\_t i5 = i4 + 1; i5 < num\_roop; ++i5) \{}
+\DoxyCodeLine{187                   \textcolor{keyword}{const} std::int32\_t index\_i5 = (*system\_size\_index\_list)[i5];}
+\DoxyCodeLine{188                   \textcolor{keyword}{const} RealType diff\_val\_i5 = 4*target\_ineraction\_deg5*spin\_prod4*(*sample)[index\_i5];}
+\DoxyCodeLine{189                   (*energy\_difference)[index\_i5] += diff\_val\_i5;}
+\DoxyCodeLine{190                   sum\_val\_i4 += diff\_val\_i5;}
+\DoxyCodeLine{191                \}}
+\DoxyCodeLine{192                (*energy\_difference)[index\_i4] += sum\_val\_i4 + diff\_val\_i4;}
+\DoxyCodeLine{193                sum\_val\_i3 += sum\_val\_i4 + diff\_val\_i4;}
+\DoxyCodeLine{194             \}}
+\DoxyCodeLine{195             (*energy\_difference)[index\_i3] += sum\_val\_i3 + diff\_val\_i3;}
+\DoxyCodeLine{196             sum\_val\_i2 += sum\_val\_i3 + diff\_val\_i3;}
+\DoxyCodeLine{197          \}}
+\DoxyCodeLine{198          (*energy\_difference)[index\_i2] += sum\_val\_i2 + diff\_val\_i2;}
+\DoxyCodeLine{199       \}}
+\DoxyCodeLine{200    \}}
+\DoxyCodeLine{201    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (degree == 6) \{}
+\DoxyCodeLine{202       \textcolor{keyword}{const} RealType target\_ineraction\_deg2 = interaction[2];}
+\DoxyCodeLine{203       \textcolor{keyword}{const} RealType target\_ineraction\_deg3 = interaction[3];}
+\DoxyCodeLine{204       \textcolor{keyword}{const} RealType target\_ineraction\_deg4 = interaction[4];}
+\DoxyCodeLine{205       \textcolor{keyword}{const} RealType target\_ineraction\_deg5 = interaction[5];}
+\DoxyCodeLine{206       \textcolor{keyword}{const} RealType target\_ineraction\_deg6 = interaction[6];}
+\DoxyCodeLine{207       \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} spin\_prod1 = target\_spin;}
+\DoxyCodeLine{208       \textcolor{keywordflow}{for} (std::int32\_t i2 = 0; i2 < num\_roop; ++i2) \{}
+\DoxyCodeLine{209          \textcolor{keyword}{const} std::int32\_t index\_i2 = (*system\_size\_index\_list)[i2];}
+\DoxyCodeLine{210          \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} spin\_prod2 = spin\_prod1*(*sample)[index\_i2];}
+\DoxyCodeLine{211          \textcolor{keyword}{const} RealType diff\_val\_i2 = 4*target\_ineraction\_deg2*spin\_prod2;}
+\DoxyCodeLine{212          RealType sum\_val\_i2 = 0;}
+\DoxyCodeLine{213          \textcolor{keywordflow}{for} (std::int32\_t i3 = i2 + 1; i3 < num\_roop; ++i3) \{}
+\DoxyCodeLine{214             \textcolor{keyword}{const} std::int32\_t index\_i3 = (*system\_size\_index\_list)[i3];}
+\DoxyCodeLine{215             \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} spin\_prod3 = spin\_prod2*(*sample)[index\_i3];}
+\DoxyCodeLine{216             \textcolor{keyword}{const} RealType diff\_val\_i3 = 4*target\_ineraction\_deg3*spin\_prod3;}
+\DoxyCodeLine{217             RealType sum\_val\_i3 = 0;}
+\DoxyCodeLine{218             \textcolor{keywordflow}{for} (std::int32\_t i4 = i3 + 1; i4 < num\_roop; ++i4) \{}
+\DoxyCodeLine{219                \textcolor{keyword}{const} std::int32\_t index\_i4 = (*system\_size\_index\_list)[i4];}
+\DoxyCodeLine{220                \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} spin\_prod4 = spin\_prod3*(*sample)[index\_i4];}
+\DoxyCodeLine{221                \textcolor{keyword}{const} RealType diff\_val\_i4 = 4*target\_ineraction\_deg4*spin\_prod4;}
+\DoxyCodeLine{222                RealType sum\_val\_i4 = 0;}
+\DoxyCodeLine{223                \textcolor{keywordflow}{for} (std::int32\_t i5 = i4 + 1; i5 < num\_roop; ++i5) \{}
+\DoxyCodeLine{224                   \textcolor{keyword}{const} std::int32\_t index\_i5 = (*system\_size\_index\_list)[i5];}
+\DoxyCodeLine{225                   \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} spin\_prod5 = spin\_prod4*(*sample)[index\_i5];}
+\DoxyCodeLine{226                   \textcolor{keyword}{const} RealType diff\_val\_i5 = 4*target\_ineraction\_deg5*spin\_prod5;}
+\DoxyCodeLine{227                   RealType sum\_val\_i5 = 0;}
+\DoxyCodeLine{228                   \textcolor{keywordflow}{for} (std::int32\_t i6 = i5 + 1; i6 < num\_roop; ++i6) \{}
+\DoxyCodeLine{229                      \textcolor{keyword}{const} std::int32\_t index\_i6 = (*system\_size\_index\_list)[i6];}
+\DoxyCodeLine{230                      \textcolor{keyword}{const} RealType diff\_val\_i6 = 4*target\_ineraction\_deg6*spin\_prod5*(*sample)[index\_i6];}
+\DoxyCodeLine{231                      (*energy\_difference)[index\_i6] += diff\_val\_i6;}
+\DoxyCodeLine{232                      sum\_val\_i5 += diff\_val\_i6;}
+\DoxyCodeLine{233                   \}}
+\DoxyCodeLine{234                   (*energy\_difference)[index\_i5] += sum\_val\_i5 + diff\_val\_i5;}
+\DoxyCodeLine{235                   sum\_val\_i4 += sum\_val\_i5 + diff\_val\_i5;}
+\DoxyCodeLine{236                \}}
+\DoxyCodeLine{237                (*energy\_difference)[index\_i4] += sum\_val\_i4 + diff\_val\_i4;}
+\DoxyCodeLine{238                sum\_val\_i3 += sum\_val\_i4 + diff\_val\_i4;}
+\DoxyCodeLine{239             \}}
+\DoxyCodeLine{240             (*energy\_difference)[index\_i3] += sum\_val\_i3 + diff\_val\_i3;}
+\DoxyCodeLine{241             sum\_val\_i2 += sum\_val\_i3 + diff\_val\_i3;}
+\DoxyCodeLine{242          \}}
+\DoxyCodeLine{243          (*energy\_difference)[index\_i2] += sum\_val\_i2 + diff\_val\_i2;}
+\DoxyCodeLine{244       \}}
+\DoxyCodeLine{245    \}}
+\DoxyCodeLine{246    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (degree == 7) \{}
+\DoxyCodeLine{247       \textcolor{keyword}{const} RealType target\_ineraction\_deg2 = interaction[2];}
+\DoxyCodeLine{248       \textcolor{keyword}{const} RealType target\_ineraction\_deg3 = interaction[3];}
+\DoxyCodeLine{249       \textcolor{keyword}{const} RealType target\_ineraction\_deg4 = interaction[4];}
+\DoxyCodeLine{250       \textcolor{keyword}{const} RealType target\_ineraction\_deg5 = interaction[5];}
+\DoxyCodeLine{251       \textcolor{keyword}{const} RealType target\_ineraction\_deg6 = interaction[6];}
+\DoxyCodeLine{252       \textcolor{keyword}{const} RealType target\_ineraction\_deg7 = interaction[7];}
+\DoxyCodeLine{253       \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} spin\_prod1 = target\_spin;}
+\DoxyCodeLine{254       \textcolor{keywordflow}{for} (std::int32\_t i2 = 0; i2 < num\_roop; ++i2) \{}
+\DoxyCodeLine{255          \textcolor{keyword}{const} std::int32\_t index\_i2 = (*system\_size\_index\_list)[i2];}
+\DoxyCodeLine{256          \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} spin\_prod2 = spin\_prod1*(*sample)[index\_i2];}
+\DoxyCodeLine{257          \textcolor{keyword}{const} RealType diff\_val\_i2 = 4*target\_ineraction\_deg2*spin\_prod2;}
+\DoxyCodeLine{258          RealType sum\_val\_i2 = 0;}
+\DoxyCodeLine{259          \textcolor{keywordflow}{for} (std::int32\_t i3 = i2 + 1; i3 < num\_roop; ++i3) \{}
+\DoxyCodeLine{260             \textcolor{keyword}{const} std::int32\_t index\_i3 = (*system\_size\_index\_list)[i3];}
+\DoxyCodeLine{261             \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} spin\_prod3 = spin\_prod2*(*sample)[index\_i3];}
+\DoxyCodeLine{262             \textcolor{keyword}{const} RealType diff\_val\_i3 = 4*target\_ineraction\_deg3*spin\_prod3;}
+\DoxyCodeLine{263             RealType sum\_val\_i3 = 0;}
+\DoxyCodeLine{264             \textcolor{keywordflow}{for} (std::int32\_t i4 = i3 + 1; i4 < num\_roop; ++i4) \{}
+\DoxyCodeLine{265                \textcolor{keyword}{const} std::int32\_t index\_i4 = (*system\_size\_index\_list)[i4];}
+\DoxyCodeLine{266                \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} spin\_prod4 = spin\_prod3*(*sample)[index\_i4];}
+\DoxyCodeLine{267                \textcolor{keyword}{const} RealType diff\_val\_i4 = 4*target\_ineraction\_deg4*spin\_prod4;}
+\DoxyCodeLine{268                RealType sum\_val\_i4 = 0;}
+\DoxyCodeLine{269                \textcolor{keywordflow}{for} (std::int32\_t i5 = i4 + 1; i5 < num\_roop; ++i5) \{}
+\DoxyCodeLine{270                   \textcolor{keyword}{const} std::int32\_t index\_i5 = (*system\_size\_index\_list)[i5];}
+\DoxyCodeLine{271                   \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} spin\_prod5 = spin\_prod4*(*sample)[index\_i5];}
+\DoxyCodeLine{272                   \textcolor{keyword}{const} RealType diff\_val\_i5 = 4*target\_ineraction\_deg5*spin\_prod5;}
+\DoxyCodeLine{273                   RealType sum\_val\_i5 = 0;}
+\DoxyCodeLine{274                   \textcolor{keywordflow}{for} (std::int32\_t i6 = i5 + 1; i6 < num\_roop; ++i6) \{}
+\DoxyCodeLine{275                      \textcolor{keyword}{const} std::int32\_t index\_i6 = (*system\_size\_index\_list)[i6];}
+\DoxyCodeLine{276                      \textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} spin\_prod6 = spin\_prod5*(*sample)[index\_i6];}
+\DoxyCodeLine{277                      \textcolor{keyword}{const} RealType diff\_val\_i6 = 4*target\_ineraction\_deg6*spin\_prod6;}
+\DoxyCodeLine{278                      RealType sum\_val\_i6 = 0;}
+\DoxyCodeLine{279                      \textcolor{keywordflow}{for} (std::int32\_t i7 = i6 + 1; i7 < num\_roop; ++i7) \{}
+\DoxyCodeLine{280                         \textcolor{keyword}{const} std::int32\_t index\_i7 = (*system\_size\_index\_list)[i7];}
+\DoxyCodeLine{281                         \textcolor{keyword}{const} RealType diff\_val\_i7 = 4*target\_ineraction\_deg7*spin\_prod6*(*sample)[index\_i7];}
+\DoxyCodeLine{282                         (*energy\_difference)[index\_i7] += diff\_val\_i7;}
+\DoxyCodeLine{283                         sum\_val\_i6 += diff\_val\_i7;}
+\DoxyCodeLine{284                      \}}
+\DoxyCodeLine{285                      (*energy\_difference)[index\_i6] += sum\_val\_i6 + diff\_val\_i6;}
+\DoxyCodeLine{286                      sum\_val\_i5 += sum\_val\_i6 + diff\_val\_i6;}
+\DoxyCodeLine{287                   \}}
+\DoxyCodeLine{288                   (*energy\_difference)[index\_i5] += sum\_val\_i5 + diff\_val\_i5;}
+\DoxyCodeLine{289                   sum\_val\_i4 += sum\_val\_i5 + diff\_val\_i5;}
+\DoxyCodeLine{290                \}}
+\DoxyCodeLine{291                (*energy\_difference)[index\_i4] += sum\_val\_i4 + diff\_val\_i4;}
+\DoxyCodeLine{292                sum\_val\_i3 += sum\_val\_i4 + diff\_val\_i4;}
+\DoxyCodeLine{293             \}}
+\DoxyCodeLine{294             (*energy\_difference)[index\_i3] += sum\_val\_i3 + diff\_val\_i3;}
+\DoxyCodeLine{295             sum\_val\_i2 += sum\_val\_i3 + diff\_val\_i3;}
+\DoxyCodeLine{296          \}}
+\DoxyCodeLine{297          (*energy\_difference)[index\_i2] += sum\_val\_i2 + diff\_val\_i2;}
+\DoxyCodeLine{298       \}}
+\DoxyCodeLine{299    \}}
+\DoxyCodeLine{300    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{301       \textcolor{keywordflow}{for} (std::int32\_t p = 1; p < static\_cast<std::int32\_t>(interaction.size()); ++p) \{}
+\DoxyCodeLine{302          \textcolor{keywordflow}{if} (std::abs(interaction[p]) > std::numeric\_limits<RealType>::epsilon()) \{}
+\DoxyCodeLine{303             \textcolor{keyword}{const} RealType target\_ineraction = interaction[p];}
+\DoxyCodeLine{304             std::vector<std::int32\_t> indices(p);}
+\DoxyCodeLine{305             std::int32\_t start\_index = 0;}
+\DoxyCodeLine{306             std::int32\_t size = 0;}
+\DoxyCodeLine{307             \textcolor{keywordflow}{while} (\textcolor{keyword}{true}) \{}
+\DoxyCodeLine{308                \textcolor{keywordflow}{for} (std::int32\_t i = start\_index; i < num\_roop; ++i) \{}
+\DoxyCodeLine{309                   indices[size++] = i;}
+\DoxyCodeLine{310                   \textcolor{keywordflow}{if} (size == p) \{}
+\DoxyCodeLine{311                      \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility::SpinType}} sign = 1;}
+\DoxyCodeLine{312                      \textcolor{keywordflow}{for} (std::int32\_t j = 0; j < p; ++j) \{}
+\DoxyCodeLine{313                         sign *= (*sample)[(*system\_size\_index\_list)[indices[j]]];}
+\DoxyCodeLine{314                      \}}
+\DoxyCodeLine{315                      \textcolor{keyword}{const} RealType val = 4*target\_spin*sign*target\_ineraction;}
+\DoxyCodeLine{316                      \textcolor{keywordflow}{for} (std::int32\_t j = 0; j < p; ++j) \{}
+\DoxyCodeLine{317                         (*energy\_difference)[(*system\_size\_index\_list)[indices[j]]] += val;}
+\DoxyCodeLine{318                      \}}
+\DoxyCodeLine{319                      \textcolor{keywordflow}{break};}
+\DoxyCodeLine{320                   \}}
+\DoxyCodeLine{321                \}}
+\DoxyCodeLine{322                -\/-\/size;}
+\DoxyCodeLine{323                \textcolor{keywordflow}{if} (size < 0) \{}
+\DoxyCodeLine{324                   \textcolor{keywordflow}{break};}
+\DoxyCodeLine{325                \}}
+\DoxyCodeLine{326                start\_index = indices[size] + 1;}
+\DoxyCodeLine{327             \}}
+\DoxyCodeLine{328          \}}
+\DoxyCodeLine{329       \}}
+\DoxyCodeLine{330    \}}
+\DoxyCodeLine{331    (*energy\_difference)[index] *= -\/1;}
+\DoxyCodeLine{332    (*sample)[index] *= -\/1;}
+\DoxyCodeLine{333    system\_size\_index\_list-\/>push\_back(index);}
+\DoxyCodeLine{334    std::swap((*system\_size\_index\_list)[index], (*system\_size\_index\_list).back());}
+\DoxyCodeLine{335     }
+\DoxyCodeLine{336 \}}
+\DoxyCodeLine{337 }
+\DoxyCodeLine{338 }
+\DoxyCodeLine{339 \} \textcolor{comment}{// namespace updater}}
+\DoxyCodeLine{340 \} \textcolor{comment}{// namespace solver}}
+\DoxyCodeLine{341 \} \textcolor{comment}{// namespace compnal}}
+\DoxyCodeLine{342 }
+\DoxyCodeLine{343 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_SOLVER\_UPDATER\_SSF\_POLYNOMIAL\_ISING\_INFINITE\_RANGE\_HPP\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

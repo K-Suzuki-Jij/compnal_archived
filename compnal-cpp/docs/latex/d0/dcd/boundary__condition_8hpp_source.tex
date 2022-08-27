@@ -1,0 +1,51 @@
+\hypertarget{boundary__condition_8hpp_source}{}\doxysection{boundary\+\_\+condition.\+hpp}
+\label{boundary__condition_8hpp_source}\index{src/lattice/boundary\_condition.hpp@{src/lattice/boundary\_condition.hpp}}
+\mbox{\hyperlink{boundary__condition_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{//  Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{5 \textcolor{comment}{//  you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{//  You may obtain a copy of the License at}}
+\DoxyCodeLine{7 \textcolor{comment}{//}}
+\DoxyCodeLine{8 \textcolor{comment}{//      http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 \textcolor{comment}{//  Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{11 \textcolor{comment}{//  distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{12 \textcolor{comment}{//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{13 \textcolor{comment}{//  See the License for the specific language governing permissions and}}
+\DoxyCodeLine{14 \textcolor{comment}{//  limitations under the License.}}
+\DoxyCodeLine{15 \textcolor{comment}{//}}
+\DoxyCodeLine{16 \textcolor{comment}{//  boundary\_condition.hpp}}
+\DoxyCodeLine{17 \textcolor{comment}{//  compnal}}
+\DoxyCodeLine{18 \textcolor{comment}{//}}
+\DoxyCodeLine{19 \textcolor{comment}{//  Created by kohei on 2022/08/10.}}
+\DoxyCodeLine{20 \textcolor{comment}{//  }}
+\DoxyCodeLine{21 \textcolor{comment}{//}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#ifndef COMPNAL\_LATTICE\_BOUNDARY\_CONDITION\_HPP\_}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#define COMPNAL\_LATTICE\_BOUNDARY\_CONDITION\_HPP\_}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
+\DoxyCodeLine{27 \textcolor{keyword}{namespace }lattice \{}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{30 \textcolor{keyword}{enum class} \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{BoundaryCondition}} \{}
+\DoxyCodeLine{31   }
+\DoxyCodeLine{33    \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5ab50339a10e1de285ac99d4c3990b8693}{NONE}},}
+\DoxyCodeLine{34    }
+\DoxyCodeLine{36    \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5ac5878c0c0199e57e3e999f7dc4add33f}{OBC}},}
+\DoxyCodeLine{37    }
+\DoxyCodeLine{39    \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5a817a7e6f14396060c4e915adcaefb88e}{PBC}},}
+\DoxyCodeLine{40    }
+\DoxyCodeLine{42    \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5a34df20bab5e85dc75bfc94ef569cced9}{SSD}}}
+\DoxyCodeLine{43    }
+\DoxyCodeLine{44 \};}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 \} \textcolor{comment}{// namespace lattice}}
+\DoxyCodeLine{47 \} \textcolor{comment}{// namespace compnal}}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_LATTICE\_BOUNDARY\_CONDITION\_HPP\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

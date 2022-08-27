@@ -1,0 +1,35 @@
+\hypertarget{namespacecompnal_1_1solver_1_1updater}{}\doxysection{compnal\+::solver\+::updater Namespace Reference}
+\label{namespacecompnal_1_1solver_1_1updater}\index{compnal::solver::updater@{compnal::solver::updater}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Real\+Type , class Model\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1solver_1_1updater_a412f4848a6dd34fbb679354e7f23679d}{Execute\+Metropolis}} (std\+::vector$<$ \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility\+::\+Spin\+Type}} $>$ $\ast$sample, const Model\+Type \&model, const std\+::int32\+\_\+t num\+\_\+sweeps, const Real\+Type beta, const std\+::uint64\+\_\+t seed)
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1solver_1_1updater_a16c02f4eeefc797f99edd1c9da60c165}{Set\+Energy\+Difference}} (std\+::vector$<$ Real\+Type $>$ $\ast$energy\+\_\+difference, std\+::vector$<$ std\+::int32\+\_\+t $>$ $\ast$system\+\_\+size\+\_\+index\+\_\+list, const std\+::vector$<$ \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility\+::\+Spin\+Type}} $>$ \&sample, const \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{model\+::\+Polynomial\+Ising}}$<$ \mbox{\hyperlink{classcompnal_1_1lattice_1_1_infinite_range}{lattice\+::\+Infinite\+Range}}, Real\+Type $>$ \&model)
+\item 
+{\footnotesize template$<$typename Real\+Type $>$ }\\void \mbox{\hyperlink{namespacecompnal_1_1solver_1_1updater_a3732d6ddc5c0a50490c8cd1f24307543}{Update\+Configuration}} (std\+::vector$<$ \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility\+::\+Spin\+Type}} $>$ $\ast$sample, std\+::vector$<$ Real\+Type $>$ $\ast$energy\+\_\+difference, std\+::vector$<$ std\+::int32\+\_\+t $>$ $\ast$system\+\_\+size\+\_\+index\+\_\+list, const std\+::int32\+\_\+t index, const \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{model\+::\+Polynomial\+Ising}}$<$ \mbox{\hyperlink{classcompnal_1_1lattice_1_1_infinite_range}{lattice\+::\+Infinite\+Range}}, Real\+Type $>$ \&model)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacecompnal_1_1solver_1_1updater_a412f4848a6dd34fbb679354e7f23679d}\label{namespacecompnal_1_1solver_1_1updater_a412f4848a6dd34fbb679354e7f23679d}} 
+\index{compnal::solver::updater@{compnal::solver::updater}!ExecuteMetropolis@{ExecuteMetropolis}}
+\index{ExecuteMetropolis@{ExecuteMetropolis}!compnal::solver::updater@{compnal::solver::updater}}
+\doxysubsubsection{\texorpdfstring{ExecuteMetropolis()}{ExecuteMetropolis()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type , class Model\+Type $>$ \\
+void compnal\+::solver\+::updater\+::\+Execute\+Metropolis (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility\+::\+Spin\+Type}} $>$ $\ast$}]{sample,  }\item[{const Model\+Type \&}]{model,  }\item[{const std\+::int32\+\_\+t}]{num\+\_\+sweeps,  }\item[{const Real\+Type}]{beta,  }\item[{const std\+::uint64\+\_\+t}]{seed }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacecompnal_1_1solver_1_1updater_a16c02f4eeefc797f99edd1c9da60c165}\label{namespacecompnal_1_1solver_1_1updater_a16c02f4eeefc797f99edd1c9da60c165}} 
+\index{compnal::solver::updater@{compnal::solver::updater}!SetEnergyDifference@{SetEnergyDifference}}
+\index{SetEnergyDifference@{SetEnergyDifference}!compnal::solver::updater@{compnal::solver::updater}}
+\doxysubsubsection{\texorpdfstring{SetEnergyDifference()}{SetEnergyDifference()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void compnal\+::solver\+::updater\+::\+Set\+Energy\+Difference (\begin{DoxyParamCaption}\item[{std\+::vector$<$ Real\+Type $>$ $\ast$}]{energy\+\_\+difference,  }\item[{std\+::vector$<$ std\+::int32\+\_\+t $>$ $\ast$}]{system\+\_\+size\+\_\+index\+\_\+list,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility\+::\+Spin\+Type}} $>$ \&}]{sample,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{model\+::\+Polynomial\+Ising}}$<$ \mbox{\hyperlink{classcompnal_1_1lattice_1_1_infinite_range}{lattice\+::\+Infinite\+Range}}, Real\+Type $>$ \&}]{model }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespacecompnal_1_1solver_1_1updater_a3732d6ddc5c0a50490c8cd1f24307543}\label{namespacecompnal_1_1solver_1_1updater_a3732d6ddc5c0a50490c8cd1f24307543}} 
+\index{compnal::solver::updater@{compnal::solver::updater}!UpdateConfiguration@{UpdateConfiguration}}
+\index{UpdateConfiguration@{UpdateConfiguration}!compnal::solver::updater@{compnal::solver::updater}}
+\doxysubsubsection{\texorpdfstring{UpdateConfiguration()}{UpdateConfiguration()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void compnal\+::solver\+::updater\+::\+Update\+Configuration (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility\+::\+Spin\+Type}} $>$ $\ast$}]{sample,  }\item[{std\+::vector$<$ Real\+Type $>$ $\ast$}]{energy\+\_\+difference,  }\item[{std\+::vector$<$ std\+::int32\+\_\+t $>$ $\ast$}]{system\+\_\+size\+\_\+index\+\_\+list,  }\item[{const std\+::int32\+\_\+t}]{index,  }\item[{const \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{model\+::\+Polynomial\+Ising}}$<$ \mbox{\hyperlink{classcompnal_1_1lattice_1_1_infinite_range}{lattice\+::\+Infinite\+Range}}, Real\+Type $>$ \&}]{model }\end{DoxyParamCaption})}
+

@@ -1,0 +1,273 @@
+\hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo}{}\doxysection{compnal\+::solver\+::Classical\+Monte\+Carlo\texorpdfstring{$<$}{<} Model\+Type \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classcompnal_1_1solver_1_1_classical_monte_carlo}\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+
+
+{\ttfamily \#include $<$classical\+\_\+monte\+\_\+carlo.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a3d84d6177e9a385d229c65565021ab9a}{Classical\+Monte\+Carlo}} (const Model\+Type \&\mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_add3cf9017dba4d5cdda0bcace954348c}{model}}, const \mbox{\hyperlink{namespacecompnal_1_1solver_a05ed20ddcf6c44882ed7ab9d3c31d13d}{CMCUpdater}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a53a5d1760c9946ceb166cf89f5b9ca8b}{cmc\+\_\+updater}})
+\item 
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a61001d8d385c113f582d130483dff759}{Set\+Num\+Sweeps}} (const std\+::int32\+\_\+t num\+\_\+sweeps)
+\item 
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_af3437a1da8ccc14ea723ba70f340a368}{Set\+Num\+Samples}} (const std\+::int32\+\_\+t num\+\_\+samples)
+\item 
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a35894ae003e3e522d7e023f96ff3bbe6}{Set\+Temperature}} (const \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a5c7cad47b0751d8aab6642c424c00a05}{Real\+Type}} temperature)
+\item 
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a62a35af0704f2e4e10e9b219363a2c08}{Set\+Inverse\+Temperature}} (const \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a5c7cad47b0751d8aab6642c424c00a05}{Real\+Type}} beta)
+\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a41a963e53c6efd72164fffe5d45ae986}{Get\+Num\+Sweeps}} () const
+\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_ac8b7afc5ce9b11e9030195e09a4d375b}{Get\+Num\+Samples}} () const
+\item 
+const std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a3176ff90b02ce4b5f0441b5ce2bf260f}{OPType}} $>$ $>$ \& \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a153e2cbbf4c57083f0349f5394ba94d0}{Get\+Samples}} () const
+\item 
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a5c7cad47b0751d8aab6642c424c00a05}{Real\+Type}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a547418ec2167d5eeaf13d7547117ac09}{Get\+Temperature}} () const
+\item 
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a5c7cad47b0751d8aab6642c424c00a05}{Real\+Type}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_af13e28fde540401ee88ab699b9edbfe6}{Get\+Inverse\+Temperature}} () const
+\item 
+std\+::uint64\+\_\+t \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_afe66437580e6408209f5337d12c3f348}{Get\+Seed}} () const
+\item 
+{\footnotesize template$<$typename T $>$ }\\const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a3176ff90b02ce4b5f0441b5ce2bf260f}{OPType}} $>$ \& \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a5413a56d2e8c02db236f6a8e4e121b8a}{Get\+Sample}} (const T index) const
+\item 
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a77b3ec419cd279341df43ddf04df628c}{Run}} ()
+\item 
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_aae393086da74fe3813f2d77db1ec7aa8}{Run}} (const std\+::uint64\+\_\+t seed)
+\item 
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a5c7cad47b0751d8aab6642c424c00a05}{Real\+Type}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a3ef573fcb8b6dae07e4783870ad99475}{Calculate\+Sample\+Average}} () const
+\item 
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a5c7cad47b0751d8aab6642c424c00a05}{Real\+Type}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a413f8b38f9c718cae25d2bc789be8c99}{Calculate\+Sample\+Moment}} (const std\+::int32\+\_\+t degree) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const Model\+Type \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_add3cf9017dba4d5cdda0bcace954348c}{model}}
+\item 
+const \mbox{\hyperlink{namespacecompnal_1_1solver_a05ed20ddcf6c44882ed7ab9d3c31d13d}{CMCUpdater}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a53a5d1760c9946ceb166cf89f5b9ca8b}{cmc\+\_\+updater}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a5c7cad47b0751d8aab6642c424c00a05}{Real\+Type}} = typename Model\+Type\+::\+Value\+Type
+\item 
+using \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a3176ff90b02ce4b5f0441b5ce2bf260f}{OPType}} = typename Model\+Type\+::\+OPType
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a320fdf474c9e172a3fdcf07068369baf}{Randomize\+Configuration}} (std\+::vector$<$ \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility\+::\+Spin\+Type}} $>$ $\ast$sample, const std\+::uint64\+\_\+t seed) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a839b71d9083c74c58565f1a78b32295e}{num\+\_\+sweeps\+\_\+}} = 1000
+\item 
+std\+::int32\+\_\+t \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a82b2d93c1c68d6f73f9425165f3d6018}{num\+\_\+samples\+\_\+}} = 1
+\item 
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a5c7cad47b0751d8aab6642c424c00a05}{Real\+Type}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_af90061ac0e76a3b879725cddc4fecd54}{beta\+\_\+}} = 1
+\item 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a3176ff90b02ce4b5f0441b5ce2bf260f}{OPType}} $>$ $>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_ae4d33dbb5990049ff83beaf9d33013dc}{samples\+\_\+}}
+\item 
+std\+::uint64\+\_\+t \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a6d8ce5753c342919e567107f89448d8d}{seed\+\_\+}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_a3176ff90b02ce4b5f0441b5ce2bf260f}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_a3176ff90b02ce4b5f0441b5ce2bf260f}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!OPType@{OPType}}
+\index{OPType@{OPType}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{OPType}{OPType}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::\+OPType =  typename Model\+Type\+::\+OPType\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_a5c7cad47b0751d8aab6642c424c00a05}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_a5c7cad47b0751d8aab6642c424c00a05}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!RealType@{RealType}}
+\index{RealType@{RealType}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{RealType}{RealType}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::\+Real\+Type =  typename Model\+Type\+::\+Value\+Type\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_a3d84d6177e9a385d229c65565021ab9a}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_a3d84d6177e9a385d229c65565021ab9a}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!ClassicalMonteCarlo@{ClassicalMonteCarlo}}
+\index{ClassicalMonteCarlo@{ClassicalMonteCarlo}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{ClassicalMonteCarlo()}{ClassicalMonteCarlo()}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::\+Classical\+Monte\+Carlo (\begin{DoxyParamCaption}\item[{const Model\+Type \&}]{model,  }\item[{const \mbox{\hyperlink{namespacecompnal_1_1solver_a05ed20ddcf6c44882ed7ab9d3c31d13d}{CMCUpdater}}}]{cmc\+\_\+updater }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_a3ef573fcb8b6dae07e4783870ad99475}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_a3ef573fcb8b6dae07e4783870ad99475}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!CalculateSampleAverage@{CalculateSampleAverage}}
+\index{CalculateSampleAverage@{CalculateSampleAverage}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateSampleAverage()}{CalculateSampleAverage()}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a5c7cad47b0751d8aab6642c424c00a05}{Real\+Type}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::\+Calculate\+Sample\+Average (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_a413f8b38f9c718cae25d2bc789be8c99}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_a413f8b38f9c718cae25d2bc789be8c99}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!CalculateSampleMoment@{CalculateSampleMoment}}
+\index{CalculateSampleMoment@{CalculateSampleMoment}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{CalculateSampleMoment()}{CalculateSampleMoment()}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a5c7cad47b0751d8aab6642c424c00a05}{Real\+Type}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::\+Calculate\+Sample\+Moment (\begin{DoxyParamCaption}\item[{const std\+::int32\+\_\+t}]{degree }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_af13e28fde540401ee88ab699b9edbfe6}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_af13e28fde540401ee88ab699b9edbfe6}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!GetInverseTemperature@{GetInverseTemperature}}
+\index{GetInverseTemperature@{GetInverseTemperature}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{GetInverseTemperature()}{GetInverseTemperature()}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a5c7cad47b0751d8aab6642c424c00a05}{Real\+Type}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::\+Get\+Inverse\+Temperature (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_ac8b7afc5ce9b11e9030195e09a4d375b}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_ac8b7afc5ce9b11e9030195e09a4d375b}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!GetNumSamples@{GetNumSamples}}
+\index{GetNumSamples@{GetNumSamples}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{GetNumSamples()}{GetNumSamples()}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+std\+::int32\+\_\+t \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::\+Get\+Num\+Samples (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_a41a963e53c6efd72164fffe5d45ae986}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_a41a963e53c6efd72164fffe5d45ae986}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!GetNumSweeps@{GetNumSweeps}}
+\index{GetNumSweeps@{GetNumSweeps}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{GetNumSweeps()}{GetNumSweeps()}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+std\+::int32\+\_\+t \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::\+Get\+Num\+Sweeps (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_a5413a56d2e8c02db236f6a8e4e121b8a}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_a5413a56d2e8c02db236f6a8e4e121b8a}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!GetSample@{GetSample}}
+\index{GetSample@{GetSample}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{GetSample()}{GetSample()}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+template$<$typename T $>$ \\
+const std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a3176ff90b02ce4b5f0441b5ce2bf260f}{OPType}} $>$ \& \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::\+Get\+Sample (\begin{DoxyParamCaption}\item[{const T}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_a153e2cbbf4c57083f0349f5394ba94d0}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_a153e2cbbf4c57083f0349f5394ba94d0}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!GetSamples@{GetSamples}}
+\index{GetSamples@{GetSamples}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{GetSamples()}{GetSamples()}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+const std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a3176ff90b02ce4b5f0441b5ce2bf260f}{OPType}} $>$ $>$ \& \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::\+Get\+Samples (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_afe66437580e6408209f5337d12c3f348}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_afe66437580e6408209f5337d12c3f348}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!GetSeed@{GetSeed}}
+\index{GetSeed@{GetSeed}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{GetSeed()}{GetSeed()}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+std\+::uint64\+\_\+t \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::\+Get\+Seed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_a547418ec2167d5eeaf13d7547117ac09}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_a547418ec2167d5eeaf13d7547117ac09}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!GetTemperature@{GetTemperature}}
+\index{GetTemperature@{GetTemperature}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{GetTemperature()}{GetTemperature()}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a5c7cad47b0751d8aab6642c424c00a05}{Real\+Type}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::\+Get\+Temperature (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_a320fdf474c9e172a3fdcf07068369baf}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_a320fdf474c9e172a3fdcf07068369baf}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!RandomizeConfiguration@{RandomizeConfiguration}}
+\index{RandomizeConfiguration@{RandomizeConfiguration}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{RandomizeConfiguration()}{RandomizeConfiguration()}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::\+Randomize\+Configuration (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{namespacecompnal_1_1utility_adf56729501e19b42db8e7997131884c8}{utility\+::\+Spin\+Type}} $>$ $\ast$}]{sample,  }\item[{const std\+::uint64\+\_\+t}]{seed }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_a77b3ec419cd279341df43ddf04df628c}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_a77b3ec419cd279341df43ddf04df628c}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!Run@{Run}}
+\index{Run@{Run}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{Run()}{Run()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::\+Run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_aae393086da74fe3813f2d77db1ec7aa8}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_aae393086da74fe3813f2d77db1ec7aa8}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!Run@{Run}}
+\index{Run@{Run}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{Run()}{Run()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::\+Run (\begin{DoxyParamCaption}\item[{const std\+::uint64\+\_\+t}]{seed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_a62a35af0704f2e4e10e9b219363a2c08}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_a62a35af0704f2e4e10e9b219363a2c08}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!SetInverseTemperature@{SetInverseTemperature}}
+\index{SetInverseTemperature@{SetInverseTemperature}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{SetInverseTemperature()}{SetInverseTemperature()}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::\+Set\+Inverse\+Temperature (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a5c7cad47b0751d8aab6642c424c00a05}{Real\+Type}}}]{beta }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_af3437a1da8ccc14ea723ba70f340a368}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_af3437a1da8ccc14ea723ba70f340a368}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!SetNumSamples@{SetNumSamples}}
+\index{SetNumSamples@{SetNumSamples}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{SetNumSamples()}{SetNumSamples()}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::\+Set\+Num\+Samples (\begin{DoxyParamCaption}\item[{const std\+::int32\+\_\+t}]{num\+\_\+samples }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_a61001d8d385c113f582d130483dff759}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_a61001d8d385c113f582d130483dff759}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!SetNumSweeps@{SetNumSweeps}}
+\index{SetNumSweeps@{SetNumSweeps}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{SetNumSweeps()}{SetNumSweeps()}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::\+Set\+Num\+Sweeps (\begin{DoxyParamCaption}\item[{const std\+::int32\+\_\+t}]{num\+\_\+sweeps }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_a35894ae003e3e522d7e023f96ff3bbe6}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_a35894ae003e3e522d7e023f96ff3bbe6}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!SetTemperature@{SetTemperature}}
+\index{SetTemperature@{SetTemperature}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{SetTemperature()}{SetTemperature()}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::\+Set\+Temperature (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a5c7cad47b0751d8aab6642c424c00a05}{Real\+Type}}}]{temperature }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_af90061ac0e76a3b879725cddc4fecd54}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_af90061ac0e76a3b879725cddc4fecd54}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!beta\_@{beta\_}}
+\index{beta\_@{beta\_}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{beta\_}{beta\_}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a5c7cad47b0751d8aab6642c424c00a05}{Real\+Type}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::beta\+\_\+ = 1\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_a53a5d1760c9946ceb166cf89f5b9ca8b}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_a53a5d1760c9946ceb166cf89f5b9ca8b}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!cmc\_updater@{cmc\_updater}}
+\index{cmc\_updater@{cmc\_updater}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{cmc\_updater}{cmc\_updater}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+const \mbox{\hyperlink{namespacecompnal_1_1solver_a05ed20ddcf6c44882ed7ab9d3c31d13d}{CMCUpdater}} \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::cmc\+\_\+updater}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_add3cf9017dba4d5cdda0bcace954348c}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_add3cf9017dba4d5cdda0bcace954348c}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!model@{model}}
+\index{model@{model}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+const Model\+Type \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::model}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_a82b2d93c1c68d6f73f9425165f3d6018}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_a82b2d93c1c68d6f73f9425165f3d6018}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!num\_samples\_@{num\_samples\_}}
+\index{num\_samples\_@{num\_samples\_}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{num\_samples\_}{num\_samples\_}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+std\+::int32\+\_\+t \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::num\+\_\+samples\+\_\+ = 1\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_a839b71d9083c74c58565f1a78b32295e}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_a839b71d9083c74c58565f1a78b32295e}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!num\_sweeps\_@{num\_sweeps\_}}
+\index{num\_sweeps\_@{num\_sweeps\_}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{num\_sweeps\_}{num\_sweeps\_}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+std\+::int32\+\_\+t \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::num\+\_\+sweeps\+\_\+ = 1000\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_ae4d33dbb5990049ff83beaf9d33013dc}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_ae4d33dbb5990049ff83beaf9d33013dc}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!samples\_@{samples\_}}
+\index{samples\_@{samples\_}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{samples\_}{samples\_}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+std\+::vector$<$std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo_a3176ff90b02ce4b5f0441b5ce2bf260f}{OPType}}$>$ $>$ \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::samples\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classcompnal_1_1solver_1_1_classical_monte_carlo_a6d8ce5753c342919e567107f89448d8d}\label{classcompnal_1_1solver_1_1_classical_monte_carlo_a6d8ce5753c342919e567107f89448d8d}} 
+\index{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}!seed\_@{seed\_}}
+\index{seed\_@{seed\_}!compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$@{compnal::solver::ClassicalMonteCarlo$<$ ModelType $>$}}
+\doxysubsubsection{\texorpdfstring{seed\_}{seed\_}}
+{\footnotesize\ttfamily template$<$class Model\+Type $>$ \\
+std\+::uint64\+\_\+t \mbox{\hyperlink{classcompnal_1_1solver_1_1_classical_monte_carlo}{compnal\+::solver\+::\+Classical\+Monte\+Carlo}}$<$ Model\+Type $>$\+::seed\+\_\+ = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/solver/\mbox{\hyperlink{classical__monte__carlo_8hpp}{classical\+\_\+monte\+\_\+carlo.\+hpp}}\end{DoxyCompactItemize}

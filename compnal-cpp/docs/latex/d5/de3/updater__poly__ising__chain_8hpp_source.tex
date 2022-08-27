@@ -1,0 +1,54 @@
+\hypertarget{updater__poly__ising__chain_8hpp_source}{}\doxysection{updater\+\_\+poly\+\_\+ising\+\_\+chain.\+hpp}
+\label{updater__poly__ising__chain_8hpp_source}\index{src/solver/classical\_monte\_carlo\_updater/updater\_poly\_ising\_chain.hpp@{src/solver/classical\_monte\_carlo\_updater/updater\_poly\_ising\_chain.hpp}}
+\mbox{\hyperlink{updater__poly__ising__chain_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{//  Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{4 \textcolor{comment}{//  you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{5 \textcolor{comment}{//  You may obtain a copy of the License at}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{//      http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{comment}{//  Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{10 \textcolor{comment}{//  distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{11 \textcolor{comment}{//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{12 \textcolor{comment}{//  See the License for the specific language governing permissions and}}
+\DoxyCodeLine{13 \textcolor{comment}{//  limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{//}}
+\DoxyCodeLine{15 \textcolor{comment}{//  Created by Kohei Suzuki on 2022/07/22.}}
+\DoxyCodeLine{16 \textcolor{comment}{//}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_SOLVER\_UPDATER\_POLY\_ISING\_CHAIN\_HPP\_}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_SOLVER\_UPDATER\_POLY\_ISING\_CHAIN\_HPP\_}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
+\DoxyCodeLine{22 \textcolor{keyword}{namespace }solver \{}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{keyword}{template}<\textcolor{keyword}{typename} SpinType, \textcolor{keyword}{typename} RealType>}
+\DoxyCodeLine{25 \textcolor{keywordtype}{void} \mbox{\hyperlink{namespacecompnal_1_1solver_ad4d9d0bb2af5c94410d8ff76e35e17a3}{ResetEnergyDifferenceChain}}(std::vector<RealType> *energy\_difference,}
+\DoxyCodeLine{26                                 std::vector<int> *system\_size\_index\_list,}
+\DoxyCodeLine{27                                 \textcolor{keyword}{const} std::vector<SpinType> \&sample,}
+\DoxyCodeLine{28                                 \textcolor{keyword}{const} \mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising}{model::PolynomialIsing<RealType>}} \&model) \{}
+\DoxyCodeLine{29    }
+\DoxyCodeLine{30    \textcolor{keywordflow}{if} (\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(sample.size()) != model.GetSystemSize()) \{}
+\DoxyCodeLine{31       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}The sample size is not equal to the system size."{}});}
+\DoxyCodeLine{32    \}}
+\DoxyCodeLine{33    }
+\DoxyCodeLine{34    \textcolor{keyword}{const} \textcolor{keywordtype}{int} system\_size = model.GetSystemSize();}
+\DoxyCodeLine{35    \textcolor{keyword}{const} \textcolor{keyword}{auto} \&interaction = model.\mbox{\hyperlink{classcompnal_1_1model_1_1_polynomial_ising_ab2e348aba9a640491ff5536c3563e0c0}{GetInteraction}}();}
+\DoxyCodeLine{36    energy\_difference-\/>clear();}
+\DoxyCodeLine{37    energy\_difference-\/>resize(system\_size);}
+\DoxyCodeLine{38    }
+\DoxyCodeLine{39    }
+\DoxyCodeLine{40 \}}
+\DoxyCodeLine{41 }
+\DoxyCodeLine{42 }
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \} \textcolor{comment}{// namespace solver}}
+\DoxyCodeLine{46 \} \textcolor{comment}{// namespace compnal}}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_SOLVER\_UPDATER\_POLY\_ISING\_CHAIN\_HPP\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

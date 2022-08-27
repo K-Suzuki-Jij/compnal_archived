@@ -1,0 +1,67 @@
+\hypertarget{classical__any__lattice_8hpp_source}{}\doxysection{classical\+\_\+any\+\_\+lattice.\+hpp}
+\label{classical__any__lattice_8hpp_source}\index{src/lattice/classical\_any\_lattice.hpp@{src/lattice/classical\_any\_lattice.hpp}}
+\mbox{\hyperlink{classical__any__lattice_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 \textcolor{comment}{//  Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{5 \textcolor{comment}{//  you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{6 \textcolor{comment}{//  You may obtain a copy of the License at}}
+\DoxyCodeLine{7 \textcolor{comment}{//}}
+\DoxyCodeLine{8 \textcolor{comment}{//      http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{9 \textcolor{comment}{//}}
+\DoxyCodeLine{10 \textcolor{comment}{//  Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{11 \textcolor{comment}{//  distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{12 \textcolor{comment}{//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{13 \textcolor{comment}{//  See the License for the specific language governing permissions and}}
+\DoxyCodeLine{14 \textcolor{comment}{//  limitations under the License.}}
+\DoxyCodeLine{15 \textcolor{comment}{//}}
+\DoxyCodeLine{16 \textcolor{comment}{//  classical\_any\_lattice.hpp}}
+\DoxyCodeLine{17 \textcolor{comment}{//  compnal}}
+\DoxyCodeLine{18 \textcolor{comment}{//}}
+\DoxyCodeLine{19 \textcolor{comment}{//  Created by kohei on 2022/08/10.}}
+\DoxyCodeLine{20 \textcolor{comment}{//  }}
+\DoxyCodeLine{21 \textcolor{comment}{//}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#ifndef COMPNAL\_LATTICE\_CLASSICAL\_ANY\_LATTICE\_HPP\_}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#define COMPNAL\_LATTICE\_CLASSICAL\_ANY\_LATTICE\_HPP\_}}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{boundary__condition_8hpp}{boundary\_condition.hpp}}"{}}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include <unordered\_set>}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include <variant>}}
+\DoxyCodeLine{29 \textcolor{preprocessor}{\#include <stdexcept>}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
+\DoxyCodeLine{32 \textcolor{keyword}{namespace }lattice \{}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{keyword}{template}<\textcolor{keyword}{typename} RealType>}
+\DoxyCodeLine{35 \textcolor{keyword}{class }\mbox{\hyperlink{classcompnal_1_1lattice_1_1_classical_any_lattice}{ClassicalAnyLattice}} \{}
+\DoxyCodeLine{36    \textcolor{keyword}{static\_assert}(std::is\_floating\_point<RealType>::value, \textcolor{stringliteral}{"{}Template parameter RealType must be floating point type"{}});}
+\DoxyCodeLine{37    }
+\DoxyCodeLine{38 \textcolor{keyword}{public}:}
+\DoxyCodeLine{39    }
+\DoxyCodeLine{40    \textcolor{keyword}{using }\mbox{\hyperlink{classcompnal_1_1lattice_1_1_classical_any_lattice_a951ac62f4c35f47d32e472dcc4c3b3d1}{IndexType}} = std::variant<int, std::string, std::vector<std::variant<int, std::string>>>;}
+\DoxyCodeLine{41    }
+\DoxyCodeLine{43    \textcolor{keyword}{using }\mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash}{IndexHash}} = \mbox{\hyperlink{structcompnal_1_1utility_1_1_variant_hash}{utility::VariantHash<std::int64\_t>}};}
+\DoxyCodeLine{44    }
+\DoxyCodeLine{45    \mbox{\hyperlink{classcompnal_1_1lattice_1_1_classical_any_lattice_aedbdf59bedcac332994003c39756081c}{ClassicalAnyLattice}}() \{\}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{49    \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{BoundaryCondition}} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_classical_any_lattice_a4c25352b778f334df4e29b50046b5f94}{GetBoundaryCondition}}()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{50       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5ab50339a10e1de285ac99d4c3990b8693}{BoundaryCondition::NONE}};}
+\DoxyCodeLine{51    \}}
+\DoxyCodeLine{52    }
+\DoxyCodeLine{53    }
+\DoxyCodeLine{54    }
+\DoxyCodeLine{55 \textcolor{keyword}{private}:}
+\DoxyCodeLine{57    std::unordered\_set<IndexType, IndexHash> \mbox{\hyperlink{classcompnal_1_1lattice_1_1_classical_any_lattice_a20ff24e69fb310f0b643511a4b752699}{index\_list\_}};}
+\DoxyCodeLine{58    }
+\DoxyCodeLine{59 \};}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{61 \} \textcolor{comment}{// namespace lattice}}
+\DoxyCodeLine{62 \} \textcolor{comment}{// namespace compnal}}
+\DoxyCodeLine{63 }
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_LATTICE\_CLASSICAL\_ANY\_LATTICE\_HPP\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

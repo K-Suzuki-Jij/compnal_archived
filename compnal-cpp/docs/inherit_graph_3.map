@@ -1,0 +1,6 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$d9/dd8/classcompnal_1_1lattice_1_1_base_two_dimensional_lattice.html" title="Base class to represent the two&#45;dimensional lattice." alt="" coords="5,49,181,90"/>
+<area shape="rect" id="node2" href="$dd/d85/classcompnal_1_1lattice_1_1_honeycomb.html" title="Class to represent the two&#45;dimensional honeycomb lattice." alt="" coords="229,5,421,32"/>
+<area shape="rect" id="node3" href="$d8/d6b/classcompnal_1_1lattice_1_1_square.html" title="Class to represent the two&#45;dimensional square lattice." alt="" coords="244,56,407,83"/>
+<area shape="rect" id="node4" href="$df/dab/classcompnal_1_1lattice_1_1_triangle.html" title="Class to represent the two&#45;dimensional triangle lattice." alt="" coords="241,107,409,133"/>
+</map>

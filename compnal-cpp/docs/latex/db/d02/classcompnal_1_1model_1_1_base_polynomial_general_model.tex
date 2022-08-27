@@ -1,0 +1,140 @@
+\hypertarget{classcompnal_1_1model_1_1_base_polynomial_general_model}{}\doxysection{compnal\+::model\+::Base\+Polynomial\+General\+Model\texorpdfstring{$<$}{<} Real\+Type \texorpdfstring{$>$}{>} Class Template Reference}
+\label{classcompnal_1_1model_1_1_base_polynomial_general_model}\index{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}}
+
+
+{\ttfamily \#include $<$base\+\_\+polynomial\+\_\+general\+\_\+model.\+hpp$>$}
+
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_ae256e9feefe99954310a7fc8156c6849}{Index\+Type}} = \mbox{\hyperlink{namespacecompnal_1_1utility_a9200f93daeceeb7f1cdfa4f49179f672}{utility\+::\+Index\+Type}}
+\item 
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_a35ed41afc645573c34cc66102b515765}{Index\+Hash}} = \mbox{\hyperlink{structcompnal_1_1utility_1_1_index_hash}{utility\+::\+Index\+Hash}}
+\item 
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_aa7b2bad45a91634fdf24e5e5509e558f}{Vector\+Hash}} = \mbox{\hyperlink{structcompnal_1_1utility_1_1_index_vector_hash}{utility\+::\+Index\+Vector\+Hash}}
+\item 
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_ad442f1bd994369943fb2eb5b931458ff}{Interaction\+Type}} = std\+::unordered\+\_\+map$<$ std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_ae256e9feefe99954310a7fc8156c6849}{Index\+Type}} $>$, Real\+Type, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_aa7b2bad45a91634fdf24e5e5509e558f}{Vector\+Hash}} $>$
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_a25bd0dbfc055f069a35301b718349c1d}{Base\+Polynomial\+General\+Model}} ()
+\item 
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_a9e526c21a6d7caee4c43bac8e799dabc}{Add\+Interaction}} (std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_ae256e9feefe99954310a7fc8156c6849}{Index\+Type}} $>$ index\+\_\+list, const Real\+Type value)
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_ae256e9feefe99954310a7fc8156c6849}{Index\+Type}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_aeac3ae510334f465592933e85ecc6714}{Generate\+Index\+List}} () const
+\item 
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_ad442f1bd994369943fb2eb5b931458ff}{Interaction\+Type}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_a884faa336c472f500b5344fc37d650a6}{Get\+Interaction}} () const
+\item 
+const std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_ae256e9feefe99954310a7fc8156c6849}{Index\+Type}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_a35ed41afc645573c34cc66102b515765}{Index\+Hash}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_a5024553b1ee4bade842a44e17a96b168}{Get\+Index\+Set}} () const
+\item 
+std\+::size\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_a7f29206628b2bbce93d960fcc54e5584}{Get\+System\+Size}} () const
+\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_ae256e9feefe99954310a7fc8156c6849}{Index\+Type}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_a35ed41afc645573c34cc66102b515765}{Index\+Hash}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_af38e46671db96a734b251f553d4628a7}{index\+\_\+set\+\_\+}}
+\item 
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_ad442f1bd994369943fb2eb5b931458ff}{Interaction\+Type}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_ab2edc3f5cdfa46ff7ca5c23ddcbf9e37}{interaction\+\_\+list\+\_\+}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Typedef Documentation}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_polynomial_general_model_a35ed41afc645573c34cc66102b515765}\label{classcompnal_1_1model_1_1_base_polynomial_general_model_a35ed41afc645573c34cc66102b515765}} 
+\index{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}!IndexHash@{IndexHash}}
+\index{IndexHash@{IndexHash}!compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{IndexHash}{IndexHash}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model}{compnal\+::model\+::\+Base\+Polynomial\+General\+Model}}$<$ Real\+Type $>$\+::\+Index\+Hash =  \mbox{\hyperlink{structcompnal_1_1utility_1_1_index_hash}{utility\+::\+Index\+Hash}}}
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_polynomial_general_model_ae256e9feefe99954310a7fc8156c6849}\label{classcompnal_1_1model_1_1_base_polynomial_general_model_ae256e9feefe99954310a7fc8156c6849}} 
+\index{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}!IndexType@{IndexType}}
+\index{IndexType@{IndexType}!compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{IndexType}{IndexType}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model}{compnal\+::model\+::\+Base\+Polynomial\+General\+Model}}$<$ Real\+Type $>$\+::\+Index\+Type =  \mbox{\hyperlink{namespacecompnal_1_1utility_a9200f93daeceeb7f1cdfa4f49179f672}{utility\+::\+Index\+Type}}}
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_polynomial_general_model_ad442f1bd994369943fb2eb5b931458ff}\label{classcompnal_1_1model_1_1_base_polynomial_general_model_ad442f1bd994369943fb2eb5b931458ff}} 
+\index{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}!InteractionType@{InteractionType}}
+\index{InteractionType@{InteractionType}!compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{InteractionType}{InteractionType}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model}{compnal\+::model\+::\+Base\+Polynomial\+General\+Model}}$<$ Real\+Type $>$\+::\+Interaction\+Type =  std\+::unordered\+\_\+map$<$std\+::vector$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_ae256e9feefe99954310a7fc8156c6849}{Index\+Type}}$>$, Real\+Type, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_aa7b2bad45a91634fdf24e5e5509e558f}{Vector\+Hash}}$>$}
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_polynomial_general_model_aa7b2bad45a91634fdf24e5e5509e558f}\label{classcompnal_1_1model_1_1_base_polynomial_general_model_aa7b2bad45a91634fdf24e5e5509e558f}} 
+\index{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}!VectorHash@{VectorHash}}
+\index{VectorHash@{VectorHash}!compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{VectorHash}{VectorHash}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+using \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model}{compnal\+::model\+::\+Base\+Polynomial\+General\+Model}}$<$ Real\+Type $>$\+::\+Vector\+Hash =  \mbox{\hyperlink{structcompnal_1_1utility_1_1_index_vector_hash}{utility\+::\+Index\+Vector\+Hash}}}
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_polynomial_general_model_a25bd0dbfc055f069a35301b718349c1d}\label{classcompnal_1_1model_1_1_base_polynomial_general_model_a25bd0dbfc055f069a35301b718349c1d}} 
+\index{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}!BasePolynomialGeneralModel@{BasePolynomialGeneralModel}}
+\index{BasePolynomialGeneralModel@{BasePolynomialGeneralModel}!compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{BasePolynomialGeneralModel()}{BasePolynomialGeneralModel()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model}{compnal\+::model\+::\+Base\+Polynomial\+General\+Model}}$<$ Real\+Type $>$\+::\+Base\+Polynomial\+General\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_polynomial_general_model_a9e526c21a6d7caee4c43bac8e799dabc}\label{classcompnal_1_1model_1_1_base_polynomial_general_model_a9e526c21a6d7caee4c43bac8e799dabc}} 
+\index{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}!AddInteraction@{AddInteraction}}
+\index{AddInteraction@{AddInteraction}!compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{AddInteraction()}{AddInteraction()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+void \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model}{compnal\+::model\+::\+Base\+Polynomial\+General\+Model}}$<$ Real\+Type $>$\+::\+Add\+Interaction (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_ae256e9feefe99954310a7fc8156c6849}{Index\+Type}} $>$}]{index\+\_\+list,  }\item[{const Real\+Type}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_polynomial_general_model_aeac3ae510334f465592933e85ecc6714}\label{classcompnal_1_1model_1_1_base_polynomial_general_model_aeac3ae510334f465592933e85ecc6714}} 
+\index{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}!GenerateIndexList@{GenerateIndexList}}
+\index{GenerateIndexList@{GenerateIndexList}!compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GenerateIndexList()}{GenerateIndexList()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::vector$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_ae256e9feefe99954310a7fc8156c6849}{Index\+Type}} $>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model}{compnal\+::model\+::\+Base\+Polynomial\+General\+Model}}$<$ Real\+Type $>$\+::\+Generate\+Index\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_polynomial_general_model_a5024553b1ee4bade842a44e17a96b168}\label{classcompnal_1_1model_1_1_base_polynomial_general_model_a5024553b1ee4bade842a44e17a96b168}} 
+\index{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}!GetIndexSet@{GetIndexSet}}
+\index{GetIndexSet@{GetIndexSet}!compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetIndexSet()}{GetIndexSet()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const std\+::unordered\+\_\+set$<$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_ae256e9feefe99954310a7fc8156c6849}{Index\+Type}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_a35ed41afc645573c34cc66102b515765}{Index\+Hash}} $>$ \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model}{compnal\+::model\+::\+Base\+Polynomial\+General\+Model}}$<$ Real\+Type $>$\+::\+Get\+Index\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_polynomial_general_model_a884faa336c472f500b5344fc37d650a6}\label{classcompnal_1_1model_1_1_base_polynomial_general_model_a884faa336c472f500b5344fc37d650a6}} 
+\index{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}!GetInteraction@{GetInteraction}}
+\index{GetInteraction@{GetInteraction}!compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetInteraction()}{GetInteraction()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+const \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_ad442f1bd994369943fb2eb5b931458ff}{Interaction\+Type}} \& \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model}{compnal\+::model\+::\+Base\+Polynomial\+General\+Model}}$<$ Real\+Type $>$\+::\+Get\+Interaction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_polynomial_general_model_a7f29206628b2bbce93d960fcc54e5584}\label{classcompnal_1_1model_1_1_base_polynomial_general_model_a7f29206628b2bbce93d960fcc54e5584}} 
+\index{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}!GetSystemSize@{GetSystemSize}}
+\index{GetSystemSize@{GetSystemSize}!compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{GetSystemSize()}{GetSystemSize()}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::size\+\_\+t \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model}{compnal\+::model\+::\+Base\+Polynomial\+General\+Model}}$<$ Real\+Type $>$\+::\+Get\+System\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_polynomial_general_model_af38e46671db96a734b251f553d4628a7}\label{classcompnal_1_1model_1_1_base_polynomial_general_model_af38e46671db96a734b251f553d4628a7}} 
+\index{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}!index\_set\_@{index\_set\_}}
+\index{index\_set\_@{index\_set\_}!compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{index\_set\_}{index\_set\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+std\+::unordered\+\_\+set$<$\mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_ae256e9feefe99954310a7fc8156c6849}{Index\+Type}}, \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_a35ed41afc645573c34cc66102b515765}{Index\+Hash}}$>$ \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model}{compnal\+::model\+::\+Base\+Polynomial\+General\+Model}}$<$ Real\+Type $>$\+::index\+\_\+set\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+\mbox{\Hypertarget{classcompnal_1_1model_1_1_base_polynomial_general_model_ab2edc3f5cdfa46ff7ca5c23ddcbf9e37}\label{classcompnal_1_1model_1_1_base_polynomial_general_model_ab2edc3f5cdfa46ff7ca5c23ddcbf9e37}} 
+\index{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}!interaction\_list\_@{interaction\_list\_}}
+\index{interaction\_list\_@{interaction\_list\_}!compnal::model::BasePolynomialGeneralModel$<$ RealType $>$@{compnal::model::BasePolynomialGeneralModel$<$ RealType $>$}}
+\doxysubsubsection{\texorpdfstring{interaction\_list\_}{interaction\_list\_}}
+{\footnotesize\ttfamily template$<$typename Real\+Type $>$ \\
+\mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model_ad442f1bd994369943fb2eb5b931458ff}{Interaction\+Type}} \mbox{\hyperlink{classcompnal_1_1model_1_1_base_polynomial_general_model}{compnal\+::model\+::\+Base\+Polynomial\+General\+Model}}$<$ Real\+Type $>$\+::interaction\+\_\+list\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/model/\mbox{\hyperlink{base__polynomial__general__model_8hpp}{base\+\_\+polynomial\+\_\+general\+\_\+model.\+hpp}}\end{DoxyCompactItemize}

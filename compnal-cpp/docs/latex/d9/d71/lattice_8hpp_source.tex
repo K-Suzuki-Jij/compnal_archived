@@ -1,0 +1,79 @@
+\hypertarget{lattice_8hpp_source}{}\doxysection{lattice.\+hpp}
+\label{lattice_8hpp_source}\index{src/model/lattice.hpp@{src/model/lattice.hpp}}
+\mbox{\hyperlink{lattice_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//  Copyright 2022 Kohei Suzuki}}
+\DoxyCodeLine{2 \textcolor{comment}{//}}
+\DoxyCodeLine{3 \textcolor{comment}{//  Licensed under the Apache License, Version 2.0 (the "{}License"{});}}
+\DoxyCodeLine{4 \textcolor{comment}{//  you may not use this file except in compliance with the License.}}
+\DoxyCodeLine{5 \textcolor{comment}{//  You may obtain a copy of the License at}}
+\DoxyCodeLine{6 \textcolor{comment}{//}}
+\DoxyCodeLine{7 \textcolor{comment}{//      http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{8 \textcolor{comment}{//}}
+\DoxyCodeLine{9 \textcolor{comment}{//  Unless required by applicable law or agreed to in writing, software}}
+\DoxyCodeLine{10 \textcolor{comment}{//  distributed under the License is distributed on an "{}AS IS"{} BASIS,}}
+\DoxyCodeLine{11 \textcolor{comment}{//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.}}
+\DoxyCodeLine{12 \textcolor{comment}{//  See the License for the specific language governing permissions and}}
+\DoxyCodeLine{13 \textcolor{comment}{//  limitations under the License.}}
+\DoxyCodeLine{14 \textcolor{comment}{//}}
+\DoxyCodeLine{15 \textcolor{comment}{//  Created by Kohei Suzuki on 2022/06/11.}}
+\DoxyCodeLine{16 \textcolor{comment}{//}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#ifndef COMPNAL\_MODEL\_LATTICE\_HPP\_}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#define COMPNAL\_MODEL\_LATTICE\_HPP\_}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <stdexcept>}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespacecompnal}{compnal}} \{}
+\DoxyCodeLine{24 \textcolor{keyword}{namespace }model \{}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{27 \textcolor{keyword}{enum class} \mbox{\hyperlink{namespacecompnal_1_1model_ab9a967d392f51032ef7bfda1c0df8889}{Lattice}} \{}
+\DoxyCodeLine{28    }
+\DoxyCodeLine{30    \mbox{\hyperlink{namespacecompnal_1_1model_ab9a967d392f51032ef7bfda1c0df8889ab50339a10e1de285ac99d4c3990b8693}{NONE}},}
+\DoxyCodeLine{31    }
+\DoxyCodeLine{33    \mbox{\hyperlink{namespacecompnal_1_1model_ab9a967d392f51032ef7bfda1c0df8889a014d2cf3cdc3af6f4f92c09190860e33}{CHAIN}},}
+\DoxyCodeLine{34    }
+\DoxyCodeLine{36    \mbox{\hyperlink{namespacecompnal_1_1model_ab9a967d392f51032ef7bfda1c0df8889a12dec4e1f7ec620651b2b95c440ffac0}{SQUARE}},}
+\DoxyCodeLine{37    }
+\DoxyCodeLine{39    \mbox{\hyperlink{namespacecompnal_1_1model_ab9a967d392f51032ef7bfda1c0df8889a9bcd89070cae224dce305f5011659ef4}{TRIANGLE}},}
+\DoxyCodeLine{40    }
+\DoxyCodeLine{42    \mbox{\hyperlink{namespacecompnal_1_1model_ab9a967d392f51032ef7bfda1c0df8889ae5c5d100b870cf962ca2e652863fc0cc}{HONEYCOMB}},}
+\DoxyCodeLine{43    }
+\DoxyCodeLine{45    \mbox{\hyperlink{namespacecompnal_1_1model_ab9a967d392f51032ef7bfda1c0df8889accd681e34e5e40fbce74618c3ccffcff}{CUBIC}},}
+\DoxyCodeLine{46    }
+\DoxyCodeLine{48    \mbox{\hyperlink{namespacecompnal_1_1model_ab9a967d392f51032ef7bfda1c0df8889a05827babd9f781c64552e23408f9439c}{INFINIT\_RANGE}},}
+\DoxyCodeLine{49    }
+\DoxyCodeLine{51    \mbox{\hyperlink{namespacecompnal_1_1model_ab9a967d392f51032ef7bfda1c0df8889a7d2c5b1962387a713d8db20d672cfa71}{ANY\_TYPE}}}
+\DoxyCodeLine{52    }
+\DoxyCodeLine{53 \};}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{56 \textcolor{keyword}{enum class} \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49b}{BoundaryCondition}} \{}
+\DoxyCodeLine{57   }
+\DoxyCodeLine{59    \mbox{\hyperlink{namespacecompnal_1_1model_ab9a967d392f51032ef7bfda1c0df8889ab50339a10e1de285ac99d4c3990b8693}{NONE}},}
+\DoxyCodeLine{60    }
+\DoxyCodeLine{62    \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49bac5878c0c0199e57e3e999f7dc4add33f}{OBC}},}
+\DoxyCodeLine{63    }
+\DoxyCodeLine{65    \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49ba817a7e6f14396060c4e915adcaefb88e}{PBC}}}
+\DoxyCodeLine{66    }
+\DoxyCodeLine{67 \};}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69 }
+\DoxyCodeLine{73 \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49b}{BoundaryCondition}} \mbox{\hyperlink{namespacecompnal_1_1model_ad9bf05c6c500dcbb790bb84350342f9e}{GetDefaultBoundaryCondition}}(\textcolor{keyword}{const} \mbox{\hyperlink{namespacecompnal_1_1model_ab9a967d392f51032ef7bfda1c0df8889}{Lattice}} lattice) \{}
+\DoxyCodeLine{74    \textcolor{keywordflow}{if} (lattice == \mbox{\hyperlink{namespacecompnal_1_1model_ab9a967d392f51032ef7bfda1c0df8889ab50339a10e1de285ac99d4c3990b8693}{Lattice::NONE}}) \{}
+\DoxyCodeLine{75       \textcolor{keywordflow}{throw} std::runtime\_error(\textcolor{stringliteral}{"{}Please set Lattice"{}});}
+\DoxyCodeLine{76    \}}
+\DoxyCodeLine{77    \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (lattice == \mbox{\hyperlink{namespacecompnal_1_1model_ab9a967d392f51032ef7bfda1c0df8889a7d2c5b1962387a713d8db20d672cfa71}{Lattice::ANY\_TYPE}}) \{}
+\DoxyCodeLine{78       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49bab50339a10e1de285ac99d4c3990b8693}{BoundaryCondition::NONE}};}
+\DoxyCodeLine{79    \}}
+\DoxyCodeLine{80    \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{81       \textcolor{keywordflow}{return} \mbox{\hyperlink{namespacecompnal_1_1model_a472b79d22175004cb119fcc099cdd49bac5878c0c0199e57e3e999f7dc4add33f}{BoundaryCondition::OBC}};}
+\DoxyCodeLine{82    \}}
+\DoxyCodeLine{83 \}}
+\DoxyCodeLine{84 }
+\DoxyCodeLine{85 \} \textcolor{comment}{// namespace model}}
+\DoxyCodeLine{86 \} \textcolor{comment}{// namespace compnal}}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* COMPNAL\_MODEL\_LATTICE\_HPP\_ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

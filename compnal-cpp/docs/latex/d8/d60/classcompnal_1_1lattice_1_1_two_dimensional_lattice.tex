@@ -1,0 +1,249 @@
+\hypertarget{classcompnal_1_1lattice_1_1_two_dimensional_lattice}{}\doxysection{compnal\+::lattice\+::Two\+Dimensional\+Lattice Class Reference}
+\label{classcompnal_1_1lattice_1_1_two_dimensional_lattice}\index{compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}}
+
+
+Base class to represent the two-\/dimensional lattice.  
+
+
+
+
+{\ttfamily \#include $<$two\+\_\+dimensional\+\_\+lattice.\+hpp$>$}
+
+
+
+Inheritance diagram for compnal\+::lattice\+::Two\+Dimensional\+Lattice\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{d2/dfe/classcompnal_1_1lattice_1_1_two_dimensional_lattice__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a94cdbb4c0978c0770e38e6369a9dbd05}{Two\+Dimensional\+Lattice}} (const int x\+\_\+size, const int y\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1lattice_1_1_two_dimensional_lattice}{Two\+Dimensional\+Lattice}} class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classcompnal_1_1lattice_1_1_two_dimensional_lattice_ae82f20fb973e5cbf46fe8294b7ffefe5}{Two\+Dimensional\+Lattice}} (const int x\+\_\+size, const int y\+\_\+size, const \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{Boundary\+Condition}} boundary\+\_\+condition)
+\begin{DoxyCompactList}\small\item\em Constructor of \mbox{\hyperlink{classcompnal_1_1lattice_1_1_two_dimensional_lattice}{Two\+Dimensional\+Lattice}} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a5821cbfed15eb65fc783d193bbb4456e}{Set\+XSize}} (const int x\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Set size of the x-\/direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a1751f2fba95d909b51a70279805afe60}{Set\+YSize}} (const int y\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Set size of the y-\/direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a6faaa00907a02b84d93dfdc4e1c76746}{Set\+System\+Size}} (const int x\+\_\+size, const int y\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Set sizes of the x-\/ and y-\/direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a24f0447650deb818afcf4e4266970bdc}{Set\+Boundary\+Condition}} (const \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{Boundary\+Condition}} boundary\+\_\+condition)
+\begin{DoxyCompactList}\small\item\em Set boundary condition. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a4fe7c095fb57137699972ac5c95506bf}{Get\+XSize}} () const
+\begin{DoxyCompactList}\small\item\em Get size of the x-\/direction. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcompnal_1_1lattice_1_1_two_dimensional_lattice_ad041fb67950a8a8103f4e021c61f5319}{Get\+YSize}} () const
+\begin{DoxyCompactList}\small\item\em Get size of the y-\/direction. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a54fc2d5a481f7ca1239e64a17e8896d3}{Get\+System\+Size}} () const
+\begin{DoxyCompactList}\small\item\em Get system size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{Boundary\+Condition}} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a83c44187285f9e3470cc53e028292d70}{Get\+Boundary\+Condition}} () const
+\begin{DoxyCompactList}\small\item\em Get boundary condition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a7e8327486593b81c5d4605f7e6fc2930}{x\+\_\+size\+\_\+}} = 0
+\begin{DoxyCompactList}\small\item\em Size of the x-\/direction. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a6d013c9555b711817d8cb2193b846773}{y\+\_\+size\+\_\+}} = 0
+\begin{DoxyCompactList}\small\item\em Size of the y-\/direction. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{Boundary\+Condition}} \mbox{\hyperlink{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a9d3a8fc8329b23db8c84c8a4814a24ab}{bc\+\_\+}} = \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5ac5878c0c0199e57e3e999f7dc4add33f}{Boundary\+Condition\+::\+OBC}}
+\begin{DoxyCompactList}\small\item\em Boundary condition. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class to represent the two-\/dimensional lattice. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a94cdbb4c0978c0770e38e6369a9dbd05}\label{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a94cdbb4c0978c0770e38e6369a9dbd05}} 
+\index{compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}!TwoDimensionalLattice@{TwoDimensionalLattice}}
+\index{TwoDimensionalLattice@{TwoDimensionalLattice}!compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}}
+\doxysubsubsection{\texorpdfstring{TwoDimensionalLattice()}{TwoDimensionalLattice()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily compnal\+::lattice\+::\+Two\+Dimensional\+Lattice\+::\+Two\+Dimensional\+Lattice (\begin{DoxyParamCaption}\item[{const int}]{x\+\_\+size,  }\item[{const int}]{y\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of \mbox{\hyperlink{classcompnal_1_1lattice_1_1_two_dimensional_lattice}{Two\+Dimensional\+Lattice}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+size} & The size of the x-\/direction. \\
+\hline
+{\em y\+\_\+size} & The size of the y-\/direction. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_two_dimensional_lattice_ae82f20fb973e5cbf46fe8294b7ffefe5}\label{classcompnal_1_1lattice_1_1_two_dimensional_lattice_ae82f20fb973e5cbf46fe8294b7ffefe5}} 
+\index{compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}!TwoDimensionalLattice@{TwoDimensionalLattice}}
+\index{TwoDimensionalLattice@{TwoDimensionalLattice}!compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}}
+\doxysubsubsection{\texorpdfstring{TwoDimensionalLattice()}{TwoDimensionalLattice()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily compnal\+::lattice\+::\+Two\+Dimensional\+Lattice\+::\+Two\+Dimensional\+Lattice (\begin{DoxyParamCaption}\item[{const int}]{x\+\_\+size,  }\item[{const int}]{y\+\_\+size,  }\item[{const \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{Boundary\+Condition}}}]{boundary\+\_\+condition }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor of \mbox{\hyperlink{classcompnal_1_1lattice_1_1_two_dimensional_lattice}{Two\+Dimensional\+Lattice}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+size} & The size of the x-\/direction. \\
+\hline
+{\em y\+\_\+size} & The size of the y-\/direction. \\
+\hline
+{\em boundary\+\_\+condition} & Boundary condtion. \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5ab50339a10e1de285ac99d4c3990b8693}{Boundary\+Condition\+::\+NONE}} cannot be used here. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a83c44187285f9e3470cc53e028292d70}\label{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a83c44187285f9e3470cc53e028292d70}} 
+\index{compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}!GetBoundaryCondition@{GetBoundaryCondition}}
+\index{GetBoundaryCondition@{GetBoundaryCondition}!compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}}
+\doxysubsubsection{\texorpdfstring{GetBoundaryCondition()}{GetBoundaryCondition()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{Boundary\+Condition}} compnal\+::lattice\+::\+Two\+Dimensional\+Lattice\+::\+Get\+Boundary\+Condition (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get boundary condition. 
+
+\begin{DoxyReturn}{Returns}
+Boundary condition. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a54fc2d5a481f7ca1239e64a17e8896d3}\label{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a54fc2d5a481f7ca1239e64a17e8896d3}} 
+\index{compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}!GetSystemSize@{GetSystemSize}}
+\index{GetSystemSize@{GetSystemSize}!compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}}
+\doxysubsubsection{\texorpdfstring{GetSystemSize()}{GetSystemSize()}}
+{\footnotesize\ttfamily int compnal\+::lattice\+::\+Two\+Dimensional\+Lattice\+::\+Get\+System\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get system size. 
+
+\begin{DoxyReturn}{Returns}
+System size. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a4fe7c095fb57137699972ac5c95506bf}\label{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a4fe7c095fb57137699972ac5c95506bf}} 
+\index{compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}!GetXSize@{GetXSize}}
+\index{GetXSize@{GetXSize}!compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}}
+\doxysubsubsection{\texorpdfstring{GetXSize()}{GetXSize()}}
+{\footnotesize\ttfamily int compnal\+::lattice\+::\+Two\+Dimensional\+Lattice\+::\+Get\+XSize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get size of the x-\/direction. 
+
+\begin{DoxyReturn}{Returns}
+Size of the x-\/direction. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_two_dimensional_lattice_ad041fb67950a8a8103f4e021c61f5319}\label{classcompnal_1_1lattice_1_1_two_dimensional_lattice_ad041fb67950a8a8103f4e021c61f5319}} 
+\index{compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}!GetYSize@{GetYSize}}
+\index{GetYSize@{GetYSize}!compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}}
+\doxysubsubsection{\texorpdfstring{GetYSize()}{GetYSize()}}
+{\footnotesize\ttfamily int compnal\+::lattice\+::\+Two\+Dimensional\+Lattice\+::\+Get\+YSize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get size of the y-\/direction. 
+
+\begin{DoxyReturn}{Returns}
+Size of the y-\/direction. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a24f0447650deb818afcf4e4266970bdc}\label{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a24f0447650deb818afcf4e4266970bdc}} 
+\index{compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}!SetBoundaryCondition@{SetBoundaryCondition}}
+\index{SetBoundaryCondition@{SetBoundaryCondition}!compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}}
+\doxysubsubsection{\texorpdfstring{SetBoundaryCondition()}{SetBoundaryCondition()}}
+{\footnotesize\ttfamily void compnal\+::lattice\+::\+Two\+Dimensional\+Lattice\+::\+Set\+Boundary\+Condition (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{Boundary\+Condition}}}]{boundary\+\_\+condition }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set boundary condition. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em boundary\+\_\+condition} & Boundary condtion. \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5ab50339a10e1de285ac99d4c3990b8693}{Boundary\+Condition\+::\+NONE}} cannot be used here. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a6faaa00907a02b84d93dfdc4e1c76746}\label{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a6faaa00907a02b84d93dfdc4e1c76746}} 
+\index{compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}!SetSystemSize@{SetSystemSize}}
+\index{SetSystemSize@{SetSystemSize}!compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}}
+\doxysubsubsection{\texorpdfstring{SetSystemSize()}{SetSystemSize()}}
+{\footnotesize\ttfamily void compnal\+::lattice\+::\+Two\+Dimensional\+Lattice\+::\+Set\+System\+Size (\begin{DoxyParamCaption}\item[{const int}]{x\+\_\+size,  }\item[{const int}]{y\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set sizes of the x-\/ and y-\/direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+size} & Size of the x-\/direction. \\
+\hline
+{\em y\+\_\+size} & Size of the y-\/direction. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a5821cbfed15eb65fc783d193bbb4456e}\label{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a5821cbfed15eb65fc783d193bbb4456e}} 
+\index{compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}!SetXSize@{SetXSize}}
+\index{SetXSize@{SetXSize}!compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}}
+\doxysubsubsection{\texorpdfstring{SetXSize()}{SetXSize()}}
+{\footnotesize\ttfamily void compnal\+::lattice\+::\+Two\+Dimensional\+Lattice\+::\+Set\+XSize (\begin{DoxyParamCaption}\item[{const int}]{x\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set size of the x-\/direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+size} & Size of the x-\/direction. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a1751f2fba95d909b51a70279805afe60}\label{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a1751f2fba95d909b51a70279805afe60}} 
+\index{compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}!SetYSize@{SetYSize}}
+\index{SetYSize@{SetYSize}!compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}}
+\doxysubsubsection{\texorpdfstring{SetYSize()}{SetYSize()}}
+{\footnotesize\ttfamily void compnal\+::lattice\+::\+Two\+Dimensional\+Lattice\+::\+Set\+YSize (\begin{DoxyParamCaption}\item[{const int}]{y\+\_\+size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set size of the y-\/direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em y\+\_\+size} & Size of the y-\/direction. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a9d3a8fc8329b23db8c84c8a4814a24ab}\label{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a9d3a8fc8329b23db8c84c8a4814a24ab}} 
+\index{compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}!bc\_@{bc\_}}
+\index{bc\_@{bc\_}!compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}}
+\doxysubsubsection{\texorpdfstring{bc\_}{bc\_}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5}{Boundary\+Condition}} compnal\+::lattice\+::\+Two\+Dimensional\+Lattice\+::bc\+\_\+ = \mbox{\hyperlink{namespacecompnal_1_1lattice_a9db8981c331b92b93e9bf047444e0df5ac5878c0c0199e57e3e999f7dc4add33f}{Boundary\+Condition\+::\+OBC}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Boundary condition. 
+
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a7e8327486593b81c5d4605f7e6fc2930}\label{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a7e8327486593b81c5d4605f7e6fc2930}} 
+\index{compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}!x\_size\_@{x\_size\_}}
+\index{x\_size\_@{x\_size\_}!compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}}
+\doxysubsubsection{\texorpdfstring{x\_size\_}{x\_size\_}}
+{\footnotesize\ttfamily int compnal\+::lattice\+::\+Two\+Dimensional\+Lattice\+::x\+\_\+size\+\_\+ = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Size of the x-\/direction. 
+
+\mbox{\Hypertarget{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a6d013c9555b711817d8cb2193b846773}\label{classcompnal_1_1lattice_1_1_two_dimensional_lattice_a6d013c9555b711817d8cb2193b846773}} 
+\index{compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}!y\_size\_@{y\_size\_}}
+\index{y\_size\_@{y\_size\_}!compnal::lattice::TwoDimensionalLattice@{compnal::lattice::TwoDimensionalLattice}}
+\doxysubsubsection{\texorpdfstring{y\_size\_}{y\_size\_}}
+{\footnotesize\ttfamily int compnal\+::lattice\+::\+Two\+Dimensional\+Lattice\+::y\+\_\+size\+\_\+ = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Size of the y-\/direction. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/lattice/\mbox{\hyperlink{two__dimensional__lattice_8hpp}{two\+\_\+dimensional\+\_\+lattice.\+hpp}}\end{DoxyCompactItemize}
