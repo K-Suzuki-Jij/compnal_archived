@@ -1,3 +1,4 @@
+//
 //  Copyright 2022 Kohei Suzuki
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,22 +13,31 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Created by Kohei Suzuki on 2021/06/14.
+//  test_ising.hpp
+//  compnal
+//
+//  Created by kohei on 2022/08/28.
+//  
 //
 
+#ifndef COMPNAL_TEST_MODEL_ISING_HPP_
+#define COMPNAL_TEST_MODEL_ISING_HPP_
 
-#include "utility/test_integer.hpp"
-#include "lattice/test_base_one_dimensional_lattice.hpp"
-#include "lattice/test_base_two_dimensional_lattice.hpp"
-#include "lattice/test_base_three_dimensional_lattice.hpp"
-#include "lattice/test_infinite_range.hpp"
-#include "lattice/test_any_lattice.hpp"
-#include "model/classical/test_polynomial_ising.hpp"
-#include "model/classical/test_ising.hpp"
-#include "solver/test_classical_monte_carlo.hpp"
-#include "gtest/gtest.h"
+#include "../../../src/model/classical/ising.hpp"
 
-int main(int argc, char **argv) {
-   testing::InitGoogleTest(&argc, argv);
-   return RUN_ALL_TESTS();
+namespace compnal {
+namespace test {
+
+TEST(ModelIsing, InfiniteRange) {
+   
+   lattice::InfiniteRange lattice{10};
+   auto model = model::make_ising(lattice, 0.0, 1.0);
+   
+   
 }
+
+
+} // namespace test
+} // namespace compnal
+
+#endif /* COMPNAL_TEST_MODEL_POLYNOMIAL_ISING_HPP_ */
