@@ -28,7 +28,7 @@ class PolynomialIsing:
         """
         Args:
             lattice (LatticeType): The lattice.
-            interaction (dict[int, float], optional): The interaction.
+            interaction (dict[int, float]): The interaction.
         """
         self.__base_model = base_model.make_polynomial_ising(lattice=lattice, interaction=interaction)
 
@@ -186,7 +186,7 @@ def make_polynomial_ising(
 
     Args:
         lattice (LatticeType): The lattice.
-        interaction (InteractionType, optional): The interaction.
+        interaction (InteractionType): The interaction.
 
     Raises:
         TypeError: The error raises when the unsupported lattices input.

@@ -148,6 +148,14 @@ class ClassicalMonteCarlo:
         """
         return self.__base_solver.calculate_sample_average()
 
+    def calculate_sample_distribution(self) -> list[float]:
+        """Calculate average of samples at each sites.
+
+        Returns:
+            list[float]: Average of samples at each sites.
+        """
+        return self.__base_solver.calculate_sample_distribution()
+
     def calculate_sample_moment(self, degree: int) -> float:
         """Calculate the moment with the specified degree of each sample and take average for all the moments.
 
@@ -173,7 +181,7 @@ class ClassicalMonteCarlo:
         Returns:
             float: Correlation function from the samples at the sites of index_1 and index_2.
         """
-        return self.__base_solver.calculate_correlation_function(index_1, index_2)
+        return self.__base_solver.calculate_correlation(index_1, index_2)
 
     def calculate_correlation_list(
             self, 
@@ -189,7 +197,7 @@ class ClassicalMonteCarlo:
         Returns:
             list[float]: Correlation function list from the samples at the sites of origin and index in index_list.
         """
-        return self.__base_solver.calculate_correlation_function(origin, index_list)
+        return self.__base_solver.calculate_correlation_list(origin, index_list)
 
     @property
     def updater(self) -> Updater:

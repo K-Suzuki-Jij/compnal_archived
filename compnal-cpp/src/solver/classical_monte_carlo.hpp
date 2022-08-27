@@ -182,6 +182,15 @@ public:
       return model_.CalculateMoment(samples_, 1, num_threads_);
    }
    
+   std::vector<RealType> CalculateSampleDistribution() const {
+      std::vector<RealType> dist(model_.GetSystemSize());
+#pragma omp parallel for schedule(guided) num_threads(num_threads_)
+      for (std::int32_t i = 0; i < model_.GetSystemSize(); ++i) {
+         dist[i] = model_.CalculateOnsiteSampleAverage(samples_, i);
+      }
+      return dist;
+   }
+   
    RealType CalculateSampleMoment(const std::int32_t degree) const {
       return model_.CalculateMoment(samples_, degree, num_threads_);
    }

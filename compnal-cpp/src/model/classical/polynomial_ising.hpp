@@ -87,11 +87,23 @@ public:
       return val/samples.size();
    }
    
+   RealType CalculateOnsiteSampleAverage(const std::vector<std::vector<OPType>> &samples,
+                                         const IndexType index) const {
+      if (index < 0) {
+         throw std::runtime_error("The index is out of range.");
+      }
+      RealType val = 0;
+      for (std::size_t i = 0; i < samples.size(); ++i) {
+         val += samples[i][index];
+      }
+      return val/samples.size();
+   }
+   
    RealType CalculateCorrelation(const std::vector<std::vector<OPType>> &samples,
-                                         const IndexType ind1,
-                                         const IndexType ind2) const {
+                                 const IndexType ind1,
+                                 const IndexType ind2) const {
       const std::int32_t size = static_cast<std::int32_t>(samples.size());
-      if (ind1 < 0 || ind2 < 0 || ind1 >= size || ind2 >= size) {
+      if (ind1 < 0 || ind2 < 0) {
          throw std::runtime_error("The index is out of range.");
       }
       RealType val = 0;
