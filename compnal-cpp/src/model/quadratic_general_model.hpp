@@ -23,14 +23,64 @@
 #ifndef COMPNAL_MODEL_QUADRATIC_GENERAL_MODEL_HPP_
 #define COMPNAL_MODEL_QUADRATIC_GENERAL_MODEL_HPP_
 
+#include "../utility/hash.hpp"
+#include "../utility/type.hpp"
+#include <vector>
+
 namespace compnal {
 namespace model {
 
 template<typename RealType>
 class QuadraticGeneralModel {
   
+public:
+   using IndexType = utility::AnyIndexType;
+   using IndexHash = utility::AnyIndexHash;
+   using PairHash  = utility::AnyIndexPairHash;
    
+   QuadraticGeneralModel(const std::unordered_map<IndexType, RealType, IndexHash> &linear,
+                         const std::unordered_map<std::pair<IndexType, IndexType>, RealType, PairHash> &quadratic) {
+      for (const auto &it: linear) {
+         if (std::abs(it.second) > std::numeric_limits<RealType>::epsilon()) {
+            index_set_.emplace(it.first);
+            linear_[it.first] += it.second;
+         }
+      }
+      for (const auto &it: quadratic) {
+         if (std::abs(it.second) > std::numeric_limits<RealType>::epsilon()) {
+            index_set_.emplace(it.first.first);
+            index_set_.emplace(it.first.second);
+            if (it.first.first < it.first.second) {
+               quadratic_[{it.first.first, it.first.second}] += it.second;
+            }
+            else {
+               quadratic_[{it.first.second, it.first.first}] += it.second;
+            }
+         }
+      }
+      std::vector<IndexType> index_list = GenerateIndexList();
+      std::int64_t count = 0;
+      for (std::size_t i = 0; i < index_list.size(); ++i) {
+         index_map_[index_list[i]] = count;
+         count++;
+      }
+   }
    
+   std::vector<IndexType> GenerateIndexList() const {
+      std::vector<IndexType> index_list(index_set_.begin(), index_set_.end());
+      std::sort(index_list.begin(), index_list.end());
+      return index_list;
+   }
+
+   
+private:
+   int32_t degree_ = 0;
+   std::unordered_set<IndexType, IndexHash> index_set_;
+   std::unordered_map<IndexType, std::int64_t, IndexHash> index_map_;
+   RealType constant_ = 0;
+   std::unordered_map<IndexType, RealType, IndexHash> linear_;
+   std::unordered_map<std::pair<IndexType, IndexType>, RealType, PairHash> quadratic_;
+
 };
 
 
