@@ -28,6 +28,13 @@
 namespace compnal {
 namespace test {
 
+TEST(ModelIsing, AnyLattice) {
+   
+   auto model = model::make_ising<double>(lattice::AnyLattice{}, {}, {});
+   
+   
+}
+
 TEST(ModelIsing, InfiniteRange) {
    
    lattice::InfiniteRange lattice{10};

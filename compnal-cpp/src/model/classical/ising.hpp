@@ -25,6 +25,7 @@
 
 #include "../../lattice/all.hpp"
 #include "../../utility/type.hpp"
+#include "../quadratic_general_model.hpp"
 #include <vector>
 
 namespace compnal {
@@ -163,11 +164,60 @@ private:
    }
 };
 
+template<typename RealType>
+class Ising<lattice::AnyLattice, RealType> {
+   static_assert(std::is_floating_point<RealType>::value, "Template parameter RealType must be floating point type");
+   
+public:
+   using ValueType = RealType;
+   using OPType = utility::SpinType;
+   using IndexType = typename QuadraticGeneralModel<RealType>::IndexType;
+   using IndexHash = typename QuadraticGeneralModel<RealType>::IndexHash;
+   using PairHash  = typename QuadraticGeneralModel<RealType>::PairHash;
+   
+   Ising(const lattice::AnyLattice &lattice,
+         const std::unordered_map<IndexType, RealType, IndexHash> &linear,
+         const std::unordered_map<std::pair<IndexType, IndexType>, RealType, PairHash> &quadratic):
+   lattice_(lattice), interaction_(linear, quadratic) {}
+   
+private:
+   QuadraticGeneralModel<RealType> interaction_;
+   lattice::AnyLattice lattice_;
+   
+   RealType CalculateMagnetization(const std::vector<OPType> &sample) const {
+      RealType val = 0;
+      for (std::size_t i = 0; i < sample.size(); ++i) {
+         val += sample[i];
+      }
+      return val/sample.size();
+   }
+   
+};
+
 template<class LatticeType, typename RealType>
 auto make_ising(const LatticeType &lattice,
                 const RealType interaction_deg_1,
                 const RealType interaction_deg_2) {
    return Ising<LatticeType, RealType>{lattice, interaction_deg_1, interaction_deg_2};
+}
+
+template<typename RealType>
+auto make_ising(const lattice::AnyLattice &lattice,
+                const std::unordered_map<
+                typename QuadraticGeneralModel<RealType>::IndexType, RealType,
+                typename QuadraticGeneralModel<RealType>::IndexHash
+                > &linear,
+                const std::unordered_map<
+                std::pair<
+                typename QuadraticGeneralModel<RealType>::IndexType,
+                typename QuadraticGeneralModel<RealType>::IndexType
+                >,
+                RealType,
+                typename QuadraticGeneralModel<RealType>::PairHash
+                > &quadratic) {
+   
+   return Ising<lattice::AnyLattice, RealType>{lattice, linear, quadratic};
+   
 }
 
 } // namespace model

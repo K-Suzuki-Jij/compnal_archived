@@ -71,6 +71,14 @@ public:
       std::sort(index_list.begin(), index_list.end());
       return index_list;
    }
+   
+   const std::unordered_map<IndexType, RealType, IndexHash> GetInteractionLinear() const {
+      return linear_;
+   }
+   
+   const std::unordered_map<std::pair<IndexType, IndexType>, RealType, PairHash> GetInteractionQuadratic() const {
+      return quadratic_;
+   }
 
    
 private:
