@@ -11,7 +11,7 @@ from compnal.lattice.boundary_condition import (
 
 
 LatticeType = Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange, AnyLattice]
-InteractionType = Union[dict[int, float], dict[list[Union[int, str, list[Union[int, str]]]], float]]
+InteractionType = Union[dict[int, float], dict[tuple[Union[int, str, tuple[Union[int, str]]]], float]]
 
 class PolynomialIsing:
     """PolynomialIsing class.
@@ -95,22 +95,22 @@ class PolynomialIsingAnyLattice:
     def __init__(
             self, 
             lattice: AnyLattice, 
-            interaction: dict[list[Union[int, str, list[Union[int, str]]]], float]
+            interaction: dict[tuple[Union[int, str, tuple[Union[int, str]]]], float]
         ) -> None:
         """Constructor of PolynomialIsingAnyLattice class.
 
         Args:
             lattice (AnyLattice): The lattice.
-            interaction (dict[list[Union[int, str, list[Union[int, str]]]], float]): The interactions.
+            interaction (dict[tuple[Union[int, str, tuple[Union[int, str]]]], float]): The interactions.
         """
 
         self.__base_model = base_model.make_polynomial_ising(lattice=lattice, interaction=interaction)
 
-    def get_interaction(self) -> dict[list[Union[int, str, tuple[Union[int, str]]]], float]:
+    def get_interaction(self) -> dict[tuple[Union[int, str, tuple[Union[int, str]]]], float]:
         """Get interaction.
 
         Returns:
-            dict[list[Union[int, str, tuple[Union[int, str]]]], float]: The interaction.
+            dict[tuple[Union[int, str, tuple[Union[int, str]]]], float]: The interaction.
         """
         keys, values = self.__base_model.generate_interaction_as_pair()
         interaction_map = {}

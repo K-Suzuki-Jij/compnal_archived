@@ -114,17 +114,17 @@ class IsingAnyLattice:
     def __init__(
             self,
             lattice: AnyLattice, 
-            linear: dict[Union[int, str, list[Union[int, str]]], float],
-            quadratic: dict[tuple[Union[int, str, list[Union[int, str]]], Union[int, str, list[Union[int, str]]]], float]
+            linear: dict[Union[int, str, tuple[Union[int, str]]], float],
+            quadratic: dict[tuple[Union[int, str, tuple[Union[int, str]]], Union[int, str, tuple[Union[int, str]]]], float]
         ) -> None:
         """Constructor
 
         Args:
             lattice (AnyLattice): The lattice.
-            linear (dict[Union[int, str, list[Union[int, str]]], float]): The linear interaction.
-            quadratic (dict[tuple[Union[int, str, list[Union[int, str]]], Union[int, str, list[Union[int, str]]]], float]): The quadratic interaction.
+            linear (dict[Union[int, str, tuple[Union[int, str]]], float]): The linear interaction.
+            quadratic (dict[tuple[Union[int, str, tuple[Union[int, str]]], Union[int, str, tuple[Union[int, str]]]], float]): The quadratic interaction.
         """
-        self.__base_model = base_model.make_polynomial_ising(lattice=lattice, linear=linear, quadratic=quadratic)
+        self.__base_model = base_model.make_ising(lattice=lattice, linear=linear, quadratic=quadratic)
 
     def set_constant(self, constant: float) -> None:
         """Set the constant term.
@@ -134,11 +134,11 @@ class IsingAnyLattice:
         """
         self.__base_model.set_constant(constant)
 
-    def get_interaction(self) -> dict[list[Union[int, str, tuple[Union[int, str]]]], float]:
+    def get_interaction(self) -> dict[tuple[Union[int, str, tuple[Union[int, str]]]], float]:
         """Get interaction.
 
         Returns:
-            dict[list[Union[int, str, tuple[Union[int, str]]]], float]: The interaction.
+            dict[tuple[Union[int, str, tuple[Union[int, str]]]], float]: The interaction.
         """
         interaction_map = {}
         interaction_map[()] = self.__base_model.get_constant()
