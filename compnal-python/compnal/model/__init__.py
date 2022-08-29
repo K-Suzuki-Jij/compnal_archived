@@ -3,3 +3,8 @@ from compnal.model.polynomial_ising import (
     PolynomialIsing,
     PolynomialIsingAnyLattice
 )
+from compnal.model.ising import (
+    make_ising,
+    Ising,
+    IsingAnyLattice
+)
