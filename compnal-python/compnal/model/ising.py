@@ -21,21 +21,21 @@ class Ising:
     def __init__(
             self,
             lattice: Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange],
-            linear_interaction: float,
-            quadratic_interaction: float
+            linear: float,
+            quadratic: float
         ) -> None:
         """Constructor.
 
         Args:
             lattice (Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange]): The lattice.
-            linear_interaction (float): The linear interaction.
-            quadratic_interaction (float): The quadratic interaction.
+            linear (float): The linear interaction.
+            quadratic (float): The quadratic interaction.
         """
         
         self.__base_model = base_model.make_ising(
                 lattice=lattice, 
-                interaction_deg_1=linear_interaction,
-                interaction_deg_2=quadratic_interaction
+                interaction_deg_1=linear,
+                interaction_deg_2=quadratic
             )
 
     def set_constant(self, constant: float) -> None:
@@ -202,3 +202,34 @@ class IsingAnyLattice:
     @property
     def _base_model(self):
         return self.__base_model
+
+
+def make_ising(
+        lattice: Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange, AnyLattice], 
+        linear: Union[float, dict[Union[int, str, list[Union[int, str]]], float]],
+        quadratic: Union[float, dict[tuple[Union[int, str, list[Union[int, str]]], Union[int, str, list[Union[int, str]]]], float]]
+    ) -> Union[Ising, IsingAnyLattice]:
+
+    """Make PolynomialIsing class from lattice (and interaction).
+
+    Args:
+        lattice (Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange, AnyLattice]):
+            The lattice.
+        linear (Union[float, dict[Union[int, str, list[Union[int, str]]], float]]):
+            The linear interaction.
+        quadratic (Union[float, dict[tuple[Union[int, str, list[Union[int, str]]], Union[int, str, list[Union[int, str]]]], float]]):
+            The quadratic interaction.
+
+    Raises:
+        TypeError: The error raises when the unsupported lattices input.
+
+    Returns:
+        Union[Ising, IsingAnyLattice]: Ising class.
+    """
+
+    if isinstance(lattice, (Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange)):    
+        return Ising(lattice=lattice, linear=linear, quadratic=quadratic)          
+    elif isinstance(lattice, AnyLattice):
+        return IsingAnyLattice(lattice=lattice, linear=linear, quadratic=quadratic)
+    else:
+        raise TypeError("Unknown LatticeType.")
