@@ -46,6 +46,10 @@ public:
          const RealType interaction_deg_2):
    lattice_(lattice), interaction_deg_1_(interaction_deg_1), interaction_deg_2_(interaction_deg_2) {}
    
+   void SetConstant(const RealType constant) {
+      interaction_deg_0_ = constant;
+   }
+   
    std::tuple<RealType, RealType, RealType> GetInteraction() const {
       return {interaction_deg_0_, interaction_deg_1_, interaction_deg_2_};
    }
@@ -59,7 +63,15 @@ public:
    }
       
    std::int32_t GetDegree() const {
-      return 2;
+      if (std::abs(interaction_deg_2_) > std::numeric_limits<RealType>::epsilon()) {
+         return 2;
+      }
+      else if (std::abs(interaction_deg_1_) > std::numeric_limits<RealType>::epsilon()) {
+         return 1;
+      }
+      else {
+         return 0;
+      }
    }
    
    RealType CalculateEnergy(const std::vector<OPType> &sample) const {
@@ -179,6 +191,94 @@ public:
          const std::unordered_map<IndexType, RealType, IndexHash> &linear,
          const std::unordered_map<std::pair<IndexType, IndexType>, RealType, PairHash> &quadratic):
    lattice_(lattice), interaction_(linear, quadratic) {}
+   
+   void SetConstant(const RealType constant) {
+      interaction_.SetConstant(constant);
+   }
+   
+   std::vector<IndexType> GenerateIndexList() const {
+      return interaction_.GenerateIndexList();
+   }
+   
+   RealType GetConstant() const {
+      return interaction_.GetConstant();
+   }
+   
+   const std::unordered_map<IndexType, RealType, IndexHash> &GetLinearInteraction() const {
+      return interaction_.GetLinearInteraction();
+   }
+   
+   const std::unordered_map<std::pair<IndexType, IndexType>, RealType, PairHash> &GetQuadraticInteraction() const {
+      return interaction_.GetQuadraticInteraction();
+   }
+   
+   std::unordered_set<IndexType, IndexHash> GetIndexSet() const {
+      return interaction_.GetIndexSet();
+   }
+   
+   std::int32_t GetSystemSize() const {
+      return interaction_.GetSystemSize();
+   }
+   
+   std::int32_t GetDegree() const {
+      return interaction_.GetDegree();
+   }
+   
+   lattice::BoundaryCondition GetBoundaryCondition() const {
+      return lattice_.GetBoundaryCondition();
+   }
+   
+   RealType CalculateEnergy(const std::vector<OPType> &sample) const {
+      if (sample.size() != interaction_.GetSystemSize()) {
+         throw std::runtime_error("The sample size is not equal to the system size");
+      }
+      const std::unordered_map<IndexType, std::int64_t, IndexHash> &index_map = interaction_.GetIndexMap();
+      RealType val = interaction_.GetConstant();
+      
+      for (const auto &it: interaction_.GetLinearInteraction()) {
+         val += it.second*sample[index_map.at(it.first)];
+      }
+      
+      for (const auto &it: interaction_.GetQuadraticInteraction()) {
+         val += it.second*sample[index_map.at(it.first.first)]*sample[index_map.at(it.first.second)];
+      }
+      
+      return val;
+   }
+   
+   RealType CalculateMoment(const std::vector<std::vector<OPType>> &samples,
+                            const std::int32_t degree,
+                            const std::int32_t num_threads = utility::DEFAULT_NUM_THREADS) const {
+      if (degree <= 0) {
+         throw std::runtime_error("degree must be lager than 0.");
+      }
+      
+      RealType val = 0;
+#pragma omp parallel for schedule(guided) reduction(+: val) num_threads(num_threads)
+      for (std::int32_t i = 0; i < static_cast<std::int32_t>(samples.size()); ++i) {
+         RealType avg = CalculateMagnetization(samples[i]);
+         RealType prod = 1;
+         for (std::int32_t j = 0; j < degree; ++j) {
+            prod = prod*avg;
+         }
+         val += prod;
+      }
+      return val/samples.size();
+   }
+   
+   RealType CalculateCorrelation(const std::vector<std::vector<OPType>> &samples,
+                                 const IndexType ind1,
+                                 const IndexType ind2) const {
+      const std::unordered_map<IndexType, std::int64_t, IndexHash> &index_map = interaction_.GetIndexMap();
+      if (index_map.count(ind1) == 0 || index_map.count(ind2) == 0) {
+         throw std::runtime_error("The index is out of range.");
+      }
+      RealType val = 0;
+      for (std::size_t i = 0; i < samples.size(); ++i) {
+         val += samples[i][index_map.at(ind1)]*samples[i][index_map.at(ind2)];
+      }
+      return val/samples.size();
+   }
    
 private:
    QuadraticGeneralModel<RealType> interaction_;

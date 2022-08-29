@@ -44,6 +44,7 @@ public:
          if (std::abs(it.second) > std::numeric_limits<RealType>::epsilon()) {
             index_set_.emplace(it.first);
             linear_[it.first] += it.second;
+            degree_ = 1;
          }
       }
       for (const auto &it: quadratic) {
@@ -56,6 +57,7 @@ public:
             else {
                quadratic_[{it.first.second, it.first.first}] += it.second;
             }
+            degree_ = 2;
          }
       }
       std::vector<IndexType> index_list = GenerateIndexList();
@@ -66,20 +68,43 @@ public:
       }
    }
    
+   void SetConstant(const RealType constant) {
+      constant_ = constant;
+   }
+   
    std::vector<IndexType> GenerateIndexList() const {
       std::vector<IndexType> index_list(index_set_.begin(), index_set_.end());
       std::sort(index_list.begin(), index_list.end());
       return index_list;
    }
    
-   const std::unordered_map<IndexType, RealType, IndexHash> GetInteractionLinear() const {
+   RealType GetConstant() const {
+      return constant_;
+   }
+   
+   const std::unordered_map<IndexType, RealType, IndexHash> &GetLinearInteraction() const {
       return linear_;
    }
    
-   const std::unordered_map<std::pair<IndexType, IndexType>, RealType, PairHash> GetInteractionQuadratic() const {
+   const std::unordered_map<std::pair<IndexType, IndexType>, RealType, PairHash> &GetQuadraticInteraction() const {
       return quadratic_;
    }
+   
+   std::int32_t GetSystemSize() const {
+      return static_cast<std::int32_t>(index_set_.size());
+   }
 
+   const std::unordered_set<IndexType, IndexHash> &GetIndexSet() const {
+      return index_set_;
+   }
+   
+   const std::unordered_map<IndexType, std::int64_t, IndexHash> &GetIndexMap() const {
+      return index_map_;
+   }
+   
+   std::int32_t GetDegree() const {
+      return degree_;
+   }
    
 private:
    int32_t degree_ = 0;
