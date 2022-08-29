@@ -10,33 +10,49 @@ from compnal.lattice.boundary_condition import (
 )
 
 
-LatticeType = Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange, AnyLattice]
-InteractionType = Union[dict[int, float], dict[list[Union[int, str, list[Union[int, str]]]], float]]
-
-class PolynomialIsing:
-    """PolynomialIsing class.
+class Ising:
+    """Ising class.
 
     Attributes:
         system_size (int): The system size
         boundary_condition (BoundaryCondition): The boundary condition.
     """
+
     def __init__(
-            self, 
+            self,
             lattice: Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange],
-            interaction: dict[int, float]
+            linear_interaction: float,
+            quadratic_interaction: float
         ) -> None:
-        """
+        """Constructor.
+
         Args:
             lattice (Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange]): The lattice.
-            interaction (dict[int, float]): The interaction.
+            linear_interaction (float): The linear interaction.
+            quadratic_interaction (float): The quadratic interaction.
         """
-        self.__base_model = base_model.make_polynomial_ising(lattice=lattice, interaction=interaction)
+        
+        self.__base_model = base_model.make_ising(
+                lattice=lattice, 
+                interaction_deg_1=linear_interaction,
+                interaction_deg_2=quadratic_interaction
+            )
 
-    def get_interaction(self) -> list:
+    def set_constant(self, constant: float) -> None:
+        """Set the constant term.
+
+        Args:
+            constant (float): The constant term.
+        """
+        self.__base_model.set_constant(constant)
+    
+    def get_interaction(self) -> tuple[float, float, float]:
         """Get interaction.
 
         Returns:
-            list: The interaction.
+            list:
+                The interaction as tuple of the first value being constant term,
+                the second value being linear term, and the third value being quadratic term.
         """
         return self.__base_model.get_interaction()
 
@@ -75,6 +91,7 @@ class PolynomialIsing:
         """
         return self.__base_model.calculate_energy(sample)
 
+    
     @property
     def system_size(self) -> int:
         return self.get_system_size()
@@ -84,27 +101,38 @@ class PolynomialIsing:
         return self.get_boundary_condition()
 
     @property
-    def _base_model(self):
+    def _base_model(self) -> None:
         return self.__base_model
 
-
-class PolynomialIsingAnyLattice:
-    """PolynomialIsing class with the any lattice.
-    User can add any interactions.
+class IsingAnyLattice:
+    """Ising class with the any lattice.
+    
+    Attributes:
+        system_size (int): The system size
+        boundary_condition (BoundaryCondition): The boundary condition.
     """
     def __init__(
-            self, 
+            self,
             lattice: AnyLattice, 
-            interaction: dict[list[Union[int, str, list[Union[int, str]]]], float]
+            linear: dict[Union[int, str, list[Union[int, str]]], float],
+            quadratic: dict[tuple[Union[int, str, list[Union[int, str]]], Union[int, str, list[Union[int, str]]]], float]
         ) -> None:
-        """Constructor of PolynomialIsingAnyLattice class.
+        """Constructor
 
         Args:
             lattice (AnyLattice): The lattice.
-            interaction (dict[list[Union[int, str, list[Union[int, str]]]], float]): The interactions.
+            linear (dict[Union[int, str, list[Union[int, str]]], float]): The linear interaction.
+            quadratic (dict[tuple[Union[int, str, list[Union[int, str]]], Union[int, str, list[Union[int, str]]]], float]): The quadratic interaction.
         """
+        self.__base_model = base_model.make_polynomial_ising(lattice=lattice, linear=linear, quadratic=quadratic)
 
-        self.__base_model = base_model.make_polynomial_ising(lattice=lattice, interaction=interaction)
+    def set_constant(self, constant: float) -> None:
+        """Set the constant term.
+
+        Args:
+            constant (float): The constant term.
+        """
+        self.__base_model.set_constant(constant)
 
     def get_interaction(self) -> dict[list[Union[int, str, tuple[Union[int, str]]]], float]:
         """Get interaction.
@@ -112,22 +140,21 @@ class PolynomialIsingAnyLattice:
         Returns:
             dict[list[Union[int, str, tuple[Union[int, str]]]], float]: The interaction.
         """
-        keys, values = self.__base_model.generate_interaction_as_pair()
         interaction_map = {}
-        for key, value in zip(keys, values):
+        interaction_map[()] = self.__base_model.get_constant()
+
+        for key, value in self.__base_model.get_linear_interaction().items():
             if isinstance(key, list):
-                interaction_map[tuple(key)] = value
+                interaction_map[(tuple(key),)] = value
             else:
-                interaction_map[key] = value
+                interaction_map[(key,)] = value
+
+        for key, value in self.__base_model.get_quadratic_interaction().items():
+            key_1 = tuple(key[0]) if isinstance(key[0], list) else key[0]
+            key_2 = tuple(key[1]) if isinstance(key[1], list) else key[1]
+            interaction_map[(key_1, key_2)] = value
+
         return interaction_map
-
-    def get_system_size(self) -> int:
-        """Get the system size.
-
-        Returns:
-            int: The system size.
-        """
-        return self.__base_model.get_system_size()
 
     def get_boundary_condition(self) -> BoundaryCondition:
         """Get the boundary condition.
@@ -175,29 +202,3 @@ class PolynomialIsingAnyLattice:
     @property
     def _base_model(self):
         return self.__base_model
-
-
-def make_polynomial_ising(
-        lattice: LatticeType, 
-        interaction: InteractionType
-    ) -> Union[PolynomialIsing, PolynomialIsingAnyLattice]:
-
-    """Make PolynomialIsing class from lattice (and interaction).
-
-    Args:
-        lattice (LatticeType): The lattice.
-        interaction (InteractionType): The interaction.
-
-    Raises:
-        TypeError: The error raises when the unsupported lattices input.
-
-    Returns:
-        Union[PolynomialIsing, PolynomialIsingAnyLattice]: PolynomialIsing class.
-    """
-
-    if isinstance(lattice, (Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange)):    
-        return PolynomialIsing(lattice=lattice, interaction=interaction)          
-    elif isinstance(lattice, AnyLattice):
-        return PolynomialIsingAnyLattice(lattice=lattice, interaction=interaction)
-    else:
-        raise TypeError("Unknown LatticeType.")

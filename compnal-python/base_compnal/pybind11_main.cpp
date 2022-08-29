@@ -36,6 +36,14 @@ PYBIND11_MODULE(base_compnal, m) {
    compnal::wrapper::pybind11LatticeAnyLattice(m_lattice);
 
    py::module_ m_model = m.def_submodule("base_model");
+   compnal::wrapper::pybind11ModelIsing<compnal::lattice::Chain, RealType>(m_model, "Chain");
+   compnal::wrapper::pybind11ModelIsing<compnal::lattice::Square, RealType>(m_model, "Square");
+   compnal::wrapper::pybind11ModelIsing<compnal::lattice::Triangle, RealType>(m_model, "Triangle");
+   compnal::wrapper::pybind11ModelIsing<compnal::lattice::Honeycomb, RealType>(m_model, "Honeycomb");
+   compnal::wrapper::pybind11ModelIsing<compnal::lattice::Cubic, RealType>(m_model, "Cubic");
+   compnal::wrapper::pybind11ModelIsing<compnal::lattice::InfiniteRange, RealType>(m_model, "InfiniteRange");
+   compnal::wrapper::pybind11ModelIsingAnyLattice<RealType>(m_model, "AnyLattice");
+   
    compnal::wrapper::pybind11ModelPolynomialIsing<compnal::lattice::Chain, RealType>(m_model, "Chain");
    compnal::wrapper::pybind11ModelPolynomialIsing<compnal::lattice::Square, RealType>(m_model, "Square");
    compnal::wrapper::pybind11ModelPolynomialIsing<compnal::lattice::Triangle, RealType>(m_model, "Triangle");
