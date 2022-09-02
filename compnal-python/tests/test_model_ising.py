@@ -75,5 +75,4 @@ def test_model_ising_basic():
             quadratic={(1, "a"): -2.0, (1, (2, "a")): -3.1}
         )
     ising.set_constant(3.0)
-    print(ising.get_interaction())
     assert ising.get_interaction() == {(): 3.0, (1,): 1.0, ("a", ): 1.2, (("a", 3),): 3, (1, "a"): -2.0, (1, (2, "a")): -3.1}
