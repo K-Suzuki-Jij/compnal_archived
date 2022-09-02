@@ -1,3 +1,4 @@
+from cProfile import label
 from compnal import lattice
 
 def test_lattice_one_dim():
@@ -44,3 +45,16 @@ def test_lattice_three_dim():
     assert cubic.system_size == 24
     assert cubic.get_boundary_condition() == lattice.BoundaryCondition.OBC
     assert cubic.boundary_condition == lattice.BoundaryCondition.OBC
+
+def test_higher_dim():
+    infinite_range = lattice.InfiniteRange(system_size=3)
+    infinite_range.system_size = 4
+    assert infinite_range.get_boundary_condition() == lattice.BoundaryCondition.NONE
+    assert infinite_range.boundary_condition == lattice.BoundaryCondition.NONE
+    assert infinite_range.get_system_size() == 4
+    assert infinite_range.system_size == 4
+
+def test_any_lattice():
+    any_lattice = lattice.AnyLattice()
+    assert any_lattice.get_boundary_condition() == lattice.BoundaryCondition.NONE
+    assert any_lattice.boundary_condition == lattice.BoundaryCondition.NONE
