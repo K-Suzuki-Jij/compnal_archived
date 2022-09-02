@@ -44,6 +44,26 @@ class Chain(base_lattice.Chain):
         """
         super().set_system_size(system_size)
 
+    def get_boundary_condition(self) -> BoundaryCondition:
+        """Get the boundary condition.
+
+        Returns:
+            BoundaryCondition: The boundary condition.
+        """
+        return cast_base_boundary_condition(
+            super().get_boundary_condition()
+        )
+
+    def set_boundary_condition(self, boundary_condition: BoundaryCondition) -> None:
+        """Set the boundary condition.
+
+        Args:
+            boundary_condition (BoundaryCondition): The boundary condition.
+        """
+        super().set_boundary_condition(
+            cast_boundary_condition(boundary_condition)
+        )
+
     @property
     def system_size(self) -> int:
         return self.get_system_size()
@@ -54,12 +74,8 @@ class Chain(base_lattice.Chain):
 
     @property
     def boundary_condition(self) -> BoundaryCondition:
-        return cast_base_boundary_condition(
-            super().get_boundary_condition()
-        )
+        return self.get_boundary_condition()
 
     @boundary_condition.setter
     def boundary_condition(self, bc: BoundaryCondition) -> None:
-        super().set_boundary_condition(
-            cast_boundary_condition(bc)
-        )
+        self.set_boundary_condition(bc)

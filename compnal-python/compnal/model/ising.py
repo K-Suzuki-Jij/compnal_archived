@@ -143,13 +143,15 @@ class IsingAnyLattice:
         interaction_map = {}
         interaction_map[()] = self.__base_model.get_constant()
 
-        for key, value in self.__base_model.get_linear_interaction().items():
+        keys, values = self.__base_model.generate_linear_interaction_as_pair()
+        for key, value in zip(keys, values):
             if isinstance(key, list):
                 interaction_map[(tuple(key),)] = value
             else:
                 interaction_map[(key,)] = value
 
-        for key, value in self.__base_model.get_quadratic_interaction().items():
+        keys, values = self.__base_model.generate_quadratic_interaction_as_pair()
+        for key, value in zip(keys, values):
             key_1 = tuple(key[0]) if isinstance(key[0], list) else key[0]
             key_2 = tuple(key[1]) if isinstance(key[1], list) else key[1]
             interaction_map[(key_1, key_2)] = value

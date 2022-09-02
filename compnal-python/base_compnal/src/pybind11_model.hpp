@@ -77,8 +77,8 @@ void pybind11ModelIsingAnyLattice(py::module &m, const std::string &post_name = 
    py_class.def("set_constant", &Ising::SetConstant, "constant"_a);
    py_class.def("generate_index_list", &Ising::GenerateIndexList);
    py_class.def("get_constant", &Ising::GetConstant);
-   py_class.def("get_linear_interaction", &Ising::GetLinearInteraction);
-   py_class.def("get_quadratic_interaction", &Ising::GetQuadraticInteraction);
+   py_class.def("generate_linear_interaction_as_pair", &Ising::GenerateLinearInteractionAsPair);
+   py_class.def("generate_quadratic_interaction_as_pair", &Ising::GenerateQuadraticInteractionAsPair);
    py_class.def("generate_index_list", &Ising::GenerateIndexList);
    py_class.def("get_system_size", &Ising::GetSystemSize);
    py_class.def("get_degree", &Ising::GetDegree);

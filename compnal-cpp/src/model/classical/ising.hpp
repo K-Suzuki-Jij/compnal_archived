@@ -204,12 +204,12 @@ public:
       return interaction_.GetConstant();
    }
    
-   const std::unordered_map<IndexType, RealType, IndexHash> &GetLinearInteraction() const {
-      return interaction_.GetLinearInteraction();
+   std::pair<std::vector<IndexType>, std::vector<RealType>> GenerateLinearInteractionAsPair() const {
+      return interaction_.GenerateLinearInteractionAsPair();
    }
    
-   const std::unordered_map<std::pair<IndexType, IndexType>, RealType, PairHash> &GetQuadraticInteraction() const {
-      return interaction_.GetQuadraticInteraction();
+   std::pair<std::vector<std::pair<IndexType, IndexType>>, std::vector<RealType>> GenerateQuadraticInteractionAsPair() const {
+      return interaction_.GenerateQuadraticInteractionAsPair();
    }
    
    std::unordered_set<IndexType, IndexHash> GetIndexSet() const {

@@ -82,6 +82,30 @@ public:
       return constant_;
    }
    
+   std::pair<std::vector<IndexType>, std::vector<RealType>> GenerateLinearInteractionAsPair() const {
+      std::vector<IndexType> key_list;
+      std::vector<RealType> value_list;
+      key_list.reserve(linear_.size());
+      value_list.reserve(linear_.size());
+      for (const auto &it: linear_) {
+         key_list.push_back(it.first);
+         value_list.push_back(it.second);
+      }
+      return std::pair<std::vector<IndexType>, std::vector<RealType>>{key_list, value_list};
+   }
+   
+   std::pair<std::vector<std::pair<IndexType, IndexType>>, std::vector<RealType>> GenerateQuadraticInteractionAsPair() const {
+      std::vector<std::pair<IndexType, IndexType>> key_list;
+      std::vector<RealType> value_list;
+      key_list.reserve(quadratic_.size());
+      value_list.reserve(quadratic_.size());
+      for (const auto &it: quadratic_) {
+         key_list.push_back(it.first);
+         value_list.push_back(it.second);
+      }
+      return std::pair<std::vector<std::pair<IndexType, IndexType>>, std::vector<RealType>>{key_list, value_list};
+   }
+   
    const std::unordered_map<IndexType, RealType, IndexHash> &GetLinearInteraction() const {
       return linear_;
    }
