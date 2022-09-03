@@ -1,8 +1,8 @@
 from base_compnal import base_lattice
 from compnal.lattice.boundary_condition import (
-    BoundaryCondition, 
+    BoundaryCondition,
+    cast_base_boundary_condition,
     cast_boundary_condition,
-    cast_base_boundary_condition
 )
 
 
@@ -18,9 +18,9 @@ class Square(base_lattice.Square):
 
     def __init__(
         self,
-        x_size: int, 
-        y_size: int, 
-        boundary_condition: BoundaryCondition = BoundaryCondition.OBC
+        x_size: int,
+        y_size: int,
+        boundary_condition: BoundaryCondition = BoundaryCondition.OBC,
     ) -> None:
         """
         Args:
@@ -31,7 +31,7 @@ class Square(base_lattice.Square):
         super().__init__(
             x_size=x_size,
             y_size=y_size,
-            boundary_condition=cast_boundary_condition(boundary_condition)
+            boundary_condition=cast_boundary_condition(boundary_condition),
         )
 
     def get_x_size(self) -> int:
@@ -87,7 +87,7 @@ class Square(base_lattice.Square):
             None
         """
         super().set_y_size(y_size)
-    
+
     def set_boundary_condition(self, boundary_condition: BoundaryCondition) -> None:
         """Set the boundary condition.
 
@@ -140,9 +140,9 @@ class Triangle(base_lattice.Triangle):
 
     def __init__(
         self,
-        x_size: int, 
-        y_size: int, 
-        boundary_condition: BoundaryCondition = BoundaryCondition.OBC
+        x_size: int,
+        y_size: int,
+        boundary_condition: BoundaryCondition = BoundaryCondition.OBC,
     ) -> None:
         """
         Args:
@@ -153,7 +153,7 @@ class Triangle(base_lattice.Triangle):
         super().__init__(
             x_size=x_size,
             y_size=y_size,
-            boundary_condition=cast_boundary_condition(boundary_condition)
+            boundary_condition=cast_boundary_condition(boundary_condition),
         )
 
     def get_x_size(self) -> int:
@@ -209,7 +209,7 @@ class Triangle(base_lattice.Triangle):
             None
         """
         super().set_y_size(y_size)
-    
+
     def set_boundary_condition(self, boundary_condition: BoundaryCondition) -> None:
         """Set the boundary condition.
 
@@ -262,9 +262,9 @@ class Honeycomb(base_lattice.Honeycomb):
 
     def __init__(
         self,
-        x_size: int, 
-        y_size: int, 
-        boundary_condition: BoundaryCondition = BoundaryCondition.OBC
+        x_size: int,
+        y_size: int,
+        boundary_condition: BoundaryCondition = BoundaryCondition.OBC,
     ) -> None:
         """
         Args:
@@ -275,7 +275,7 @@ class Honeycomb(base_lattice.Honeycomb):
         super().__init__(
             x_size=x_size,
             y_size=y_size,
-            boundary_condition=cast_boundary_condition(boundary_condition)
+            boundary_condition=cast_boundary_condition(boundary_condition),
         )
 
     def get_x_size(self) -> int:
@@ -331,7 +331,7 @@ class Honeycomb(base_lattice.Honeycomb):
             None
         """
         super().set_y_size(y_size)
-    
+
     def set_boundary_condition(self, boundary_condition: BoundaryCondition) -> None:
         """Set the boundary condition.
 

@@ -1,9 +1,10 @@
 from base_compnal import base_lattice
 from compnal.lattice.boundary_condition import (
-    BoundaryCondition, 
+    BoundaryCondition,
+    cast_base_boundary_condition,
     cast_boundary_condition,
-    cast_base_boundary_condition
 )
+
 
 class Chain(base_lattice.Chain):
     """One-dimensional Chain lattice.
@@ -14,9 +15,9 @@ class Chain(base_lattice.Chain):
     """
 
     def __init__(
-        self, 
-        system_size: int, 
-        boundary_condition: BoundaryCondition = BoundaryCondition.OBC
+        self,
+        system_size: int,
+        boundary_condition: BoundaryCondition = BoundaryCondition.OBC,
     ) -> None:
         """
         Args:
@@ -24,8 +25,8 @@ class Chain(base_lattice.Chain):
             boundary_condition (BoundaryCondition, optional): The boundary condition. Defaults to BoundaryCondition.OBC.
         """
         super().__init__(
-            system_size=system_size, 
-            boundary_condition=cast_boundary_condition(boundary_condition)
+            system_size=system_size,
+            boundary_condition=cast_boundary_condition(boundary_condition),
         )
 
     def get_system_size(self) -> int:
@@ -50,9 +51,7 @@ class Chain(base_lattice.Chain):
         Returns:
             BoundaryCondition: The boundary condition.
         """
-        return cast_base_boundary_condition(
-            super().get_boundary_condition()
-        )
+        return cast_base_boundary_condition(super().get_boundary_condition())
 
     def set_boundary_condition(self, boundary_condition: BoundaryCondition) -> None:
         """Set the boundary condition.
@@ -60,9 +59,7 @@ class Chain(base_lattice.Chain):
         Args:
             boundary_condition (BoundaryCondition): The boundary condition.
         """
-        super().set_boundary_condition(
-            cast_boundary_condition(boundary_condition)
-        )
+        super().set_boundary_condition(cast_boundary_condition(boundary_condition))
 
     @property
     def system_size(self) -> int:

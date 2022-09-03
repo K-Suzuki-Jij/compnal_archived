@@ -1,5 +1,7 @@
 from enum import Enum
+
 from base_compnal import base_lattice
+
 
 class BoundaryCondition(Enum):
     """Boundary condition.
@@ -9,9 +11,11 @@ class BoundaryCondition(Enum):
         OBC: Open boundary condition.
         PBC: Periodic boundary condition.
     """
+
     NONE = 0
     OBC = 1
     PBC = 2
+
 
 def cast_base_boundary_condition(boundary_condition: base_lattice.BoundaryCondition):
     """Cast base_compnal.base_lattice.BoundaryCondition to compnal.lattice.BoundaryCondition.
@@ -34,6 +38,7 @@ def cast_base_boundary_condition(boundary_condition: base_lattice.BoundaryCondit
     else:
         raise RuntimeError("Unknonw BoundaryCondition")
 
+
 def cast_boundary_condition(boundary_condition: BoundaryCondition):
     """Cast compnal.lattice.BoundaryCondition to base_compnal.base_lattice.BoundaryCondition.
 
@@ -54,6 +59,3 @@ def cast_boundary_condition(boundary_condition: BoundaryCondition):
         return base_lattice.BoundaryCondition.PBC
     else:
         raise RuntimeError("Unknonw BoundaryCondition")
-
-
-

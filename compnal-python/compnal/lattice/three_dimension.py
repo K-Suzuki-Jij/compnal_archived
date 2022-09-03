@@ -1,8 +1,8 @@
 from base_compnal import base_lattice
 from compnal.lattice.boundary_condition import (
-    BoundaryCondition, 
+    BoundaryCondition,
+    cast_base_boundary_condition,
     cast_boundary_condition,
-    cast_base_boundary_condition
 )
 
 
@@ -22,7 +22,7 @@ class Cubic(base_lattice.Cubic):
         x_size: int,
         y_size: int,
         z_size: int,
-        boundary_condition: BoundaryCondition = BoundaryCondition.OBC
+        boundary_condition: BoundaryCondition = BoundaryCondition.OBC,
     ) -> None:
         """
         Args:
@@ -35,9 +35,8 @@ class Cubic(base_lattice.Cubic):
             x_size=x_size,
             y_size=y_size,
             z_size=z_size,
-            boundary_condition=cast_boundary_condition(boundary_condition)
+            boundary_condition=cast_boundary_condition(boundary_condition),
         )
-
 
     def get_x_size(self) -> int:
         """Get the size of the x-direction.

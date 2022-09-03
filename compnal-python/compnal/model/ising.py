@@ -1,13 +1,14 @@
 from typing import Union
+
 from base_compnal import base_model
-from compnal.lattice.one_dimension import Chain
-from compnal.lattice.two_dimension import Square, Triangle, Honeycomb
-from compnal.lattice.three_dimension import Cubic
-from compnal.lattice.higher_dimension import InfiniteRange, AnyLattice
 from compnal.lattice.boundary_condition import (
-    BoundaryCondition, 
-    cast_base_boundary_condition
+    BoundaryCondition,
+    cast_base_boundary_condition,
 )
+from compnal.lattice.one_dimension import Chain
+from compnal.lattice.two_dimension import Honeycomb, Square, Triangle
+from compnal.lattice.three_dimension import Cubic
+from compnal.lattice.higher_dimension import AnyLattice, InfiniteRange
 
 
 class Ising:
@@ -19,11 +20,11 @@ class Ising:
     """
 
     def __init__(
-            self,
-            lattice: Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange],
-            linear: float,
-            quadratic: float
-        ) -> None:
+        self,
+        lattice: Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange],
+        linear: float,
+        quadratic: float,
+    ) -> None:
         """Constructor.
 
         Args:
@@ -31,12 +32,10 @@ class Ising:
             linear (float): The linear interaction.
             quadratic (float): The quadratic interaction.
         """
-        
+
         self.__base_model = base_model.make_ising(
-                lattice=lattice, 
-                interaction_deg_1=linear,
-                interaction_deg_2=quadratic
-            )
+            lattice=lattice, interaction_deg_1=linear, interaction_deg_2=quadratic
+        )
 
     def set_constant(self, constant: float) -> None:
         """Set the constant term.
@@ -45,7 +44,7 @@ class Ising:
             constant (float): The constant term.
         """
         self.__base_model.set_constant(constant)
-    
+
     def get_interaction(self) -> tuple[float, float, float]:
         """Get interaction.
 
@@ -91,11 +90,10 @@ class Ising:
         """
         return self.__base_model.calculate_energy(sample)
 
-    
     @property
     def system_size(self) -> int:
         return self.get_system_size()
-    
+
     @property
     def boundary_condition(self) -> BoundaryCondition:
         return self.get_boundary_condition()
@@ -104,19 +102,27 @@ class Ising:
     def _base_model(self) -> None:
         return self.__base_model
 
+
 class IsingAnyLattice:
     """Ising class with the any lattice.
-    
+
     Attributes:
         system_size (int): The system size
         boundary_condition (BoundaryCondition): The boundary condition.
     """
+
     def __init__(
-            self,
-            lattice: AnyLattice, 
-            linear: dict[Union[int, str, tuple[Union[int, str]]], float],
-            quadratic: dict[tuple[Union[int, str, tuple[Union[int, str]]], Union[int, str, tuple[Union[int, str]]]], float]
-        ) -> None:
+        self,
+        lattice: AnyLattice,
+        linear: dict[Union[int, str, tuple[Union[int, str]]], float],
+        quadratic: dict[
+            tuple[
+                Union[int, str, tuple[Union[int, str]]],
+                Union[int, str, tuple[Union[int, str]]],
+            ],
+            float,
+        ],
+    ) -> None:
         """Constructor
 
         Args:
@@ -124,7 +130,9 @@ class IsingAnyLattice:
             linear (dict[Union[int, str, tuple[Union[int, str]]], float]): The linear interaction.
             quadratic (dict[tuple[Union[int, str, tuple[Union[int, str]]], Union[int, str, tuple[Union[int, str]]]], float]): The quadratic interaction.
         """
-        self.__base_model = base_model.make_ising(lattice=lattice, linear=linear, quadratic=quadratic)
+        self.__base_model = base_model.make_ising(
+            lattice=lattice, linear=linear, quadratic=quadratic
+        )
 
     def set_constant(self, constant: float) -> None:
         """Set the constant term.
@@ -134,7 +142,9 @@ class IsingAnyLattice:
         """
         self.__base_model.set_constant(constant)
 
-    def get_interaction(self) -> dict[tuple[Union[int, str, tuple[Union[int, str]]]], float]:
+    def get_interaction(
+        self,
+    ) -> dict[tuple[Union[int, str, tuple[Union[int, str]]]], float]:
         """Get interaction.
 
         Returns:
@@ -207,11 +217,21 @@ class IsingAnyLattice:
 
 
 def make_ising(
-        lattice: Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange, AnyLattice], 
-        linear: Union[float, dict[Union[int, str, list[Union[int, str]]], float]],
-        quadratic: Union[float, dict[tuple[Union[int, str, list[Union[int, str]]], Union[int, str, list[Union[int, str]]]], float]]
-    ) -> Union[Ising, IsingAnyLattice]:
-
+    lattice: Union[
+        Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange, AnyLattice
+    ],
+    linear: Union[float, dict[Union[int, str, list[Union[int, str]]], float]],
+    quadratic: Union[
+        float,
+        dict[
+            tuple[
+                Union[int, str, list[Union[int, str]]],
+                Union[int, str, list[Union[int, str]]],
+            ],
+            float,
+        ],
+    ],
+) -> Union[Ising, IsingAnyLattice]:
     """Make PolynomialIsing class from lattice (and interaction).
 
     Args:
@@ -229,8 +249,8 @@ def make_ising(
         Union[Ising, IsingAnyLattice]: Ising class.
     """
 
-    if isinstance(lattice, (Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange)):    
-        return Ising(lattice=lattice, linear=linear, quadratic=quadratic)          
+    if isinstance(lattice, (Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange)):
+        return Ising(lattice=lattice, linear=linear, quadratic=quadratic)
     elif isinstance(lattice, AnyLattice):
         return IsingAnyLattice(lattice=lattice, linear=linear, quadratic=quadratic)
     else:

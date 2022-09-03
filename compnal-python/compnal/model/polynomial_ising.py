@@ -1,17 +1,22 @@
 from typing import Union
+
 from base_compnal import base_model
-from compnal.lattice.one_dimension import Chain
-from compnal.lattice.two_dimension import Square, Triangle, Honeycomb
-from compnal.lattice.three_dimension import Cubic
-from compnal.lattice.higher_dimension import InfiniteRange, AnyLattice
 from compnal.lattice.boundary_condition import (
-    BoundaryCondition, 
-    cast_base_boundary_condition
+    BoundaryCondition,
+    cast_base_boundary_condition,
 )
+from compnal.lattice.higher_dimension import AnyLattice, InfiniteRange
+from compnal.lattice.one_dimension import Chain
+from compnal.lattice.three_dimension import Cubic
+from compnal.lattice.two_dimension import Honeycomb, Square, Triangle
 
+LatticeType = Union[
+    Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange, AnyLattice
+]
+InteractionType = Union[
+    dict[int, float], dict[tuple[Union[int, str, tuple[Union[int, str]]]], float]
+]
 
-LatticeType = Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange, AnyLattice]
-InteractionType = Union[dict[int, float], dict[tuple[Union[int, str, tuple[Union[int, str]]]], float]]
 
 class PolynomialIsing:
     """PolynomialIsing class.
@@ -20,17 +25,20 @@ class PolynomialIsing:
         system_size (int): The system size
         boundary_condition (BoundaryCondition): The boundary condition.
     """
+
     def __init__(
-            self, 
-            lattice: Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange],
-            interaction: dict[int, float]
-        ) -> None:
+        self,
+        lattice: Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange],
+        interaction: dict[int, float],
+    ) -> None:
         """
         Args:
             lattice (Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange]): The lattice.
             interaction (dict[int, float]): The interaction.
         """
-        self.__base_model = base_model.make_polynomial_ising(lattice=lattice, interaction=interaction)
+        self.__base_model = base_model.make_polynomial_ising(
+            lattice=lattice, interaction=interaction
+        )
 
     def get_interaction(self) -> list:
         """Get interaction.
@@ -78,7 +86,7 @@ class PolynomialIsing:
     @property
     def system_size(self) -> int:
         return self.get_system_size()
-    
+
     @property
     def boundary_condition(self) -> BoundaryCondition:
         return self.get_boundary_condition()
@@ -92,11 +100,12 @@ class PolynomialIsingAnyLattice:
     """PolynomialIsing class with the any lattice.
     User can add any interactions.
     """
+
     def __init__(
-            self, 
-            lattice: AnyLattice, 
-            interaction: dict[tuple[Union[int, str, tuple[Union[int, str]]]], float]
-        ) -> None:
+        self,
+        lattice: AnyLattice,
+        interaction: dict[tuple[Union[int, str, tuple[Union[int, str]]]], float],
+    ) -> None:
         """Constructor of PolynomialIsingAnyLattice class.
 
         Args:
@@ -104,9 +113,13 @@ class PolynomialIsingAnyLattice:
             interaction (dict[tuple[Union[int, str, tuple[Union[int, str]]]], float]): The interactions.
         """
 
-        self.__base_model = base_model.make_polynomial_ising(lattice=lattice, interaction=interaction)
+        self.__base_model = base_model.make_polynomial_ising(
+            lattice=lattice, interaction=interaction
+        )
 
-    def get_interaction(self) -> dict[tuple[Union[int, str, tuple[Union[int, str]]]], float]:
+    def get_interaction(
+        self,
+    ) -> dict[tuple[Union[int, str, tuple[Union[int, str]]]], float]:
         """Get interaction.
 
         Returns:
@@ -178,10 +191,8 @@ class PolynomialIsingAnyLattice:
 
 
 def make_polynomial_ising(
-        lattice: LatticeType, 
-        interaction: InteractionType
-    ) -> Union[PolynomialIsing, PolynomialIsingAnyLattice]:
-
+    lattice: LatticeType, interaction: InteractionType
+) -> Union[PolynomialIsing, PolynomialIsingAnyLattice]:
     """Make PolynomialIsing class from lattice (and interaction).
 
     Args:
@@ -195,8 +206,8 @@ def make_polynomial_ising(
         Union[PolynomialIsing, PolynomialIsingAnyLattice]: PolynomialIsing class.
     """
 
-    if isinstance(lattice, (Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange)):    
-        return PolynomialIsing(lattice=lattice, interaction=interaction)          
+    if isinstance(lattice, (Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange)):
+        return PolynomialIsing(lattice=lattice, interaction=interaction)
     elif isinstance(lattice, AnyLattice):
         return PolynomialIsingAnyLattice(lattice=lattice, interaction=interaction)
     else:
