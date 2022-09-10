@@ -36,6 +36,7 @@ template<typename RealType>
 class PolynomialGeneralModel {
   
 public:
+   using OPType = utility::SpinType;
    using IndexType = utility::AnyIndexType;
    using IndexHash = utility::AnyIndexHash;
    using VectorHash = utility::AnyIndexVectorHash;
@@ -71,6 +72,19 @@ public:
          if (degree_ < keys.size()) {
             degree_ = static_cast<std::int32_t>(keys.size());
          }
+      }
+      
+      adjacency_list_.resize(index_list_.size());
+      for (std::size_t i = 0; i < key_list_.size(); ++i) {
+         for (const auto &index: key_list_[i]) {
+            adjacency_list_[index].push_back(i);
+         }
+      }
+      
+      // Save memory
+      for (std::size_t i = 0; i < index_list_.size(); ++i) {
+         adjacency_list_[i].shrink_to_fit();
+         std::sort(adjacency_list_[i].begin(), adjacency_list_[i].end());
       }
    }
    
@@ -114,12 +128,17 @@ public:
       return index_map_;
    }
    
+   const std::vector<std::vector<std::size_t>> &GetAdjacencyList() const {
+      return adjacency_list_;
+   }
+   
 private:
    int32_t degree_ = 0;
    std::unordered_map<IndexType, std::int32_t, IndexHash> index_map_;
    std::vector<std::vector<std::int32_t>> key_list_;
    std::vector<RealType> value_list_;
    std::vector<IndexType> index_list_;
+   std::vector<std::vector<std::size_t>> adjacency_list_;
 };
 
 

@@ -30,7 +30,7 @@ namespace updater {
 template<typename RealType>
 void SetEnergyDifference(std::vector<typename model::PolynomialIsing<lattice::AnyLattice, RealType>::ValueType> *energy_difference,
                          const std::vector<typename model::PolynomialIsing<lattice::AnyLattice, RealType>::OPType> &sample,
-                         const std::vector<typename model::PolynomialIsing<lattice::AnyLattice, RealType>::OPType> &sign_list,
+                         const std::vector<std::int8_t> &sign_list,
                          const model::PolynomialIsing<lattice::AnyLattice, RealType> &model) {
    
    if (static_cast<std::int32_t>(sample.size()) != model.GetSystemSize()) {
@@ -40,7 +40,6 @@ void SetEnergyDifference(std::vector<typename model::PolynomialIsing<lattice::An
       throw std::runtime_error("The size of energy_difference is not equal to the system size.");
    }
    
-   using OPType = typename model::PolynomialIsing<lattice::AnyLattice, RealType>::OPType;
    using ValueType = typename model::PolynomialIsing<lattice::AnyLattice, RealType>::ValueType;
    const std::vector<std::vector<std::int32_t>> &key_list = model.GetKeyList();
    const std::vector<ValueType> &value_list = model.GetValueList();
@@ -55,7 +54,7 @@ void SetEnergyDifference(std::vector<typename model::PolynomialIsing<lattice::An
 template<typename RealType>
 void UpdateConfiguration(std::vector<typename model::PolynomialIsing<lattice::AnyLattice, RealType>::OPType> *sample,
                          std::vector<RealType> *energy_difference,
-                         std::vector<typename model::PolynomialIsing<lattice::AnyLattice, RealType>::OPType> *sign_list,
+                         std::vector<std::int8_t> *sign_list,
                          const std::int32_t index,
                          const std::vector<std::vector<std::size_t>> &adjacency_list,
                          const std::vector<std::vector<std::int32_t>> &key_list,

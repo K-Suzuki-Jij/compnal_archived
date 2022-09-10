@@ -201,6 +201,10 @@ public:
       return interaction_.GetIndexMap();
    }
    
+   const std::vector<std::vector<std::size_t>> &GetAdjacencyList() const {
+      return interaction_.GetAdjacencyList();
+   }
+   
    std::int32_t GetSystemSize() const {
       return interaction_.GetSystemSize();
    }

@@ -86,40 +86,32 @@ void ExecuteMetropolis(std::vector<typename model::PolynomialIsing<lattice::AnyL
    const std::int32_t system_size = model.GetSystemSize();
    const std::vector<std::vector<std::int32_t>> &key_list = model.GetKeyList();
    const std::vector<ValueType> &value_list = model.GetValueList();
-   std::vector<OPType> sign_list(key_list.size());
-   std::vector<std::vector<std::size_t>> adjacency_list(system_size);
+   std::vector<std::int8_t> sign_list(key_list.size());
    std::vector<ValueType> energy_difference(model.GetSystemSize());
    
    for (std::size_t i = 0; i < key_list.size(); ++i) {
-      OPType sign = 1;
+      std::int8_t sign = 1;
       for (const auto &index: key_list[i]) {
          sign *= (*sample)[index];
-         adjacency_list[index].push_back(i);
       }
       sign_list[i] = sign;
    }
    
-   // Save memory
-   for (std::int32_t i = 0; i < system_size; ++i) {
-      adjacency_list[i].shrink_to_fit();
-   }
-   
+
    // Set energy difference
    SetEnergyDifference<ValueType>(&energy_difference, *sample, sign_list, model);
-   
    
    // Set random number engine
    utility::RandType random_number_engine(seed);
    std::uniform_real_distribution<ValueType> dist_real(0, 1);
    std::uniform_int_distribution<std::int32_t> dist_system_size(0, system_size - 1);
-
    
    // Do Metropolis update
    for (std::int32_t sweep_count = 0; sweep_count < num_sweeps; sweep_count++) {
       for (std::int32_t i = 0; i < system_size; i++) {
          const std::int32_t index = dist_system_size(random_number_engine);
          if (energy_difference[index] <= 0.0 || std::exp(-beta*energy_difference[index]) > dist_real(random_number_engine)) {
-            UpdateConfiguration(sample, &energy_difference, &sign_list, index, adjacency_list, key_list, value_list);
+            UpdateConfiguration(sample, &energy_difference, &sign_list, index, model.GetAdjacencyList(), key_list, value_list);
          }
       }
    }
@@ -174,21 +166,14 @@ void ExecuteHeatBath(std::vector<typename model::PolynomialIsing<lattice::AnyLat
    using ValueType = typename model::PolynomialIsing<lattice::AnyLattice, RealType>::ValueType;
    const std::int32_t system_size = model.GetSystemSize();
    const std::vector<std::vector<std::int32_t>> &key_list = model.GetKeyList();
-   std::vector<std::vector<std::size_t>> adjacency_list(system_size);
-   std::vector<OPType> sign_list(key_list.size());
+   std::vector<std::int8_t> sign_list(key_list.size());
    
    for (std::size_t i = 0; i < key_list.size(); ++i) {
-      OPType sign = 1;
+      std::int8_t sign = 1;
       for (const auto &index: key_list[i]) {
          sign *= (*sample)[index];
-         adjacency_list[index].push_back(i);
       }
       sign_list[i] = sign;
-   }
-   
-   // Save memory
-   for (std::int32_t i = 0; i < system_size; ++i) {
-      adjacency_list[i].shrink_to_fit();
    }
    
    // Set energy difference
@@ -207,7 +192,7 @@ void ExecuteHeatBath(std::vector<typename model::PolynomialIsing<lattice::AnyLat
       for (std::int32_t i = 0; i < system_size; i++) {
          const std::int32_t index = dist_system_size(random_number_engine);
          if (1/(1 + std::exp(beta*(energy_difference)[index])) > dist_real(random_number_engine)) {
-            UpdateConfiguration(sample, &energy_difference, &sign_list, index, adjacency_list, key_list, model.GetValueList());
+            UpdateConfiguration(sample, &energy_difference, &sign_list, index, model.GetAdjacencyList(), key_list, model.GetValueList());
          }
       }
    }
