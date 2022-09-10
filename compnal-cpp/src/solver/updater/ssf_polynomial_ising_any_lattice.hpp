@@ -30,6 +30,7 @@ namespace updater {
 template<typename RealType>
 void SetEnergyDifference(std::vector<typename model::PolynomialIsing<lattice::AnyLattice, RealType>::ValueType> *energy_difference,
                          const std::vector<typename model::PolynomialIsing<lattice::AnyLattice, RealType>::OPType> &sample,
+                         const std::vector<typename model::PolynomialIsing<lattice::AnyLattice, RealType>::OPType> &sign_list,
                          const model::PolynomialIsing<lattice::AnyLattice, RealType> &model) {
    
    if (static_cast<std::int32_t>(sample.size()) != model.GetSystemSize()) {
@@ -39,15 +40,38 @@ void SetEnergyDifference(std::vector<typename model::PolynomialIsing<lattice::An
       throw std::runtime_error("The size of energy_difference is not equal to the system size.");
    }
    
-
+   using OPType = typename model::PolynomialIsing<lattice::AnyLattice, RealType>::OPType;
+   using ValueType = typename model::PolynomialIsing<lattice::AnyLattice, RealType>::ValueType;
+   const std::vector<std::vector<std::int32_t>> &key_list = model.GetKeyList();
+   const std::vector<ValueType> &value_list = model.GetValueList();
+   
+   for (std::size_t i = 0; i < key_list.size(); ++i) {
+      for (const auto &index: key_list[i]) {
+         (*energy_difference)[index] += -2*value_list[i]*sign_list[i];
+      }
+   }
 }
 
 template<typename RealType>
 void UpdateConfiguration(std::vector<typename model::PolynomialIsing<lattice::AnyLattice, RealType>::OPType> *sample,
-                         std::vector<typename model::PolynomialIsing<lattice::AnyLattice, RealType>::ValueType> *energy_difference,
+                         std::vector<RealType> *energy_difference,
+                         std::vector<typename model::PolynomialIsing<lattice::AnyLattice, RealType>::OPType> *sign_list,
                          const std::int32_t index,
-                         const model::PolynomialIsing<lattice::AnyLattice, RealType> &model) {
+                         const std::vector<std::vector<std::size_t>> &adjacency_list,
+                         const std::vector<std::vector<std::int32_t>> &key_list,
+                         const std::vector<RealType> &value_list) {
    
+   for (const auto &interaction_index: adjacency_list[index]) {
+      const RealType value = 4*value_list[interaction_index]*(*sign_list)[interaction_index];
+      (*sign_list)[interaction_index] *= -1;
+      for (const auto &update_index: key_list[interaction_index]) {
+         if (update_index == index) continue;
+         (*energy_difference)[update_index] += value;
+      }
+   }
+   
+   (*energy_difference)[index] *= -1;
+   (*sample)[index] *= -1;
 }
 
 } // namespace updater

@@ -168,6 +168,14 @@ class IsingAnyLattice:
 
         return interaction_map
 
+    def get_system_size(self) -> int:
+        """Get the system size.
+
+        Returns:
+            int: The system size.
+        """
+        return self.__base_model.get_system_size()
+
     def get_boundary_condition(self) -> BoundaryCondition:
         """Get the boundary condition.
 
@@ -205,11 +213,11 @@ class IsingAnyLattice:
 
     @property
     def system_size(self) -> int:
-        return self.__base_model.get_system_size()
+        return self.get_system_size()
 
     @property
     def boundary_condition(self) -> BoundaryCondition:
-        return self.__base_model.get_boundary_condition()
+        return self.get_boundary_condition()
 
     @property
     def _base_model(self):

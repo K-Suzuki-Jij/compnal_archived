@@ -185,16 +185,20 @@ public:
       return interaction_.GenerateInteractionAsPair();
    }
    
-   std::vector<IndexType> GenerateIndexList() const {
-      return interaction_.GenerateIndexList();
+   const std::vector<std::vector<std::int32_t>> &GetKeyList() const {
+      return interaction_.GetKeyList();
    }
    
-   InteractionType GetInteraction() const {
-      return interaction_.GetInteraction();
+   const std::vector<RealType> &GetValueList() const {
+      return interaction_.GetValueList();
    }
    
-   std::unordered_set<IndexType, IndexHash> GetIndexSet() const {
-      return interaction_.GetIndexSet();
+   const std::vector<IndexType> &GetIndexList() const {
+      return interaction_.GetIndexList();
+   }
+   
+   const std::unordered_map<IndexType, std::int32_t, IndexHash> &GetIndexMap() const {
+      return interaction_.GetIndexMap();
    }
    
    std::int32_t GetSystemSize() const {
@@ -213,16 +217,30 @@ public:
       if (sample.size() != interaction_.GetSystemSize()) {
          throw std::runtime_error("The sample size is not equal to the system size");
       }
-      const std::unordered_map<IndexType, std::int64_t, IndexHash> &index_map = interaction_.GetIndexMap();
+      const auto &key_list = interaction_.GetKeyList();
+      const auto &value_list = interaction_.GetValueList();
       RealType val = 0;
-      for (const auto &it: interaction_.GetInteraction()) {
+      for (std::size_t i = 0; i < key_list.size(); ++i) {
          OPType spin = 1;
-         for (const auto &index: it.first) {
-            spin *= sample[index_map.at(index)];
+         for (const auto &index: key_list[i]) {
+            spin *= sample[index];
          }
-         val += spin*it.second;
+         val += spin*value_list[i];
       }
       return val;
+   }
+   
+   RealType CalculateOnsiteSampleAverage(const std::vector<std::vector<OPType>> &samples,
+                                         const IndexType index) const {
+      const std::unordered_map<IndexType, std::int32_t, IndexHash> &index_map = interaction_.GetIndexMap();
+      if (index_map.count(index) == 0) {
+         throw std::runtime_error("The index is out of range.");
+      }
+      RealType val = 0;
+      for (std::size_t i = 0; i < samples.size(); ++i) {
+         val += samples[i][index_map.at(index)];
+      }
+      return val/samples.size();
    }
    
    RealType CalculateMoment(const std::vector<std::vector<OPType>> &samples,
@@ -248,7 +266,7 @@ public:
    RealType CalculateCorrelation(const std::vector<std::vector<OPType>> &samples,
                                  const IndexType ind1,
                                  const IndexType ind2) const {
-      const std::unordered_map<IndexType, std::int64_t, IndexHash> &index_map = interaction_.GetIndexMap();
+      const std::unordered_map<IndexType, std::int32_t, IndexHash> &index_map = interaction_.GetIndexMap();
       if (index_map.count(ind1) == 0 || index_map.count(ind2) == 0) {
          throw std::runtime_error("The index is out of range.");
       }

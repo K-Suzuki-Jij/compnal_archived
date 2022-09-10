@@ -130,7 +130,7 @@ void pybind11ModelPolynomialIsingAnyLattice(py::module &m, const std::string &po
    
    //Public Member Functions
    py_class.def("generate_interaction_as_pair", &PolyIsing::GenerateInteractionAsPair);
-   py_class.def("generate_index_list", &PolyIsing::GenerateIndexList);
+   py_class.def("get_index_list", &PolyIsing::GetIndexList);
    py_class.def("get_system_size", &PolyIsing::GetSystemSize);
    py_class.def("get_degree", &PolyIsing::GetDegree);
    py_class.def("get_boundary_condition", &PolyIsing::GetBoundaryCondition);

@@ -2,9 +2,10 @@ from typing import Optional, Union
 
 from base_compnal import base_solver
 from compnal.model.polynomial_ising import PolynomialIsing, PolynomialIsingAnyLattice
+from compnal.model.ising import Ising, IsingAnyLattice
 from compnal.solver.updater import Updater, cast_base_updater, cast_updater
 
-ModelType = Union[PolynomialIsing, PolynomialIsingAnyLattice]
+ModelType = Union[PolynomialIsing, PolynomialIsingAnyLattice, Ising, IsingAnyLattice]
 
 
 class ClassicalMonteCarlo:
@@ -16,6 +17,7 @@ class ClassicalMonteCarlo:
         num_samples (int): The number of samples.
         num_threads (int): The number of threads.
         beta (float): The inverse temperature.
+        model (Union[PolynomialIsing, PolynomialIsingAnyLattice, Ising, IsingAnyLattice]): The model.
     """
 
     def __init__(self, model: ModelType, updater: Updater = Updater.METROPOLIS) -> None:
@@ -29,6 +31,8 @@ class ClassicalMonteCarlo:
         self.__base_solver = base_solver.make_classical_monte_carlo(
             model=model._base_model, cmc_updater=cast_updater(updater)
         )
+
+        self.__model = model
 
     def set_num_sweeps(self, num_sweeps: int) -> None:
         """Set the number of sweeps.
@@ -237,3 +241,7 @@ class ClassicalMonteCarlo:
     @beta.setter
     def beta(self, beta: float) -> None:
         self.set_inverse_temperature(beta=beta)
+
+    @property
+    def model(self) -> ModelType:
+        return self.__model

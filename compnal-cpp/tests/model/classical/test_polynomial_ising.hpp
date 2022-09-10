@@ -29,10 +29,6 @@ TEST(ModelPolynomialIsing, AnyLattice) {
    auto model = model::make_polynomial_ising<double>(lattice::AnyLattice{}, {{{1, 2, "a"}, -1.0}, {{1, VISType{1, 1}}, -2.0}});
       
    EXPECT_EQ(model.GetSystemSize(), 4);
-   EXPECT_EQ(model.GetIndexSet().count(1), 1);
-   EXPECT_EQ(model.GetIndexSet().count(2), 1);
-   EXPECT_EQ(model.GetIndexSet().count("a"), 1);
-   EXPECT_EQ(model.GetIndexSet().count(VISType{1, 1}), 1);
    EXPECT_EQ(model.GetBoundaryCondition(), lattice::BoundaryCondition::NONE);
 }
 

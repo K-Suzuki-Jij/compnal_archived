@@ -60,6 +60,7 @@ PYBIND11_MODULE(base_compnal, m) {
    compnal::wrapper::pybind11SolverClassicalMonteCarlo<compnal::model::PolynomialIsing<compnal::lattice::Honeycomb, RealType>>(m_solver, "PolyIsingHoneycomb");
    compnal::wrapper::pybind11SolverClassicalMonteCarlo<compnal::model::PolynomialIsing<compnal::lattice::Cubic, RealType>>(m_solver, "PolyIsingCubic");
    compnal::wrapper::pybind11SolverClassicalMonteCarlo<compnal::model::PolynomialIsing<compnal::lattice::InfiniteRange, RealType>>(m_solver, "PolyIsingInfiniteRange");
+   compnal::wrapper::pybind11SolverClassicalMonteCarlo<compnal::model::PolynomialIsing<compnal::lattice::AnyLattice, RealType>>(m_solver, "PolyIsingAnyLattice");
 
 
 

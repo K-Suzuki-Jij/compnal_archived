@@ -169,13 +169,13 @@ class PolynomialIsingAnyLattice:
         """
         return self.__base_model.calculate_energy(sample)
 
-    def generate_index_list(self) -> list[Union[int, str, list[Union[int, str]]]]:
+    def get_index_list(self) -> list[Union[int, str, list[Union[int, str]]]]:
         """Generate index list.
 
         Returns:
             list[Union[int, str, list[Union[int, str]]]]: The index list.
         """
-        return self.__base_model.generate_index_list()
+        return self.__base_model.get_index_list()
 
     @property
     def system_size(self) -> int:
