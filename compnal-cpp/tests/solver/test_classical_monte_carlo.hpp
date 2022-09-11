@@ -96,48 +96,9 @@ TEST(SolverClassicalMonteCarlo, Cubic) {
    printf("%lf\n", solver.CalculateSampleAverage());
 }
 
-TEST(SolverClassicalMonteCarlo, Honeycomb) {
-   const lattice::Honeycomb lattice(4, 4);
-   const std::unordered_map<std::int32_t, double> interaction{{3, -0.03}};
-   model::PolynomialIsing model(lattice, interaction);
-   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
-   solver.SetNumSweeps(10000);
-   solver.SetNumSamples(10);
-   solver.SetTemperature(0.15);
-   solver.Run();
-   
-   for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      for (const auto &it: solver.GetSample(i)) {
-         printf("%+d, ", it);
-      }
-      printf("\n");
-   }
-   
-   printf("%lf\n", solver.CalculateSampleAverage());
-}
 
 TEST(SolverClassicalMonteCarlo, Square) {
    const lattice::Square lattice(4, 4);
-   const std::unordered_map<std::int32_t, double> interaction{{3, -0.03}};
-   model::PolynomialIsing model(lattice, interaction);
-   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
-   solver.SetNumSweeps(10000);
-   solver.SetNumSamples(10);
-   solver.SetTemperature(0.15);
-   solver.Run();
-   
-   for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      for (const auto &it: solver.GetSample(i)) {
-         printf("%+d, ", it);
-      }
-      printf("\n");
-   }
-   
-   printf("%lf\n", solver.CalculateSampleAverage());
-}
-
-TEST(SolverClassicalMonteCarlo, Triangle) {
-   const lattice::Triangle lattice(4, 4);
    const std::unordered_map<std::int32_t, double> interaction{{3, -0.03}};
    model::PolynomialIsing model(lattice, interaction);
    solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);

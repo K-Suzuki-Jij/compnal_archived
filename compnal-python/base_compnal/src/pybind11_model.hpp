@@ -101,48 +101,18 @@ void pybind11ModelPolynomialIsing(py::module &m, const std::string &post_name = 
    auto py_class = py::class_<PolyIsing>(m, name.c_str(), py::module_local());
    
    //Constructors
-   py_class.def(py::init<const LatticeType&, const std::unordered_map<std::int32_t, RealType>&>(), "lattice"_a, "interaction"_a);
+   py_class.def(py::init<const LatticeType&, const typename PolyIsing::InteractionType&>(), "lattice"_a, "interaction"_a);
    
    //Public Member Functions
-   py_class.def("get_interaction", &PolyIsing::GetInteraction);
    py_class.def("get_system_size", &PolyIsing::GetSystemSize);
    py_class.def("get_boundary_condition", &PolyIsing::GetBoundaryCondition);
    py_class.def("get_degree", &PolyIsing::GetDegree);
    py_class.def("calculate_energy", py::overload_cast<const std::vector<typename PolyIsing::OPType>&>(&PolyIsing::CalculateEnergy, py::const_), "sample"_a);
    
-   m.def("make_polynomial_ising", [](const LatticeType &lattice, const std::unordered_map<std::int32_t, RealType> &interaction) {
+   m.def("make_polynomial_ising", [](const LatticeType &lattice, const typename PolyIsing::InteractionType &interaction) {
       return model::make_polynomial_ising<LatticeType, RealType>(lattice, interaction);
    }, "lattice"_a, "interaction"_a);
-   
 }
-
-template<typename RealType>
-void pybind11ModelPolynomialIsingAnyLattice(py::module &m, const std::string &post_name = "") {
-   
-   using PolyIsing = model::PolynomialIsing<lattice::AnyLattice, RealType>;
-   using InteractionType = typename PolyIsing::InteractionType;
-   std::string name = std::string("PolynomialIsing") + post_name;
-
-   auto py_class = py::class_<PolyIsing>(m, name.c_str(), py::module_local());
-   
-   //Constructors
-   py_class.def(py::init<const lattice::AnyLattice&, const InteractionType&>(), "lattice"_a, "interaction"_a);
-   
-   //Public Member Functions
-   py_class.def("generate_interaction_as_pair", &PolyIsing::GenerateInteractionAsPair);
-   py_class.def("get_index_list", &PolyIsing::GetIndexList);
-   py_class.def("get_system_size", &PolyIsing::GetSystemSize);
-   py_class.def("get_degree", &PolyIsing::GetDegree);
-   py_class.def("get_boundary_condition", &PolyIsing::GetBoundaryCondition);
-   py_class.def("calculate_energy", &PolyIsing::CalculateEnergy, "sample"_a);
-
-   m.def("make_polynomial_ising", [](const lattice::AnyLattice &lattice,
-                                     const typename model::PolynomialIsing<lattice::AnyLattice, RealType>::InteractionType &interaction) {
-      return model::make_polynomial_ising<RealType>(lattice, interaction);
-   }, "lattice"_a, "interaction"_a);
-
-}
-
 
 
 

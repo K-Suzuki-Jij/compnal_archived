@@ -37,12 +37,15 @@ public:
    using ValueType = RealType;
    using IndexType = std::int32_t;
    using OPType = utility::SpinType;
+   using InteractionType = std::unordered_map<std::int32_t, RealType>;
       
    PolynomialIsing(const LatticeType &lattice,
-                   const std::unordered_map<std::int32_t, RealType> &interaction):
+                   const InteractionType &interaction):
    lattice_(lattice) {
       for (const auto &it: interaction) {
-         interaction_.resize(it.first + 1);
+         if (interaction_.size() <= it.first) {
+            interaction_.resize(it.first + 1);
+         }
          interaction_[it.first] = it.second;
       }
    }
@@ -124,25 +127,13 @@ private:
       return energy;
    }
    
-   RealType CalculateEnergy(const lattice::Cubic &cubic_lattice,
-                            const std::vector<OPType> &sample) const {
-      RealType energy = 0;
-      return energy;
-   }
-   
-   RealType CalculateEnergy(const lattice::Honeycomb &honeycomb_lattice,
-                            const std::vector<OPType> &sample) const {
-      RealType energy = 0;
-      return energy;
-   }
-   
    RealType CalculateEnergy(const lattice::Square &square_lattice,
                             const std::vector<OPType> &sample) const {
       RealType energy = 0;
       return energy;
    }
    
-   RealType CalculateEnergy(const lattice::Triangle &triangle_lattice,
+   RealType CalculateEnergy(const lattice::Cubic &cubic_lattice,
                             const std::vector<OPType> &sample) const {
       RealType energy = 0;
       return energy;
@@ -297,14 +288,8 @@ private:
 
 template<class LatticeType, typename RealType>
 auto make_polynomial_ising(const LatticeType &lattice,
-                           const std::unordered_map<std::int32_t, RealType> &interaction) {
+                           const typename PolynomialIsing<LatticeType, RealType>::InteractionType &interaction) {
    return PolynomialIsing<LatticeType, RealType>{lattice, interaction};
-}
-
-template<typename RealType>
-auto make_polynomial_ising(const lattice::AnyLattice &lattice,
-                           const typename PolynomialIsing<lattice::AnyLattice, RealType>::InteractionType &interaction) {
-   return PolynomialIsing<lattice::AnyLattice, RealType>{lattice, interaction};
 }
 
 } // namespace model

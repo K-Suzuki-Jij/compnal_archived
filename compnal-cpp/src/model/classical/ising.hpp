@@ -143,19 +143,7 @@ private:
       return energy;
    }
    
-   RealType CalculateEnergy(const lattice::Honeycomb &honeycomb_lattice,
-                            const std::vector<OPType> &sample) const {
-      RealType energy = 0;
-      return energy;
-   }
-   
    RealType CalculateEnergy(const lattice::Square &square_lattice,
-                            const std::vector<OPType> &sample) const {
-      RealType energy = 0;
-      return energy;
-   }
-   
-   RealType CalculateEnergy(const lattice::Triangle &triangle_lattice,
                             const std::vector<OPType> &sample) const {
       RealType energy = 0;
       return energy;

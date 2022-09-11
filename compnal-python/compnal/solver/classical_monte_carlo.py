@@ -1,11 +1,11 @@
 from typing import Optional, Union
 
 from base_compnal import base_solver
-from compnal.model.polynomial_ising import PolynomialIsing, PolynomialIsingAnyLattice
+from compnal.model.polynomial_ising import PolynomialIsing
 from compnal.model.ising import Ising, IsingAnyLattice
 from compnal.solver.updater import Updater, cast_base_updater, cast_updater
 
-ModelType = Union[PolynomialIsing, PolynomialIsingAnyLattice, Ising, IsingAnyLattice]
+ModelType = Union[PolynomialIsing, Ising, IsingAnyLattice]
 
 
 class ClassicalMonteCarlo:
@@ -17,7 +17,7 @@ class ClassicalMonteCarlo:
         num_samples (int): The number of samples.
         num_threads (int): The number of threads.
         beta (float): The inverse temperature.
-        model (Union[PolynomialIsing, PolynomialIsingAnyLattice, Ising, IsingAnyLattice]): The model.
+        model (Union[PolynomialIsing, Ising, IsingAnyLattice]): The model.
     """
 
     def __init__(self, model: ModelType, updater: Updater = Updater.METROPOLIS) -> None:

@@ -25,6 +25,5 @@
 
 #include "ising.hpp"
 #include "polynomial_ising.hpp"
-#include "potts.hpp"
 
 #endif /* COMPNAL_MODEL_CLASSICAL_ALL_HPP_ */

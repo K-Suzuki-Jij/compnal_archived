@@ -24,9 +24,20 @@
 namespace compnal {
 namespace test {
 
+TEST(ModelPolynomialIsing, Chain) {
+   using OPType = typename model::PolynomialIsing<lattice::Chain, double>::OPType;
+   auto model = model::make_polynomial_ising<lattice::Chain, double>(lattice::Chain{4}, {{1, -1.0}, {3, +2.0}});
+   EXPECT_EQ(model.GetInteraction(), (std::vector<double>{0.0, -1.0, 0.0, +2.0}));
+   EXPECT_EQ(model.GetSystemSize(), 4);
+   EXPECT_EQ(model.GetBoundaryCondition(), lattice::BoundaryCondition::OBC);
+   EXPECT_EQ(model.GetDegree(), 3);
+   EXPECT_EQ(model.CalculateEnergy(std::vector<OPType>{-1, +1, +1}), 0.0);
+   
+}
+
 TEST(ModelPolynomialIsing, AnyLattice) {
    using VISType = std::vector<utility::IntStrType>;
-   auto model = model::make_polynomial_ising<double>(lattice::AnyLattice{}, {{{1, 2, "a"}, -1.0}, {{1, VISType{1, 1}}, -2.0}});
+   auto model = model::make_polynomial_ising<lattice::AnyLattice, double>(lattice::AnyLattice{}, {{{1, 2, "a"}, -1.0}, {{1, VISType{1, 1}}, -2.0}});
       
    EXPECT_EQ(model.GetSystemSize(), 4);
    EXPECT_EQ(model.GetBoundaryCondition(), lattice::BoundaryCondition::NONE);
@@ -36,7 +47,7 @@ TEST(ModelPolynomialIsing, InfiniteRange) {
    
    lattice::InfiniteRange lattice{10};
    std::unordered_map<int, double> interaction{{0, -1.0}, {3, +1.0}};
-   auto model = model::make_polynomial_ising(lattice, interaction);
+   auto model = model::make_polynomial_ising<lattice::InfiniteRange, double>(lattice, interaction);
    model.CalculateEnergy({});
    
 }

@@ -25,8 +25,6 @@
 
 #include "../../src/lattice/base_two_dimensional_lattice.hpp"
 #include "../../src/lattice/square.hpp"
-#include "../../src/lattice/triangle.hpp"
-#include "../../src/lattice/honeycomb.hpp"
 #include <gtest/gtest.h>
 
 namespace compnal {
@@ -88,18 +86,6 @@ TEST(LatticeBaseTwoDimensionalLattice, SetBoundaryCondition) {
    
    EXPECT_THROW(square.SetBoundaryCondition(lattice::BoundaryCondition::NONE), std::runtime_error);
 
-}
-
-TEST(LatticeSquare, Basic) {
-   EXPECT_NE(typeid(lattice::Square), typeid(lattice::BaseTwoDimensionalLattice));
-}
-
-TEST(LatticeTriangle, Basic) {
-   EXPECT_NE(typeid(lattice::Triangle), typeid(lattice::BaseTwoDimensionalLattice));
-}
-
-TEST(LatticeHoneycomb, Basic) {
-   EXPECT_NE(typeid(lattice::Honeycomb), typeid(lattice::BaseTwoDimensionalLattice));
 }
 
 
