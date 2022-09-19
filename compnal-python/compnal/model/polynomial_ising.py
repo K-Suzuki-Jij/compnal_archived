@@ -7,7 +7,7 @@ from compnal.lattice.boundary_condition import (
     cast_base_boundary_condition,
 )
 from compnal.lattice.one_dimension import Chain
-from compnal.lattice.two_dimension import Honeycomb, Square, Triangle
+from compnal.lattice.two_dimension import Square
 from compnal.lattice.three_dimension import Cubic
 from compnal.lattice.higher_dimension import AnyLattice, InfiniteRange
 
@@ -22,12 +22,12 @@ class PolynomialIsing:
 
     def __init__(
         self,
-        lattice: Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange, AnyLattice],
+        lattice: Union[Chain, Square, Cubic, InfiniteRange, AnyLattice],
         interaction: Union[dict[int, float], dict[tuple[Union[int, str, tuple[Union[int, str]]]], float]]
     ) -> None:
         """
         Args:
-            lattice (Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange, AnyLattice]): The lattice.
+            lattice (Union[Chain, Square, Cubic, InfiniteRange, AnyLattice]): The lattice.
             interaction (Union[dict[int, float], dict[tuple[Union[int, str, tuple[Union[int, str]]]], float]]): The interaction.
         """
         self.__base_model = base_model.make_polynomial_ising(

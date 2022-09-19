@@ -31,8 +31,6 @@ def test_lattice_two_dim():
         assert two_dim_lattice.boundary_condition == lattice.BoundaryCondition.OBC
 
     test_func(lattice.Square)
-    test_func(lattice.Triangle)
-    test_func(lattice.Honeycomb)
 
 
 def test_lattice_three_dim():

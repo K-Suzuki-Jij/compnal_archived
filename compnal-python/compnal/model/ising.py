@@ -6,7 +6,7 @@ from compnal.lattice.boundary_condition import (
     cast_base_boundary_condition,
 )
 from compnal.lattice.one_dimension import Chain
-from compnal.lattice.two_dimension import Honeycomb, Square, Triangle
+from compnal.lattice.two_dimension import Square
 from compnal.lattice.three_dimension import Cubic
 from compnal.lattice.higher_dimension import AnyLattice, InfiniteRange
 
@@ -21,14 +21,14 @@ class Ising:
 
     def __init__(
         self,
-        lattice: Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange],
+        lattice: Union[Chain, Square, Cubic, InfiniteRange],
         linear: float,
         quadratic: float,
     ) -> None:
         """Constructor.
 
         Args:
-            lattice (Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange]): The lattice.
+            lattice (Union[Chain, Square, Cubic, InfiniteRange]): The lattice.
             linear (float): The linear interaction.
             quadratic (float): The quadratic interaction.
         """
@@ -226,7 +226,7 @@ class IsingAnyLattice:
 
 def make_ising(
     lattice: Union[
-        Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange, AnyLattice
+        Chain, Square, Cubic, InfiniteRange, AnyLattice
     ],
     linear: Union[float, dict[Union[int, str, list[Union[int, str]]], float]],
     quadratic: Union[
@@ -243,7 +243,7 @@ def make_ising(
     """Make PolynomialIsing class from lattice (and interaction).
 
     Args:
-        lattice (Union[Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange, AnyLattice]):
+        lattice (Union[Chain, Square, Cubic, InfiniteRange, AnyLattice]):
             The lattice.
         linear (Union[float, dict[Union[int, str, list[Union[int, str]]], float]]):
             The linear interaction.
@@ -257,7 +257,7 @@ def make_ising(
         Union[Ising, IsingAnyLattice]: Ising class.
     """
 
-    if isinstance(lattice, (Chain, Square, Triangle, Honeycomb, Cubic, InfiniteRange)):
+    if isinstance(lattice, (Chain, Square, Cubic, InfiniteRange)):
         return Ising(lattice=lattice, linear=linear, quadratic=quadratic)
     elif isinstance(lattice, AnyLattice):
         return IsingAnyLattice(lattice=lattice, linear=linear, quadratic=quadratic)
