@@ -141,23 +141,23 @@ class ClassicalMonteCarlo:
         else:
             self.__base_solver.run(seed=seed)
 
-    def calculate_sample_average(self) -> float:
+    def calculate_average(self) -> float:
         """Calculate average of all the samples.
 
         Returns:
             float: The average value.
         """
-        return self.__base_solver.calculate_sample_average()
+        return self.__base_solver.calculate_average()
 
-    def calculate_sample_distribution(self) -> list[float]:
+    def calculate_onsite_average(self) -> list[float]:
         """Calculate average of samples at each sites.
 
         Returns:
             list[float]: Average of samples at each sites.
         """
-        return self.__base_solver.calculate_sample_distribution()
+        return self.__base_solver.calculate_onsite_average()
 
-    def calculate_sample_moment(self, degree: int) -> float:
+    def calculate_moment(self, degree: int) -> float:
         """Calculate the moment with the specified degree of each sample and take average for all the moments.
 
         Args:
@@ -166,25 +166,9 @@ class ClassicalMonteCarlo:
         Returns:
             float: The moment.
         """
-        return self.__base_solver.calculate_sample_moment(degree=degree)
+        return self.__base_solver.calculate_moment(degree=degree)
 
     def calculate_correlation(
-        self,
-        index_1: Union[int, list[Union[int, str, list[Union[int, str]]]]],
-        index_2: Union[int, list[Union[int, str, list[Union[int, str]]]]],
-    ) -> float:
-        """Calculate correlation function.
-
-        Args:
-            index_1 (Union[int, list[Union[int, str, list[Union[int, str]]]]]): The index.
-            index_2 (Union[int, list[Union[int, str, list[Union[int, str]]]]]): The index.
-
-        Returns:
-            float: Correlation function from the samples at the sites of index_1 and index_2.
-        """
-        return self.__base_solver.calculate_correlation(index_1, index_2)
-
-    def calculate_correlation_list(
         self,
         origin: Union[int, list[Union[int, str, list[Union[int, str]]]]],
         index_list: Union[
@@ -200,7 +184,7 @@ class ClassicalMonteCarlo:
         Returns:
             list[float]: Correlation function list from the samples at the sites of origin and index in index_list.
         """
-        return self.__base_solver.calculate_correlation_list(origin, index_list)
+        return self.__base_solver.calculate_correlation(origin, index_list)
 
     @property
     def updater(self) -> Updater:
