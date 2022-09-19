@@ -25,7 +25,7 @@
 namespace compnal {
 namespace test {
 
-TEST(SolverClassicalMonteCarlo, AnyLattice) {
+TEST(SolverClassicalMonteCarlo, PolyIsingAnyLattice) {
    using InteractionType = model::PolynomialIsing<lattice::AnyLattice, double>::InteractionType;
    InteractionType interaction;
    const std::int32_t system_size = 10;
@@ -37,50 +37,42 @@ TEST(SolverClassicalMonteCarlo, AnyLattice) {
       }
    }
    
+   const std::uint64_t seed = 1;
    model::PolynomialIsing<lattice::AnyLattice, double> model{lattice::AnyLattice{}, interaction};
    solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver.SetNumThreads(4);
    solver.SetNumSweeps(10000);
    solver.SetNumSamples(10);
    solver.SetTemperature(0.15);
-   solver.Run();
-   
-   for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      for (const auto &it: solver.GetSample(i)) {
-         printf("%+d, ", it);
-      }
-      printf("\n");
-   }
-   
-   printf("%lf\n", solver.CalculateSampleAverage());
-   
+   solver.Run(seed);
+
+   EXPECT_EQ(solver.CalculateSampleAverage(), 1);
 }
 
-TEST(SolverClassicalMonteCarlo, Chain) {
-   const lattice::Chain lattice(10, lattice::BoundaryCondition::OBC);
-   const std::unordered_map<std::int32_t, double> interaction{{3, -1.0}};
+TEST(SolverClassicalMonteCarlo, PolyIsingChain) {
+   const lattice::Chain lattice(9, lattice::BoundaryCondition::PBC);
+   const std::unordered_map<std::int32_t, double> interaction{{3, +1.0}};
    model::PolynomialIsing model(lattice, interaction);
+   
+   const std::uint64_t seed = 1;
    solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver.SetNumThreads(4);
    solver.SetNumSweeps(10000);
-   solver.SetNumSamples(1);
-   solver.SetTemperature(0.15);
-   solver.Run(1);
+   solver.SetNumSamples(5);
+   solver.SetTemperature(0.01);
+   solver.Run(seed);
    
    for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      for (const auto &it: solver.GetSample(i)) {
-         printf("%+d, ", it);
-      }
-      printf("\n");
+      EXPECT_EQ(std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0.0), 3.0);
    }
-   
-   printf("%lf\n", solver.CalculateSampleAverage());
-   
 }
 
-TEST(SolverClassicalMonteCarlo, Cubic) {
+TEST(SolverClassicalMonteCarlo, PolyIsingCubic) {
    const lattice::Cubic lattice(3, 3, 3);
    const std::unordered_map<std::int32_t, double> interaction{{3, -0.03}};
    model::PolynomialIsing model(lattice, interaction);
    solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver.SetNumThreads(4);
    solver.SetNumSweeps(10000);
    solver.SetNumSamples(10);
    solver.SetTemperature(0.15);
@@ -97,66 +89,40 @@ TEST(SolverClassicalMonteCarlo, Cubic) {
 }
 
 
-TEST(SolverClassicalMonteCarlo, Square) {
-   const lattice::Square lattice(4, 4);
-   const std::unordered_map<std::int32_t, double> interaction{{3, -0.03}};
+TEST(SolverClassicalMonteCarlo, PolyIsingSquare) {
+   const lattice::Square lattice(5, 5, lattice::BoundaryCondition::PBC);
+   const std::unordered_map<std::int32_t, double> interaction{{2, -1}};
    model::PolynomialIsing model(lattice, interaction);
+   const std::uint64_t seed = 1;
    solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver.SetNumThreads(10);
    solver.SetNumSweeps(10000);
    solver.SetNumSamples(10);
-   solver.SetTemperature(0.15);
-   solver.Run();
+   solver.SetTemperature(0.01);
+   solver.Run(seed);
    
+   std::int32_t gs_count = 0;
    for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      for (const auto &it: solver.GetSample(i)) {
-         printf("%+d, ", it);
+      const auto mag = std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0);
+      if (mag == solver.GetSample(i).size() || -1*mag == solver.GetSample(i).size()) {
+         gs_count++;
       }
-      printf("\n");
    }
-   
-   printf("%lf\n", solver.CalculateSampleAverage());
+   EXPECT_GE(gs_count, 1);
 }
 
-TEST(SolverClassicalMonteCarlo, InfinitRangePolyIsing) {
+TEST(SolverClassicalMonteCarlo, PolyIsingInfinitRange) {
    const std::unordered_map<std::int32_t, double> interaction{{3, -0.03}};
-   model::PolynomialIsing model(lattice::InfiniteRange{10}, interaction);
-   
+   const std::uint64_t seed = 1;
+   model::PolynomialIsing model{lattice::InfiniteRange{10}, interaction};
    solver::ClassicalMonteCarlo solver{model, solver::CMCUpdater::METROPOLIS};
+   solver.SetNumThreads(4);
    solver.SetNumSweeps(10000);
    solver.SetNumSamples(10);
    solver.SetTemperature(0.15);
-   solver.Run();
+   solver.Run(seed);
    
-   for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      for (const auto &it: solver.GetSample(i)) {
-         printf("%+d, ", it);
-      }
-      printf("\n");
-   }
-   
-   printf("%lf\n", solver.CalculateSampleAverage());
-   
-}
-
-TEST(SolverClassicalMonteCarlo, InfinitRangePolyIsing2) {
-   const std::unordered_map<std::int32_t, double> interaction{{3, -0.03}};
-   model::PolynomialIsing model(lattice::InfiniteRange{10}, interaction);
-   
-   solver::ClassicalMonteCarlo solver{model, solver::CMCUpdater::HEAT_BATH};
-   solver.SetNumSweeps(10000);
-   solver.SetNumSamples(10);
-   solver.SetTemperature(0.15);
-   solver.Run();
-   
-   for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      for (const auto &it: solver.GetSample(i)) {
-         printf("%+d, ", it);
-      }
-      printf("\n");
-   }
-   
-   printf("%lf\n", solver.CalculateSampleAverage());
-   
+   EXPECT_EQ(solver.CalculateSampleAverage(), 1);
 }
 
 

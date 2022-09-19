@@ -171,7 +171,7 @@ void UpdateConfiguration(std::vector<typename model::PolynomialIsing<lattice::Ch
       }
    }
    else {
-      throw std::runtime_error("Unsupported BinaryCondition");
+      throw std::runtime_error("Unsupported BoundaryCondition");
    }
    
    (*energy_difference)[index] *= -1;

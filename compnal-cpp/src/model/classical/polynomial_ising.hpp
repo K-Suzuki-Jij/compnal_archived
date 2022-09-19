@@ -66,6 +66,10 @@ public:
       return static_cast<std::int32_t>(interaction_.size()) - 1;
    }
    
+   const LatticeType &GetLattice() const {
+      return lattice_;
+   }
+   
    RealType CalculateEnergy(const std::vector<OPType> &sample) const {
       return CalculateEnergy(lattice_, sample);
    }
