@@ -98,7 +98,7 @@ public:
       return val/samples.size();
    }
    
-   RealType CalculateOnsiteSampleAverage(const std::vector<std::vector<OPType>> &samples,
+   RealType CalculateOnsiteAverage(const std::vector<std::vector<OPType>> &samples,
                                          const IndexType index) const {
       if (index < 0) {
          throw std::runtime_error("The index is out of range.");

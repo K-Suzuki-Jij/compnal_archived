@@ -178,29 +178,25 @@ public:
 
    }
    
-   RealType CalculateSampleAverage() const {
+   RealType CalculateAverage() const {
       return model_.CalculateMoment(samples_, 1, num_threads_);
    }
+
+   RealType CalculateMoment(const std::int32_t degree) const {
+      return model_.CalculateMoment(samples_, degree, num_threads_);
+   }
    
-   std::vector<RealType> CalculateSampleDistribution() const {
+   std::vector<RealType> CalculateOnsiteAverage() const {
       std::vector<RealType> dist(model_.GetSystemSize());
 #pragma omp parallel for schedule(guided) num_threads(num_threads_)
       for (std::int32_t i = 0; i < model_.GetSystemSize(); ++i) {
-         dist[i] = model_.CalculateOnsiteSampleAverage(samples_, i);
+         dist[i] = model_.CalculateOnsiteAverage(samples_, i);
       }
       return dist;
    }
    
-   RealType CalculateSampleMoment(const std::int32_t degree) const {
-      return model_.CalculateMoment(samples_, degree, num_threads_);
-   }
-   
-   RealType CalculateCorrelation(const IndexType ind1, const IndexType ind2) const {
-      return model_.CalculateCorrelation(samples_, ind1, ind2);
-   }
-   
-   std::vector<RealType> CalculateCorrelationList(const IndexType origin,
-                                                  const std::vector<IndexType> &index_list) const {
+   std::vector<RealType> CalculateCorrelation(const IndexType origin,
+                                              const std::vector<IndexType> &index_list) const {
       std::int32_t size = static_cast<std::int32_t>(index_list.size());
       std::vector<RealType> value_list(size);
 #pragma omp parallel for schedule(guided) num_threads(num_threads_)
