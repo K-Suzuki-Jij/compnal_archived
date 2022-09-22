@@ -187,10 +187,15 @@ public:
    }
    
    std::vector<RealType> CalculateOnsiteAverage() const {
-      std::vector<RealType> dist(model_.GetSystemSize());
+      const std::int32_t system_size = model_.GetSystemSize();
+      std::vector<RealType> dist(system_size);
 #pragma omp parallel for schedule(guided) num_threads(num_threads_)
-      for (std::int32_t i = 0; i < model_.GetSystemSize(); ++i) {
-         dist[i] = model_.CalculateOnsiteAverage(samples_, i);
+      for (std::int32_t i = 0; i < system_size; ++i) {
+         RealType value = 0.0;
+         for (std::size_t j = 0; j < samples_.size(); ++j) {
+            value += samples_[j][i];
+         }
+         dist[i] = value/samples_.size();
       }
       return dist;
    }

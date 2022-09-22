@@ -95,9 +95,9 @@ TEST(SolverClassicalMonteCarlo, PolyIsingSquare) {
    model::PolynomialIsing model(lattice, interaction);
    const std::uint64_t seed = 1;
    solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
-   solver.SetNumThreads(10);
+   solver.SetNumThreads(1);
    solver.SetNumSweeps(10000);
-   solver.SetNumSamples(10);
+   solver.SetNumSamples(1);
    solver.SetTemperature(0.01);
    solver.Run(seed);
    

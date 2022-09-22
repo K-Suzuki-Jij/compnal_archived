@@ -51,50 +51,40 @@ void SetEnergyDifference(std::vector<typename model::PolynomialIsing<lattice::Sq
             continue;
          }
          const ValueType target_ineraction = interaction[degree];
-         
-         // x-direction
-         for (std::int32_t coo_y = 0; coo_y < y_size; ++coo_y) {
-            for (std::int32_t coo_x = 0; coo_x < x_size; ++coo_x) {
-               ValueType val = 0;
-               for (std::int32_t i = 0; i < degree; ++i) {
-                  OPType sign = 1;
-                  for (std::int32_t j = 0; j < degree; ++j) {
-                     std::int32_t connected_index = coo_x - degree + 1 + i + j;
-                     if (connected_index < 0) {
-                        connected_index += x_size;
-                     }
-                     else if (connected_index >= x_size) {
-                        connected_index -= x_size;
-                     }
-                     sign *= sample[coo_y*x_size + connected_index];
-                  }
-                  val += sign*target_ineraction;
-               }
-               (*energy_difference)[coo_y*x_size + coo_x] = -2.0*val;
-            }
-         }
-         
-         // y-direction
+
          for (std::int32_t coo_x = 0; coo_x < x_size; ++coo_x) {
             for (std::int32_t coo_y = 0; coo_y < y_size; ++coo_y) {
                ValueType val = 0;
                for (std::int32_t i = 0; i < degree; ++i) {
-                  OPType sign = 1;
+                  OPType sign_x = 1;
+                  OPType sign_y = 1;
                   for (std::int32_t j = 0; j < degree; ++j) {
-                     std::int32_t connected_index = coo_y - degree + 1 + i + j;
-                     if (connected_index < 0) {
-                        connected_index += y_size;
+                     // x-direction
+                     std::int32_t connected_index_x = coo_x - degree + 1 + i + j;
+                     if (connected_index_x < 0) {
+                        connected_index_x += x_size;
                      }
-                     else if (connected_index >= y_size) {
-                        connected_index -= y_size;
+                     else if (connected_index_x >= x_size) {
+                        connected_index_x -= x_size;
                      }
-                     sign *= sample[connected_index*x_size + coo_x];
+                     sign_x *= sample[coo_y*x_size + connected_index_x];
+                     
+                     // y-direction
+                     std::int32_t connected_index_y = coo_y - degree + 1 + i + j;
+                     if (connected_index_y < 0) {
+                        connected_index_y += y_size;
+                     }
+                     else if (connected_index_y >= y_size) {
+                        connected_index_y -= y_size;
+                     }
+                     sign_y *= sample[connected_index_y*x_size + coo_x];
                   }
-                  val += sign*target_ineraction;
+                  val += sign_x*target_ineraction + sign_y*target_ineraction;
                }
-               (*energy_difference)[coo_y*x_size + coo_x] = -2.0*val;
+               (*energy_difference)[coo_y*x_size + coo_x] += -2.0*val;
             }
          }
+
       }
    }
    
@@ -120,7 +110,7 @@ void SetEnergyDifference(std::vector<typename model::PolynomialIsing<lattice::Sq
                   }
                   val += sign*target_ineraction;
                }
-               (*energy_difference)[coo_y*x_size + coo_x] = -2.0*val;
+               (*energy_difference)[coo_y*x_size + coo_x] += -2.0*val;
             }
          }
 
@@ -139,7 +129,7 @@ void SetEnergyDifference(std::vector<typename model::PolynomialIsing<lattice::Sq
                   }
                   val += sign*target_ineraction;
                }
-               (*energy_difference)[coo_y*x_size + coo_x] = -2.0*val;
+               (*energy_difference)[coo_y*x_size + coo_x] += -2.0*val;
             }
          }
       }
@@ -172,56 +162,53 @@ void UpdateConfiguration(std::vector<typename model::PolynomialIsing<lattice::Sq
          }
          const ValueType target_ineraction = interaction[degree];
          
-         // x-direction
          for (std::int32_t i = 0; i < degree; ++i) {
-            OPType sign = 1;
+            OPType sign_x = 1;
+            OPType sign_y = 1;
             for (std::int32_t j = 0; j < degree; ++j) {
-               std::int32_t connected_index = coo_x - degree + 1 + i + j;
-               if (connected_index < 0) {
-                  connected_index += x_size;
+               // x-direction
+               std::int32_t connected_index_x = coo_x - degree + 1 + i + j;
+               if (connected_index_x < 0) {
+                  connected_index_x += x_size;
                }
-               else if (connected_index >= x_size) {
-                  connected_index -= x_size;
+               else if (connected_index_x >= x_size) {
+                  connected_index_x -= x_size;
                }
-               sign *= (*sample)[coo_y*x_size + connected_index];
+               sign_x *= (*sample)[coo_y*x_size + connected_index_x];
+               
+               // y-direction
+               std::int32_t connected_index_y = coo_y - degree + 1 + i + j;
+               if (connected_index_y < 0) {
+                  connected_index_y += y_size;
+               }
+               else if (connected_index_y >= y_size) {
+                  connected_index_y -= y_size;
+               }
+               sign_y *= (*sample)[connected_index_y*x_size + coo_x];
             }
             for (std::int32_t j = 0; j < degree; ++j) {
-               std::int32_t connected_index = coo_x - degree + 1 + i + j;
-               if (connected_index < 0) {
-                  connected_index += x_size;
+               // x-direction
+               std::int32_t connected_index_x = coo_x - degree + 1 + i + j;
+               if (connected_index_x < 0) {
+                  connected_index_x += x_size;
                }
-               else if (connected_index >= x_size) {
-                  connected_index -= x_size;
+               else if (connected_index_x >= x_size) {
+                  connected_index_x -= x_size;
                }
-               if (connected_index != coo_x){
-                  (*energy_difference)[coo_y*x_size + connected_index] += 4*target_ineraction*sign;
+               if (connected_index_x != coo_x){
+                  (*energy_difference)[coo_y*x_size + connected_index_x] += 4*target_ineraction*sign_x;
                }
-            }
-         }
-         
-         // y-direction
-         for (std::int32_t i = 0; i < degree; ++i) {
-            OPType sign = 1;
-            for (std::int32_t j = 0; j < degree; ++j) {
-               std::int32_t connected_index = coo_y - degree + 1 + i + j;
-               if (connected_index < 0) {
-                  connected_index += y_size;
+               
+               // y-direction
+               std::int32_t connected_index_y = coo_y - degree + 1 + i + j;
+               if (connected_index_y < 0) {
+                  connected_index_y += y_size;
                }
-               else if (connected_index >= y_size) {
-                  connected_index -= y_size;
+               else if (connected_index_y >= y_size) {
+                  connected_index_y -= y_size;
                }
-               sign *= (*sample)[connected_index*x_size + coo_x];
-            }
-            for (std::int32_t j = 0; j < degree; ++j) {
-               std::int32_t connected_index = coo_y - degree + 1 + i + j;
-               if (connected_index < 0) {
-                  connected_index += y_size;
-               }
-               else if (connected_index >= y_size) {
-                  connected_index -= y_size;
-               }
-               if (connected_index != coo_y){
-                  (*energy_difference)[connected_index*x_size + coo_x] += 4*target_ineraction*sign;
+               if (connected_index_y != coo_y){
+                  (*energy_difference)[connected_index_y*x_size + coo_x] += 4*target_ineraction*sign_y;
                }
             }
          }
