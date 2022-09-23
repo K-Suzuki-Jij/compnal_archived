@@ -99,6 +99,22 @@ class Square(base_lattice.Square):
         """
         super().set_boundary_condition(cast_boundary_condition(boundary_condition))
 
+    def generate_x_coordinate(self) -> list:
+        """Generate the x-coordinate of the samples.
+
+        Returns:
+            list: the x-coordinate of the samples.
+        """
+        return [i for _ in range(self.y_size) for i in range(self.x_size)]
+
+    def generate_y_coordinate(self) -> list:
+        """Generate the y-coordinate of the samples.
+
+        Returns:
+            list: the y-coordinate of the samples.
+        """
+        return [i for i in range(self.y_size) for _ in range(self.x_size)]
+
     @property
     def x_size(self) -> int:
         return self.get_x_size()

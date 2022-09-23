@@ -61,6 +61,14 @@ class Chain(base_lattice.Chain):
         """
         super().set_boundary_condition(cast_boundary_condition(boundary_condition))
 
+    def generate_x_coordinate(self) -> list:
+        """Generate the x-coordinate of the samples.
+
+        Returns:
+            list: the x-coordinate of the samples.
+        """
+        return [i for i in range(self.x_size)]
+
     @property
     def system_size(self) -> int:
         return self.get_system_size()
