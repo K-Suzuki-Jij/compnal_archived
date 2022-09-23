@@ -32,6 +32,133 @@ void SetEnergyDifference(std::vector<typename model::PolynomialIsing<lattice::Cu
                          const std::vector<typename model::PolynomialIsing<lattice::Cubic, RealType>::OPType> &sample,
                          const model::PolynomialIsing<lattice::Cubic, RealType> &model) {
    
+   if (static_cast<std::int32_t>(energy_difference->size()) != model.GetSystemSize()) {
+      throw std::runtime_error("The size of energy_difference is not equal to the system size.");
+   }
+   if (static_cast<std::int32_t>(sample.size()) != model.GetSystemSize()) {
+      throw std::runtime_error("The sample size is not equal to the system size.");
+   }
+   
+   using OPType = typename model::PolynomialIsing<lattice::Chain, RealType>::OPType;
+   using ValueType = typename model::PolynomialIsing<lattice::Chain, RealType>::ValueType;
+   const std::vector<ValueType> &interaction = model.GetInteraction();
+   const std::int32_t x_size = model.GetLattice().GetXSize();
+   const std::int32_t y_size = model.GetLattice().GetYSize();
+   const std::int32_t z_size = model.GetLattice().GetYSize();
+
+   if (model.GetBoundaryCondition() == lattice::BoundaryCondition::PBC) {
+      for (std::int32_t degree = 1; degree < interaction.size(); ++degree) {
+         if (std::abs(interaction[degree]) <= std::numeric_limits<ValueType>::epsilon()) {
+            continue;
+         }
+         const ValueType target_ineraction = interaction[degree];
+         
+         for (std::int32_t coo_x = 0; coo_x < x_size; ++coo_x) {
+            for (std::int32_t coo_y = 0; coo_y < y_size; ++coo_y) {
+               for (std::int32_t coo_z = 0; coo_z < z_size; ++coo_z) {
+                  ValueType val = 0;
+                  for (std::int32_t i = 0; i < degree; ++i) {
+                     OPType sign_x = 1;
+                     OPType sign_y = 1;
+                     OPType sign_z = 1;
+                     for (std::int32_t j = 0; j < degree; ++j) {
+                        // x-direction
+                        std::int32_t connected_index_x = coo_x - degree + 1 + i + j;
+                        if (connected_index_x < 0) {
+                           connected_index_x += x_size;
+                        }
+                        else if (connected_index_x >= x_size) {
+                           connected_index_x -= x_size;
+                        }
+                        sign_x *= sample[coo_z*x_size*y_size + coo_y*x_size + connected_index_x];
+                        
+                        // y-direction
+                        std::int32_t connected_index_y = coo_y - degree + 1 + i + j;
+                        if (connected_index_y < 0) {
+                           connected_index_y += y_size;
+                        }
+                        else if (connected_index_y >= y_size) {
+                           connected_index_y -= y_size;
+                        }
+                        sign_y *= sample[coo_z*x_size*y_size + connected_index_y*x_size + coo_x];
+                        
+                        // z-direction
+                        std::int32_t connected_index_z = coo_z - degree + 1 + i + j;
+                        if (connected_index_z < 0) {
+                           connected_index_z += z_size;
+                        }
+                        else if (connected_index_z >= z_size) {
+                           connected_index_z -= z_size;
+                        }
+                        sign_z *= sample[connected_index_z*x_size*y_size + coo_y*x_size + coo_x];
+                     }
+                     val += (sign_x + sign_y + sign_z)*target_ineraction;
+                  }
+                  (*energy_difference)[coo_z*x_size*y_size + coo_y*x_size + coo_x] += -2.0*val;
+               }
+            }
+         }
+      }
+   }
+   else if (model.GetBoundaryCondition() == lattice::BoundaryCondition::OBC) {
+      for (std::int32_t degree = 1; degree < interaction.size(); ++degree) {
+         if (std::abs(interaction[degree]) <= std::numeric_limits<ValueType>::epsilon()) {
+            continue;
+         }
+         const ValueType target_ineraction = interaction[degree];
+       
+         for (std::int32_t coo_x = 0; coo_x < x_size; ++coo_x) {
+            for (std::int32_t coo_y = 0; coo_y < y_size; ++coo_y) {
+               for (std::int32_t coo_z = 0; coo_z < z_size; ++coo_z) {
+                  
+                  // x-direction
+                  ValueType val = 0;
+                  for (std::int32_t i = 0; i < degree; ++i) {
+                     if (coo_x - degree + 1 + i < 0 || coo_x + i >= x_size) {
+                        continue;
+                     }
+                     OPType sign = 1;
+                     for (std::int32_t j = 0; j < degree; ++j) {
+                        std::int32_t connected_index = coo_x - degree + 1 + i + j;
+                        sign *= (sample)[coo_z*x_size*y_size + coo_y*x_size + connected_index];
+                     }
+                     val += sign*target_ineraction;
+                  }
+                  
+                  // y-direction
+                  for (std::int32_t i = 0; i < degree; ++i) {
+                     if (coo_y - degree + 1 + i < 0 || coo_y + i >= y_size) {
+                        continue;
+                     }
+                     OPType sign = 1;
+                     for (std::int32_t j = 0; j < degree; ++j) {
+                        std::int32_t connected_index = coo_y - degree + 1 + i + j;
+                        sign *= (sample)[coo_z*x_size*y_size + connected_index*x_size + coo_x];
+                     }
+                     val += sign*target_ineraction;
+                  }
+                  
+                  // z-direction
+                  for (std::int32_t i = 0; i < degree; ++i) {
+                     if (coo_z - degree + 1 + i < 0 || coo_z + i >= z_size) {
+                        continue;
+                     }
+                     OPType sign = 1;
+                     for (std::int32_t j = 0; j < degree; ++j) {
+                        std::int32_t connected_index = coo_z - degree + 1 + i + j;
+                        sign *= (sample)[connected_index*x_size*y_size + coo_y*x_size + coo_x];
+                     }
+                     val += sign*target_ineraction;
+                  }
+                  (*energy_difference)[coo_z*x_size*y_size + coo_y*x_size + coo_x] = -2.0*val;
+               }
+            }
+         }
+      }
+   }
+   else {
+      throw std::runtime_error("Unsupported BinaryCondition");
+   }
 }
 
 template<typename RealType>
@@ -39,6 +166,159 @@ void UpdateConfiguration(std::vector<typename model::PolynomialIsing<lattice::Cu
                          std::vector<typename model::PolynomialIsing<lattice::Cubic, RealType>::ValueType> *energy_difference,
                          const std::int32_t index,
                          const model::PolynomialIsing<lattice::Cubic, RealType> &model) {
+   
+   using OPType = typename model::PolynomialIsing<lattice::Chain, RealType>::OPType;
+   using ValueType = typename model::PolynomialIsing<lattice::Chain, RealType>::ValueType;
+   const std::vector<ValueType> &interaction = model.GetInteraction();
+   const std::int32_t x_size = model.GetLattice().GetXSize();
+   const std::int32_t y_size = model.GetLattice().GetYSize();
+   const std::int32_t z_size = model.GetLattice().GetZSize();
+   const std::int32_t coo_z = index/(x_size*y_size);
+   const std::int32_t coo_y = (index - coo_z*x_size*y_size)/x_size;
+   const std::int32_t coo_x = index - coo_z*x_size*y_size - coo_y*x_size;
+
+   if (model.GetBoundaryCondition() == lattice::BoundaryCondition::PBC) {
+      for (std::int32_t degree = 1; degree < interaction.size(); ++degree) {
+         if (std::abs(interaction[degree]) <= std::numeric_limits<ValueType>::epsilon()) {
+            continue;
+         }
+         const ValueType target_ineraction = interaction[degree];
+         
+         for (std::int32_t i = 0; i < degree; ++i) {
+            OPType sign_x = 1;
+            OPType sign_y = 1;
+            OPType sign_z = 1;
+            for (std::int32_t j = 0; j < degree; ++j) {
+               // x-direction
+               std::int32_t connected_index_x = coo_x - degree + 1 + i + j;
+               if (connected_index_x < 0) {
+                  connected_index_x += x_size;
+               }
+               else if (connected_index_x >= x_size) {
+                  connected_index_x -= x_size;
+               }
+               sign_x *= (*sample)[coo_z*x_size*y_size + coo_y*x_size + connected_index_x];
+               
+               // y-direction
+               std::int32_t connected_index_y = coo_y - degree + 1 + i + j;
+               if (connected_index_y < 0) {
+                  connected_index_y += y_size;
+               }
+               else if (connected_index_y >= y_size) {
+                  connected_index_y -= y_size;
+               }
+               sign_y *= (*sample)[coo_z*x_size*y_size + connected_index_y*x_size + coo_x];
+               
+               // z-direction
+               std::int32_t connected_index_z = coo_z - degree + 1 + i + j;
+               if (connected_index_z < 0) {
+                  connected_index_z += z_size;
+               }
+               else if (connected_index_z >= z_size) {
+                  connected_index_z -= z_size;
+               }
+               sign_z *= (*sample)[connected_index_z*x_size*y_size + coo_y*x_size + coo_x];
+            }
+            
+            for (std::int32_t j = 0; j < degree; ++j) {
+               // x-direction
+               std::int32_t connected_index_x = coo_x - degree + 1 + i + j;
+               if (connected_index_x < 0) {
+                  connected_index_x += x_size;
+               }
+               else if (connected_index_x >= x_size) {
+                  connected_index_x -= x_size;
+               }
+               if (connected_index_x != coo_x){
+                  (*energy_difference)[coo_z*x_size*y_size + coo_y*x_size + connected_index_x] += 4*target_ineraction*sign_x;
+               }
+               
+               // y-direction
+               std::int32_t connected_index_y = coo_y - degree + 1 + i + j;
+               if (connected_index_y < 0) {
+                  connected_index_y += y_size;
+               }
+               else if (connected_index_y >= y_size) {
+                  connected_index_y -= y_size;
+               }
+               if (connected_index_y != coo_y){
+                  (*energy_difference)[coo_z*x_size*y_size + connected_index_y*x_size + coo_x] += 4*target_ineraction*sign_y;
+               }
+               
+               // z-direction
+               std::int32_t connected_index_z = coo_z - degree + 1 + i + j;
+               if (connected_index_z < 0) {
+                  connected_index_z += z_size;
+               }
+               else if (connected_index_z >= z_size) {
+                  connected_index_z -= z_size;
+               }
+               if (connected_index_z != coo_z){
+                  (*energy_difference)[connected_index_z*x_size*y_size + coo_y*x_size + coo_x] += 4*target_ineraction*sign_z;
+               }
+            }
+         }
+      }
+   }
+   else if (model.GetBoundaryCondition() == lattice::BoundaryCondition::OBC) {
+      for (std::int32_t degree = 1; degree < interaction.size(); ++degree) {
+         if (std::abs(interaction[degree]) <= std::numeric_limits<ValueType>::epsilon()) {
+            continue;
+         }
+         const ValueType target_ineraction = interaction[degree];
+         
+         // x-direction
+         for (std::int32_t i = std::max(coo_x - degree + 1, 0); i <= coo_x; ++i) {
+            if (i > x_size - degree) {
+               break;
+            }
+            OPType sign = 1;
+            for (std::int32_t j = i; j < i + degree; ++j) {
+               sign *= (*sample)[coo_z*x_size*y_size + coo_y*x_size + j];
+            }
+            for (std::int32_t j = i; j < i + degree; ++j) {
+               if (j == coo_x) {continue;}
+               (*energy_difference)[coo_z*x_size*y_size + coo_y*x_size + j] += 4*target_ineraction*sign;
+            }
+         }
+         
+         // y-direction
+         for (std::int32_t i = std::max(coo_y - degree + 1, 0); i <= coo_y; ++i) {
+            if (i > y_size - degree) {
+               break;
+            }
+            OPType sign = 1;
+            for (std::int32_t j = i; j < i + degree; ++j) {
+               sign *= (*sample)[coo_z*x_size*y_size + j*x_size + coo_x];
+            }
+            for (std::int32_t j = i; j < i + degree; ++j) {
+               if (j == coo_y) {continue;}
+               (*energy_difference)[coo_z*x_size*y_size + j*x_size + coo_x] += 4*target_ineraction*sign;
+            }
+         }
+         
+         // z-direction
+         for (std::int32_t i = std::max(coo_z - degree + 1, 0); i <= coo_z; ++i) {
+            if (i > z_size - degree) {
+               break;
+            }
+            OPType sign = 1;
+            for (std::int32_t j = i; j < i + degree; ++j) {
+               sign *= (*sample)[j*x_size*y_size + coo_y*x_size + coo_x];
+            }
+            for (std::int32_t j = i; j < i + degree; ++j) {
+               if (j == coo_z) {continue;}
+               (*energy_difference)[j*x_size*y_size + coo_y*x_size + coo_x] += 4*target_ineraction*sign;
+            }
+         }
+         
+      }
+   }
+   else {
+      throw std::runtime_error("Unsupported BoundaryCondition");
+   }
+   (*energy_difference)[index] *= -1;
+   (*sample)[index] *= -1;
    
 }
 

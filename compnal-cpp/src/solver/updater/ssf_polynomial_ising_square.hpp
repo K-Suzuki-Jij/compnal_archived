@@ -81,23 +81,22 @@ void SetEnergyDifference(std::vector<typename model::PolynomialIsing<lattice::Sq
                   }
                   val += sign_x*target_ineraction + sign_y*target_ineraction;
                }
-               (*energy_difference)[coo_y*x_size + coo_x] += -2.0*val;
+               (*energy_difference)[coo_y*x_size + coo_x] = -2.0*val;
             }
          }
 
       }
    }
-   
    else if (model.GetBoundaryCondition() == lattice::BoundaryCondition::OBC) {
       for (std::int32_t degree = 1; degree < interaction.size(); ++degree) {
          if (std::abs(interaction[degree]) <= std::numeric_limits<ValueType>::epsilon()) {
             continue;
          }
          const ValueType target_ineraction = interaction[degree];
-         
-         // x-direction
-         for (std::int32_t coo_y = 0; coo_y < y_size; ++coo_y) {
-            for (std::int32_t coo_x = 0; coo_x < x_size; ++coo_x) {
+
+         for (std::int32_t coo_x = 0; coo_x < x_size; ++coo_x) {
+            for (std::int32_t coo_y = 0; coo_y < y_size; ++coo_y) {
+               // x-direction
                ValueType val = 0;
                for (std::int32_t i = 0; i < degree; ++i) {
                   if (coo_x - degree + 1 + i < 0 || coo_x + i >= x_size) {
@@ -110,14 +109,8 @@ void SetEnergyDifference(std::vector<typename model::PolynomialIsing<lattice::Sq
                   }
                   val += sign*target_ineraction;
                }
-               (*energy_difference)[coo_y*x_size + coo_x] += -2.0*val;
-            }
-         }
-
-         // y-direction
-         for (std::int32_t coo_x = 0; coo_x < x_size; ++coo_x) {
-            for (std::int32_t coo_y = 0; coo_y < y_size; ++coo_y) {
-               ValueType val = 0;
+               
+               // y-direction
                for (std::int32_t i = 0; i < degree; ++i) {
                   if (coo_y - degree + 1 + i < 0 || coo_y + i >= y_size) {
                      continue;
@@ -129,13 +122,11 @@ void SetEnergyDifference(std::vector<typename model::PolynomialIsing<lattice::Sq
                   }
                   val += sign*target_ineraction;
                }
-               (*energy_difference)[coo_y*x_size + coo_x] += -2.0*val;
+               (*energy_difference)[coo_y*x_size + coo_x] = -2.0*val;
             }
          }
       }
    }
-   
-   
    else {
       throw std::runtime_error("Unsupported BinaryCondition");
    }
@@ -230,10 +221,8 @@ void UpdateConfiguration(std::vector<typename model::PolynomialIsing<lattice::Sq
             for (std::int32_t j = i; j < i + degree; ++j) {
                sign *= (*sample)[coo_y*x_size + j];
             }
-            for (std::int32_t j = i; j < coo_x; ++j) {
-               (*energy_difference)[coo_y*x_size + j] += 4*target_ineraction*sign;
-            }
-            for (std::int32_t j = coo_x + 1; j < i + degree; ++j) {
+            for (std::int32_t j = i; j < i + degree; ++j) {
+               if (j == coo_x) {continue;}
                (*energy_difference)[coo_y*x_size + j] += 4*target_ineraction*sign;
             }
          }
@@ -247,10 +236,8 @@ void UpdateConfiguration(std::vector<typename model::PolynomialIsing<lattice::Sq
             for (std::int32_t j = i; j < i + degree; ++j) {
                sign *= (*sample)[j*x_size + coo_x];
             }
-            for (std::int32_t j = i; j < coo_y; ++j) {
-               (*energy_difference)[j*x_size + coo_x] += 4*target_ineraction*sign;
-            }
-            for (std::int32_t j = coo_y + 1; j < i + degree; ++j) {
+            for (std::int32_t j = i; j < i + degree; ++j) {
+               if (j == coo_y) {continue;}
                (*energy_difference)[j*x_size + coo_x] += 4*target_ineraction*sign;
             }
          }
