@@ -66,39 +66,6 @@ class Square(base_lattice.Square):
         """
         return cast_base_boundary_condition(super().get_boundary_condition())
 
-    def set_x_size(self, x_size: int) -> None:
-        """Set the size of the x-direction.
-
-        Args:
-            x_size (int): the size of the x-direction.
-
-        Returns:
-            None
-        """
-        super().set_x_size(x_size)
-
-    def set_y_size(self, y_size: int) -> None:
-        """Set the size of the y-direction.
-
-        Args:
-            y_size (int): the size of the y-direction.
-
-        Returns:
-            None
-        """
-        super().set_y_size(y_size)
-
-    def set_boundary_condition(self, boundary_condition: BoundaryCondition) -> None:
-        """Set the boundary condition.
-
-        Args:
-            boundary_condition (BoundaryCondition): The boundary condition.
-
-        Returns:
-            None
-        """
-        super().set_boundary_condition(cast_boundary_condition(boundary_condition))
-
     def generate_x_coordinate(self) -> list:
         """Generate the x-coordinate of the samples.
 
@@ -119,17 +86,9 @@ class Square(base_lattice.Square):
     def x_size(self) -> int:
         return self.get_x_size()
 
-    @x_size.setter
-    def x_size(self, x_size: int) -> None:
-        self.set_x_size(x_size)
-
     @property
     def y_size(self) -> int:
         return self.get_y_size()
-
-    @y_size.setter
-    def y_size(self, y_size: int) -> None:
-        self.set_y_size(y_size)
 
     @property
     def system_size(self) -> None:
@@ -138,7 +97,3 @@ class Square(base_lattice.Square):
     @property
     def boundary_condition(self) -> BoundaryCondition:
         return self.get_boundary_condition()
-
-    @boundary_condition.setter
-    def boundary_condition(self, boundary_condition: BoundaryCondition) -> None:
-        self.set_boundary_condition(boundary_condition)

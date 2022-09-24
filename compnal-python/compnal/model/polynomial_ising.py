@@ -36,6 +36,8 @@ class PolynomialIsing:
 
         self.__interaction = MappingProxyType(interaction)
 
+        self.__lattice = lattice
+
     def get_interaction(self) -> MappingProxyType:
         """Get interaction.
 
@@ -86,6 +88,10 @@ class PolynomialIsing:
     @property
     def boundary_condition(self) -> BoundaryCondition:
         return self.get_boundary_condition()
+
+    @property
+    def lattice(self):
+        return self.__lattice
 
     @property
     def _base_model(self):

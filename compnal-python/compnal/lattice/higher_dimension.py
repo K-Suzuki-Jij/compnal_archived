@@ -36,21 +36,9 @@ class InfiniteRange(base_lattice.InfiniteRange):
         """
         return cast_base_boundary_condition(super().get_boundary_condition())
 
-    def set_system_size(self, system_size: int) -> None:
-        """Set the system size.
-
-        Args:
-            system_size (int): The system size.
-        """
-        super().set_system_size(system_size)
-
     @property
     def system_size(self) -> int:
         return self.get_system_size()
-
-    @system_size.setter
-    def system_size(self, system_size: int) -> None:
-        self.set_system_size(system_size)
 
     @property
     def boundary_condition(self) -> BoundaryCondition:
