@@ -19,7 +19,7 @@
 #define COMPNAL_SOLVER_CLASSICAL_MONTE_CARLO_HPP_
 
 #include "../utility/type.hpp"
-#include "updater/monte_carlo_updater.hpp"
+#include "./classical_monte_calro_updater/classical_monte_carlo_updater.hpp"
 #include <vector>
 #include <random>
 #include <sstream>

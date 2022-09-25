@@ -13,21 +13,24 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  monte_carlo_updater.hpp
+//  classical_monte_carlo_updater.hpp
 //  compnal
 //
 //  Created by kohei on 2022/08/13.
 //  
 //
 
-#ifndef COMPNAL_SOLVER_UPDATER_MONTE_CARLO_UPDATER_HPP_
-#define COMPNAL_SOLVER_UPDATER_MONTE_CARLO_UPDATER_HPP_
+#ifndef COMPNAL_SOLVER_UPDATER_CLASSICAL_MONTE_CARLO_UPDATER_HPP_
+#define COMPNAL_SOLVER_UPDATER_CLASSICAL_MONTE_CARLO_UPDATER_HPP_
 
 #include "ssf_polynomial_ising_any_lattice.hpp"
 #include "ssf_polynomial_ising_chain.hpp"
 #include "ssf_polynomial_ising_cubic.hpp"
 #include "ssf_polynomial_ising_square.hpp"
 #include "ssf_polynomial_ising_infinite_range.hpp"
+
+#include "ssf_ising_chain.hpp"
+#include "ssf_ising_square.hpp"
 
 #include "../../utility/type.hpp"
 
@@ -196,4 +199,4 @@ void ExecuteHeatBath(std::vector<typename model::PolynomialIsing<lattice::AnyLat
 } // namespace solver
 } // namespace compnal
 
-#endif /* COMPNAL_MODEL_MONTE_CARLO_UPDATER_HPP_ */
+#endif /* COMPNAL_SOLVER_UPDATER_CLASSICAL_MONTE_CARLO_UPDATER_HPP_ */

@@ -18,7 +18,7 @@
 #ifndef COMPNAL_SOLVER_ALL_HPP_
 #define COMPNAL_SOLVER_ALL_HPP_
 
-#include "classical_monte_carlo.hpp"
+#include "./classical_monte_carlo/classical_monte_carlo.hpp"
 
 
 #endif /* COMPNAL_SOLVER_ALL_HPP_ */

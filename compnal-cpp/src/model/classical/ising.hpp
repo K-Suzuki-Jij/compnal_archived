@@ -52,6 +52,14 @@ public:
       return {linear_, quadratic_};
    }
    
+   LinearType GetLinear() const {
+      return linear_;
+   }
+   
+   QuadraticType GetQuadratic() const {
+      return quadratic_;
+   }
+   
    std::int32_t GetSystemSize() const {
       return lattice_.GetSystemSize();
    }
@@ -70,6 +78,10 @@ public:
       else {
          return 0;
       }
+   }
+   
+   const LatticeType &GetLattice() const {
+      return lattice_;
    }
    
    RealType CalculateEnergy(const std::vector<OPType> &sample) const {

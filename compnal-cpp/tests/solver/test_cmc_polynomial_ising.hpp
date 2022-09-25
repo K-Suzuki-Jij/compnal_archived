@@ -15,11 +15,10 @@
 //  Created by Kohei Suzuki on 2022/06/11.
 //
 
-#ifndef COMPNAL_TEST_SOLVER_CLASSICAL_MONTE_CARLO_HPP_
-#define COMPNAL_TEST_SOLVER_CLASSICAL_MONTE_CARLO_HPP_
+#ifndef COMPNAL_TEST_SOLVER_CMC_POLYNOMIAL_ISING_HPP_
+#define COMPNAL_TEST_SOLVER_CMC_POLYNOMIAL_ISING_HPP_
 
 #include "../../src/solver/classical_monte_carlo.hpp"
-#include "../../src/solver/updater/monte_carlo_updater.hpp"
 #include <gtest/gtest.h>
 
 namespace compnal {
@@ -91,7 +90,7 @@ TEST(SolverClassicalMonteCarlo, PolyIsingCubicPBC) {
 
 TEST(SolverClassicalMonteCarlo, PolyIsingCubicOBC) {
    const lattice::Cubic lattice(3, 3, 3, lattice::BoundaryCondition::OBC);
-   const std::unordered_map<std::int32_t, double> interaction{{2, -1}};
+   const std::unordered_map<std::int32_t, double> interaction{{3, -1}};
    model::PolynomialIsing model(lattice, interaction);
    solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
    solver.SetNumThreads(4);
@@ -174,4 +173,4 @@ TEST(SolverClassicalMonteCarlo, PolyIsingInfinitRange) {
 } // namespace test
 } // namespace compnal
 
-#endif /* COMPNAL_TEST_SOLVER_CLASSICAL_MONTE_CARLO_HPP_ */
+#endif /* COMPNAL_TEST_SOLVER_CMC_POLYNOMIAL_ISING_HPP_ */
