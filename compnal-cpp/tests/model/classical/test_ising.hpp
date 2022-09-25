@@ -31,8 +31,8 @@ namespace test {
 TEST(ModelIsing, AnyLattice) {
    
    auto model = model::make_ising<double>(lattice::AnyLattice{}, {}, {});
-   model.GenerateLinearInteractionAsPair();
-   model.GenerateQuadraticInteractionAsPair();
+   
+   
 }
 
 TEST(ModelIsing, InfiniteRange) {

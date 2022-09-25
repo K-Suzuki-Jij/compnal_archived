@@ -69,7 +69,7 @@ TEST(SolverClassicalMonteCarlo, PolyIsingChain) {
 
 TEST(SolverClassicalMonteCarlo, PolyIsingCubicPBC) {
    const lattice::Cubic lattice(3, 3, 3, lattice::BoundaryCondition::PBC);
-   const std::unordered_map<std::int32_t, double> interaction{{2, -1}};
+   const std::unordered_map<std::int32_t, double> interaction{{3, -1}};
    model::PolynomialIsing model(lattice, interaction);
    solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
    solver.SetNumThreads(4);

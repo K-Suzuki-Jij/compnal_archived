@@ -311,7 +311,6 @@ void UpdateConfiguration(std::vector<typename model::PolynomialIsing<lattice::Cu
                (*energy_difference)[j*x_size*y_size + coo_y*x_size + coo_x] += 4*target_ineraction*sign;
             }
          }
-         
       }
    }
    else {

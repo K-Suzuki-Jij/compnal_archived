@@ -40,18 +40,16 @@ public:
    using ValueType = RealType;
    using IndexType = std::int32_t;
    using OPType = utility::SpinType;
+   using LinearType = RealType;
+   using QuadraticType = RealType;
    
    Ising(const LatticeType &lattice,
-         const RealType interaction_deg_1,
-         const RealType interaction_deg_2):
-   lattice_(lattice), interaction_deg_1_(interaction_deg_1), interaction_deg_2_(interaction_deg_2) {}
+         const LinearType interaction_deg_1,
+         const QuadraticType interaction_deg_2):
+   lattice_(lattice), linear_(interaction_deg_1), quadratic_(interaction_deg_2) {}
    
-   void SetConstant(const RealType constant) {
-      interaction_deg_0_ = constant;
-   }
-   
-   std::tuple<RealType, RealType, RealType> GetInteraction() const {
-      return {interaction_deg_0_, interaction_deg_1_, interaction_deg_2_};
+   std::pair<LinearType, QuadraticType> GetInteraction() const {
+      return {linear_, quadratic_};
    }
    
    std::int32_t GetSystemSize() const {
@@ -63,10 +61,10 @@ public:
    }
       
    std::int32_t GetDegree() const {
-      if (std::abs(interaction_deg_2_) > std::numeric_limits<RealType>::epsilon()) {
+      if (std::abs(quadratic_) > std::numeric_limits<RealType>::epsilon()) {
          return 2;
       }
-      else if (std::abs(interaction_deg_1_) > std::numeric_limits<RealType>::epsilon()) {
+      else if (std::abs(linear_) > std::numeric_limits<RealType>::epsilon()) {
          return 1;
       }
       else {
@@ -126,9 +124,8 @@ public:
    
 private:
    LatticeType lattice_;
-   RealType interaction_deg_0_ = 0;
-   RealType interaction_deg_1_ = 0;
-   RealType interaction_deg_2_ = 0;
+   LinearType linear_ = 0;
+   QuadraticType quadratic_ = 0;
 
    
    RealType CalculateEnergy(const lattice::Chain &chain_lattice,
@@ -174,34 +171,36 @@ public:
    using IndexType = typename QuadraticGeneralModel<RealType>::IndexType;
    using IndexHash = typename QuadraticGeneralModel<RealType>::IndexHash;
    using PairHash  = typename QuadraticGeneralModel<RealType>::PairHash;
+   using LinearType = typename QuadraticGeneralModel<RealType>::LinearType;
+   using QuadraticType = typename QuadraticGeneralModel<RealType>::QuadraticType;
    
    Ising(const lattice::AnyLattice &lattice,
-         const std::unordered_map<IndexType, RealType, IndexHash> &linear,
-         const std::unordered_map<std::pair<IndexType, IndexType>, RealType, PairHash> &quadratic):
+         const LinearType &linear,
+         const QuadraticType &quadratic):
    lattice_(lattice), interaction_(linear, quadratic) {}
-   
-   void SetConstant(const RealType constant) {
-      interaction_.SetConstant(constant);
-   }
-   
-   std::vector<IndexType> GenerateIndexList() const {
-      return interaction_.GenerateIndexList();
+      
+   const std::vector<IndexType> &GetIndexList() const {
+      return interaction_.GetIndexList();
    }
    
    RealType GetConstant() const {
       return interaction_.GetConstant();
    }
    
-   std::pair<std::vector<IndexType>, std::vector<RealType>> GenerateLinearInteractionAsPair() const {
-      return interaction_.GenerateLinearInteractionAsPair();
+   const LinearType &GetLinear() const {
+      return interaction_.GetLinear();
    }
    
-   std::pair<std::vector<std::pair<IndexType, IndexType>>, std::vector<RealType>> GenerateQuadraticInteractionAsPair() const {
-      return interaction_.GenerateQuadraticInteractionAsPair();
+   const std::vector<RealType> &GetQuadraticValue() const {
+      return interaction_.GetQuadraticValue();
    }
    
-   std::unordered_set<IndexType, IndexHash> GetIndexSet() const {
-      return interaction_.GetIndexSet();
+   const std::vector<std::pair<std::int32_t, std::int32_t>> &GetQuadraticKey() const {
+      return interaction_.GetQuadraticKey();
+   }
+   
+   const std::unordered_map<IndexType, std::int32_t, IndexHash> &GetIndexMap() const {
+      return interaction_.GetIndexMap();
    }
    
    std::int32_t GetSystemSize() const {
@@ -284,28 +283,9 @@ private:
 
 template<class LatticeType, typename RealType>
 auto make_ising(const LatticeType &lattice,
-                const RealType interaction_deg_1,
-                const RealType interaction_deg_2) {
-   return Ising<LatticeType, RealType>{lattice, interaction_deg_1, interaction_deg_2};
-}
-
-template<typename RealType>
-auto make_ising(const lattice::AnyLattice &lattice,
-                const std::unordered_map<
-                typename QuadraticGeneralModel<RealType>::IndexType, RealType,
-                typename QuadraticGeneralModel<RealType>::IndexHash
-                > &linear,
-                const std::unordered_map<
-                std::pair<
-                typename QuadraticGeneralModel<RealType>::IndexType,
-                typename QuadraticGeneralModel<RealType>::IndexType
-                >,
-                RealType,
-                typename QuadraticGeneralModel<RealType>::PairHash
-                > &quadratic) {
-   
-   return Ising<lattice::AnyLattice, RealType>{lattice, linear, quadratic};
-   
+                const typename Ising<LatticeType, RealType>::LinearType &linear,
+                const typename Ising<LatticeType, RealType>::QuadraticType &quadratic) {
+   return Ising<LatticeType, RealType>{lattice, linear, quadratic};
 }
 
 } // namespace model

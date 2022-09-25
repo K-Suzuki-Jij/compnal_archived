@@ -47,10 +47,8 @@ public:
       for (const auto &it: interaction) {
          index_set.insert(it.first.begin(), it.first.end());
       }
-      index_list_.reserve(index_set.size());
-      for (const auto &index: index_set) {
-         index_list_.push_back(index);
-      }
+      
+      index_list_ = std::vector<IndexType>(index_set.begin(), index_set.end());
       std::sort(index_list_.begin(), index_list_.end());
       
       std::int32_t count = 0;
