@@ -48,32 +48,26 @@ void SetEnergyDifference(std::vector<typename model::Ising<lattice::Square, Real
       
    }
    else if (model.GetBoundaryCondition() == lattice::BoundaryCondition::OBC) {
-      for (std::int32_t coo_x = 0; coo_x < x_size - 1; ++coo_x) {
-         for (std::int32_t coo_y = 0; coo_y < y_size - 1; ++coo_y) {
-            // x-direction
+      // x-direction
+      for (std::int32_t coo_y = 0; coo_y < y_size; ++coo_y) {
+         for (std::int32_t coo_x = 0; coo_x < x_size - 1; ++coo_x) {
             (*energy_difference)[coo_y*x_size + coo_x] += -2*quadratic*sample[coo_y*x_size + coo_x]*sample[coo_y*x_size + coo_x + 1] - 2*linear*sample[coo_y*x_size + coo_x];
             (*energy_difference)[coo_y*x_size + coo_x + 1] += -2*quadratic*sample[coo_y*x_size + coo_x]*sample[coo_y*x_size + coo_x + 1];
-            
-            // y-direction
+         }
+         (*energy_difference)[coo_y*x_size + x_size - 1] += -2*linear*sample[coo_y*x_size + x_size - 1];
+      }
+      // y-direction
+      for (std::int32_t coo_x = 0; coo_x < x_size; ++coo_x) {
+         for (std::int32_t coo_y = 0; coo_y < y_size - 1; ++coo_y) {
             (*energy_difference)[coo_y*x_size + coo_x] += -2*quadratic*sample[coo_y*x_size + coo_x]*sample[(coo_y + 1)*x_size + coo_x] - 2*linear*sample[coo_y*x_size + coo_x];
             (*energy_difference)[(coo_y + 1)*x_size + coo_x] += -2*quadratic*sample[coo_y*x_size + coo_x]*sample[(coo_y + 1)*x_size + coo_x];
          }
-      }
-      
-      // x-direction
-      for (std::int32_t coo_x = 0; coo_x < x_size; ++coo_x) {
          (*energy_difference)[(y_size - 1)*x_size + coo_x] += -2*linear*sample[(y_size - 1)*x_size + coo_x];
-      }
-      
-      // y-direction
-      for (std::int32_t coo_y = 0; coo_y < y_size; ++coo_y) {
-         (*energy_difference)[coo_y*x_size + x_size - 1] += -2*linear*sample[coo_y*x_size + x_size - 1];
       }
    }
    else {
-      throw std::runtime_error("Unsupported BinaryCondition");
+      throw std::runtime_error("Unsupported BoundaryCondition");
    }
-   
 }
 
 
@@ -99,10 +93,10 @@ void UpdateConfiguration(std::vector<typename model::Ising<lattice::Square, Real
          (*energy_difference)[coo_y*x_size + coo_x + 1] += 4*quadratic*(*sample)[coo_y*x_size + coo_x]*(*sample)[coo_y*x_size + coo_x + 1];
       }
       else if (coo_x == 0) {
-         (*energy_difference)[coo_y*x_size + 1] += 4*quadratic*(*sample)[coo_y*x_size + 0]*(*sample)[coo_y*x_size + 1];
+         (*energy_difference)[coo_y*x_size + coo_x + 1] += 4*quadratic*(*sample)[coo_y*x_size + coo_x]*(*sample)[coo_y*x_size + coo_x + 1];
       }
       else {
-         (*energy_difference)[coo_y*x_size + x_size - 2] += 4*quadratic*(*sample)[coo_y*x_size + x_size - 2]*(*sample)[coo_y*x_size + x_size - 1];
+         (*energy_difference)[coo_y*x_size + coo_x - 1] += 4*quadratic*(*sample)[coo_y*x_size + coo_x - 1]*(*sample)[coo_y*x_size + coo_x];
       }
       
       // y-direction
@@ -111,10 +105,10 @@ void UpdateConfiguration(std::vector<typename model::Ising<lattice::Square, Real
          (*energy_difference)[(coo_y + 1)*x_size + coo_x] += 4*quadratic*(*sample)[coo_y*x_size + coo_x]*(*sample)[(coo_y + 1)*x_size + coo_x];
       }
       else if (coo_y == 0) {
-         (*energy_difference)[1*x_size + coo_x] += 4*quadratic*(*sample)[0*x_size + coo_x]*(*sample)[1*x_size + coo_x];
+         (*energy_difference)[(coo_y + 1)*x_size + coo_x] += 4*quadratic*(*sample)[coo_y*x_size + coo_x]*(*sample)[(coo_y + 1)*x_size + coo_x];
       }
       else {
-         (*energy_difference)[(y_size - 2)*x_size + coo_x] += 4*quadratic*(*sample)[(y_size - 2)*x_size + coo_x]*(*sample)[(y_size - 1)*x_size + coo_x];
+         (*energy_difference)[(coo_y - 1)*x_size + coo_x] += 4*quadratic*(*sample)[(coo_y - 1)*x_size + coo_x]*(*sample)[coo_y*x_size + coo_x];
       }
    }
    else {

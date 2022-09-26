@@ -77,25 +77,16 @@ TEST(SolverClassicalMonteCarlo, IsingSquareOBC) {
    solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
    solver.SetNumThreads(4);
    solver.SetNumSweeps(1000);
-   solver.SetNumSamples(5);
+   solver.SetNumSamples(8);
    solver.SetTemperature(0.1);
    solver.Run(seed);
    
    for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      for (const auto &it: solver.GetSample(i)) {
-         printf("%+d, ", it);
-      }
-      printf("SUM=%lf", std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0)/9.0);
-      printf("\n");
+      EXPECT_EQ(std::abs(std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0)), x_size*y_size);
    }
    
-   printf("%lf\n", solver.CalculateAverage());
 }
 
-TEST(SolverClassicalMonteCarlo, IsingAnyLattice) {
-   //const lattice::AnyLattice any = model::make_ising<lattice::AnyLattice, double>(lattice::AnyLattice{}, {{3, -0.03}}, {{{1,2}, -0.03}});
-   
-}
 
 
 } // namespace test
