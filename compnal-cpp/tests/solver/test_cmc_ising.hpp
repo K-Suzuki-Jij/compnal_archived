@@ -92,6 +92,11 @@ TEST(SolverClassicalMonteCarlo, IsingSquareOBC) {
    printf("%lf\n", solver.CalculateAverage());
 }
 
+TEST(SolverClassicalMonteCarlo, IsingAnyLattice) {
+   //const lattice::AnyLattice any = model::make_ising<lattice::AnyLattice, double>(lattice::AnyLattice{}, {{3, -0.03}}, {{{1,2}, -0.03}});
+   
+}
+
 
 } // namespace test
 } // namespace compnal

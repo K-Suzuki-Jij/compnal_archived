@@ -228,20 +228,7 @@ public:
    }
    
    RealType CalculateEnergy(const std::vector<OPType> &sample) const {
-      if (sample.size() != interaction_.GetSystemSize()) {
-         throw std::runtime_error("The sample size is not equal to the system size");
-      }
-      const std::unordered_map<IndexType, std::int64_t, IndexHash> &index_map = interaction_.GetIndexMap();
       RealType val = interaction_.GetConstant();
-      
-      for (const auto &it: interaction_.GetLinearInteraction()) {
-         val += it.second*sample[index_map.at(it.first)];
-      }
-      
-      for (const auto &it: interaction_.GetQuadraticInteraction()) {
-         val += it.second*sample[index_map.at(it.first.first)]*sample[index_map.at(it.first.second)];
-      }
-      
       return val;
    }
    

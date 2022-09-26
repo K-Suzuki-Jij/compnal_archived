@@ -45,50 +45,13 @@ void pybind11ModelIsing(py::module &m, const std::string &post_name = "") {
    py_class.def(py::init<const LatticeType&, const RealType, const RealType>(), "lattice"_a, "interaction_deg_1"_a, "interaction_deg_2"_a);
    
    //Public Member Functions
-   py_class.def("set_constant", &Ising::SetConstant, "constant"_a);
-   py_class.def("get_interaction", &Ising::GetInteraction);
    py_class.def("get_system_size", &Ising::GetSystemSize);
    py_class.def("get_boundary_condition", &Ising::GetBoundaryCondition);
    py_class.def("get_degree", &Ising::GetDegree);
    py_class.def("calculate_energy", py::overload_cast<const std::vector<typename Ising::OPType>&>(&Ising::CalculateEnergy, py::const_), "sample"_a);
  
-   m.def("make_ising", [](const LatticeType &lattice, const RealType interaction_deg_1, const RealType interaction_deg_2) {
-      return model::make_ising<LatticeType, RealType>(lattice, interaction_deg_1, interaction_deg_2);
-   }, "lattice"_a, "interaction_deg_1"_a, "interaction_deg_2"_a);
-}
-
-
-template<typename RealType>
-void pybind11ModelIsingAnyLattice(py::module &m, const std::string &post_name = "") {
-   
-   using Ising = model::Ising<lattice::AnyLattice, RealType>;
-   std::string name = std::string("Ising") + post_name;
-   
-   using IndexType = typename Ising::IndexType;
-   using IndexHash = typename Ising::IndexHash;
-   using PairHash  = typename Ising::PairHash;
-   
-   auto py_class = py::class_<Ising>(m, name.c_str(), py::module_local());
-   
-   //Constructors
-   py_class.def(py::init<const lattice::AnyLattice&, const std::unordered_map<IndexType, RealType, IndexHash>&, const std::unordered_map<std::pair<IndexType, IndexType>, RealType, PairHash>&>(), "lattice"_a, "linear"_a, "quadratic"_a);
-   
-   //Public Member Functions
-   py_class.def("set_constant", &Ising::SetConstant, "constant"_a);
-   py_class.def("generate_index_list", &Ising::GenerateIndexList);
-   py_class.def("get_constant", &Ising::GetConstant);
-   py_class.def("generate_linear_interaction_as_pair", &Ising::GenerateLinearInteractionAsPair);
-   py_class.def("generate_quadratic_interaction_as_pair", &Ising::GenerateQuadraticInteractionAsPair);
-   py_class.def("generate_index_list", &Ising::GenerateIndexList);
-   py_class.def("get_system_size", &Ising::GetSystemSize);
-   py_class.def("get_degree", &Ising::GetDegree);
-   py_class.def("get_boundary_condition", &Ising::GetBoundaryCondition);
-   py_class.def("calculate_energy", &Ising::CalculateEnergy, "sample"_a);
-
-   m.def("make_ising", [](const lattice::AnyLattice &lattice,
-                          const std::unordered_map<IndexType, RealType, IndexHash> &linear,
-                          const std::unordered_map<std::pair<IndexType, IndexType>, RealType, PairHash> &quadratic) {
-      return model::make_ising<RealType>(lattice, linear, quadratic);
+   m.def("make_ising", [](const LatticeType &lattice, const RealType linear, const RealType quadratic) {
+      return model::make_ising<LatticeType, RealType>(lattice, linear, quadratic);
    }, "lattice"_a, "linear"_a, "quadratic"_a);
 }
 
