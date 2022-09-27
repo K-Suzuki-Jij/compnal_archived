@@ -87,6 +87,25 @@ TEST(SolverClassicalMonteCarlo, IsingSquareOBC) {
    
 }
 
+TEST(SolverClassicalMonteCarlo, IsingSquarePBC) {
+   const std::int32_t x_size = 3;
+   const std::int32_t y_size = 5;
+   const lattice::Square lattice(x_size, y_size, lattice::BoundaryCondition::PBC);
+   model::Ising model(lattice, 0.0, -1.0);
+   
+   const std::uint64_t seed = 1;
+   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver.SetNumThreads(4);
+   solver.SetNumSweeps(10000);
+   solver.SetNumSamples(8);
+   solver.SetTemperature(0.5);
+   solver.Run(seed);
+   
+   for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
+      EXPECT_EQ(std::abs(std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0)), x_size*y_size);
+   }
+}
+
 
 
 } // namespace test
