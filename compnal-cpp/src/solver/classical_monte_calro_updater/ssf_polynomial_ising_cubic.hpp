@@ -44,7 +44,7 @@ void SetEnergyDifference(std::vector<typename model::PolynomialIsing<lattice::Cu
    const std::vector<ValueType> &interaction = model.GetInteraction();
    const std::int32_t x_size = model.GetLattice().GetXSize();
    const std::int32_t y_size = model.GetLattice().GetYSize();
-   const std::int32_t z_size = model.GetLattice().GetYSize();
+   const std::int32_t z_size = model.GetLattice().GetZSize();
 
    if (model.GetBoundaryCondition() == lattice::BoundaryCondition::PBC) {
       for (std::int32_t degree = 1; degree < interaction.size(); ++degree) {
@@ -150,7 +150,7 @@ void SetEnergyDifference(std::vector<typename model::PolynomialIsing<lattice::Cu
                      }
                      val += sign*target_ineraction;
                   }
-                  (*energy_difference)[coo_z*x_size*y_size + coo_y*x_size + coo_x] = -2.0*val;
+                  (*energy_difference)[coo_z*x_size*y_size + coo_y*x_size + coo_x] += -2.0*val;
                }
             }
          }

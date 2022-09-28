@@ -106,6 +106,56 @@ TEST(SolverClassicalMonteCarlo, IsingSquarePBC) {
    }
 }
 
+TEST(SolverClassicalMonteCarlo, IsingCubicOBC) {
+   const std::int32_t x_size = 3;
+   const std::int32_t y_size = 4;
+   const std::int32_t z_size = 5;
+   const lattice::Cubic lattice(x_size, y_size, z_size, lattice::BoundaryCondition::OBC);
+   model::Ising model(lattice, 0.0, -1.0);
+   
+   const std::uint64_t seed = 1;
+   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver.SetNumThreads(4);
+   solver.SetNumSweeps(10000);
+   solver.SetNumSamples(8);
+   solver.SetTemperature(0.1);
+   solver.Run(seed);
+   
+   std::int32_t gs_count = 0;
+   for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
+      if (std::abs(std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0)) == model.GetSystemSize()) {
+         gs_count++;
+      }
+   }
+   
+   EXPECT_GE(gs_count, 4);
+}
+
+TEST(SolverClassicalMonteCarlo, IsingCubicPBC) {
+   const std::int32_t x_size = 3;
+   const std::int32_t y_size = 4;
+   const std::int32_t z_size = 5;
+   const lattice::Cubic lattice(x_size, y_size, z_size, lattice::BoundaryCondition::PBC);
+   model::Ising model(lattice, 0.0, -1.0);
+   
+   const std::uint64_t seed = 1;
+   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver.SetNumThreads(4);
+   solver.SetNumSweeps(10000);
+   solver.SetNumSamples(8);
+   solver.SetTemperature(0.1);
+   solver.Run(seed);
+   
+   std::int32_t gs_count = 0;
+   for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
+      if (std::abs(std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0)) == model.GetSystemSize()) {
+         gs_count++;
+      }
+   }
+   
+   EXPECT_GE(gs_count, 4);
+}
+
 
 
 } // namespace test

@@ -34,7 +34,7 @@ class Ising:
         """
 
         self.__base_model = base_model.make_ising(
-            lattice=lattice, interaction_deg_1=linear, interaction_deg_2=quadratic
+            lattice=lattice, linear=linear, quadratic=quadratic
         )
 
     def set_constant(self, constant: float) -> None:

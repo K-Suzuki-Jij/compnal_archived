@@ -31,6 +31,7 @@
 
 #include "ssf_ising_chain.hpp"
 #include "ssf_ising_square.hpp"
+#include "ssf_ising_cubic.hpp"
 
 #include "../../utility/type.hpp"
 
