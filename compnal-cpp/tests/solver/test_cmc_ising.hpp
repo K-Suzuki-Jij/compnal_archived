@@ -157,6 +157,31 @@ TEST(SolverClassicalMonteCarlo, IsingCubicPBC) {
 }
 
 
+TEST(SolverClassicalMonteCarlo, IsingInfiniteRange) {
+   const std::int32_t system_size = 10;
+   const lattice::InfiniteRange lattice(system_size);
+   model::Ising model(lattice, 0.0, -1.0);
+   
+   const std::uint64_t seed = 1;
+   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver.SetNumThreads(4);
+   solver.SetNumSweeps(10000);
+   solver.SetNumSamples(8);
+   solver.SetTemperature(0.1);
+   solver.Run(seed);
+   
+   
+   for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
+      for (const auto &it: solver.GetSample(i)) {
+         printf("%+d, ", it);
+      }
+      printf("SUM=%lf", std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0.0));
+      printf("\n");
+   }
+   
+   printf("%lf\n", solver.CalculateAverage());}
+
+
 
 } // namespace test
 } // namespace compnal

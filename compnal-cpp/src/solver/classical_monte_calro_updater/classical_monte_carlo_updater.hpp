@@ -32,6 +32,7 @@
 #include "ssf_ising_chain.hpp"
 #include "ssf_ising_square.hpp"
 #include "ssf_ising_cubic.hpp"
+#include "ssf_ising_infinite_range.hpp"
 
 #include "../../utility/type.hpp"
 

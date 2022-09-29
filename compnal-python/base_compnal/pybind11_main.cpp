@@ -58,7 +58,7 @@ PYBIND11_MODULE(base_compnal, m) {
    compnal::wrapper::pybind11SolverClassicalMonteCarlo<compnal::model::Ising<compnal::lattice::Chain, RealType>>(m_solver, "IsingChain");
    compnal::wrapper::pybind11SolverClassicalMonteCarlo<compnal::model::Ising<compnal::lattice::Square, RealType>>(m_solver, "IsingSquare");
    compnal::wrapper::pybind11SolverClassicalMonteCarlo<compnal::model::Ising<compnal::lattice::Cubic, RealType>>(m_solver, "IsingCubic");
-   //compnal::wrapper::pybind11SolverClassicalMonteCarlo<compnal::model::Ising<compnal::lattice::InfiniteRange, RealType>>(m_solver, "IsingInfiniteRange");
+   compnal::wrapper::pybind11SolverClassicalMonteCarlo<compnal::model::Ising<compnal::lattice::InfiniteRange, RealType>>(m_solver, "IsingInfiniteRange");
    //compnal::wrapper::pybind11SolverClassicalMonteCarlo<compnal::model::Ising<compnal::lattice::AnyLattice, RealType>>(m_solver, "PolyIsingAnyLattice");
 
 };
