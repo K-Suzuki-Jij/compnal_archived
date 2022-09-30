@@ -165,21 +165,45 @@ TEST(SolverClassicalMonteCarlo, IsingInfiniteRange) {
    const std::uint64_t seed = 1;
    solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
    solver.SetNumThreads(4);
-   solver.SetNumSweeps(10000);
+   solver.SetNumSweeps(1000);
    solver.SetNumSamples(8);
    solver.SetTemperature(0.1);
    solver.Run(seed);
    
-   
    for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      for (const auto &it: solver.GetSample(i)) {
-         printf("%+d, ", it);
-      }
-      printf("SUM=%lf", std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0.0));
-      printf("\n");
+      EXPECT_EQ(std::abs(std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0)), system_size);
    }
    
-   printf("%lf\n", solver.CalculateAverage());}
+}
+
+TEST(SolverClassicalMonteCarlo, IsingAnyLattice) {
+   
+   using LinearType = model::Ising<lattice::AnyLattice, double>::LinearType;
+   using QuadraticType = model::Ising<lattice::AnyLattice, double>::QuadraticType;
+   const std::int32_t system_size = 10;
+   
+   QuadraticType quad;
+   
+   for (std::int32_t i = 0; i < system_size; ++i) {
+      for (std::int32_t j = i + 1; j < system_size; ++j) {
+         quad[{i, j}] = -0.1;
+      }
+   }
+   
+   const std::uint64_t seed = 1;
+   auto model = model::make_ising<lattice::AnyLattice, double>(lattice::AnyLattice{}, LinearType{}, quad);
+   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver.SetNumThreads(4);
+   solver.SetNumSweeps(10000);
+   solver.SetNumSamples(10);
+   solver.SetTemperature(0.15);
+   solver.Run(seed);
+   
+   for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
+      EXPECT_EQ(std::abs(std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0)), system_size);
+   }
+
+}
 
 
 

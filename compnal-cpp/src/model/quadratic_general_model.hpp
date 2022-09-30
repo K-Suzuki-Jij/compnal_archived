@@ -95,11 +95,11 @@ public:
          }
       }
       
+      adjacency_list_.resize(index_list_.size());
       for (const auto &it: new_quadratic) {
-         quadratic_value_.push_back(it.second);
-         quadratic_key_.push_back({it.first.first, it.first.second});
+         adjacency_list_[it.first.first].push_back({it.first.second, it.second});
+         adjacency_list_[it.first.second].push_back({it.first.first, it.second});
       }
-
    }
    
    const std::vector<IndexType> &GetIndexList() const {
@@ -114,19 +114,11 @@ public:
       return linear_;
    }
    
-   const std::vector<RealType> &GetQuadraticValue() const {
-      return quadratic_value_;
-   }
-   
-   const std::vector<std::pair<std::int32_t, std::int32_t>> &GetQuadraticKey() const {
-      return quadratic_key_;
-   }
-   
    std::int32_t GetSystemSize() const {
       return static_cast<std::int32_t>(index_list_.size());
    }
 
-   const std::unordered_map<IndexType, std::int64_t, IndexHash> &GetIndexMap() const {
+   const std::unordered_map<IndexType, std::int32_t, IndexHash> &GetIndexMap() const {
       return index_map_;
    }
    
@@ -134,15 +126,18 @@ public:
       return degree_;
    }
    
+   const std::vector<std::vector<std::pair<std::int32_t, RealType>>> &GetAdjacencyList() const {
+      return adjacency_list_;
+   }
+   
 private:
    int32_t degree_ = 0;
    std::unordered_map<IndexType, std::int32_t, IndexHash> index_map_;
    RealType constant_ = 0;
    std::vector<RealType> linear_;
-   std::vector<RealType> quadratic_value_;
-   std::vector<std::pair<std::int32_t, std::int32_t>> quadratic_key_;
    std::vector<IndexType> index_list_;
-
+   std::vector<std::vector<std::pair<std::int32_t, RealType>>> adjacency_list_;
+   
 };
 
 

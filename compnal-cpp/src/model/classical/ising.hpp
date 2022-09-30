@@ -203,16 +203,12 @@ public:
       return interaction_.GetLinear();
    }
    
-   const std::vector<RealType> &GetQuadraticValue() const {
-      return interaction_.GetQuadraticValue();
-   }
-   
-   const std::vector<std::pair<std::int32_t, std::int32_t>> &GetQuadraticKey() const {
-      return interaction_.GetQuadraticKey();
-   }
-   
    const std::unordered_map<IndexType, std::int32_t, IndexHash> &GetIndexMap() const {
       return interaction_.GetIndexMap();
+   }
+   
+   const std::vector<std::vector<std::pair<std::int32_t, RealType>>> &GetAdjacencyList() const {
+      return interaction_.GetAdjacencyList();
    }
    
    std::int32_t GetSystemSize() const {
@@ -255,7 +251,7 @@ public:
    RealType CalculateCorrelation(const std::vector<std::vector<OPType>> &samples,
                                  const IndexType ind1,
                                  const IndexType ind2) const {
-      const std::unordered_map<IndexType, std::int64_t, IndexHash> &index_map = interaction_.GetIndexMap();
+      const std::unordered_map<IndexType, std::int32_t, IndexHash> &index_map = interaction_.GetIndexMap();
       if (index_map.count(ind1) == 0 || index_map.count(ind2) == 0) {
          throw std::runtime_error("The index is out of range.");
       }

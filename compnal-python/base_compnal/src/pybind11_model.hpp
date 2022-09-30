@@ -42,7 +42,7 @@ void pybind11ModelIsing(py::module &m, const std::string &post_name = "") {
    auto py_class = py::class_<Ising>(m, name.c_str(), py::module_local());
    
    //Constructors
-   py_class.def(py::init<const LatticeType&, const RealType, const RealType>(), "lattice"_a, "interaction_deg_1"_a, "interaction_deg_2"_a);
+   py_class.def(py::init<const LatticeType&, const typename Ising::LinearType&, const typename Ising::QuadraticType&>(), "lattice"_a, "interaction_deg_1"_a, "interaction_deg_2"_a);
    
    //Public Member Functions
    py_class.def("get_system_size", &Ising::GetSystemSize);
@@ -50,7 +50,9 @@ void pybind11ModelIsing(py::module &m, const std::string &post_name = "") {
    py_class.def("get_degree", &Ising::GetDegree);
    py_class.def("calculate_energy", py::overload_cast<const std::vector<typename Ising::OPType>&>(&Ising::CalculateEnergy, py::const_), "sample"_a);
  
-   m.def("make_ising", [](const LatticeType &lattice, const RealType linear, const RealType quadratic) {
+   m.def("make_ising", [](const LatticeType &lattice,
+                          const typename Ising::LinearType &linear,
+                          const typename Ising::QuadraticType &quadratic) {
       return model::make_ising<LatticeType, RealType>(lattice, linear, quadratic);
    }, "lattice"_a, "linear"_a, "quadratic"_a);
 }

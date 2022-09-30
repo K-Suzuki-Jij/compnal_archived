@@ -40,9 +40,8 @@ void SetEnergyDifference(std::vector<typename model::PolynomialIsing<lattice::An
       throw std::runtime_error("The size of energy_difference is not equal to the system size.");
    }
    
-   using ValueType = typename model::PolynomialIsing<lattice::AnyLattice, RealType>::ValueType;
-   const std::vector<std::vector<std::int32_t>> &key_list = model.GetKeyList();
-   const std::vector<ValueType> &value_list = model.GetValueList();
+   const auto &key_list = model.GetKeyList();
+   const auto &value_list = model.GetValueList();
    
    for (std::size_t i = 0; i < key_list.size(); ++i) {
       for (const auto &index: key_list[i]) {
