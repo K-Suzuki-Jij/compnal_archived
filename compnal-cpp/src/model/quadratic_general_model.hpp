@@ -42,7 +42,7 @@ public:
    using PairHash  = utility::AnyIndexPairHash;
    using LinearType = std::unordered_map<IndexType, RealType, IndexHash>;
    using QuadraticType = std::unordered_map<std::pair<IndexType, IndexType>, RealType, PairHash>;
-   
+      
    QuadraticGeneralModel(const LinearType &linear,
                          const QuadraticType &quadratic) {
       
@@ -95,11 +95,32 @@ public:
          }
       }
       
-      adjacency_list_.resize(index_list_.size());
+      std::vector<std::vector<std::pair<std::int32_t, RealType>>> adjacency_list(index_list_.size());
       for (const auto &it: new_quadratic) {
-         adjacency_list_[it.first.first].push_back({it.first.second, it.second});
-         adjacency_list_[it.first.second].push_back({it.first.first, it.second});
+         adjacency_list[it.first.first].push_back({it.first.second, it.second});
+         adjacency_list[it.first.second].push_back({it.first.first, it.second});
       }
+      
+      for (std::size_t i = 0; i < adjacency_list.size(); ++i) {
+         std::sort(adjacency_list[i].begin(), adjacency_list[i].end(), [](const auto &a, const auto &b) {
+            return a.first < b.first;
+         });
+      }
+      
+      row_ptr_.resize(adjacency_list.size() + 1);
+      row_ptr_[0] = 0;
+      for (std::size_t i = 0; i < adjacency_list.size(); ++i) {
+         row_ptr_[i + 1] = static_cast<std::int64_t>(adjacency_list[i].size());
+         for (const auto it: adjacency_list[i]) {
+            col_ptr_.push_back(it.first);
+            val_ptr_.push_back(it.second);
+         }
+      }
+      
+      for (std::size_t i = 0; i < row_ptr_.size(); ++i) {
+         row_ptr_[i + 1] += row_ptr_[i];
+      }
+      
    }
    
    const std::vector<IndexType> &GetIndexList() const {
@@ -126,17 +147,28 @@ public:
       return degree_;
    }
    
-   const std::vector<std::vector<std::pair<std::int32_t, RealType>>> &GetAdjacencyList() const {
-      return adjacency_list_;
+   const std::vector<std::int64_t> &GetRowPtr() const {
+      return row_ptr_;
    }
    
+   const std::vector<std::int32_t> &GetColPtr() const {
+      return col_ptr_;
+   }
+   
+   const std::vector<RealType> &GetValPtr() const {
+      return val_ptr_;
+   }
+      
 private:
    int32_t degree_ = 0;
    std::unordered_map<IndexType, std::int32_t, IndexHash> index_map_;
    RealType constant_ = 0;
    std::vector<RealType> linear_;
    std::vector<IndexType> index_list_;
-   std::vector<std::vector<std::pair<std::int32_t, RealType>>> adjacency_list_;
+   
+   std::vector<std::int64_t> row_ptr_;
+   std::vector<std::int32_t> col_ptr_;
+   std::vector<RealType> val_ptr_;
    
 };
 

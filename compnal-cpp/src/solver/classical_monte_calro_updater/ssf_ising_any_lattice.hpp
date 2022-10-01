@@ -39,32 +39,37 @@ void SetEnergyDifference(std::vector<typename model::Ising<lattice::AnyLattice, 
       throw std::runtime_error("The size of energy_difference is not equal to the system size.");
    }
    
-   const auto &adjacency_list = model.GetAdjacencyList();
    const auto system_size = model.GetSystemSize();
+   const auto &row_ptr = model.GetRowPtr();
+   const auto &col_ptr = model.GetColPtr();
+   const auto &val_ptr = model.GetValPtr();
+   const auto &linear = model.GetLinear();
    
    for (std::int32_t i = 0; i < system_size; ++i) {
       const auto spin = sample[i];
-      for (const auto &it: adjacency_list[i]) {
-         (*energy_difference)[it.first] += -2*it.second*sample[it.first]*spin;
+      for (std::int64_t j = row_ptr[i]; j < row_ptr[i + 1]; ++j) {
+         (*energy_difference)[col_ptr[j]] += -2*val_ptr[j]*sample[col_ptr[j]]*spin - 2*linear[col_ptr[j]]*sample[col_ptr[j]];
       }
    }
 }
-
 
 template<typename RealType>
 void UpdateConfiguration(std::vector<typename model::Ising<lattice::AnyLattice, RealType>::OPType> *sample,
                          std::vector<RealType> *energy_difference,
                          const std::int32_t index,
-                         const std::vector<std::vector<std::pair<std::int32_t, RealType>>> &adjacency_list
-                         ) {
+                         const std::vector<std::int64_t> &row_ptr,
+                         const std::vector<std::int32_t> &col_ptr,
+                         const std::vector<RealType> &val_ptr) {
+
    const auto spin = (*sample)[index];
-   for (const auto &it: adjacency_list[index]) {
-      (*energy_difference)[it.first] += 4*it.second*(*sample)[it.first]*spin;
-   }
-   
    (*sample)[index] *= -1;
+   for (std::int64_t i = row_ptr[index]; i < row_ptr[index + 1]; ++i) {
+      (*energy_difference)[col_ptr[i]] += 4*val_ptr[i]*(*sample)[col_ptr[i]]*spin;
+   }
    (*energy_difference)[index] *= -1;
 }
+
+
 
 } // namespace updater
 } // namespace solver

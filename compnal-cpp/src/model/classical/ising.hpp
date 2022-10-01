@@ -199,7 +199,7 @@ public:
       return interaction_.GetConstant();
    }
    
-   const LinearType &GetLinear() const {
+   const std::vector<RealType> &GetLinear() const {
       return interaction_.GetLinear();
    }
    
@@ -207,8 +207,16 @@ public:
       return interaction_.GetIndexMap();
    }
    
-   const std::vector<std::vector<std::pair<std::int32_t, RealType>>> &GetAdjacencyList() const {
-      return interaction_.GetAdjacencyList();
+   const std::vector<std::int64_t> &GetRowPtr() const {
+      return interaction_.GetRowPtr();
+   }
+   
+   const std::vector<std::int32_t> &GetColPtr() const {
+      return interaction_.GetColPtr();
+   }
+   
+   const std::vector<RealType> &GetValPtr() const {
+      return interaction_.GetValPtr();
    }
    
    std::int32_t GetSystemSize() const {
