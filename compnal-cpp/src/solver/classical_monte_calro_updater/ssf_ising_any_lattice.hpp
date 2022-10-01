@@ -48,8 +48,9 @@ void SetEnergyDifference(std::vector<typename model::Ising<lattice::AnyLattice, 
    for (std::int32_t i = 0; i < system_size; ++i) {
       const auto spin = sample[i];
       for (std::int64_t j = row_ptr[i]; j < row_ptr[i + 1]; ++j) {
-         (*energy_difference)[col_ptr[j]] += -2*val_ptr[j]*sample[col_ptr[j]]*spin - 2*linear[col_ptr[j]]*sample[col_ptr[j]];
+         (*energy_difference)[col_ptr[j]] += -2*val_ptr[j]*sample[col_ptr[j]]*spin;
       }
+      (*energy_difference)[i] += - 2*linear[i]*sample[i];
    }
 }
 
@@ -63,10 +64,10 @@ void UpdateConfiguration(std::vector<typename model::Ising<lattice::AnyLattice, 
 
    const auto spin = (*sample)[index];
    (*sample)[index] *= -1;
+   (*energy_difference)[index] *= -1;
    for (std::int64_t i = row_ptr[index]; i < row_ptr[index + 1]; ++i) {
       (*energy_difference)[col_ptr[i]] += 4*val_ptr[i]*(*sample)[col_ptr[i]]*spin;
    }
-   (*energy_difference)[index] *= -1;
 }
 
 

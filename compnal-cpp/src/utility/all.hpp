@@ -21,5 +21,6 @@
 #include "integer.hpp"
 #include "hash.hpp"
 #include "type.hpp"
+#include "random_number.hpp"
 
 #endif /* COMPNAL_UTILITY_ALL_HPP_ */
