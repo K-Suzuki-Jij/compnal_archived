@@ -35,9 +35,9 @@ using AnyIndexType = std::variant<std::int32_t, std::string, std::vector<IntStrT
 
 using SpinType = std::int8_t;
 
-//using RandType = std::mt19937_64;
+using RandType = std::mt19937_64;
 //using RandType = std::mt19937;
-using RandType = Xorshift;
+//using RandType = Xorshift;
 
 const std::int32_t DEFAULT_NUM_SWEEPS = 1000;
 const std::int32_t DEFAULT_NUM_SAMPLES = 1;

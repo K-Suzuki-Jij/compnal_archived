@@ -147,8 +147,7 @@ void ExecuteMetropolis(std::vector<typename model::Ising<lattice::AnyLattice, Re
    // Do Metropolis update
    for (std::int32_t sweep_count = 0; sweep_count < num_sweeps; sweep_count++) {
       for (std::int32_t i = 0; i < system_size; i++) {
-         //const std::int32_t index = dist_system_size(random_number_engine);
-         const std::int32_t index = i;
+         const std::int32_t index = dist_system_size(random_number_engine);
          if (energy_difference[index] <= 0.0 || std::exp(-beta*energy_difference[index]) > dist_real(random_number_engine)) {
             UpdateConfiguration(sample, &energy_difference, index, model.GetRowPtr(), model.GetColPtr(), model.GetValPtr());
          }
@@ -182,8 +181,7 @@ void ExecuteHeatBath(std::vector<typename ModelType::OPType> *sample,
    // Do Heat Bath update
    for (std::int32_t sweep_count = 0; sweep_count < num_sweeps; sweep_count++) {
       for (std::int32_t i = 0; i < system_size; i++) {
-         //const std::int32_t index = dist_system_size(random_number_engine);
-         const std::int32_t index = i;
+         const std::int32_t index = dist_system_size(random_number_engine);
          if (1/(1 + std::exp(beta*(energy_difference)[index])) > dist_real(random_number_engine)) {
             UpdateConfiguration(sample, &energy_difference, index, model);
          }
