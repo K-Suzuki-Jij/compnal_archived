@@ -102,6 +102,14 @@ class Cubic(base_lattice.Cubic):
         """
         return [i for i in range(self.z_size) for _ in range(self.y_size) for _ in range(self.x_size)]
 
+    def generate_coordinate(self) -> list[tuple]:
+        """Generate the coordinate of the samples.
+
+        Returns:
+            list[tuple]: The coordinate of the samples.
+        """
+        return [(i, j, k) for k in range(self.z_size) for j in range(self.y_size) for i in range(self.x_size)]
+
     @property
     def x_size(self) -> int:
         return self.get_x_size()

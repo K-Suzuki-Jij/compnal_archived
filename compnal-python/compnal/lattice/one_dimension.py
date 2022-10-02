@@ -53,6 +53,14 @@ class Chain(base_lattice.Chain):
         """
         return [i for i in range(self.x_size)]
 
+    def generate_coordinate(self) -> list:
+        """Generate the coordinate of the samples.
+
+        Returns:
+            list: The coordinate of the samples.
+        """
+        return [i for i in range(self.x_size)]
+
     @property
     def system_size(self) -> int:
         return self.get_system_size()

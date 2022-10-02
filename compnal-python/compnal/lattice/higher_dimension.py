@@ -36,6 +36,14 @@ class InfiniteRange(base_lattice.InfiniteRange):
         """
         return cast_base_boundary_condition(super().get_boundary_condition())
 
+    def generate_index_list(self) -> list:
+        """Generate the index list of the samples.
+
+        Returns:
+            list: The index list of the samples.
+        """
+        return [i for i in range(self.system_size)]
+
     @property
     def system_size(self) -> int:
         return self.get_system_size()

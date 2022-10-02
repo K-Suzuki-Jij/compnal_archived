@@ -1,4 +1,2 @@
-from compnal.model.ising import Ising, IsingAnyLattice, make_ising
-from compnal.model.polynomial_ising import (
-    PolynomialIsing,
-)
+from compnal.model.ising import Ising
+from compnal.model.polynomial_ising import PolynomialIsing

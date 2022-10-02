@@ -2,10 +2,10 @@ from typing import Optional, Union
 
 from base_compnal import base_solver
 from compnal.model.polynomial_ising import PolynomialIsing
-from compnal.model.ising import Ising, IsingAnyLattice
+from compnal.model.ising import Ising
 from compnal.solver.updater import Updater, cast_base_updater, cast_updater
 
-ModelType = Union[PolynomialIsing, Ising, IsingAnyLattice]
+ModelType = Union[PolynomialIsing, Ising]
 
 
 class ClassicalMonteCarlo:
@@ -17,10 +17,14 @@ class ClassicalMonteCarlo:
         num_samples (int): The number of samples.
         num_threads (int): The number of threads.
         beta (float): The inverse temperature.
-        model (Union[PolynomialIsing, Ising, IsingAnyLattice]): The model.
+        temperature (float): The temperature.
+        model (ModelType): The model.
     """
 
-    def __init__(self, model: ModelType, updater: Updater = Updater.METROPOLIS) -> None:
+    def __init__(self, 
+        model: ModelType, 
+        updater: Updater = Updater.METROPOLIS
+        ) -> None:
         """The constructor.
 
         Args:
@@ -33,86 +37,6 @@ class ClassicalMonteCarlo:
         )
 
         self.__model = model
-
-    def set_num_sweeps(self, num_sweeps: int) -> None:
-        """Set the number of sweeps.
-
-        Args:
-            num_sweeps (int): The number of sweeps.
-        """
-        self.__base_solver.set_num_sweeps(num_sweeps=num_sweeps)
-
-    def set_num_samples(self, num_samples: int) -> None:
-        """Set the number of samples.
-
-        Args:
-            num_samples (int): The number of samples.
-        """
-        self.__base_solver.set_num_samples(num_samples=num_samples)
-
-    def set_num_threads(self, num_threads: int) -> None:
-        """Set the number of threads.
-
-        Args:
-            num_threads (int): The number of threads.
-        """
-        self.__base_solver.set_num_threads(num_threads=num_threads)
-
-    def set_temperature(self, temperature: int) -> None:
-        """Set the temperature at which the monte carlo algorithm executes.
-
-        Args:
-            temperature (int): The temperature.
-        """
-        self.__base_solver.set_temperature(temperature=temperature)
-
-    def set_inverse_temperature(self, beta: float) -> None:
-        """Set the inverse temperature at which the monte carlo algorithm executes.
-
-        Args:
-            beta (float): The inverse temperature.
-        """
-        self.__base_solver.set_inverse_temperature(inverse_temperature=beta)
-
-    def get_num_sweeps(self) -> int:
-        """Get the number of sweeps.
-
-        Returns:
-            int: The number of sweeps.
-        """
-        return self.__base_solver.get_num_sweeps()
-
-    def get_num_samples(self) -> int:
-        """Get the number of samples.
-
-        Returns:
-            int: The number of samples.
-        """
-        return self.__base_solver.get_num_samples()
-
-    def get_num_threads(self) -> int:
-        """Get the number of threads.
-
-        Returns:
-            int: The number of threads.
-        """
-        return self.__base_solver.get_num_threads()
-
-    def get_temperature(self) -> int:
-        """Get the temperature at which the monte carlo algorithm executes.
-
-        Returns:
-            int: The temperature.
-        """
-        return self.__base_solver.get_temperature()
-
-    def get_inverse_temperature(self) -> float:
-        """Get the inverse temperature at which the monte carlo algorithm executes.
-
-        Returns:
-            float: The inverse temperature.
-        """
-        return self.__base_solver.get_inverse_temperature()
 
     def get_seed(self) -> int:
         """Get the seed used by the monte carlo algorithm.
@@ -196,35 +120,43 @@ class ClassicalMonteCarlo:
 
     @property
     def num_sweeps(self) -> int:
-        return self.get_num_sweeps()
+        return self.__base_solver.get_num_sweeps()
 
     @num_sweeps.setter
     def num_sweeps(self, num_sweeps: int) -> None:
-        self.set_num_sweeps(num_sweeps=num_sweeps)
+        self.__base_solver.set_num_sweeps(num_sweeps=num_sweeps)
 
     @property
     def num_samples(self) -> int:
-        return self.get_num_samples()
+        return self.__base_solver.get_num_samples()
 
     @num_samples.setter
     def num_samples(self, num_samples: int) -> None:
-        self.set_num_samples(num_samples=num_samples)
+        self.__base_solver.set_num_samples(num_samples=num_samples)
 
     @property
     def num_threads(self) -> int:
-        self.get_num_threads()
+        return self.__base_solver.get_num_threads()
 
     @num_threads.setter
     def num_threads(self, num_threads: int) -> None:
-        self.set_num_threads(num_threads=num_threads)
+        self.__base_solver.set_num_threads(num_threads=num_threads)
 
     @property
     def beta(self) -> float:
-        return self.get_inverse_temperature()
+        return self.__base_solver.get_inverse_temperature()
 
     @beta.setter
     def beta(self, beta: float) -> None:
-        self.set_inverse_temperature(beta=beta)
+        self.__base_solver.set_inverse_temperature(inverse_temperature=beta)
+
+    @property
+    def temperature(self) -> float:
+        return self.__base_solver.get_temperature()
+
+    @temperature.setter
+    def temperature(self, temperature: float) -> None:
+        self.__base_solver.set_temperature(temperature=temperature)
 
     @property
     def model(self) -> ModelType:

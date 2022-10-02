@@ -82,6 +82,14 @@ class Square(base_lattice.Square):
         """
         return [i for i in range(self.y_size) for _ in range(self.x_size)]
 
+    def generate_coordinate(self) -> list[tuple]:
+        """Generate the coordinate of the samples.
+
+        Returns:
+            list[tuple]: The coordinate of the samples.
+        """
+        return [(i, j) for j in range(self.y_size) for i in range(self.x_size)]
+
     @property
     def x_size(self) -> int:
         return self.get_x_size()

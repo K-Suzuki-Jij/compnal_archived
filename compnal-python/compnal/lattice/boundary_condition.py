@@ -24,7 +24,7 @@ def cast_base_boundary_condition(boundary_condition: base_lattice.BoundaryCondit
         boundary_condition (base_lattice.BoundaryCondition): The boundary condition.
 
     Raises:
-        RuntimeError: When unknonw BoundaryCondition is iuput.
+        RuntimeError: When unknown BoundaryCondition is input.
 
     Returns:
         BoundaryCondition: The boundary condition as the type of compnal.lattice.BoundaryCondition.
@@ -36,7 +36,7 @@ def cast_base_boundary_condition(boundary_condition: base_lattice.BoundaryCondit
     elif boundary_condition == base_lattice.BoundaryCondition.PBC:
         return BoundaryCondition.PBC
     else:
-        raise RuntimeError("Unknonw BoundaryCondition")
+        raise RuntimeError("Unknown BoundaryCondition")
 
 
 def cast_boundary_condition(boundary_condition: BoundaryCondition):
@@ -46,7 +46,7 @@ def cast_boundary_condition(boundary_condition: BoundaryCondition):
         boundary_condition (lattice.BoundaryCondition): The boundary condition.
 
     Raises:
-        RuntimeError: When unknonw BoundaryCondition is iuput.
+        RuntimeError: When unknown BoundaryCondition is input.
 
     Returns:
         BoundaryCondition: The boundary condition as the type of base_compnal.base_lattice.BoundaryCondition.
@@ -58,4 +58,4 @@ def cast_boundary_condition(boundary_condition: BoundaryCondition):
     elif boundary_condition == BoundaryCondition.PBC:
         return base_lattice.BoundaryCondition.PBC
     else:
-        raise RuntimeError("Unknonw BoundaryCondition")
+        raise RuntimeError("unknown BoundaryCondition")

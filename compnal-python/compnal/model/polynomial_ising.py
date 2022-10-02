@@ -18,6 +18,7 @@ class PolynomialIsing:
     Attributes:
         system_size (int): The system size
         boundary_condition (BoundaryCondition): The boundary condition.
+        lattice (Union[Chain, Square, Cubic, InfiniteRange, AnyLattice]): The lattice on which the polynomial Ising system defined.
     """
 
     def __init__(

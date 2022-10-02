@@ -17,7 +17,7 @@ def cast_base_updater(updater: base_solver.CMCUpdater) -> Updater:
         updater (base_solver.CMCUpdater): The updater as base_solver.CMCUpdater.
 
     Raises:
-        RuntimeError: When the unknonw updater is input.
+        RuntimeError: When the unknown updater is input.
 
     Returns:
         Updater: The updater as solver.Updater.
@@ -27,7 +27,7 @@ def cast_base_updater(updater: base_solver.CMCUpdater) -> Updater:
     elif updater == base_solver.CMCUpdater.HEAT_BATH:
         return Updater.HEAT_BATH
     else:
-        raise RuntimeError("Unknonw updater")
+        raise RuntimeError("Unknown updater")
 
 
 def cast_updater(updater: Updater):
@@ -37,7 +37,7 @@ def cast_updater(updater: Updater):
         updater (Updater): The updater as solver.Updater.
 
     Raises:
-        RuntimeError: When the unknonw updater is input.
+        RuntimeError: When the unknown updater is input.
 
     Returns:
         base_solver.CMCUpdater: The updater as base_solver.CMCUpdater.
@@ -47,4 +47,4 @@ def cast_updater(updater: Updater):
     elif updater == Updater.HEAT_BATH:
         return base_solver.CMCUpdater.HEAT_BATH
     else:
-        raise RuntimeError("Unknonw updater")
+        raise RuntimeError("Unknown updater")
