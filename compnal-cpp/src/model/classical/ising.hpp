@@ -143,16 +143,82 @@ private:
    RealType CalculateEnergy(const lattice::Chain &chain_lattice,
                             const std::vector<OPType> &sample) const {
       RealType energy = 0;
+      const std::int32_t system_size = lattice_.GetSystemSize();
+      
+      if (lattice_.GetBoundaryCondition() == lattice::BoundaryCondition::PBC) {
+         for (std::int32_t index = 0; index < system_size - 1; ++index) {
+            energy += quadratic_*sample[index]*sample[index + 1] + linear_*sample[index];
+         }
+         energy += quadratic_*sample[system_size - 1]*sample[0] + linear_*sample[system_size - 1];
+      }
+      else if (lattice_.GetBoundaryCondition() == lattice::BoundaryCondition::OBC) {
+         for (std::int32_t index = 0; index < system_size - 1; ++index) {
+            energy += quadratic_*sample[index]*sample[index + 1] + linear_*sample[index];
+         }
+         energy += linear_*sample[system_size - 1];
+      }
+      else {
+         throw std::runtime_error("Unsupported BinaryCondition");
+      }
+      
+      return energy;
+   }
+
+   RealType CalculateEnergy(const lattice::Square &square_lattice,
+                            const std::vector<OPType> &sample) const {
+      RealType energy = 0;
+      const std::int32_t x_size = lattice_.GetLattice().GetXSize();
+      const std::int32_t y_size = lattice_.GetLattice().GetYSize();
+      
+      if (lattice_.GetBoundaryCondition() == lattice::BoundaryCondition::PBC) {
+         // x-direction
+         for (std::int32_t coo_y = 0; coo_y < y_size; ++coo_y) {
+            for (std::int32_t coo_x = 0; coo_x < x_size - 1; ++coo_x) {
+               const std::int32_t index = coo_y*x_size + coo_x;
+               energy += quadratic_*sample[index]*sample[index + 1] + linear_*sample[index];
+            }
+            energy += quadratic_*sample[coo_y*x_size + x_size - 1]*sample[coo_y*x_size + 0] + linear_*sample[coo_y*x_size + x_size - 1];
+         }
+         
+         // y-direction
+         for (std::int32_t coo_x = 0; coo_x < x_size; ++coo_x) {
+            for (std::int32_t coo_y = 0; coo_y < y_size - 1; ++coo_y) {
+               const std::int32_t index = coo_y*x_size + coo_x;
+               const std::int32_t index_p1 = (coo_y + 1)*x_size + coo_x;
+               energy += quadratic_*sample[index]*sample[index_p1] + linear_*sample[index];
+            }
+            energy += quadratic_*sample[(y_size - 1)*x_size + coo_x]*sample[0*x_size + coo_x] + linear_*sample[(y_size - 1)*x_size + coo_x];
+         }
+         
+      }
+      else if (lattice_.GetBoundaryCondition() == lattice::BoundaryCondition::OBC) {
+         // x-direction
+         for (std::int32_t coo_y = 0; coo_y < y_size; ++coo_y) {
+            for (std::int32_t coo_x = 0; coo_x < x_size - 1; ++coo_x) {
+               const std::int32_t index = coo_y*x_size + coo_x;
+               energy += quadratic_*sample[index]*sample[index + 1] + linear_*sample[index];
+            }
+            energy += linear_*sample[coo_y*x_size + x_size - 1];
+         }
+         
+         // y-direction
+         for (std::int32_t coo_x = 0; coo_x < x_size; ++coo_x) {
+            for (std::int32_t coo_y = 0; coo_y < y_size - 1; ++coo_y) {
+               const std::int32_t index = coo_y*x_size + coo_x;
+               const std::int32_t index_p1 = (coo_y + 1)*x_size + coo_x;
+               energy += quadratic_*sample[index]*sample[index_p1] + linear_*sample[index];
+            }
+            energy += linear_*sample[(y_size - 1)*x_size + coo_x];
+         }
+      }
+      else {
+         throw std::runtime_error("Unsupported BinaryCondition");
+      }
+      
       return energy;
    }
    
    RealType CalculateEnergy(const lattice::Cubic &cubic_lattice,
-                            const std::vector<OPType> &sample) const {
-      RealType energy = 0;
-      return energy;
-   }
-   
-   RealType CalculateEnergy(const lattice::Square &square_lattice,
                             const std::vector<OPType> &sample) const {
       RealType energy = 0;
       return energy;
