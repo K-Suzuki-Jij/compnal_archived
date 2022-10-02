@@ -54,3 +54,5 @@ compnal-python/notebooks/work
 docs
 
 *.pyc
+
+__pycache__

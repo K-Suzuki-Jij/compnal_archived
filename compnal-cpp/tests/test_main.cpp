@@ -24,7 +24,8 @@
 #include "lattice/test_any_lattice.hpp"
 #include "model/classical/test_polynomial_ising.hpp"
 #include "model/classical/test_ising.hpp"
-#include "solver/test_classical_monte_carlo.hpp"
+#include "solver/test_cmc_polynomial_ising.hpp"
+#include "solver/test_cmc_ising.hpp"
 #include "gtest/gtest.h"
 
 int main(int argc, char **argv) {

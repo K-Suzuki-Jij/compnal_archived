@@ -36,73 +36,107 @@ template<typename RealType>
 class PolynomialGeneralModel {
   
 public:
+   using OPType = utility::SpinType;
    using IndexType = utility::AnyIndexType;
    using IndexHash = utility::AnyIndexHash;
    using VectorHash = utility::AnyIndexVectorHash;
    using InteractionType = std::unordered_map<std::vector<IndexType>, RealType, VectorHash>;
    
    PolynomialGeneralModel(const InteractionType &interaction) {
+      std::unordered_set<IndexType, IndexHash> index_set;
       for (const auto &it: interaction) {
-         std::vector<IndexType> index_list = it.first;
-         std::sort(index_list.begin(), index_list.end());
-         index_set_.insert(index_list.begin(), index_list.end());
-         interaction_[index_list] += it.second;
-         if (degree_ < index_list.size()) {
-            degree_ = static_cast<std::int32_t>(index_list.size());
-         }
+         index_set.insert(it.first.begin(), it.first.end());
       }
-      std::vector<IndexType> index_list = GenerateIndexList();
-      std::int64_t count = 0;
-      for (std::size_t i = 0; i < index_list.size(); ++i) {
-         index_map_[index_list[i]] = count;
+      
+      index_list_ = std::vector<IndexType>(index_set.begin(), index_set.end());
+      std::sort(index_list_.begin(), index_list_.end());
+      
+      std::int32_t count = 0;
+      for (std::size_t i = 0; i < index_list_.size(); ++i) {
+         index_map_[index_list_[i]] = count;
          count++;
       }
-   }
       
-   std::vector<IndexType> GenerateIndexList() const {
-      std::vector<IndexType> index_list(index_set_.begin(), index_set_.end());
-      std::sort(index_list.begin(), index_list.end());
-      return index_list;
+      key_list_.reserve(interaction.size());
+      value_list_.reserve(interaction.size());
+      for (const auto &it: interaction) {
+         std::vector<std::int32_t> keys(it.first.size());
+         for (std::size_t i = 0; i < it.first.size(); ++i) {
+            keys[i] = index_map_.at(it.first[i]);
+         }
+         std::sort(keys.begin(), keys.end());
+         key_list_.push_back(keys);
+         value_list_.push_back(it.second);
+         if (degree_ < keys.size()) {
+            degree_ = static_cast<std::int32_t>(keys.size());
+         }
+      }
+      
+      adjacency_list_.resize(index_list_.size());
+      for (std::size_t i = 0; i < key_list_.size(); ++i) {
+         for (const auto &index: key_list_[i]) {
+            adjacency_list_[index].push_back(i);
+         }
+      }
+      
+      // Save memory
+      for (std::size_t i = 0; i < index_list_.size(); ++i) {
+         adjacency_list_[i].shrink_to_fit();
+         std::sort(adjacency_list_[i].begin(), adjacency_list_[i].end());
+      }
    }
    
    std::pair<std::vector<std::vector<IndexType>>, std::vector<RealType>> GenerateInteractionAsPair() const {
       std::vector<std::vector<IndexType>> key_list;
       std::vector<RealType> value_list;
-      key_list.reserve(interaction_.size());
-      value_list.reserve(interaction_.size());
-      for (const auto &it: interaction_) {
-         key_list.push_back(it.first);
-         value_list.push_back(it.second);
+      key_list.reserve(key_list_.size());
+      value_list.reserve(key_list_.size());
+      for (std::size_t i = 0; i < key_list_.size(); ++i) {
+         std::vector<IndexType> keys(key_list_[i].size());
+         for (std::size_t j = 0; j < key_list_[i].size(); ++j) {
+            keys[j] = index_list_[key_list_[i][j]];
+         }
+         key_list.push_back(keys);
+         value_list.push_back(value_list_[i]);
       }
       return std::pair<std::vector<std::vector<IndexType>>, std::vector<RealType>>{key_list, value_list};
    }
    
    std::int32_t GetSystemSize() const {
-      return static_cast<std::int32_t>(index_set_.size());
+      return static_cast<std::int32_t>(index_list_.size());
    }
    
-   const std::unordered_set<IndexType, IndexHash> &GetIndexSet() const {
-      return index_set_;
+   const std::vector<std::vector<std::int32_t>> &GetKeyList() const {
+      return key_list_;
    }
    
-   const std::unordered_map<IndexType, std::int64_t, IndexHash> &GetIndexMap() const {
-      return index_map_;
-   }
-   
-   const InteractionType &GetInteraction() const {
-      return interaction_;
+   const std::vector<RealType> &GetValueList() const {
+      return value_list_;
    }
    
    std::int32_t GetDegree() const {
       return degree_;
    }
    
+   const std::vector<IndexType> &GetIndexList() const {
+      return index_list_;
+   }
+   
+   const std::unordered_map<IndexType, std::int32_t, IndexHash> &GetIndexMap() const {
+      return index_map_;
+   }
+   
+   const std::vector<std::vector<std::size_t>> &GetAdjacencyList() const {
+      return adjacency_list_;
+   }
+   
 private:
    int32_t degree_ = 0;
-   std::unordered_set<IndexType, IndexHash> index_set_;
-   std::unordered_map<IndexType, std::int64_t, IndexHash> index_map_;
-   InteractionType interaction_;
-
+   std::unordered_map<IndexType, std::int32_t, IndexHash> index_map_;
+   std::vector<std::vector<std::int32_t>> key_list_;
+   std::vector<RealType> value_list_;
+   std::vector<IndexType> index_list_;
+   std::vector<std::vector<std::size_t>> adjacency_list_;
 };
 
 

@@ -1,38 +1,39 @@
 from typing import Optional, Union
-from base_compnal import base_solver
-from compnal.model.polynomial_ising import PolynomialIsing, PolynomialIsingAnyLattice
-from compnal.solver.updater import Updater, cast_updater, cast_base_updater
 
-ModelType = Union[PolynomialIsing, PolynomialIsingAnyLattice]
+from base_compnal import base_solver
+from compnal.model.polynomial_ising import PolynomialIsing
+from compnal.model.ising import Ising, IsingAnyLattice
+from compnal.solver.updater import Updater, cast_base_updater, cast_updater
+
+ModelType = Union[PolynomialIsing, Ising, IsingAnyLattice]
+
 
 class ClassicalMonteCarlo:
     """ClassicalMonteCarlo class. This class can treat classical models.
-    
+
     Attributes:
         updater (Updater): The algorithm of update method.
         num_sweeps (int): The number of sweeps.
         num_samples (int): The number of samples.
         num_threads (int): The number of threads.
         beta (float): The inverse temperature.
+        model (Union[PolynomialIsing, Ising, IsingAnyLattice]): The model.
     """
 
-    def __init__(
-            self,
-            model: ModelType,
-            updater: Updater = Updater.METROPOLIS
-        ) -> None:
+    def __init__(self, model: ModelType, updater: Updater = Updater.METROPOLIS) -> None:
         """The constructor.
 
         Args:
             model (ModelType): The classical model.
             updater (Updater, optional): The algorithm of update method. Defaults to Updater.METROPOLIS.
         """
-        
+
         self.__base_solver = base_solver.make_classical_monte_carlo(
-            model=model._base_model, 
-            cmc_updater=cast_updater(updater)
+            model=model._base_model, cmc_updater=cast_updater(updater)
         )
-        
+
+        self.__model = model
+
     def set_num_sweeps(self, num_sweeps: int) -> None:
         """Set the number of sweeps.
 
@@ -72,7 +73,7 @@ class ClassicalMonteCarlo:
             beta (float): The inverse temperature.
         """
         self.__base_solver.set_inverse_temperature(inverse_temperature=beta)
-    
+
     def get_num_sweeps(self) -> int:
         """Get the number of sweeps.
 
@@ -140,23 +141,23 @@ class ClassicalMonteCarlo:
         else:
             self.__base_solver.run(seed=seed)
 
-    def calculate_sample_average(self) -> float:
+    def calculate_average(self) -> float:
         """Calculate average of all the samples.
 
         Returns:
             float: The average value.
         """
-        return self.__base_solver.calculate_sample_average()
+        return self.__base_solver.calculate_average()
 
-    def calculate_sample_distribution(self) -> list[float]:
+    def calculate_onsite_average(self) -> list[float]:
         """Calculate average of samples at each sites.
 
         Returns:
             list[float]: Average of samples at each sites.
         """
-        return self.__base_solver.calculate_sample_distribution()
+        return self.__base_solver.calculate_onsite_average()
 
-    def calculate_sample_moment(self, degree: int) -> float:
+    def calculate_moment(self, degree: int) -> float:
         """Calculate the moment with the specified degree of each sample and take average for all the moments.
 
         Args:
@@ -165,29 +166,15 @@ class ClassicalMonteCarlo:
         Returns:
             float: The moment.
         """
-        return self.__base_solver.calculate_sample_moment(degree=degree)
+        return self.__base_solver.calculate_moment(degree=degree)
 
     def calculate_correlation(
-            self, 
-            index_1: Union[int, list[Union[int, str, list[Union[int, str]]]]],
-            index_2: Union[int, list[Union[int, str, list[Union[int, str]]]]]
-        ) -> float:
-        """Calculate correlation function.
-
-        Args:
-            index_1 (Union[int, list[Union[int, str, list[Union[int, str]]]]]): The index.
-            index_2 (Union[int, list[Union[int, str, list[Union[int, str]]]]]): The index.
-
-        Returns:
-            float: Correlation function from the samples at the sites of index_1 and index_2.
-        """
-        return self.__base_solver.calculate_correlation(index_1, index_2)
-
-    def calculate_correlation_list(
-            self, 
-            origin: Union[int, list[Union[int, str, list[Union[int, str]]]]],
-            index_list: Union[list[int], list[list[Union[int, str, list[Union[int, str]]]]]]
-        ) -> list[float]:
+        self,
+        origin: Union[int, list[Union[int, str, list[Union[int, str]]]]],
+        index_list: Union[
+            list[int], list[list[Union[int, str, list[Union[int, str]]]]]
+        ],
+    ) -> list[float]:
         """Calculate correlation function list.
 
         Args:
@@ -197,7 +184,7 @@ class ClassicalMonteCarlo:
         Returns:
             list[float]: Correlation function list from the samples at the sites of origin and index in index_list.
         """
-        return self.__base_solver.calculate_correlation_list(origin, index_list)
+        return self.__base_solver.calculate_correlation(origin, index_list)
 
     @property
     def updater(self) -> Updater:
@@ -238,4 +225,7 @@ class ClassicalMonteCarlo:
     @beta.setter
     def beta(self, beta: float) -> None:
         self.set_inverse_temperature(beta=beta)
-    
+
+    @property
+    def model(self) -> ModelType:
+        return self.__model

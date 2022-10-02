@@ -1,7 +1,7 @@
 from base_compnal import base_lattice
 from compnal.lattice.boundary_condition import (
-    BoundaryCondition, 
-    cast_base_boundary_condition
+    BoundaryCondition,
+    cast_base_boundary_condition,
 )
 
 
@@ -20,7 +20,6 @@ class InfiniteRange(base_lattice.InfiniteRange):
         """
         super().__init__(system_size=system_size)
 
-
     def get_system_size(self) -> int:
         """Get the system size.
 
@@ -37,28 +36,14 @@ class InfiniteRange(base_lattice.InfiniteRange):
         """
         return cast_base_boundary_condition(super().get_boundary_condition())
 
-    def set_system_size(self, system_size: int) -> None:
-        """Set the system size.
-
-        Args:
-            system_size (int): The system size.
-        """
-        super().set_system_size(system_size)
-
     @property
     def system_size(self) -> int:
         return self.get_system_size()
 
-    @system_size.setter
-    def system_size(self, system_size: int) -> None:
-        self.set_system_size(system_size)
-
     @property
     def boundary_condition(self) -> BoundaryCondition:
-        return cast_base_boundary_condition(
-            super().get_boundary_condition()
-        )
-    
+        return cast_base_boundary_condition(super().get_boundary_condition())
+
 
 class AnyLattice(base_lattice.AnyLattice):
     """Any types of lattice.
@@ -80,6 +65,4 @@ class AnyLattice(base_lattice.AnyLattice):
 
     @property
     def boundary_condition(self) -> BoundaryCondition:
-        return cast_base_boundary_condition(
-            super().get_boundary_condition()
-        )
+        return cast_base_boundary_condition(super().get_boundary_condition())

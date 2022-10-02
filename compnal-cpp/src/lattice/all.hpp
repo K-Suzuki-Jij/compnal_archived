@@ -26,10 +26,8 @@
 #include "boundary_condition.hpp"
 #include "chain.hpp"
 #include "cubic.hpp"
-#include "honeycomb.hpp"
 #include "infinite_range.hpp"
 #include "square.hpp"
-#include "triangle.hpp"
 #include "any_lattice.hpp"
 
 #endif /* COMPNAL_LATTICE_ALL_HPP_ */

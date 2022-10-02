@@ -72,6 +72,14 @@ struct AnyIndexVectorHash {
    }
 };
 
+struct AnyIndexPairHash {
+   std::size_t operator()(const std::pair<AnyIndexType, AnyIndexType> &p) const {
+      std::size_t lhs = AnyIndexHash()(p.first);
+      std::size_t rhs = AnyIndexHash()(p.second);
+      return lhs^(rhs + 0x9e3779b9 + (lhs << 6) + (lhs >> 2));
+   }
+};
+
 
 
 

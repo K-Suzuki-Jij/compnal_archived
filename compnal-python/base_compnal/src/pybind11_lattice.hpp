@@ -80,45 +80,6 @@ void pybind11LatticeSquare(py::module &m) {
 
 }
 
-void pybind11LatticeTriangle(py::module &m) {
-   
-   using TDL = lattice::Triangle;
-   auto py_class = py::class_<TDL>(m, "Triangle", py::module_local());
-   
-   //Constructors
-   py_class.def(py::init<const std::int32_t, const std::int32_t, const lattice::BoundaryCondition>(), "x_size"_a, "y_size"_a, "boundary_condition"_a);
-   
-   //Public Member Functions
-   py_class.def("set_x_size", &TDL::SetXSize, "x_size"_a);
-   py_class.def("set_y_size", &TDL::SetYSize, "y_size"_a);
-   py_class.def("set_boundary_condition", &TDL::SetBoundaryCondition, "boundary_condition"_a);
-   py_class.def("get_x_size", &TDL::GetXSize);
-   py_class.def("get_y_size", &TDL::GetYSize);
-   py_class.def("get_boundary_condition", &TDL::GetBoundaryCondition);
-   py_class.def("get_system_size", &TDL::GetSystemSize);
-
-   
-}
-
-void pybind11LatticeHoneycomb(py::module &m) {
-   
-   using TDL = lattice::Honeycomb;
-   auto py_class = py::class_<TDL>(m, "Honeycomb", py::module_local());
-   
-   //Constructors
-   py_class.def(py::init<const std::int32_t, const std::int32_t, const lattice::BoundaryCondition>(), "x_size"_a, "y_size"_a, "boundary_condition"_a);
-   
-   //Public Member Functions
-   py_class.def("set_x_size", &TDL::SetXSize, "x_size"_a);
-   py_class.def("set_y_size", &TDL::SetYSize, "y_size"_a);
-   py_class.def("set_boundary_condition", &TDL::SetBoundaryCondition, "boundary_condition"_a);
-   py_class.def("get_x_size", &TDL::GetXSize);
-   py_class.def("get_y_size", &TDL::GetYSize);
-   py_class.def("get_boundary_condition", &TDL::GetBoundaryCondition);
-   py_class.def("get_system_size", &TDL::GetSystemSize);
-
-   
-}
 
 void pybind11LatticeCubic(py::module &m) {
    

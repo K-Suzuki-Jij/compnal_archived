@@ -1,4 +1,1 @@
-from compnal.solver.classical_monte_carlo import (
-    Updater,
-    ClassicalMonteCarlo
-)
+from compnal.solver.classical_monte_carlo import ClassicalMonteCarlo, Updater

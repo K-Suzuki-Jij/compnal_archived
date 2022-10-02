@@ -71,11 +71,10 @@ void pybind11SolverClassicalMonteCarlo(py::module &m, const std::string &post_na
    py_class.def("get_cmc_updater", &CMC::GetCMCUpdater);
    py_class.def("run", py::overload_cast<>(&CMC::Run));
    py_class.def("run", py::overload_cast<const std::uint64_t>(&CMC::Run), "seed"_a);
-   py_class.def("calculate_sample_average", &CMC::CalculateSampleAverage);
-   py_class.def("calculate_sample_distribution", &CMC::CalculateSampleDistribution);
-   py_class.def("calculate_sample_moment", &CMC::CalculateSampleMoment, "degree"_a);
-   py_class.def("calculate_correlation", &CMC::CalculateCorrelation, "index_1"_a, "index_2"_a);
-   py_class.def("calculate_correlation_list", &CMC::CalculateCorrelationList, "origin"_a, "index_list"_a);
+   py_class.def("calculate_average", &CMC::CalculateAverage);
+   py_class.def("calculate_onsite_average", &CMC::CalculateOnsiteAverage);
+   py_class.def("calculate_moment", &CMC::CalculateMoment, "degree"_a);
+   py_class.def("calculate_correlation", &CMC::CalculateCorrelation, "origin"_a, "index_list"_a);
    
    m.def("make_classical_monte_carlo", [](const ModelType &model,
                                           const solver::CMCUpdater cmc_updater) {

@@ -19,7 +19,7 @@
 #define COMPNAL_SOLVER_CLASSICAL_MONTE_CARLO_HPP_
 
 #include "../utility/type.hpp"
-#include "updater/monte_carlo_updater.hpp"
+#include "./classical_monte_calro_updater/classical_monte_carlo_updater.hpp"
 #include <vector>
 #include <random>
 #include <sstream>
@@ -178,29 +178,30 @@ public:
 
    }
    
-   RealType CalculateSampleAverage() const {
+   RealType CalculateAverage() const {
       return model_.CalculateMoment(samples_, 1, num_threads_);
    }
+
+   RealType CalculateMoment(const std::int32_t degree) const {
+      return model_.CalculateMoment(samples_, degree, num_threads_);
+   }
    
-   std::vector<RealType> CalculateSampleDistribution() const {
-      std::vector<RealType> dist(model_.GetSystemSize());
+   std::vector<RealType> CalculateOnsiteAverage() const {
+      const std::int32_t system_size = model_.GetSystemSize();
+      std::vector<RealType> dist(system_size);
 #pragma omp parallel for schedule(guided) num_threads(num_threads_)
-      for (std::int32_t i = 0; i < model_.GetSystemSize(); ++i) {
-         dist[i] = model_.CalculateOnsiteSampleAverage(samples_, i);
+      for (std::int32_t i = 0; i < system_size; ++i) {
+         RealType value = 0.0;
+         for (std::size_t j = 0; j < samples_.size(); ++j) {
+            value += samples_[j][i];
+         }
+         dist[i] = value/samples_.size();
       }
       return dist;
    }
    
-   RealType CalculateSampleMoment(const std::int32_t degree) const {
-      return model_.CalculateMoment(samples_, degree, num_threads_);
-   }
-   
-   RealType CalculateCorrelation(const IndexType ind1, const IndexType ind2) const {
-      return model_.CalculateCorrelation(samples_, ind1, ind2);
-   }
-   
-   std::vector<RealType> CalculateCorrelationList(const IndexType origin,
-                                                  const std::vector<IndexType> &index_list) const {
+   std::vector<RealType> CalculateCorrelation(const IndexType origin,
+                                              const std::vector<IndexType> &index_list) const {
       std::int32_t size = static_cast<std::int32_t>(index_list.size());
       std::vector<RealType> value_list(size);
 #pragma omp parallel for schedule(guided) num_threads(num_threads_)

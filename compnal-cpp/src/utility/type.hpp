@@ -23,6 +23,7 @@
 #ifndef COMPNAL_UTILITY_TYPE_HPP_
 #define COMPNAL_UTILITY_TYPE_HPP_
 
+#include "./random_number.hpp"
 #include <random>
 
 namespace compnal {
@@ -35,6 +36,8 @@ using AnyIndexType = std::variant<std::int32_t, std::string, std::vector<IntStrT
 using SpinType = std::int8_t;
 
 using RandType = std::mt19937_64;
+//using RandType = std::mt19937;
+//using RandType = Xorshift;
 
 const std::int32_t DEFAULT_NUM_SWEEPS = 1000;
 const std::int32_t DEFAULT_NUM_SAMPLES = 1;
