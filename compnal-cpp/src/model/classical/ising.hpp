@@ -167,8 +167,8 @@ private:
    RealType CalculateEnergy(const lattice::Square &square_lattice,
                             const std::vector<OPType> &sample) const {
       RealType energy = 0;
-      const std::int32_t x_size = lattice_.GetLattice().GetXSize();
-      const std::int32_t y_size = lattice_.GetLattice().GetYSize();
+      const std::int32_t x_size = lattice_.GetXSize();
+      const std::int32_t y_size = lattice_.GetYSize();
       
       if (lattice_.GetBoundaryCondition() == lattice::BoundaryCondition::PBC) {
          // x-direction
