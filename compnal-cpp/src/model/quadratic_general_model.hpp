@@ -117,7 +117,7 @@ public:
          }
       }
       
-      for (std::size_t i = 0; i < row_ptr_.size(); ++i) {
+      for (std::int64_t i = 0; i < static_cast<std::int64_t>(row_ptr_.size()); ++i) {
          row_ptr_[i + 1] += row_ptr_[i];
       }
       
