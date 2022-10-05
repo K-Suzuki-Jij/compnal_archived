@@ -24,6 +24,7 @@
 #define COMPNAL_LATTICE_SQUARE_HPP_
 
 #include "base_two_dimensional_lattice.hpp"
+#include <vector>
 
 namespace compnal {
 namespace lattice {
@@ -32,6 +33,17 @@ namespace lattice {
 class Square: public BaseTwoDimensionalLattice {
 public:
    using BaseTwoDimensionalLattice::BaseTwoDimensionalLattice;
+   
+   std::vector<std::pair<std::int32_t, std::int32_t>> GenerateIndexList() const {
+      std::vector<std::pair<std::int32_t, std::int32_t>> index_list(this->GetSystemSize());
+      for (std::int32_t i = 0; i < this->GetYSize(); ++i) {
+         for (std::int32_t j = 0; j < this->GetXSize(); ++j) {
+            index_list[i*this->GetXSize() + j] = {i, j};
+         }
+      }
+      return index_list;
+   }
+   
 };
 
 } // namespace lattice

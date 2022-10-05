@@ -63,6 +63,14 @@ class PolynomialIsing:
         """
         return cast_base_boundary_condition(self.__base_model.get_boundary_condition())
 
+    def generate_index_list(self) -> list:
+        """Generate the index list.
+
+        Returns:
+            list: The index list.
+        """
+        return self.__base_model.generate_index_list()
+
     def get_degree(self) -> int:
         """Get the degree of the interactions.
 

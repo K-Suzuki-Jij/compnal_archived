@@ -25,6 +25,8 @@
 
 #include "boundary_condition.hpp"
 #include <stdexcept>
+#include <vector>
+#include <numeric>
 
 namespace compnal {
 namespace lattice {
@@ -59,6 +61,12 @@ public:
    //! @return Boundary condition, BoundaryCondition::NONE.
    BoundaryCondition GetBoundaryCondition() const {
       return BoundaryCondition::NONE;
+   }
+   
+   std::vector<std::int32_t> GenerateIndexList() const {
+      std::vector<std::int32_t> index_list(system_size_);
+      std::iota(index_list.begin(), index_list.end(), 0);
+      return index_list;
    }
    
 private:

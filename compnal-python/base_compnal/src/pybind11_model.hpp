@@ -48,6 +48,7 @@ void pybind11ModelIsing(py::module &m, const std::string &post_name = "") {
    py_class.def("get_system_size", &Ising::GetSystemSize);
    py_class.def("get_boundary_condition", &Ising::GetBoundaryCondition);
    py_class.def("get_degree", &Ising::GetDegree);
+   py_class.def("generate_index_list", &Ising::GenerateIndexList);
    py_class.def("calculate_energy", py::overload_cast<const std::vector<typename Ising::OPType>&>(&Ising::CalculateEnergy, py::const_), "sample"_a);
  
    m.def("make_ising", [](const LatticeType &lattice,
@@ -72,6 +73,7 @@ void pybind11ModelPolynomialIsing(py::module &m, const std::string &post_name = 
    py_class.def("get_system_size", &PolyIsing::GetSystemSize);
    py_class.def("get_boundary_condition", &PolyIsing::GetBoundaryCondition);
    py_class.def("get_degree", &PolyIsing::GetDegree);
+   py_class.def("generate_index_list", &PolyIsing::GenerateIndexList);
    py_class.def("calculate_energy", py::overload_cast<const std::vector<typename PolyIsing::OPType>&>(&PolyIsing::CalculateEnergy, py::const_), "sample"_a);
    
    m.def("make_polynomial_ising", [](const LatticeType &lattice, const typename PolyIsing::InteractionType &interaction) {

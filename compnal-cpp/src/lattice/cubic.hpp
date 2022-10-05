@@ -24,6 +24,7 @@
 #define COMPNAL_LATTICE_CUBIC_HPP_
 
 #include "base_three_dimensional_lattice.hpp"
+#include <vector>
 
 namespace compnal {
 namespace lattice {
@@ -32,6 +33,19 @@ namespace lattice {
 class Cubic: public BaseThreeDimensionalLattice {
 public:
    using BaseThreeDimensionalLattice::BaseThreeDimensionalLattice;
+   
+   std::vector<std::tuple<std::int32_t, std::int32_t, std::int32_t>> GenerateIndexList() const {
+      std::vector<std::tuple<std::int32_t, std::int32_t, std::int32_t>> index_list(this->GetSystemSize());
+      for (std::int32_t i = 0; i < this->GetZSize(); ++i) {
+         for (std::int32_t j = 0; j < this->GetYSize(); ++j) {
+            for (std::int32_t k = 0; k < this->GetXSize(); ++k) {
+               index_list[i*this->GetYSize() + j*this->GetXSize() + k] = {i, j, k};
+            }
+         }
+      }
+      return index_list;
+   }
+   
 };
 
 } // namespace lattice

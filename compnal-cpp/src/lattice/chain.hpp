@@ -24,6 +24,8 @@
 #define COMPNAL_LATTICE_CHAIN_HPP_
 
 #include "base_one_dimensional_lattice.hpp"
+#include <vector>
+#include <numeric>
 
 namespace compnal {
 namespace lattice {
@@ -32,6 +34,13 @@ namespace lattice {
 class Chain: public BaseOneDimensionalLattice {
 public:
    using BaseOneDimensionalLattice::BaseOneDimensionalLattice;
+   
+   std::vector<std::int32_t> GenerateIndexList() const {
+      std::vector<std::int32_t> index_list(this->GetSystemSize());
+      std::iota(index_list.begin(), index_list.end(), 0);
+      return index_list;
+   }
+   
 };
 
 } // namespace lattice

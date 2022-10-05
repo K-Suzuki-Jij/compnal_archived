@@ -61,7 +61,11 @@ public:
    lattice::BoundaryCondition GetBoundaryCondition() const {
       return lattice_.GetBoundaryCondition();
    }
-      
+   
+   auto GenerateIndexList() const {
+      return lattice_.GenerateIndexList();
+   }
+   
    std::int32_t GetDegree() const {
       return static_cast<std::int32_t>(interaction_.size()) - 1;
    }
@@ -188,7 +192,7 @@ public:
       return interaction_.GetValueList();
    }
    
-   const std::vector<IndexType> &GetIndexList() const {
+   const std::vector<IndexType> &GenerateIndexList() const {
       return interaction_.GetIndexList();
    }
    

@@ -67,6 +67,10 @@ public:
    lattice::BoundaryCondition GetBoundaryCondition() const {
       return lattice_.GetBoundaryCondition();
    }
+   
+   auto GenerateIndexList() const {
+      return lattice_.GenerateIndexList();
+   }
       
    std::int32_t GetDegree() const {
       if (std::abs(quadratic_) > std::numeric_limits<RealType>::epsilon()) {
@@ -257,7 +261,7 @@ public:
          const QuadraticType &quadratic):
    lattice_(lattice), interaction_(linear, quadratic) {}
       
-   const std::vector<IndexType> &GetIndexList() const {
+   const std::vector<IndexType> &GenerateIndexList() const {
       return interaction_.GetIndexList();
    }
    
