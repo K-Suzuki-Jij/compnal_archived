@@ -53,8 +53,6 @@ void pybind11LatticeChain(py::module &m) {
    py_class.def(py::init<const std::int32_t, const lattice::BoundaryCondition>(), "system_size"_a, "boundary_condition"_a);
    
    //Public Member Functions
-   py_class.def("set_system_size", &ODL::SetSystemSize, "system_size"_a);
-   py_class.def("set_boundary_condition", &ODL::SetBoundaryCondition, "boundary_condition"_a);
    py_class.def("get_system_size", &ODL::GetSystemSize);
    py_class.def("get_boundary_condition", &ODL::GetBoundaryCondition);
    
@@ -69,9 +67,6 @@ void pybind11LatticeSquare(py::module &m) {
    py_class.def(py::init<const std::int32_t, const std::int32_t, const lattice::BoundaryCondition>(), "x_size"_a, "y_size"_a, "boundary_condition"_a);
    
    //Public Member Functions
-   py_class.def("set_x_size", &TDL::SetXSize, "x_size"_a);
-   py_class.def("set_y_size", &TDL::SetYSize, "y_size"_a);
-   py_class.def("set_boundary_condition", &TDL::SetBoundaryCondition, "boundary_condition"_a);
    py_class.def("get_x_size", &TDL::GetXSize);
    py_class.def("get_y_size", &TDL::GetYSize);
    py_class.def("get_boundary_condition", &TDL::GetBoundaryCondition);
@@ -91,10 +86,6 @@ void pybind11LatticeCubic(py::module &m) {
                 "x_size"_a, "y_size"_a, "z_size"_a, "boundary_condition"_a);
    
    //Public Member Functions
-   py_class.def("set_x_size", &TDL::SetXSize, "x_size"_a);
-   py_class.def("set_y_size", &TDL::SetYSize, "y_size"_a);
-   py_class.def("set_z_size", &TDL::SetZSize, "z_size"_a);
-   py_class.def("set_boundary_condition", &TDL::SetBoundaryCondition, "boundary_condition"_a);
    py_class.def("get_x_size", &TDL::GetXSize);
    py_class.def("get_y_size", &TDL::GetYSize);
    py_class.def("get_z_size", &TDL::GetZSize);
@@ -112,7 +103,6 @@ void pybind11LatticeInfiniteRange(py::module &m) {
    py_class.def(py::init<const std::int32_t>(), "system_size"_a);
    
    //Public Member Functions
-   py_class.def("set_system_size", &TDL::SetSystemSize, "system_size"_a);
    py_class.def("get_system_size", &TDL::GetSystemSize);
    py_class.def("get_boundary_condition", &TDL::GetBoundaryCondition);
    
