@@ -34,6 +34,8 @@ class Cubic: public BaseThreeDimensionalLattice {
 public:
    using BaseThreeDimensionalLattice::BaseThreeDimensionalLattice;
    
+   //! @brief Generate index list.
+   //! @return The index list.
    std::vector<std::tuple<std::int32_t, std::int32_t, std::int32_t>> GenerateIndexList() const {
       std::vector<std::tuple<std::int32_t, std::int32_t, std::int32_t>> index_list(this->GetSystemSize());
       for (std::int32_t i = 0; i < this->GetZSize(); ++i) {

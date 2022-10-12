@@ -35,6 +35,8 @@ class Chain: public BaseOneDimensionalLattice {
 public:
    using BaseOneDimensionalLattice::BaseOneDimensionalLattice;
    
+   //! @brief Generate index list.
+   //! @return The index list.
    std::vector<std::int32_t> GenerateIndexList() const {
       std::vector<std::int32_t> index_list(this->GetSystemSize());
       std::iota(index_list.begin(), index_list.end(), 0);

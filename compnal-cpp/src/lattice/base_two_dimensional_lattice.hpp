@@ -37,54 +37,32 @@ public:
    //! @brief Constructor of BaseTwoDimensionalLattice class.
    //! @param x_size The size of the x-direction.
    //! @param y_size The size of the y-direction.
-   BaseTwoDimensionalLattice(const std::int32_t x_size, const std::int32_t y_size) {
-      SetSystemSize(x_size, y_size);
+   BaseTwoDimensionalLattice(const std::int32_t x_size,
+                             const std::int32_t y_size) {
+      if (x_size < 0) {
+         throw std::runtime_error("x_size must be larger than or equal to 0.");
+      }
+      if (y_size < 0) {
+         throw std::runtime_error("y_size must be larger than or equal to 0.");
+      }
+      
+      x_size_ = x_size;
+      y_size_ = y_size;
    }
    
    //! @brief Constructor of BaseTwoDimensionalLattice class.
    //! @param x_size The size of the x-direction.
    //! @param y_size The size of the y-direction.
    //! @param boundary_condition Boundary condtion. BoundaryCondition::NONE cannot be used here.
-   BaseTwoDimensionalLattice(const std::int32_t x_size, const std::int32_t y_size, const BoundaryCondition boundary_condition) {
-      SetSystemSize(x_size, y_size);
-      SetBoundaryCondition(boundary_condition);
-   }
-   
-   //! @brief Set size of the x-direction.
-   //! @param x_size Size of the x-direction.
-   void SetXSize(const std::int32_t x_size) {
-      if (x_size < 0) {
-         throw std::runtime_error("x_size must be larger than or equal to 0.");
-      }
-      x_size_ = x_size;
-   }
-   
-   //! @brief Set size of the y-direction.
-   //! @param y_size Size of the y-direction.
-   void SetYSize(const std::int32_t y_size) {
-      if (y_size < 0) {
-         throw std::runtime_error("y_size must be larger than or equal to 0.");
-      }
-      y_size_ = y_size;
-   }
-   
-   //! @brief Set sizes of the x- and y-direction.
-   //! @param x_size Size of the x-direction.
-   //! @param y_size Size of the y-direction.
-   void SetSystemSize(const std::int32_t x_size, const std::int32_t y_size) {
-      SetXSize(x_size);
-      SetYSize(y_size);
-   }
-   
-   //! @brief Set boundary condition.
-   //! @param boundary_condition Boundary condtion. BoundaryCondition::NONE cannot be used here.
-   void SetBoundaryCondition(const BoundaryCondition boundary_condition) {
+   BaseTwoDimensionalLattice(const std::int32_t x_size,
+                             const std::int32_t y_size,
+                             const BoundaryCondition boundary_condition): BaseTwoDimensionalLattice(x_size, y_size) {
       if (boundary_condition == BoundaryCondition::NONE) {
          throw std::runtime_error("BoundaryCondition::NONE cannot be set.");
       }
       bc_ = boundary_condition;
    }
-   
+      
    //! @brief Get size of the x-direction.
    //! @return Size of the x-direction.
    std::int32_t GetXSize() const {

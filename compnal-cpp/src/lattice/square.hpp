@@ -34,6 +34,8 @@ class Square: public BaseTwoDimensionalLattice {
 public:
    using BaseTwoDimensionalLattice::BaseTwoDimensionalLattice;
    
+   //! @brief Generate index list.
+   //! @return The index list.
    std::vector<std::pair<std::int32_t, std::int32_t>> GenerateIndexList() const {
       std::vector<std::pair<std::int32_t, std::int32_t>> index_list(this->GetSystemSize());
       for (std::int32_t i = 0; i < this->GetYSize(); ++i) {

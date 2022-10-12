@@ -28,10 +28,16 @@
 namespace compnal {
 namespace lattice {
 
+//! @brief Lattice class to represent any lattices.
+//! One can set any interactions in model classes.
 struct AnyLattice {
+   
+   //! @brief Get boundary condition.
+   //! @return BoundaryCondition::NONE.
    BoundaryCondition GetBoundaryCondition() const {
       return BoundaryCondition::NONE;
    }
+   
 };
 
 } // namespace lattice

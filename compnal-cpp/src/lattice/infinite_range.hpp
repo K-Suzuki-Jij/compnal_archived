@@ -39,18 +39,12 @@ public:
    //! @brief Constructor of InfiniteRange class.
    //! @param system_size System size.
    InfiniteRange(const std::int32_t system_size) {
-      SetSystemSize(system_size);
-   }
-   
-   //! @brief Set system size.
-   //! @param system_size System size.
-   void SetSystemSize(const std::int32_t system_size) {
       if (system_size < 0) {
          throw std::runtime_error("system_size must be larger than or equal to 0.");
       }
       system_size_ = system_size;
    }
-   
+      
    //! @brief Get system size.
    //! @return System size.
    std::int32_t GetSystemSize() const {
@@ -63,6 +57,8 @@ public:
       return BoundaryCondition::NONE;
    }
    
+   //! @brief Generate index list.
+   //! @return The index list.
    std::vector<std::int32_t> GenerateIndexList() const {
       std::vector<std::int32_t> index_list(system_size_);
       std::iota(index_list.begin(), index_list.end(), 0);
