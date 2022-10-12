@@ -1,3 +1,4 @@
+//
 //  Copyright 2022 Kohei Suzuki
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,16 +13,17 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Created by Kohei Suzuki on 2022/07/13.
+//  all.hpp
+//  compnal
+//
+//  Created by kohei on 2022/10/07.
+//  
 //
 
-#ifndef COMPNAL_HPP_
-#define COMPNAL_HPP_
+#ifndef COMPNAL_BLAS_ALL_HPP_
+#define COMPNAL_BLAS_ALL_HPP_
 
-#include "solver/all.hpp"
-#include "model/all.hpp"
-#include "utility/all.hpp"
-#include "blas/all.hpp"
+#include "compressed_row_storage.hpp"
 
 
-#endif /* COMPNAL_HPP_ */
+#endif /* COMPNAL_BLAS_ALL_HPP_ */

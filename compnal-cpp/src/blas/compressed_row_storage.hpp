@@ -23,6 +23,8 @@
 #ifndef COMPNAL_BLAS_COMPRESSED_ROW_STORAGE_HPP_
 #define COMPNAL_BLAS_COMPRESSED_ROW_STORAGE_HPP_
 
+#include "../utility/sort.hpp"
+
 #include <cstdint>
 #include <iomanip>
 #include <iostream>
@@ -75,7 +77,7 @@ struct CRS {
    
    template <typename T>
    void MultiplyByScalar(const T coeff) {
-      if (std::abs(coeff) < std::numeric_limit<RealType>::epsilon() < T{0}) {
+      if (std::abs(coeff) < std::numeric_limits<RealType>::epsilon() < T{0}) {
 #pragma omp parallel for
          for (std::int64_t i = 0; i < this->row_dim; ++i) {
             this->row[i + 1] = 0;
@@ -154,7 +156,7 @@ struct CRS {
    //! @param flag_display_info Display information if the matrix is not
    //! symmetric.
    //! @return Return true if the matrix is symmetric, otherwise false.
-   bool CheckSymmetric(const RealType threshold = std::numeric_limit<RealType>::epsilon(),
+   bool CheckSymmetric(const RealType threshold = std::numeric_limits<RealType>::epsilon(),
                        const bool flag_display_info = true) const {
       if (this->row_dim != this->col_dim) {
          std::stringstream ss;
@@ -217,7 +219,7 @@ struct CRS {
       }
       std::cout << this->tag << std::endl;
       std::cout << std::fixed;
-      std::cout << std::setprecision(std::numeric_limits<ElementType>::max_digits10);
+      std::cout << std::setprecision(std::numeric_limits<RealType>::max_digits10);
       for (std::int64_t i = 0; i < this->row_dim; ++i) {
          for (std::int64_t j = this->row.at(i); j < this->row.at(i + 1); ++j) {
             std::cout << display_name << "[";
@@ -233,7 +235,7 @@ struct CRS {
    //! @brief Print the information about the matrix.
    void PrintInfo(const std::string display_name = "Matrix") const {
       std::cout << std::fixed;
-      std::cout << std::setprecision(std::numeric_limits<ElementType>::max_digits10);
+      std::cout << std::setprecision(std::numeric_limits<RealType>::max_digits10);
       std::cout << "Print information about CRS: " << display_name << std::endl;
       std::cout << this->tag << std::endl;
       std::cout << "row_dim = " << this->row_dim << std::endl;
@@ -249,7 +251,7 @@ struct CRS {
       }
    }
    
-}
+};
 
 
 

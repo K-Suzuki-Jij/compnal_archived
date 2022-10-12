@@ -26,6 +26,7 @@
 #include "model/classical/test_ising.hpp"
 #include "solver/test_cmc_polynomial_ising.hpp"
 #include "solver/test_cmc_ising.hpp"
+#include "blas/test_crs.hpp"
 #include "gtest/gtest.h"
 
 int main(int argc, char **argv) {

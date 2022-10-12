@@ -1,3 +1,4 @@
+//
 //  Copyright 2022 Kohei Suzuki
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,16 +13,30 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  Created by Kohei Suzuki on 2022/07/13.
+//  test_crs.hpp
+//  compnal
+//
+//  Created by kohei on 2022/10/11.
+//  
 //
 
-#ifndef COMPNAL_HPP_
-#define COMPNAL_HPP_
+#ifndef COMPNAL_TEST_BLAS_CRS_HPP_
+#define COMPNAL_TEST_BLAS_CRS_HPP_
 
-#include "solver/all.hpp"
-#include "model/all.hpp"
-#include "utility/all.hpp"
-#include "blas/all.hpp"
+#include <gtest/gtest.h>
+#include "../../src/blas/all.hpp"
+
+namespace compnal {
+namespace test {
+
+TEST(BlasCRS, Constructor) {
+   
+}
 
 
-#endif /* COMPNAL_HPP_ */
+
+
+} // namespace test
+} // namespace compnal
+
+#endif /* COMPNAL_TEST_BLAS_CRS_HPP_ */
