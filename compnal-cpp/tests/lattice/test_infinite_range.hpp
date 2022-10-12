@@ -36,14 +36,6 @@ TEST(LatticeInfiniteRange, Constructor) {
    EXPECT_THROW(lattice::InfiniteRange{-1}.GetSystemSize(), std::runtime_error);
 }
 
-TEST(LatticeInfiniteRange, SetSystemSize) {
-   lattice::InfiniteRange infinite{0};
-   infinite.SetSystemSize(3);
-   EXPECT_EQ(infinite.GetSystemSize(), 3);
-   
-   EXPECT_THROW(infinite.SetSystemSize(-2), std::runtime_error);
-}
-
 
 } // namespace test
 } // namespace compnal

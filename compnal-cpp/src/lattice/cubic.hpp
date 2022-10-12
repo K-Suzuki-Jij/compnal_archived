@@ -41,7 +41,7 @@ public:
       for (std::int32_t i = 0; i < this->GetZSize(); ++i) {
          for (std::int32_t j = 0; j < this->GetYSize(); ++j) {
             for (std::int32_t k = 0; k < this->GetXSize(); ++k) {
-               index_list[i*this->GetYSize() + j*this->GetXSize() + k] = {i, j, k};
+               index_list[i*this->GetYSize()*this->GetXSize() + j*this->GetXSize() + k] = {i, j, k};
             }
          }
       }

@@ -57,36 +57,11 @@ TEST(LatticeBaseTwoDimensionalLattice, Constructor) {
 
 }
 
-TEST(LatticeBaseTwoDimensionalLattice, SetSystemSize) {
-   
-   lattice::BaseTwoDimensionalLattice square{0, 0};
-   square.SetXSize(3);
-   square.SetYSize(1);
-
-   EXPECT_EQ(square.GetXSize(), 3);
-   EXPECT_EQ(square.GetYSize(), 1);
-   
-   square.SetSystemSize(2, 4);
-   EXPECT_EQ(square.GetXSize(), 2);
-   EXPECT_EQ(square.GetYSize(), 4);
-   
-   EXPECT_THROW(square.SetXSize(-1), std::runtime_error);
-   EXPECT_THROW(square.SetYSize(-1), std::runtime_error);
-   EXPECT_THROW(square.SetSystemSize(-1, +3), std::runtime_error);
-   EXPECT_THROW(square.SetSystemSize(+1, -3), std::runtime_error);
-   EXPECT_THROW(square.SetSystemSize(-1, -3), std::runtime_error);
-
+TEST(LatticeSquare, Basic) {
+   auto index_list = std::vector<std::pair<std::int32_t, std::int32_t>>{{0, 0}, {0, 1}, {1, 0}, {1, 1}, {2, 0}, {2, 1}};
+   EXPECT_EQ((lattice::Square{2, 3}.GenerateIndexList()), index_list);
 }
 
-TEST(LatticeBaseTwoDimensionalLattice, SetBoundaryCondition) {
-   
-   lattice::BaseTwoDimensionalLattice square{0, 0, lattice::BoundaryCondition::PBC};
-   square.SetBoundaryCondition(lattice::BoundaryCondition::OBC);
-   EXPECT_EQ(square.GetBoundaryCondition(), lattice::BoundaryCondition::OBC);
-   
-   EXPECT_THROW(square.SetBoundaryCondition(lattice::BoundaryCondition::NONE), std::runtime_error);
-
-}
 
 
 } // namespace test

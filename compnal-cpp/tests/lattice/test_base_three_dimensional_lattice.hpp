@@ -59,44 +59,16 @@ TEST(LatticeBaseThreeDimensionalLattice, Constructor) {
    
 }
 
-TEST(LatticeBaseThreeDimensionalLattice, SetSystemSize) {
-   
-   lattice::BaseThreeDimensionalLattice cubic{0, 0, 0};
-   cubic.SetXSize(3);
-   cubic.SetYSize(1);
-   cubic.SetZSize(4);
-
-
-   EXPECT_EQ(cubic.GetXSize(), 3);
-   EXPECT_EQ(cubic.GetYSize(), 1);
-   EXPECT_EQ(cubic.GetZSize(), 4);
-
-   cubic.SetSystemSize(2, 4, 3);
-   EXPECT_EQ(cubic.GetXSize(), 2);
-   EXPECT_EQ(cubic.GetYSize(), 4);
-   EXPECT_EQ(cubic.GetZSize(), 3);
-   
-   EXPECT_THROW(cubic.SetXSize(-1), std::runtime_error);
-   EXPECT_THROW(cubic.SetYSize(-1), std::runtime_error);
-   EXPECT_THROW(cubic.SetZSize(-1), std::runtime_error);
-   EXPECT_THROW(cubic.SetSystemSize(-1, +2, +3), std::runtime_error);
-   EXPECT_THROW(cubic.SetSystemSize(+1, -2, +3), std::runtime_error);
-   EXPECT_THROW(cubic.SetSystemSize(+1, +2, -3), std::runtime_error);
-   
-}
-
-TEST(LatticeBaseThreeDimensionalLattice, SetBoundaryCondition) {
-   
-   lattice::BaseThreeDimensionalLattice cubic{0, 0, 0, lattice::BoundaryCondition::PBC};
-   cubic.SetBoundaryCondition(lattice::BoundaryCondition::OBC);
-   EXPECT_EQ(cubic.GetBoundaryCondition(), lattice::BoundaryCondition::OBC);
-   
-   EXPECT_THROW(cubic.SetBoundaryCondition(lattice::BoundaryCondition::NONE), std::runtime_error);
-
-}
-
 TEST(LatticeCubic, Basic) {
-   EXPECT_NE(typeid(lattice::Cubic), typeid(lattice::BaseThreeDimensionalLattice));
+   auto index_list = std::vector<std::tuple<std::int32_t, std::int32_t, std::int32_t>>{
+      {0, 0, 0}, {0, 0, 1},
+      {0, 1, 0}, {0, 1, 1},
+      {0, 2, 0}, {0, 2, 1},
+      {1, 0, 0}, {1, 0, 1},
+      {1, 1, 0}, {1, 1, 1},
+      {1, 2, 0}, {1, 2, 1}
+   };
+   EXPECT_EQ((lattice::Cubic{2, 3, 2}.GenerateIndexList()), index_list);
 }
 
 }

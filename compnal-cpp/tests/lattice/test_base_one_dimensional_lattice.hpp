@@ -30,7 +30,7 @@
 namespace compnal {
 namespace test {
 
-TEST(LatticeBaseOneDimensionalLattice, Constructor) {
+TEST(LatticeBaseOneDimensionalLattice, Basic) {
    
    EXPECT_EQ(lattice::BaseOneDimensionalLattice{8}.GetSystemSize(), 8);
    EXPECT_EQ(lattice::BaseOneDimensionalLattice{8}.GetBoundaryCondition(), lattice::BoundaryCondition::OBC);
@@ -47,28 +47,8 @@ TEST(LatticeBaseOneDimensionalLattice, Constructor) {
 
 }
 
-TEST(LatticeBaseOneDimensionalLattice, SetSystemSize) {
-   
-   lattice::BaseOneDimensionalLattice chain(0);
-   chain.SetSystemSize(123456789);
-   EXPECT_EQ(chain.GetSystemSize(), 123456789);
-   
-   EXPECT_THROW(chain.SetSystemSize(-1), std::runtime_error);
-   
-}
-
-TEST(LatticeBaseOneDimensionalLattice, SetBoundaryCondition) {
-   
-   lattice::BaseOneDimensionalLattice chain(8, lattice::BoundaryCondition::PBC);
-   chain.SetBoundaryCondition(lattice::BoundaryCondition::OBC);
-   EXPECT_EQ(chain.GetBoundaryCondition(), lattice::BoundaryCondition::OBC);
-   
-   EXPECT_THROW(chain.SetBoundaryCondition(lattice::BoundaryCondition::NONE), std::runtime_error);
-   
-}
-
 TEST(LatticeChain, Basic) {
-   EXPECT_NE(typeid(lattice::Chain), typeid(lattice::BaseOneDimensionalLattice));
+   EXPECT_EQ((lattice::Chain{8}.GenerateIndexList()), (std::vector<std::int32_t>{0,1,2,3,4,5,6,7}));
 }
 
 } // namespace test
