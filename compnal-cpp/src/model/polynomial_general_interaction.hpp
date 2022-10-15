@@ -13,15 +13,15 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  polynomial_general_model.hpp
+//  polynomial_general_interaction.hpp
 //  compnal
 //
 //  Created by kohei on 2022/08/13.
 //  
 //
 
-#ifndef COMPNAL_MODEL_POLYNOMIAL_GENERAL_MODEL_HPP_
-#define COMPNAL_MODEL_POLYNOMIAL_GENERAL_MODEL_HPP_
+#ifndef COMPNAL_MODEL_POLYNOMIAL_GENERAL_INTERACTION_HPP_
+#define COMPNAL_MODEL_POLYNOMIAL_GENERAL_INTERACTION_HPP_
 
 #include "../utility/hash.hpp"
 #include "../utility/type.hpp"
@@ -33,7 +33,7 @@ namespace compnal {
 namespace model {
 
 template<typename RealType>
-class PolynomialGeneralModel {
+class PolynomialGeneralInteraction {
   
 public:
    using OPType = utility::SpinType;
@@ -42,7 +42,7 @@ public:
    using VectorHash = utility::AnyIndexVectorHash;
    using InteractionType = std::unordered_map<std::vector<IndexType>, RealType, VectorHash>;
    
-   PolynomialGeneralModel(const InteractionType &interaction) {
+   PolynomialGeneralInteraction(const InteractionType &interaction) {
       std::unordered_set<IndexType, IndexHash> index_set;
       for (const auto &it: interaction) {
          index_set.insert(it.first.begin(), it.first.end());
@@ -144,4 +144,4 @@ private:
 } // namespace compnal
 
 
-#endif /* COMPNAL_MODEL_POLYNOMIAL_GENERAL_MODEL_HPP_ */
+#endif /* COMPNAL_MODEL_POLYNOMIAL_GENERAL_INTERACTION_HPP_ */

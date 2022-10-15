@@ -13,15 +13,15 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  quadratic_general_model.hpp
+//  quadratic_general_interaction.hpp
 //  compnal
 //
 //  Created by kohei on 2022/08/13.
 //  
 //
 
-#ifndef COMPNAL_MODEL_QUADRATIC_GENERAL_MODEL_HPP_
-#define COMPNAL_MODEL_QUADRATIC_GENERAL_MODEL_HPP_
+#ifndef COMPNAL_MODEL_QUADRATIC_GENERAL_INTERACTION_HPP_
+#define COMPNAL_MODEL_QUADRATIC_GENERAL_INTERACTION_HPP_
 
 #include "../utility/hash.hpp"
 #include "../utility/type.hpp"
@@ -33,8 +33,8 @@ namespace compnal {
 namespace model {
 
 template<typename RealType>
-class QuadraticGeneralModel {
-  
+class QuadraticGeneralInteraction {
+   
 public:
    using OPType = utility::SpinType;
    using IndexType = utility::AnyIndexType;
@@ -42,9 +42,9 @@ public:
    using PairHash  = utility::AnyIndexPairHash;
    using LinearType = std::unordered_map<IndexType, RealType, IndexHash>;
    using QuadraticType = std::unordered_map<std::pair<IndexType, IndexType>, RealType, PairHash>;
-      
-   QuadraticGeneralModel(const LinearType &linear,
-                         const QuadraticType &quadratic) {
+   
+   QuadraticGeneralInteraction(const LinearType &linear,
+                               const QuadraticType &quadratic) {
       
       std::unordered_set<IndexType, IndexHash> index_set;
       for (const auto &it: linear) {
@@ -130,7 +130,7 @@ public:
    RealType GetConstant() const {
       return constant_;
    }
-      
+   
    const std::vector<RealType> &GetLinear() const {
       return linear_;
    }
@@ -138,7 +138,7 @@ public:
    std::int32_t GetSystemSize() const {
       return static_cast<std::int32_t>(index_list_.size());
    }
-
+   
    const std::unordered_map<IndexType, std::int32_t, IndexHash> &GetIndexMap() const {
       return index_map_;
    }
@@ -158,7 +158,7 @@ public:
    const std::vector<RealType> &GetValPtr() const {
       return val_ptr_;
    }
-      
+   
 private:
    int32_t degree_ = 0;
    std::unordered_map<IndexType, std::int32_t, IndexHash> index_map_;
@@ -176,4 +176,4 @@ private:
 } // namespace model
 } // namespace compnal
 
-#endif /* COMPNAL_MODEL_QUADRATIC_GENERAL_MODEL_HPP_ */
+#endif /* COMPNAL_MODEL_QUADRATIC_GENERAL_INTERACTION_HPP_ */
