@@ -13,15 +13,15 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  polynomial_general_interaction.hpp
+//  polynomial_any_interaction.hpp
 //  compnal
 //
 //  Created by kohei on 2022/08/13.
 //  
 //
 
-#ifndef COMPNAL_MODEL_POLYNOMIAL_GENERAL_INTERACTION_HPP_
-#define COMPNAL_MODEL_POLYNOMIAL_GENERAL_INTERACTION_HPP_
+#ifndef COMPNAL_INTERACTION_POLYNOMIAL_ANY_INTERACTION_HPP_
+#define COMPNAL_INTERACTION_POLYNOMIAL_ANY_INTERACTION_HPP_
 
 #include "../utility/hash.hpp"
 #include "../utility/type.hpp"
@@ -30,19 +30,28 @@
 #include <unordered_set>
 
 namespace compnal {
-namespace model {
+namespace interaction {
 
+//! @brief Class to represent any polynomial-interactions.
+//! @tparam RealType The value type, which must be floating point type.
 template<typename RealType>
-class PolynomialGeneralInteraction {
-  
-public:
-   using OPType = utility::SpinType;
-   using IndexType = utility::AnyIndexType;
-   using IndexHash = utility::AnyIndexHash;
-   using VectorHash = utility::AnyIndexVectorHash;
-   using InteractionType = std::unordered_map<std::vector<IndexType>, RealType, VectorHash>;
+class PolynomialAnyInteraction {
+   static_assert(std::is_floating_point<RealType>::value, "Template parameter RealType must be floating point type");
    
-   PolynomialGeneralInteraction(const InteractionType &interaction) {
+public:
+   //! @brief The index type.
+   using IndexType = utility::AnyIndexType;
+   
+   //! @brief The hash for IndexType.
+   using IndexHash = utility::AnyIndexHash;
+   
+   //! @brief The polynomial interaction type.
+   using PolynomialType = std::unordered_map<std::vector<IndexType>, RealType, utility::AnyIndexVectorHash>;
+   
+   
+   //! @brief Constructor for PolynomialAnyInteraction class.
+   //! @param interaction The polynomial interaction.
+   PolynomialAnyInteraction(const PolynomialType &interaction) {
       std::unordered_set<IndexType, IndexHash> index_set;
       for (const auto &it: interaction) {
          index_set.insert(it.first.begin(), it.first.end());
@@ -86,62 +95,71 @@ public:
       }
    }
    
-   std::pair<std::vector<std::vector<IndexType>>, std::vector<RealType>> GenerateInteractionAsPair() const {
-      std::vector<std::vector<IndexType>> key_list;
-      std::vector<RealType> value_list;
-      key_list.reserve(key_list_.size());
-      value_list.reserve(key_list_.size());
-      for (std::size_t i = 0; i < key_list_.size(); ++i) {
-         std::vector<IndexType> keys(key_list_[i].size());
-         for (std::size_t j = 0; j < key_list_[i].size(); ++j) {
-            keys[j] = index_list_[key_list_[i][j]];
-         }
-         key_list.push_back(keys);
-         value_list.push_back(value_list_[i]);
-      }
-      return std::pair<std::vector<std::vector<IndexType>>, std::vector<RealType>>{key_list, value_list};
-   }
-   
+   //! @brief Get the system size.
+   //! @return The system size.
    std::int32_t GetSystemSize() const {
       return static_cast<std::int32_t>(index_list_.size());
    }
    
+   //! @brief Get the list of keys in the polynomial interactions.
+   //! @return The list of keys.
    const std::vector<std::vector<std::int32_t>> &GetKeyList() const {
       return key_list_;
    }
    
+   //! @brief Get the list of value in the polynomial interactions.
+   //! @return The list of value.
    const std::vector<RealType> &GetValueList() const {
       return value_list_;
    }
    
+   //! @brief Get the degree of the polynomial interactions.
+   //! @return The degree.
    std::int32_t GetDegree() const {
       return degree_;
    }
    
+   //! @brief Get the index list of the polynomial interactions.
+   //! @return The index list.
    const std::vector<IndexType> &GetIndexList() const {
       return index_list_;
    }
    
+   //! @brief Get the mapping from the index to the integer.
+   //! @return The index map.
    const std::unordered_map<IndexType, std::int32_t, IndexHash> &GetIndexMap() const {
       return index_map_;
    }
    
+   //! @brief Get the adjacency list, which stored the integer index of the polynomial interaction specified by the site index.
+   //! @return The adjacency list.
    const std::vector<std::vector<std::size_t>> &GetAdjacencyList() const {
       return adjacency_list_;
    }
    
 private:
+   //! @brief The degree of the polynomial interactions.
    int32_t degree_ = 0;
+   
+   //! @brief The mapping from the index to the integer.
    std::unordered_map<IndexType, std::int32_t, IndexHash> index_map_;
+   
+   //! @brief The list of keys in the polynomial interactions.
    std::vector<std::vector<std::int32_t>> key_list_;
+   
+   //! @brief The list of value in the polynomial interactions.
    std::vector<RealType> value_list_;
+   
+   //! @brief The index list of the polynomial interactions.
    std::vector<IndexType> index_list_;
+   
+   //! @brief The adjacency list, which stored the integer index of the polynomial interaction specified by the site index.
    std::vector<std::vector<std::size_t>> adjacency_list_;
 };
 
 
-} // namespace model
+} // namespace interaction
 } // namespace compnal
 
 
-#endif /* COMPNAL_MODEL_POLYNOMIAL_GENERAL_INTERACTION_HPP_ */
+#endif /* COMPNAL_INTERACTION_POLYNOMIAL_ANY_INTERACTION_HPP_ */

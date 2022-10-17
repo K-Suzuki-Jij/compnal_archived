@@ -19,7 +19,7 @@
 #define COMPNAL_MODEL_POLYNOMIAL_ISING_HPP_
 
 #include "../../lattice/all.hpp"
-#include "../polynomial_general_interaction.hpp"
+#include "../../interaction/polynomial_any_interaction.hpp"
 #include "../../utility/type.hpp"
 #include <vector>
 #include <unordered_map>
@@ -37,10 +37,10 @@ public:
    using ValueType = RealType;
    using IndexType = std::int32_t;
    using OPType = utility::SpinType;
-   using InteractionType = std::unordered_map<std::int32_t, RealType>;
+   using PolynomialType = std::unordered_map<std::int32_t, RealType>;
       
    PolynomialIsing(const LatticeType &lattice,
-                   const InteractionType &interaction):
+                   const PolynomialType &interaction):
    lattice_(lattice) {
       for (const auto &it: interaction) {
          if (interaction_.size() <= it.first) {
@@ -171,13 +171,12 @@ class PolynomialIsing<lattice::AnyLattice, RealType> {
 public:
    using ValueType = RealType;
    using OPType = utility::SpinType;
-   using IndexType = typename PolynomialGeneralInteraction<RealType>::IndexType;
-   using IndexHash = typename PolynomialGeneralInteraction<RealType>::IndexHash;
-   using VectorHash = typename PolynomialGeneralInteraction<RealType>::VectorHash;
-   using InteractionType = typename PolynomialGeneralInteraction<RealType>::InteractionType;
+   using IndexType = typename interaction::PolynomialAnyInteraction<RealType>::IndexType;
+   using IndexHash = typename interaction::PolynomialAnyInteraction<RealType>::IndexHash;
+   using PolynomialType = typename interaction::PolynomialAnyInteraction<RealType>::PolynomialType;
       
    PolynomialIsing(const lattice::AnyLattice &lattice,
-                   const InteractionType &interaction):
+                   const PolynomialType &interaction):
    lattice_(lattice), interaction_(interaction) {}
    
    std::pair<std::vector<std::vector<IndexType>>, std::vector<RealType>> GenerateInteractionAsPair() const {
@@ -281,7 +280,7 @@ public:
    }
    
 private:
-   PolynomialGeneralInteraction<RealType> interaction_;
+   interaction::PolynomialAnyInteraction<RealType> interaction_;
    lattice::AnyLattice lattice_;
    
    RealType CalculateMagnetization(const std::vector<OPType> &sample) const {
@@ -296,7 +295,7 @@ private:
 
 template<class LatticeType, typename RealType>
 auto make_polynomial_ising(const LatticeType &lattice,
-                           const typename PolynomialIsing<LatticeType, RealType>::InteractionType &interaction) {
+                           const typename PolynomialIsing<LatticeType, RealType>::PolynomialType &interaction) {
    return PolynomialIsing<LatticeType, RealType>{lattice, interaction};
 }
 

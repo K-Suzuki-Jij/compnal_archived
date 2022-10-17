@@ -25,8 +25,8 @@ namespace compnal {
 namespace test {
 
 TEST(SolverClassicalMonteCarlo, PolyIsingAnyLattice) {
-   using InteractionType = model::PolynomialIsing<lattice::AnyLattice, double>::InteractionType;
-   InteractionType interaction;
+   using PolynomialType = model::PolynomialIsing<lattice::AnyLattice, double>::PolynomialType;
+   PolynomialType interaction;
    const std::int32_t system_size = 10;
    for (std::int32_t i = 0; i < system_size; ++i) {
       for (std::int32_t j = i + 1; j < system_size; ++j) {

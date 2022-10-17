@@ -13,15 +13,15 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-//  quadratic_general_interaction.hpp
+//  quadratic_any_interaction.hpp
 //  compnal
 //
 //  Created by kohei on 2022/08/13.
 //  
 //
 
-#ifndef COMPNAL_MODEL_QUADRATIC_GENERAL_INTERACTION_HPP_
-#define COMPNAL_MODEL_QUADRATIC_GENERAL_INTERACTION_HPP_
+#ifndef COMPNAL_INTERACTION_QUADRATIC_ANY_INTERACTION_HPP_
+#define COMPNAL_INTERACTION_QUADRATIC_ANY_INTERACTION_HPP_
 
 #include "../utility/hash.hpp"
 #include "../utility/type.hpp"
@@ -30,21 +30,32 @@
 #include <unordered_set>
 
 namespace compnal {
-namespace model {
+namespace interaction {
 
+//! @brief Class to represent any linear- and quadratic-interactions.
+//! @tparam RealType The value type, which must be floating point type.
 template<typename RealType>
-class QuadraticGeneralInteraction {
+class QuadraticAnyInteraction {
+   static_assert(std::is_floating_point<RealType>::value, "Template parameter RealType must be floating point type");
    
 public:
-   using OPType = utility::SpinType;
+   //! @brief The index type.
    using IndexType = utility::AnyIndexType;
-   using IndexHash = utility::AnyIndexHash;
-   using PairHash  = utility::AnyIndexPairHash;
-   using LinearType = std::unordered_map<IndexType, RealType, IndexHash>;
-   using QuadraticType = std::unordered_map<std::pair<IndexType, IndexType>, RealType, PairHash>;
    
-   QuadraticGeneralInteraction(const LinearType &linear,
-                               const QuadraticType &quadratic) {
+   //! @brief The hash for IndexType.
+   using IndexHash = utility::AnyIndexHash;
+   
+   //! @brief The linear interaction type.
+   using LinearType = std::unordered_map<IndexType, RealType, IndexHash>;
+   
+   //! @brief The quadratic interaction type.
+   using QuadraticType = std::unordered_map<std::pair<IndexType, IndexType>, RealType, utility::AnyIndexPairHash>;
+   
+   //! @brief Constructor for QuadraticAnyInteraction class.
+   //! @param linear The linear interaction.
+   //! @param quadratic The quadratic interaction.
+   QuadraticAnyInteraction(const LinearType &linear,
+                           const QuadraticType &quadratic) {
       
       std::unordered_set<IndexType, IndexHash> index_set;
       for (const auto &it: linear) {
@@ -76,7 +87,7 @@ public:
          }
       }
       
-      std::unordered_map<std::pair<std::int32_t, std::int32_t>, RealType, PairHash> new_quadratic;
+      std::unordered_map<std::pair<std::int32_t, std::int32_t>, RealType, utility::AnyIndexPairHash> new_quadratic;
       for (const auto &it: quadratic) {
          if (std::abs(it.second) > std::numeric_limits<RealType>::epsilon()) {
             const std::int32_t key_1 = index_map_.at(it.first.first);
@@ -123,57 +134,91 @@ public:
       
    }
    
-   const std::vector<IndexType> &GetIndexList() const {
-      return index_list_;
-   }
-   
-   RealType GetConstant() const {
-      return constant_;
-   }
-   
-   const std::vector<RealType> &GetLinear() const {
-      return linear_;
-   }
-   
+   //! @brief Get the system size.
+   //! @return The system size.
    std::int32_t GetSystemSize() const {
       return static_cast<std::int32_t>(index_list_.size());
    }
    
-   const std::unordered_map<IndexType, std::int32_t, IndexHash> &GetIndexMap() const {
-      return index_map_;
-   }
-   
+   //! @brief Get the degree of the interactions.
+   //! @return The degree.
    std::int32_t GetDegree() const {
       return degree_;
    }
    
+   //! @brief Get the index list of the interactions.
+   //! @return The index list.
+   const std::vector<IndexType> &GetIndexList() const {
+      return index_list_;
+   }
+   
+   //! @brief Get the mapping from the index to the integer.
+   //! @return The index map.
+   const std::unordered_map<IndexType, std::int32_t, IndexHash> &GetIndexMap() const {
+      return index_map_;
+   }
+   
+   //! @brief Get the constant value of the interactions,
+   //! which appears when the interactions with the same index are set.
+   //! @return The constant value.
+   RealType GetConstant() const {
+      return constant_;
+   }
+   
+   //! @brief Get the linear interaction.
+   //! @return The linear interaction.
+   const std::vector<RealType> &GetLinear() const {
+      return linear_;
+   }
+   
+   //! @brief Get rows of the quadratic interaction as CRS format.
+   //! @return The rows.
    const std::vector<std::int64_t> &GetRowPtr() const {
       return row_ptr_;
    }
    
+   //! @brief Get columns of the quadratic interaction as CRS format.
+   //! @return The columns.
    const std::vector<std::int32_t> &GetColPtr() const {
       return col_ptr_;
    }
    
+   //! @brief Get values of the quadratic interaction as CRS format.
+   //! @return The values.
    const std::vector<RealType> &GetValPtr() const {
       return val_ptr_;
    }
    
 private:
+   //! @brief The degree of the interactions.
    int32_t degree_ = 0;
+   
+   //! @brief The mapping from the index to the integer.
    std::unordered_map<IndexType, std::int32_t, IndexHash> index_map_;
+   
+   //! @brief The the constant value of the interactions,
+   //! which appears when the interactions with the same index are set.
    RealType constant_ = 0;
+   
+   //! @brief The linear interaction.
    std::vector<RealType> linear_;
+   
+   //! @brief The index list of the interactions.
    std::vector<IndexType> index_list_;
    
+   //! @brief The rows of the quadratic interaction as CRS format.
    std::vector<std::int64_t> row_ptr_;
+   
+   //! @brief The columns of the quadratic interaction as CRS format.
    std::vector<std::int32_t> col_ptr_;
+   
+   //! @brief The values of the quadratic interaction as CRS format.
    std::vector<RealType> val_ptr_;
    
 };
 
 
-} // namespace model
+} // namespace interaction
 } // namespace compnal
 
-#endif /* COMPNAL_MODEL_QUADRATIC_GENERAL_INTERACTION_HPP_ */
+#endif /* COMPNAL_INTERACTION_QUADRATIC_ANY_INTERACTION_HPP_ */

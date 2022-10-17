@@ -25,7 +25,7 @@
 
 #include "../../lattice/all.hpp"
 #include "../../utility/type.hpp"
-#include "../quadratic_general_interaction.hpp"
+#include "../../interaction/quadratic_any_interaction.hpp"
 #include <vector>
 
 namespace compnal {
@@ -250,11 +250,10 @@ class Ising<lattice::AnyLattice, RealType> {
 public:
    using ValueType = RealType;
    using OPType = utility::SpinType;
-   using IndexType = typename QuadraticGeneralInteraction<RealType>::IndexType;
-   using IndexHash = typename QuadraticGeneralInteraction<RealType>::IndexHash;
-   using PairHash  = typename QuadraticGeneralInteraction<RealType>::PairHash;
-   using LinearType = typename QuadraticGeneralInteraction<RealType>::LinearType;
-   using QuadraticType = typename QuadraticGeneralInteraction<RealType>::QuadraticType;
+   using IndexType = typename interaction::QuadraticAnyInteraction<RealType>::IndexType;
+   using IndexHash = typename interaction::QuadraticAnyInteraction<RealType>::IndexHash;
+   using LinearType = typename interaction::QuadraticAnyInteraction<RealType>::LinearType;
+   using QuadraticType = typename interaction::QuadraticAnyInteraction<RealType>::QuadraticType;
    
    Ising(const lattice::AnyLattice &lattice,
          const LinearType &linear,
@@ -341,7 +340,7 @@ public:
    }
    
 private:
-   QuadraticGeneralInteraction<RealType> interaction_;
+   interaction::QuadraticAnyInteraction<RealType> interaction_;
    lattice::AnyLattice lattice_;
    
    RealType CalculateMagnetization(const std::vector<OPType> &sample) const {
