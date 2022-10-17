@@ -39,8 +39,8 @@ struct AnyIndexHash {
       else if (std::holds_alternative<std::string>(v)) {
          return std::hash<std::string>()(std::get<std::string>(v));
       }
-      else if (std::holds_alternative<std::vector<IntStrType>>(v)) {
-         const auto &variant_vec = std::get<std::vector<IntStrType>>(v);
+      else if (std::holds_alternative<AnyTupleType>(v)) {
+         const auto &variant_vec = std::get<AnyTupleType>(v);
          std::size_t hash = variant_vec.size();
          for (const auto &i : variant_vec) {
             if (std::holds_alternative<std::int32_t>(i)) {

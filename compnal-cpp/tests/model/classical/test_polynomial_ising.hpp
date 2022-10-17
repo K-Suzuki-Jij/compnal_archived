@@ -36,8 +36,7 @@ TEST(ModelPolynomialIsing, Chain) {
 }
 
 TEST(ModelPolynomialIsing, AnyLattice) {
-   using VISType = std::vector<utility::IntStrType>;
-   auto model = model::make_polynomial_ising<lattice::AnyLattice, double>(lattice::AnyLattice{}, {{{1, 2, "a"}, -1.0}, {{1, VISType{1, 1}}, -2.0}});
+   auto model = model::make_polynomial_ising<lattice::AnyLattice, double>(lattice::AnyLattice{}, {{{1, 2, "a"}, -1.0}, {{1, utility::AnyTupleType{1, 1}}, -2.0}});
       
    EXPECT_EQ(model.GetSystemSize(), 4);
    EXPECT_EQ(model.GetBoundaryCondition(), lattice::BoundaryCondition::NONE);

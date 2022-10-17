@@ -128,7 +128,7 @@ public:
          }
       }
       
-      for (std::int64_t i = 0; i < static_cast<std::int64_t>(row_ptr_.size()); ++i) {
+      for (std::int64_t i = 0; i < static_cast<std::int64_t>(row_ptr_.size()) - 1; ++i) {
          row_ptr_[i + 1] += row_ptr_[i];
       }
       

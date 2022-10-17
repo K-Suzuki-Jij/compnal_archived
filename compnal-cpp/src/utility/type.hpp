@@ -29,9 +29,9 @@
 namespace compnal {
 namespace utility {
 
-using IntStrType = std::variant<std::int32_t, std::string>;
+using AnyTupleType = std::vector<std::variant<std::int32_t, std::string>>;
 
-using AnyIndexType = std::variant<std::int32_t, std::string, std::vector<IntStrType>>;
+using AnyIndexType = std::variant<std::int32_t, std::string, AnyTupleType>;
 
 using SpinType = std::int8_t;
 
