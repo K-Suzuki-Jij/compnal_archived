@@ -29,7 +29,7 @@
 namespace compnal {
 namespace utility {
 
-//! @brief Hash struct of IndexType used in model::GeneralModel
+//! @brief Hash struct of AnyIndexType
 struct AnyIndexHash {
    template<class... Types>
    std::size_t operator()(const std::variant<Types...> &v) const {
@@ -61,7 +61,7 @@ struct AnyIndexHash {
    }
 };
 
-//! @brief Hash struct of std::vector.
+//! @brief Hash struct of std::vector<AnyIndexType>.
 struct AnyIndexVectorHash {
    std::size_t operator()(const std::vector<AnyIndexType> &v) const {
       std::size_t hash = v.size();
@@ -72,6 +72,7 @@ struct AnyIndexVectorHash {
    }
 };
 
+//! @brief Hash struct of std::pair<AnyIndexType>.
 struct AnyIndexPairHash {
    std::size_t operator()(const std::pair<AnyIndexType, AnyIndexType> &p) const {
       std::size_t lhs = AnyIndexHash()(p.first);
@@ -79,11 +80,6 @@ struct AnyIndexPairHash {
       return lhs^(rhs + 0x9e3779b9 + (lhs << 6) + (lhs >> 2));
    }
 };
-
-
-
-
-
 
 } // namespace utility
 } // namespace compnal

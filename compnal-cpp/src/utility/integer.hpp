@@ -71,9 +71,6 @@ std::vector<std::vector<T>> GenerateAllCombinations(const std::vector<T> &list, 
    return combinations;
 }
 
-
-
-
 } // namespace utility
 } // namespace compnal
 
