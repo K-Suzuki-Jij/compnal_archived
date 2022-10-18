@@ -25,6 +25,7 @@
 
 #include "../utility/hash.hpp"
 #include "../utility/type.hpp"
+#include "../utility/sort.hpp"
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
@@ -81,6 +82,9 @@ public:
          }
       }
       
+      //Sort key_list_ and value_list_ by the size of key_list_.
+      utility::QuickSortVectorBySize(&key_list_, &value_list_, 0, value_list_.size());
+      
       adjacency_list_.resize(index_list_.size());
       for (std::size_t i = 0; i < key_list_.size(); ++i) {
          for (const auto &index: key_list_[i]) {
@@ -101,7 +105,7 @@ public:
       return static_cast<std::int32_t>(index_list_.size());
    }
    
-   //! @brief Get the list of keys in the polynomial interactions.
+   //! @brief Get the list of relabeled-keys by integers in the polynomial interactions.
    //! @return The list of keys.
    const std::vector<std::vector<std::int32_t>> &GetKeyList() const {
       return key_list_;

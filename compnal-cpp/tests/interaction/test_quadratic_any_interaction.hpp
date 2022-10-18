@@ -59,8 +59,37 @@ TEST(InteractionQuadraticAny, Basic) {
       EXPECT_DOUBLE_EQ(quad_interaction.GetLinear().at(quad_interaction.GetIndexMap().at(it.first)), it.second);
    }
    
-   //TODO: Add quadratic CRS tests
+}
+
+TEST(InteractionQuadraticAny, CRS) {
+   using QuadClass = interaction::QuadraticAnyInteraction<double>;
    
+   const QuadClass::QuadraticType quadratic = {
+      {{1, 1}, +3.0},
+      {{1, 2}, -1.0},
+      {{2, 1}, -1.5},
+      {{3, 2}, +1.0}
+   };
+   
+   const auto quad_interaction = QuadClass{{}, quadratic};
+   EXPECT_EQ(quad_interaction.GetRowPtr().size(), 4);
+   EXPECT_EQ(quad_interaction.GetRowPtr().at(0), 0);
+   EXPECT_EQ(quad_interaction.GetRowPtr().at(1), 1);
+   EXPECT_EQ(quad_interaction.GetRowPtr().at(2), 3);
+   EXPECT_EQ(quad_interaction.GetRowPtr().at(3), 4);
+   
+   EXPECT_EQ(quad_interaction.GetColPtr().size(), 4);
+   EXPECT_EQ(quad_interaction.GetColPtr().at(0), 1);
+   EXPECT_EQ(quad_interaction.GetColPtr().at(1), 0);
+   EXPECT_EQ(quad_interaction.GetColPtr().at(2), 2);
+   EXPECT_EQ(quad_interaction.GetColPtr().at(3), 1);
+   
+   EXPECT_DOUBLE_EQ(quad_interaction.GetValPtr().size(), 4);
+   EXPECT_DOUBLE_EQ(quad_interaction.GetValPtr().at(0), -2.5);
+   EXPECT_DOUBLE_EQ(quad_interaction.GetValPtr().at(1), -2.5);
+   EXPECT_DOUBLE_EQ(quad_interaction.GetValPtr().at(2), 1);
+   EXPECT_DOUBLE_EQ(quad_interaction.GetValPtr().at(3), 1);
+
 }
 
 } // namespace test

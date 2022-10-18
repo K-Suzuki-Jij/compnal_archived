@@ -23,6 +23,7 @@
 #include "lattice/test_infinite_range.hpp"
 #include "lattice/test_any_lattice.hpp"
 #include "interaction/test_quadratic_any_interaction.hpp"
+#include "interaction/test_polynomial_any_interaction.hpp"
 #include "model/classical/test_polynomial_ising.hpp"
 #include "model/classical/test_ising.hpp"
 #include "solver/test_cmc_polynomial_ising.hpp"
