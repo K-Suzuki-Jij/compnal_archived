@@ -134,7 +134,11 @@ public:
       RealType val = 0;
 #pragma omp parallel for schedule(guided) reduction(+: val) num_threads(num_threads)
       for (std::int32_t i = 0; i < static_cast<std::int32_t>(spin_configurations.size()); ++i) {
-         RealType avg = CalculateMagnetization(spin_configurations[i]);
+         RealType avg = 0;
+         for (std::size_t j = 0; j < spin_configurations[i].size(); ++j) {
+            avg += spin_configurations[i][j];
+         }
+         
          RealType prod = 1;
          for (std::int32_t j = 0; j < degree; ++j) {
             prod = prod*avg;
@@ -388,13 +392,6 @@ private:
       return energy;
    }
    
-   RealType CalculateMagnetization(const std::vector<OPType> &spin_configuration) const {
-      RealType val = 0;
-      for (std::size_t i = 0; i < spin_configuration.size(); ++i) {
-         val += spin_configuration[i];
-      }
-      return val/spin_configuration.size();
-   }
 };
 
 template<typename RealType>
