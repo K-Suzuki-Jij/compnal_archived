@@ -58,8 +58,14 @@ void SetEnergyDifference(std::vector<typename model::Ising<lattice::Cubic, RealT
                (*energy_difference)[index] += -2*quadratic*sample[index]*sample[index + 1] - 2*linear*sample[index];
                (*energy_difference)[index + 1] += -2*quadratic*sample[index]*sample[index + 1];
             }
-            (*energy_difference)[coo_z*x_size*y_size + coo_y*x_size + x_size - 1] += -2*quadratic*sample[coo_z*x_size*y_size + coo_y*x_size + x_size - 1]*sample[coo_z*x_size*y_size + coo_y*x_size + 0] -2*linear*sample[coo_z*x_size*y_size + coo_y*x_size + x_size - 1];
-            (*energy_difference)[coo_z*x_size*y_size + coo_y*x_size + 0] += -2*quadratic*sample[coo_z*x_size*y_size + coo_y*x_size + x_size - 1]*sample[coo_z*x_size*y_size + coo_y*x_size + 0];
+            (*energy_difference)[coo_z*x_size*y_size + coo_y*x_size + x_size - 1] +=
+            -2*quadratic*sample[coo_z*x_size*y_size + coo_y*x_size + x_size - 1]*
+            sample[coo_z*x_size*y_size + coo_y*x_size + 0] -2*linear*
+            sample[coo_z*x_size*y_size + coo_y*x_size + x_size - 1];
+            
+            (*energy_difference)[coo_z*x_size*y_size + coo_y*x_size + 0] +=
+            -2*quadratic*sample[coo_z*x_size*y_size + coo_y*x_size + x_size - 1]*
+            sample[coo_z*x_size*y_size + coo_y*x_size + 0];
          }
       }
       
@@ -72,8 +78,14 @@ void SetEnergyDifference(std::vector<typename model::Ising<lattice::Cubic, RealT
                (*energy_difference)[index] += -2*quadratic*sample[index]*sample[index_p1] - 2*linear*sample[index];
                (*energy_difference)[index_p1] += -2*quadratic*sample[index]*sample[index_p1];
             }
-            (*energy_difference)[coo_z*x_size*y_size + (y_size - 1)*x_size + coo_x] += -2*quadratic*sample[coo_z*x_size*y_size + (y_size - 1)*x_size + coo_x]*sample[coo_z*x_size*y_size + 0*x_size + coo_x] -2*linear*sample[coo_z*x_size*y_size + (y_size - 1)*x_size + coo_x];
-            (*energy_difference)[coo_z*x_size*y_size + 0*x_size + coo_x] += -2*quadratic*sample[coo_z*x_size*y_size + (y_size - 1)*x_size + coo_x]*sample[coo_z*x_size*y_size + 0*x_size + coo_x];
+            (*energy_difference)[coo_z*x_size*y_size + (y_size - 1)*x_size + coo_x] +=
+            -2*quadratic*sample[coo_z*x_size*y_size + (y_size - 1)*x_size + coo_x]*
+            sample[coo_z*x_size*y_size + 0*x_size + coo_x] -
+            2*linear*sample[coo_z*x_size*y_size + (y_size - 1)*x_size + coo_x];
+            
+            (*energy_difference)[coo_z*x_size*y_size + 0*x_size + coo_x] +=
+            -2*quadratic*sample[coo_z*x_size*y_size + (y_size - 1)*x_size + coo_x]*
+            sample[coo_z*x_size*y_size + 0*x_size + coo_x];
          }
       }
       

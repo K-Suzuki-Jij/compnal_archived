@@ -38,7 +38,6 @@ TEST(ModelIsing, InfiniteRange) {
    
    lattice::InfiniteRange lattice{10};
    auto model = model::make_ising<lattice::InfiniteRange, double>(lattice, 0.0, 1.0);
-   model.GetInteraction();
    
 }
 
