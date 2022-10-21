@@ -394,68 +394,119 @@ private:
    
 };
 
+//! @brief Class for representing the classical Ising models on any lattices.
+//! @tparam RealType The value type, which must be floating point type.
 template<typename RealType>
 class Ising<lattice::AnyLattice, RealType> {
    static_assert(std::is_floating_point<RealType>::value, "Template parameter RealType must be floating point type");
    
 public:
+   //! @brief The value type.
    using ValueType = RealType;
-   using OPType = utility::SpinType;
+   
+   //! @brief The index type.
    using IndexType = typename interaction::QuadraticAnyInteraction<RealType>::IndexType;
+
+   //! @brief The operator type, which here is the type of Ising spin -1 or +1.
+   using OPType = utility::SpinType;
+   
+   //! @brief The hash for IndexType.
    using IndexHash = typename interaction::QuadraticAnyInteraction<RealType>::IndexHash;
+   
+   //! @brief The linear interaction type.
    using LinearType = typename interaction::QuadraticAnyInteraction<RealType>::LinearType;
+   
+   //! @brief The quadratic interaction type.
    using QuadraticType = typename interaction::QuadraticAnyInteraction<RealType>::QuadraticType;
    
+   //! @brief Constructor for Ising class.
+   //! @param linear The linear interaction.
+   //! @param quadratic The quadratic interaction.
    Ising(const lattice::AnyLattice &lattice,
          const LinearType &linear,
          const QuadraticType &quadratic):
    lattice_(lattice), interaction_(linear, quadratic) {}
    
-   const std::vector<IndexType> &GenerateIndexList() const {
-      return interaction_.GetIndexList();
-   }
-   
-   RealType GetConstant() const {
-      return interaction_.GetConstant();
-   }
-   
+   //! @brief Get linear interaction.
+   //! @return The linear interaction.
    const std::vector<RealType> &GetLinear() const {
       return interaction_.GetLinear();
    }
-   
-   const std::unordered_map<IndexType, std::int32_t, IndexHash> &GetIndexMap() const {
-      return interaction_.GetIndexMap();
-   }
-   
+
+   //! @brief Get rows of the quadratic interaction as CRS format.
+   //! @return The rows.
    const std::vector<std::int64_t> &GetRowPtr() const {
       return interaction_.GetRowPtr();
    }
    
+   //! @brief Get columns of the quadratic interaction as CRS format.
+   //! @return The columns.
    const std::vector<std::int32_t> &GetColPtr() const {
       return interaction_.GetColPtr();
    }
    
+   //! @brief Get values of the quadratic interaction as CRS format.
+   //! @return The values.
    const std::vector<RealType> &GetValPtr() const {
       return interaction_.GetValPtr();
    }
    
+   //! @brief Get the system size.
+   //! @return The system size.
    std::int32_t GetSystemSize() const {
       return interaction_.GetSystemSize();
    }
    
-   std::int32_t GetDegree() const {
-      return interaction_.GetDegree();
-   }
-   
+   //! @brief Get the boundary condition.
+   //! @return The boundary condition.
    lattice::BoundaryCondition GetBoundaryCondition() const {
       return lattice_.GetBoundaryCondition();
    }
    
+   //! @brief Generate index list.
+   //! @return The index list.
+   const std::vector<IndexType> &GenerateIndexList() const {
+      return interaction_.GetIndexList();
+   }
+
+   //! @brief Get the degree of the interactions.
+   //! @return The degree.
+   std::int32_t GetDegree() const {
+      return interaction_.GetDegree();
+   }
+
+   //! @brief Get the lattice.
+   //! @return The lattice::AnyLattice object.
+   const lattice::AnyLattice &GetLattice() const {
+      return lattice_;
+   }
+
+   //! @brief Calculate energy corresponding to the spin configuration.
+   //! @param spin_configuration The spin configuration.
+   //! @return The energy.
    RealType CalculateEnergy(const std::vector<OPType> &spin_configuration) const {
       RealType val = interaction_.GetConstant();
+      const std::int32_t system_size = static_cast<std::int32_t>(spin_configuration.size());
+      const auto &linear = GetLinear();
+      const auto &row_ptr = GetRowPtr();
+      const auto &col_ptr = GetColPtr();
+      const auto &val_ptr = GetValPtr();
+      for (std::int32_t i = 0; i < system_size; ++i) {
+         for (std::int64_t j = row_ptr[i]; j < row_ptr[i + 1]; ++j) {
+            if (i < col_ptr[j]) {
+               val += val_ptr[j]*spin_configuration[col_ptr[j]]*spin_configuration[i];
+            }
+         }
+         val += linear[i]*spin_configuration[i];
+      }
       return val;
    }
    
+   //! @brief Calculate n-th moment for the list of spin configuration.
+   //! @param spin_configurations The list of spin configuration.
+   //! @param degree The degree of the moment.
+   //! @param num_threads The number of threads.
+   //! @return The moment.
    RealType CalculateMoment(const std::vector<std::vector<OPType>> &spin_configurations,
                             const std::int32_t degree,
                             const std::int32_t num_threads = utility::DEFAULT_NUM_THREADS) const {
@@ -466,7 +517,11 @@ public:
       RealType val = 0;
 #pragma omp parallel for schedule(guided) reduction(+: val) num_threads(num_threads)
       for (std::int32_t i = 0; i < static_cast<std::int32_t>(spin_configurations.size()); ++i) {
-         RealType avg = CalculateMagnetization(spin_configurations[i]);
+         RealType avg = 0;
+         for (std::size_t j = 0; j < spin_configurations[i].size(); ++j) {
+            avg += spin_configurations[i][j];
+         }
+         
          RealType prod = 1;
          for (std::int32_t j = 0; j < degree; ++j) {
             prod = prod*avg;
@@ -476,34 +531,53 @@ public:
       return val/spin_configurations.size();
    }
    
-   RealType CalculateCorrelation(const std::vector<std::vector<OPType>> &spin_configurations,
-                                 const IndexType ind1,
-                                 const IndexType ind2) const {
-      const std::unordered_map<IndexType, std::int32_t, IndexHash> &index_map = interaction_.GetIndexMap();
-      if (index_map.count(ind1) == 0 || index_map.count(ind2) == 0) {
+   //! @brief Calculate the on-site expectation value.
+   //! @param spin_configurations The list of spin configuration.
+   //! @param index The index of the spin.
+   //! @return The on-site expectation value.
+   RealType CalculateOnsiteAverage(const std::vector<std::vector<OPType>> &spin_configurations,
+                                   const IndexType index) const {
+      if (index < 0) {
          throw std::runtime_error("The index is out of range.");
       }
       RealType val = 0;
       for (std::size_t i = 0; i < spin_configurations.size(); ++i) {
-         val += spin_configurations[i][index_map.at(ind1)]*spin_configurations[i][index_map.at(ind2)];
+         val += spin_configurations[i][index];
       }
       return val/spin_configurations.size();
    }
    
-private:
-   const interaction::QuadraticAnyInteraction<RealType> interaction_;
-   const lattice::AnyLattice lattice_;
-   
-   RealType CalculateMagnetization(const std::vector<OPType> &spin_configuration) const {
-      RealType val = 0;
-      for (std::size_t i = 0; i < spin_configuration.size(); ++i) {
-         val += spin_configuration[i];
+   //! @brief Calculate the spin-spin correlation.
+   //! @param spin_configurations The list of spin configuration.
+   //! @param index1 The index of the spin.
+   //! @param index2 The index of the spin.
+   //! @return The spin-spin correlation.
+   RealType CalculateCorrelation(const std::vector<std::vector<OPType>> &spin_configurations,
+                                 const IndexType index1,
+                                 const IndexType index2) const {
+      const std::int32_t size = static_cast<std::int32_t>(spin_configurations.size());
+      if (index1 < 0 || index2 < 0 || index1 >= size || index2 >= size) {
+         throw std::runtime_error("The index is out of range.");
       }
-      return val/spin_configuration.size();
+      RealType val = 0;
+      for (std::int32_t i = 0; i < size; ++i) {
+         val += spin_configurations[i][index1]*spin_configurations[i][index2];
+      }
+      return val/size;
    }
+   
+private:
+   //! @brief The interaction.
+   const interaction::QuadraticAnyInteraction<RealType> interaction_;
+   
+   //! @brief The linear interaction.
+   const lattice::AnyLattice lattice_;
    
 };
 
+//! @brief Helper function to make Ising class.
+//! @tparam LatticeType The lattice type.
+//! @tparam RealType The value type, which must be floating point type.
 template<class LatticeType, typename RealType>
 auto make_ising(const LatticeType &lattice,
                 const typename Ising<LatticeType, RealType>::LinearType &linear,
