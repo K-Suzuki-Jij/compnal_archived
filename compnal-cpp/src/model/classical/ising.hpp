@@ -427,6 +427,13 @@ public:
          const QuadraticType &quadratic):
    lattice_(lattice), interaction_(linear, quadratic) {}
    
+   //! @brief Get the constant value of the interactions,
+   //! which appears when the interactions with the same index are set.
+   //! @return The constant value.
+   RealType GetConstant() const {
+      return interaction_.GetConstant();
+   }
+   
    //! @brief Get linear interaction.
    //! @return The linear interaction.
    const std::vector<RealType> &GetLinear() const {
@@ -468,6 +475,12 @@ public:
    const std::vector<IndexType> &GenerateIndexList() const {
       return interaction_.GetIndexList();
    }
+   
+   //! @brief Get the mapping from the index to the integer.
+   //! @return The index map.
+   const std::unordered_map<IndexType, std::int32_t, IndexHash> &GetIndexMap() const {
+      return interaction_.GetIndexMap();
+   }
 
    //! @brief Get the degree of the interactions.
    //! @return The degree.
@@ -485,6 +498,9 @@ public:
    //! @param spin_configuration The spin configuration.
    //! @return The energy.
    RealType CalculateEnergy(const std::vector<OPType> &spin_configuration) const {
+      if (spin_configuration.size() != interaction_.GetSystemSize()) {
+         throw std::runtime_error("The size of spin configuration is not equal to the system size.");
+      }
       RealType val = interaction_.GetConstant();
       const std::int32_t system_size = static_cast<std::int32_t>(spin_configuration.size());
       const auto &linear = GetLinear();
@@ -537,12 +553,10 @@ public:
    //! @return The on-site expectation value.
    RealType CalculateOnsiteAverage(const std::vector<std::vector<OPType>> &spin_configurations,
                                    const IndexType index) const {
-      if (index < 0) {
-         throw std::runtime_error("The index is out of range.");
-      }
+      const auto index_int = GetIndexMap().at(index);
       RealType val = 0;
       for (std::size_t i = 0; i < spin_configurations.size(); ++i) {
-         val += spin_configurations[i][index];
+         val += spin_configurations[i][index_int];
       }
       return val/spin_configurations.size();
    }
@@ -555,13 +569,12 @@ public:
    RealType CalculateCorrelation(const std::vector<std::vector<OPType>> &spin_configurations,
                                  const IndexType index1,
                                  const IndexType index2) const {
+      const auto index_int1 = GetIndexMap().at(index1);
+      const auto index_int2 = GetIndexMap().at(index2);
       const std::int32_t size = static_cast<std::int32_t>(spin_configurations.size());
-      if (index1 < 0 || index2 < 0 || index1 >= size || index2 >= size) {
-         throw std::runtime_error("The index is out of range.");
-      }
       RealType val = 0;
       for (std::int32_t i = 0; i < size; ++i) {
-         val += spin_configurations[i][index1]*spin_configurations[i][index2];
+         val += spin_configurations[i][index_int1]*spin_configurations[i][index_int2];
       }
       return val/size;
    }
