@@ -52,7 +52,7 @@ class Ising:
         elif isinstance(quadratic, dict):
             self.__quadratic = MappingProxyType(quadratic)
         else:
-            raise TypeError("Invalid type for linear argument")
+            raise TypeError("Invalid type for quadratic argument")
 
         self.__lattice = lattice
 

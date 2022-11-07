@@ -67,7 +67,7 @@ void pybind11ModelPolynomialIsing(py::module &m, const std::string &post_name = 
    auto py_class = py::class_<PolyIsing>(m, name.c_str(), py::module_local());
    
    //Constructors
-   py_class.def(py::init<const LatticeType&, const typename PolyIsing::InteractionType&>(), "lattice"_a, "interaction"_a);
+   py_class.def(py::init<const LatticeType&, const typename PolyIsing::PolynomialType&>(), "lattice"_a, "interaction"_a);
    
    //Public Member Functions
    py_class.def("get_system_size", &PolyIsing::GetSystemSize);
@@ -76,7 +76,7 @@ void pybind11ModelPolynomialIsing(py::module &m, const std::string &post_name = 
    py_class.def("generate_index_list", &PolyIsing::GenerateIndexList);
    py_class.def("calculate_energy", py::overload_cast<const std::vector<typename PolyIsing::OPType>&>(&PolyIsing::CalculateEnergy, py::const_), "sample"_a);
    
-   m.def("make_polynomial_ising", [](const LatticeType &lattice, const typename PolyIsing::InteractionType &interaction) {
+   m.def("make_polynomial_ising", [](const LatticeType &lattice, const typename PolyIsing::PolynomialType &interaction) {
       return model::make_polynomial_ising<LatticeType, RealType>(lattice, interaction);
    }, "lattice"_a, "interaction"_a);
 }
