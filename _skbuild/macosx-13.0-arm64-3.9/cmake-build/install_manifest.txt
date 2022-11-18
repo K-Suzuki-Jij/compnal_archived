@@ -1,0 +1,1 @@
+/Users/kohei/Dropbox/Project/compnal/_skbuild/macosx-13.0-arm64-3.9/cmake-install/compnal/./base_compnal.cpython-39-darwin.so
