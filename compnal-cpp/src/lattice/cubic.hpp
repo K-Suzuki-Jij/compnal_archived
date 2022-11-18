@@ -25,6 +25,7 @@
 
 #include "base_three_dimensional_lattice.hpp"
 #include <vector>
+#include <tuple>
 
 namespace compnal {
 namespace lattice {
