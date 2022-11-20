@@ -24,9 +24,9 @@ else()
 endif()
 
 # Options
-option(COMPNAL_INSTALL "Install cimod header files?" ${COMPNAL_MAIN_PROJECT})
-option(COMPNAL_TEST "Build cimod test suite?" ${COMPNAL_MAIN_PROJECT})
-option(COMPNAL_DOCS "Build cimod docs?" ${COMPNAL_MAIN_PROJECT})
+option(COMPNAL_INSTALL "Install header files?" ${COMPNAL_MAIN_PROJECT})
+option(COMPNAL_TEST "Build test suite?" ${COMPNAL_MAIN_PROJECT})
+option(COMPNAL_DOCS "Build docs?" ${COMPNAL_MAIN_PROJECT})
 option(BUILD_DOCS "Enable Doxygen support." OFF)
 option(CMAKE_REQUIRE_FAILE "If CMake could not find dependencies, build will faile." OFF)
 
@@ -181,7 +181,7 @@ if(USE_OMP)
   endif()
 endif()
 
-add_subdirectory(compnal-cpp)
+add_subdirectory(cpp_compnal)
 
 # Build Python Extension 
 if(SKBUILD AND COMPNAL_MAIN_PROJECT)

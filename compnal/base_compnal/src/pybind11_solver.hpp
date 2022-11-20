@@ -18,7 +18,7 @@
 #ifndef COMPNAL_PYBIND11_SOLVER_HPP_
 #define COMPNAL_PYBIND11_SOLVER_HPP_
 
-#include "../../../compnal-cpp/src/solver/all.hpp"
+#include "../../../cpp_compnal/src/solver/all.hpp"
 
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>

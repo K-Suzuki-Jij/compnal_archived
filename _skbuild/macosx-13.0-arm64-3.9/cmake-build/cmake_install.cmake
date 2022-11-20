@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/kohei/Dropbox/Project/compnal/_skbuild/macosx-13.0-arm64-3.9/cmake-build/compnal-cpp/cmake_install.cmake")
+  include("/Users/kohei/Dropbox/Project/compnal/_skbuild/macosx-13.0-arm64-3.9/cmake-build/cpp_compnal/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)

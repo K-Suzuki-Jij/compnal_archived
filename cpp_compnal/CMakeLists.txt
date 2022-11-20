@@ -3,21 +3,8 @@ list(APPEND CMAKE_MESSAGE_INDENT "  ")
 
 add_library(base_compnal_header_only INTERFACE)
 
-#target_precompile_headers(cxxcimod_header_only INTERFACE
-#    ${CMAKE_CURRENT_SOURCE_DIR}/algorithm/all.hpp
-#    ${CMAKE_CURRENT_SOURCE_DIR}/graph/all.hpp
-#    ${CMAKE_CURRENT_SOURCE_DIR}/result/all.hpp
-#    ${CMAKE_CURRENT_SOURCE_DIR}/system/all.hpp
-#    ${CMAKE_CURRENT_SOURCE_DIR}/updater/all.hpp
-#) 
-
-#for GPU
-if(CUDAToolkit_FOUND)
-    add_subdirectory(openjij/system)
-endif()
-
 target_include_directories(base_compnal_header_only INTERFACE 
-  $<BUILD_INTERFACE:${OPENJIJ_INCLUDE_DIR}>
+  $<BUILD_INTERFACE:${COMPNAL_INCLUDE_DIR}>
   $<INSTALL_INTERFACE:include>
 )
 

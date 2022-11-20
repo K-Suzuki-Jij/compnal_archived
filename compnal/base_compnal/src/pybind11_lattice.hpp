@@ -23,7 +23,7 @@
 #ifndef COMPNAL_PYBIND11_LATTICE_HPP_
 #define COMPNAL_PYBIND11_LATTICE_HPP_
 
-#include "../../../compnal-cpp/src/lattice/all.hpp"
+#include "../../../cpp_compnal/src/lattice/all.hpp"
 
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>

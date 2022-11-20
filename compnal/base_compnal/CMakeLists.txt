@@ -7,7 +7,7 @@ set_target_properties(base_compnal PROPERTIES
     INTERPROCEDURAL_OPTIMIZATION TRUE
     PREFIX "${PYTHON_MODULE_PREFIX}"
     SUFFIX "${PYTHON_MODULE_EXTENSION}"
-    VERSION_INFO "${CIMOD_VERSION_INFO}"
+    VERSION_INFO "${COMPNAL_VERSION_INFO}"
 )
 
 target_link_libraries(base_compnal

@@ -66,17 +66,17 @@ CMAKE_BINARY_DIR = /Users/kohei/Dropbox/Project/compnal/_skbuild/macosx-13.0-arm
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: compnal-cpp/all
+all: cpp_compnal/all
 all: compnal/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall: compnal-cpp/preinstall
+preinstall: cpp_compnal/preinstall
 preinstall: compnal/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: compnal-cpp/clean
+clean: cpp_compnal/clean
 clean: compnal/clean
 .PHONY : clean
 
@@ -96,19 +96,19 @@ compnal/clean: compnal/CMakeFiles/base_compnal.dir/clean
 .PHONY : compnal/clean
 
 #=============================================================================
-# Directory level rules for directory compnal-cpp
+# Directory level rules for directory cpp_compnal
 
 # Recursive "all" directory target.
-compnal-cpp/all:
-.PHONY : compnal-cpp/all
+cpp_compnal/all:
+.PHONY : cpp_compnal/all
 
 # Recursive "preinstall" directory target.
-compnal-cpp/preinstall:
-.PHONY : compnal-cpp/preinstall
+cpp_compnal/preinstall:
+.PHONY : cpp_compnal/preinstall
 
 # Recursive "clean" directory target.
-compnal-cpp/clean:
-.PHONY : compnal-cpp/clean
+cpp_compnal/clean:
+.PHONY : cpp_compnal/clean
 
 #=============================================================================
 # Target rules for target compnal/CMakeFiles/base_compnal.dir

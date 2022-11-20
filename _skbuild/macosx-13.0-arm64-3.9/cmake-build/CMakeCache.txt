@@ -194,7 +194,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELEASE:STRING=
 CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //No help, variable specified on the command line.
-CMAKE_MODULE_PATH:PATH=/private/var/folders/xp/2hf1gm_90r7b21mzst1r7b4c0000gn/T/pip-build-env-wo_ns7jr/overlay/lib/python3.9/site-packages/skbuild/resources/cmake
+CMAKE_MODULE_PATH:PATH=/private/var/folders/xp/2hf1gm_90r7b21mzst1r7b4c0000gn/T/pip-build-env-8ma08jkp/overlay/lib/python3.9/site-packages/skbuild/resources/cmake
 
 //Path to a program.
 CMAKE_NM:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/nm
@@ -289,17 +289,14 @@ CMAKE_STRIP:FILEPATH=/Applications/Xcode.app/Contents/Developer/Toolchains/Xcode
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
-//Build cimod docs?
+//Build docs?
 COMPNAL_DOCS:BOOL=ON
 
-//Install cimod header files?
+//Install header files?
 COMPNAL_INSTALL:BOOL=ON
 
-//Build cimod test suite?
+//Build test suite?
 COMPNAL_TEST:BOOL=ON
-
-//The directory containing a CMake configuration file for Eigen3.
-Eigen3_DIR:PATH=/opt/homebrew/share/eigen3/cmake
 
 //CXX compiler flags for OpenMP parallelization
 OpenMP_CXX_FLAGS:STRING=-Xclang -fopenmp
@@ -365,9 +362,6 @@ Python_INCLUDE_DIR:PATH=/opt/homebrew/opt/python@3.9/Frameworks/Python.framework
 //No help, variable specified on the command line.
 Python_ROOT_DIR:PATH=/Users/kohei/Dropbox/Project/compnal/.venv
 
-//Use test code
-USE_TEST:BOOL=OFF
-
 //Compile in rudimentary thread support
 WITH_THREAD:BOOL=ON
 
@@ -380,17 +374,8 @@ compnal_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 compnal_SOURCE_DIR:STATIC=/Users/kohei/Dropbox/Project/compnal
 
-//The directory containing a CMake configuration file for cxxcimod_header_only.
-cxxcimod_header_only_DIR:PATH=cxxcimod_header_only_DIR-NOTFOUND
-
-//The directory containing a CMake configuration file for nlohmann_json.
-nlohmann_json_DIR:PATH=/opt/homebrew/share/cmake/nlohmann_json
-
 //The directory containing a CMake configuration file for pybind11.
-pybind11_DIR:PATH=/private/var/folders/xp/2hf1gm_90r7b21mzst1r7b4c0000gn/T/pip-build-env-wo_ns7jr/overlay/lib/python3.9/site-packages/pybind11/share/cmake/pybind11
-
-//The directory containing a CMake configuration file for pybind11_json.
-pybind11_json_DIR:PATH=pybind11_json_DIR-NOTFOUND
+pybind11_DIR:PATH=/private/var/folders/xp/2hf1gm_90r7b21mzst1r7b4c0000gn/T/pip-build-env-8ma08jkp/overlay/lib/python3.9/site-packages/pybind11/share/cmake/pybind11
 
 
 ########################
@@ -598,14 +583,10 @@ FIND_PACKAGE_MESSAGE_DETAILS_OpenMP_C:INTERNAL=[-Xclang -fopenmp][/opt/homebrew/
 FIND_PACKAGE_MESSAGE_DETAILS_OpenMP_CXX:INTERNAL=[-Xclang -fopenmp][/opt/homebrew/lib/libomp.dylib][v5.0()]
 //Details about finding PYTHON
 FIND_PACKAGE_MESSAGE_DETAILS_PYTHON:INTERNAL=/Users/kohei/Dropbox/Project/compnal/.venv/bin/python3.9.15
-//Details about finding Python
-FIND_PACKAGE_MESSAGE_DETAILS_Python:INTERNAL=[/opt/homebrew/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/include/python3.9][cfound components: Development.Module ][v3.9.15()]
 //Details about finding PythonInterp
 FIND_PACKAGE_MESSAGE_DETAILS_PythonInterp:INTERNAL=[/Users/kohei/Dropbox/Project/compnal/.venv/bin/python][v3.9.15(3.6)]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
-//Details about finding nlohmann_json
-FIND_PACKAGE_MESSAGE_DETAILS_nlohmann_json:INTERNAL=[/opt/homebrew/share/cmake/nlohmann_json/nlohmann_jsonConfig.cmake][v3.11.2()]
 //Test HAS_FLTO
 HAS_FLTO:INTERNAL=1
 //Test HAS_FLTO_THIN
@@ -665,24 +646,12 @@ _Python3_INCLUDE_DIR:INTERNAL=/opt/homebrew/opt/python@3.9/Frameworks/Python.fra
 //Python3 Properties
 _Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;9;15;64;;cpython-39-darwin;/opt/homebrew/Cellar/python@3.9/3.9.15/Frameworks/Python.framework/Versions/3.9/lib/python3.9;/opt/homebrew/Cellar/python@3.9/3.9.15/Frameworks/Python.framework/Versions/3.9/lib/python3.9;/Users/kohei/Dropbox/Project/compnal/.venv/lib/python3.9/site-packages;/Users/kohei/Dropbox/Project/compnal/.venv/lib/python3.9/site-packages
 _Python3_INTERPRETER_SIGNATURE:INTERNAL=0bf03e90032b34e169b3b9ecfc893cc1
-//Interpreter reason failure
-_Python3_Interpreter_REASON_FAILURE:INTERNAL=
 //Path to a library.
 _Python3_LIBRARY_RELEASE:INTERNAL=/opt/homebrew/Cellar/python@3.9/3.9.15/Frameworks/Python.framework/Versions/3.9/lib/libpython3.9.dylib
 //Path to a file.
 _Python3_NumPy_INCLUDE_DIR:INTERNAL=_Python3_NumPy_INCLUDE_DIR-NOTFOUND
 //NumPy reason failure
 _Python3_NumPy_REASON_FAILURE:INTERNAL=
-//Path to a program.
-_Python_CONFIG:INTERNAL=/opt/homebrew/Frameworks/Python.framework/Versions/3.10/bin/python3.10-config
-//Compiler reason failure
-_Python_Compiler_REASON_FAILURE:INTERNAL=
-_Python_DEVELOPMENT_MODULE_SIGNATURE:INTERNAL=5bc626819791f86ee00615a01014c1a0
-_Python_INCLUDE_DIR:INTERNAL=/opt/homebrew/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/include/python3.9
-//Interpreter reason failure
-_Python_Interpreter_REASON_FAILURE:INTERNAL=
-//NumPy reason failure
-_Python_NumPy_REASON_FAILURE:INTERNAL=
 //Directories where pybind11 and possibly Python headers are located
-pybind11_INCLUDE_DIRS:INTERNAL=/private/var/folders/xp/2hf1gm_90r7b21mzst1r7b4c0000gn/T/pip-build-env-wo_ns7jr/overlay/lib/python3.9/site-packages/pybind11/include;/opt/homebrew/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/include/python3.9
+pybind11_INCLUDE_DIRS:INTERNAL=/private/var/folders/xp/2hf1gm_90r7b21mzst1r7b4c0000gn/T/pip-build-env-8ma08jkp/overlay/lib/python3.9/site-packages/pybind11/include;/opt/homebrew/opt/python@3.9/Frameworks/Python.framework/Versions/3.9/include/python3.9
 

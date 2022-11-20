@@ -1,7 +1,7 @@
 from typing import Union
 from types import MappingProxyType
 
-from base_compnal import base_model
+from compnal.base_compnal import base_model
 from compnal.lattice.boundary_condition import (
     BoundaryCondition,
     cast_base_boundary_condition,
