@@ -37,7 +37,7 @@ TEST(SolverClassicalMonteCarlo, IsingChainOBC) {
    model::Ising model(lattice, 0.0, -1.0);
    
    const std::uint64_t seed = 1;
-   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver::ClassicalMonteCarlo solver(model);
    solver.SetNumThreads(4);
    solver.SetNumSweeps(10000);
    solver.SetNumSamples(5);
@@ -45,7 +45,7 @@ TEST(SolverClassicalMonteCarlo, IsingChainOBC) {
    solver.Run(seed);
    
    for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      EXPECT_EQ(std::abs(std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0)), system_size);
+      EXPECT_EQ(std::abs(std::accumulate(solver.GetSamples().at(i).begin(), solver.GetSamples().at(i).end(), 0)), system_size);
    }
 }
 
@@ -55,7 +55,7 @@ TEST(SolverClassicalMonteCarlo, IsingChainPBC) {
    model::Ising model(lattice, 0.0, -1.0);
    
    const std::uint64_t seed = 1;
-   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver::ClassicalMonteCarlo solver(model);
    solver.SetNumThreads(4);
    solver.SetNumSweeps(10000);
    solver.SetNumSamples(5);
@@ -63,7 +63,7 @@ TEST(SolverClassicalMonteCarlo, IsingChainPBC) {
    solver.Run(seed);
    
    for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      EXPECT_EQ(std::abs(std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0)), system_size);
+      EXPECT_EQ(std::abs(std::accumulate(solver.GetSamples().at(i).begin(), solver.GetSamples().at(i).end(), 0)), system_size);
    }
 }
 
@@ -74,15 +74,15 @@ TEST(SolverClassicalMonteCarlo, IsingSquareOBC) {
    model::Ising model(lattice, 0.0, -1.0);
    
    const std::uint64_t seed = 1;
-   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver::ClassicalMonteCarlo solver(model);
    solver.SetNumThreads(4);
    solver.SetNumSweeps(1000);
    solver.SetNumSamples(8);
-   solver.SetTemperature(0.1);
+   solver.SetTemperature(0.5);
    solver.Run(seed);
    
    for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      EXPECT_EQ(std::abs(std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0)), x_size*y_size);
+      EXPECT_EQ(std::abs(std::accumulate(solver.GetSamples().at(i).begin(), solver.GetSamples().at(i).end(), 0)), x_size*y_size);
    }
    
 }
@@ -94,7 +94,7 @@ TEST(SolverClassicalMonteCarlo, IsingSquarePBC) {
    model::Ising model(lattice, 0.0, -1.0);
    
    const std::uint64_t seed = 1;
-   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver::ClassicalMonteCarlo solver(model);
    solver.SetNumThreads(4);
    solver.SetNumSweeps(10000);
    solver.SetNumSamples(8);
@@ -102,7 +102,7 @@ TEST(SolverClassicalMonteCarlo, IsingSquarePBC) {
    solver.Run(seed);
    
    for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      EXPECT_EQ(std::abs(std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0)), x_size*y_size);
+      EXPECT_EQ(std::abs(std::accumulate(solver.GetSamples().at(i).begin(), solver.GetSamples().at(i).end(), 0)), x_size*y_size);
    }
 }
 
@@ -114,7 +114,7 @@ TEST(SolverClassicalMonteCarlo, IsingCubicOBC) {
    model::Ising model(lattice, 0.0, -1.0);
    
    const std::uint64_t seed = 1;
-   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver::ClassicalMonteCarlo solver(model);
    solver.SetNumThreads(4);
    solver.SetNumSweeps(10000);
    solver.SetNumSamples(8);
@@ -123,7 +123,7 @@ TEST(SolverClassicalMonteCarlo, IsingCubicOBC) {
    
    std::int32_t gs_count = 0;
    for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      if (std::abs(std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0)) == model.GetSystemSize()) {
+      if (std::abs(std::accumulate(solver.GetSamples().at(i).begin(), solver.GetSamples().at(i).end(), 0)) == model.GetSystemSize()) {
          gs_count++;
       }
    }
@@ -139,7 +139,7 @@ TEST(SolverClassicalMonteCarlo, IsingCubicPBC) {
    model::Ising model(lattice, 0.0, -1.0);
    
    const std::uint64_t seed = 1;
-   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver::ClassicalMonteCarlo solver(model);
    solver.SetNumThreads(4);
    solver.SetNumSweeps(10000);
    solver.SetNumSamples(8);
@@ -148,7 +148,7 @@ TEST(SolverClassicalMonteCarlo, IsingCubicPBC) {
    
    std::int32_t gs_count = 0;
    for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      if (std::abs(std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0)) == model.GetSystemSize()) {
+      if (std::abs(std::accumulate(solver.GetSamples().at(i).begin(), solver.GetSamples().at(i).end(), 0)) == model.GetSystemSize()) {
          gs_count++;
       }
    }
@@ -163,7 +163,7 @@ TEST(SolverClassicalMonteCarlo, IsingInfiniteRange) {
    model::Ising model(lattice, 0.0, -1.0);
    
    const std::uint64_t seed = 1;
-   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver::ClassicalMonteCarlo solver(model);
    solver.SetNumThreads(4);
    solver.SetNumSweeps(1000);
    solver.SetNumSamples(8);
@@ -171,7 +171,7 @@ TEST(SolverClassicalMonteCarlo, IsingInfiniteRange) {
    solver.Run(seed);
    
    for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      EXPECT_EQ(std::abs(std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0)), system_size);
+      EXPECT_EQ(std::abs(std::accumulate(solver.GetSamples().at(i).begin(), solver.GetSamples().at(i).end(), 0)), system_size);
    }
    
 }
@@ -192,7 +192,7 @@ TEST(SolverClassicalMonteCarlo, IsingAnyLattice) {
    
    const std::uint64_t seed = 1;
    auto model = model::make_ising<lattice::AnyLattice, double>(lattice::AnyLattice{}, LinearType{}, quad);
-   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver::ClassicalMonteCarlo solver(model);
    solver.SetNumThreads(4);
    solver.SetNumSweeps(10000);
    solver.SetNumSamples(10);
@@ -200,7 +200,7 @@ TEST(SolverClassicalMonteCarlo, IsingAnyLattice) {
    solver.Run(seed);
    
    for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      EXPECT_EQ(std::abs(std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0)), system_size);
+      EXPECT_EQ(std::abs(std::accumulate(solver.GetSamples().at(i).begin(), solver.GetSamples().at(i).end(), 0)), system_size);
    }
 
 }

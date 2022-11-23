@@ -38,7 +38,7 @@ TEST(SolverClassicalMonteCarlo, PolyIsingAnyLattice) {
    
    const std::uint64_t seed = 1;
    model::PolynomialIsing<lattice::AnyLattice, double> model{lattice::AnyLattice{}, interaction};
-   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver::ClassicalMonteCarlo solver(model);
    solver.SetNumThreads(4);
    solver.SetNumSweeps(10000);
    solver.SetNumSamples(10);
@@ -50,19 +50,19 @@ TEST(SolverClassicalMonteCarlo, PolyIsingAnyLattice) {
 
 TEST(SolverClassicalMonteCarlo, PolyIsingChain) {
    const lattice::Chain lattice(9, lattice::BoundaryCondition::PBC);
-   const std::unordered_map<std::int32_t, double> interaction{{3, +1.0}};
+   const std::unordered_map<std::int32_t, double> interaction{{2, -1.0}, {1, -1.0}};
    model::PolynomialIsing model(lattice, interaction);
    
    const std::uint64_t seed = 1;
-   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver::ClassicalMonteCarlo solver(model);
    solver.SetNumThreads(4);
-   solver.SetNumSweeps(10000);
+   solver.SetNumSweeps(1000);
    solver.SetNumSamples(5);
-   solver.SetTemperature(0.01);
+   solver.SetTemperature(0.1);
    solver.Run(seed);
    
    for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      EXPECT_EQ(std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0.0), 3.0);
+      EXPECT_EQ(std::accumulate(solver.GetSamples().at(i).begin(), solver.GetSamples().at(i).end(), 0.0), 9.0);
    }
 }
 
@@ -70,7 +70,7 @@ TEST(SolverClassicalMonteCarlo, PolyIsingCubicPBC) {
    const lattice::Cubic lattice(3, 3, 3, lattice::BoundaryCondition::PBC);
    const std::unordered_map<std::int32_t, double> interaction{{3, -1}};
    model::PolynomialIsing model(lattice, interaction);
-   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver::ClassicalMonteCarlo solver(model);
    solver.SetNumThreads(4);
    solver.SetNumSweeps(10000);
    solver.SetNumSamples(10);
@@ -78,10 +78,10 @@ TEST(SolverClassicalMonteCarlo, PolyIsingCubicPBC) {
    solver.Run();
    
    for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      for (const auto &it: solver.GetSample(i)) {
+      for (const auto &it: solver.GetSamples().at(i)) {
          printf("%+d, ", it);
       }
-      printf("SUM=%lf", std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0)/27.0);
+      printf("SUM=%lf", std::accumulate(solver.GetSamples().at(i).begin(), solver.GetSamples().at(i).end(), 0)/27.0);
       printf("\n");
    }
    
@@ -92,7 +92,7 @@ TEST(SolverClassicalMonteCarlo, PolyIsingCubicOBC) {
    const lattice::Cubic lattice(3, 3, 3, lattice::BoundaryCondition::OBC);
    const std::unordered_map<std::int32_t, double> interaction{{3, -1}};
    model::PolynomialIsing model(lattice, interaction);
-   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver::ClassicalMonteCarlo solver(model);
    solver.SetNumThreads(4);
    solver.SetNumSweeps(10000);
    solver.SetNumSamples(10);
@@ -100,10 +100,10 @@ TEST(SolverClassicalMonteCarlo, PolyIsingCubicOBC) {
    solver.Run();
    
    for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      for (const auto &it: solver.GetSample(i)) {
+      for (const auto &it: solver.GetSamples().at(i)) {
          printf("%+d, ", it);
       }
-      printf("SUM=%lf", std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0)/27.0);
+      printf("SUM=%lf", std::accumulate(solver.GetSamples().at(i).begin(), solver.GetSamples().at(i).end(), 0)/27.0);
       printf("\n");
    }
    
@@ -116,7 +116,7 @@ TEST(SolverClassicalMonteCarlo, PolyIsingSquarePBC) {
    const std::unordered_map<std::int32_t, double> interaction{{2, -1}};
    model::PolynomialIsing model(lattice, interaction);
    const std::uint64_t seed = 1;
-   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver::ClassicalMonteCarlo solver(model);
    solver.SetNumThreads(1);
    solver.SetNumSweeps(10000);
    solver.SetNumSamples(1);
@@ -125,8 +125,8 @@ TEST(SolverClassicalMonteCarlo, PolyIsingSquarePBC) {
    
    std::int32_t gs_count = 0;
    for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      const auto mag = std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0);
-      if (mag == solver.GetSample(i).size() || -1*mag == solver.GetSample(i).size()) {
+      const auto mag = std::accumulate(solver.GetSamples().at(i).begin(), solver.GetSamples().at(i).end(), 0);
+      if (mag == solver.GetSamples().at(i).size() || -1*mag == solver.GetSamples().at(i).size()) {
          gs_count++;
       }
    }
@@ -138,7 +138,7 @@ TEST(SolverClassicalMonteCarlo, PolyIsingSquareOBC) {
    const std::unordered_map<std::int32_t, double> interaction{{2, -1}};
    model::PolynomialIsing model(lattice, interaction);
    const std::uint64_t seed = 1;
-   solver::ClassicalMonteCarlo solver(model, solver::CMCUpdater::METROPOLIS);
+   solver::ClassicalMonteCarlo solver(model);
    solver.SetNumThreads(1);
    solver.SetNumSweeps(10000);
    solver.SetNumSamples(1);
@@ -147,8 +147,8 @@ TEST(SolverClassicalMonteCarlo, PolyIsingSquareOBC) {
    
    std::int32_t gs_count = 0;
    for (std::size_t i = 0; i < solver.GetSamples().size(); ++i) {
-      const auto mag = std::accumulate(solver.GetSample(i).begin(), solver.GetSample(i).end(), 0);
-      if (mag == solver.GetSample(i).size() || -1*mag == solver.GetSample(i).size()) {
+      const auto mag = std::accumulate(solver.GetSamples().at(i).begin(), solver.GetSamples().at(i).end(), 0);
+      if (mag == solver.GetSamples().at(i).size() || -1*mag == solver.GetSamples().at(i).size()) {
          gs_count++;
       }
    }
@@ -159,7 +159,7 @@ TEST(SolverClassicalMonteCarlo, PolyIsingInfinitRange) {
    const std::unordered_map<std::int32_t, double> interaction{{3, -0.03}};
    const std::uint64_t seed = 1;
    model::PolynomialIsing model{lattice::InfiniteRange{10}, interaction};
-   solver::ClassicalMonteCarlo solver{model, solver::CMCUpdater::METROPOLIS};
+   solver::ClassicalMonteCarlo solver(model);
    solver.SetNumThreads(4);
    solver.SetNumSweeps(10000);
    solver.SetNumSamples(10);
