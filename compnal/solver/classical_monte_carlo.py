@@ -3,7 +3,7 @@ from typing import Optional, Union
 from compnal.base_compnal import base_solver
 from compnal.model.polynomial_ising import PolynomialIsing
 from compnal.model.ising import Ising
-from compnal.solver.updater import Updater, cast_base_updater, cast_updater
+from compnal.solver.algorithm import Algorithm, cast_base_algorithm, cast_algorithm
 
 ModelType = Union[PolynomialIsing, Ising]
 
@@ -12,28 +12,26 @@ class ClassicalMonteCarlo:
     """ClassicalMonteCarlo class. This class can treat classical models.
 
     Attributes:
-        updater (Updater): The algorithm of update method.
+        algorithm (Algorithm): The algorithm of update method.
         num_sweeps (int): The number of sweeps.
         num_samples (int): The number of samples.
         num_threads (int): The number of threads.
-        beta (float): The inverse temperature.
         temperature (float): The temperature.
         model (ModelType): The model.
     """
 
     def __init__(self, 
-        model: ModelType, 
-        updater: Updater = Updater.METROPOLIS
+        model: ModelType
         ) -> None:
         """The constructor.
 
         Args:
             model (ModelType): The classical model.
-            updater (Updater, optional): The algorithm of update method. Defaults to Updater.METROPOLIS.
+            algorithm (Algorithm, optional): The algorithm of update method. Defaults to Algorithm.METROPOLIS.
         """
 
         self.__base_solver = base_solver.make_classical_monte_carlo(
-            model=model._base_model, cmc_updater=cast_updater(updater)
+            model=model._base_model
         )
 
         self.__model = model
@@ -111,12 +109,12 @@ class ClassicalMonteCarlo:
         return self.__base_solver.calculate_correlation(origin, index_list)
 
     @property
-    def updater(self) -> Updater:
-        return cast_base_updater(self.__base_solver.cmc_updater)
+    def algorithm(self) -> Algorithm:
+        return cast_base_algorithm(self.__base_solver.cmc_updater)
 
-    @updater.setter
-    def updater(self, updater: Updater) -> None:
-        self.__base_solver.cmc_updater = cast_updater(updater)
+    @algorithm.setter
+    def algorithm(self, algorithm: Algorithm) -> None:
+        self.__base_solver.cmc_updater = cast_algorithm(algorithm)
 
     @property
     def num_sweeps(self) -> int:
@@ -141,14 +139,6 @@ class ClassicalMonteCarlo:
     @num_threads.setter
     def num_threads(self, num_threads: int) -> None:
         self.__base_solver.set_num_threads(num_threads=num_threads)
-
-    @property
-    def beta(self) -> float:
-        return self.__base_solver.get_inverse_temperature()
-
-    @beta.setter
-    def beta(self, beta: float) -> None:
-        self.__base_solver.set_inverse_temperature(inverse_temperature=beta)
 
     @property
     def temperature(self) -> float:

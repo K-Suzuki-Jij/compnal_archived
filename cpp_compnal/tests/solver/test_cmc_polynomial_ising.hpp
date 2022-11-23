@@ -70,7 +70,8 @@ TEST(SolverClassicalMonteCarlo, PolyIsingCubicPBC) {
    const lattice::Cubic lattice(3, 3, 3, lattice::BoundaryCondition::PBC);
    const std::unordered_map<std::int32_t, double> interaction{{3, -1}};
    model::PolynomialIsing model(lattice, interaction);
-   solver::ClassicalMonteCarlo solver(model);
+   //solver::ClassicalMonteCarlo solver(model);
+   auto solver = solver::make_classical_monte_carlo(model);
    solver.SetNumThreads(4);
    solver.SetNumSweeps(10000);
    solver.SetNumSamples(10);

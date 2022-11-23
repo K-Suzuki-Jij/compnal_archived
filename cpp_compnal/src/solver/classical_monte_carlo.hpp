@@ -203,7 +203,7 @@ private:
 
 
 template<class ModelType>
-auto make_classical_monte_carlo(const ModelType  &model) {
+auto make_classical_monte_carlo(const ModelType &model) {
    return ClassicalMonteCarlo<ModelType>{model};
 }
 

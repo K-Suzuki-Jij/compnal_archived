@@ -35,10 +35,10 @@ using namespace pybind11::literals;
 
 void pybind11SolverCMCUpdater(py::module &m) {
    
-   py::enum_<solver::CMCUpdater>(m, "CMCUpdater")
-      .value("METROPOLIS", solver::CMCUpdater::METROPOLIS)
-      .value("HEAT_BATH" , solver::CMCUpdater::HEAT_BATH);
-   
+   py::enum_<solver::cmc_utility::Algorithm>(m, "Algorithm")
+      .value("METROPOLIS", solver::cmc_utility::Algorithm::METROPOLIS)
+      .value("HEAT_BATH" , solver::cmc_utility::Algorithm::HEAT_BATH);
+
 }
 
 
@@ -52,23 +52,21 @@ void pybind11SolverClassicalMonteCarlo(py::module &m, const std::string &post_na
    auto py_class = py::class_<CMC>(m, name.c_str(), py::module_local());
    
    //Constructors
-   py_class.def(py::init<const ModelType&, const solver::CMCUpdater>(), "model"_a, "updater"_a=solver::CMCUpdater::METROPOLIS);
+   py_class.def(py::init<const ModelType&>(), "model"_a);
    
    //Public Member Functions
    py_class.def("set_num_sweeps", &CMC::SetNumSweeps  , "num_sweeps"_a );
    py_class.def("set_num_samples", &CMC::SetNumSamples, "num_samples"_a);
    py_class.def("set_num_threads", &CMC::SetNumThreads, "num_threads"_a);
-   py_class.def("set_inverse_temperature", &CMC::SetInverseTemperature, "inverse_temperature"_a);
    py_class.def("set_temperature", &CMC::SetTemperature, "temperature"_a);
-   py_class.def("set_cmc_updater", &CMC::SetCMCUpdater, "cmc_updater"_a);
+   py_class.def("set_algorithm", &CMC::SetAlgorithm, "algorithm"_a);
    py_class.def("get_num_sweeps", &CMC::GetNumSweeps);
    py_class.def("get_num_samples", &CMC::GetNumSamples);
    py_class.def("get_num_threads", &CMC::GetNumThreads);
    py_class.def("get_samples", &CMC::GetSamples);
    py_class.def("get_temperature", &CMC::GetTemperature);
-   py_class.def("get_inverse_temperature", &CMC::GetInverseTemperature);
    py_class.def("get_seed", &CMC::GetSeed);
-   py_class.def("get_cmc_updater", &CMC::GetCMCUpdater);
+   py_class.def("get_algorithm", &CMC::GetAlgorithm);
    py_class.def("run", py::overload_cast<>(&CMC::Run));
    py_class.def("run", py::overload_cast<const std::uint64_t>(&CMC::Run), "seed"_a);
    py_class.def("calculate_average", &CMC::CalculateAverage);
@@ -76,10 +74,9 @@ void pybind11SolverClassicalMonteCarlo(py::module &m, const std::string &post_na
    py_class.def("calculate_moment", &CMC::CalculateMoment, "degree"_a);
    py_class.def("calculate_correlation", &CMC::CalculateCorrelation, "origin"_a, "index_list"_a);
    
-   m.def("make_classical_monte_carlo", [](const ModelType &model,
-                                          const solver::CMCUpdater cmc_updater) {
-      return make_classical_monte_carlo(model, cmc_updater);
-   }, "model"_a, "cmc_updater"_a = solver::CMCUpdater::METROPOLIS);
+   m.def("make_classical_monte_carlo", [](const ModelType &model) {
+      return solver::make_classical_monte_carlo(model);
+   }, "model"_a);
    
 }
 
