@@ -32,21 +32,23 @@ namespace solver {
 namespace cmc_utility {
 
 template<typename RealType>
-class CMCSystem<model::PolynomialIsing<lattice::Cubic, RealType>> {
+class CMCSystem<model::PolynomialIsing<lattice::Cubic, RealType>>: public CMCBaseIsingSystem {
    
    using ModelType = model::PolynomialIsing<lattice::Cubic, RealType>;
    
 public:
    using ValueType = typename ModelType::ValueType;
    
-   CMCSystem(const ModelType &model, const uint64_t seed):
+   CMCSystem(const ModelType &model):
    system_size_(model.GetSystemSize()),
    x_size_(model.GetLattice().GetXSize()),
    y_size_(model.GetLattice().GetYSize()),
    z_size_(model.GetLattice().GetZSize()),
    bc_(model.GetBoundaryCondition()),
-   interaction_(model.GetInteraction()) {
-      sample_ = GenerateRandomSpin(seed);
+   interaction_(model.GetInteraction()) {}
+   
+   void InitializeSSF(const uint64_t seed) {
+      sample_ = this->GenerateRandomSpin(seed, system_size_);
       energy_difference_ = GenerateEnergyDifference(sample_);
    }
    
@@ -338,21 +340,10 @@ private:
       return energy_difference;
    }
    
-   std::vector<typename ModelType::OPType> GenerateRandomSpin(const std::uint64_t seed) const {
-      std::vector<typename ModelType::OPType> sample(system_size_);
-      std::uniform_int_distribution<utility::SpinType> dist(0, 1);
-      utility::RandType random_number_engine(seed);
-      for (std::size_t i = 0; i < sample.size(); i++) {
-         sample[i] = 2*dist(random_number_engine) - 1;
-      }
-      return sample;
-   }
-   
-   
 };
 
 template<typename RealType>
-CMCSystem(const model::PolynomialIsing<lattice::Cubic, RealType>, const uint64_t) -> CMCSystem<model::PolynomialIsing<lattice::Cubic, RealType>>;
+CMCSystem(const model::PolynomialIsing<lattice::Cubic, RealType>) -> CMCSystem<model::PolynomialIsing<lattice::Cubic, RealType>>;
 
 } // namespace cmc_utility
 } // namespace solver

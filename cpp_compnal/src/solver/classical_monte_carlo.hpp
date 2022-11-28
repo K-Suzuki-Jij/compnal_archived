@@ -128,7 +128,8 @@ public:
       if (algorithm_ == cmc_utility::Algorithm::METROPOLIS) {
 #pragma omp parallel for schedule(guided) num_threads(num_threads_)
          for (std::int32_t sample_count = 0; sample_count < num_samples_; sample_count++) {
-            cmc_utility::CMCSystem system{model_, system_seed_list[sample_count]};
+            cmc_utility::CMCSystem system{model_};
+            system.InitializeSSF(system_seed_list[sample_count]);
             cmc_utility::SSFUpdater(&system, num_sweeps_, beta_, mc_seed_list[sample_count], cmc_utility::metropolis_transition<RealType>);
             samples_[sample_count] = system.GetSample();
          }
@@ -136,7 +137,8 @@ public:
       else if (algorithm_ == cmc_utility::Algorithm::HEAT_BATH) {
 #pragma omp parallel for schedule(guided) num_threads(num_threads_)
          for (std::int32_t sample_count = 0; sample_count < num_samples_; sample_count++) {
-            cmc_utility::CMCSystem system{model_, system_seed_list[sample_count]};
+            cmc_utility::CMCSystem system{model_};
+            system.InitializeSSF(system_seed_list[sample_count]);
             cmc_utility::SSFUpdater(&system, num_sweeps_, beta_, mc_seed_list[sample_count], cmc_utility::heat_bath_transition<RealType>);
             samples_[sample_count] = system.GetSample();
          }

@@ -23,12 +23,29 @@
 #ifndef COMPNAL_SOLVER_CMC_UTILITY_BASE_SYSTEM_HPP_
 #define COMPNAL_SOLVER_CMC_UTILITY_BASE_SYSTEM_HPP_
 
+#include "../../utility/all.hpp"
+
 namespace compnal {
 namespace solver {
 namespace cmc_utility {
 
 template<class ModelType>
 class CMCSystem;
+
+class CMCBaseIsingSystem {
+   
+protected:
+   std::vector<utility::SpinType> GenerateRandomSpin(const std::uint64_t seed, const std::int32_t system_size) const {
+      std::vector<utility::SpinType> sample(system_size);
+      std::uniform_int_distribution<utility::SpinType> dist(0, 1);
+      utility::RandType random_number_engine(seed);
+      for (std::size_t i = 0; i < sample.size(); i++) {
+         sample[i] = 2*dist(random_number_engine) - 1;
+      }
+      return sample;
+   }
+   
+};
 
 } // namespace cmc_utility
 } // namespace solver

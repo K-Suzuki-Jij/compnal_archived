@@ -32,20 +32,22 @@ namespace solver {
 namespace cmc_utility {
 
 template<typename RealType>
-class CMCSystem<model::PolynomialIsing<lattice::AnyLattice, RealType>> {
+class CMCSystem<model::PolynomialIsing<lattice::AnyLattice, RealType>>: public CMCBaseIsingSystem {
    
    using ModelType = model::PolynomialIsing<lattice::AnyLattice, RealType>;
    
 public:
    using ValueType = typename ModelType::ValueType;
    
-   CMCSystem(const ModelType &model, const uint64_t seed):
+   CMCSystem(const ModelType &model):
    system_size_(model.GetSystemSize()),
    bc_(model.GetBoundaryCondition()),
    key_list_(model.GetKeyList()),
    value_list_(model.GetValueList()),
-   adjacency_list_(model.GetAdjacencyList()) {
-      sample_ = GenerateRandomSpin(seed);
+   adjacency_list_(model.GetAdjacencyList()) {}
+   
+   void InitializeSSF(const uint64_t seed) {
+      sample_ = this->GenerateRandomSpin(seed, system_size_);
       sign_list_ = GenerateSignList(sample_);
       energy_difference_ = GenerateEnergyDifference(sample_);
    }
@@ -96,16 +98,6 @@ private:
       return energy_difference;
    }
    
-   std::vector<typename ModelType::OPType> GenerateRandomSpin(const std::uint64_t seed) const {
-      std::vector<typename ModelType::OPType> sample(system_size_);
-      std::uniform_int_distribution<utility::SpinType> dist(0, 1);
-      utility::RandType random_number_engine(seed);
-      for (std::size_t i = 0; i < sample.size(); i++) {
-         sample[i] = 2*dist(random_number_engine) - 1;
-      }
-      return sample;
-   }
-   
    std::vector<std::int8_t> GenerateSignList(const std::vector<typename ModelType::OPType> &sample) const {
       std::vector<std::int8_t> sign_list(key_list_.size());
       for (std::size_t i = 0; i < key_list_.size(); ++i) {
@@ -121,7 +113,7 @@ private:
 };
 
 template<typename RealType>
-CMCSystem(const model::PolynomialIsing<lattice::AnyLattice, RealType>, const uint64_t) -> CMCSystem<model::PolynomialIsing<lattice::AnyLattice, RealType>>;
+CMCSystem(const model::PolynomialIsing<lattice::AnyLattice, RealType>) -> CMCSystem<model::PolynomialIsing<lattice::AnyLattice, RealType>>;
 
 
 } // namespace cmc_utility
