@@ -70,8 +70,7 @@ TEST(SolverClassicalMonteCarlo, PolyIsingCubicPBC) {
    const lattice::Cubic lattice(3, 3, 3, lattice::BoundaryCondition::PBC);
    const std::unordered_map<std::int32_t, double> interaction{{3, -1}};
    model::PolynomialIsing model(lattice, interaction);
-   //solver::ClassicalMonteCarlo solver(model);
-   auto solver = solver::make_classical_monte_carlo(model);
+   solver::ClassicalMonteCarlo solver(model);
    solver.SetNumThreads(4);
    solver.SetNumSweeps(10000);
    solver.SetNumSamples(10);
@@ -113,7 +112,7 @@ TEST(SolverClassicalMonteCarlo, PolyIsingCubicOBC) {
 
 
 TEST(SolverClassicalMonteCarlo, PolyIsingSquarePBC) {
-   const lattice::Square lattice(5, 5, lattice::BoundaryCondition::PBC);
+   const lattice::Square lattice(6, 6, lattice::BoundaryCondition::PBC);
    const std::unordered_map<std::int32_t, double> interaction{{2, -1}};
    model::PolynomialIsing model(lattice, interaction);
    const std::uint64_t seed = 1;
@@ -135,7 +134,7 @@ TEST(SolverClassicalMonteCarlo, PolyIsingSquarePBC) {
 }
 
 TEST(SolverClassicalMonteCarlo, PolyIsingSquareOBC) {
-   const lattice::Square lattice(5, 5, lattice::BoundaryCondition::OBC);
+   const lattice::Square lattice(6, 6, lattice::BoundaryCondition::OBC);
    const std::unordered_map<std::int32_t, double> interaction{{2, -1}};
    model::PolynomialIsing model(lattice, interaction);
    const std::uint64_t seed = 1;

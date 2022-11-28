@@ -154,6 +154,307 @@ public:
       }
       energy_difference_[index] *= -1;
       sample_[index] *= -1;
+      /*
+      if (interaction_.size() == 4) {
+         //const typename ModelType::ValueType J_2 = interaction_[2];
+         const typename ModelType::ValueType J_3 = interaction_[3];
+         if (bc_ == lattice::BoundaryCondition::PBC) {
+            // x-direction
+            const std::int32_t y_ind = coo_y*x_size_;
+            if (coo_x == 0) {
+               const typename ModelType::OPType sign_1 = sample_[y_ind + x_size_ - 2]*sample_[y_ind + x_size_ - 1]*sample_[y_ind];
+               energy_difference_[y_ind + x_size_ - 2] += 4*J_3*sign_1;
+               energy_difference_[y_ind + x_size_ - 1] += 4*J_3*sign_1;
+               //energy_difference_[y_ind              ] += 4*J_3*sign_1;
+               const typename ModelType::OPType sign_2 = sample_[y_ind + x_size_ - 1]*sample_[y_ind]*sample_[y_ind + 1];
+               energy_difference_[y_ind + x_size_ - 1] += 4*J_3*sign_2;
+               //energy_difference_[y_ind              ] += 4*J_3*sign_2;
+               energy_difference_[y_ind + 1          ] += 4*J_3*sign_2;
+               const typename ModelType::OPType sign_3 = sample_[y_ind]*sample_[y_ind + 1]*sample_[y_ind + 2];
+               //energy_difference_[y_ind              ] += 4*J_3*sign_3;
+               energy_difference_[y_ind + 1          ] += 4*J_3*sign_3;
+               energy_difference_[y_ind + 2          ] += 4*J_3*sign_3;
+            }
+            else if (coo_x == 1) {
+               const typename ModelType::OPType sign_1 = sample_[y_ind + x_size_ - 1]*sample_[y_ind]*sample_[y_ind + 1];
+               energy_difference_[y_ind + x_size_ - 1] += 4*J_3*sign_1;
+               energy_difference_[y_ind              ] += 4*J_3*sign_1;
+               //energy_difference_[y_ind + 1          ] += 4*J_3*sign_1;
+               const typename ModelType::OPType sign_2 = sample_[y_ind]*sample_[y_ind + 1]*sample_[y_ind + 2];
+               energy_difference_[y_ind              ] += 4*J_3*sign_2;
+               //energy_difference_[y_ind + 1          ] += 4*J_3*sign_2;
+               energy_difference_[y_ind + 2          ] += 4*J_3*sign_2;
+               const typename ModelType::OPType sign_3 = sample_[y_ind + 1]*sample_[y_ind + 2]*sample_[y_ind + 3];
+               //energy_difference_[y_ind + 1          ] += 4*J_3*sign_3;
+               energy_difference_[y_ind + 2          ] += 4*J_3*sign_3;
+               energy_difference_[y_ind + 3          ] += 4*J_3*sign_3;
+            }
+            else if (coo_x == x_size_ - 1) {
+               const typename ModelType::OPType sign_1 = sample_[y_ind + x_size_ - 3]*sample_[y_ind + x_size_ - 2]*sample_[y_ind + x_size_ - 1];
+               energy_difference_[y_ind + x_size_ - 3] += 4*J_3*sign_1;
+               energy_difference_[y_ind + x_size_ - 2] += 4*J_3*sign_1;
+               //energy_difference_[y_ind + x_size_ - 1] += 4*J_3*sign_1;
+               const typename ModelType::OPType sign_2 = sample_[y_ind + x_size_ - 2]*sample_[y_ind + x_size_ - 1]*sample_[y_ind];
+               energy_difference_[y_ind + x_size_ - 2] += 4*J_3*sign_2;
+               //energy_difference_[y_ind + x_size_ - 1] += 4*J_3*sign_2;
+               energy_difference_[y_ind              ] += 4*J_3*sign_2;
+               const typename ModelType::OPType sign_3 = sample_[y_ind + x_size_ - 1]*sample_[y_ind]*sample_[y_ind + 1];
+               //energy_difference_[y_ind + x_size_ - 1] += 4*J_3*sign_3;
+               energy_difference_[y_ind              ] += 4*J_3*sign_3;
+               energy_difference_[y_ind + 1          ] += 4*J_3*sign_3;
+            }
+            else if (coo_x == x_size_ - 2) {
+               const typename ModelType::OPType sign_1 = sample_[y_ind + x_size_ - 4]*sample_[y_ind + x_size_ - 3]*sample_[y_ind + x_size_ - 2];
+               energy_difference_[y_ind + x_size_ - 4] += 4*J_3*sign_1;
+               energy_difference_[y_ind + x_size_ - 3] += 4*J_3*sign_1;
+               //energy_difference_[y_ind + x_size_ - 2] += 4*J_3*sign_1;
+               const typename ModelType::OPType sign_2 = sample_[y_ind + x_size_ - 3]*sample_[y_ind + x_size_ - 2]*sample_[y_ind + x_size_ - 1];
+               energy_difference_[y_ind + x_size_ - 3] += 4*J_3*sign_2;
+               //energy_difference_[y_ind + x_size_ - 2] += 4*J_3*sign_2;
+               energy_difference_[y_ind + x_size_ - 1] += 4*J_3*sign_2;
+               const typename ModelType::OPType sign_3 = sample_[y_ind + x_size_ - 2]*sample_[y_ind + x_size_ - 1]*sample_[y_ind];
+               //energy_difference_[y_ind + x_size_ - 2] += 4*J_3*sign_3;
+               energy_difference_[y_ind + x_size_ - 1] += 4*J_3*sign_3;
+               energy_difference_[y_ind              ] += 4*J_3*sign_3;
+            }
+            else {
+               const typename ModelType::OPType sign_1 = sample_[y_ind + coo_x - 2]*sample_[y_ind + coo_x - 1]*sample_[y_ind + coo_x];
+               energy_difference_[y_ind + coo_x - 2] += 4*J_3*sign_1;
+               energy_difference_[y_ind + coo_x - 1] += 4*J_3*sign_1;
+               //energy_difference_[y_ind + coo_x    ] += 4*J_3*sign_1;
+               const typename ModelType::OPType sign_2 = sample_[y_ind + coo_x - 1]*sample_[y_ind + coo_x]*sample_[y_ind + coo_x + 1];
+               energy_difference_[y_ind + coo_x - 1] += 4*J_3*sign_2;
+               //energy_difference_[y_ind + coo_x    ] += 4*J_3*sign_2;
+               energy_difference_[y_ind + coo_x + 1] += 4*J_3*sign_2;
+               const typename ModelType::OPType sign_3 = sample_[y_ind + coo_x]*sample_[y_ind + coo_x + 1]*sample_[y_ind + coo_x + 2];
+               //energy_difference_[y_ind + coo_x    ] += 4*J_3*sign_3;
+               energy_difference_[y_ind + coo_x + 1] += 4*J_3*sign_3;
+               energy_difference_[y_ind + coo_x + 2] += 4*J_3*sign_3;
+            }
+            // y-direction
+            if (coo_y == 0) {
+               const typename ModelType::OPType sign_1 = sample_[(coo_y - 2)*x_size_ + coo_x]*sample_[(coo_y - 1)*x_size_ + coo_x]*sample_[coo_x];
+               energy_difference_[(coo_y - 2)*x_size_ + coo_x] += 4*J_3*sign_1;
+               energy_difference_[(coo_y - 1)*x_size_ + coo_x] += 4*J_3*sign_1;
+               //energy_difference_[                      coo_x] += 4*J_3*sign_1;
+               const typename ModelType::OPType sign_2 = sample_[(coo_y - 1)*x_size_ + coo_x]*sample_[coo_x]*sample_[x_size_ + coo_x];
+               energy_difference_[(coo_y - 1)*x_size_ + coo_x] += 4*J_3*sign_2;
+               //energy_difference_[                      coo_x] += 4*J_3*sign_2;
+               energy_difference_[            x_size_ + coo_x] += 4*J_3*sign_2;
+               const typename ModelType::OPType sign_3 = sample_[coo_x]*sample_[x_size_ + coo_x]*sample_[2*x_size_ + coo_x];
+               //energy_difference_[            coo_x] += 4*J_3*sign_3;
+               energy_difference_[  x_size_ + coo_x] += 4*J_3*sign_3;
+               energy_difference_[2*x_size_ + coo_x] += 4*J_3*sign_3;
+            }
+            else if (coo_y == 1) {
+               const typename ModelType::OPType sign_1 = sample_[(coo_y - 1)*x_size_ + coo_x]*sample_[coo_x]*sample_[x_size_ + coo_x];
+               energy_difference_[(coo_y - 1)*x_size_ + coo_x] += 4*J_3*sign_1;
+               energy_difference_[                      coo_x] += 4*J_3*sign_1;
+               //energy_difference_[            x_size_ + coo_x] += 4*J_3*sign_1;
+               const typename ModelType::OPType sign_2 = sample_[coo_x]*sample_[x_size_ + coo_x]*sample_[2*x_size_ + coo_x];
+               energy_difference_[            coo_x] += 4*J_3*sign_2;
+               //energy_difference_[  x_size_ + coo_x] += 4*J_3*sign_2;
+               energy_difference_[2*x_size_ + coo_x] += 4*J_3*sign_2;
+               const typename ModelType::OPType sign_3 = sample_[x_size_ + coo_x]*sample_[2*x_size_ + coo_x]*sample_[3*x_size_ + coo_x];
+               //energy_difference_[  x_size_ + coo_x] += 4*J_3*sign_3;
+               energy_difference_[2*x_size_ + coo_x] += 4*J_3*sign_3;
+               energy_difference_[3*x_size_ + coo_x] += 4*J_3*sign_3;
+            }
+            else if (coo_y == y_size_ - 1) {
+               const typename ModelType::OPType sign_1 = sample_[(y_size_ - 3)*x_size_ + coo_x]*sample_[(y_size_ - 2)*x_size_ + coo_x]*sample_[(y_size_ - 1)*x_size_ + coo_x];
+               energy_difference_[(y_size_ - 3)*x_size_ + coo_x] += 4*J_3*sign_1;
+               energy_difference_[(y_size_ - 2)*x_size_ + coo_x] += 4*J_3*sign_1;
+               //energy_difference_[(y_size_ - 1)*x_size_ + coo_x] += 4*J_3*sign_1;
+               const typename ModelType::OPType sign_2 = sample_[(y_size_ - 2)*x_size_ + coo_x]*sample_[(y_size_ - 1)*x_size_ + coo_x]*sample_[coo_x];
+               energy_difference_[(y_size_ - 2)*x_size_ + coo_x] += 4*J_3*sign_2;
+               //energy_difference_[(y_size_ - 1)*x_size_ + coo_x] += 4*J_3*sign_2;
+               energy_difference_[                        coo_x] += 4*J_3*sign_2;
+               const typename ModelType::OPType sign_3 = sample_[(y_size_ - 1)*x_size_ + coo_x]*sample_[coo_x]*sample_[x_size_ + coo_x];
+               //energy_difference_[(y_size_ - 1)*x_size_ + coo_x] += 4*J_3*sign_3;
+               energy_difference_[                        coo_x] += 4*J_3*sign_3;
+               energy_difference_[              x_size_ + coo_x] += 4*J_3*sign_3;
+            }
+            else if (coo_y == y_size_ - 2) {
+               const typename ModelType::OPType sign_1 = sample_[(y_size_ - 4)*x_size_ + coo_x]*sample_[(y_size_ - 3)*x_size_ + coo_x]*sample_[(y_size_ - 2)*x_size_ + coo_x];
+               energy_difference_[(y_size_ - 4)*x_size_ + coo_x] += 4*J_3*sign_1;
+               energy_difference_[(y_size_ - 3)*x_size_ + coo_x] += 4*J_3*sign_1;
+               //energy_difference_[(y_size_ - 2)*x_size_ + coo_x] += 4*J_3*sign_1;
+               const typename ModelType::OPType sign_2 = sample_[(y_size_ - 3)*x_size_ + coo_x]*sample_[(y_size_ - 2)*x_size_ + coo_x]*sample_[(y_size_ - 1)*x_size_ + coo_x];
+               energy_difference_[(y_size_ - 3)*x_size_ + coo_x] += 4*J_3*sign_2;
+               //energy_difference_[(y_size_ - 2)*x_size_ + coo_x] += 4*J_3*sign_2;
+               energy_difference_[(y_size_ - 1)*x_size_ + coo_x] += 4*J_3*sign_2;
+               const typename ModelType::OPType sign_3 = sample_[(y_size_ - 2)*x_size_ + coo_x]*sample_[(y_size_ - 1)*x_size_ + coo_x]*sample_[coo_x];
+               //energy_difference_[(y_size_ - 2)*x_size_ + coo_x] += 4*J_3*sign_3;
+               energy_difference_[(y_size_ - 1)*x_size_ + coo_x] += 4*J_3*sign_3;
+               energy_difference_[                        coo_x] += 4*J_3*sign_3;
+            }
+            else {
+               const typename ModelType::OPType sign_1 = sample_[(coo_y - 2)*x_size_ + coo_x]*sample_[(coo_y - 1)*x_size_ + coo_x]*sample_[coo_y*x_size_ + coo_x];
+               energy_difference_[(coo_y - 2)*x_size_ + coo_x] += 4*J_3*sign_1;
+               energy_difference_[(coo_y - 1)*x_size_ + coo_x] += 4*J_3*sign_1;
+               //energy_difference_[      coo_y*x_size_ + coo_x] += 4*J_3*sign_1;
+               const typename ModelType::OPType sign_2 = sample_[(coo_y - 1)*x_size_ + coo_x]*sample_[coo_y*x_size_ + coo_x]*sample_[(coo_y + 1)*x_size_ + coo_x];
+               energy_difference_[(coo_y - 1)*x_size_ + coo_x] += 4*J_3*sign_2;
+               //energy_difference_[      coo_y*x_size_ + coo_x] += 4*J_3*sign_2;
+               energy_difference_[(coo_y + 1)*x_size_ + coo_x] += 4*J_3*sign_2;
+               const typename ModelType::OPType sign_3 = sample_[coo_y*x_size_ + coo_x]*sample_[(coo_y + 1)*x_size_ + coo_x]*sample_[(coo_y + 2)*x_size_ + coo_x];
+               //energy_difference_[      coo_y*x_size_ + coo_x] += 4*J_3*sign_3;
+               energy_difference_[(coo_y + 1)*x_size_ + coo_x] += 4*J_3*sign_3;
+               energy_difference_[(coo_y + 2)*x_size_ + coo_x] += 4*J_3*sign_3;
+            }
+         }
+         else if (bc_ == lattice::BoundaryCondition::OBC) {
+            // x-direction
+            const std::int32_t y_ind = coo_y*x_size_;
+            if (2 <= coo_x) {
+               typename ModelType::ValueType val = 4*J_3*sample_[y_ind + coo_x - 2]*sample_[y_ind + coo_x - 1]*sample_[y_ind + coo_x];
+               energy_difference_[y_ind + coo_x - 2] += val;
+               energy_difference_[y_ind + coo_x - 1] += val;
+               //energy_difference_[y_ind + coo_x    ] += val;
+            }
+            if (1 <= coo_x && coo_x <= x_size_ - 2) {
+               typename ModelType::ValueType val = 4*J_3*sample_[y_ind + coo_x - 1]*sample_[y_ind + coo_x]*sample_[y_ind + coo_x + 1];
+               energy_difference_[y_ind + coo_x - 1] += val;
+               //energy_difference_[y_ind + coo_x    ] += val;
+               energy_difference_[y_ind + coo_x + 1] += val;
+            }
+            if (coo_x <= x_size_ - 3) {
+               typename ModelType::ValueType val = 4*J_3*sample_[y_ind + coo_x]*sample_[y_ind + coo_x + 1]*sample_[y_ind + coo_x + 2];
+               //energy_difference_[y_ind + coo_x    ] += val;
+               energy_difference_[y_ind + coo_x + 1] += val;
+               energy_difference_[y_ind + coo_x + 2] += val;
+            }
+            // y-direction
+            if (2 <= coo_y) {
+               typename ModelType::ValueType val = 4*J_3*sample_[(coo_y - 2)*x_size_ + coo_x]*sample_[(coo_y - 1)*x_size_ + coo_x]*sample_[coo_y*x_size_ + coo_x];
+               energy_difference_[(coo_y - 2)*x_size_ + coo_x] += val;
+               energy_difference_[(coo_y - 1)*x_size_ + coo_x] += val;
+               //energy_difference_[            x_size_ + coo_x] += val;
+            }
+            if (1 <= coo_y && coo_y <= y_size_ - 2) {
+               typename ModelType::ValueType val = 4*J_3*sample_[(coo_y - 1)*x_size_ + coo_x]*sample_[coo_y*x_size_ + coo_x]*sample_[(coo_y + 1)*x_size_ + coo_x];
+               energy_difference_[(coo_y - 1)*x_size_ + coo_x] += val;
+               //energy_difference_[            x_size_ + coo_x] += val;
+               energy_difference_[(coo_y + 1)*x_size_ + coo_x] += val;
+            }
+            if (coo_y <= y_size_ - 3) {
+               typename ModelType::ValueType val = 4*J_3*sample_[coo_y*x_size_ + coo_x]*sample_[(coo_y + 1)*x_size_ + coo_x]*sample_[(coo_y + 2)*x_size_ + coo_x];
+               //energy_difference_[            x_size_ + coo_x] += val;
+               energy_difference_[(coo_y + 1)*x_size_ + coo_x] += val;
+               energy_difference_[(coo_y + 2)*x_size_ + coo_x] += val;
+            }
+         }
+         else {
+            throw std::runtime_error("Unsupported BoundaryCondition");
+         }
+         energy_difference_[index] *= -1;
+         sample_[index] *= -1;
+      }
+      else {
+         if (bc_ == lattice::BoundaryCondition::PBC) {
+            for (std::int32_t degree = 1; degree < interaction_.size(); ++degree) {
+               if (std::abs(interaction_[degree]) <= std::numeric_limits<typename ModelType::ValueType>::epsilon()) {
+                  continue;
+               }
+               const typename ModelType::ValueType target_ineraction = interaction_[degree];
+               
+               for (std::int32_t i = 0; i < degree; ++i) {
+                  typename ModelType::OPType sign_x = 1;
+                  typename ModelType::OPType sign_y = 1;
+                  for (std::int32_t j = 0; j < degree; ++j) {
+                     // x-direction
+                     std::int32_t connected_index_x = coo_x - degree + 1 + i + j;
+                     if (connected_index_x < 0) {
+                        connected_index_x += x_size_;
+                     }
+                     else if (connected_index_x >= x_size_) {
+                        connected_index_x -= x_size_;
+                     }
+                     sign_x *= sample_[coo_y*x_size_ + connected_index_x];
+                     
+                     // y-direction
+                     std::int32_t connected_index_y = coo_y - degree + 1 + i + j;
+                     if (connected_index_y < 0) {
+                        connected_index_y += y_size_;
+                     }
+                     else if (connected_index_y >= y_size_) {
+                        connected_index_y -= y_size_;
+                     }
+                     sign_y *= sample_[connected_index_y*x_size_ + coo_x];
+                  }
+                  for (std::int32_t j = 0; j < degree; ++j) {
+                     // x-direction
+                     std::int32_t connected_index_x = coo_x - degree + 1 + i + j;
+                     if (connected_index_x < 0) {
+                        connected_index_x += x_size_;
+                     }
+                     else if (connected_index_x >= x_size_) {
+                        connected_index_x -= x_size_;
+                     }
+                     if (connected_index_x != coo_x){
+                        energy_difference_[coo_y*x_size_ + connected_index_x] += 4*target_ineraction*sign_x;
+                     }
+                     
+                     // y-direction
+                     std::int32_t connected_index_y = coo_y - degree + 1 + i + j;
+                     if (connected_index_y < 0) {
+                        connected_index_y += y_size_;
+                     }
+                     else if (connected_index_y >= y_size_) {
+                        connected_index_y -= y_size_;
+                     }
+                     if (connected_index_y != coo_y){
+                        energy_difference_[connected_index_y*x_size_ + coo_x] += 4*target_ineraction*sign_y;
+                     }
+                  }
+               }
+            }
+         }
+         else if (bc_ == lattice::BoundaryCondition::OBC) {
+            for (std::int32_t degree = 1; degree < interaction_.size(); ++degree) {
+               if (std::abs(interaction_[degree]) <= std::numeric_limits<typename ModelType::ValueType>::epsilon()) {
+                  continue;
+               }
+               const typename ModelType::ValueType target_ineraction = interaction_[degree];
+               
+               // x-direction
+               for (std::int32_t i = std::max(coo_x - degree + 1, 0); i <= coo_x; ++i) {
+                  if (i > x_size_ - degree) {
+                     break;
+                  }
+                  typename ModelType::OPType sign = 1;
+                  for (std::int32_t j = i; j < i + degree; ++j) {
+                     sign *= sample_[coo_y*x_size_ + j];
+                  }
+                  for (std::int32_t j = i; j < i + degree; ++j) {
+                     if (j == coo_x) {continue;}
+                     energy_difference_[coo_y*x_size_ + j] += 4*target_ineraction*sign;
+                  }
+               }
+               
+               // y-direction
+               for (std::int32_t i = std::max(coo_y - degree + 1, 0); i <= coo_y; ++i) {
+                  if (i > y_size_ - degree) {
+                     break;
+                  }
+                  typename ModelType::OPType sign = 1;
+                  for (std::int32_t j = i; j < i + degree; ++j) {
+                     sign *= sample_[j*x_size_ + coo_x];
+                  }
+                  for (std::int32_t j = i; j < i + degree; ++j) {
+                     if (j == coo_y) {continue;}
+                     energy_difference_[j*x_size_ + coo_x] += 4*target_ineraction*sign;
+                  }
+               }
+            }
+         }
+         else {
+            throw std::runtime_error("Unsupported BoundaryCondition");
+         }
+         energy_difference_[index] *= -1;
+         sample_[index] *= -1;
+      }
+       */
    }
    
    const std::vector<typename ModelType::OPType> &GetSample() const {
@@ -219,7 +520,6 @@ private:
                   energy_difference[coo_y*x_size_ + coo_x] = -2.0*val;
                }
             }
-
          }
       }
       else if (bc_ == lattice::BoundaryCondition::OBC) {
