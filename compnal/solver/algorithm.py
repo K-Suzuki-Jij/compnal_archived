@@ -8,6 +8,10 @@ class Algorithm(Enum):
 
     METROPOLIS = 0
     HEAT_BATH = 1
+    IRKMR = 2
+    RKMR = 3
+    SWENDSEN_WANG = 4
+    WOLFF = 5
 
 
 def cast_base_algorithm(algorithm: base_solver.Algorithm) -> Algorithm:
@@ -26,6 +30,14 @@ def cast_base_algorithm(algorithm: base_solver.Algorithm) -> Algorithm:
         return Algorithm.METROPOLIS
     elif algorithm == base_solver.Algorithm.HEAT_BATH:
         return Algorithm.HEAT_BATH
+    elif algorithm == base_solver.Algorithm.IRKMR:
+        return Algorithm.IRKMR
+    elif algorithm == base_solver.Algorithm.RKMR:
+        return Algorithm.RKMR
+    elif algorithm == base_solver.Algorithm.SWENDSEN_WANG:
+        return Algorithm.SWENDSEN_WANG
+    elif algorithm == base_solver.Algorithm.WOLFF:
+        return Algorithm.WOLFF
     else:
         raise RuntimeError("Unknown algorithm")
 
@@ -46,5 +58,13 @@ def cast_algorithm(algorithm: Algorithm):
         return base_solver.Algorithm.METROPOLIS
     elif algorithm == Algorithm.HEAT_BATH:
         return base_solver.Algorithm.HEAT_BATH
+    elif algorithm == Algorithm.IRKMR:
+        return base_solver.Algorithm.IRKMR
+    elif algorithm == Algorithm.RKMR:
+        return base_solver.Algorithm.RKMR
+    elif algorithm == Algorithm.SWENDSEN_WANG:
+        return base_solver.Algorithm.SWENDSEN_WANG
+    elif algorithm == Algorithm.WOLFF:
+        return base_solver.Algorithm.WOLFF
     else:
         raise RuntimeError("Unknown algorithm")

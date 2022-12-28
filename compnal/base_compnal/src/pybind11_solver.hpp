@@ -37,7 +37,11 @@ void pybind11SolverCMCUpdater(py::module &m) {
    
    py::enum_<solver::cmc_utility::Algorithm>(m, "Algorithm")
       .value("METROPOLIS", solver::cmc_utility::Algorithm::METROPOLIS)
-      .value("HEAT_BATH" , solver::cmc_utility::Algorithm::HEAT_BATH);
+      .value("HEAT_BATH" , solver::cmc_utility::Algorithm::HEAT_BATH)
+      .value("IRKMR" , solver::cmc_utility::Algorithm::IRKMR)
+      .value("RKMR" , solver::cmc_utility::Algorithm::RKMR)
+      .value("SWENDSEN_WANG" , solver::cmc_utility::Algorithm::SWENDSEN_WANG)
+      .value("WOLFF" , solver::cmc_utility::Algorithm::WOLFF);
 
 }
 

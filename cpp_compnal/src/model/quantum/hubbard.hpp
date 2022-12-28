@@ -35,5 +35,3 @@ class Hubbard {
 } // namespace compnal
 
 #endif /* COMPNAL_MODEL_HUBBARD_HPP_ */
-
-

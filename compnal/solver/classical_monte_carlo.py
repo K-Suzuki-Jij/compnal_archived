@@ -110,11 +110,11 @@ class ClassicalMonteCarlo:
 
     @property
     def algorithm(self) -> Algorithm:
-        return cast_base_algorithm(self.__base_solver.cmc_updater)
+        return cast_base_algorithm(self.__base_solver.get_algorithm())
 
     @algorithm.setter
     def algorithm(self, algorithm: Algorithm) -> None:
-        self.__base_solver.cmc_updater = cast_algorithm(algorithm)
+        self.__base_solver.set_algorithm(cast_algorithm(algorithm))
 
     @property
     def num_sweeps(self) -> int:

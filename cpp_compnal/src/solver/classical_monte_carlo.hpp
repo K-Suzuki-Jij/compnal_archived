@@ -143,7 +143,10 @@ public:
             samples_[sample_count] = system.GetSample();
          }
       }
-      else if (algorithm_ == cmc_utility::Algorithm::SUWA_TODO) {
+      else if (algorithm_ == cmc_utility::Algorithm::IRKMR) {
+         throw std::runtime_error("Under Construction");
+      }
+      else if (algorithm_ == cmc_utility::Algorithm::RKMR) {
          throw std::runtime_error("Under Construction");
       }
       else if (algorithm_ == cmc_utility::Algorithm::SWENDSEN_WANG) {

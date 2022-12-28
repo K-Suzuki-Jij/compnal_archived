@@ -31,7 +31,8 @@ enum class Algorithm {
    
    METROPOLIS, // SSF Update
    HEAT_BATH, // SSF Update
-   SUWA_TODO, // SSF Update
+   IRKMR, // SSF Update by Suwa Todo method (Reversible Kernel with Minimized Rejection)
+   RKMR, // SSF Update by Suwa Todo method (Irreversible Kernel with Minimized Rejection)
    SWENDSEN_WANG, // Cluster Update
    WOLFF // Cluster Update
    

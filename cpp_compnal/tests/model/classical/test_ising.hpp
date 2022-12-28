@@ -125,6 +125,16 @@ TEST(ModelIsing, AnyLatticeInt) {
    EXPECT_DOUBLE_EQ((ising.CalculateCorrelation({{-1, +1, -1}, {+1, +1, +1}}, 3, 3)), 1);
 }
 
+TEST(ModelIsing, Square) {
+   
+   const auto e_pbc = model::make_ising<lattice::Square, double>(lattice::Square{2, 3, lattice::BoundaryCondition::PBC}, 0, -2).CalculateEnergy({1, -1, 1, 1, -1, 1});
+   const auto e_obc = model::make_ising<lattice::Square, double>(lattice::Square{2, 3, lattice::BoundaryCondition::OBC}, 0, -2).CalculateEnergy({1, -1, 1, 1, -1, 1});
+   EXPECT_DOUBLE_EQ(e_obc, 2.0);
+   EXPECT_DOUBLE_EQ(e_pbc, 8.0);
+
+   
+}
+
 TEST(ModelIsing, InfiniteRange) {
    
    lattice::InfiniteRange lattice{10};
