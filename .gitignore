@@ -61,3 +61,4 @@ _version.py
 
 _skbuild*
 _skbuild/*
+_cmake_test_compile
