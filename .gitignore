@@ -48,7 +48,7 @@ share/python-wheels/
 .ipynb_checkpoints
 
 # Working Directry
-compnal-python/notebooks/work
+notebooks/work
 
 # Reference site
 docs
@@ -56,3 +56,9 @@ docs
 *.pyc
 
 __pycache__
+
+_version.py
+
+_skbuild*
+_skbuild/*
+_cmake_test_compile
