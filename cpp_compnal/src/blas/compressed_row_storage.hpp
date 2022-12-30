@@ -253,7 +253,29 @@ struct CRS {
    
 };
 
+//! @brief Generate transposed matrix, \f$ \hat{M}^{\dagger}\f$.
+//! @tparam T Value type of CRS matrix.
+//! @param matrix CRS object \f$ \hat{M}\f$.
+//! @return CRS object \f$ \hat{M}^{\dagger} \f$.
+template <typename T>
+CRS<T> GenerateTransposedMatrix(const CRS<T> &matrix) {
+   CRS<T> matrix_out(matrix.col_dim, matrix.row_dim, matrix.tag);
 
+   std::vector<std::int64_t> row_count(matrix.row_dim);
+   for (std::int64_t i = 0; i < matrix.col_dim; ++i) {
+      for (std::int64_t j = 0; j < matrix.row_dim; ++j) {
+         const std::int64_t row = matrix.row[j] + row_count[j];
+         if (row < matrix.row[j + 1] && matrix.col[row] == i) {
+            matrix_out.val.push_back(matrix.val[row]);
+            matrix_out.col.push_back(j);
+            row_count[j]++;
+         }
+      }
+      matrix_out.row[i + 1] = matrix_out.col.size();
+   }
+
+   return matrix_out;
+}
 
 } // namespace blas
 } // namespace compnal

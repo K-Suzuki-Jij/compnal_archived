@@ -23,6 +23,7 @@
 #ifndef COMPNAL_MODEL_QUANTUM_ALL_HPP_
 #define COMPNAL_MODEL_QUANTUM_ALL_HPP_
 
+#include "electron.hpp"
 #include "heisenberg.hpp"
 #include "hubbard.hpp"
 
