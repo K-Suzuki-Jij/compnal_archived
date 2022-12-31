@@ -72,9 +72,15 @@ std::ostream &operator<<(std::ostream &os, const CRSTag &tag) {
 }
 
 
-template<typename RealType>
+template<typename ElementType>
 struct CRS {
    
+   //! @brief Alias of ElementType.
+   using ValueType = ElementType;
+   
+   //------------------------------------------------------------------
+   //----------------------Public Member Variables---------------------
+   //------------------------------------------------------------------
    //! @brief The dimension of the row.
    std::int64_t row_dim = 0;
    
@@ -88,7 +94,7 @@ struct CRS {
    std::vector<std::int64_t> col;
    
    //! @brief The values of the nonzero elements of the matrix.
-   std::vector<RealType> val;
+   std::vector<ElementType> val;
    
    //! @brief Type of the the matrix.
    CRSTag tag = CRSTag::NONE;
@@ -96,11 +102,45 @@ struct CRS {
    //! @brief Matrix name.
    std::string name = "";
    
+   //------------------------------------------------------------------
+   //---------------------------Constructors---------------------------
+   //------------------------------------------------------------------
+   //! @brief Constructor of CRS class.
    CRS() {}
    
+   //! @brief Constructor of CRS class.
+   //! @param row_dim_in The dimension of the row.
+   //! @param col_dim_in The dimension of the colmun.
+   //! @param tag_in Type of the the matrix. Defaults to CRSTag::NONE.
    CRS(const std::int64_t row_dim_in, const std::int64_t col_dim_in, const CRSTag tag_in = CRSTag::NONE):
    row_dim(row_dim_in), col_dim(col_dim_in), tag(tag_in) {
       row.resize(row_dim_in + 1);
+   }
+   
+   //! @brief Constructor of CRS class.
+   //! @tparam T The value type of the vector elements.
+   //! @param mat_vec The matrix of two dimensional vectors.
+   //! @param tag_in Type of the the matrix. Defaults to CRSTag::NONE.
+   template<typename T = ElementType>
+   explicit CRS(const std::vector<std::vector<T>> &mat_vec, const CRSTag tag_in = CRSTag::NONE) {
+      this->row_dim = mat_vec.size();
+      this->col_dim = 0;
+      this->row.resize(this->row_dim + 1);
+      this->row[0] = 0;
+      for (std::int64_t i = 0; i < this->row_dim; ++i) {
+         const std::int64_t size = static_cast<std::int64_t>(mat_vec[i].size());
+         for (std::int64_t j = 0; j < size; ++j) {
+            if (mat_vec[i][j] != 0.0) {
+               this->col.push_back(j);
+               this->val.push_back(mat_vec[i][j]);
+            }
+            if (this->col_dim < j + 1) {
+               this->col_dim = j + 1;
+            }
+         }
+         this->row[i + 1] = this->col.size();
+      }
+      this->tag = tag_in;
    }
    
    //! @brief Assign CRS object.
@@ -131,7 +171,7 @@ struct CRS {
    
    template<typename T>
    void MultiplyByScalar(const T coeff, const std::int32_t num_threads = utility::DEFAULT_NUM_THREADS) {
-      if (std::abs(coeff) < std::numeric_limits<RealType>::epsilon() < T{0}) {
+      if (std::abs(coeff) < std::numeric_limits<ElementType>::epsilon() < T{0}) {
 #pragma omp parallel for schedule(guided) num_threads(num_threads)
          for (std::int64_t i = 0; i < this->row_dim; ++i) {
             this->row[i + 1] = 0;
@@ -158,7 +198,7 @@ struct CRS {
    //! @param threshold The threshold. Defaults to 10^-15.
    //! @param flag_display_info Display information if the matrix is not symmetric.
    //! @return Return true if the matrix is symmetric, otherwise false.
-   bool CheckSymmetric(const RealType threshold = std::numeric_limits<RealType>::epsilon(),
+   bool CheckSymmetric(const ElementType threshold = std::numeric_limits<ElementType>::epsilon(),
                        const bool flag_display_info = true) const {
       if (this->row_dim != this->col_dim) {
          std::stringstream ss;
@@ -216,7 +256,7 @@ struct CRS {
       }
       std::cout << this->tag << std::endl;
       std::cout << std::fixed;
-      std::cout << std::setprecision(std::numeric_limits<RealType>::max_digits10);
+      std::cout << std::setprecision(std::numeric_limits<ElementType>::max_digits10);
       for (std::int64_t i = 0; i < this->row_dim; ++i) {
          for (std::int64_t j = this->row.at(i); j < this->row.at(i + 1); ++j) {
             std::cout << display_name << "[";
@@ -232,7 +272,7 @@ struct CRS {
    //! @brief Print the information about the matrix.
    void PrintInfo(const std::string display_name = "Matrix") const {
       std::cout << std::fixed;
-      std::cout << std::setprecision(std::numeric_limits<RealType>::max_digits10);
+      std::cout << std::setprecision(std::numeric_limits<ElementType>::max_digits10);
       std::cout << "Print information about CRS: " << display_name << std::endl;
       std::cout << this->tag << std::endl;
       std::cout << "row_dim = " << this->row_dim << std::endl;
@@ -503,7 +543,7 @@ auto CalculateScalarMatrixProduct(const T1 coeff, const CRS<T2> &matrix)
    return out;
 }
 
-//! @brief Calculate matrix product, \f$ c_{1}\hat{M}_{1}\hat{M}_{2}\f$
+//! @brief Calculate matrix product, \f$ c_{1}\hat{M}_{1}\hat{M}_{2}\f$.
 //! @tparam T1 Value type of coeff_1.
 //! @tparam T2 Value type of matrix_1.
 //! @tparam T3 Value type of matrix_2.
@@ -594,8 +634,7 @@ auto CalculateMatrixMatrixProduct(const T1 coeff_1, const CRS<T2> &matrix_1, con
    return matrix_out;
 }
 
-//! @brief Calculate matrix summation, \f$ c_{1}\hat{M}_{1} +
-//! c_{2}\hat{M}_{2}\f$
+//! @brief Calculate matrix summation, \f$ c_{1}\hat{M}_{1} + c_{2}\hat{M}_{2}\f$
 //! @tparam T1 Value type of coeff_1.
 //! @tparam T2 Value type of matrix_1.
 //! @tparam T3 Value type of coeff_2.
@@ -639,12 +678,14 @@ auto CalculateMatrixMatrixSum(const T1 coeff_1, const CRS<T2> &matrix_1, const T
             matrix_out.val.push_back(coeff_1 * matrix_1.val[j]);
             matrix_out.col.push_back(matrix_1.col[j]);
          }
-      } else if (m1_count == 0 && m2_count != 0) {
+      }
+      else if (m1_count == 0 && m2_count != 0) {
          for (std::int64_t j = row_lower_2; j < row_upper_2; ++j) {
             matrix_out.val.push_back(coeff_2 * matrix_2.val[j]);
             matrix_out.col.push_back(matrix_2.col[j]);
          }
-      } else if (m1_count != 0 && m2_count != 0) {
+      }
+      else if (m1_count != 0 && m2_count != 0) {
          for (std::int64_t j = 0; j < m1_count + m2_count; ++j) {
             if (matrix_1.col[row_lower_1 + count_1] < matrix_2.col[row_lower_2 + count_2]) {
                matrix_out.val.push_back(coeff_1 * matrix_1.val[row_lower_1 + count_1]);
@@ -654,7 +695,8 @@ auto CalculateMatrixMatrixSum(const T1 coeff_1, const CRS<T2> &matrix_1, const T
                   check = 1;
                   break;
                }
-            } else if (matrix_1.col[row_lower_1 + count_1] == matrix_2.col[row_lower_2 + count_2]) {
+            }
+            else if (matrix_1.col[row_lower_1 + count_1] == matrix_2.col[row_lower_2 + count_2]) {
                const auto val =
                coeff_1 * matrix_1.val[row_lower_1 + count_1] + coeff_2 * matrix_2.val[row_lower_2 + count_2];
                if (std::abs(val) > 0.0) {
@@ -667,14 +709,17 @@ auto CalculateMatrixMatrixSum(const T1 coeff_1, const CRS<T2> &matrix_1, const T
                   if (temp_count_1 == row_upper_1 && temp_count_2 < row_upper_2) {
                      check = 1;
                      break;
-                  } else if (temp_count_1 < row_upper_1 && temp_count_2 == row_upper_2) {
+                  }
+                  else if (temp_count_1 < row_upper_1 && temp_count_2 == row_upper_2) {
                      check = 2;
                      break;
-                  } else if (temp_count_1 == row_upper_1 && temp_count_2 == row_upper_2) {
+                  }
+                  else if (temp_count_1 == row_upper_1 && temp_count_2 == row_upper_2) {
                      check = 0;
                      break;
                   }
-               } else {
+               }
+               else {
                   count_1++;
                   count_2++;
                   const std::int64_t temp_count_1 = row_lower_1 + count_1;
@@ -682,15 +727,18 @@ auto CalculateMatrixMatrixSum(const T1 coeff_1, const CRS<T2> &matrix_1, const T
                   if (temp_count_1 == row_upper_1 && temp_count_2 < row_upper_2) {
                      check = 1;
                      break;
-                  } else if (temp_count_1 < row_upper_1 && temp_count_2 == row_upper_2) {
+                  }
+                  else if (temp_count_1 < row_upper_1 && temp_count_2 == row_upper_2) {
                      check = 2;
                      break;
-                  } else if (temp_count_1 == row_upper_1 && temp_count_2 == row_upper_2) {
+                  }
+                  else if (temp_count_1 == row_upper_1 && temp_count_2 == row_upper_2) {
                      check = 0;
                      break;
                   }
                }
-            } else {
+            }
+            else {
                matrix_out.val.push_back(coeff_2 * matrix_2.val[row_lower_2 + count_2]);
                matrix_out.col.push_back(matrix_2.col[row_lower_2 + count_2]);
                count_2++;
@@ -705,7 +753,8 @@ auto CalculateMatrixMatrixSum(const T1 coeff_1, const CRS<T2> &matrix_1, const T
                matrix_out.val.push_back(coeff_2 * matrix_2.val[j]);
                matrix_out.col.push_back(matrix_2.col[j]);
             }
-         } else if (check == 2) {
+         }
+         else if (check == 2) {
             for (std::int64_t j = row_lower_1 + count_1; j < row_upper_1; ++j) {
                matrix_out.val.push_back(coeff_1 * matrix_1.val[j]);
                matrix_out.col.push_back(matrix_1.col[j]);
@@ -717,31 +766,39 @@ auto CalculateMatrixMatrixSum(const T1 coeff_1, const CRS<T2> &matrix_1, const T
    
    if (matrix_1.tag == CRSTag::NONE) {
       matrix_out.tag = matrix_2.tag;
-   } else if (matrix_1.tag == CRSTag::FERMION) {
+   }
+   else if (matrix_1.tag == CRSTag::FERMION) {
       if (matrix_2.tag == CRSTag::NONE || matrix_2.tag == CRSTag::FERMION) {
          matrix_out.tag = CRSTag::FERMION;
-      } else if (matrix_2.tag == CRSTag::BOSON || matrix_2.tag == CRSTag::MIX) {
+      }
+      else if (matrix_2.tag == CRSTag::BOSON || matrix_2.tag == CRSTag::MIX) {
          matrix_out.tag = CRSTag::MIX;
-      } else {
+      }
+      else {
          std::stringstream ss;
          ss << "Error at " << __LINE__ << " in " << __func__ << " in " << __FILE__ << std::endl;
          ss << "Unknown CRSTag detected.";
          throw std::runtime_error(ss.str());
       }
-   } else if (matrix_1.tag == CRSTag::BOSON) {
+   }
+   else if (matrix_1.tag == CRSTag::BOSON) {
       if (matrix_2.tag == CRSTag::NONE || matrix_2.tag == CRSTag::BOSON) {
          matrix_out.tag = CRSTag::BOSON;
-      } else if (matrix_2.tag == CRSTag::FERMION || matrix_2.tag == CRSTag::MIX) {
+      }
+      else if (matrix_2.tag == CRSTag::FERMION || matrix_2.tag == CRSTag::MIX) {
          matrix_out.tag = CRSTag::MIX;
-      } else {
+      }
+      else {
          std::stringstream ss;
          ss << "Error at " << __LINE__ << " in " << __func__ << " in " << __FILE__ << std::endl;
          ss << "Unknown CRSTag detected.";
          throw std::runtime_error(ss.str());
       }
-   } else if (matrix_1.tag == CRSTag::MIX) {
+   }
+   else if (matrix_1.tag == CRSTag::MIX) {
       matrix_out.tag = CRSTag::MIX;
-   } else {
+   }
+   else {
       std::stringstream ss;
       ss << "Error at " << __LINE__ << " in " << __func__ << " in " << __FILE__ << std::endl;
       ss << "Unknown CRSTag detected.";

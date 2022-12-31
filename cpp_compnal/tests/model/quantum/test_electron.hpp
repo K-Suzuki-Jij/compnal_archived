@@ -31,9 +31,6 @@ namespace test {
 TEST(ModelQuantum, Electron) {
    lattice::Chain chain{10};
    model::quantum::Electron(chain, {10, 0}, 0.5, 1.0);
-   
-   
-   
 }
 
 
