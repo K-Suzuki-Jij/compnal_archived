@@ -143,6 +143,14 @@ struct CRS {
       this->tag = tag_in;
    }
    
+   //! @brief Copy constructor of CRS class.
+   //! @tparam T Value type of the matrix elements.
+   //! @param matrix The matrix.
+   template <typename T>
+   CRS(const CRS<T> &matrix) {
+      Assign(matrix);
+   }
+   
    //! @brief Assign CRS object.
    //! @tparam T Value type of the matrix elements.
    //! @param matrix The matrix.
@@ -193,6 +201,18 @@ struct CRS {
          utility::QuickSortVector(&this->col, &this->val, this->row[i], this->row[i + 1]);
       }
    }
+   
+   //! @brief Clear the elements and free memory.
+    void Free() {
+       this->row_dim = 0;
+       this->col_dim = 0;
+       std::vector<std::int64_t>().swap(this->row);
+       std::vector<std::int64_t>().swap(this->col);
+       std::vector<ElementType>().swap(this->val);
+       this->row.push_back(0);
+       this->tag = CRSTag::NONE;
+       this->name = "";
+    }
    
    //! @brief Check if the matrix is symmetric or not within the threshold.
    //! @param threshold The threshold. Defaults to 10^-15.

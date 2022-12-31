@@ -77,18 +77,6 @@ TEST(CRS, MultiplyByScalar) {
    EXPECT_EQ(m_int, blas::CRS<int>({{2, 6}, {6}, {-2}}));
 }
 
-TEST(CRS, AddDiagonalElements) {
-   blas::CRS<double> m_d({{1.0, 2.0}, {3.0, -2.0}});
-   m_d.AddDiagonalElements(1);
-   EXPECT_EQ(m_d, blas::CRS<double>({{2.0, 2.0}, {3.0, -1.0}}));
-
-   blas::CRS<double> m_d_2({{0.0, 2.0}, {3.0, -2.0}});
-   EXPECT_THROW(m_d_2.AddDiagonalElements(0.00000001), std::runtime_error);
-
-   blas::CRS<double> m_d_3({{1.0, 2.0}, {3.0, -2.0}, {3.0, -2.0}});
-   EXPECT_THROW(m_d_3.AddDiagonalElements(0.00000001), std::runtime_error);
-}
-
 TEST(CRS, SortCol) {
    blas::CRS<int> m_d(3, 3);
    m_d.col.resize(8);
