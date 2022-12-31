@@ -55,6 +55,7 @@ public:
    using QuadraticType = RealType;
    
    //! @brief Constructor for Ising class.
+   //! @param lattice The lattice type.
    //! @param linear The linear interaction.
    //! @param quadratic The quadratic interaction.
    Ising(const LatticeType &lattice,

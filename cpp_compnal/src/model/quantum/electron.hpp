@@ -43,8 +43,8 @@ public:
    //! @brief The value type.
    using ValueType = RealType;
    
-   //! @brief Conserved quantum number (total electron, total sz) pair.
-   using QType = std::pair<std::int32_t, std::int32_t>;
+   //! @brief The type of conserved quantum number (total electron, total sz) pair.
+   using CQNType = std::pair<std::int32_t, std::int32_t>;
    
    //! @brief The linear interaction type.
    using LinearType = RealType;
@@ -52,7 +52,17 @@ public:
    //! @brief The quadratic interaction type.
    using QuadraticType = RealType;
    
-   
+   //! @brief Constructor for Electron class.
+   //! @param lattice The lattice type.
+   //! @param linear The linear interaction.
+   //! @param quadratic The quadratic interaction.
+   Electron(const LatticeType &lattice,
+            const CQNType conserved_quantum_number,
+            const LinearType linear,
+            const QuadraticType quadratic):
+   lattice_(lattice), conserved_quantum_number_(conserved_quantum_number), linear_(linear), quadratic_(quadratic) {
+      SetOnsiteOperator();
+   }
    
    //! @brief Generate the annihilation operator for the electrons with the up spin \f$ \hat{c}_{\uparrow}\f$.
    //! @return The matrix of \f$ \hat{c}_{\uparrow}\f$.
@@ -174,9 +184,17 @@ public:
    
    
 private:
+   //! @brief The linear interaction.
+   const LatticeType lattice_;
+   
+   //! @brief The linear interaction.
+   const LinearType linear_ = 0;
+   
+   //! @brief The quadratic interaction.
+   const QuadraticType quadratic_ = 0;
    
    //! @brief Pair of the total electron \f$ \langle\hat{N}_{\rm e}\rangle\f$ and the total sz \f$ \langle\hat{S}^{z}_{\rm tot}\rangle\f$.
-   QType conserved_quantum_number = {0, 0};
+   CQNType conserved_quantum_number_ = {0, 0};
    
    //! @brief The dimension of the local Hilbert space, 4.
    const int dim_onsite_ = 4;
